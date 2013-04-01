@@ -1,0 +1,10 @@
+libraries/
+modes/
+tools/
+.classpath
+.project
+sample/generated
+.DS_Store
+bin/
+web-export/
+sketch.properties
