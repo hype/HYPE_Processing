@@ -5,7 +5,7 @@
 // for more information.
 
 /*
-  @pjs font="DroidSerif-BoldItalic.ttf";
+  @pjs font="DroidSerifBoldItalic.ttf";
  */
 
 HDrawablePool pool;

@@ -83,6 +83,18 @@ public static class H implements HConstants {
 	
 	// MATH //
 	
+	public static float[] rotatePoint(float x, float y, float rad) {
+		float[] pt = new float[2];
+		
+		float c = _app.cos(rad);
+		float s = _app.sin(rad);
+		
+		pt[0] = x*c + y*s;
+		pt[1] = x*s + y*c;
+		
+		return pt;
+	}
+	
 	public static float yAxisAngle(float x1, float y1, float x2, float y2) {
 		return _app.atan2(x2-x1, y2-y1);
 	}
@@ -211,9 +223,9 @@ public static class HChildSet extends HLinkedHashSet<HDrawable> {
 
 
 public static class HColorField implements HColorist {
-	protected ArrayList<HColorPoint> colorPoints;
-	protected float maxDist;
-	protected boolean fillFlag, strokeFlag;
+	protected ArrayList<HColorPoint> _colorPoints;
+	protected float _maxDist;
+	protected boolean _appliesFill, _appliesStroke, _appliesAlpha;
 	
 	public HColorField() {
 		this(H.app().width, H.app().height);
@@ -224,8 +236,8 @@ public static class HColorField implements HColorist {
 	}
 	
 	public HColorField(float maximumDistance) {
-		colorPoints = new ArrayList<HColorField.HColorPoint>();
-		maxDist = maximumDistance;
+		_colorPoints = new ArrayList<HColorField.HColorPoint>();
+		_maxDist = maximumDistance;
 		fillAndStroke();
 	}
 	
@@ -239,7 +251,7 @@ public static class HColorField implements HColorist {
 		pt.y = y;
 		pt.radius = radius;
 		pt.clr = clr;
-		colorPoints.add(pt);
+		_colorPoints.add(pt);
 		return this;
 	}
 	
@@ -248,60 +260,80 @@ public static class HColorField implements HColorist {
 		int[] baseClrs = HColorUtil.explode(baseColor);
 		int[] maxClrs = new int[4];
 		
-		for(int i=0; i<colorPoints.size(); i++) {
-			HColorPoint pt = colorPoints.get(i);
+		int initJ;
+		if(_appliesAlpha) {
+			initJ = 0;
+		} else { // make the loop skip alpha and use baseClrs' alpha instead
+			initJ = 1;
+			maxClrs[0] = baseClrs[0];
+		}
+		
+		for(int i=0; i<_colorPoints.size(); ++i) {
+			HColorPoint pt = _colorPoints.get(i);
 			
 			int[] ptClrs = HColorUtil.explode(pt.clr);
 			
-			float distLimit = maxDist * pt.radius;
+			// Get the adjusted distance between the two points.
+			float distLimit = _maxDist * pt.radius;
 			float dist = app.dist(x,y, pt.x,pt.y);
 			if(dist > distLimit)
 				dist = distLimit;
 			
-			for(int j=0; j<4; j++) {
+			// Compute the color based on the distance from the color point.
+			for(int j=initJ; j<4; ++j) {
 				int newClrVal = app.round(
 					app.map(dist, 0,distLimit, ptClrs[j], baseClrs[j]));
-				if(newClrVal > maxClrs[j])
+				
+				if(newClrVal > maxClrs[j]) 
 					maxClrs[j] = newClrVal;
 			}
 		}
 		return HColorUtil.merge(maxClrs[0],maxClrs[1],maxClrs[2],maxClrs[3]);
 	}
-
+	
+	public HColorField appliesAlpha(boolean b) {
+		_appliesAlpha = b;
+		return this;
+	}
+	
+	public boolean appliesAlpha() {
+		return _appliesAlpha;
+	}
+	
 	public HColorField fillOnly() {
-		fillFlag = true;
-		strokeFlag = false;
+		_appliesFill = true;
+		_appliesStroke = false;
 		return this;
 	}
 
 	public HColorField strokeOnly() {
-		fillFlag = false;
-		strokeFlag = true;
+		_appliesFill = false;
+		_appliesStroke = true;
 		return this;
 	}
 
 	public HColorField fillAndStroke() {
-		fillFlag = strokeFlag = true;
+		_appliesFill = _appliesStroke = true;
 		return this;
 	}
 	
 	public boolean appliesFill() {
-		return fillFlag;
+		return _appliesFill;
 	}
 	
 	public boolean appliesStroke() {
-		return strokeFlag;
+		return _appliesStroke;
 	}
 	
 	public HDrawable applyColor(HDrawable drawable) {
 		float x = drawable.x();
 		float y = drawable.y();
 		
-		if(fillFlag) {
+		if(_appliesFill) {
 			int baseFill = drawable.fill();
 			drawable.fill( getColor(x,y, baseFill) );
 		}
-		if(strokeFlag) {
+		if(_appliesStroke) {
 			int baseStroke = drawable.stroke();
 			drawable.stroke( getColor(x,y, baseStroke) );
 		}
@@ -323,7 +355,7 @@ public static class HColorPool implements HColorist {
 	
 	public HColorPool(int... colors) {
 		_colorList = new ArrayList<Integer>();
-		for(int i=0; i<colors.length; i++) add(colors[i]);
+		for(int i=0; i<colors.length; ++i) add(colors[i]);
 		
 		fillAndStroke();
 	}
@@ -333,7 +365,7 @@ public static class HColorPool implements HColorist {
 		copy._fillFlag = _fillFlag;
 		copy._strokeFlag = _strokeFlag;
 		
-		for(int i=0; i<_colorList.size(); i++) {
+		for(int i=0; i<_colorList.size(); ++i) {
 			int clr = _colorList.get(i);
 			copy._colorList.add( clr );
 		}
@@ -595,7 +627,8 @@ public static class HColorTransform implements HColorist {
 public static class HColorUtil {
 	public static int[] explode(int clr) {
 		int[] explodedColors = new int[4];
-		for(int i=0; i<4; i++) explodedColors[3-i] = (clr >>> (i*8)) & 0xFF;
+		for(int i=0; i<4; ++i)
+			explodedColors[3-i] = (clr >>> (i*8)) & 0xFF;
 		return explodedColors;
 	}
 	
@@ -713,7 +746,8 @@ public static interface HConstants {
 		DROTATION = 8,
 		DX = 9,
 		DY = 10,
-		DLOC = 11;
+		DLOC = 11,
+		SCALE = 12;
 	
 	public static final float
 		// Degree-Radians conversion shortcuts
@@ -928,11 +962,6 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 		return this;
 	}
 	
-	public HDrawable size(PVector pt) {
-		size(pt.x,pt.y);
-		return this;
-	}
-	
 	public HDrawable size(float s) {
 		size(s,s);
 		return this;
@@ -972,6 +1001,56 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 	public HDrawable scale(float sw, float sh) {
 		size(_width*sw, _height*sh);
 		return this;
+	}
+	
+	public PVector boundingSize() {
+		// !!CAUTION!! Overly optimized geometry code ahead! 
+		PApplet app = H.app();
+		
+		float cosVal = app.cos(_rotationRad);
+		float sinVal = app.sin(_rotationRad);
+		
+		float x1 = _drawX;			// left x
+		float x2 = _width + _drawX;	// right x
+		float y1 = _drawY;			// top y
+		float y2 = _height + _drawY;// bottom y
+		
+		float[] xCoords = new float[4];
+		float[] yCoords = new float[4];
+		
+		// top-left
+		xCoords[0] = x1*cosVal + y1*sinVal;
+		yCoords[0] = x1*sinVal + y1*cosVal;
+		
+		// top-right
+		xCoords[1] = x2*cosVal + y1*sinVal;
+		yCoords[1] = x2*sinVal + y1*cosVal;
+		
+		// bottom-left
+		xCoords[2] = x1*cosVal + y2*sinVal;
+		yCoords[2] = x1*sinVal + y2*cosVal;
+		
+		// bottom-right
+		xCoords[3] = x2*cosVal + y2*sinVal;
+		yCoords[3] = x2*sinVal + y2*cosVal;
+		
+		// get the min/max x & y with one loop 
+		float minX = xCoords[3];
+		float maxX = minX;
+		float minY = yCoords[3];
+		float maxY = maxX;
+		for(int i=0; i<3; ++i) {
+			float x = xCoords[i];
+			float y = yCoords[i];
+			
+			if(x < minX) minX = x;
+			else if(x > maxX) maxX = x;
+			
+			if(y < minY) minY = y;
+			else if(y > maxY) maxY = y;
+		}
+		
+		return new PVector(maxX-minX, maxY-minY);
 	}
 	
 	
@@ -1188,6 +1267,7 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 		case H.DX:			move(val,0); break;
 		case H.DY:			move(0,val); break;
 		case H.DLOC:		move(val,val); break;
+		case H.SCALE:		scale(val); break;
 		default: break;
 		}
 	}
@@ -1703,7 +1783,7 @@ public static class HGridLayout implements HLayout {
 		int currentRow = H.app().floor(_currentIndex / _numCols);
 		int currentCol = _currentIndex % _numCols;
 		
-		_currentIndex++;
+		++_currentIndex;
 		return new PVector(
 			currentCol*_xSpace + _startX,
 			currentRow*_ySpace + _startY
@@ -1971,7 +2051,7 @@ public static class HLinkedList<T> {
 		} else {
 			node.putAfter(lastNode);
 			lastNode = node;
-			length++;
+			++length;
 		}
 		return true;
 	}
@@ -2003,7 +2083,7 @@ public static class HLinkedList<T> {
 		} else {
 			node.putBefore(firstNode);
 			firstNode = node;
-			length++;
+			++length;
 		}
 		return true;
 	}
@@ -2179,7 +2259,7 @@ public static class HMagnetField extends HBehavior {
 		float[] dists = new float[numPoles];
 		float maxDist = 0;
 		
-		for(int i=0; i<numPoles; i++) {
+		for(int i=0; i<numPoles; ++i) {
 			HMagnetPole p = poles.get(i);
 			
 			float d = app.dist(tx,ty, p.x,p.y);
@@ -2188,7 +2268,7 @@ public static class HMagnetField extends HBehavior {
 			dists[i] = d;
 		}
 		
-		for(int j=0; j<numPoles; j++) {
+		for(int j=0; j<numPoles; ++j) {
 			HMagnetPole p = poles.get(j);
 			
 			// Get the angle difference bet the pole and the current rotation
@@ -2238,7 +2318,10 @@ public static class HMagnetField extends HBehavior {
 
 public static class HOscillator extends HBehavior {
 	protected HDrawable _target;
-	protected float _stepDeg, _speed, _min, _max, _freq, _relValue;
+	protected float
+		_stepDeg, _speed, _min,
+		_max, _freq, _relValue,
+		_origW, _origH;
 	protected int _propertyId, _waveform;
 	
 	public HOscillator() {
@@ -2271,6 +2354,11 @@ public static class HOscillator extends HBehavior {
 	
 	public HOscillator target(HDrawable newTarget) {
 		_target = newTarget;
+		
+		// Workaround for relative scaling when using H.SCALE
+		_origW = _target.width();
+		_origH = _target.height();
+		
 		return this;
 	}
 	
@@ -2370,8 +2458,14 @@ public static class HOscillator extends HBehavior {
 	}
 	
 	public void runBehavior() {
-		if(_target != null)
-			_target.set(_propertyId, next());
+		if(_target != null) {
+			if(_propertyId == H.SCALE) {
+				float val = next();
+				_target.size(_origW * val, _origH * val);
+			} else {
+				_target.set(_propertyId, next());
+			}
+		}
 	}
 	
 	public HOscillator register() {
@@ -2629,7 +2723,7 @@ public static class HShape extends HDrawable {
 		applyStyle(app,currAlpha);
 		if(_randomColors == null) {
 			app.shape(_shape, drawX,drawY, _width,_height);
-		} else for(int i=0; i<_shape.getChildCount(); i++) {
+		} else for(int i=0; i<_shape.getChildCount(); ++i) {
 			PShape childShape = _shape.getChild(i);
 			
 			// HACK Workaround for children having 0 size
@@ -2862,7 +2956,7 @@ public static class HSwarm extends HBehavior implements HFollower, HFollowable {
 		PApplet app = H.app();
 		
 		int numSwarmers = _swarmers.size();
-		for(int i=0; i<numSwarmers; i++) {
+		for(int i=0; i<numSwarmers; ++i) {
 			HDrawable swarmer = _swarmers.get(i);
 			
 			float rot = swarmer.rotationRad();
@@ -3013,5 +3107,106 @@ public static class HText extends HDrawable {
 		else app.textFont(_font,_height);
 		
 		app.text(_text,drawX,drawY+_height-_descent);
+	}
+}
+
+
+
+public static class HTimer extends HBehavior {
+	public HCallback _callback;
+	protected float _intervalCounter;
+	protected int _interval, _cycleCounter, _numCycles;
+	protected boolean _usesFrames;
+	
+	public HTimer() {}
+	
+	public HTimer(int timerInterval) {
+		_interval = timerInterval;
+	}
+	
+	public HTimer(int timerInterval, int numberOfCycles) {
+		_interval = timerInterval;
+		_numCycles = numberOfCycles;
+	}
+	
+	public HTimer callback(HCallback cb) {
+		_callback = cb;
+		return this;
+	}
+	
+	public HCallback callback() {
+		return _callback;
+	}
+	
+	public HTimer interval(int i) {
+		_interval = i;
+		return this;
+	}
+	
+	public int interval() {
+		return _interval;
+	}
+	
+	public HTimer cycleCounter(int cycleIndex) {
+		_cycleCounter = cycleIndex;
+		return this;
+	}
+	
+	public int cycleCounter() {
+		return _cycleCounter;
+	}
+	
+	public HTimer numCycles(int cycles) {
+		_numCycles = cycles;
+		return this;
+	}
+	
+	public int numCycles() {
+		return _numCycles;
+	}
+	
+	public HTimer cycleIndefinitely() {
+		_numCycles = 0;
+		return this;
+	}
+	
+	public HTimer useMillis() {
+		_usesFrames = false;
+		return this;
+	}
+	
+	public boolean usesMillis() {
+		return !_usesFrames;
+	}
+	
+	public HTimer useFrames() {
+		_usesFrames = true;
+		return this;
+	}
+	
+	public boolean usesFrames() {
+		return _usesFrames;
+	}
+	
+	public void runBehavior() {
+		if(_intervalCounter < _interval) {
+			_intervalCounter += (_usesFrames)? 1 : 1000/H.app().frameRate;
+		} else {
+			_intervalCounter = 0;
+			
+			if(_callback != null) _callback.run(_cycleCounter);
+			
+			if(_numCycles > 0 && ++_cycleCounter >= _numCycles) unregister();
+		}
+	}
+	
+	public HTimer register() {
+		return (HTimer) super.register();
+	}
+	
+	public HTimer unregister() {
+		_numCycles = 0;
+		_intervalCounter = 0;
+		return (HTimer) super.unregister();
 	}
 }

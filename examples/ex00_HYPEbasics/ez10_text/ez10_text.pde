@@ -5,7 +5,7 @@
 // for more information.
 
 /*
-  @pjs font="DroidSerif-Regular.ttf, DroidSerif-Italic.ttf, DroidSerif-Bold.ttf, DroidSerif-BoldItalic.ttf";
+  @pjs font="DroidSerifRegular.ttf, DroidSerifItalic.ttf, DroidSerifBold.ttf, DroidSerifBoldItalic.ttf";
  */
 
 PFont font1, font2, font3, font4;
