@@ -36,7 +36,7 @@ void setup() {
 	// common to all other behaviors; and it registers itself automatically
 	// to the stage.
 
-	// Unlike most other behaviors, HTimer takes an HCallback instead of th usual "target".
+	// Unlike most other behaviors, HTimer takes an HCallback instead of the usual "target".
 
 	// if numCycles <= 0, then HTimer will repeat indefinitely
 	// .cycleIndefinitely() // same as numCycles( 0 )
