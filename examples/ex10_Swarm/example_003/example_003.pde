@@ -1,17 +1,11 @@
 HDrawablePool pool;
 HSwarm swarm;
-
-int index, timerStart, timer;
-int timerFire = 250;
-int timerBase = timerFire;
+HTimer timer;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020).autoClear(true);
 	smooth();
-
-	index = 0;
-	timerStart = millis();
 
 	final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
@@ -45,18 +39,21 @@ void setup() {
 			}
 		)
 	;
+
+	timer = new HTimer()
+		.numCycles( pool.numActive() )
+		.interval(250)
+		.callback(
+			new HCallback() { 
+				public void run(Object obj) {
+					pool.request();
+				}
+			}
+		)
+	;
 }
 
 void draw() {
-	timer = millis() - timerStart;
-	if (timer >= timerFire) {
-		if(!pool.isFull()){
-			pool.request();
-			index = pool.currentIndex() + 1;			
-		}
-	}
-	timerFire = timerBase * index;
-
 	H.drawStage();
 
 	// draw an ellipse to show swarm point

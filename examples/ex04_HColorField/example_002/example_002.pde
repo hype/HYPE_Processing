@@ -32,7 +32,7 @@ void setup() {
 }
 
 void draw() {
-	rect.fill(#000000, 1);
+	rect.fill(#000000, 20);
 	colorField.applyColor(rect);
 
 	H.drawStage();

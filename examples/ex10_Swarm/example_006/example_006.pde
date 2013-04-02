@@ -11,18 +11,12 @@
 HDrawablePool pool;
 HSwarm swarm;
 HPixelColorist colors;
-
-int index, timerStart, timer;
-int timerFire = 250;
-int timerBase = timerFire;
+HTimer timer;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020).autoClear(false);
 	smooth();
-
-	index = 0;
-	timerStart = millis();
 
 	PImage img = loadImage("sintra.jpg");
 	colors = new HPixelColorist(img)
@@ -62,18 +56,21 @@ void setup() {
 			}
 		)
 	;
+
+	timer = new HTimer()
+		.numCycles( pool.numActive() )
+		.interval(250)
+		.callback(
+			new HCallback() { 
+				public void run(Object obj) {
+					pool.request();
+				}
+			}
+		)
+	;
 }
 
 void draw() {
-	timer = millis() - timerStart;
-	if (timer >= timerFire) {
-		if(!pool.isFull()){
-			pool.request();
-			index = pool.currentIndex() + 1;			
-		}
-	}
-	timerFire = timerBase * index;
-
 	HIterator<HDrawable> it = pool.iterator();
 	while(it.hasNext()) {
 		HDrawable d = it.next();
