@@ -2,7 +2,10 @@
 
 public static class HOscillator extends HBehavior {
 	protected HDrawable _target;
-	protected float _stepDeg, _speed, _min, _max, _freq, _relValue;
+	protected float
+		_stepDeg, _speed, _min,
+		_max, _freq, _relValue,
+		_origW, _origH;
 	protected int _propertyId, _waveform;
 	
 	public HOscillator() {
@@ -35,6 +38,11 @@ public static class HOscillator extends HBehavior {
 	
 	public HOscillator target(HDrawable newTarget) {
 		_target = newTarget;
+		
+		// Workaround for relative scaling when using H.SCALE
+		_origW = _target.width();
+		_origH = _target.height();
+		
 		return this;
 	}
 	
@@ -134,8 +142,14 @@ public static class HOscillator extends HBehavior {
 	}
 	
 	public void runBehavior() {
-		if(_target != null)
-			_target.set(_propertyId, next());
+		if(_target != null) {
+			if(_propertyId == H.SCALE) {
+				float val = next();
+				_target.size(_origW * val, _origH * val);
+			} else {
+				_target.set(_propertyId, next());
+			}
+		}
 	}
 	
 	public HOscillator register() {

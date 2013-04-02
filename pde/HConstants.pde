@@ -37,7 +37,8 @@ public static interface HConstants {
 		DROTATION = 8,
 		DX = 9,
 		DY = 10,
-		DLOC = 11;
+		DLOC = 11,
+		SCALE = 12;
 	
 	public static final float
 		// Degree-Radians conversion shortcuts

@@ -60,10 +60,11 @@ Method List
 	- [`anchorY()`		](#anchory)
 	- [`anchorAt()`		](#anchorat)
 - Size Methods
-	- [`size()`		](#size)
-	- [`width()`	](#width)
-	- [`height()`	](#height)
-	- [`scale()`	](#scale)
+	- [`size()`			](#size)
+	- [`width()`		](#width)
+	- [`height()`		](#height)
+	- [`scale()`		](#scale)
+	- [`boundingSize()`	](#boundingsize)
 - Style Methods
 	- [`fill()`			](#fill)
 	- [`stroke()`		](#stroke)
@@ -334,14 +335,14 @@ anchor()
 A drawable's anchor coordinates dictates this drawable's rotation center. By
 default the anchor is located at *0,0*, or the top-left corner of this drawable.
 
-Remember that resizing your drawable will not magically adjust your anchor:
+Resizing your drawable will adjust your anchor:
 
 	myDrawable.size(100,100);
 	
 	// Anchor is at (50,50)
 	myDrawable.anchorAt(H.CENTER);
 	
-	// Anchor is still at (50,50), even when resized
+	// Anchor is now at (125,125)
 	myDrawable.size(250,250);
 
 As a note to devs, unlike most other fields in this class, HDrawable does not store
@@ -493,6 +494,15 @@ respectively.
 **Note:** This method is chainable.
 
 **Returns:** `HDrawable` _this drawable itself_
+
+
+
+boundingSize()
+--------------
+### Usage: `boundingSize()`
+Returns the width and height of this drawable adjusted by its current rotation.
+
+**Returns:** `PVector` _a new PVector with the rotated size of this drawable_
 
 
 

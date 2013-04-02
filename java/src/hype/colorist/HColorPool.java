@@ -13,7 +13,7 @@ public class HColorPool implements HColorist {
 	
 	public HColorPool(int... colors) {
 		_colorList = new ArrayList<Integer>();
-		for(int i=0; i<colors.length; i++) add(colors[i]);
+		for(int i=0; i<colors.length; ++i) add(colors[i]);
 		
 		fillAndStroke();
 	}
@@ -23,7 +23,7 @@ public class HColorPool implements HColorist {
 		copy._fillFlag = _fillFlag;
 		copy._strokeFlag = _strokeFlag;
 		
-		for(int i=0; i<_colorList.size(); i++) {
+		for(int i=0; i<_colorList.size(); ++i) {
 			int clr = _colorList.get(i);
 			copy._colorList.add( clr );
 		}

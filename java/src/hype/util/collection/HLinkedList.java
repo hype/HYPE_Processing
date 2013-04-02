@@ -40,7 +40,7 @@ public class HLinkedList<T> {
 		} else {
 			node.putAfter(lastNode);
 			lastNode = node;
-			length++;
+			++length;
 		}
 		return true;
 	}
@@ -72,7 +72,7 @@ public class HLinkedList<T> {
 		} else {
 			node.putBefore(firstNode);
 			firstNode = node;
-			length++;
+			++length;
 		}
 		return true;
 	}

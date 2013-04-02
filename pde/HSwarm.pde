@@ -113,7 +113,7 @@ public static class HSwarm extends HBehavior implements HFollower, HFollowable {
 		PApplet app = H.app();
 		
 		int numSwarmers = _swarmers.size();
-		for(int i=0; i<numSwarmers; i++) {
+		for(int i=0; i<numSwarmers; ++i) {
 			HDrawable swarmer = _swarmers.get(i);
 			
 			float rot = swarmer.rotationRad();

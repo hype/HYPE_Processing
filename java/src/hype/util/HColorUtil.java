@@ -6,7 +6,8 @@ import processing.core.PApplet;
 public class HColorUtil {
 	public static int[] explode(int clr) {
 		int[] explodedColors = new int[4];
-		for(int i=0; i<4; i++) explodedColors[3-i] = (clr >>> (i*8)) & 0xFF;
+		for(int i=0; i<4; ++i)
+			explodedColors[3-i] = (clr >>> (i*8)) & 0xFF;
 		return explodedColors;
 	}
 	

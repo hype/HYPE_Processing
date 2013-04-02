@@ -78,7 +78,7 @@ public class HMagnetField extends HBehavior {
 		float[] dists = new float[numPoles];
 		float maxDist = 0;
 		
-		for(int i=0; i<numPoles; i++) {
+		for(int i=0; i<numPoles; ++i) {
 			HMagnetPole p = poles.get(i);
 			
 			float d = app.dist(tx,ty, p.x,p.y);
@@ -87,7 +87,7 @@ public class HMagnetField extends HBehavior {
 			dists[i] = d;
 		}
 		
-		for(int j=0; j<numPoles; j++) {
+		for(int j=0; j<numPoles; ++j) {
 			HMagnetPole p = poles.get(j);
 			
 			// Get the angle difference bet the pole and the current rotation

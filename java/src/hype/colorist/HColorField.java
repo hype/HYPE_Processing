@@ -11,9 +11,9 @@ import processing.core.PVector;
 
 @SuppressWarnings("static-access")
 public class HColorField implements HColorist {
-	protected ArrayList<HColorPoint> colorPoints;
-	protected float maxDist;
-	protected boolean fillFlag, strokeFlag;
+	protected ArrayList<HColorPoint> _colorPoints;
+	protected float _maxDist;
+	protected boolean _appliesFill, _appliesStroke, _appliesAlpha;
 	
 	public HColorField() {
 		this(H.app().width, H.app().height);
@@ -24,8 +24,8 @@ public class HColorField implements HColorist {
 	}
 	
 	public HColorField(float maximumDistance) {
-		colorPoints = new ArrayList<HColorField.HColorPoint>();
-		maxDist = maximumDistance;
+		_colorPoints = new ArrayList<HColorField.HColorPoint>();
+		_maxDist = maximumDistance;
 		fillAndStroke();
 	}
 	
@@ -39,7 +39,7 @@ public class HColorField implements HColorist {
 		pt.y = y;
 		pt.radius = radius;
 		pt.clr = clr;
-		colorPoints.add(pt);
+		_colorPoints.add(pt);
 		return this;
 	}
 	
@@ -48,54 +48,74 @@ public class HColorField implements HColorist {
 		int[] baseClrs = HColorUtil.explode(baseColor);
 		int[] maxClrs = new int[4];
 		
-		for(int i=0; i<colorPoints.size(); i++) {
-			HColorPoint pt = colorPoints.get(i);
+		int initJ;
+		if(_appliesAlpha) {
+			initJ = 0;
+		} else { // make the loop skip alpha and use baseClrs' alpha instead
+			initJ = 1;
+			maxClrs[0] = baseClrs[0];
+		}
+		
+		for(int i=0; i<_colorPoints.size(); ++i) {
+			HColorPoint pt = _colorPoints.get(i);
 			
 			int[] ptClrs = HColorUtil.explode(pt.clr);
 			
-			float distLimit = maxDist * pt.radius;
+			// Get the adjusted distance between the two points.
+			float distLimit = _maxDist * pt.radius;
 			float dist = app.dist(x,y, pt.x,pt.y);
 			if(dist > distLimit)
 				dist = distLimit;
 			
-			for(int j=0; j<4; j++) {
+			// Compute the color based on the distance from the color point.
+			for(int j=initJ; j<4; ++j) {
 				int newClrVal = app.round(
 					app.map(dist, 0,distLimit, ptClrs[j], baseClrs[j]));
-				if(newClrVal > maxClrs[j])
+				
+				if(newClrVal > maxClrs[j]) 
 					maxClrs[j] = newClrVal;
 			}
 		}
 		return HColorUtil.merge(maxClrs[0],maxClrs[1],maxClrs[2],maxClrs[3]);
 	}
-
+	
+	public HColorField appliesAlpha(boolean b) {
+		_appliesAlpha = b;
+		return this;
+	}
+	
+	public boolean appliesAlpha() {
+		return _appliesAlpha;
+	}
+	
 	@Override
 	public HColorField fillOnly() {
-		fillFlag = true;
-		strokeFlag = false;
+		_appliesFill = true;
+		_appliesStroke = false;
 		return this;
 	}
 
 	@Override
 	public HColorField strokeOnly() {
-		fillFlag = false;
-		strokeFlag = true;
+		_appliesFill = false;
+		_appliesStroke = true;
 		return this;
 	}
 
 	@Override
 	public HColorField fillAndStroke() {
-		fillFlag = strokeFlag = true;
+		_appliesFill = _appliesStroke = true;
 		return this;
 	}
 	
 	@Override
 	public boolean appliesFill() {
-		return fillFlag;
+		return _appliesFill;
 	}
 	
 	@Override
 	public boolean appliesStroke() {
-		return strokeFlag;
+		return _appliesStroke;
 	}
 	
 	@Override
@@ -103,11 +123,11 @@ public class HColorField implements HColorist {
 		float x = drawable.x();
 		float y = drawable.y();
 		
-		if(fillFlag) {
+		if(_appliesFill) {
 			int baseFill = drawable.fill();
 			drawable.fill( getColor(x,y, baseFill) );
 		}
-		if(strokeFlag) {
+		if(_appliesStroke) {
 			int baseStroke = drawable.stroke();
 			drawable.stroke( getColor(x,y, baseStroke) );
 		}

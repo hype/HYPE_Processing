@@ -96,7 +96,7 @@ public static class HGridLayout implements HLayout {
 		int currentRow = H.app().floor(_currentIndex / _numCols);
 		int currentCol = _currentIndex % _numCols;
 		
-		_currentIndex++;
+		++_currentIndex;
 		return new PVector(
 			currentCol*_xSpace + _startX,
 			currentRow*_ySpace + _startY

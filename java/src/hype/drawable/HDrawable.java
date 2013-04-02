@@ -217,11 +217,6 @@ public abstract class HDrawable implements HFollower, HFollowable {
 		return this;
 	}
 	
-	public HDrawable size(PVector pt) {
-		size(pt.x,pt.y);
-		return this;
-	}
-	
 	public HDrawable size(float s) {
 		size(s,s);
 		return this;
@@ -261,6 +256,57 @@ public abstract class HDrawable implements HFollower, HFollowable {
 	public HDrawable scale(float sw, float sh) {
 		size(_width*sw, _height*sh);
 		return this;
+	}
+	
+	@SuppressWarnings("static-access")
+	public PVector boundingSize() {
+		// !!CAUTION!! Overly optimized geometry code ahead! 
+		PApplet app = H.app();
+		
+		float cosVal = app.cos(_rotationRad);
+		float sinVal = app.sin(_rotationRad);
+		
+		float x1 = _drawX;			// left x
+		float x2 = _width + _drawX;	// right x
+		float y1 = _drawY;			// top y
+		float y2 = _height + _drawY;// bottom y
+		
+		float[] xCoords = new float[4];
+		float[] yCoords = new float[4];
+		
+		// top-left
+		xCoords[0] = x1*cosVal + y1*sinVal;
+		yCoords[0] = x1*sinVal + y1*cosVal;
+		
+		// top-right
+		xCoords[1] = x2*cosVal + y1*sinVal;
+		yCoords[1] = x2*sinVal + y1*cosVal;
+		
+		// bottom-left
+		xCoords[2] = x1*cosVal + y2*sinVal;
+		yCoords[2] = x1*sinVal + y2*cosVal;
+		
+		// bottom-right
+		xCoords[3] = x2*cosVal + y2*sinVal;
+		yCoords[3] = x2*sinVal + y2*cosVal;
+		
+		// get the min/max x & y with one loop 
+		float minX = xCoords[3];
+		float maxX = minX;
+		float minY = yCoords[3];
+		float maxY = maxX;
+		for(int i=0; i<3; ++i) {
+			float x = xCoords[i];
+			float y = yCoords[i];
+			
+			if(x < minX) minX = x;
+			else if(x > maxX) maxX = x;
+			
+			if(y < minY) minY = y;
+			else if(y > maxY) maxY = y;
+		}
+		
+		return new PVector(maxX-minX, maxY-minY);
 	}
 	
 	
@@ -483,6 +529,7 @@ public abstract class HDrawable implements HFollower, HFollowable {
 		case H.DX:			move(val,0); break;
 		case H.DY:			move(0,val); break;
 		case H.DLOC:		move(val,val); break;
+		case H.SCALE:		scale(val); break;
 		default: break;
 		}
 	}

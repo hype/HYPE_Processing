@@ -89,6 +89,18 @@ public class H implements HConstants {
 	
 	// MATH //
 	
+	public static float[] rotatePoint(float x, float y, float rad) {
+		float[] pt = new float[2];
+		
+		float c = _app.cos(rad);
+		float s = _app.sin(rad);
+		
+		pt[0] = x*c + y*s;
+		pt[1] = x*s + y*c;
+		
+		return pt;
+	}
+	
 	public static float yAxisAngle(float x1, float y1, float x2, float y2) {
 		return _app.atan2(x2-x1, y2-y1);
 	}

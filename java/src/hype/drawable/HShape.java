@@ -83,7 +83,7 @@ public class HShape extends HDrawable {
 		applyStyle(app,currAlpha);
 		if(_randomColors == null) {
 			app.shape(_shape, drawX,drawY, _width,_height);
-		} else for(int i=0; i<_shape.getChildCount(); i++) {
+		} else for(int i=0; i<_shape.getChildCount(); ++i) {
 			PShape childShape = _shape.getChild(i);
 			
 			// HACK Workaround for children having 0 size
