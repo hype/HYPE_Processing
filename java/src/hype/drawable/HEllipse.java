@@ -55,8 +55,8 @@ public class HEllipse extends HDrawable {
 	}
 	
 	@Override
-	public void draw(PApplet app, float drawX, float drawY, int currAlpha) {
-		applyStyle(app,currAlpha);
+	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
+		applyStyle(app,currAlphaPerc);
 		app.ellipse(drawX+_width/2, drawY+_height/2, _width, _height);
 	}
 }

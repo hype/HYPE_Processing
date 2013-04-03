@@ -88,6 +88,10 @@ public static class HOscillator extends HBehavior {
 		return this;
 	}
 	
+	public float max() {
+		return _max;
+	}
+	
 	public HOscillator freq(float frequency) {
 		_freq = frequency;
 		return this;
@@ -137,7 +141,6 @@ public static class HOscillator extends HBehavior {
 		outVal = H.app().map(outVal, -1,1, _min,_max) + _relValue;
 		
 		_stepDeg += speed();
-		_stepDeg %= 360;
 		return outVal;
 	}
 	
@@ -163,8 +166,7 @@ public static class HOscillator extends HBehavior {
 	
 	
 	public static float sineWave(float stepDegrees) {
-		PApplet app = H.app();
-		return app.sin(app.radians(stepDegrees));
+		return H.app().sin(stepDegrees * H.D2R);
 	}
 	
 	public static float triangleWave(float stepDegrees) {

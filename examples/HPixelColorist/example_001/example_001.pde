@@ -27,13 +27,13 @@ void setup() {
 	pool = new HDrawablePool(576);
 	pool.autoAddToStage()
 		.add (
-			new HRect(cellSize)
+			new HRect()
 			.rounding(4)
 		)
 		.layout (
 			new HGridLayout()
-			.startX(8)
-			.startY(8)
+			.startX(16)
+			.startY(16)
 			.spacing(cellSize+1,cellSize+1)
 			.cols(24)
 		)
@@ -41,6 +41,11 @@ void setup() {
 		    new HCallback(){
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;
+					d
+				        .anchorAt(H.CENTER)
+				        .size(cellSize)
+				    ;
+
 			        colors.applyColor(d);
 		    	}
 			}

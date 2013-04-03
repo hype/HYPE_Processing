@@ -41,9 +41,9 @@ public static class HImage extends HDrawable {
 		return _image;
 	}
 	
-	public void draw(PApplet app, float drawX, float drawY, int currAlpha) {
+	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		if(_image==null) return;
-		app.tint(currAlpha);
+		app.tint( app.round(currAlphaPerc*255) );
 		app.image(_image,drawX,drawY);
 	}
 }

@@ -111,10 +111,10 @@ public static class HText extends HDrawable {
 		return scale(sh);
 	}
 	
-	public void draw(PApplet app, float drawX, float drawY, int currAlpha) {
+	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		if(_text == null) return;
 		
-		applyStyle(app,currAlpha);
+		applyStyle(app,currAlphaPerc);
 		if(_font == null) app.textSize(_height);
 		else app.textFont(_font,_height);
 		

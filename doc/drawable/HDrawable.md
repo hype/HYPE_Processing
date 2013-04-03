@@ -89,7 +89,6 @@ Method List
 	- [`followableY()`			](#followery) _implementation_
 	- [`follow()`				](#follow) _implementation_
 	- [`extras()`				](#extras)
-	- [`generateRandomPoint()`	](#generaterandompoint)
 	- [`abs2rel()`				](#abs2rel)
 	- [`rel2abs()`				](#rel2abs)
 	- [`set()`					](#set)
@@ -928,10 +927,6 @@ Sets this drawable's extras bundle.
 **Returns:** `HDrawable` _this drawable itself_
 
 
-
-generateRandomPoint()
----------------------
-*NOT YET IMPLEMENTED*
 
 abs2rel()
 ---------

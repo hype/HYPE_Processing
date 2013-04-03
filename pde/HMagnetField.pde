@@ -67,7 +67,7 @@ public static class HMagnetField extends HBehavior {
 		float tanX2 = app.lerp(midx,south.x, t);
 		float tanY2 = app.lerp(midy,south.y, t);
 		
-		return H.xAxisAngle(tanX1,tanY1, tanX2,tanY2);
+		return HMath.xAxisAngle(tanX1,tanY1, tanX2,tanY2);
 		/*int numPoles = poles.size();
 		float accumRots = 0;
 		float[] dists = new float[numPoles];

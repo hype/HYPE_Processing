@@ -34,9 +34,9 @@ void setup() {
 						.strokeWeight(4)
 						.stroke( colors.getColor(), 150 )
 						.loc( (int)random(width), (int)random(height) )
+						.anchor( new PVector(25,25) )
 						.rotation( (int)random(360) )
 						.size( 25+((int)random(3)*25) )
-						.anchor( new PVector(25,25) )
 					;
 					
 					d.extras(

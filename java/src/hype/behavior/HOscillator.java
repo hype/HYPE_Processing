@@ -2,7 +2,6 @@ package hype.behavior;
 
 import hype.drawable.HDrawable;
 import hype.util.H;
-import processing.core.PApplet;
 
 @SuppressWarnings("static-access")
 public class HOscillator extends HBehavior {
@@ -93,6 +92,10 @@ public class HOscillator extends HBehavior {
 		return this;
 	}
 	
+	public float max() {
+		return _max;
+	}
+	
 	public HOscillator freq(float frequency) {
 		_freq = frequency;
 		return this;
@@ -142,7 +145,6 @@ public class HOscillator extends HBehavior {
 		outVal = H.app().map(outVal, -1,1, _min,_max) + _relValue;
 		
 		_stepDeg += speed();
-		_stepDeg %= 360;
 		return outVal;
 	}
 	
@@ -171,8 +173,7 @@ public class HOscillator extends HBehavior {
 	
 	
 	public static float sineWave(float stepDegrees) {
-		PApplet app = H.app();
-		return app.sin(app.radians(stepDegrees));
+		return H.app().sin(stepDegrees * H.D2R);
 	}
 	
 	public static float triangleWave(float stepDegrees) {

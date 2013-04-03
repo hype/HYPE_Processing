@@ -19,7 +19,10 @@ public interface HConstants {
 		CENTER_Y = 12, // 0b1100
 		CENTER = 15, // 0b1111
 		
+		// DEFAULT COLORS
 		DEFAULT_BACKGROUND_COLOR = 0xFFECF2F5,
+		DEFAULT_FILL = 0x00FFFFFF,
+		DEFAULT_STROKE = 0x00FFFFFF,
 		
 		// Oscillation types
 		SAW = 0,

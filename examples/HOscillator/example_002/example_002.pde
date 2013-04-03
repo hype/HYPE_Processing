@@ -38,7 +38,7 @@ void setup() {
 		    		d.fill( colors.getColor() );
 
 					HOscillator ho = hoBase.createCopy();
-					ho.target( d ).currentStep( i * d.height()/2 );
+					ho.target( d ).currentStep( i * 3 );
 				}
 			}
 		)

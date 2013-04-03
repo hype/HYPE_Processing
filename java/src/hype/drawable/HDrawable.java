@@ -5,6 +5,7 @@ import hype.util.HBundle;
 import hype.util.HColorUtil;
 import hype.util.HFollowable;
 import hype.util.HFollower;
+import hype.util.HMath;
 import hype.util.collection.HChildSet;
 import hype.util.collection.HIterator;
 import processing.core.PApplet;
@@ -16,17 +17,17 @@ public abstract class HDrawable implements HFollower, HFollowable {
 	protected HBundle _extras;
 	protected HChildSet _children;
 	protected float _x, _y, _drawX, _drawY, _width, _height,
-		_rotationRad, _strokeWeight;
-	protected int _alpha, _fill, _stroke, _strokeCap, _strokeJoin;
+		_rotationRad, _strokeWeight, _alpha;
+	protected int _fill, _stroke, _strokeCap, _strokeJoin;
 	
 	
 	// COPY & CREATE //
 	
 	public HDrawable() {
-		_alpha = 255;
+		_alpha = 1;
 		
-		_fill = 0x00FFFFFF;
-		_stroke = 0x00FFFFFF;
+		_fill = H.DEFAULT_FILL;
+		_stroke = H.DEFAULT_STROKE;
 		_strokeCap = PConstants.ROUND;
 		_strokeJoin = PConstants.MITER;
 		_strokeWeight = 1;
@@ -137,18 +138,18 @@ public abstract class HDrawable implements HFollower, HFollowable {
 	
 	public HDrawable locAt(int where) {
 		if(_parent!=null) {
-			if(H.containsBits(where,H.CENTER_X))
+			if(HMath.containsBits(where,H.CENTER_X))
 				_x = _parent.width()/2 + _parent._drawX;
-			else if(H.containsBits(where,H.LEFT))
+			else if(HMath.containsBits(where,H.LEFT))
 				_x = _parent._drawX;
-			else if(H.containsBits(where,H.RIGHT))
+			else if(HMath.containsBits(where,H.RIGHT))
 				_x = _parent.width() + _parent._drawX;
 			
-			if(H.containsBits(where,H.CENTER_Y))
+			if(HMath.containsBits(where,H.CENTER_Y))
 				_y = _parent.height()/2 + _parent._drawY;
-			else if(H.containsBits(where,H.TOP))
+			else if(HMath.containsBits(where,H.TOP))
 				_y = _parent._drawY;
-			else if(H.containsBits(where,H.BOTTOM))
+			else if(HMath.containsBits(where,H.BOTTOM))
 				_y = _parent.height() + _parent._drawY;
 		}
 		return this;
@@ -192,18 +193,18 @@ public abstract class HDrawable implements HFollower, HFollowable {
 	}
 	
 	public HDrawable anchorAt(int where) {
-		if(H.containsBits(where,H.CENTER_X))
+		if(HMath.containsBits(where,H.CENTER_X))
 			_drawX = -_width/2;
-		else if(H.containsBits(where,H.LEFT))
+		else if(HMath.containsBits(where,H.LEFT))
 			_drawX = 0;
-		else if(H.containsBits(where,H.RIGHT))
+		else if(HMath.containsBits(where,H.RIGHT))
 			_drawX = -_width;
 		
-		if(H.containsBits(where,H.CENTER_Y))
+		if(HMath.containsBits(where,H.CENTER_Y))
 			_drawY = -_height/2;
-		else if(H.containsBits(where,H.TOP))
+		else if(HMath.containsBits(where,H.TOP))
 			_drawY = 0;
-		else if(H.containsBits(where,H.BOTTOM))
+		else if(HMath.containsBits(where,H.BOTTOM))
 			_drawY = -_height;
 		return this;
 	}
@@ -422,19 +423,26 @@ public abstract class HDrawable implements HFollower, HFollowable {
 	// VISIBILITY //
 	
 	public HDrawable alpha(int a) {
-		_alpha = (a<0)? 0 : (a>255)? 255 : a;
+		return alphaPerc(a/255f);
+	}
+	
+	@SuppressWarnings("static-access")
+	public int alpha() {
+		return H.app().round( alphaPerc()*255 );
+	}
+	
+	public HDrawable alphaPerc(float aPerc) {
+		_alpha = (aPerc<0)? 0 : (aPerc>1)? 1 : aPerc;
 		return this;
 	}
 	
-	public int alpha() {
-		if(_alpha < 0)
-			return 0;
-		return _alpha;
+	public float alphaPerc() {
+		return (_alpha<0)? 0 : _alpha;
 	}
 	
 	public HDrawable visibility(boolean v) {
 		if(v && _alpha == 0) {
-			_alpha = 255;
+			_alpha = 1;
 		} else if(v == _alpha < 0) {
 			_alpha = -_alpha;
 		}
@@ -446,18 +454,19 @@ public abstract class HDrawable implements HFollower, HFollowable {
 	}
 	
 	public HDrawable show() {
-		visibility(true);
-		return this;
+		return visibility(true);
 	}
 	
 	public HDrawable hide() {
-		visibility(false);
-		return this;
+		return visibility(false);
 	}
 	
 	public HDrawable alphaShift(int da) {
-		alpha(_alpha + da);
-		return this;
+		return alphaShiftPerc( da/255f );
+	}
+	
+	public HDrawable alphaShiftPerc(float daPerc) {
+		return alphaPerc(_alpha + daPerc);
 	}
 	
 	
@@ -497,13 +506,6 @@ public abstract class HDrawable implements HFollower, HFollowable {
 		return _extras;
 	}
 	
-	public PVector generateRandomPoint() {
-		// LATER
-		// Simple random rect point by default
-		// HEllipse and others will override this
-		return null;
-	}
-	
 	public float[] abs2rel(float x, float y) {
 		// LATER
 		return null;
@@ -537,12 +539,21 @@ public abstract class HDrawable implements HFollower, HFollowable {
 	
 	// DRAWING //
 	
-	protected void applyStyle(PApplet app, int currAlpha) {
-		int currFill = HColorUtil.multiplyAlpha(_fill,currAlpha);
+	@SuppressWarnings("static-access")
+	protected void applyStyle(PApplet app, float currAlphaPerc) {
+		// Multiply currAlpha to fill
+		int falpha = _fill>>>24;
+		falpha = app.round( currAlphaPerc * falpha ) << 24;
+		int currFill = _fill & 0x00FFFFFF | falpha;
+		
 		app.fill(currFill);
 		
-		if(_strokeWeight>0) {
-			int currStroke = HColorUtil.multiplyAlpha(_stroke,currAlpha);
+		if(_strokeWeight > 0) {
+			// Multiply currAlpha to stroke
+			int salpha = _stroke>>>24;
+			salpha = app.round( currAlphaPerc * salpha ) << 24;
+			int currStroke = _stroke & 0x00FFFFFF | salpha;
+			
 			app.stroke(currStroke);
 			app.strokeWeight(_strokeWeight);
 			app.strokeCap(_strokeCap);
@@ -550,7 +561,7 @@ public abstract class HDrawable implements HFollower, HFollowable {
 		} else app.noStroke();
 	}
 	
-	public void paintAll(PApplet app,int currAlpha) {
+	public void paintAll(PApplet app, float currAlphaPerc) {
 		if(_alpha<=0 || _width<=0 || _height<=0) return;
 		
 		app.pushMatrix();
@@ -559,19 +570,19 @@ public abstract class HDrawable implements HFollower, HFollowable {
 			app.rotate(_rotationRad);
 			
 			// Compute current alpha
-			currAlpha = HColorUtil.multiply(_alpha,currAlpha);
+			currAlphaPerc *= _alpha;
 			
 			// Draw self
-			draw(app,_drawX,_drawY,currAlpha);
+			draw(app,_drawX,_drawY,currAlphaPerc);
 			
 			// Draw children
 			if(hasChildren()) {
 				HIterator<HDrawable> it = _children.iterator();
-				while(it.hasNext()) it.next().paintAll(app,currAlpha);
+				while(it.hasNext()) it.next().paintAll(app,currAlphaPerc);
 			}
 		app.popMatrix();
 	}
 	
 	public abstract void draw(
-		PApplet app, float drawX, float drawY, int currAlpha);
+		PApplet app, float drawX, float drawY, float currAlphaPerc);
 }

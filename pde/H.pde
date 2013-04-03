@@ -4,14 +4,13 @@ public static class H implements HConstants {
 	private static H _self;
 	private static PApplet _app;
 	private static HStage _stage;
-	private static boolean _usingTempSeed;
-	private static int _resetSeedValue;
 	
 	
 	// INIT & INSTANCES //
 	
 	public static H init(PApplet applet) {
 		_app = applet;
+		HMath.init(_app);
 		if(_self == null) _self = new H();
 		if(_stage == null) _stage = new HStage(_app);
 		
@@ -27,7 +26,7 @@ public static class H implements HConstants {
 	}
 	
 	
-	// STAGE //
+	// STAGE METHODS //
 	
 	public static H background(int clr) {
 		_stage.background(clr);
@@ -81,52 +80,7 @@ public static class H implements HConstants {
 	}
 	
 	
-	// MATH //
-	
-	public static float[] rotatePoint(float x, float y, float rad) {
-		float[] pt = new float[2];
-		
-		float c = _app.cos(rad);
-		float s = _app.sin(rad);
-		
-		pt[0] = x*c + y*s;
-		pt[1] = x*s + y*c;
-		
-		return pt;
-	}
-	
-	public static float yAxisAngle(float x1, float y1, float x2, float y2) {
-		return _app.atan2(x2-x1, y2-y1);
-	}
-	
-	public static float xAxisAngle(float x1, float y1, float x2, float y2) {
-		return _app.atan2(y2-y1, x2-x1);
-	}
-	
-	public static int randomInt32() {
-		float f = _app.random(1);
-		f = _app.map(f, 0, 1, -2147483648, 2147483647);
-		return _app.round(f);
-	}
-	
-	public static void tempSeed(long seed) {
-		if(!_usingTempSeed) {
-			_resetSeedValue = randomInt32();
-			_usingTempSeed = true;
-		}
-		_app.randomSeed(seed);
-	}
-	
-	public static void removeTempSeed() {
-		_app.randomSeed(_resetSeedValue);
-	}
-	
-	public static boolean containsBits(int target, int val) {
-		return ( (target & val) == val );
-	}
-	
-	
-	// STRING //
+	// STRING UTILS //
 	
 	public static boolean endsWith(String haystack, String needle) {
 		return (haystack.indexOf(needle,haystack.length()-needle.length()) > 0);

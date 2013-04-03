@@ -48,9 +48,9 @@ public static class HColorPool implements HColorist {
 	}
 	
 	public int getColor(int seed) {
-		H.tempSeed(seed);
+		HMath.tempSeed(seed);
 		int clr = getColor();
-		H.removeTempSeed();
+		HMath.removeTempSeed();
 		return clr;
 	}
 

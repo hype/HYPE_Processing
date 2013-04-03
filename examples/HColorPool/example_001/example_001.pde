@@ -23,9 +23,9 @@ void setup() {
 					d
 						.fill( colors.getColor() )
 						.loc( (int)random(width), (int)random(height) )
+						.anchor( new PVector(25,25) )
 						.rotation( (int)random(360) )
 						.size( 25+((int)random(3)*25) )
-						.anchor( new PVector(25,25) )
 					;
 					
 					d.extras(

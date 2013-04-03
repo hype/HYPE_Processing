@@ -20,9 +20,9 @@ void setup() {
 						.strokeWeight(1)
 						.stroke(#999999)
 						.loc( (int)random(width), (int)random(height) )
+						.anchor( new PVector(5,100) )
 						.rotation( (int)random(360) )
 						.size(10,50)
-						.anchor( new PVector(5,100) )
 					;
 					
 					d.extras(

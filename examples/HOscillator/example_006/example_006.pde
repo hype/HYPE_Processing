@@ -57,9 +57,9 @@ void setup() {
 					HOscillator ro = roBase.createCopy();
 					HOscillator ho = hoBase.createCopy();
 
-					yo.target( d ).currentStep( i * d.height()/2 );
-					ro.target( d ).currentStep( i * d.height()/2 );
-					ho.target( d ).currentStep( i * d.height()/2 );
+					yo.target( d ).currentStep( i );
+					ro.target( d ).currentStep( i );
+					ho.target( d ).currentStep( i );
 				}
 			}
 		)

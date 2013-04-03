@@ -11,12 +11,12 @@ void setup() {
     xoBase = new HOscillator().speed(1f).range(-300,300).freq(0.5f).property(H.X).waveform(H.SINE);
     yoBase = new HOscillator().speed(2f).range(-300,300).freq(0.7f).property(H.Y).waveform(H.SINE);
     roBase = new HOscillator().speed(0.001).range(0,360).freq(1).property(H.ROTATION).waveform(H.SINE);
-    soBase = new HOscillator().speed(1f).range(1,200).freq(4f).property(H.SIZE).waveform(H.SINE);
+    soBase = new HOscillator().speed(1f).range(0,2).freq(4f).property(H.SCALE).waveform(H.SINE);
 
 	pool = new HDrawablePool(400);
 	pool.autoAddToStage()
 		.add (
-			new HRect(4)
+			new HRect(50)
 			.rounding(20)
 		)
 		.layout(new HGridLayout()
@@ -32,6 +32,7 @@ void setup() {
 
 		    		HDrawable d = (HDrawable) obj;
 		    		d.fill( colors.getColor(i*100) );
+		    		// d.stroke(#000000);
 		    		d.anchorAt(H.CENTER);
 
 					HOscillator xo = xoBase.createCopy().relativeVal(d.x());
@@ -39,10 +40,10 @@ void setup() {
 					HOscillator ro = roBase.createCopy();
 					HOscillator so = soBase.createCopy();
 
-					xo.target( d ).currentStep( i * d.height()/2 );
-					yo.target( d ).currentStep( i * d.height()/2 );
-					ro.target( d ).currentStep( i * d.height()/2 );
-					so.target( d ).currentStep( i * d.height()/2 );
+					xo.target( d ).currentStep( i );
+					yo.target( d ).currentStep( i );
+					ro.target( d ).currentStep( i );
+					so.target( d ).currentStep( i );
 				}
 			}
 		)

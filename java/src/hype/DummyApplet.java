@@ -1,36 +1,25 @@
 package hype;
 
-import hype.behavior.HFollow;
-import hype.behavior.HOscillator;
-import hype.behavior.HSwarm;
-import hype.behavior.HTimer;
-import hype.colorist.HColorPool;
 import hype.drawable.HDrawable;
 import hype.drawable.HEllipse;
 import hype.util.H;
-import hype.util.HCallback;
-import hype.util.HDrawablePool;
 import processing.core.PApplet;
 
 public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
-	private HDrawablePool pool;
-	private HColorPool colors;
-	private HSwarm swarm;
-	
 	@SuppressWarnings("static-access")
 	public void setup(){
 		size(500,500,JAVA2D);
-		H.init(this);
+		H.init(this).autoClear(false).background(0);
 		
-		HDrawable d = H.add(new HEllipse(32)).fill(0xFF404040).locAt(H.CENTER)
+		HDrawable d = H.add(new HEllipse(32)).fill(255,255,255,128).locAt(H.CENTER)
+			.alpha(255*3/4)
+			.hide()
+			.show()
 			.anchorAt(H.CENTER);
-		HOscillator osc = new HOscillator()
-			.relativeVal(1).range(-.5f, .5f)
-			.property(H.SCALE)
-			.target(d);
 		
+		println(d.alpha());
 //		colors = new HColorPool(
 //				0xFFFFFFFF, 0xFFF7F7F7, 0xFFECECEC, 0xFF333333,
 //				0xFF0095a8, 0xFF00616f, 0xFFFF3300, 0xFFFF6600)
@@ -61,5 +50,8 @@ public class DummyApplet extends PApplet {
 
 	public void draw() {
 		H.drawStage();
+		fill(color(255,255,255,128*3/4));
+		noStroke();
+		rect(250-32,250-32-64,64,64);
 	}
 }

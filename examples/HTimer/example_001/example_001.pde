@@ -30,23 +30,9 @@ void setup() {
 		)
 	;
 
-	// This example demonstrates how to use HTimer.
-
-	// HTimer is yet another HBehavior class, so it has all the methods
-	// common to all other behaviors; and it registers itself automatically
-	// to the stage.
-
-	// Unlike most other behaviors, HTimer takes an HCallback instead of th usual "target".
-
-	// if numCycles <= 0, then HTimer will repeat indefinitely
-	// .cycleIndefinitely() // same as numCycles( 0 )
-	// .useFrames() // treats the interval as the number of frames between executing callbacks
-	// .useMillis() // treats the interval as the number of milliseconds
-	// HCallback.run() is called once HTimer times out.
-
 	timer = new HTimer()
 		.numCycles( pool.numActive() )
-		.interval(50) // set the interval
+		.interval(50)
 		.callback(
 			new HCallback() { 
 				public void run(Object obj) {

@@ -4,6 +4,7 @@ import hype.drawable.HDrawable;
 import hype.util.H;
 import hype.util.HFollowable;
 import hype.util.HFollower;
+import hype.util.HMath;
 
 import java.util.ArrayList;
 
@@ -136,7 +137,7 @@ public class HSwarm extends HBehavior implements HFollower, HFollowable {
 			float ty = swarmer.y();
 			
 			// Get rotation that points towards the goal, plus easing
-			float tmp = H.xAxisAngle(tx,ty, _goalX,_goalY) - rot;
+			float tmp = HMath.xAxisAngle(tx,ty, _goalX,_goalY) - rot;
 			float dRot = app.atan2(app.sin(tmp),app.cos(tmp)) * _turnEase;
 			rot += dRot;
 			

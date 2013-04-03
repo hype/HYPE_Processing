@@ -70,10 +70,10 @@ public static class HShape extends HDrawable {
 		return this;
 	}
 	
-	public void draw(PApplet app, float drawX, float drawY, int currAlpha) {
+	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		if(_shape == null) return;
 		
-		applyStyle(app,currAlpha);
+		applyStyle(app,currAlphaPerc);
 		if(_randomColors == null) {
 			app.shape(_shape, drawX,drawY, _width,_height);
 		} else for(int i=0; i<_shape.getChildCount(); ++i) {

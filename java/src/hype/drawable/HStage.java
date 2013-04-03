@@ -24,6 +24,7 @@ public class HStage extends HDrawable {
 		
 		_bgColor = H.DEFAULT_BACKGROUND_COLOR;
 		_autoClearFlag = true;
+		_app.background(_bgColor);
 	}
 	
 	public HLinkedHashSet<HBehavior> behaviors() {
@@ -94,7 +95,7 @@ public class HStage extends HDrawable {
 	}
 	
 	@Override
-	public void paintAll(PApplet app, int currAlpha) {
+	public void paintAll(PApplet app, float currAlphaPerc) {
 		if(!_mouseStarted && _app.pmouseX+_app.pmouseY > 0)
 			_mouseStarted = true;
 		
@@ -108,12 +109,11 @@ public class HStage extends HDrawable {
 			
 			if(_children.getLength()>0) {
 				HIterator<HDrawable> cIt = _children.iterator();
-				while(cIt.hasNext()) cIt.next().paintAll(app,255);
+				while(cIt.hasNext()) cIt.next().paintAll(app,1);
 			}
 		app.popStyle();
 	}
 	
 	@Override
-	public void draw(PApplet app, float drawX, float drawY, int currAlpha) {}
-
+	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {}
 }

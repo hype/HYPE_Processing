@@ -4,14 +4,13 @@ public static class H implements HConstants {
 	private static H _self;
 	private static PApplet _app;
 	private static HStage _stage;
-	private static boolean _usingTempSeed;
-	private static int _resetSeedValue;
 	
 	
 	// INIT & INSTANCES //
 	
 	public static H init(PApplet applet) {
 		_app = applet;
+		HMath.init(_app);
 		if(_self == null) _self = new H();
 		if(_stage == null) _stage = new HStage(_app);
 		
@@ -27,7 +26,7 @@ public static class H implements HConstants {
 	}
 	
 	
-	// STAGE //
+	// STAGE METHODS //
 	
 	public static H background(int clr) {
 		_stage.background(clr);
@@ -81,52 +80,7 @@ public static class H implements HConstants {
 	}
 	
 	
-	// MATH //
-	
-	public static float[] rotatePoint(float x, float y, float rad) {
-		float[] pt = new float[2];
-		
-		float c = _app.cos(rad);
-		float s = _app.sin(rad);
-		
-		pt[0] = x*c + y*s;
-		pt[1] = x*s + y*c;
-		
-		return pt;
-	}
-	
-	public static float yAxisAngle(float x1, float y1, float x2, float y2) {
-		return _app.atan2(x2-x1, y2-y1);
-	}
-	
-	public static float xAxisAngle(float x1, float y1, float x2, float y2) {
-		return _app.atan2(y2-y1, x2-x1);
-	}
-	
-	public static int randomInt32() {
-		float f = _app.random(1);
-		f = _app.map(f, 0, 1, -2147483648, 2147483647);
-		return _app.round(f);
-	}
-	
-	public static void tempSeed(long seed) {
-		if(!_usingTempSeed) {
-			_resetSeedValue = randomInt32();
-			_usingTempSeed = true;
-		}
-		_app.randomSeed(seed);
-	}
-	
-	public static void removeTempSeed() {
-		_app.randomSeed(_resetSeedValue);
-	}
-	
-	public static boolean containsBits(int target, int val) {
-		return ( (target & val) == val );
-	}
-	
-	
-	// STRING //
+	// STRING UTILS //
 	
 	public static boolean endsWith(String haystack, String needle) {
 		return (haystack.indexOf(needle,haystack.length()-needle.length()) > 0);
@@ -395,9 +349,9 @@ public static class HColorPool implements HColorist {
 	}
 	
 	public int getColor(int seed) {
-		H.tempSeed(seed);
+		HMath.tempSeed(seed);
 		int clr = getColor();
-		H.removeTempSeed();
+		HMath.removeTempSeed();
 		return clr;
 	}
 
@@ -726,7 +680,10 @@ public static interface HConstants {
 		CENTER_Y = 12, // 0b1100
 		CENTER = 15, // 0b1111
 		
+		// DEFAULT COLORS
 		DEFAULT_BACKGROUND_COLOR = 0xFFECF2F5,
+		DEFAULT_FILL = 0x00FFFFFF,
+		DEFAULT_STROKE = 0x00FFFFFF,
 		
 		// Oscillation types
 		SAW = 0,
@@ -761,17 +718,17 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 	protected HBundle _extras;
 	protected HChildSet _children;
 	protected float _x, _y, _drawX, _drawY, _width, _height,
-		_rotationRad, _strokeWeight;
-	protected int _alpha, _fill, _stroke, _strokeCap, _strokeJoin;
+		_rotationRad, _strokeWeight, _alpha;
+	protected int _fill, _stroke, _strokeCap, _strokeJoin;
 	
 	
 	// COPY & CREATE //
 	
 	public HDrawable() {
-		_alpha = 255;
+		_alpha = 1;
 		
-		_fill = 0x00FFFFFF;
-		_stroke = 0x00FFFFFF;
+		_fill = H.DEFAULT_FILL;
+		_stroke = H.DEFAULT_STROKE;
 		_strokeCap = PConstants.ROUND;
 		_strokeJoin = PConstants.MITER;
 		_strokeWeight = 1;
@@ -882,18 +839,18 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 	
 	public HDrawable locAt(int where) {
 		if(_parent!=null) {
-			if(H.containsBits(where,H.CENTER_X))
+			if(HMath.containsBits(where,H.CENTER_X))
 				_x = _parent.width()/2 + _parent._drawX;
-			else if(H.containsBits(where,H.LEFT))
+			else if(HMath.containsBits(where,H.LEFT))
 				_x = _parent._drawX;
-			else if(H.containsBits(where,H.RIGHT))
+			else if(HMath.containsBits(where,H.RIGHT))
 				_x = _parent.width() + _parent._drawX;
 			
-			if(H.containsBits(where,H.CENTER_Y))
+			if(HMath.containsBits(where,H.CENTER_Y))
 				_y = _parent.height()/2 + _parent._drawY;
-			else if(H.containsBits(where,H.TOP))
+			else if(HMath.containsBits(where,H.TOP))
 				_y = _parent._drawY;
-			else if(H.containsBits(where,H.BOTTOM))
+			else if(HMath.containsBits(where,H.BOTTOM))
 				_y = _parent.height() + _parent._drawY;
 		}
 		return this;
@@ -937,18 +894,18 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 	}
 	
 	public HDrawable anchorAt(int where) {
-		if(H.containsBits(where,H.CENTER_X))
+		if(HMath.containsBits(where,H.CENTER_X))
 			_drawX = -_width/2;
-		else if(H.containsBits(where,H.LEFT))
+		else if(HMath.containsBits(where,H.LEFT))
 			_drawX = 0;
-		else if(H.containsBits(where,H.RIGHT))
+		else if(HMath.containsBits(where,H.RIGHT))
 			_drawX = -_width;
 		
-		if(H.containsBits(where,H.CENTER_Y))
+		if(HMath.containsBits(where,H.CENTER_Y))
 			_drawY = -_height/2;
-		else if(H.containsBits(where,H.TOP))
+		else if(HMath.containsBits(where,H.TOP))
 			_drawY = 0;
-		else if(H.containsBits(where,H.BOTTOM))
+		else if(HMath.containsBits(where,H.BOTTOM))
 			_drawY = -_height;
 		return this;
 	}
@@ -1166,19 +1123,25 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 	// VISIBILITY //
 	
 	public HDrawable alpha(int a) {
-		_alpha = (a<0)? 0 : (a>255)? 255 : a;
-		return this;
+		return alphaPerc(a/255f);
 	}
 	
 	public int alpha() {
-		if(_alpha < 0)
-			return 0;
-		return _alpha;
+		return H.app().round( alphaPerc()*255 );
+	}
+	
+	public HDrawable alphaPerc(float aPerc) {
+		_alpha = (aPerc<0)? 0 : (aPerc>1)? 1 : aPerc;
+		return this;
+	}
+	
+	public float alphaPerc() {
+		return (_alpha<0)? 0 : _alpha;
 	}
 	
 	public HDrawable visibility(boolean v) {
 		if(v && _alpha == 0) {
-			_alpha = 255;
+			_alpha = 1;
 		} else if(v == _alpha < 0) {
 			_alpha = -_alpha;
 		}
@@ -1190,18 +1153,19 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 	}
 	
 	public HDrawable show() {
-		visibility(true);
-		return this;
+		return visibility(true);
 	}
 	
 	public HDrawable hide() {
-		visibility(false);
-		return this;
+		return visibility(false);
 	}
 	
 	public HDrawable alphaShift(int da) {
-		alpha(_alpha + da);
-		return this;
+		return alphaShiftPerc( da/255f );
+	}
+	
+	public HDrawable alphaShiftPerc(float daPerc) {
+		return alphaPerc(_alpha + daPerc);
 	}
 	
 	
@@ -1236,13 +1200,6 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 		return _extras;
 	}
 	
-	public PVector generateRandomPoint() {
-		// LATER
-		// Simple random rect point by default
-		// HEllipse and others will override this
-		return null;
-	}
-	
 	public float[] abs2rel(float x, float y) {
 		// LATER
 		return null;
@@ -1275,12 +1232,20 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 	
 	// DRAWING //
 	
-	protected void applyStyle(PApplet app, int currAlpha) {
-		int currFill = HColorUtil.multiplyAlpha(_fill,currAlpha);
+	protected void applyStyle(PApplet app, float currAlphaPerc) {
+		// Multiply currAlpha to fill
+		int falpha = _fill>>>24;
+		falpha = app.round( currAlphaPerc * falpha ) << 24;
+		int currFill = _fill & 0x00FFFFFF | falpha;
+		
 		app.fill(currFill);
 		
-		if(_strokeWeight>0) {
-			int currStroke = HColorUtil.multiplyAlpha(_stroke,currAlpha);
+		if(_strokeWeight > 0) {
+			// Multiply currAlpha to stroke
+			int salpha = _stroke>>>24;
+			salpha = app.round( currAlphaPerc * salpha ) << 24;
+			int currStroke = _stroke & 0x00FFFFFF | salpha;
+			
 			app.stroke(currStroke);
 			app.strokeWeight(_strokeWeight);
 			app.strokeCap(_strokeCap);
@@ -1288,7 +1253,7 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 		} else app.noStroke();
 	}
 	
-	public void paintAll(PApplet app,int currAlpha) {
+	public void paintAll(PApplet app, float currAlphaPerc) {
 		if(_alpha<=0 || _width<=0 || _height<=0) return;
 		
 		app.pushMatrix();
@@ -1297,21 +1262,21 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 			app.rotate(_rotationRad);
 			
 			// Compute current alpha
-			currAlpha = HColorUtil.multiply(_alpha,currAlpha);
+			currAlphaPerc *= _alpha;
 			
 			// Draw self
-			draw(app,_drawX,_drawY,currAlpha);
+			draw(app,_drawX,_drawY,currAlphaPerc);
 			
 			// Draw children
 			if(hasChildren()) {
 				HIterator<HDrawable> it = _children.iterator();
-				while(it.hasNext()) it.next().paintAll(app,currAlpha);
+				while(it.hasNext()) it.next().paintAll(app,currAlphaPerc);
 			}
 		app.popMatrix();
 	}
 	
 	public abstract void draw(
-		PApplet app, float drawX, float drawY, int currAlpha);
+		PApplet app, float drawX, float drawY, float currAlphaPerc);
 }
 
 
@@ -1581,8 +1546,8 @@ public static class HEllipse extends HDrawable {
 		return _width == _height;
 	}
 	
-	public void draw(PApplet app, float drawX, float drawY, int currAlpha) {
-		applyStyle(app,currAlpha);
+	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
+		applyStyle(app,currAlphaPerc);
 		app.ellipse(drawX+_width/2, drawY+_height/2, _width, _height);
 	}
 }
@@ -1837,9 +1802,9 @@ public static class HImage extends HDrawable {
 		return _image;
 	}
 	
-	public void draw(PApplet app, float drawX, float drawY, int currAlpha) {
+	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		if(_image==null) return;
-		app.tint(currAlpha);
+		app.tint( app.round(currAlphaPerc*255) );
 		app.image(_image,drawX,drawY);
 	}
 }
@@ -2253,7 +2218,7 @@ public static class HMagnetField extends HBehavior {
 		float tanX2 = app.lerp(midx,south.x, t);
 		float tanY2 = app.lerp(midy,south.y, t);
 		
-		return H.xAxisAngle(tanX1,tanY1, tanX2,tanY2);
+		return HMath.xAxisAngle(tanX1,tanY1, tanX2,tanY2);
 		/*int numPoles = poles.size();
 		float accumRots = 0;
 		float[] dists = new float[numPoles];
@@ -2312,6 +2277,59 @@ public static class HMagnetField extends HBehavior {
 	public void runBehavior() {
 		// TODO Auto-generated method stub
 		
+	}
+}
+
+
+public static class HMath {
+	private static PApplet _app;
+	private static boolean _usingTempSeed;
+	private static int _resetSeedValue;
+	
+	public static void init(PApplet applet) {
+		_app = applet;
+	}
+	
+	public static float[] rotatePoint(float x, float y, float rad) {
+		float[] pt = new float[2];
+		
+		float c = _app.cos(rad);
+		float s = _app.sin(rad);
+		
+		pt[0] = x*c + y*s;
+		pt[1] = x*s + y*c;
+		
+		return pt;
+	}
+	
+	public static float yAxisAngle(float x1, float y1, float x2, float y2) {
+		return _app.atan2(x2-x1, y2-y1);
+	}
+	
+	public static float xAxisAngle(float x1, float y1, float x2, float y2) {
+		return _app.atan2(y2-y1, x2-x1);
+	}
+	
+	public static int randomInt32() {
+		float f = _app.random(1);
+		f = _app.map(f, 0, 1, -2147483648, 2147483647);
+		return _app.round(f);
+	}
+	
+	public static void tempSeed(long seed) {
+		if(!_usingTempSeed) {
+			_resetSeedValue = randomInt32();
+			_usingTempSeed = true;
+		}
+		_app.randomSeed(seed);
+	}
+	
+	public static void removeTempSeed() {
+		_app.randomSeed(_resetSeedValue);
+	}
+	
+	public static boolean containsBits(int target, int val) {
+		return ( (target & val) == val );
 	}
 }
 
@@ -2404,6 +2422,10 @@ public static class HOscillator extends HBehavior {
 		return this;
 	}
 	
+	public float max() {
+		return _max;
+	}
+	
 	public HOscillator freq(float frequency) {
 		_freq = frequency;
 		return this;
@@ -2453,7 +2475,6 @@ public static class HOscillator extends HBehavior {
 		outVal = H.app().map(outVal, -1,1, _min,_max) + _relValue;
 		
 		_stepDeg += speed();
-		_stepDeg %= 360;
 		return outVal;
 	}
 	
@@ -2479,8 +2500,7 @@ public static class HOscillator extends HBehavior {
 	
 	
 	public static float sineWave(float stepDegrees) {
-		PApplet app = H.app();
-		return app.sin(app.radians(stepDegrees));
+		return H.app().sin(stepDegrees * H.D2R);
 	}
 	
 	public static float triangleWave(float stepDegrees) {
@@ -2640,8 +2660,8 @@ public static class HRect extends HDrawable {
 		return this;
 	}
 	
-	public void draw(PApplet app, float drawX, float drawY, int currAlpha) {
-		applyStyle(app,currAlpha);
+	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
+		applyStyle(app,currAlphaPerc);
 		app.rect(drawX,drawY, _width,_height, _tl,_tr,_br,_bl);
 	}
 }
@@ -2717,10 +2737,10 @@ public static class HShape extends HDrawable {
 		return this;
 	}
 	
-	public void draw(PApplet app, float drawX, float drawY, int currAlpha) {
+	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		if(_shape == null) return;
 		
-		applyStyle(app,currAlpha);
+		applyStyle(app,currAlphaPerc);
 		if(_randomColors == null) {
 			app.shape(_shape, drawX,drawY, _width,_height);
 		} else for(int i=0; i<_shape.getChildCount(); ++i) {
@@ -2756,6 +2776,7 @@ public static class HStage extends HDrawable {
 		
 		_bgColor = H.DEFAULT_BACKGROUND_COLOR;
 		_autoClearFlag = true;
+		_app.background(_bgColor);
 	}
 	
 	public HLinkedHashSet<HBehavior> behaviors() {
@@ -2819,7 +2840,7 @@ public static class HStage extends HDrawable {
 		return _mouseStarted;
 	}
 	
-	public void paintAll(PApplet app, int currAlpha) {
+	public void paintAll(PApplet app, float currAlphaPerc) {
 		if(!_mouseStarted && _app.pmouseX+_app.pmouseY > 0)
 			_mouseStarted = true;
 		
@@ -2833,13 +2854,12 @@ public static class HStage extends HDrawable {
 			
 			if(_children.getLength()>0) {
 				HIterator<HDrawable> cIt = _children.iterator();
-				while(cIt.hasNext()) cIt.next().paintAll(app,255);
+				while(cIt.hasNext()) cIt.next().paintAll(app,1);
 			}
 		app.popStyle();
 	}
 	
-	public void draw(PApplet app, float drawX, float drawY, int currAlpha) {}
-
+	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {}
 }
 
 
@@ -2964,7 +2984,7 @@ public static class HSwarm extends HBehavior implements HFollower, HFollowable {
 			float ty = swarmer.y();
 			
 			// Get rotation that points towards the goal, plus easing
-			float tmp = H.xAxisAngle(tx,ty, _goalX,_goalY) - rot;
+			float tmp = HMath.xAxisAngle(tx,ty, _goalX,_goalY) - rot;
 			float dRot = app.atan2(app.sin(tmp),app.cos(tmp)) * _turnEase;
 			rot += dRot;
 			
@@ -3099,10 +3119,10 @@ public static class HText extends HDrawable {
 		return scale(sh);
 	}
 	
-	public void draw(PApplet app, float drawX, float drawY, int currAlpha) {
+	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		if(_text == null) return;
 		
-		applyStyle(app,currAlpha);
+		applyStyle(app,currAlphaPerc);
 		if(_font == null) app.textSize(_height);
 		else app.textFont(_font,_height);
 		

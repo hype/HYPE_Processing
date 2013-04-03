@@ -46,8 +46,8 @@ public static class HRect extends HDrawable {
 		return this;
 	}
 	
-	public void draw(PApplet app, float drawX, float drawY, int currAlpha) {
-		applyStyle(app,currAlpha);
+	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
+		applyStyle(app,currAlphaPerc);
 		app.rect(drawX,drawY, _width,_height, _tl,_tr,_br,_bl);
 	}
 }

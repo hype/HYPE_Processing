@@ -39,7 +39,7 @@ void setup() {
 					// Create an oscillator with yoBase's values
 					HOscillator yo = yoBase.createCopy();
 					// set osc's target to d / set osc's current step
-					yo.target( d ).currentStep( i * d.height()/2 );
+					yo.target( d ).currentStep( i * 3 );
 				}
 			}
 		)

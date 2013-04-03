@@ -14,8 +14,7 @@ void setup(){
 	selectedRect
 		.strokeWeight(1)
 		.stroke(#FF0033)
-		.width( s1Size.x )
-		.height( s1Size.y )
+		.size( s1Size.x, s1Size.y )
 		.anchorAt(H.CENTER)
 		.visibility(false)
 		.loc( s1.x(), s1.y() )

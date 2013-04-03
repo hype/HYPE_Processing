@@ -17,8 +17,10 @@ Overview
 Class List
 ----------
 
-- `hype.color`
-	- [_HColorist_](HColorist.md)
-	- [HColorTransform](HColorTransform.md)
-- `hype.drawable`
-	- [_HDrawable_](HDrawable.md)
+- [`hype.color`			](color/)
+	- [_HColorist_		](color/HColorist.md)
+	- [HColorTransform	](color/HColorTransform.md)
+- [`hype.drawable`		](drawable/)
+	- [_HDrawable_		](drawable/HDrawable.md)
+- [`hype.behavior`		](behavior/)
+	- [HTimer			](behavior/HTimer.md)

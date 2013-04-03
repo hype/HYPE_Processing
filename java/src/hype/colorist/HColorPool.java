@@ -2,6 +2,7 @@ package hype.colorist;
 
 import hype.drawable.HDrawable;
 import hype.util.H;
+import hype.util.HMath;
 
 import java.util.ArrayList;
 
@@ -54,9 +55,9 @@ public class HColorPool implements HColorist {
 	}
 	
 	public int getColor(int seed) {
-		H.tempSeed(seed);
+		HMath.tempSeed(seed);
 		int clr = getColor();
-		H.removeTempSeed();
+		HMath.removeTempSeed();
 		return clr;
 	}
 
