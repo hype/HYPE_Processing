@@ -1,20 +1,14 @@
-
-
 public static class HImage extends HDrawable {
 	protected PImage _image;
-
 	public HImage() {}
-	
 	public HImage(Object imgArg) {
 		image(imgArg);
 	}
-	
 	public HImage createCopy() {
 		HImage copy = new HImage(_image);
 		copy.copyPropertiesFrom(this);
 		return copy;
 	}
-	
 	public HImage resetSize() {
 		if(_image == null) {
 			size(0f,0f);
@@ -23,7 +17,6 @@ public static class HImage extends HDrawable {
 		}
 		return this;
 	}
-	
 	public HImage image(Object imgArg) {
 		if(imgArg instanceof PImage) {
 			_image = (PImage) imgArg;
@@ -36,11 +29,9 @@ public static class HImage extends HDrawable {
 		}
 		return resetSize();
 	}
-	
 	public PImage image() {
 		return _image;
 	}
-	
 	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		if(_image==null) return;
 		app.tint( app.round(currAlphaPerc*255) );

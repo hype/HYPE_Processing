@@ -1,5 +1,3 @@
-
-
 public static interface HColorist {
 	public HColorist fillOnly();
 	public HColorist strokeOnly();

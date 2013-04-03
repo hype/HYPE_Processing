@@ -1,4 +1,3 @@
-
 public static interface HFollower {
 	public float followerX();
 	public float followerY();

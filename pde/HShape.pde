@@ -1,21 +1,15 @@
-
-
 public static class HShape extends HDrawable {
 	protected PShape _shape;
 	protected HColorPool _randomColors;
-	
 	public HShape() {}
-	
 	public HShape(Object shapeArg) {
 		shape(shapeArg);
 	}
-	
 	public HShape createCopy() {
 		HShape copy = new HShape(_shape);
 		copy.copyPropertiesFrom(this);
 		return copy;
 	}
-	
 	public HShape resetSize() {
 		if(_shape == null) {
 			size(0,0);
@@ -24,7 +18,6 @@ public static class HShape extends HDrawable {
 		}
 		return this;
 	}
-	
 	public HShape shape(Object shapeArg) {
 		if(shapeArg instanceof PShape) {
 			_shape = (PShape) shapeArg;
@@ -37,21 +30,17 @@ public static class HShape extends HDrawable {
 		}
 		return resetSize();
 	}
-
 	public PShape shape() {
 		return _shape;
 	}
-	
 	public HShape enableStyle(boolean b) {
 		if(b) _shape.enableStyle();
 		else _shape.disableStyle();
 		return this;
 	}
-	
 	public HColorPool randomColors(HColorPool colorPool) {
 		return randomColors(colorPool,true);
 	}
-	
 	public HColorPool randomColors(HColorPool colorPool, boolean isCopy) {
 		if(isCopy)
 			colorPool = colorPool.createCopy();
@@ -59,35 +48,27 @@ public static class HShape extends HDrawable {
 		_randomColors = colorPool;
 		return _randomColors;
 	}
-	
 	public HColorPool randomColors() {
 		return _randomColors;
 	}
-	
 	public HShape resetRandomColors() {
 		_shape.enableStyle();
 		_randomColors = null;
 		return this;
 	}
-	
 	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		if(_shape == null) return;
-		
 		applyStyle(app,currAlphaPerc);
 		if(_randomColors == null) {
 			app.shape(_shape, drawX,drawY, _width,_height);
 		} else for(int i=0; i<_shape.getChildCount(); ++i) {
 			PShape childShape = _shape.getChild(i);
-			
-			// HACK Workaround for children having 0 size
 			childShape.width = _shape.width;
 			childShape.height = _shape.height;
-			
 			if(_randomColors.appliesFill())
 				app.fill(_randomColors.getColor());
 			if(_randomColors.appliesStroke())
 				app.stroke(_randomColors.getColor());
-			
 			app.shape(childShape, drawX,drawY, _width,_height);
 		}
 	}
