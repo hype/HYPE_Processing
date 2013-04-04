@@ -3,9 +3,7 @@ package hype.drawable;
 import processing.core.PApplet;
 
 public class HEllipse extends HDrawable {
-	public HEllipse() {
-		radius(8);
-	}
+	public HEllipse() {}
 	
 	public HEllipse(float ellipseRadius) {
 		radius(ellipseRadius);

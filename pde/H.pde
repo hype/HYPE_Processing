@@ -58,5 +58,9 @@ public static class H implements HConstants {
 	public static boolean endsWith(String haystack, String needle) {
 		return (haystack.indexOf(needle,haystack.length()-needle.length()) > 0);
 	}
+	public static void warn(String type, String loc, String msg) {
+		_app.println("[Warning: "+type+" @ "+loc+"]");
+		_app.println(msg);
+	}
 	private H() {}
 }

@@ -13,11 +13,11 @@ print 'cleaning pde/ directory... ';
 unlink <pde/*.pde>;
 print "done.\n";
 
-my $minfilename = 'HYPEexperimental.pde';
+my $minfilename = 'HYPE.pde';
 my $mintxt;
 
 foreach $file (<java/src/hype/*/*{,/*}.java>) {
-	print 'converting ' . $file . " to pde... ";
+	print 'converting `' . basename($file) . '` to pde... ';
 	my $outname = 'pde/' . basename($file,'.java') . '.pde';
 	
 	open (INFILE, $file) or die;

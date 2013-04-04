@@ -11,132 +11,131 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 
 public class HDrawablePool {
-	protected HLinkedHashSet<HDrawable> activeDrawables, inactiveDrawables;
-	protected ArrayList<HDrawable> prototypes;
-	public HCallback onCreateCallback, onRequestCallback, onReleaseCallback;
-	public HPoolListener currentListener;
-	protected HLayout currentLayout;
-	protected HColorist currentColorist;
-	protected HDrawable currentAutoParent;
-	protected int maxDrawables;
+	protected HLinkedHashSet<HDrawable> _activeSet, _inactiveSet;
+	protected ArrayList<HDrawable> _prototypes;
+	public HCallback _onCreate, _onRequest, _onRelease;
+	public HPoolListener _listener;
+	protected HLayout _layout;
+	protected HColorist _colorist;
+	protected HDrawable _autoParent;
+	protected int _max;
 	
 	public HDrawablePool() {
 		this(64);
 	}
 	
 	public HDrawablePool(int maximumDrawables) {
-		maxDrawables = maximumDrawables;
-		activeDrawables = new HLinkedHashSet<HDrawable>();
-		inactiveDrawables = new HLinkedHashSet<HDrawable>();
-		prototypes = new ArrayList<HDrawable>();
+		_max = maximumDrawables;
+		_activeSet = new HLinkedHashSet<HDrawable>();
+		_inactiveSet = new HLinkedHashSet<HDrawable>();
+		_prototypes = new ArrayList<HDrawable>();
 	}
 	
 	public int max() {
-		return maxDrawables;
+		return _max;
 	}
 	
 	public HDrawablePool max(int m) {
-		maxDrawables = m;
+		_max = m;
 		return this;
 	}
 	
 	public int numActive() {
-		return activeDrawables.getLength();
+		return _activeSet.getLength();
 	}
 	
 	public int numInactive() {
-		return inactiveDrawables.getLength();
+		return _inactiveSet.getLength();
 	}
 	
 	public int currentIndex() {
-		return activeDrawables.getLength() - 1;
+		return _activeSet.getLength() - 1;
 	}
 	
 	public HLayout layout() {
-		return currentLayout;
+		return _layout;
 	}
 	
 	public HDrawablePool layout(HLayout newLayout) {
-		currentLayout = newLayout;
+		_layout = newLayout;
 		return this;
 	}
 	
 	public HColorist colorist() {
-		return currentColorist;
+		return _colorist;
 	}
 	
 	public HDrawablePool colorist(HColorist newColorist) {
-		currentColorist = newColorist;
+		_colorist = newColorist;
 		return this;
 	}
 	
 	public HDrawablePool setOnCreate(HCallback callback) {
-		onCreateCallback = callback;
+		_onCreate = callback;
 		return this;
 	}
 	
 	public HDrawablePool listener(HPoolListener newListener) {
-		currentListener = newListener;
+		_listener = newListener;
 		return this;
 	}
 	
 	public HPoolListener listener() {
-		return currentListener;
+		return _listener;
 	}
 	
 	public HDrawablePool setOnRequest(HCallback callback) {
-		onRequestCallback = callback;
+		_onRequest = callback;
 		return this;
 	}
 	
 	public HDrawablePool setOnRelease(HCallback callback) {
-		onReleaseCallback = callback;
+		_onRelease = callback;
 		return this;
 	}
 	
 	public HDrawablePool autoParent(HDrawable parent) {
-		currentAutoParent = parent;
+		_autoParent = parent;
 		return this;
 	}
 	
 	public HDrawablePool autoAddToStage() {
-		currentAutoParent = H.stage();
+		_autoParent = H.stage();
 		return this;
 	}
 	
 	public HDrawable autoParent() {
-		return currentAutoParent;
+		return _autoParent;
 	}
 	
 	public boolean isFull() {
-		return maxDrawables <= count();
+		return count() >= _max;
 	}
 	
 	public int count() {
-		return activeDrawables.getLength() + inactiveDrawables.getLength();
+		return _activeSet.getLength() + _inactiveSet.getLength();
 	}
 	
 	public HDrawablePool destroy() {
-		activeDrawables.removeAll();
-		inactiveDrawables.removeAll();
-		prototypes.clear();
+		_activeSet.removeAll();
+		_inactiveSet.removeAll();
+		_prototypes.clear();
 		
-		onCreateCallback = onRequestCallback = onReleaseCallback = null;
-		currentLayout = null;
-		currentAutoParent = null;
-		maxDrawables = 0;
+		_onCreate = _onRequest = _onRelease = null;
+		_layout = null;
+		_autoParent = null;
+		_max = 0;
 		
 		return this;
 	}
 	
-	@SuppressWarnings("static-access")
 	public HDrawablePool add(HDrawable prototype, int frequency) {
 		if(prototype == null) {
-			H.app().println("Invalid Argument on HObjectPool.add(): " +
-				"Your prototype is null!");
+			H.warn("Invalid Argument", "HDrawablePool.add()",
+				"The new prototype shouldn't be null.");
 		} else {
-			prototypes.add(prototype);
-			while(frequency-- > 0) prototypes.add(prototype);
+			_prototypes.add(prototype);
+			while(frequency-- > 0) _prototypes.add(prototype);
 		}
 		return this;
 	}
@@ -145,82 +144,80 @@ public class HDrawablePool {
 		return add(prototype,1);
 	}
 	
-	@SuppressWarnings("static-access")
 	public HDrawable request() {
-		if(prototypes.size() <= 0) {
-			H.app().println("HDrawablePool.request(): " +
-				"can't create a new object without a prototype.");
+		if(_prototypes.size() <= 0) {
+			H.warn("Invalid Argument", "HDrawablePool.request()",
+				"Request aborted. HDrawablePool can't request a new object " +
+				"without an existing prototype. Try using " +
+				"HDrawablePool.add( HDrawable ) to add a new prototype");
 			return null;
 		}
 		
 		HDrawable drawable;
 		boolean onCreateFlag = false;
 		
-		if(inactiveDrawables.getLength() > 0) {
-			drawable = inactiveDrawables.pull();
-		} else if(count() < maxDrawables) {
+		if(_inactiveSet.getLength() > 0) {
+			drawable = _inactiveSet.pull();
+		} else if(count() < _max) {
 			drawable = createRandomDrawable();
 			onCreateFlag = true;
 		} else return null;
 		
-		activeDrawables.add(drawable);
-		if(currentAutoParent != null)
-			currentAutoParent.add(drawable);
-		if(currentLayout != null)
-			currentLayout.applyTo(drawable);
-		if(currentColorist != null)
-			currentColorist.applyColor(drawable);
-		if(currentListener != null) {
+		_activeSet.add(drawable);
+		
+		// Apply autoParent, layout and colorist
+		if(_autoParent != null) _autoParent.add(drawable);
+		if(_layout != null) _layout.applyTo(drawable);
+		if(_colorist != null) _colorist.applyColor(drawable);
+		
+		// Call onCreate (if applicable), and onRequest
+		if(_listener != null) {
 			int index = currentIndex();
-			if(onCreateFlag)
-				currentListener.onCreate(drawable, index, this);
-			currentListener.onRequest(drawable, index, this);
+			if(onCreateFlag) _listener.onCreate(drawable, index, this);
+			_listener.onRequest(drawable, index, this);
 		}
-		if(onCreateFlag && onCreateCallback != null)
-			onCreateCallback.run(drawable);
-		if(onRequestCallback != null)
-			onRequestCallback.run(drawable);
+		if(onCreateFlag && _onCreate != null) _onCreate.run(drawable);
+		if(_onRequest != null) _onRequest.run(drawable);
+		
 		return drawable;
 	}
 	
 	public HDrawablePool requestAll() {
-		while(count() < maxDrawables) request();
+		while(count() < _max) request();
 		return this;
 	}
 	
 	public boolean release(HDrawable d) {
-		if(activeDrawables.remove(d)) {
-			inactiveDrawables.add(d);
+		if(_activeSet.remove(d)) {
+			_inactiveSet.add(d);
 			
-			if(currentAutoParent != null)
-				currentAutoParent.remove(d);
+			if(_autoParent != null) _autoParent.remove(d);
 			
-			if(currentListener != null)
-				currentListener.onRelease(d, currentIndex(), this);
-			if(onReleaseCallback != null)
-				onReleaseCallback.run(d);
+			if(_listener != null) _listener.onRelease(d, currentIndex(), this);
+			if(_onRelease != null) _onRelease.run(d);
+			
 			return true;
 		}
 		return false;
 	}
 	
 	public HLinkedHashSet<HDrawable> activeSet() {
-		return activeDrawables;
+		return _activeSet;
 	}
 	
 	public HLinkedHashSet<HDrawable> inactiveSet() {
-		return inactiveDrawables;
+		return _inactiveSet;
 	}
 	
 	@SuppressWarnings("static-access")
 	protected HDrawable createRandomDrawable() {
 		PApplet app = H.app();
-		int numPrototypes = prototypes.size();
+		int numPrototypes = _prototypes.size();
 		int index = app.round( app.random(numPrototypes-1) );
-		return prototypes.get(index).createCopy();
+		return _prototypes.get(index).createCopy();
 	}
 
 	public HIterator<HDrawable> iterator() {
-		return activeDrawables.iterator();
+		return _activeSet.iterator();
 	}
 }

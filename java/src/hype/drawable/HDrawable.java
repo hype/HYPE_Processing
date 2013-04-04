@@ -16,7 +16,7 @@ public abstract class HDrawable implements HFollower, HFollowable {
 	protected HDrawable _parent;
 	protected HBundle _extras;
 	protected HChildSet _children;
-	protected float _x, _y, _drawX, _drawY, _width, _height,
+	protected float _x, _y, _anchorPercX, _anchorPercY, _width, _height,
 		_rotationRad, _strokeWeight, _alpha;
 	protected int _fill, _stroke, _strokeCap, _strokeJoin;
 	
@@ -31,13 +31,16 @@ public abstract class HDrawable implements HFollower, HFollowable {
 		_strokeCap = PConstants.ROUND;
 		_strokeJoin = PConstants.MITER;
 		_strokeWeight = 1;
+		
+		_width = 64;
+		_height = 64;
 	}
 	
 	public void copyPropertiesFrom(HDrawable other) {
 		_x = other._x;
 		_y = other._y;
-		_drawX = other._drawX;
-		_drawY = other._drawY;
+		_anchorPercX = other._anchorPercX;
+		_anchorPercY = other._anchorPercY;
 		_width = other._width;
 		_height = other._height;
 		_rotationRad = other._rotationRad;
@@ -139,18 +142,18 @@ public abstract class HDrawable implements HFollower, HFollowable {
 	public HDrawable locAt(int where) {
 		if(_parent!=null) {
 			if(HMath.containsBits(where,H.CENTER_X))
-				_x = _parent.width()/2 + _parent._drawX;
+				_x = _parent.width()/2 - _parent.anchorX();
 			else if(HMath.containsBits(where,H.LEFT))
-				_x = _parent._drawX;
+				_x = -_parent.anchorX();
 			else if(HMath.containsBits(where,H.RIGHT))
-				_x = _parent.width() + _parent._drawX;
+				_x = _parent.width() - _parent.anchorX();
 			
 			if(HMath.containsBits(where,H.CENTER_Y))
-				_y = _parent.height()/2 + _parent._drawY;
+				_y = _parent.height()/2 - _parent.anchorY();
 			else if(HMath.containsBits(where,H.TOP))
-				_y = _parent._drawY;
+				_y = -_parent.anchorY();
 			else if(HMath.containsBits(where,H.BOTTOM))
-				_y = _parent.height() + _parent._drawY;
+				_y = _parent.height() + _parent.anchorY();
 		}
 		return this;
 	}
@@ -158,54 +161,101 @@ public abstract class HDrawable implements HFollower, HFollowable {
 	
 	// ANCHOR //
 	
-	public HDrawable anchor(float ax, float ay) {
-		_drawX = -ax;
-		_drawY = -ay;
+	public HDrawable anchor(float pxX, float pxY) {
+		if(_height == 0 || _width == 0) {
+			H.warn("Division by 0", "HDrawable.anchor()",
+				"Size must be greater than 0 before setting the Anchor " +
+				"by pixel. Set the size for this drawable first, or set the " +
+				"Anchor by percentage via HDrawable.anchorPerc() instead");
+		} else {
+			_anchorPercX = pxX / _width;
+			_anchorPercY = pxY / _height;
+		}
 		return this;
 	}
 	
 	public HDrawable anchor(PVector pt) {
-		_drawX = -pt.x;
-		_drawY = -pt.y;
-		return this;
+		return anchor(pt.x, pt.y);
 	}
 	
 	public PVector anchor() {
-		return new PVector(-_drawX,-_drawY);
+		return new PVector( anchorX(), anchorY() );
 	}
 	
-	public HDrawable anchorX(float ax) {
-		_drawX = -ax;
+	public HDrawable anchorX(float pxX) {
+		if(_width == 0) {
+			H.warn("Division by 0", "HDrawable.anchorX()",
+				"Width must be greater than 0 before setting the X Anchor " +
+				"by pixel. Set the width for this drawable first, or set the " +
+				"X Anchor by percentage via HDrawable.anchorPercX() instead");
+		} else {
+			_anchorPercX = pxX / _width;
+		}
 		return this;
 	}
 	
 	public float anchorX() {
-		return -_drawX;
+		return _width * _anchorPercX;
 	}
 	
-	public HDrawable anchorY(float ay) {
-		_drawY = -ay;
+	public HDrawable anchorY(float pxY) {
+		if(_height == 0) {
+			H.warn("Division by 0", "HDrawable.anchorY()",
+				"Width must be greater than 0 before setting the Y Anchor " +
+				"by pixel. Set the height for this drawable first, or set the " +
+				"Y Anchor by percentage via HDrawable.anchorPercY() instead");
+		} else {
+			_anchorPercY = pxY / _height;
+		}
 		return this;
 	}
 	
 	public float anchorY() {
-		return -_drawY;
+		return _height * _anchorPercY;
+	}
+	
+	public HDrawable anchorPerc(float percX, float percY) {
+		_anchorPercX = percX;
+		_anchorPercY = percY;
+		return this;
+	}
+	
+	public PVector anchorPerc() {
+		return new PVector(_anchorPercX, _anchorPercY);
+	}
+	
+	public HDrawable anchorPercX(float percX) {
+		_anchorPercX = percX;
+		return this;
+	}
+	
+	public float anchorPercX() {
+		return _anchorPercX;
+	}
+	
+	public HDrawable anchorPercY(float percY) {
+		_anchorPercY = percY;
+		return this;
+	}
+	
+	public float anchorPercY() {
+		return _anchorPercY;
 	}
 	
 	public HDrawable anchorAt(int where) {
 		if(HMath.containsBits(where,H.CENTER_X))
-			_drawX = -_width/2;
+			_anchorPercX = 0.5f;
 		else if(HMath.containsBits(where,H.LEFT))
-			_drawX = 0;
+			_anchorPercX = 0;
 		else if(HMath.containsBits(where,H.RIGHT))
-			_drawX = -_width;
+			_anchorPercX = 1;
 		
 		if(HMath.containsBits(where,H.CENTER_Y))
-			_drawY = -_height/2;
+			_anchorPercY = 0.5f;
 		else if(HMath.containsBits(where,H.TOP))
-			_drawY = 0;
+			_anchorPercY = 0;
 		else if(HMath.containsBits(where,H.BOTTOM))
-			_drawY = -_height;
+			_anchorPercY = 1;
 		return this;
 	}
 	
@@ -228,8 +278,6 @@ public abstract class HDrawable implements HFollower, HFollowable {
 	}
 	
 	public HDrawable width(float w) {
-		if(_width != 0) // adjust the anchor
-			_drawX *= w/_width;
 		_width = w;
 		return this;
 	}
@@ -239,8 +287,6 @@ public abstract class HDrawable implements HFollower, HFollowable {
 	}
 	
 	public HDrawable height(float h) {
-		if(_height != 0) // adjust the anchor
-			_drawY *= h/_height;
 		_height = h;
 		return this;
 	}
@@ -266,11 +312,13 @@ public abstract class HDrawable implements HFollower, HFollowable {
 		
 		float cosVal = app.cos(_rotationRad);
 		float sinVal = app.sin(_rotationRad);
+		float drawX = -anchorX();
+		float drawY = -anchorY();
 		
-		float x1 = _drawX;			// left x
-		float x2 = _width + _drawX;	// right x
-		float y1 = _drawY;			// top y
-		float y2 = _height + _drawY;// bottom y
+		float x1 = drawX;			// left x
+		float x2 = _width + drawX;	// right x
+		float y1 = drawY;			// top y
+		float y2 = _height + drawY;	// bottom y
 		
 		float[] xCoords = new float[4];
 		float[] yCoords = new float[4];
@@ -573,7 +621,7 @@ public abstract class HDrawable implements HFollower, HFollowable {
 			currAlphaPerc *= _alpha;
 			
 			// Draw self
-			draw(app,_drawX,_drawY,currAlphaPerc);
+			draw(app,-anchorX(),-anchorY(),currAlphaPerc);
 			
 			// Draw children
 			if(hasChildren()) {

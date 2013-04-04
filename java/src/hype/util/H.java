@@ -85,10 +85,16 @@ public class H implements HConstants {
 	}
 	
 	
-	// STRING UTILS //
+	// MISC UTILS //
 	
 	public static boolean endsWith(String haystack, String needle) {
 		return (haystack.indexOf(needle,haystack.length()-needle.length()) > 0);
+	}
+	
+	@SuppressWarnings("static-access")
+	public static void warn(String type, String loc, String msg) {
+		_app.println("[Warning: "+type+" @ "+loc+"]");
+		_app.println(msg);
 	}
 	
 	private H() {}

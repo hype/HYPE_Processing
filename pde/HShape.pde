@@ -1,7 +1,9 @@
 public static class HShape extends HDrawable {
 	protected PShape _shape;
 	protected HColorPool _randomColors;
-	public HShape() {}
+	public HShape() {
+		shape(null);
+	}
 	public HShape(Object shapeArg) {
 		shape(shapeArg);
 	}

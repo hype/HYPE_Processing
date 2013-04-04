@@ -5,9 +5,7 @@ import processing.core.PApplet;
 public class HRect extends HDrawable {
 	public float _tl, _tr, _bl, _br;
 	
-	public HRect() {
-		size(16);
-	}
+	public HRect() {}
 	
 	public HRect(float s) {
 		size(s);

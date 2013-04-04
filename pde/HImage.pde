@@ -1,6 +1,8 @@
 public static class HImage extends HDrawable {
 	protected PImage _image;
-	public HImage() {}
+	public HImage() {
+		image(null);
+	}
 	public HImage(Object imgArg) {
 		image(imgArg);
 	}
