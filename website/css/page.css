@@ -1,0 +1,55 @@
+body {
+  background-color: #333;
+  background-image:url('http://www.hypeframework.org/images/navBg.gif');
+  background-position:left top;
+  background-repeat:no-repeat;
+  color: #999999;
+  font-family: "Droid Serif", "Times New Roman", Times, serif;    
+  font-size: 12px;
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  color: #999999;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #FF3300;
+  text-decoration: none;
+}
+a img { border: none; }
+
+canvas { 
+  display: block; 
+  outline: 0px; 
+  margin-bottom: 1px; 
+}
+
+#content { 
+  margin: 3px 0px 0px 4px;
+  padding: 25px 25px 25px 25px;
+  width: 640px;
+  min-width: 300px;
+  overflow: auto;
+  background-color: #3d3d3d;
+  float: left;
+}
+
+#code { 
+  margin: 3px 0px 50px 4px;
+  padding: 25px 15px 25px 15px;
+  width: 660px;
+  min-height: 740px;
+  min-width: 300px;
+  overflow: auto;
+  background-color: #ECECEC;
+  float: left;
+}
+
+.lineDark {
+  width: 42px;
+  margin: 20px 0px 20px 0px;
+  border-bottom: 1px solid #333333;
+}

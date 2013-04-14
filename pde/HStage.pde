@@ -1,26 +1,31 @@
 public static class HStage extends HDrawable {
 	protected PApplet _app;
-	protected HLinkedHashSet<HBehavior> _behaviors;
 	protected PImage _bgImg;
-	protected int _bgColor;
 	protected boolean _autoClearFlag, _mouseStarted;
 	public HStage(PApplet papplet) {
 		_app = papplet;
-		_children = new HChildSet(this);
-		_behaviors = new HLinkedHashSet<HBehavior>();
-		_bgColor = H.DEFAULT_BACKGROUND_COLOR;
 		_autoClearFlag = true;
-		_app.background(_bgColor);
-	}
-	public HLinkedHashSet<HBehavior> behaviors() {
-		return _behaviors;
+		_app.background(H.DEFAULT_BACKGROUND_COLOR);
 	}
 	public HDrawable createCopy() {
 		return null;
 	}
 	public void background(int clr) {
-		_bgColor = clr;
+		_fill = clr;
 		clear();
+	}
+	public HDrawable fill(int clr) {
+		background(clr);
+		return this;
+	}
+	public HDrawable fill(int clr, int alpha) {
+		return fill(clr);
+	}
+	public HDrawable fill(int r, int g, int b) {
+		return fill(HColorUtil.merge(255,r,g,b));
+	}
+	public HDrawable fill(int r, int g, int b, int a) {
+		return fill(r,g,b);
 	}
 	public void backgroundImg(Object arg) {
 		if(arg instanceof String) {
@@ -38,7 +43,7 @@ public static class HStage extends HDrawable {
 		return _autoClearFlag;
 	}
 	public HStage clear() {
-		if(_bgImg == null) _app.background(_bgColor);
+		if(_bgImg == null) _app.background(_fill);
 		else _app.background(_bgImg);
 		return this;
 	}
@@ -63,15 +68,12 @@ public static class HStage extends HDrawable {
 	public void paintAll(PApplet app, float currAlphaPerc) {
 		if(!_mouseStarted && _app.pmouseX+_app.pmouseY > 0)
 			_mouseStarted = true;
-		if(_behaviors.getLength()>0) {
-			HIterator<HBehavior> bIt = _behaviors.iterator();
-			while(bIt.hasNext()) bIt.next().runBehavior();
-		}
 		app.pushStyle();
 			if(_autoClearFlag) clear();
-			if(_children.getLength()>0) {
-				HIterator<HDrawable> cIt = _children.iterator();
-				while(cIt.hasNext()) cIt.next().paintAll(app,1);
+			HDrawable child = _firstChild;
+			while(child != null) {
+				child.paintAll(app,1);
+				child = child.next();
 			}
 		app.popStyle();
 	}

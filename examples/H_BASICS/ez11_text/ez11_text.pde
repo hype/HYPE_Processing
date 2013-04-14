@@ -26,7 +26,7 @@ void setup() {
 		.add (new HText( "r", 24, type ))
 		.add (new HText( "t", 24, type ))
 		.add (new HText( "y", 24, type ))
-	    .setOnCreate (
+	    .onCreate (
 		    new HCallback() {
 		    	public void run(Object obj) {
 		    		HText t = (HText) obj;

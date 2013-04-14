@@ -12,7 +12,7 @@ void setup() {
 			new HRect()
 			.rounding(10)
 		)
-	    .setOnCreate (
+	    .onCreate (
 		    new HCallback() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;
@@ -30,8 +30,6 @@ void setup() {
 		)
 	;
 
-<<<<<<< HEAD
-=======
 	// This example demonstrates how to use HTimer.
 
 	// HTimer is yet another HBehavior class, so it has all the methods
@@ -46,7 +44,6 @@ void setup() {
 	// .useMillis() // treats the interval as the number of milliseconds
 	// HCallback.run() is called once HTimer times out.
 
->>>>>>> e651215b97a3fa7d34cb6c55f9be3a000cdf1b53
 	timer = new HTimer()
 		.numCycles( pool.numActive() )
 		.interval(50)

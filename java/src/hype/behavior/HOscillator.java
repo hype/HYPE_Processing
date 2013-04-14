@@ -2,6 +2,8 @@ package hype.behavior;
 
 import hype.drawable.HDrawable;
 import hype.util.H;
+import hype.util.HMath;
+import processing.core.PApplet;
 
 @SuppressWarnings("static-access")
 public class HOscillator extends HBehavior {
@@ -19,13 +21,11 @@ public class HOscillator extends HBehavior {
 		_freq = 1;
 		_propertyId = H.Y;
 		_waveform = H.SINE;
-		
-		H.addBehavior(this);
 	}
 	
-	public HOscillator(HDrawable target) {
+	public HOscillator(HDrawable newTarget) {
 		this();
-		_target = target;
+		target(newTarget);
 	}
 	
 	public HOscillator createCopy() {
@@ -41,12 +41,16 @@ public class HOscillator extends HBehavior {
 	}
 	
 	public HOscillator target(HDrawable newTarget) {
+		if(newTarget == null) unregister();
+		else register();
+		
 		_target = newTarget;
 		
 		// Workaround for relative scaling when using H.SCALE
-		_origW = _target.width();
-		_origH = _target.height();
-		
+		if(_target != null) {
+			_origW = _target.width();
+			_origH = _target.height();
+		}
 		return this;
 	}
 	
@@ -132,15 +136,15 @@ public class HOscillator extends HBehavior {
 		return _waveform;
 	}
 	
-	public float next() {
+	public float nextVal() {
 		float currentDeg = _stepDeg * _freq;
 		
 		float outVal = 0;
 		switch(_waveform) {
-		case H.SINE:	outVal = sineWave(currentDeg);		break;
-		case H.TRIANGLE:outVal = triangleWave(currentDeg);	break;
-		case H.SAW:		outVal = sawWave(currentDeg);		break;
-		case H.SQUARE:	outVal = squareWave(currentDeg);	break;
+		case H.SINE:	outVal = HMath.sineWave(currentDeg);	break;
+		case H.TRIANGLE:outVal = HMath.triangleWave(currentDeg);break;
+		case H.SAW:		outVal = HMath.sawWave(currentDeg);		break;
+		case H.SQUARE:	outVal = HMath.squareWave(currentDeg);	break;
 		}
 		outVal = H.app().map(outVal, -1,1, _min,_max) + _relValue;
 		
@@ -149,14 +153,14 @@ public class HOscillator extends HBehavior {
 	}
 	
 	@Override
-	public void runBehavior() {
-		if(_target != null) {
-			if(_propertyId == H.SCALE) {
-				float val = next();
-				_target.size(_origW * val, _origH * val);
-			} else {
-				_target.set(_propertyId, next());
-			}
+	public void runBehavior(PApplet app) {
+		if(_target == null) return;
+		
+		if(_propertyId == H.SCALE) { // scaling is a special case here
+			float val = nextVal();
+			_target.size(_origW*val, _origH*val);
+		} else {
+			H.setProperty(_target, _propertyId, nextVal());
 		}
 	}
 	
@@ -168,31 +172,5 @@ public class HOscillator extends HBehavior {
 	@Override
 	public HOscillator unregister() {
 		return (HOscillator) super.unregister();
-	}
-	
-	
-	
-	public static float sineWave(float stepDegrees) {
-		return H.app().sin(stepDegrees * H.D2R);
-	}
-	
-	public static float triangleWave(float stepDegrees) {
-		float outVal = (stepDegrees % 180) / 90;
-		if(outVal > 1)
-			outVal = 2-outVal;
-		if(stepDegrees % 360 > 180)
-			outVal = -outVal;
-		return outVal;
-	}
-	
-	public static float sawWave(float stepDegrees) {
-		float outVal = (stepDegrees % 180) / 180;
-		if(stepDegrees % 360 >= 180)
-			outVal -= 1;
-		return outVal;
-	}
-	
-	public static float squareWave(float stepDegrees) {
-		return (stepDegrees % 360 > 180)? -1 : 1;
 	}
 }

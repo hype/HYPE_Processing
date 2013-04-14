@@ -93,7 +93,7 @@ public static class HColorField implements HColorist {
 		return drawable;
 	}
 	public static class HColorPoint {
-		float x, y, radius;
-		int clr;
+		public float x, y, radius;
+		public int clr;
 	}
 }

@@ -37,7 +37,7 @@ void setup() {
  	pool = new HDrawablePool(count);
  	pool.autoAddToStage()
 		.add( new HRect().rounding(4).rotation(45) )
-	    .setOnCreate (
+	    .onCreate (
 		    new HCallback() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;

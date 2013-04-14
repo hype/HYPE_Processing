@@ -1,14 +1,29 @@
-public static abstract class HBehavior {
-	public HBehavior() {
-		H.addBehavior(this);
-	}
+public static class HBehavior extends HNode<HBehavior> {
 	public HBehavior register() {
-		H.addBehavior(this);
+		if(poppedOut()) {
+			if(_firstBehavior != null) putBefore(_firstBehavior);
+			_firstBehavior = this;
+		}
 		return this;
 	}
 	public HBehavior unregister() {
-		H.removeBehavior(this);
+		if(!poppedOut()) {
+			_firstBehavior = _next;
+			popOut();
+		}
 		return this;
 	}
-	public abstract void runBehavior();
+	public void runBehavior(PApplet app) {}
+	private static HBehavior _firstBehavior;
+	private static PApplet _app;
+	public static void init(PApplet app) {
+		_app = app;
+	}
+	public static void runAll() {
+		HBehavior node = _firstBehavior;
+		while(node != null) {
+			node.runBehavior(_app);
+			node = node._next;
+		}
+	}
 }

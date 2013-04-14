@@ -1,22 +1,44 @@
 package hype.behavior;
 
-import hype.util.H;
+import hype.util.collection.HNode;
+import processing.core.PApplet;
 
-public abstract class HBehavior {
-	public HBehavior() {
-		// Register this by default
-		H.addBehavior(this);
-	}
+public class HBehavior extends HNode<HBehavior> {
 	
 	public HBehavior register() {
-		H.addBehavior(this);
+		if(poppedOut()) {
+			if(_firstBehavior != null) putBefore(_firstBehavior);
+			_firstBehavior = this;
+		}
 		return this;
 	}
 	
 	public HBehavior unregister() {
-		H.removeBehavior(this);
+		if(!poppedOut()) {
+			_firstBehavior = _next;
+			popOut();
+		}
 		return this;
 	}
 	
-	public abstract void runBehavior();
+	public void runBehavior(PApplet app) {}
+	
+	
+	
+	// Behavior Registry //
+	
+	private static HBehavior _firstBehavior;
+	private static PApplet _app;
+	
+	public static void init(PApplet app) {
+		_app = app;
+	}
+	
+	public static void runAll() {
+		HBehavior node = _firstBehavior;
+		while(node != null) {
+			node.runBehavior(_app);
+			node = node._next;
+		}
+	}
 }

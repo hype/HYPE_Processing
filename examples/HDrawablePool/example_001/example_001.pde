@@ -10,7 +10,7 @@ void setup() {
 		.add (
 			new HRect()
 		)
-	    .setOnCreate (
+	    .onCreate (
 		    new HCallback() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;

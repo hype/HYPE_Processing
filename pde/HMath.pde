@@ -37,4 +37,24 @@ public static class HMath {
 	public static boolean containsBits(int target, int val) {
 		return ( (target & val) == val );
 	}
+	public static float sineWave(float stepDegrees) {
+		return H.app().sin(stepDegrees * H.D2R);
+	}
+	public static float triangleWave(float stepDegrees) {
+		float outVal = (stepDegrees % 180) / 90;
+		if(outVal > 1)
+			outVal = 2-outVal;
+		if(stepDegrees % 360 > 180)
+			outVal = -outVal;
+		return outVal;
+	}
+	public static float sawWave(float stepDegrees) {
+		float outVal = (stepDegrees % 180) / 180;
+		if(stepDegrees % 360 >= 180)
+			outVal -= 1;
+		return outVal;
+	}
+	public static float squareWave(float stepDegrees) {
+		return (stepDegrees % 360 > 180)? -1 : 1;
+	}
 }

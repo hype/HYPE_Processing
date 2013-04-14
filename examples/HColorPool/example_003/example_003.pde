@@ -31,7 +31,7 @@ void setup() {
 			new HRect(5)
 		)
 		.layout(grid)
-		.setOnCreate (
+		.onCreate (
 		    new HCallback() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;

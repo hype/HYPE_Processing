@@ -23,7 +23,7 @@ void setup() {
 			.rounding(4)
 			.size(18,6)
 		)
-		.setOnCreate (
+		.onCreate (
 		    new HCallback() {
 		    	public void run(Object obj) {
 		    		float rotation = random(TWO_PI);

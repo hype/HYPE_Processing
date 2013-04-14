@@ -1,30 +1,47 @@
 package hype;
 
-import hype.drawable.HDrawable;
-import hype.drawable.HEllipse;
+import hype.drawable.HPath;
+import hype.drawable.HRect;
 import hype.util.H;
 import processing.core.PApplet;
 
 public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
+	private HPath path;
+	
 	@SuppressWarnings("static-access")
-	public void setup(){
-		size(500,500);
-		H.init(this).background(0);
+	public void setup() {
+		size(640,640);
+		noLoop();
+		H.init(this).background(0xFF88FF);
 		
-		HDrawable d = H.add(new HEllipse())
-			.fill(255,255,255,128).locAt(H.CENTER);
-		//d.anchorPerc(0.5f,0.5f);
-		//d.anchorPercX(0);
-		//d.anchorPercY(2);
-		d.anchorAt(H.CENTER_X|H.BOTTOM);
+//		H.add(new HRect(100)).locAt(H.CENTER).anchorAt(H.CENTER).fill(0,255,0,128);
+//		H.add(new HEllipse(50)).locAt(H.CENTER).anchorAt(H.CENTER).stroke(0,0,0,128);
+		
+		H.add(new HRect(100)).locAt(H.CENTER).anchorAt(H.BOTTOM|H.RIGHT).fill(0,255,0,128);
+		H.add(new HRect(100)).locAt(H.CENTER).fill(0,255,0,128);
+		
+		path = new HPath(POLYGON);
+		H.add(path)
+			.fill(255,255,255,64).stroke(0,64)
+			.loc(width/2, height/2)
+			.strokeWeight(2)
+			.strokeJoin(ROUND);
+		
+		path
+			.vertex(-25,-25)
+			.vertex(25,-25)
+			.vertex(25,25)
+			.vertex(-25,25)
+		.adjustVertices();
+		
+		println(path.size());
+		println(path.anchorPerc());
+//		println(path.loc());
 	}
 
 	public void draw() {
 		H.drawStage();
-		stroke(255);
-		line(0,height/2,width,height/2);
-		line(width/2,0,width/2,height);
 	}
 }

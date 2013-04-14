@@ -3,7 +3,9 @@ public static class HTimer extends HBehavior {
 	protected float _intervalCounter;
 	protected int _interval, _cycleCounter, _numCycles;
 	protected boolean _usesFrames;
-	public HTimer() {}
+	public HTimer() {
+		_interval = 1000;
+	}
 	public HTimer(int timerInterval) {
 		_interval = timerInterval;
 	}
@@ -12,6 +14,8 @@ public static class HTimer extends HBehavior {
 		_numCycles = numberOfCycles;
 	}
 	public HTimer callback(HCallback cb) {
+		if(cb == null) unregister();
+		else register();
 		_callback = cb;
 		return this;
 	}
@@ -57,9 +61,9 @@ public static class HTimer extends HBehavior {
 	public boolean usesFrames() {
 		return _usesFrames;
 	}
-	public void runBehavior() {
+	public void runBehavior(PApplet app) {
 		if(_intervalCounter < _interval) {
-			_intervalCounter += (_usesFrames)? 1 : 1000/H.app().frameRate;
+			_intervalCounter += (_usesFrames)? 1 : 1000/app.frameRate;
 		} else {
 			_intervalCounter = 0;
 			if(_callback != null) _callback.run(_cycleCounter);

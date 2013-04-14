@@ -4,9 +4,7 @@
 // and http://processingjs.org/reference/font/
 // for more information.
 
-/*
-@pjs preload="sintra.jpg";
-*/
+/* @pjs preload="sintra.jpg"; */
 
 HDrawablePool pool;
 HSwarm swarm;
@@ -38,7 +36,7 @@ void setup() {
 			new HRect()
 			.rounding(4)
 		)
-		.setOnCreate (
+		.onCreate (
 		    new HCallback() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;

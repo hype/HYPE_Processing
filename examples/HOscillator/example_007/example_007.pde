@@ -25,7 +25,7 @@ void setup() {
 			.spacing(1,0)
 			.cols(400)
 		)
-		.setOnCreate (
+		.onCreate (
 		    new HCallback() {
 		    	public void run(Object obj) {
 		    		int i = pool.currentIndex();

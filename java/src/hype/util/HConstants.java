@@ -19,7 +19,7 @@ public interface HConstants {
 		CENTER_Y = 12, // 0b1100
 		CENTER = 15, // 0b1111
 		
-		// DEFAULT COLORS
+		// Default colors
 		DEFAULT_BACKGROUND_COLOR = 0xFFECF2F5,
 		DEFAULT_FILL = 0x00FFFFFF,
 		DEFAULT_STROKE = 0x00FFFFFF,
@@ -43,7 +43,11 @@ public interface HConstants {
 		DX = 9,
 		DY = 10,
 		DLOC = 11,
-		SCALE = 12;
+		SCALE = 12,
+		
+		// HTriangle types
+		ISOCELES = 0,
+		EQUILATERAL = 1;
 	
 	public static final float
 		// Degree-Radians conversion shortcuts

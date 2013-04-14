@@ -30,7 +30,7 @@ void setup() {
       .spacing(cellSize+1,cellSize+1)
       .cols(24)
     )
-    .setOnCreate (
+    .onCreate (
         new HCallback() {
           public void run(Object obj) {
             int i = pool.currentIndex();

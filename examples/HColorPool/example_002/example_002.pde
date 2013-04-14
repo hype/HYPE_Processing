@@ -25,7 +25,7 @@ void setup() {
 		.add (
 			new HEllipse(), 25
 		)
-		.setOnCreate (
+		.onCreate (
 		    new HCallback() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;

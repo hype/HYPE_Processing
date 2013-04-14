@@ -3,35 +3,35 @@ package hype.behavior;
 import hype.drawable.HDrawable;
 import hype.util.H;
 import hype.util.HFollowable;
-import hype.util.HFollower;
+import hype.util.HMovable;
 import hype.util.HMath;
-
-import java.util.ArrayList;
-
+import hype.util.collection.HIterator;
+import hype.util.collection.HLinkedHashSet;
 import processing.core.PApplet;
 import processing.core.PVector;
 
 @SuppressWarnings("static-access")
-public class HSwarm extends HBehavior implements HFollower, HFollowable {
+public class HSwarm extends HBehavior implements HMovable, HFollowable {
 	protected float _goalX, _goalY, _speed, _turnEase, _twitch;
-	protected ArrayList<HDrawable> _swarmers;
+	protected HLinkedHashSet<HDrawable> _swarmers;
 	
 	public HSwarm() {
 		_speed = 1;
 		_turnEase = 1;
 		_twitch = 16;
-		_swarmers = new ArrayList<HDrawable>();
-		
-		H.addBehavior(this);
+		_swarmers = new HLinkedHashSet<HDrawable>();
 	}
 	
-	public HSwarm addTarget(HDrawable swarmer) {
-		_swarmers.add(swarmer);
+	public HSwarm addTarget(HDrawable d) {
+		if(_swarmers.size() <= 0) register();
+		_swarmers.add(d);
 		return this;
 	}
 	
-	public HDrawable target(int i) {
-		return _swarmers.get(i);
+	public HSwarm removeTarget(HDrawable d) {
+		_swarmers.remove(d);
+		if(_swarmers.size() <= 0) unregister();
+		return this;
 	}
 	
 	public HSwarm goal(float x, float y) {
@@ -99,12 +99,12 @@ public class HSwarm extends HBehavior implements HFollower, HFollowable {
 	}
 
 	@Override
-	public float followerX() {
+	public float x() {
 		return _goalX;
 	}
 
 	@Override
-	public float followerY() {
+	public float y() {
 		return _goalY;
 	}
 	
@@ -119,18 +119,18 @@ public class HSwarm extends HBehavior implements HFollower, HFollowable {
 	}
 	
 	@Override
-	public void follow(float dx, float dy) {
+	public HSwarm move(float dx, float dy) {
 		_goalX += dx;
 		_goalY += dy;
+		return this;
 	}
 
 	@Override
-	public void runBehavior() {
-		PApplet app = H.app();
-		
+	public void runBehavior(PApplet app) {
 		int numSwarmers = _swarmers.size();
+		HIterator<HDrawable> it = _swarmers.iterator();
 		for(int i=0; i<numSwarmers; ++i) {
-			HDrawable swarmer = _swarmers.get(i);
+			HDrawable swarmer = it.next();
 			
 			float rot = swarmer.rotationRad();
 			float tx = swarmer.x();

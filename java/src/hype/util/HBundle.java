@@ -1,5 +1,6 @@
 package hype.util;
 
+
 import java.util.HashMap;
 
 @SuppressWarnings("static-access")

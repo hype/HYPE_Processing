@@ -5,6 +5,7 @@ public static class H implements HConstants {
 	public static H init(PApplet applet) {
 		_app = applet;
 		HMath.init(_app);
+		HBehavior.init(_app);
 		if(_self == null) _self = new H();
 		if(_stage == null) _stage = new HStage(_app);
 		return _self;
@@ -35,6 +36,7 @@ public static class H implements HConstants {
 		return _self;
 	}
 	public static H drawStage() {
+		HBehavior.runAll();
 		_stage.paintAll(_app,0);
 		return _self;
 	}
@@ -44,23 +46,33 @@ public static class H implements HConstants {
 	public static HDrawable remove(HDrawable stageChild) {
 		return _stage.remove(stageChild);
 	}
-	public static H addBehavior(HBehavior b) {
-		_stage.behaviors().add(b);
-		return _self;
-	}
-	public static H removeBehavior(HBehavior b) {
-		_stage.behaviors().remove(b);
-		return _self;
-	}
 	public static boolean mouseStarted() {
 		return _stage.mouseStarted();
 	}
 	public static boolean endsWith(String haystack, String needle) {
 		return (haystack.indexOf(needle,haystack.length()-needle.length()) > 0);
 	}
+	public static void setProperty(HDrawable target, int propId, float val) {
+		switch(propId) {
+		case H.WIDTH:		target.width(val); break;
+		case H.HEIGHT:		target.height(val); break;
+		case H.SIZE:		target.size(val); break;
+		case H.ALPHA:		target.alpha(H.app().round(val)); break;
+		case H.X:			target.x(val); break;
+		case H.Y:			target.y(val); break;
+		case H.LOCATION:	target.loc(val,val); break;
+		case H.ROTATION:	target.rotation(val); break;
+		case H.DROTATION:	target.rotate(val); break;
+		case H.DX:			target.move(val,0); break;
+		case H.DY:			target.move(0,val); break;
+		case H.DLOC:		target.move(val,val); break;
+		case H.SCALE:		target.scale(val); break;
+		default: break;
+		}
+	}
 	public static void warn(String type, String loc, String msg) {
 		_app.println("[Warning: "+type+" @ "+loc+"]");
-		_app.println(msg);
+		if( msg!=null && msg.length()>0 ) _app.println(msg);
 	}
 	private H() {}
 }

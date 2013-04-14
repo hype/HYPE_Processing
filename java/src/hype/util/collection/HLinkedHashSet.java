@@ -3,72 +3,67 @@ package hype.util.collection;
 import java.util.HashMap;
 
 public class HLinkedHashSet<T> extends HLinkedList<T> {
-	protected HashMap<T,HLinkNode<T>> nodeMap;
+	protected HashMap<T,HLinkedListNode<T>> nodeMap;
 	
 	public HLinkedHashSet() {
-		nodeMap = new HashMap<T, HLinkNode<T>>();
-	}
-	
-	@Override
-	public boolean add(T obj) {
-		if(contains(obj))
-			return false;
-		return addNode(register(obj));
+		nodeMap = new HashMap<T, HLinkedListNode<T>>();
 	}
 	
 	// LATER peekAfter
 	// LATER peekBefore
 	// LATER putAfter
 	// LATER putBefore
-	// LATER iterator obj
 	
-	public boolean remove(T obj) {
-		HLinkNode<T> node = nodeMap.get(obj);
-		if(node == null) return false;
-		
-		if(node.equals(firstNode)) {
-			pop();
-		} else if(node.equals(lastNode)) {
-			pull();
-		} else {
-			unregister(obj);
-			node.popOut();
-			length--;
-		}
+	public boolean remove(T content) {
+		HLinkedListNode<T> node = nodeMap.get(content);
+		if(node==null) return false;
+		unregister(content);
+		node.popOut();
+		--_size;
 		return true;
 	}
 	
 	@Override
-	public T pull() {
-		return unregister(super.pull());
+	public boolean add(T content) {
+		return contains(content)? false : super.add(content);
 	}
 	
 	@Override
-	public boolean push(T obj) {
-		if(contains(obj))
-			return false;
-		return pushNode(register(obj));
+	public boolean push(T content) {
+		return contains(content)? false : super.push(content);
 	}
 	
+	@Override
+	public boolean insert(T content, int index) {
+		return contains(content)? false : super.insert(content, index);
+	}
+
+	@Override
+	public T pull() {
+		return unregister(super.pull());
+	}
+
 	@Override
 	public T pop() {
 		return unregister(super.pop());
 	}
 	
 	@Override
+	public T removeAt(int index) {
+		return unregister(super.removeAt(index));
+	}
+	
+	@Override
 	public void removeAll() {
-		nodeMap.clear();
-		super.removeAll();
+		while(_size > 0) pop();
 	}
 	
 	public boolean contains(T obj) {
 		return nodeMap.get(obj) != null;
 	}
 	
-	protected HLinkNode<T> register(T obj) {
-		if(obj == null) return null;
-		
-		HLinkNode<T> node = new HLinkNode<T>(obj);
+	protected HLinkedListNode<T> register(T obj) {
+		HLinkedListNode<T> node = new HLinkedListNode<T>(obj);
 		nodeMap.put(obj,node);
 		return node;
 	}

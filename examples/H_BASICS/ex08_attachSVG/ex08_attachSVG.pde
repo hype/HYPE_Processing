@@ -23,7 +23,7 @@ void setup() {
 			.spacing(50,50)
 			.cols(11)
 		)
-		.setOnCreate (
+		.onCreate (
 		    new HCallback() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;

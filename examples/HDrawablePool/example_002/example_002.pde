@@ -11,7 +11,7 @@ void setup() {
 			new HRect()
 			.rounding(5)
 		)
-	    .setOnCreate (
+	    .onCreate (
 		    new HCallback() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;

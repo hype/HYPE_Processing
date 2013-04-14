@@ -1,0 +1,193 @@
+/* Start: Recommended Isotope styles */
+
+/**** Isotope Filtering ****/
+
+.isotope-item {
+  z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+
+/**** Isotope CSS3 transitions ****/
+
+.isotope,
+.isotope .isotope-item {
+  -webkit-transition-duration: 0.6s;
+     -moz-transition-duration: 0.6s;
+      -ms-transition-duration: 0.6s;
+       -o-transition-duration: 0.6s;
+          transition-duration: 0.6s;
+}
+
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+      -ms-transition-property:     -ms-transform, opacity;
+       -o-transition-property:         top, left, opacity;
+          transition-property:         transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+      -ms-transition-duration: 0s;
+       -o-transition-duration: 0s;
+          transition-duration: 0s;
+}
+
+/* End: Recommended Isotope styles */
+
+/* disable CSS transitions for containers with infinite scrolling*/
+.isotope.infinite-scrolling {
+  -webkit-transition: none;
+     -moz-transition: none;
+      -ms-transition: none;
+       -o-transition: none;
+          transition: none;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+/*  0.  CSS Reset & Clearfix - http://meyerweb.com/eric/tools/css/reset/
+/*-----------------------------------------------------------------------------------*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; } body { line-height: 1; } ol, ul { list-style: none; } blockquote, q { quotes: none; } blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; } :focus { outline: 0; } ins { text-decoration: none; } del { text-decoration: line-through; } table { border-collapse: collapse; border-spacing: 0; }
+
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; } .clearfix { display: inline-block; } /* Hide from IE Mac \*/ .clearfix { display: block; } /* End hide from IE Mac */ .none { display: none; } /* End Clearfix */
+
+
+/*-----------------------------------------------------------------------------------*/
+/*  1.  Document Setup (body, common classes, vertical rhythm, structure etc) padding
+
+top, right, bottom, left
+/*-----------------------------------------------------------------------------------*/
+
+/**** Isotope styles ****/
+
+/* required for containers to inherit vertical size from window */
+html, body {
+  margin: 0px;
+  padding: 0px;
+  background: #4D4D4D;
+  color: #242424;
+  height: 100%;
+  font-family: "Droid Serif", "Times New Roman", Times, serif;    
+  font-size: 11px;
+}
+
+a {
+  color: #999999;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #FF3300;
+  text-decoration: none;
+}
+
+a img { border: none; }
+
+/*.line {
+  width: 42px;
+  margin: 20px 0px 20px 0px;
+  border-bottom: 1px solid #CCCCCC;
+}*/
+
+.lineDark {
+  width: 42px;
+  margin: 20px 0px 20px 0px;
+  border-bottom: 1px solid #333333;
+}
+
+#container {
+  /*border: 1px solid #666;*/
+  padding: 1px 1px 1px 2px;
+  margin-bottom: 20px;
+}
+
+/**** Date ****/
+
+.date {
+  background: #FF3300;
+  color: #242424;
+  width: 240px !important;
+  height: 240px !important;
+  margin: 0px;
+  line-height: 240px;
+  text-align:center;
+  font-size: 40px;
+  font-style:italic;
+  font-weight: 700;
+}
+
+/**** Description / top, right, bottom, left ****/
+
+.desc {
+  background:#181818;
+  color:#666666;
+  font-size: 11px;
+  letter-spacing:0.5px;
+  line-height:20px;
+  margin: 1px 0px 0px 0px;
+  padding:10px;
+  width:220px;
+  height:80px;
+}
+
+/**** Photo ****/
+
+.photo {
+  background:#202020;
+  width: auto;
+  margin: 2px;
+  float: left;
+}
+
+.photo img {
+  display: block;
+  /*width: 100%;*/
+}
+
+#content {
+  margin-left: 210px;
+}
+
+.portfolio #content {
+  height: 100%;
+}
+
+/**** Infinite Scroll ****/
+
+#infscr-loading {
+  position: fixed;
+  text-align: center;
+  bottom: 30px;
+  left: 42%;
+  z-index: 100;
+  background: white;
+  background: hsla( 0, 0%, 100%, 0.9 );
+  padding: 20px;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
+}
+
+/* The Magnificent Clearfix: nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }

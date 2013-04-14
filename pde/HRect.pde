@@ -34,6 +34,34 @@ public static class HRect extends HDrawable {
 		_bl = bottomleft;
 		return this;
 	}
+	public HRect roundingTL(float radius) {
+		_tl = radius;
+		return this;
+	}
+	public float roundingTL() {
+		return _tl;
+	}
+	public HRect roundingTR(float radius) {
+		_tr = radius;
+		return this;
+	}
+	public float roundingTR() {
+		return _tr;
+	}
+	public HRect roundingBR(float radius) {
+		_br = radius;
+		return this;
+	}
+	public float roundingBR() {
+		return _br;
+	}
+	public HRect roundingBL(float radius) {
+		_bl = radius;
+		return this;
+	}
+	public float roundingBL() {
+		return _bl;
+	}
 	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		applyStyle(app,currAlphaPerc);
 		app.rect(drawX,drawY, _width,_height, _tl,_tr,_br,_bl);

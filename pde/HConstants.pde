@@ -30,7 +30,9 @@ public static interface HConstants {
 		DX = 9,
 		DY = 10,
 		DLOC = 11,
-		SCALE = 12;
+		SCALE = 12,
+		ISOCELES = 0,
+		EQUILATERAL = 1;
 	public static final float
 		D2R = PConstants.PI / 180f,
 		R2D = 180f / PConstants.PI;

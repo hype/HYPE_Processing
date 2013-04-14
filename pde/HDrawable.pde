@@ -1,10 +1,13 @@
-public static abstract class HDrawable implements HFollower, HFollowable {
-	protected HDrawable _parent;
+public static abstract class HDrawable extends HNode<HDrawable>
+		implements HMovable, HFollowable {
+	protected HDrawable _parent, _firstChild, _lastChild;
 	protected HBundle _extras;
-	protected HChildSet _children;
-	protected float _x, _y, _anchorPercX, _anchorPercY, _width, _height,
+	protected float
+		_x, _y,
+		_anchorPercX, _anchorPercY,
+		_width, _height,
 		_rotationRad, _strokeWeight, _alpha;
-	protected int _fill, _stroke, _strokeCap, _strokeJoin;
+	protected int _numChildren, _fill, _stroke, _strokeCap, _strokeJoin;
 	public HDrawable() {
 		_alpha = 1;
 		_fill = H.DEFAULT_FILL;
@@ -31,36 +34,74 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 		_strokeJoin = other._strokeJoin;
 	}
 	public abstract HDrawable createCopy();
-	public void _set_parent_(HDrawable newParent) {
-		_parent = newParent;
+	public void popOut() {
+		if(_parent == null) return;
+		if(_prev == null) _parent._firstChild = _next;
+		if(_next == null) _parent._lastChild = _prev;
+		--_parent._numChildren;
+		_parent = null;
+		super.popOut();
+	}
+	public void putBefore(HDrawable dest) {
+		if(dest._parent == null) {
+			H.warn("No Parent", "HDrawable.putBefore()",
+				"Putting this drawable to a parentless chain is not allowed");
+			return;
+		} else if(dest._parent == this) {
+			H.warn("Recursive Child", "HDrawable.putBefore()",
+				"You can't add this drawable as a child of itself.");
+			return;
+		}
+		popOut();
+		super.putBefore(dest);
+		_parent = dest._parent;
+		if(_prev == null) _parent._firstChild = this;
+		++_parent._numChildren;
+	}
+	public void putAfter(HDrawable dest) {
+		if(dest._parent == null) {
+			H.warn("No Parent", "HDrawable.putAfter()",
+				"Putting this drawable to a parentless chain is not allowed");
+			return;
+		} else if(dest._parent == this) {
+			H.warn("Recursive Child", "HDrawable.putAfter()",
+				"You can't add this drawable as a child of itself.");
+			return;
+		}
+		popOut();
+		super.putAfter(dest);
+		_parent = dest._parent;
+		if(_next == null) _parent._lastChild = this;
+		++_parent._numChildren;
 	}
 	public HDrawable parent() {
 		return _parent;
 	}
-	public HChildSet children() {
-		return _children;
-	}
 	public int numChildren() {
-		if(_children==null)
-			return 0;
-		return _children.getLength();
-	}
-	public boolean hasChildren() {
-		return _children!=null && _children.getLength()>0;
+		return _numChildren;
 	}
 	public HDrawable add(HDrawable child) {
-		if(_children==null)
-			_children = new HChildSet(this);
-		_children.add(child);
+		if(child == this) {
+			H.warn("Recursive Child", "HDrawable.add()",
+				"You can't add this drawable as a child of itself.");
+			return child;
+		}
+		if(_lastChild == null) {
+			_firstChild = _lastChild = child;
+			child.popOut();
+			child._parent = this;
+			++_numChildren;
+		} else child.putAfter(_lastChild);
 		return child;
 	}
 	public HDrawable remove(HDrawable child) {
-		if(_children!=null)
-			_children.remove(child);
+		if(this == child._parent) child.popOut();
+		else H.warn("Not a Child", "HDrawable.remove()",
+			"The drawable passed to remove() is not a child of this drawable.");
 		return child;
 	}
-	public HIterator<HDrawable> iterator() {
-		return _children.iterator();
+	public HDrawableIterator iterator() {
+		return new HDrawableIterator(this);
 	}
 	public HDrawable loc(float newX, float newY) {
 		_x = newX;
@@ -281,6 +322,10 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 	public int fill() {
 		return _fill;
 	}
+	public HDrawable noFill() {
+		fill(0x00FFFFFF);
+		return this;
+	}
 	public HDrawable stroke(int clr) {
 		_stroke = clr;
 		return this;
@@ -299,6 +344,10 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 	}
 	public int stroke() {
 		return _stroke;
+	}
+	public HDrawable noStroke() {
+		stroke(0x00FFFFFF);
+		return this;
 	}
 	public HDrawable strokeCap(int type) {
 		_strokeCap = type;
@@ -379,20 +428,11 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 	public HDrawable alphaShiftPerc(float daPerc) {
 		return alphaPerc(_alpha + daPerc);
 	}
-	public float followerX() {
-		return _x;
-	}
-	public float followerY() {
-		return _y;
-	}
 	public float followableX() {
 		return _x;
 	}
 	public float followableY() {
 		return _y;
-	}
-	public void follow(float dx, float dy) {
-		move(dx,dy);
 	}
 	public HDrawable extras(HBundle b) {
 		_extras = b;
@@ -400,30 +440,6 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 	}
 	public HBundle extras() {
 		return _extras;
-	}
-	public float[] abs2rel(float x, float y) {
-		return null;
-	}
-	public float[] rel2abs(float x, float y) {
-		return null;
-	}
-	public void set(int propId, float val) {
-		switch(propId) {
-		case H.WIDTH:		width(val); break;
-		case H.HEIGHT:		height(val); break;
-		case H.SIZE:		size(val); break;
-		case H.ALPHA:		alpha(H.app().round(val)); break;
-		case H.X:			x(val); break;
-		case H.Y:			y(val); break;
-		case H.LOCATION:	loc(val,val); break;
-		case H.ROTATION:	rotation(val); break;
-		case H.DROTATION:	rotate(val); break;
-		case H.DX:			move(val,0); break;
-		case H.DY:			move(0,val); break;
-		case H.DLOC:		move(val,val); break;
-		case H.SCALE:		scale(val); break;
-		default: break;
-		}
 	}
 	protected void applyStyle(PApplet app, float currAlphaPerc) {
 		int falpha = _fill>>>24;
@@ -441,18 +457,40 @@ public static abstract class HDrawable implements HFollower, HFollowable {
 		} else app.noStroke();
 	}
 	public void paintAll(PApplet app, float currAlphaPerc) {
-		if(_alpha<=0 || _width<=0 || _height<=0) return;
+		if(_alpha<=0 || _width<0 || _height<0) return;
 		app.pushMatrix();
 			app.translate(_x,_y);
 			app.rotate(_rotationRad);
 			currAlphaPerc *= _alpha;
 			draw(app,-anchorX(),-anchorY(),currAlphaPerc);
-			if(hasChildren()) {
-				HIterator<HDrawable> it = _children.iterator();
-				while(it.hasNext()) it.next().paintAll(app,currAlphaPerc);
+			HDrawable child = _firstChild;
+			while(child != null) {
+				child.paintAll(app,currAlphaPerc);
+				child = child._next;
 			}
 		app.popMatrix();
 	}
 	public abstract void draw(
 		PApplet app, float drawX, float drawY, float currAlphaPerc);
+	public static class HDrawableIterator implements HIterator<HDrawable> {
+		private HDrawable parent, d1, d2;
+		public HDrawableIterator(HDrawable parentDrawable) {
+			parent = parentDrawable;
+			d1 = parent._firstChild;
+			if(d1 != null) d2 = d1._next;
+		}
+		public boolean hasNext() {
+			return (d1 != null);
+		}
+		public HDrawable next() {
+			HDrawable nxt = d1;
+			d1 = d2;
+			if(d2 != null) d2 = d2._next;
+			return nxt;
+		}
+		public void remove() {
+			d1.popOut();
+			--parent._numChildren;
+		}
+	}
 }

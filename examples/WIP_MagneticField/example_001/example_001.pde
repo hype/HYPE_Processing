@@ -1,5 +1,5 @@
 HDrawablePool pool;
-HMagnetField mf;
+HMagneticField mf;
 
 void setup() {
 	size(640,640);
@@ -8,7 +8,7 @@ void setup() {
 
 	final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
-	mf = new HMagnetField()
+	mf = new HMagneticField()
 		.pole(150, 200, true) // isSouth
 		.pole(490, 440, false) // isNorth
 	;
@@ -28,7 +28,7 @@ void setup() {
 			.spacing(21,21)
 			.cols(31)
 		)
-		.setOnCreate (
+		.onCreate (
 		    new HCallback() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;

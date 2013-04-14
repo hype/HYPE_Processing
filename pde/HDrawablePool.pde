@@ -24,13 +24,13 @@ public static class HDrawablePool {
 		return this;
 	}
 	public int numActive() {
-		return _activeSet.getLength();
+		return _activeSet.size();
 	}
 	public int numInactive() {
-		return _inactiveSet.getLength();
+		return _inactiveSet.size();
 	}
 	public int currentIndex() {
-		return _activeSet.getLength() - 1;
+		return _activeSet.size() - 1;
 	}
 	public HLayout layout() {
 		return _layout;
@@ -46,24 +46,33 @@ public static class HDrawablePool {
 		_colorist = newColorist;
 		return this;
 	}
-	public HDrawablePool setOnCreate(HCallback callback) {
-		_onCreate = callback;
-		return this;
-	}
 	public HDrawablePool listener(HPoolListener newListener) {
 		_listener = newListener;
 		return this;
 	}
+	public HDrawablePool onCreate(HCallback callback) {
+		_onCreate = callback;
+		return this;
+	}
+	public HCallback onCreate() {
+		return _onCreate;
+	}
 	public HPoolListener listener() {
 		return _listener;
 	}
-	public HDrawablePool setOnRequest(HCallback callback) {
+	public HDrawablePool onRequest(HCallback callback) {
 		_onRequest = callback;
 		return this;
 	}
-	public HDrawablePool setOnRelease(HCallback callback) {
+	public HCallback onRequest() {
+		return _onRequest;
+	}
+	public HDrawablePool onRelease(HCallback callback) {
 		_onRelease = callback;
 		return this;
+	}
+	public HCallback onRelease() {
+		return _onRelease;
 	}
 	public HDrawablePool autoParent(HDrawable parent) {
 		_autoParent = parent;
@@ -80,7 +89,7 @@ public static class HDrawablePool {
 		return count() >= _max;
 	}
 	public int count() {
-		return _activeSet.getLength() + _inactiveSet.getLength();
+		return _activeSet.size() + _inactiveSet.size();
 	}
 	public HDrawablePool destroy() {
 		_activeSet.removeAll();
@@ -115,7 +124,7 @@ public static class HDrawablePool {
 		}
 		HDrawable drawable;
 		boolean onCreateFlag = false;
-		if(_inactiveSet.getLength() > 0) {
+		if(_inactiveSet.size() > 0) {
 			drawable = _inactiveSet.pull();
 		} else if(count() < _max) {
 			drawable = createRandomDrawable();
