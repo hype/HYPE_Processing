@@ -15,7 +15,7 @@ public static abstract class HNode<T extends HNode<T>> {
 		_prev = _next = null;
 	}
 	public void putBefore(T dest) {
-		if(dest == this) return;
+		if(dest==null || dest.equals(this)) return;
 		if(!poppedOut()) popOut();
 		T p = dest._prev;
 		if(p!=null) p._next = (T) this;
@@ -24,13 +24,22 @@ public static abstract class HNode<T extends HNode<T>> {
 		dest._prev = (T) this;
 	}
 	public void putAfter(T dest) {
-		if(dest == this) return;
+		if(dest==null || dest.equals(this)) return;
 		if(!poppedOut()) popOut();
 		T n = dest.next();
 		dest._next = (T) this;
 		_prev = dest;
 		_next = n;
 		if(n!=null) n._prev = (T) this;
+	}
+	public void replaceNode(T dest) {
+		if(dest==null || dest.equals(this)) return;
+		if(!poppedOut()) popOut();
+		T p = dest._prev;
+		T n = dest._next;
+		dest._prev = dest._next = null;
+		_prev = p;
+		_next = n;
 	}
 	public void swapLeft() {
 		if(_prev==null) return;
@@ -39,7 +48,9 @@ public static abstract class HNode<T extends HNode<T>> {
 		_next = _prev;
 		_prev._prev = (T) this;
 		_prev._next = pairNext;
+		if(pairNext != null) pairNext._prev = _prev;
 		_prev = pairPrev;
+		if(pairPrev != null) pairPrev._next = (T) this;
 	}
 	public void swapRight() {
 		if(_next==null) return;
@@ -48,14 +59,8 @@ public static abstract class HNode<T extends HNode<T>> {
 		_next._next = (T) this;
 		_prev = _next;
 		_next._prev = pairPrev;
+		if(pairPrev != null) pairPrev._next = _next;
 		_next = pairNext;
-	}
-	public void replace(T target) {
-		if(!poppedOut()) popOut();
-		T p = target._prev;
-		T n = target._next;
-		target._prev = target._next = null;
-		_prev = p;
-		_next = n;
+		if(pairNext != null) pairNext._prev = (T) this;
 	}
 }

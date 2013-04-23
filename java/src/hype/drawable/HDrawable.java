@@ -1,19 +1,22 @@
 package hype.drawable;
 
+import hype.collection.HIterator;
+import hype.collection.HNode;
+import hype.interfaces.HFollowable;
+import hype.interfaces.HHittable;
+import hype.interfaces.HSwarmer;
 import hype.util.H;
 import hype.util.HBundle;
 import hype.util.HColorUtil;
-import hype.util.HFollowable;
+import hype.util.HConstants;
 import hype.util.HMath;
-import hype.util.HMovable;
-import hype.util.collection.HIterator;
-import hype.util.collection.HNode;
+import hype.util.HWarnings;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
 
 public abstract class HDrawable extends HNode<HDrawable>
-		implements HMovable, HFollowable {
+		implements HSwarmer, HFollowable, HHittable {
 	
 	protected HDrawable _parent, _firstChild, _lastChild;
 	protected HBundle _extras;
@@ -30,14 +33,14 @@ public abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable() {
 		_alpha = 1;
 		
-		_fill = H.DEFAULT_FILL;
-		_stroke = H.DEFAULT_STROKE;
+		_fill = HConstants.DEFAULT_FILL;
+		_stroke = HConstants.DEFAULT_STROKE;
 		_strokeCap = PConstants.ROUND;
 		_strokeJoin = PConstants.MITER;
 		_strokeWeight = 1;
 		
-		_width = 64;
-		_height = 64;
+		_width = HConstants.DEFAULT_WIDTH;
+		_height = HConstants.DEFAULT_HEIGHT;
 	}
 	
 	public void copyPropertiesFrom(HDrawable other) {
@@ -61,6 +64,33 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	// PARENT & CHILD //
 	
+	protected boolean invalidDest(HDrawable dest, String warnLoc) {
+		String warnType;
+		String warnMsg;
+		
+		if( dest == null ) {
+			warnType = "Null Destination";
+			warnMsg = HWarnings.NULL_ARGUMENT;
+		} else if( dest._parent == null ) {
+			warnType = "Invalid Destination";
+			warnMsg = HWarnings.INVALID_DEST;
+		} else if( dest._parent.equals(this) ) {
+			warnType = "Recursive Child";
+			warnMsg = HWarnings.CHILDCEPTION;
+		} else if( dest.equals(this) ) {
+			warnType = "Invalid Destination";
+			warnMsg = HWarnings.DESTCEPTION;
+		} else return false;
+		
+		HWarnings.warn(warnType, warnLoc, warnMsg);
+		return true;
+	}
+	
+	@Override
+	public boolean poppedOut() {
+		return (_parent == null);
+	}
+	
 	@Override
 	public void popOut() {
 		if(_parent == null) return;
@@ -74,15 +104,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	@Override
 	public void putBefore(HDrawable dest) {
-		if(dest._parent == null) {
-			H.warn("No Parent", "HDrawable.putBefore()",
-				"Putting this drawable to a parentless chain is not allowed");
-			return;
-		} else if(dest._parent == this) {
-			H.warn("Recursive Child", "HDrawable.putBefore()",
-				"You can't add this drawable as a child of itself.");
-			return;
-		}
+		if(invalidDest(dest,"HDrawable.putBefore()")) return;
 		
 		popOut();
 		super.putBefore(dest);
@@ -93,15 +115,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	@Override
 	public void putAfter(HDrawable dest) {
-		if(dest._parent == null) {
-			H.warn("No Parent", "HDrawable.putAfter()",
-				"Putting this drawable to a parentless chain is not allowed");
-			return;
-		} else if(dest._parent == this) {
-			H.warn("Recursive Child", "HDrawable.putAfter()",
-				"You can't add this drawable as a child of itself.");
-			return;
-		}
+		if(invalidDest(dest,"HDrawable.putAfter()")) return;
 		
 		popOut();
 		super.putAfter(dest);
@@ -110,8 +124,45 @@ public abstract class HDrawable extends HNode<HDrawable>
 		++_parent._numChildren;
 	}
 	
+	@Override
+	public void swapLeft() {
+		boolean isLast = (_next == null);
+		
+		super.swapLeft();
+		
+		if(_prev == null) _parent._firstChild = this;
+		if(_next != null && isLast) _parent._lastChild = _next;
+	}
+	
+	@Override
+	public void swapRight() {
+		boolean isFirst = (_prev == null);
+		
+		super.swapRight();
+		
+		if(_next == null) _parent._lastChild = this;
+		if(_prev != null && isFirst) _parent._firstChild = _prev;
+	}
+	
+	@Override
+	public void replaceNode(HDrawable dest) {
+		if(invalidDest(dest,"HDrawable.replaceNode()")) return;
+		
+		super.replaceNode(dest);
+		
+		_parent = dest._parent;
+		dest._parent = null;
+		
+		if(_prev == null) _parent._firstChild = this;
+		if(_next == null) _parent._lastChild = this;
+	}
+	
 	public HDrawable parent() {
 		return _parent;
+	}
+	
+	public boolean parentOf(HDrawable d) {
+		return (d != null) && (d._parent != null) && (d._parent.equals(this));
 	}
 	
 	public int numChildren() {
@@ -119,26 +170,24 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 	
 	public HDrawable add(HDrawable child) {
-		if(child == this) {
-			H.warn("Recursive Child", "HDrawable.add()",
-				"You can't add this drawable as a child of itself.");
-			return child;
+		if(child == null) {
+			HWarnings.warn("An Empty Child", "HDrawable.add()",
+					HWarnings.NULL_ARGUMENT);
+		} else if( !parentOf(child) ) {
+			if(_lastChild == null) {
+				_firstChild = _lastChild = child;
+				child.popOut();
+				child._parent = this;
+				++_numChildren;
+			} else child.putAfter(_lastChild);
 		}
-		
-		if(_lastChild == null) {
-			_firstChild = _lastChild = child;
-			child.popOut();
-			child._parent = this;
-			++_numChildren;
-		} else child.putAfter(_lastChild);
-		
 		return child;
 	}
 	
 	public HDrawable remove(HDrawable child) {
-		if(this == child._parent) child.popOut();
-		else H.warn("Not a Child", "HDrawable.remove()",
-			"The drawable passed to remove() is not a child of this drawable.");
+		if( parentOf(child) ) child.popOut();
+		else HWarnings.warn("Not a Child", "HDrawable.remove()", null);
+		
 		return child;
 	}
 	
@@ -192,19 +241,19 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	public HDrawable locAt(int where) {
 		if(_parent!=null) {
-			if(HMath.containsBits(where,H.CENTER_X))
+			if(HMath.hasBits(where,HConstants.CENTER_X))
 				_x = _parent.width()/2 - _parent.anchorX();
-			else if(HMath.containsBits(where,H.LEFT))
+			else if(HMath.hasBits(where,HConstants.LEFT))
 				_x = -_parent.anchorX();
-			else if(HMath.containsBits(where,H.RIGHT))
+			else if(HMath.hasBits(where,HConstants.RIGHT))
 				_x = _parent.width() - _parent.anchorX();
 			
-			if(HMath.containsBits(where,H.CENTER_Y))
+			if(HMath.hasBits(where,HConstants.CENTER_Y))
 				_y = _parent.height()/2 - _parent.anchorY();
-			else if(HMath.containsBits(where,H.TOP))
+			else if(HMath.hasBits(where,HConstants.TOP))
 				_y = -_parent.anchorY();
-			else if(HMath.containsBits(where,H.BOTTOM))
-				_y = _parent.height() + _parent.anchorY();
+			else if(HMath.hasBits(where,HConstants.BOTTOM))
+				_y = _parent.height() - _parent.anchorY();
 		}
 		return this;
 	}
@@ -214,10 +263,8 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	public HDrawable anchor(float pxX, float pxY) {
 		if(_height == 0 || _width == 0) {
-			H.warn("Division by 0", "HDrawable.anchor()",
-				"Size must be greater than 0 before setting the Anchor " +
-				"by pixel. Set the size for this drawable first, or set the " +
-				"Anchor by percentage via HDrawable.anchorPerc() instead");
+			HWarnings.warn("Division by 0", "HDrawable.anchor()",
+					HWarnings.ANCHORPX_ERR);
 		} else {
 			_anchorPercX = pxX / _width;
 			_anchorPercY = pxY / _height;
@@ -235,10 +282,8 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	public HDrawable anchorX(float pxX) {
 		if(_width == 0) {
-			H.warn("Division by 0", "HDrawable.anchorX()",
-				"Width must be greater than 0 before setting the X Anchor " +
-				"by pixel. Set the width for this drawable first, or set the " +
-				"X Anchor by percentage via HDrawable.anchorPercX() instead");
+			HWarnings.warn("Division by 0", "HDrawable.anchorX()",
+					HWarnings.ANCHORPX_ERR);
 		} else {
 			_anchorPercX = pxX / _width;
 		}
@@ -251,10 +296,8 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	public HDrawable anchorY(float pxY) {
 		if(_height == 0) {
-			H.warn("Division by 0", "HDrawable.anchorY()",
-				"Width must be greater than 0 before setting the Y Anchor " +
-				"by pixel. Set the height for this drawable first, or set the " +
-				"Y Anchor by percentage via HDrawable.anchorPercY() instead");
+			HWarnings.warn("Division by 0", "HDrawable.anchorY()",
+					HWarnings.ANCHORPX_ERR);
 		} else {
 			_anchorPercY = pxY / _height;
 		}
@@ -294,18 +337,18 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 	
 	public HDrawable anchorAt(int where) {
-		if(HMath.containsBits(where,H.CENTER_X))
+		if(HMath.hasBits(where,HConstants.CENTER_X))
 			_anchorPercX = 0.5f;
-		else if(HMath.containsBits(where,H.LEFT))
+		else if(HMath.hasBits(where,HConstants.LEFT))
 			_anchorPercX = 0;
-		else if(HMath.containsBits(where,H.RIGHT))
+		else if(HMath.hasBits(where,HConstants.RIGHT))
 			_anchorPercX = 1;
 		
-		if(HMath.containsBits(where,H.CENTER_Y))
+		if(HMath.hasBits(where,HConstants.CENTER_Y))
 			_anchorPercY = 0.5f;
-		else if(HMath.containsBits(where,H.TOP))
+		else if(HMath.hasBits(where,HConstants.TOP))
 			_anchorPercY = 0;
-		else if(HMath.containsBits(where,H.BOTTOM))
+		else if(HMath.hasBits(where,HConstants.BOTTOM))
 			_anchorPercY = 1;
 		return this;
 	}
@@ -437,10 +480,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 	
 	public HDrawable noFill() {
-		// I'm deliberately not using H.DEFAULT_FILL here,
-		// because that could be changed to something else.
-		fill(0x00FFFFFF);
-		return this;
+		return fill(HConstants.CLEAR);
 	}
 
 	public HDrawable stroke(int clr) {
@@ -459,7 +499,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 	
 	public HDrawable stroke(int r, int g, int b, int a) {
-		_stroke = HColorUtil.merge(r,g,b,a);
+		_stroke = HColorUtil.merge(a,r,g,b);
 		return this;
 	}
 
@@ -468,10 +508,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 	
 	public HDrawable noStroke() {
-		// I'm deliberately not using H.DEFAULT_FILL here,
-		// because that could be changed to something else.
-		stroke(0x00FFFFFF);
-		return this;
+		return stroke(HConstants.CLEAR);
 	}
 
 	public HDrawable strokeCap(int type) {
@@ -505,25 +542,27 @@ public abstract class HDrawable extends HNode<HDrawable>
 	// ROTATION //
 	
 	public HDrawable rotation(float deg) {
-		_rotationRad = deg * H.D2R;
+		_rotationRad = deg * HConstants.D2R;
 		return this;
 	}
 	
 	public float rotation() {
-		return _rotationRad * H.R2D;
+		return _rotationRad * HConstants.R2D;
 	}
 	
+	@Override
 	public HDrawable rotationRad(float rad) {
 		_rotationRad = rad;
 		return this;
 	}
 	
+	@Override
 	public float rotationRad() {
 		return _rotationRad;
 	}
 	
 	public HDrawable rotate(float deg) {
-		_rotationRad += deg * H.D2R;
+		_rotationRad += deg * HConstants.D2R;
 		return this;
 	}
 	
@@ -604,25 +643,31 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return _extras;
 	}
 	
+	@Override
+	public boolean contains(float absX, float absY) {
+		float[] rel = HMath.relLocArr(this, absX, absY);
+		rel[0] += anchorX();
+		rel[1] += anchorY();
+		return containsRel(rel[0], rel[1]);
+	}
+	
+	@Override
+	public boolean containsRel(float relX, float relY) {
+		return (0 <= relX) && (relX <= width()) &&
+			(0 <= relY) && (relY <= height());
+	}
+	
 	
 	// DRAWING //
 	
 	@SuppressWarnings("static-access")
 	protected void applyStyle(PApplet app, float currAlphaPerc) {
-		// Multiply currAlpha to fill
-		int falpha = _fill>>>24;
-		falpha = app.round( currAlphaPerc * falpha ) << 24;
-		int currFill = _fill & 0x00FFFFFF | falpha;
-
-		app.fill(currFill);
+		float faPerc = currAlphaPerc * (_fill >>> 24);
+		app.fill(_fill | 0xFF000000, app.round(faPerc));
 		
 		if(_strokeWeight > 0) {
-			// Multiply currAlpha to stroke
-			int salpha = _stroke>>>24;
-			salpha = app.round( currAlphaPerc * salpha ) << 24;
-			int currStroke = _stroke & 0x00FFFFFF | salpha;
-			
-			app.stroke(currStroke);
+			float saPerc = currAlphaPerc * (_stroke >>> 24);
+			app.stroke(_stroke | 0xFF000000, app.round(saPerc));
 			app.strokeWeight(_strokeWeight);
 			app.strokeCap(_strokeCap);
 			app.strokeJoin(_strokeJoin);
@@ -680,8 +725,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 		
 		@Override
 		public void remove() {
-			d1.popOut();
-			--parent._numChildren;
+			if(d1 != null) d1.popOut();
 		}
 		
 	}

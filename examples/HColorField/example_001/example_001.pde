@@ -30,6 +30,7 @@ void setup() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;
 					d
+						.noStroke()
 			    		.fill(#000000)
 				        .size(5)
 				    ;

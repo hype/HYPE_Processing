@@ -28,6 +28,7 @@ void setup() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;
 					d
+						.noStroke()
 						.fill( colors.getColor() )
 						.loc( 500, 100 )
 						.anchorAt( H.CENTER )

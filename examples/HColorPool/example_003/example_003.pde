@@ -36,7 +36,7 @@ void setup() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;
 		    		int i = pool.currentIndex();
-		    		d.fill(colors.getColor(i*3));
+		    		d.noStroke().fill(colors.getColor(i*3));
 				}
 			}
 		)

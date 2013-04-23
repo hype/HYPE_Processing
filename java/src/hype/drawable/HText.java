@@ -23,8 +23,11 @@ public class HText extends HDrawable {
 	
 	public HText(String textString, float size, Object fontArg) {
 		_text = textString;
-		height(size);
+		
+		_height = size;
 		font(fontArg);
+		
+		height(size);
 	}
 	
 	@Override
@@ -52,12 +55,12 @@ public class HText extends HDrawable {
 			_font = (PFont) arg;
 		} else if(arg instanceof String) {
 			String str = (String) arg;
-			_font = H.endsWith(str,".vlw")?
+			_font = (str.indexOf(".vlw",str.length()-4) > 0)?
 				app.loadFont(str) : app.createFont(str,_height);
 		} else if(arg instanceof HText) {
 			_font = ((HText) arg)._font;
 		} else if(arg == null) {
-			_font = null;
+			_font = app.createFont("SansSerif",_height);
 		}
 		adjustMetrics();
 		return this;
@@ -79,8 +82,7 @@ public class HText extends HDrawable {
 		PApplet app = H.app();
 		app.pushStyle();
 		
-		if(_font == null) app.textSize(_height);
-		else app.textFont(_font,_height);
+		app.textFont(_font,_height);
 		
 		_descent = app.textDescent();
 		super.width( (_text==null)? 0 : app.textWidth(_text) );
@@ -122,13 +124,39 @@ public class HText extends HDrawable {
 		return scale(sh);
 	}
 	
+	@SuppressWarnings("static-access")
+	@Override
+	public boolean containsRel(float relX, float relY) {
+		if(_text == null || _height == 0) return false;
+		
+		PApplet app = H.app();
+		int numChars = _text.length();
+		float ratio = _font.getSize() / _height;
+		float xoff = 0;
+		float yoff = (_height - _descent) * ratio;
+		relX *= ratio;
+		relY *= ratio;
+		
+		for(int i=0; i<numChars; ++i) {
+			char c = _text.charAt(i);
+			PFont.Glyph g = _font.getGlyph(c);
+			
+			int pxx = app.round(relX - xoff);
+			int pxy = app.round(relY - yoff) + g.topExtent;
+			
+			if(g.image.get(pxx, pxy)>>>24 > 0) return true;
+			
+			xoff += g.setWidth;
+		}
+		return false;
+	} 
+	
 	@Override
 	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		if(_text == null) return;
 		
 		applyStyle(app,currAlphaPerc);
-		if(_font == null) app.textSize(_height);
-		else app.textFont(_font,_height);
+		app.textFont(_font,_height);
 		
 		app.text(_text,drawX,drawY+_height-_descent);
 	}

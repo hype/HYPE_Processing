@@ -30,6 +30,7 @@ void setup() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;
 					d
+						.noStroke()
 						.fill( colors.getColor() )
 						.loc( (int)random(width), (int)random(height) )
 						.anchor( new PVector(25,25) )

@@ -47,7 +47,7 @@ void setup() {
     float y = (ySpcaing*((int)(i/numCols))) + yStart;
 
     rects[i] = new HRect(10, 40);
-    rects[i].loc( x, y );
+    rects[i].noStroke().loc( x, y );
     colors.applyColor(rects[i]);
 
     H.add(rects[i]);

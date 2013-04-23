@@ -17,6 +17,7 @@ void setup() {
 
 	rect = new HRect(100);
 	rect.rounding(40)
+		.noStroke()
 		.fill(#000000)
 		.loc(width/2,height/2)
 		.anchorAt(H.CENTER)
@@ -32,7 +33,7 @@ void setup() {
 }
 
 void draw() {
-	rect.fill(#000000, 20);
+	rect.noStroke().fill(#000000, 20);
 	colorField.applyColor(rect);
 
 	H.drawStage();

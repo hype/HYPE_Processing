@@ -1,8 +1,8 @@
 package hype.behavior;
 
+import hype.interfaces.HFollowable;
+import hype.interfaces.HMovable;
 import hype.util.H;
-import hype.util.HFollowable;
-import hype.util.HMovable;
 import processing.core.PApplet;
 
 public class HFollow extends HBehavior {
@@ -19,7 +19,7 @@ public class HFollow extends HBehavior {
 	}
 	
 	public HFollow(float ease, float spring) {
-		this(ease, spring, H.stage());
+		this(ease, spring, H.mouse());
 	}
 	
 	public HFollow(float ease, float spring, HFollowable goal) {
@@ -56,7 +56,7 @@ public class HFollow extends HBehavior {
 	}
 	
 	public HFollow followMouse() {
-		_goal = H.stage();
+		_goal = H.mouse();
 		return this;
 	}
 	
@@ -74,7 +74,7 @@ public class HFollow extends HBehavior {
 	
 	@Override
 	public void runBehavior(PApplet app) {
-		if(_follower==null || ! H.stage().mouseStarted()) return;
+		if(_follower==null || ! H.mouse().started()) return;
 		
 		_dx = _dx*_spring +
 			(_goal.followableX()-_follower.x()) * _ease;

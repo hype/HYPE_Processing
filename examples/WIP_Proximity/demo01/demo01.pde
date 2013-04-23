@@ -36,7 +36,7 @@ void setup() {
             int i = pool.currentIndex();
 
             HDrawable d = (HDrawable) obj;
-            d.fill( #ECECEC ).size( cellSize ).anchorAt(H.CENTER);
+            d.noStroke().fill( #ECECEC ).size( cellSize ).anchorAt(H.CENTER);
 
             gridPos[i] = new PVector(d.x(), d.y());
 

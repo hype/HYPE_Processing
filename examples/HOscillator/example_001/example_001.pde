@@ -34,7 +34,7 @@ void setup() {
 		    		int i = pool.currentIndex();
 
 		    		HDrawable d = (HDrawable) obj;
-		    		d.fill( colors.getColor() );
+		    		d.noStroke().fill( colors.getColor() );
 
 					// Create an oscillator with yoBase's values
 					HOscillator yo = yoBase.createCopy();

@@ -29,6 +29,7 @@ void setup() {
 		    		float rotation = random(TWO_PI);
 		    		HDrawable d = (HDrawable) obj;
 					d
+						.noStroke()
 						.fill( colors.getColor() )
 						.loc( width/2, 200 )
 						.rotationRad(rotation)

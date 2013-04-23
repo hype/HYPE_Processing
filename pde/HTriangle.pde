@@ -18,12 +18,32 @@ public static class HTriangle extends HDrawable {
 		return _type;
 	}
 	public HTriangle width(float w) {
-		if(_type == H.EQUILATERAL) super.height(w * H.app().sin(60*H.D2R));
+		if(_type == H.EQUILATERAL) {
+			super.height(w * H.app().sin(PConstants.TWO_PI/6));
+		}
 		return (HTriangle) super.width(w);
 	}
 	public HTriangle height(float h) {
-		if(_type == H.EQUILATERAL) super.width(h / H.app().sin(60*H.D2R));
+		if(_type == H.EQUILATERAL) {
+			super.width(h / H.app().sin(PConstants.TWO_PI/6));
+		}
 		return (HTriangle) super.height(h);
+	}
+	public boolean containsRel(float relX, float relY) {
+		if(_width <= 0 || _height <= 0) return false;
+		float xRatio = relX / _width;
+		if(xRatio < 0 || xRatio > 1) return false;
+		float yRatio = relY / _height;
+		if(yRatio < 0 || yRatio > 1) return false;
+		if(_type == HConstants.RIGHT) {
+			return (xRatio/yRatio > 1);
+		} else {
+			float cx = _width/2;
+			float x1 = (1-yRatio) * cx;
+			float x2 = yRatio*cx + cx;
+			return (x1 <= relX) && (relX <= x2) &&
+				(0 <= relY) && (relY <= _height);
+		}
 	}
 	public void draw(PApplet app, float drawX, float drawY, float currAlphaPerc) {
 		applyStyle(app,currAlphaPerc);

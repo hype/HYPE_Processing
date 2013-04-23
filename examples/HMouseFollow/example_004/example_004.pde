@@ -10,12 +10,14 @@ void setup() {
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
 	rect = new HRect(100);
-	rect.rounding(40)
+	rect
+		.rounding(40)
 		.fill(#111111)
 		.strokeWeight(2)
 		.loc(width/2,height/2)
 		.anchorAt(H.CENTER)
-		.rotation(45);
+		.rotation(45)
+	;
 	H.add(rect);
 
 	mf = new HFollow()

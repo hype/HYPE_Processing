@@ -35,7 +35,7 @@ void setup() {
 		    		int i = pool.currentIndex();
 
 		    		HDrawable d = (HDrawable) obj;
-		    		d.fill( colors.getColor() );
+		    		d.noStroke().fill( colors.getColor() );
 
 					HOscillator ho = hoBase.createCopy();
 					ho.target( d ).currentStep( i * 3 );

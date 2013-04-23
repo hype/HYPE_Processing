@@ -25,12 +25,14 @@ void setup() {
     ;
 
 	rect = new HRect(100);
-	rect.rounding(40)
+	rect
+		.rounding(40)
 		.strokeWeight(2)
 		.stroke(#000000, 150)
 		.loc(width/2,height/2)
 		.anchorAt(H.CENTER)
-		.rotation(45);
+		.rotation(45)
+	;
 	H.add(rect);
 
 	mf = new HFollow()

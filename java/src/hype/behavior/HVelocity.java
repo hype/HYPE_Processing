@@ -1,7 +1,9 @@
 package hype.behavior;
 
+import hype.interfaces.HMovable;
 import hype.util.H;
-import hype.util.HMovable;
+import hype.util.HConstants;
+import hype.util.HWarnings;
 import processing.core.PApplet;
 
 public class HVelocity extends HBehavior {
@@ -40,7 +42,7 @@ public class HVelocity extends HBehavior {
 	}
 	
 	public HVelocity velocity(float velocity, float deg) {
-		return velocityRad(velocity, deg*H.D2R);
+		return velocityRad(velocity, deg*HConstants.D2R);
 	}
 	
 	@SuppressWarnings("static-access")
@@ -71,9 +73,8 @@ public class HVelocity extends HBehavior {
 	
 	public HVelocity launchTo(float goalX, float goalY, float time) {
 		if(_target == null) {
-			H.warn("Null Target", "HVelocity.launchTo()",
-				"An HMovable target should be assigned to HVelocity before " +
-				"launchTo() could be used.");
+			HWarnings.warn("Null Target", "HVelocity.launchTo()",
+					HWarnings.NULL_TARGET);
 		} else {
 			float numFrames = time*60/1000;
 			float nfsq = numFrames*numFrames;
@@ -84,7 +85,7 @@ public class HVelocity extends HBehavior {
 	}
 	
 	public HVelocity accel(float acceleration, float deg) {
-		return accelRad(acceleration, deg*H.D2R);
+		return accelRad(acceleration, deg*HConstants.D2R);
 	}
 
 	@SuppressWarnings("static-access")

@@ -50,7 +50,7 @@ void setup() {
 		    		int i = pool.currentIndex();
 
 		    		HDrawable d = (HDrawable) obj;
-		    		d.fill( colors.getColor(i*100) );
+		    		d.noStroke().fill( colors.getColor(i*100) );
 		    		d.anchorAt(H.CENTER);
 
 					HOscillator yo = yoBase.createCopy().relativeVal(d.y());

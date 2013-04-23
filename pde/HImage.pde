@@ -1,7 +1,7 @@
 public static class HImage extends HDrawable {
 	protected PImage _image;
 	public HImage() {
-		image(null);
+		this(null);
 	}
 	public HImage(Object imgArg) {
 		image(imgArg);
@@ -12,11 +12,8 @@ public static class HImage extends HDrawable {
 		return copy;
 	}
 	public HImage resetSize() {
-		if(_image == null) {
-			size(0f,0f);
-		} else {
-			size(_image.width, _image.height);
-		}
+		if(_image == null) size(0f,0f);
+		else size(_image.width, _image.height);
 		return this;
 	}
 	public HImage image(Object imgArg) {
@@ -34,9 +31,43 @@ public static class HImage extends HDrawable {
 	public PImage image() {
 		return _image;
 	}
+	public HImage tint(int clr) {
+		fill(clr);
+		return this;
+	}
+	public HImage tint(int clr, int alpha) {
+		fill(clr, alpha);
+		return this;
+	}
+	public HImage tint(int r, int g, int b) {
+		fill(r,g,b);
+		return this;
+	}
+	public HImage tint(int r, int g, int b, int a) {
+		fill(r,g,b,a);
+		return this;
+	}
+	public int tint() {
+		return fill();
+	}
+	public boolean containsRel(float relX, float relY) {
+		if(_image == null ||
+				_image.width <= 0 || _image.height <= 0 ||
+				_width <= 0 || _height <= 0)
+			return false;
+		int ix = H.app().round(relX * _image.width/_width);
+		int iy = H.app().round(relY * _image.height/_height);
+		return (0 < _image.get(ix,iy)>>>24);
+	}
 	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		if(_image==null) return;
-		app.tint( app.round(currAlphaPerc*255) );
-		app.image(_image,drawX,drawY);
+		/*
+		 * The awkward alpha separation from the tint color is a workaround for
+		 * a quirk in js mode where the alpha in the first param doesn't apply
+		 * on jpg images.
+		 */
+		currAlphaPerc *= (_fill>>>24);
+		app.tint( _fill | 0xFF000000, app.round(currAlphaPerc) );
+		app.image(_image,drawX,drawY,_width,_height);
 	}
 }

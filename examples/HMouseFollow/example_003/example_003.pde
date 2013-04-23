@@ -7,11 +7,14 @@ void setup() {
 	smooth();
 	
 	rect = new HRect(100);
-	rect.rounding(40)
+	rect
+		.rounding(40)
+		.noStroke()
 		.fill(#ECECEC)
 		.loc(width/2,height/2)
 		.anchorAt(H.CENTER)
-		.rotation(45);
+		.rotation(45)
+	;
 	H.add(rect);
 
 	// HFollow / ease and spring

@@ -2,6 +2,7 @@ package hype.behavior;
 
 import hype.drawable.HDrawable;
 import hype.util.H;
+import hype.util.HConstants;
 import hype.util.HMath;
 import processing.core.PApplet;
 
@@ -19,8 +20,8 @@ public class HOscillator extends HBehavior {
 		_min = -1;
 		_max = 1;
 		_freq = 1;
-		_propertyId = H.Y;
-		_waveform = H.SINE;
+		_propertyId = HConstants.Y;
+		_waveform = HConstants.SINE;
 	}
 	
 	public HOscillator(HDrawable newTarget) {
@@ -141,10 +142,10 @@ public class HOscillator extends HBehavior {
 		
 		float outVal = 0;
 		switch(_waveform) {
-		case H.SINE:	outVal = HMath.sineWave(currentDeg);	break;
-		case H.TRIANGLE:outVal = HMath.triangleWave(currentDeg);break;
-		case H.SAW:		outVal = HMath.sawWave(currentDeg);		break;
-		case H.SQUARE:	outVal = HMath.squareWave(currentDeg);	break;
+		case HConstants.SINE:	outVal = HMath.sineWave(currentDeg);	break;
+		case HConstants.TRIANGLE:outVal = HMath.triangleWave(currentDeg);break;
+		case HConstants.SAW:		outVal = HMath.sawWave(currentDeg);		break;
+		case HConstants.SQUARE:	outVal = HMath.squareWave(currentDeg);	break;
 		}
 		outVal = H.app().map(outVal, -1,1, _min,_max) + _relValue;
 		
@@ -156,11 +157,23 @@ public class HOscillator extends HBehavior {
 	public void runBehavior(PApplet app) {
 		if(_target == null) return;
 		
-		if(_propertyId == H.SCALE) { // scaling is a special case here
-			float val = nextVal();
-			_target.size(_origW*val, _origH*val);
-		} else {
-			H.setProperty(_target, _propertyId, nextVal());
+		float val = nextVal();
+		
+		switch(_propertyId) {
+		case HConstants.WIDTH:		_target.width(val); break;
+		case HConstants.HEIGHT:		_target.height(val); break;
+		case HConstants.SIZE:		_target.size(val); break;
+		case HConstants.ALPHA:		_target.alpha(H.app().round(val)); break;
+		case HConstants.X:			_target.x(val); break;
+		case HConstants.Y:			_target.y(val); break;
+		case HConstants.LOCATION:	_target.loc(val,val); break;
+		case HConstants.ROTATION:	_target.rotation(val); break;
+		case HConstants.DROTATION:	_target.rotate(val); break;
+		case HConstants.DX:			_target.move(val,0); break;
+		case HConstants.DY:			_target.move(0,val); break;
+		case HConstants.DLOC:		_target.move(val,val); break;
+		case HConstants.SCALE:		_target.size(_origW*val,_origH*val); break;
+		default: break;
 		}
 	}
 	

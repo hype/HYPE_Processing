@@ -1,18 +1,18 @@
 public static class HSwarm extends HBehavior implements HMovable, HFollowable {
 	protected float _goalX, _goalY, _speed, _turnEase, _twitch;
-	protected HLinkedHashSet<HDrawable> _swarmers;
+	protected HLinkedHashSet<HSwarmer> _swarmers;
 	public HSwarm() {
 		_speed = 1;
 		_turnEase = 1;
 		_twitch = 16;
-		_swarmers = new HLinkedHashSet<HDrawable>();
+		_swarmers = new HLinkedHashSet<HSwarmer>();
 	}
-	public HSwarm addTarget(HDrawable d) {
+	public HSwarm addTarget(HSwarmer d) {
 		if(_swarmers.size() <= 0) register();
 		_swarmers.add(d);
 		return this;
 	}
-	public HSwarm removeTarget(HDrawable d) {
+	public HSwarm removeTarget(HSwarmer d) {
 		_swarmers.remove(d);
 		if(_swarmers.size() <= 0) unregister();
 		return this;
@@ -54,7 +54,7 @@ public static class HSwarm extends HBehavior implements HMovable, HFollowable {
 		return _turnEase;
 	}
 	public HSwarm twitch(float deg) {
-		_twitch = deg * H.D2R;
+		_twitch = deg * HConstants.D2R;
 		return this;
 	}
 	public HSwarm twitchRad(float rad) {
@@ -62,7 +62,7 @@ public static class HSwarm extends HBehavior implements HMovable, HFollowable {
 		return this;
 	}
 	public float twitch() {
-		return _twitch * H.R2D;
+		return _twitch * HConstants.R2D;
 	}
 	public float twitchRad() {
 		return _twitch;
@@ -86,9 +86,9 @@ public static class HSwarm extends HBehavior implements HMovable, HFollowable {
 	}
 	public void runBehavior(PApplet app) {
 		int numSwarmers = _swarmers.size();
-		HIterator<HDrawable> it = _swarmers.iterator();
+		HIterator<HSwarmer> it = _swarmers.iterator();
 		for(int i=0; i<numSwarmers; ++i) {
-			HDrawable swarmer = it.next();
+			HSwarmer swarmer = it.next();
 			float rot = swarmer.rotationRad();
 			float tx = swarmer.x();
 			float ty = swarmer.y();

@@ -103,8 +103,8 @@ public static class HDrawablePool {
 	}
 	public HDrawablePool add(HDrawable prototype, int frequency) {
 		if(prototype == null) {
-			H.warn("Invalid Argument", "HDrawablePool.add()",
-				"The new prototype shouldn't be null.");
+			HWarnings.warn("Null Prototype", "HDrawablePool.add()",
+					HWarnings.NULL_ARGUMENT);
 		} else {
 			_prototypes.add(prototype);
 			while(frequency-- > 0) _prototypes.add(prototype);
@@ -116,10 +116,8 @@ public static class HDrawablePool {
 	}
 	public HDrawable request() {
 		if(_prototypes.size() <= 0) {
-			H.warn("Invalid Argument", "HDrawablePool.request()",
-				"Request aborted. HDrawablePool can't request a new object " +
-				"without an existing prototype. Try using " +
-				"HDrawablePool.add( HDrawable ) to add a new prototype");
+			HWarnings.warn("No Prototype", "HDrawablePool.request()",
+					HWarnings.NO_PROTOTYPE);
 			return null;
 		}
 		HDrawable drawable;
@@ -144,7 +142,12 @@ public static class HDrawablePool {
 		return drawable;
 	}
 	public HDrawablePool requestAll() {
-		while(count() < _max) request();
+		if(_prototypes.size() <= 0) {
+			HWarnings.warn("No Prototype", "HDrawablePool.requestAll()",
+					HWarnings.NO_PROTOTYPE);
+		} else {
+			while(count() < _max) request();
+		}
 		return this;
 	}
 	public boolean release(HDrawable d) {

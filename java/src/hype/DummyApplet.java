@@ -1,47 +1,53 @@
 package hype;
 
-import hype.drawable.HPath;
-import hype.drawable.HRect;
+import hype.drawable.HDrawable;
+import hype.drawable.HEllipse;
+import hype.layout.HGridLayout;
 import hype.util.H;
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
-	private HPath path;
+	HDrawable d;
 	
-	@SuppressWarnings("static-access")
 	public void setup() {
-		size(640,640);
+		size(512,512);
 		noLoop();
-		H.init(this).background(0xFF88FF);
+		H.init(this);
+		H.background(H.GREEN);
 		
-//		H.add(new HRect(100)).locAt(H.CENTER).anchorAt(H.CENTER).fill(0,255,0,128);
-//		H.add(new HEllipse(50)).locAt(H.CENTER).anchorAt(H.CENTER).stroke(0,0,0,128);
+//		PFont f = createFont("DroidSerifBold.ttf", 16);
+//		for(char i='a'; i<'z'; ++i) {
+//			PFont.Glyph g = f.getGlyph(i);
+//			println(Character.toString(i)+" "+(g.width+g.leftExtent)+", "+round(f.width(i)*16));
+//		}
 		
-		H.add(new HRect(100)).locAt(H.CENTER).anchorAt(H.BOTTOM|H.RIGHT).fill(0,255,0,128);
-		H.add(new HRect(100)).locAt(H.CENTER).fill(0,255,0,128);
+		d = H.add(new HEllipse().start(-135).end(135).mode(CHORD))
+//			.scale(random(1,2),random(1,2))
+//			.anchorPerc(random(1),random(1))
+//			.rotation(random(360))
+			.locAt(H.CENTER)
+			.stroke(H.GREY);
 		
-		path = new HPath(POLYGON);
-		H.add(path)
-			.fill(255,255,255,64).stroke(0,64)
-			.loc(width/2, height/2)
-			.strokeWeight(2)
-			.strokeJoin(ROUND);
-		
-		path
-			.vertex(-25,-25)
-			.vertex(25,-25)
-			.vertex(25,25)
-			.vertex(-25,25)
-		.adjustVertices();
-		
-		println(path.size());
-		println(path.anchorPerc());
-//		println(path.loc());
+		H.add(new HEllipse()).fill(H.RED).size(4)
+			.locAt(H.CENTER).anchorAt(H.CENTER);
 	}
-
+	
 	public void draw() {
 		H.drawStage();
+		HGridLayout grid = new HGridLayout(512).spacing(1,1);
+		for(int i=0; i<
+//				0
+//				1
+				512 * 512
+				; ++i) {
+			PVector pt = grid.getNextPoint();
+			if(d.contains(pt.x, pt.y)) {
+				stroke(H.MAGENTA,128);
+				point(pt.x,pt.y);
+			}
+		}
 	}
 }

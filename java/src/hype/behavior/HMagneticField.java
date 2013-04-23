@@ -1,9 +1,9 @@
 package hype.behavior;
 
+import hype.collection.HIterator;
+import hype.collection.HLinkedHashSet;
 import hype.drawable.HDrawable;
 import hype.util.HMath;
-import hype.util.collection.HIterator;
-import hype.util.collection.HLinkedHashSet;
 
 import java.util.ArrayList;
 

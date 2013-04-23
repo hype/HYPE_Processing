@@ -9,7 +9,7 @@ public static class HFollow extends HBehavior {
 		this(ease,0);
 	}
 	public HFollow(float ease, float spring) {
-		this(ease, spring, H.stage());
+		this(ease, spring, H.mouse());
 	}
 	public HFollow(float ease, float spring, HFollowable goal) {
 		_ease = ease;
@@ -38,7 +38,7 @@ public static class HFollow extends HBehavior {
 		return _goal;
 	}
 	public HFollow followMouse() {
-		_goal = H.stage();
+		_goal = H.mouse();
 		return this;
 	}
 	public HFollow target(HMovable f) {
@@ -51,7 +51,7 @@ public static class HFollow extends HBehavior {
 		return _follower;
 	}
 	public void runBehavior(PApplet app) {
-		if(_follower==null || ! H.stage().mouseStarted()) return;
+		if(_follower==null || ! H.mouse().started()) return;
 		_dx = _dx*_spring +
 			(_goal.followableX()-_follower.x()) * _ease;
 		_dy = _dy*_spring +

@@ -31,7 +31,7 @@ void setup() {
 		    		int i = pool.currentIndex();
 
 		    		HDrawable d = (HDrawable) obj;
-		    		d.fill( colors.getColor(i*100) );
+		    		d.noStroke().fill( colors.getColor(i*100) );
 		    		// d.stroke(#000000);
 		    		d.anchorAt(H.CENTER);
 

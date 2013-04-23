@@ -8,6 +8,17 @@ public static class HPath extends HDrawable {
 		_vertices = new ArrayList<HPath.HVertex>();
 		_mode = pathMode;
 	}
+	public HPath createCopy() {
+		HPath copy = new HPath();
+		copy.copyPropertiesFrom(this);
+		for(int i=0; i<_vertices.size(); ++i) {
+			HVertex v = _vertices.get(i);
+			copy.vertexPerc(v.x, v.y,
+				v.hx1, v.hy1,
+				v.hx2, v.hy2);
+		}
+		return copy;
+	}
 	public HPath mode(int m) {
 		_mode = m;
 		return this;
@@ -27,13 +38,10 @@ public static class HPath extends HDrawable {
 	}
 	public HPath adjustVertices() {
 		int numVertices = _vertices.size();
-		HVertex v = _vertices.get(0);
-		float minX = v.x;
-		float maxX = v.y;
-		float minY = v.x;
-		float maxY = v.y;
-		for(int i=1; i<numVertices; ++i) {
-			v = _vertices.get(i);
+		float minX, maxX, minY, maxY;
+		minX = maxX = minY = maxY = 0;
+		for(int i=0; i<numVertices; ++i) {
+			HVertex v = _vertices.get(i);
 			if(v.x < minX) minX = v.x;
 			else if(v.x > maxX) maxX = v.x;
 			if(v.y < minY) minY = v.y;
@@ -42,35 +50,33 @@ public static class HPath extends HDrawable {
 		float ratioX = maxX - minX;
 		float ratioY = maxY - minY;
 		scale(ratioX, ratioY);
-		anchorPercX((ratioX==0)? -minX : -minX/ratioX);
-		anchorPercY((ratioY==0)? -minY : -minY/ratioY);
+		anchorPercX((ratioX==0)? 0 : -minX/ratioX);
+		anchorPercY((ratioY==0)? 0 : -minY/ratioY);
 		for(int j=0; j<numVertices; ++j) {
-			v = _vertices.get(j);
-			v.x -= minX;
-			v.handleX1 -= minX;
-			v.handleX2 -= minX;
+			HVertex w = _vertices.get(j);
+			w.x -= minX;
+			w.hx1 -= minX;
+			w.hx2 -= minX;
 			if(ratioX != 0) {
-				v.x /= ratioX;
-				v.handleX1 /= ratioX;
-				v.handleX2 /= ratioX;
+				w.x /= ratioX;
+				w.hx1 /= ratioX;
+				w.hx2 /= ratioX;
 			}
-			v.y -= minY;
-			v.handleY1 -= minY;
-			v.handleY2 -= minY;
+			w.y -= minY;
+			w.hy1 -= minY;
+			w.hy2 -= minY;
 			if(ratioY != 0) {
-				v.y /= ratioY;
-				v.handleY1 /= ratioY;
-				v.handleY2 /= ratioY;
+				w.y /= ratioY;
+				w.hy1 /= ratioY;
+				w.hy2 /= ratioY;
 			}
 		}
 		return this;
 	}
 	public HPath vertex(float pxX, float pxY) {
 		if(_height == 0 || _width == 0) {
-			H.warn("Division by 0", "HPath.vertex()",
-				"Size must be greater than 0 before adding vertices by pixel " +
-				"Set the size for this path first, or add vertices by " +
-				"percentage via vertexPerc() instead");
+			HWarnings.warn("Division by 0", "HPath.vertex()",
+					HWarnings.VERTEXPX_ERR);
 		} else {
 			vertexPerc(pxX/_width, pxY/_height);
 		}
@@ -82,10 +88,8 @@ public static class HPath extends HDrawable {
 		float pxX, float pxY
 	) {
 		if(_height == 0 || _width == 0) {
-			H.warn("Division by 0", "HPath.vertex()",
-				"Size must be greater than 0 before adding vertices by pixel " +
-				"Set the size for this path first, or add vertices by " +
-				"percentage via vertexPerc() instead");
+			HWarnings.warn("Division by 0", "HPath.vertex()",
+					HWarnings.VERTEXPX_ERR);
 		} else {
 			vertexPerc(
 				handlePxX1/_width, handlePxY1/_height,
@@ -96,8 +100,8 @@ public static class HPath extends HDrawable {
 	}
 	public HPath vertexPerc(float percX, float percY) {
 		HVertex v = new HVertex();
-		v.x = v.handleX1 = v.handleX2 = percX;
-		v.y = v.handleY1 = v.handleY2 = percY;
+		v.x = v.hx1 = v.hx2 = percX;
+		v.y = v.hy1 = v.hy2 = percY;
 		_vertices.add(v);
 		return this;
 	}
@@ -110,10 +114,10 @@ public static class HPath extends HDrawable {
 		v.isBezier = true;
 		v.x = percX;
 		v.y = percY;
-		v.handleX1 = handlePercX1;
-		v.handleY1 = handlePercY1;
-		v.handleX2 = handlePercX2;
-		v.handleY2 = handlePercY2;
+		v.hx1 = handlePercX1;
+		v.hy1 = handlePercY1;
+		v.hx2 = handlePercX2;
+		v.hy2 = handlePercY2;
 		_vertices.add(v);
 		return this;
 	}
@@ -151,16 +155,21 @@ public static class HPath extends HDrawable {
 		_vertices.clear();
 		return this;
 	}
-	public HPath createCopy() {
-		HPath copy = new HPath();
-		copy.copyPropertiesFrom(this);
-		for(int i=0; i<_vertices.size(); ++i) {
-			HVertex v = _vertices.get(i);
-			copy.vertexPerc(v.x, v.y,
-				v.handleX1, v.handleY1,
-				v.handleX2, v.handleY2);
+	public boolean containsRel(float relX, float relY) {
+		boolean isIn = false;
+		float xPerc = relX / _width;
+		float yPerc = relY / _height;
+		for(int i=0; i<numVertices(); ++i) {
+			HVertex v1 = _vertices.get(i);
+			HVertex v2 = _vertices.get((i>=numVertices()-1)? 0 : i+1);
+			if((v1.y<yPerc && yPerc<=v2.y) || (v2.y<yPerc && yPerc<=v1.y)) {
+				float t = (yPerc-v1.y) / (v2.y - v1.y);
+				float currX = v1.x + (v2.x-v1.x)*t;
+				if(currX == xPerc) return true;
+				if(currX < xPerc) isIn = !isIn;
+			}
 		}
-		return copy;
+		return isIn;
 	}
 	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		int numVertices = _vertices.size();
@@ -176,21 +185,21 @@ public static class HPath extends HDrawable {
 			if(!v.isBezier || _mode == PConstants.POINTS || startFlag) {
 				app.vertex(x,y);
 			} else {
-				float hx1 = drawX + _width*v.handleX1;
-				float hy1 = drawY + _height*v.handleY1;
-				float hx2 = drawX + _width*v.handleX2;
-				float hy2 = drawY + _height*v.handleY2;
+				float hx1 = drawX + _width * v.hx1;
+				float hy1 = drawY + _height* v.hy1;
+				float hx2 = drawX + _width * v.hx2;
+				float hy2 = drawY + _height* v.hy2;
 				app.bezierVertex(hx1,hy1, hx2,hy2, x,y);
 			}
 			if(startFlag) startFlag = false;
 			else if(i==0) break;
-			if(_mode==PConstants.POLYGON && i==numVertices-1) i = -1;
+			if(_mode==PConstants.POLYGON && i>=numVertices-1) i = -1;
 		}
 		if(_mode == PConstants.POLYGON) app.endShape(PConstants.CLOSE);
 		else app.endShape();
 	}
 	public static class HVertex {
-		public float x, y, handleX1, handleY1, handleX2, handleY2;
+		public float x, y, hx1, hy1, hx2, hy2;
 		public boolean isBezier;
 	}
 }

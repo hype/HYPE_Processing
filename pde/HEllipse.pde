@@ -1,6 +1,11 @@
 public static class HEllipse extends HDrawable {
-	public HEllipse() {}
+	protected int _mode;
+	protected float _startRad, _endRad;
+	public HEllipse() {
+		_mode = PConstants.PIE;
+	}
 	public HEllipse(float ellipseRadius) {
+		this();
 		radius(ellipseRadius);
 	}
 	public HEllipse(float radiusX, float radiusY) {
@@ -36,8 +41,54 @@ public static class HEllipse extends HDrawable {
 	public boolean isCircle() {
 		return _width == _height;
 	}
+	public HEllipse mode(int t) {
+		_mode = t;
+		return this;
+	}
+	public float mode() {
+		return _mode;
+	}
+	public HEllipse start(float deg) {
+		return startRad(deg * H.D2R);
+	}
+	public float start() {
+		return _startRad * H.R2D;
+	}
+	public HEllipse startRad(float rad) {
+		_startRad = rad;
+		return this;
+	}
+	public float startRad() {
+		return _startRad;
+	}
+	public HEllipse end(float deg) {
+		return endRad(deg * H.D2R);
+	}
+	public float end() {
+		return _endRad * H.R2D;
+	}
+	public HEllipse endRad(float rad) {
+		_endRad = rad;
+		return this;
+	}
+	public float endRad() {
+		return _endRad;
+	}
+	public boolean containsRel(float relX, float relY) {
+		float cx = _width/2;
+		float cy = _height/2;
+		float dcx = relX - cx;
+		float dcy = relY - cy;
+		return ((dcx*dcx)/(cx*cx) + (dcy*dcy)/(cy*cy) <= 1);
+	}
 	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		applyStyle(app,currAlphaPerc);
-		app.ellipse(drawX+_width/2, drawY+_height/2, _width, _height);
+		drawX += _width/2;
+		drawY += _height/2;
+		if(_startRad == _endRad) {
+			app.ellipse(drawX, drawY, _width, _height);
+		} else {
+			app.arc(drawX,drawY,_width,_height,_startRad,_endRad,_mode);
+		}
 	}
 }

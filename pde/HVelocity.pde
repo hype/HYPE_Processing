@@ -27,7 +27,7 @@ public static class HVelocity extends HBehavior {
 		return _target;
 	}
 	public HVelocity velocity(float velocity, float deg) {
-		return velocityRad(velocity, deg*H.D2R);
+		return velocityRad(velocity, deg*HConstants.D2R);
 	}
 	public HVelocity velocityRad(float velocity, float rad) {
 		PApplet app = H.app();
@@ -51,9 +51,8 @@ public static class HVelocity extends HBehavior {
 	}
 	public HVelocity launchTo(float goalX, float goalY, float time) {
 		if(_target == null) {
-			H.warn("Null Target", "HVelocity.launchTo()",
-				"An HMovable target should be assigned to HVelocity before " +
-				"launchTo() could be used.");
+			HWarnings.warn("Null Target", "HVelocity.launchTo()",
+					HWarnings.NULL_TARGET);
 		} else {
 			float numFrames = time*60/1000;
 			float nfsq = numFrames*numFrames;
@@ -63,7 +62,7 @@ public static class HVelocity extends HBehavior {
 		return this;
 	}
 	public HVelocity accel(float acceleration, float deg) {
-		return accelRad(acceleration, deg*H.D2R);
+		return accelRad(acceleration, deg*HConstants.D2R);
 	}
 	public HVelocity accelRad(float acceleration, float rad) {
 		PApplet app = H.app();

@@ -81,7 +81,7 @@ public static class HLinkedList<T> {
 			ri = _size-i;
 		}
 		if(!inRange(i)) {
-			H.warn("Out of Range: "+i, "HLinkedList.nodeAt()", null);
+			HWarnings.warn("Out of Range: "+i, "HLinkedList.nodeAt()", null);
 			return null;
 		}
 		HLinkedListNode<T> node;
@@ -124,8 +124,10 @@ public static class HLinkedList<T> {
 			return content;
 		}
 		public void remove() {
-			n1.popOut();
-			--list._size;
+			if(n1._content != null) {
+				n1.popOut();
+				--list._size;
+			}
 		}
 	}
 }

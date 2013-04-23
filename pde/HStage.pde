@@ -1,31 +1,15 @@
 public static class HStage extends HDrawable {
 	protected PApplet _app;
 	protected PImage _bgImg;
-	protected boolean _autoClearFlag, _mouseStarted;
+	protected boolean _autoClearFlag;
 	public HStage(PApplet papplet) {
 		_app = papplet;
 		_autoClearFlag = true;
-		_app.background(H.DEFAULT_BACKGROUND_COLOR);
-	}
-	public HDrawable createCopy() {
-		return null;
+		background(HConstants.DEFAULT_BACKGROUND_COLOR);
 	}
 	public void background(int clr) {
 		_fill = clr;
 		clear();
-	}
-	public HDrawable fill(int clr) {
-		background(clr);
-		return this;
-	}
-	public HDrawable fill(int clr, int alpha) {
-		return fill(clr);
-	}
-	public HDrawable fill(int r, int g, int b) {
-		return fill(HColorUtil.merge(255,r,g,b));
-	}
-	public HDrawable fill(int r, int g, int b, int a) {
-		return fill(r,g,b);
 	}
 	public void backgroundImg(Object arg) {
 		if(arg instanceof String) {
@@ -47,6 +31,19 @@ public static class HStage extends HDrawable {
 		else _app.background(_bgImg);
 		return this;
 	}
+	public HDrawable fill(int clr) {
+		background(clr);
+		return this;
+	}
+	public HDrawable fill(int clr, int alpha) {
+		return fill(clr);
+	}
+	public HDrawable fill(int r, int g, int b) {
+		return fill(HColorUtil.merge(255,r,g,b));
+	}
+	public HDrawable fill(int r, int g, int b, int a) {
+		return fill(r,g,b);
+	}
 	public PVector size() {
 		return new PVector(_app.width,_app.height);
 	}
@@ -56,18 +53,7 @@ public static class HStage extends HDrawable {
 	public float height() {
 		return _app.height;
 	}
-	public float followableX() {
-		return _app.mouseX;
-	}
-	public float followableY() {
-		return _app.mouseY;
-	}
-	public boolean mouseStarted() {
-		return _mouseStarted;
-	}
 	public void paintAll(PApplet app, float currAlphaPerc) {
-		if(!_mouseStarted && _app.pmouseX+_app.pmouseY > 0)
-			_mouseStarted = true;
 		app.pushStyle();
 			if(_autoClearFlag) clear();
 			HDrawable child = _firstChild;
@@ -78,4 +64,15 @@ public static class HStage extends HDrawable {
 		app.popStyle();
 	}
 	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {}
+	public void copyPropertiesFrom(HDrawable other) {}
+	public HDrawable createCopy() { return null; }
+	public HDrawable loc(float newX, float newY) { return this; }
+	public HDrawable x(float newX) { return this; }
+	public HDrawable y(float newY) { return this; }
+	public HDrawable move(float dx, float dy) { return this; }
+	public HDrawable locAt(int where) { return this; }
+	public HDrawable rotation(float deg) { return this; }
+	public HDrawable rotationRad(float rad) { return this; }
+	public HDrawable rotate(float deg) { return this; }
+	public HDrawable rotateRad(float rad) { return this; }
 }

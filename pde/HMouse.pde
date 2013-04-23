@@ -1,16 +1,15 @@
 public static class HMouse implements HFollowable {
-	private static HMouse _instance;
-	public static HMouse init(PApplet app) {
-		return new HMouse(app);
-	}
-	public static HMouse instance() {
-		return _instance;
-	}
 	private PApplet _app;
+	private boolean _started;
 	public HMouse(PApplet app) {
 		_app = app;
 	}
+	public boolean started() {
+		return _started;
+	}
 	public void handleEvents() {
+		if(!_started && _app.pmouseX+_app.pmouseY > 0)
+			_started = true;
 	}
 	public float followableX() {
 		return _app.mouseX;

@@ -40,7 +40,7 @@ void setup() {
             int i = pool.currentIndex();
 
             HDrawable d = (HDrawable) obj;
-            d.fill( #000000, 10 ).anchorAt(H.CENTER);
+            d.noStroke().fill( #000000, 10 ).anchorAt(H.CENTER);
 
             gridPos[i] = new PVector(d.x(), d.y());
 

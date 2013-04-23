@@ -15,6 +15,7 @@ void setup() {
 	HRect s1 = new HRect(100);
 	s1
 		.rounding(5)
+		.noStroke()
 		.fill(#ECECEC)
 		.anchorAt(H.CENTER)
 		.loc(width/2,height/2)
@@ -24,6 +25,7 @@ void setup() {
 	HRect s2 = new HRect(100);
 	s2
 		.rounding(5)
+		.noStroke()
 		.fill(#FF3300)
 		.anchorAt(H.TOP|H.LEFT)
 		.loc(50,50)
@@ -33,6 +35,7 @@ void setup() {
 	HRect s3 = new HRect(100);
 	s3
 		.rounding(5)
+		.noStroke()
 		.fill(#FF6600)
 		.anchorAt(H.TOP|H.RIGHT)
 		.loc(width - 50,50)
@@ -42,6 +45,7 @@ void setup() {
 	HRect s4 = new HRect(100);
 	s4
 		.rounding(5)
+		.noStroke()
 		.fill(#FF9900)
 		.anchorAt(H.BOTTOM|H.RIGHT)
 		.loc(width - 50,height - 50)
@@ -51,6 +55,7 @@ void setup() {
 	HRect s5 = new HRect(100);
 	s5
 		.rounding(5)
+		.noStroke()
 		.fill(#FFCC00)
 		.anchorAt(H.BOTTOM|H.LEFT)
 		.loc(50,height - 50)

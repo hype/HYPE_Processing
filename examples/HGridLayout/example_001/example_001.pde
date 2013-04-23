@@ -1,5 +1,7 @@
 HDrawablePool pool;
 
+int cellSize = 25;
+
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
@@ -8,14 +10,14 @@ void setup() {
 	pool = new HDrawablePool(576);
 	pool.autoAddToStage()
 		.add (
-			new HRect(25)
+			new HRect()
 			.rounding(4)
 		)
 		.layout (
 			new HGridLayout()
-			.startX(9)
-			.startY(9)
-			.spacing(26,26)
+			.startX(16)
+			.startY(16)
+			.spacing(cellSize+1,cellSize+1)
 			.cols(24)
 		)
 		.onCreate (
@@ -23,7 +25,10 @@ void setup() {
 		    	public void run(Object obj) {
 		    		HDrawable d = (HDrawable) obj;
 					d
+						.noStroke()
 						.fill( #ECECEC )
+						.anchorAt(H.CENTER)
+						.size( cellSize )
 					;
 				}
 			}

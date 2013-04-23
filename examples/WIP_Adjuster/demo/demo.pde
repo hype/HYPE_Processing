@@ -6,7 +6,7 @@ void setup(){
 	smooth();
 
 	s1 = new HRect(100);
-	s1.rounding(10).fill(#ECECEC).loc(width/2,height/2).anchorAt(H.CENTER).rotation(45);
+	s1.rounding(10).noStroke().fill(#ECECEC).loc(width/2,height/2).anchorAt(H.CENTER).rotation(45);
 	PVector s1Size = s1.boundingSize();
 	H.add(s1);
 
@@ -14,6 +14,7 @@ void setup(){
 	selectedRect
 		.strokeWeight(1)
 		.stroke(#FF0033)
+		.noFill()
 		.size( s1Size.x, s1Size.y )
 		.anchorAt(H.CENTER)
 		.visibility(false)

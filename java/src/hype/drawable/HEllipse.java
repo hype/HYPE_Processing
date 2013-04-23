@@ -1,11 +1,19 @@
 package hype.drawable;
 
+import hype.util.H;
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 public class HEllipse extends HDrawable {
-	public HEllipse() {}
+	protected int _mode;
+	protected float _startRad, _endRad;
+	
+	public HEllipse() {
+		_mode = PConstants.PIE;
+	}
 	
 	public HEllipse(float ellipseRadius) {
+		this();
 		radius(ellipseRadius);
 	}
 	
@@ -52,9 +60,90 @@ public class HEllipse extends HDrawable {
 		return _width == _height;
 	}
 	
+	public HEllipse mode(int t) {
+		_mode = t;
+		return this;
+	}
+	
+	public float mode() {
+		return _mode;
+	}
+	
+	public HEllipse start(float deg) {
+		return startRad(deg * H.D2R);
+	}
+	
+	public float start() {
+		return _startRad * H.R2D;
+	}
+	
+	public HEllipse startRad(float rad) {
+		_startRad = rad;
+		return this;
+	}
+	
+	public float startRad() {
+		return _startRad;
+	}
+	
+	public HEllipse end(float deg) {
+		return endRad(deg * H.D2R);
+	}
+	
+	public float end() {
+		return _endRad * H.R2D;
+	}
+	
+	public HEllipse endRad(float rad) {
+		_endRad = rad;
+		return this;
+	}
+	
+	public float endRad() {
+		return _endRad;
+	}
+	
+	@Override
+	public boolean containsRel(float relX, float relY) {
+		// Get center point
+		float cx = _width/2;
+		float cy = _height/2;
+		
+		// Get dist between rel and center point, then offset by anchor
+		float dcx = relX - cx;
+		float dcy = relY - cy;
+		
+		// Simple ellipse hitbox check
+		boolean b = ((dcx*dcx)/(cx*cx) + (dcy*dcy)/(cy*cy) <= 1);
+		
+		if(_startRad == _endRad) {
+			return b;
+		}
+		
+		@SuppressWarnings("static-access")
+		float f = H.app().atan2(dcy, dcx);
+		
+		switch(_mode) {
+		case PConstants.CHORD:
+		case PConstants.OPEN:
+			// TODO
+			return b;
+		default:
+			return b && _startRad <= f && f <= _endRad;
+		}
+	}
+	
 	@Override
 	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		applyStyle(app,currAlphaPerc);
-		app.ellipse(drawX+_width/2, drawY+_height/2, _width, _height);
+		
+		drawX += _width/2;
+		drawY += _height/2;
+		
+		if(_startRad == _endRad) {
+			app.ellipse(drawX, drawY, _width, _height);
+		} else {
+			app.arc(drawX,drawY,_width,_height,_startRad,_endRad,_mode);
+		}
 	}
 }
