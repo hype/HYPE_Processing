@@ -4,9 +4,7 @@
 // and http://processingjs.org/reference/font/
 // for more information.
 
-/*
-@pjs preload=" img01.jpg, img02.jpg, img03.jpg ";
-*/
+/* @pjs preload=" img01.jpg, img02.jpg, img03.jpg "; */
 
 PImage pi01, pi02, pi03;
 
@@ -44,3 +42,5 @@ void setup() {
 }
 
 void draw() {}
+
+

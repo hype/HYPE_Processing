@@ -11,7 +11,6 @@ void setup() {
 	pool.autoAddToStage()
 		.add (
 			new HPath()
-			.star( 5, 0.75 )
 		)
 		.layout (
 			new HGridLayout()
@@ -23,12 +22,12 @@ void setup() {
 		.onCreate (
 		    new HCallback() {
 		    	public void run(Object obj) {
-					int ranEdges = (int)random(5) + 5;
-					float ranDepth = (int)(random(3)*0.25) + 0.25;
+					int ranEdges = round(random(5, 10));
+					float ranDepth = random(0.25, 0.75);
 
-		    		HDrawable d = (HDrawable) obj;
-					d
-						// .star( ranEdges, ranDepth )
+		    		HPath path = (HPath) obj;
+					path
+						.star( ranEdges, ranDepth )
 						.noStroke()
 						.fill( colors.getColor() )
 						.anchorAt(H.CENTER)

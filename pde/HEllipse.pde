@@ -79,7 +79,18 @@ public static class HEllipse extends HDrawable {
 		float cy = _height/2;
 		float dcx = relX - cx;
 		float dcy = relY - cy;
-		return ((dcx*dcx)/(cx*cx) + (dcy*dcy)/(cy*cy) <= 1);
+		boolean b = ((dcx*dcx)/(cx*cx) + (dcy*dcy)/(cy*cy) <= 1);
+		if(_startRad == _endRad) {
+			return b;
+		}
+		float f = H.app().atan2(dcy, dcx);
+		switch(_mode) {
+		case PConstants.CHORD:
+		case PConstants.OPEN:
+			return b;
+		default:
+			return b && _startRad <= f && f <= _endRad;
+		}
 	}
 	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
 		applyStyle(app,currAlphaPerc);

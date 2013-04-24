@@ -205,8 +205,8 @@ public class HPath extends HDrawable {
 			HVertex v1 = _vertices.get(i);
 			HVertex v2 = _vertices.get((i>=numVertices()-1)? 0 : i+1);
 			
-			if((v1.y<yPerc && yPerc<=v2.y) || (v2.y<yPerc && yPerc<=v1.y)) {
-				float t = (yPerc-v1.y) / (v2.y - v1.y);
+			float t = (yPerc-v1.y) / (v2.y-v1.y);
+			if(0<t && t<=1) {
 				float currX = v1.x + (v2.x-v1.x)*t;
 				
 				if(currX == xPerc) return true;

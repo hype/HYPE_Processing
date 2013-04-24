@@ -1,6 +1,7 @@
 package hype.drawable;
 
 import hype.util.H;
+import hype.util.HMath;
 import processing.core.PApplet;
 import processing.core.PConstants;
 
@@ -103,34 +104,58 @@ public class HEllipse extends HDrawable {
 		return _endRad;
 	}
 	
+	@SuppressWarnings("static-access")
 	@Override
 	public boolean containsRel(float relX, float relY) {
-		// Get center point
 		float cx = _width/2;
 		float cy = _height/2;
-		
-		// Get dist between rel and center point, then offset by anchor
 		float dcx = relX - cx;
 		float dcy = relY - cy;
 		
-		// Simple ellipse hitbox check
-		boolean b = ((dcx*dcx)/(cx*cx) + (dcy*dcy)/(cy*cy) <= 1);
+		boolean inEllipse = ((dcx*dcx)/(cx*cx) + (dcy*dcy)/(cy*cy) <= 1);
 		
-		if(_startRad == _endRad) {
-			return b;
+		// If mode is closed, just check if it's in the ellipse
+		if(_startRad == _endRad) return inEllipse;
+		else if(!inEllipse) return false;
+		
+		
+		// If mode is pie, check if it's between start and end angles 
+		PApplet app = H.app();
+		float arcAngle = _endRad - _startRad;
+		float ptAngle = app.atan2(dcy, dcx);
+		// TODO normalize angles and stuff
+		boolean inAngle = (_startRad<=ptAngle && ptAngle<=_endRad);
+		if(!inAngle) {
+			ptAngle += PConstants.TWO_PI;
+			inAngle = (_startRad<=ptAngle && ptAngle<=_endRad);
 		}
 		
-		@SuppressWarnings("static-access")
-		float f = H.app().atan2(dcy, dcx);
+		if(_mode==PConstants.PIE || arcAngle==PConstants.PI) return inAngle;
 		
-		switch(_mode) {
-		case PConstants.CHORD:
-		case PConstants.OPEN:
-			// TODO
-			return b;
-		default:
-			return b && _startRad <= f && f <= _endRad;
+		
+		// If mode is chord or open, check if the mode is in the chord triangle 
+		float a = _width/2;
+		float b = _height/2;
+		float[] endPt = HMath.ellipsePointRadArr(cx,cy, a,b, _endRad);
+		float[] startPt = HMath.ellipsePointRadArr(cx,cy, a,b, _startRad);
+		float[] xs = {cx, endPt[0], startPt[0]};
+		float[] ys = {cy, endPt[1], startPt[1]};
+		boolean inTriangle = false;
+		
+		for(int i=0; i<xs.length; ++i) {
+			float x1 = xs[i];
+			float y1 = ys[i];
+			int j = (i==xs.length)? 0 : i;
+			float x2 = xs[j];
+			float y2 = ys[j];
+			
+			float t = (relY-y1) / (y2-y1);
+			if(0<t && t<=1) {
+				float currX = x1 + (x2-x1)*t;
+				if(currX < relX) inTriangle = !inTriangle;
+			}
 		}
+		return (arcAngle > PConstants.PI) == (inTriangle || inAngle);
 	}
 	
 	@Override

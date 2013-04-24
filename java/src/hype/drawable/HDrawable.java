@@ -456,11 +456,13 @@ public abstract class HDrawable extends HNode<HDrawable>
 	// STYLE //
 	
 	public HDrawable fill(int clr) {
+		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16 | 0xFF000000;
 		_fill = clr;
 		return this;
 	}
 	
 	public HDrawable fill(int clr, int alpha) {
+		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16;
 		_fill = HColorUtil.setAlpha(clr,alpha);
 		return this;
 	}
@@ -484,11 +486,13 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 
 	public HDrawable stroke(int clr) {
+		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16 | 0xFF000000;
 		_stroke = clr;
 		return this;
 	}
 	
 	public HDrawable stroke(int clr, int alpha) {
+		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16;
 		_stroke = HColorUtil.setAlpha(clr,alpha);
 		return this;
 	}

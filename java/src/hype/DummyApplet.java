@@ -17,31 +17,32 @@ public class DummyApplet extends PApplet {
 		noLoop();
 		H.init(this);
 		H.background(H.GREEN);
-		
 //		PFont f = createFont("DroidSerifBold.ttf", 16);
 //		for(char i='a'; i<'z'; ++i) {
 //			PFont.Glyph g = f.getGlyph(i);
 //			println(Character.toString(i)+" "+(g.width+g.leftExtent)+", "+round(f.width(i)*16));
 //		}
 		
-		d = H.add(new HEllipse().start(-135).end(135).mode(CHORD))
+		float f = 180+45;//random(-180,360);
+		float g = f+350;//f+random(360);
+		println(f+", "+g);
+		d = H.add(new HEllipse().start(f).end(g).mode(PIE))
 //			.scale(random(1,2),random(1,2))
 //			.anchorPerc(random(1),random(1))
 //			.rotation(random(360))
-			.locAt(H.CENTER)
-			.stroke(H.GREY);
+			.anchorAt(H.CENTER)
+			.locAt(H.CENTER);
 		
-		H.add(new HEllipse()).fill(H.RED).size(4)
+		H.add(new HEllipse()).fill(128).size(4)
 			.locAt(H.CENTER).anchorAt(H.CENTER);
 	}
 	
 	public void draw() {
 		H.drawStage();
 		HGridLayout grid = new HGridLayout(512).spacing(1,1);
-		for(int i=0; i<
-//				0
-//				1
-				512 * 512
+		for(int i=0; i<0
+//				+1
+				+512 * 512
 				; ++i) {
 			PVector pt = grid.getNextPoint();
 			if(d.contains(pt.x, pt.y)) {
