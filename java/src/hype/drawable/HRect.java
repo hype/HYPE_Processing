@@ -1,6 +1,6 @@
 package hype.drawable;
 
-import processing.core.PApplet;
+import processing.core.PGraphics;
 
 public class HRect extends HDrawable {
 	public float _tl, _tr, _bl, _br;
@@ -84,8 +84,8 @@ public class HRect extends HDrawable {
 	}
 	
 	@Override
-	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
-		applyStyle(app,currAlphaPerc);
-		app.rect(drawX,drawY, _width,_height, _tl,_tr,_br,_bl);
+	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
+		applyStyle(g,currAlphaPerc);
+		g.rect(drawX,drawY, _width,_height, _tl,_tr,_br,_bl);
 	}
 }

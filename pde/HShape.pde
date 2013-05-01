@@ -58,20 +58,20 @@ public static class HShape extends HDrawable {
 		_randomColors = null;
 		return this;
 	}
-	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
+	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
 		if(_shape == null) return;
-		applyStyle(app,currAlphaPerc);
+		applyStyle(g,currAlphaPerc);
 		if(_randomColors == null) {
-			app.shape(_shape, drawX,drawY, _width,_height);
+			g.shape(_shape, drawX,drawY, _width,_height);
 		} else for(int i=0; i<_shape.getChildCount(); ++i) {
 			PShape childShape = _shape.getChild(i);
 			childShape.width = _shape.width;
 			childShape.height = _shape.height;
 			if(_randomColors.appliesFill())
-				app.fill(_randomColors.getColor());
+				g.fill(_randomColors.getColor());
 			if(_randomColors.appliesStroke())
-				app.stroke(_randomColors.getColor());
-			app.shape(childShape, drawX,drawY, _width,_height);
+				g.stroke(_randomColors.getColor());
+			g.shape(childShape, drawX,drawY, _width,_height);
 		}
 	}
 }

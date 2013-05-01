@@ -4,6 +4,7 @@ import hype.util.H;
 import hype.util.HMath;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PGraphics;
 
 public class HEllipse extends HDrawable {
 	protected int _mode;
@@ -19,6 +20,7 @@ public class HEllipse extends HDrawable {
 	}
 	
 	public HEllipse(float radiusX, float radiusY) {
+		this();
 		radius(radiusX,radiusY);
 	}
 	
@@ -79,7 +81,8 @@ public class HEllipse extends HDrawable {
 	}
 	
 	public HEllipse startRad(float rad) {
-		_startRad = rad;
+		_startRad = HMath.normalizeAngleRad(rad);
+		if(_startRad > _endRad) _endRad += PConstants.TWO_PI;
 		return this;
 	}
 	
@@ -96,7 +99,8 @@ public class HEllipse extends HDrawable {
 	}
 	
 	public HEllipse endRad(float rad) {
-		_endRad = rad;
+		_endRad = HMath.normalizeAngleRad(rad);
+		if(_startRad > _endRad) _endRad += PConstants.TWO_PI;
 		return this;
 	}
 	
@@ -116,59 +120,35 @@ public class HEllipse extends HDrawable {
 		
 		// If mode is closed, just check if it's in the ellipse
 		if(_startRad == _endRad) return inEllipse;
+		
+		// Return false regardless of mode if it's not inside the ellipse
 		else if(!inEllipse) return false;
 		
-		
-		// If mode is pie, check if it's between start and end angles 
 		PApplet app = H.app();
-		float arcAngle = _endRad - _startRad;
-		float ptAngle = app.atan2(dcy, dcx);
-		// TODO normalize angles and stuff
-		boolean inAngle = (_startRad<=ptAngle && ptAngle<=_endRad);
-		if(!inAngle) {
-			ptAngle += PConstants.TWO_PI;
-			inAngle = (_startRad<=ptAngle && ptAngle<=_endRad);
+		if(_mode == PConstants.PIE) {
+			float ptAngle = app.atan2(dcy*cx, dcx*cy);
+			if(_startRad > ptAngle) ptAngle += PConstants.TWO_PI;
+			return (_startRad<=ptAngle && ptAngle<=_endRad);
+		} else {
+			float end = HMath.squishAngleRad(cx, cy, _endRad);
+			float start = HMath.squishAngleRad(cx, cy, _startRad);
+			float[] pt1 = HMath.ellipsePointRadArr(cx,cy, cx,cy, end);
+			float[] pt2 = HMath.ellipsePointRadArr(cx,cy, cx,cy, start);
+			return HMath.rightOfLine(pt1[0],pt1[1], pt2[0],pt2[1], relX,relY);
 		}
-		
-		if(_mode==PConstants.PIE || arcAngle==PConstants.PI) return inAngle;
-		
-		
-		// If mode is chord or open, check if the mode is in the chord triangle 
-		float a = _width/2;
-		float b = _height/2;
-		float[] endPt = HMath.ellipsePointRadArr(cx,cy, a,b, _endRad);
-		float[] startPt = HMath.ellipsePointRadArr(cx,cy, a,b, _startRad);
-		float[] xs = {cx, endPt[0], startPt[0]};
-		float[] ys = {cy, endPt[1], startPt[1]};
-		boolean inTriangle = false;
-		
-		for(int i=0; i<xs.length; ++i) {
-			float x1 = xs[i];
-			float y1 = ys[i];
-			int j = (i==xs.length)? 0 : i;
-			float x2 = xs[j];
-			float y2 = ys[j];
-			
-			float t = (relY-y1) / (y2-y1);
-			if(0<t && t<=1) {
-				float currX = x1 + (x2-x1)*t;
-				if(currX < relX) inTriangle = !inTriangle;
-			}
-		}
-		return (arcAngle > PConstants.PI) == (inTriangle || inAngle);
 	}
 	
 	@Override
-	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
-		applyStyle(app,currAlphaPerc);
+	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
+		applyStyle(g,currAlphaPerc);
 		
 		drawX += _width/2;
 		drawY += _height/2;
 		
 		if(_startRad == _endRad) {
-			app.ellipse(drawX, drawY, _width, _height);
+			g.ellipse(drawX, drawY, _width, _height);
 		} else {
-			app.arc(drawX,drawY,_width,_height,_startRad,_endRad,_mode);
+			g.arc(drawX,drawY,_width,_height,_startRad,_endRad,_mode);
 		}
 	}
 }

@@ -1,10 +1,11 @@
 package hype.event;
 
-import hype.interfaces.HFollowable;
+import hype.interfaces.HGoal;
 import processing.core.PApplet;
 
-public class HMouse implements HFollowable {
+public class HMouse implements HGoal {
 	private PApplet _app;
+	private int _button;
 	private boolean _started;
 	
 	public HMouse(PApplet app) {
@@ -28,5 +29,20 @@ public class HMouse implements HFollowable {
 	@Override
 	public float followableY() {
 		return _app.mouseY;
+	}
+
+	@Override
+	public float x() {
+		return _app.mouseX;
+	}
+
+	@Override
+	public float y() {
+		return _app.mouseY;
+	}
+
+	@Override
+	public HMouse move(float dx, float dy) {
+		return this;
 	}
 }

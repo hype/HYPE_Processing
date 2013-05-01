@@ -7,7 +7,7 @@ public interface HConstants {
 		// Generic constants
 		NONE = 0,
 		
-		// "where" constants (as used in locAt() & anchorAt())
+		// Where constants
 		LEFT = 1,		// 0b0001
 		RIGHT = 2,		// 0b0010
 		CENTER_X = 3,	// 0b0011
@@ -37,7 +37,7 @@ public interface HConstants {
 		DEFAULT_WIDTH = 64,
 		DEFAULT_HEIGHT = 64,
 		
-		// COLORS
+		// Colors
 		CLEAR	= 0x00FFFFFF,
 		WHITE	= 0xFFFFFFFF,
 		LGREY	= 0xFFC0C0C0,
@@ -72,7 +72,7 @@ public interface HConstants {
 		DLOC = 11,
 		SCALE = 12,
 		
-		// HTriangle types
+		// HTriangle types DEPRECATED
 		ISOCELES = 0,
 		EQUILATERAL = 1;
 	

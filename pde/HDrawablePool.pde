@@ -169,7 +169,7 @@ public static class HDrawablePool {
 	protected HDrawable createRandomDrawable() {
 		PApplet app = H.app();
 		int numPrototypes = _prototypes.size();
-		int index = app.round( app.random(numPrototypes-1) );
+		int index = app.floor( app.random(numPrototypes) );
 		return _prototypes.get(index).createCopy();
 	}
 	public HIterator<HDrawable> iterator() {

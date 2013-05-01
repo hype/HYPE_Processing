@@ -3,6 +3,7 @@ package hype.drawable;
 import hype.util.HColorUtil;
 import hype.util.HConstants;
 import processing.core.PApplet;
+import processing.core.PGraphics;
 import processing.core.PImage;
 import processing.core.PVector;
 
@@ -93,23 +94,23 @@ public class HStage extends HDrawable {
 	// PAINTALL //
 	
 	@Override
-	public void paintAll(PApplet app, float currAlphaPerc) {
-		app.pushStyle();
+	public void paintAll(PGraphics g, float currAlphaPerc) {
+		g.pushStyle();
 			if(_autoClearFlag) clear();
 			
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(app,1);
+				child.paintAll(g,1);
 				child = child.next();
 			}
-		app.popStyle();
+		g.popStyle();
 	}
 	
 	
 	// DEACTIVATED DRAWABLE METHODS //
 	
 	@Override
-	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {}
+	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {}
 	@Override
 	public void copyPropertiesFrom(HDrawable other) {}
 	@Override

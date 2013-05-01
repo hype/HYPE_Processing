@@ -59,7 +59,7 @@ public static class HImage extends HDrawable {
 		int iy = H.app().round(relY * _image.height/_height);
 		return (0 < _image.get(ix,iy)>>>24);
 	}
-	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
+	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
 		if(_image==null) return;
 		/*
 		 * The awkward alpha separation from the tint color is a workaround for
@@ -67,7 +67,7 @@ public static class HImage extends HDrawable {
 		 * on jpg images.
 		 */
 		currAlphaPerc *= (_fill>>>24);
-		app.tint( _fill | 0xFF000000, app.round(currAlphaPerc) );
-		app.image(_image,drawX,drawY,_width,_height);
+		g.tint( _fill | 0xFF000000, H.app().round(currAlphaPerc) );
+		g.image(_image,drawX,drawY,_width,_height);
 	}
 }

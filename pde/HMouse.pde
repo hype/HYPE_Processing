@@ -1,5 +1,6 @@
-public static class HMouse implements HFollowable {
+public static class HMouse implements HGoal {
 	private PApplet _app;
+	private int _button;
 	private boolean _started;
 	public HMouse(PApplet app) {
 		_app = app;
@@ -16,5 +17,14 @@ public static class HMouse implements HFollowable {
 	}
 	public float followableY() {
 		return _app.mouseY;
+	}
+	public float x() {
+		return _app.mouseX;
+	}
+	public float y() {
+		return _app.mouseY;
+	}
+	public HMouse move(float dx, float dy) {
+		return this;
 	}
 }

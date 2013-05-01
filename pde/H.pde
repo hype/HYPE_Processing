@@ -53,7 +53,7 @@ public static class H implements HConstants {
 	public static H drawStage() {
 		_behaviors.runAll(_app);
 		_mouse.handleEvents();
-		_stage.paintAll(_app,0);
+		_stage.paintAll(_app.g,0);
 		return _self;
 	}
 	public static boolean mouseStarted() {

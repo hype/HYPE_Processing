@@ -13,6 +13,7 @@ import hype.util.HMath;
 import hype.util.HWarnings;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PGraphics;
 import processing.core.PVector;
 
 public abstract class HDrawable extends HNode<HDrawable>
@@ -665,43 +666,44 @@ public abstract class HDrawable extends HNode<HDrawable>
 	// DRAWING //
 	
 	@SuppressWarnings("static-access")
-	protected void applyStyle(PApplet app, float currAlphaPerc) {
+	protected void applyStyle(PGraphics g, float currAlphaPerc) {
+		PApplet app = H.app();
 		float faPerc = currAlphaPerc * (_fill >>> 24);
-		app.fill(_fill | 0xFF000000, app.round(faPerc));
+		g.fill(_fill | 0xFF000000, app.round(faPerc));
 		
 		if(_strokeWeight > 0) {
 			float saPerc = currAlphaPerc * (_stroke >>> 24);
-			app.stroke(_stroke | 0xFF000000, app.round(saPerc));
-			app.strokeWeight(_strokeWeight);
-			app.strokeCap(_strokeCap);
-			app.strokeJoin(_strokeJoin);
-		} else app.noStroke();
+			g.stroke(_stroke | 0xFF000000, app.round(saPerc));
+			g.strokeWeight(_strokeWeight);
+			g.strokeCap(_strokeCap);
+			g.strokeJoin(_strokeJoin);
+		} else g.noStroke();
 	}
 	
-	public void paintAll(PApplet app, float currAlphaPerc) {
+	public void paintAll(PGraphics g, float currAlphaPerc) {
 		if(_alpha<=0 || _width<0 || _height<0) return;
-		app.pushMatrix();
+		g.pushMatrix();
 			// Rotate and translate
-			app.translate(_x,_y);
-			app.rotate(_rotationRad);
+			g.translate(_x,_y);
+			g.rotate(_rotationRad);
 			
 			// Compute current alpha
 			currAlphaPerc *= _alpha;
 			
 			// Draw self
-			draw(app,-anchorX(),-anchorY(),currAlphaPerc);
+			draw(g,-anchorX(),-anchorY(),currAlphaPerc);
 			
 			// Draw children
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(app,currAlphaPerc);
+				child.paintAll(g,currAlphaPerc);
 				child = child._next;
 			}
-		app.popMatrix();
+		g.popMatrix();
 	}
 	
 	public abstract void draw(
-		PApplet app, float drawX, float drawY, float currAlphaPerc);
+		PGraphics g, float drawX, float drawY, float currAlphaPerc);
 	
 	
 	

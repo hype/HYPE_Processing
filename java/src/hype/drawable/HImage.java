@@ -1,7 +1,7 @@
 package hype.drawable;
 
 import hype.util.H;
-import processing.core.PApplet;
+import processing.core.PGraphics;
 import processing.core.PImage;
 
 public class HImage extends HDrawable {
@@ -84,7 +84,7 @@ public class HImage extends HDrawable {
 	
 	@SuppressWarnings("static-access")
 	@Override
-	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
+	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
 		if(_image==null) return;
 		
 		/*
@@ -93,8 +93,8 @@ public class HImage extends HDrawable {
 		 * on jpg images.
 		 */
 		currAlphaPerc *= (_fill>>>24);
-		app.tint( _fill | 0xFF000000, app.round(currAlphaPerc) );
+		g.tint( _fill | 0xFF000000, H.app().round(currAlphaPerc) );
 		
-		app.image(_image,drawX,drawY,_width,_height);
+		g.image(_image,drawX,drawY,_width,_height);
 	}
 }

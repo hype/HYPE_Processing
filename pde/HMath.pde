@@ -50,6 +50,85 @@ public static class HMath implements HConstants {
 		float[] f = relLocArr(ref,absX,absY);
 		return new PVector(f[0], f[1]);
 	}
+	public static int quadrant(float cx, float cy, float x, float y) {
+		return (y>=cy)? (x>=cx? 1 : 2) : (x>=cx? 4 : 3);
+	}
+	public static int quadrant(float dcx, float dcy) {
+		return (dcy>=0)? (dcx>=0? 1 : 2) : (dcx>=0? 4 : 3);
+	}
+	public static float ellipseRadius(float a, float b, float deg) {
+		return ellipseRadiusRad(a,b, deg * D2R);
+	}
+	public static float ellipseRadiusRad(float a, float b, float rad) {
+		float cosb = b * _app.cos(rad);
+		float sina = a * _app.sin(rad);
+		return a*b / _app.sqrt(cosb*cosb + sina*sina);
+	}
+	public static PVector ellipsePoint(
+			float cx, float cy, float a, float b, float deg
+	) {
+		return ellipsePointRad(cx, cy, a, b, deg*D2R);
+	}
+	public static PVector ellipsePointRad(
+		float cx, float cy, float a, float b, float rad
+	) {
+		float[] f = ellipsePointRadArr(cx,cy, a,b, rad);
+		return new PVector(f[0], f[1]);
+	}
+	public static float[] ellipsePointRadArr(
+		float cx, float cy, float a, float b, float rad
+	) {
+		float[] f = new float[3];
+		f[2] = ellipseRadiusRad(a, b, rad);
+		f[0] = _app.cos(rad) * f[2] + cx;
+		f[1] = _app.sin(rad) * f[2] + cy;
+		return f;
+	}
+	public static float normalizeAngle(float deg) {
+		return normalizeAngleRad(deg * D2R) * R2D;
+	}
+	public static float normalizeAngleRad(float rad) {
+		rad %= PConstants.TWO_PI;
+		if(rad < -PConstants.PI) rad += PConstants.TWO_PI;
+		else if(rad > PConstants.PI) rad -= PConstants.TWO_PI;
+		return rad;
+	}
+	public static float normalizeAngle2(float deg) {
+		return normalizeAngleRad2(deg * D2R) * R2D;
+	}
+	public static float normalizeAngleRad2(float rad) {
+		float norm = rad % PConstants.TWO_PI;
+		if(norm < 0) norm += PConstants.TWO_PI;
+		return norm;
+	}
+	public static float squishAngle(float w, float h, float deg) {
+		return squishAngle(w, h, deg * D2R) * R2D;
+	}
+	public static float squishAngleRad(float w, float h, float rad) {
+		float dx = _app.cos(rad) * w/h;
+		float dy = _app.sin(rad);
+		return _app.atan2(dy,dx);
+	}
+	public static float lineSide(
+		float x1, float y1, float x2, float y2, float ptx, float pty
+	) {
+		return ( (x2-x1)*(pty-y1) - (y2-y1)*(ptx-x1) );
+	}
+	public static boolean collinear(
+		float x1, float y1, float x2, float y2, float ptx, float pty
+	) {
+		return (lineSide(x1,y1, x2,y2, ptx,pty) == 0);
+	}
+	public static boolean leftOfLine(
+		float x1, float y1, float x2, float y2, float ptx, float pty
+	) {
+		return (lineSide(x1,y1, x2,y2, ptx,pty) < 0);
+	}
+	public static boolean rightOfLine(
+		float x1, float y1, float x2, float y2, float ptx, float pty
+	) {
+		return (lineSide(x1,y1, x2,y2, ptx,pty) > 0);
+	}
 	public static int randomInt32() {
 		float f = _app.random(1);
 		f = _app.map(f, 0, 1, -2147483648, 2147483647);
@@ -66,7 +145,7 @@ public static class HMath implements HConstants {
 		_app.randomSeed(_resetSeedValue);
 	}
 	public static float sineWave(float stepDegrees) {
-		return H.app().sin(stepDegrees * H.D2R);
+		return _app.sin(stepDegrees * H.D2R);
 	}
 	public static float triangleWave(float stepDegrees) {
 		float outVal = (stepDegrees % 180) / 90;

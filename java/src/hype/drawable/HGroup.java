@@ -1,6 +1,6 @@
 package hype.drawable;
 
-import processing.core.PApplet;
+import processing.core.PGraphics;
 
 public class HGroup extends HDrawable {
 	
@@ -12,24 +12,24 @@ public class HGroup extends HDrawable {
 	}
 	
 	@Override
-	public void paintAll(PApplet app, float currAlphaPerc) {
+	public void paintAll(PGraphics g, float currAlphaPerc) {
 		if(_alpha<=0 || _width<=0 || _height<=0) return;
 		
 		// Perform a trimmed down version of super.paintAll()Ê
-		app.pushMatrix();
-			app.translate(_x,_y);
-			app.rotate(_rotationRad);
+		g.pushMatrix();
+			g.translate(_x,_y);
+			g.rotate(_rotationRad);
 			
 			currAlphaPerc *= _alpha;
 			
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(app,currAlphaPerc);
+				child.paintAll(g,currAlphaPerc);
 				child = child.next();
 			}
-		app.popMatrix();
+		g.popMatrix();
 	}
 	
 	@Override
-	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {}
+	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {}
 }

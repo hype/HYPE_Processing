@@ -3,6 +3,7 @@ package hype.drawable;
 import hype.util.H;
 import processing.core.PApplet;
 import processing.core.PFont;
+import processing.core.PGraphics;
 
 public class HText extends HDrawable {
 	protected PFont _font;
@@ -56,11 +57,11 @@ public class HText extends HDrawable {
 		} else if(arg instanceof String) {
 			String str = (String) arg;
 			_font = (str.indexOf(".vlw",str.length()-4) > 0)?
-				app.loadFont(str) : app.createFont(str,_height);
+				app.loadFont(str) : app.createFont(str,64);
 		} else if(arg instanceof HText) {
 			_font = ((HText) arg)._font;
 		} else if(arg == null) {
-			_font = app.createFont("SansSerif",_height);
+			_font = app.createFont("SansSerif",64);
 		}
 		adjustMetrics();
 		return this;
@@ -128,10 +129,9 @@ public class HText extends HDrawable {
 	@Override
 	public boolean containsRel(float relX, float relY) {
 		if(_text == null || _height == 0) return false;
-		
 		PApplet app = H.app();
 		int numChars = _text.length();
-		float ratio = _font.getSize() / _height;
+		float ratio = 64 / _height;
 		float xoff = 0;
 		float yoff = (_height - _descent) * ratio;
 		relX *= ratio;
@@ -152,12 +152,12 @@ public class HText extends HDrawable {
 	} 
 	
 	@Override
-	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
+	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
 		if(_text == null) return;
 		
-		applyStyle(app,currAlphaPerc);
-		app.textFont(_font,_height);
+		applyStyle(g,currAlphaPerc);
+		g.textFont(_font,_height);
 		
-		app.text(_text,drawX,drawY+_height-_descent);
+		g.text(_text,drawX,drawY+_height-_descent);
 	}
 }

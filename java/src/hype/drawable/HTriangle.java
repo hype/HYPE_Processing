@@ -2,8 +2,8 @@ package hype.drawable;
 
 import hype.util.H;
 import hype.util.HConstants;
-import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PGraphics;
 
 public class HTriangle extends HDrawable {
 	protected int _type;
@@ -71,8 +71,8 @@ public class HTriangle extends HDrawable {
 	}
 	
 	@Override
-	public void draw(PApplet app, float drawX, float drawY, float currAlphaPerc) {
-		applyStyle(app,currAlphaPerc);
+	public void draw(PGraphics g, float drawX, float drawY, float currAlphaPerc) {
+		applyStyle(g,currAlphaPerc);
 		
 		float x1;
 		float y1;
@@ -95,6 +95,6 @@ public class HTriangle extends HDrawable {
 			x3 = drawX + _width;
 			y3 = drawY + _height;
 		}
-		app.triangle(x1,y1, x2,y2, x3,y3);
+		g.triangle(x1,y1, x2,y2, x3,y3);
 	}
 }

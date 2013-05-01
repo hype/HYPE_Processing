@@ -2,64 +2,74 @@ package hype.behavior;
 
 import hype.collection.HIterator;
 import hype.collection.HLinkedHashSet;
-import hype.interfaces.HFollowable;
-import hype.interfaces.HMovable;
+import hype.interfaces.HGoal;
 import hype.interfaces.HSwarmer;
+import hype.util.H;
 import hype.util.HConstants;
 import hype.util.HMath;
+import hype.util.HVector;
 import processing.core.PApplet;
-import processing.core.PVector;
 
 @SuppressWarnings("static-access")
-public class HSwarm extends HBehavior implements HMovable, HFollowable {
-	protected float _goalX, _goalY, _speed, _turnEase, _twitch;
-	protected HLinkedHashSet<HSwarmer> _swarmers;
+public class HSwarm extends HBehavior {
+	protected HLinkedHashSet<HGoal> _goals;
+	protected HLinkedHashSet<HSwarmer> _targets;
+	protected float _speed, _turnEase, _twitchRad, _idleGoalX, _idleGoalY;
 	
 	public HSwarm() {
 		_speed = 1;
 		_turnEase = 1;
-		_twitch = 16;
-		_swarmers = new HLinkedHashSet<HSwarmer>();
+		_twitchRad = 0;
+		_goals = new HLinkedHashSet<HGoal>();
+		_targets = new HLinkedHashSet<HSwarmer>();
 	}
 	
-	public HSwarm addTarget(HSwarmer d) {
-		if(_swarmers.size() <= 0) register();
-		_swarmers.add(d);
+	public HSwarm addTarget(HSwarmer t) {
+		if(_targets.size() <= 0) register();
+		_targets.add(t);
 		return this;
 	}
 	
-	public HSwarm removeTarget(HSwarmer d) {
-		_swarmers.remove(d);
-		if(_swarmers.size() <= 0) unregister();
+	public HSwarm removeTarget(HSwarmer t) {
+		_targets.remove(t);
+		if(_targets.size() <= 0) unregister();
 		return this;
 	}
 	
-	public HSwarm goal(float x, float y) {
-		_goalX = x;
-		_goalY = y;
+	public HLinkedHashSet<HSwarmer> targets() {
+		return _targets;
+	}
+	
+	public HSwarm addGoal(HGoal g) {
+		_goals.add(g);
 		return this;
 	}
 	
-	public PVector goal() {
-		return new PVector(_goalX,_goalY);
+	public HSwarm addGoal(float x, float y) {
+		return addGoal(new HVector(x,y));
 	}
 	
-	public HSwarm goalX(float x) {
-		_goalX = x;
+	public HSwarm removeGoal(HGoal g) {
+		_goals.remove(g);
 		return this;
 	}
 	
-	public float goalX() {
-		return _goalX;
+	public HLinkedHashSet<HGoal> goals() {
+		return _goals;
 	}
 	
-	public HSwarm goalY(float y) {
-		_goalY = y;
+	public HSwarm idleGoal(float x, float y) {
+		_idleGoalX = x;
+		_idleGoalY = y;
 		return this;
 	}
 	
-	public float goalY() {
-		return _goalY;
+	public float idleGoalX() {
+		return _idleGoalX;
+	}
+	
+	public float idleGoalY() {
+		return _idleGoalY;
 	}
 	
 	public HSwarm speed(float s) {
@@ -81,73 +91,70 @@ public class HSwarm extends HBehavior implements HMovable, HFollowable {
 	}
 	
 	public HSwarm twitch(float deg) {
-		_twitch = deg * HConstants.D2R;
+		_twitchRad = deg * HConstants.D2R;
 		return this;
 	}
 	
 	public HSwarm twitchRad(float rad) {
-		_twitch = rad;
+		_twitchRad = rad;
 		return this;
 	}
 	
 	public float twitch() {
-		return _twitch * HConstants.R2D;
+		return _twitchRad * HConstants.R2D;
 	}
 	
 	public float twitchRad() {
-		return _twitch;
-	}
-
-	@Override
-	public float x() {
-		return _goalX;
-	}
-
-	@Override
-	public float y() {
-		return _goalY;
+		return _twitchRad;
 	}
 	
-	@Override
-	public float followableX() {
-		return _goalX;
-	}
-
-	@Override
-	public float followableY() {
-		return _goalY;
-	}
-	
-	@Override
-	public HSwarm move(float dx, float dy) {
-		_goalX += dx;
-		_goalY += dy;
-		return this;
+	protected HGoal getGoal(HSwarmer target) {
+		PApplet app = H.app();
+		HGoal goal = null;
+		float nearestDist = -1;
+		
+		for(HIterator<HGoal> it=_goals.iterator(); it.hasNext();) {
+			HGoal h = it.next();
+			float dist = app.dist(target.x(),target.y(), h.x(),h.y());
+			if(nearestDist<0 || dist<nearestDist) {
+				nearestDist = dist;
+				goal = h;
+			}
+		}
+		return goal;
 	}
 
 	@Override
 	public void runBehavior(PApplet app) {
-		int numSwarmers = _swarmers.size();
-		HIterator<HSwarmer> it = _swarmers.iterator();
-		for(int i=0; i<numSwarmers; ++i) {
-			HSwarmer swarmer = it.next();
+		int numTargets = _targets.size();
+		HIterator<HSwarmer> it = _targets.iterator();
+		for(int i=0; i<numTargets; ++i) {
+			HSwarmer target = it.next();
 			
-			float rot = swarmer.rotationRad();
-			float tx = swarmer.x();
-			float ty = swarmer.y();
+			float rot = target.rotationRad();
+			float tx = target.x();
+			float ty = target.y();
+			
+			float goalx = _idleGoalX;
+			float goaly = _idleGoalY;
+			HGoal goal = getGoal(target);
+			if(goal != null) {
+				goalx = goal.x();
+				goaly = goal.y();
+			}
 			
 			// Get rotation that points towards the goal, plus easing
-			float tmp = HMath.xAxisAngle(tx,ty, _goalX,_goalY) - rot;
+			float tmp = HMath.xAxisAngle(tx,ty, goalx,goaly) - rot;
 			float dRot = app.atan2(app.sin(tmp),app.cos(tmp)) * _turnEase;
 			rot += dRot;
 			
 			// Add some random twitching to the rotation via perlin noise
-			float noise = app.noise(i*numSwarmers + app.frameCount/8f);
-			rot += app.map(noise, 0,1, -_twitch,_twitch);
+			float noise = app.noise(i*numTargets + app.frameCount/8f);
+			rot += app.map(noise, 0,1, -_twitchRad,_twitchRad);
 			
 			// Apply the rotation and move to the direction of its rotation
-			swarmer.rotationRad(rot);
-			swarmer.move(app.cos(rot)*_speed, app.sin(rot)*_speed);
+			target.rotationRad(rot);
+			target.move(app.cos(rot)*_speed, app.sin(rot)*_speed);
 		}
 	}
 	
