@@ -1,6 +1,5 @@
 public static class HMouse implements HGoal {
 	private PApplet _app;
-	private int _button;
 	private boolean _started;
 	public HMouse(PApplet app) {
 		_app = app;
