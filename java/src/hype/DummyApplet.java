@@ -12,8 +12,11 @@ public class DummyApplet extends PApplet {
 	 * TODO
 	 * - [x] triangle stuff
 	 * - [x] hype update script
-	 * - [ ] js PGraphics hack
-	 * - [ ] move HPath.preserveSizeRatio() to HDrawable
+	 * - [x] js PGraphics hack
+	 * - [ ] HDrawable.sizeRatioFixed()
+	 * - [ ] remove HPath.preserveSizeRatio()
+	 * - [ ] HMouse._started tweaks
+	 * - [ ] HMouse flags
 	 */
 	
 	HDrawable d;

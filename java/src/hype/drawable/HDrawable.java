@@ -26,6 +26,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 		_width, _height,
 		_rotationRad, _strokeWeight, _alpha;
 	protected int _numChildren, _fill, _stroke, _strokeCap, _strokeJoin;
+	protected boolean _fixedSizeRatio;
 	
 	
 	// COPY & CREATE //
@@ -399,9 +400,18 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return this;
 	}
 	
+	public HDrawable fixedSizeRatio(boolean b) {
+		_fixedSizeRatio = b;
+		return this;
+	}
+	
+	public boolean fixedSizeRatio() {
+		return _fixedSizeRatio;
+	}
+	
 	@SuppressWarnings("static-access")
 	public PVector boundingSize() {
-		// !!CAUTION!! Overly optimized geometry code ahead! 
+		// !!CAUTION!! Maths ahead! 
 		PApplet app = H.app();
 		
 		float cosVal = app.cos(_rotationRad);

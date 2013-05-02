@@ -5,7 +5,8 @@ import processing.core.PApplet;
 
 public class HMouse implements HLocatable {
 	private PApplet _app;
-	private boolean _started;
+	private int _button;
+	private boolean _started, _moved, _isPressed, _isReleased, _isClicked;
 	
 	public HMouse(PApplet app) {
 		_app = app;
@@ -16,8 +17,11 @@ public class HMouse implements HLocatable {
 	}
 	
 	public void handleEvents() {
-		if(!_started && _app.pmouseX+_app.pmouseY > 0)
-			_started = true;
+		if(!_started && _app.pmouseX+_app.pmouseY > 0) _started = true;
+		
+		_button = _app.mouseButton;
+		
+		if(!_moved) _moved = (_app.pmouseX != 0) || (_app.pmouseY != 0);
 	}
 
 	@Override
