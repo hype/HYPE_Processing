@@ -71,12 +71,11 @@ public class HVelocity extends HBehavior {
 		return _velocityY;
 	}
 	
-	public HVelocity launchTo(float goalX, float goalY, float time) {
+	public HVelocity launchTo(float goalX, float goalY, int numFrames) {
 		if(_target == null) {
 			HWarnings.warn("Null Target", "HVelocity.launchTo()",
 					HWarnings.NULL_TARGET);
 		} else {
-			float numFrames = time*60/1000;
 			float nfsq = numFrames*numFrames;
 			_velocityX = (goalX - _target.x() - _accelX*nfsq/2) / numFrames;
 			_velocityY = (goalY - _target.y() - _accelY*nfsq/2) / numFrames;
