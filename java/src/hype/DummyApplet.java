@@ -8,6 +8,14 @@ import processing.core.PApplet;
 public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
+	/*
+	 * TODO
+	 * - [x] triangle stuff
+	 * - [x] hype update script
+	 * - [ ] js PGraphics hack
+	 * - [ ] move HPath.preserveSizeRatio() to HDrawable
+	 */
+	
 	HDrawable d;
 	
 	@SuppressWarnings("static-access")

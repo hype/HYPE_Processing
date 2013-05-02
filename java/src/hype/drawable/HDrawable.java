@@ -399,8 +399,6 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return this;
 	}
 	
-	// TODO move HPath.preserveSizeRatio() here
-	
 	@SuppressWarnings("static-access")
 	public PVector boundingSize() {
 		// !!CAUTION!! Overly optimized geometry code ahead! 
