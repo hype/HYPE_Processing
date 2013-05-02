@@ -13,6 +13,7 @@ import processing.core.PGraphics;
 public class HPath extends HDrawable {
 	protected ArrayList<HVertex> _vertices;
 	protected int _mode;
+	protected boolean _preserveSizeRatio;
 	
 	public HPath() {
 		this(PConstants.PATH);
@@ -155,19 +156,39 @@ public class HPath extends HDrawable {
 		return this;
 	}
 	
-	public HPath triangle() {
-		return triangle(HConstants.TOP);
+	public HPath preserveSizeRatio(boolean b) {
+		_preserveSizeRatio = b;
+		return this;
 	}
 	
-	public HPath triangle(int direction) {
-		return triangle(direction, false);
+	public boolean preserveSizeRatio() {
+		return _preserveSizeRatio;
 	}
 	
-	public HPath triangle(int direction, boolean isEquilateral) {
+	@Override
+	public HPath width(float w) {
+		if(_preserveSizeRatio) {
+			float ratio = _height / _width;
+			_height = ratio * w;
+		}
+		return (HPath) super.width(w);
+	}
+	
+	@Override
+	public HPath height(float h) {
+		if(_preserveSizeRatio) {
+			float ratio = _width / _height;
+			_width = ratio * h;
+		}
+		return (HPath) super.height(h);
+	}
+	
+	public HPath triangle(int type, int direction) {
 		_vertices.clear();
 		
 		@SuppressWarnings("static-access")
-		float eqRatio = (isEquilateral)? H.app().sin(PConstants.TWO_PI/6) : 1;
+		float eqRatio = (type == HConstants.EQUILATERAL)?
+			H.app().sin(PConstants.TWO_PI/6) : 1;
 		
 		switch(direction) {
 		case HConstants.TOP:
@@ -220,6 +241,7 @@ public class HPath extends HDrawable {
 			break;
 		}
 		_mode = PConstants.POLYGON;
+		if(type == HConstants.EQUILATERAL) _preserveSizeRatio = true;
 		return this;
 	}
 	

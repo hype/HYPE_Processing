@@ -72,7 +72,7 @@ public interface HConstants {
 		DLOC = 11,
 		SCALE = 12,
 		
-		// HTriangle types DEPRECATED
+		// HTriangle types
 		ISOCELES = 0,
 		EQUILATERAL = 1;
 	

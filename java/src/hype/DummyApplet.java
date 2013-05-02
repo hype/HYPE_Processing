@@ -17,17 +17,16 @@ public class DummyApplet extends PApplet {
 		noLoop();
 		H.init(this).background(H.WHITE);
 		
-		d = new HPath().star(5,.5f,30);
-		H.add(d);
-		//
+		d = new HPath().triangle(H.EQUILATERAL, H.TOP);
+		H.add(d).size(15,100);
 	}
 	
 	@Override
 	public void draw() {
 		H.drawStage();
-		stroke(H.MAGENTA,128);
-		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
-			if(d.contains(x,y)) point(x,y);
-		}
+//		stroke(H.MAGENTA,128);
+//		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
+//			if(d.contains(x,y)) point(x,y);
+//		}
 	}
 }
