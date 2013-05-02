@@ -4,9 +4,7 @@
 // and http://processingjs.org/reference/font/
 // for more information.
 
-/*
-  @pjs font="DroidSerifRegular.ttf, DroidSerifItalic.ttf, DroidSerifBold.ttf, DroidSerifBoldItalic.ttf";
- */
+/* @pjs font="DroidSerifRegular.ttf, DroidSerifItalic.ttf, DroidSerifBold.ttf, DroidSerifBoldItalic.ttf"; */
 
 PFont font1, font2, font3, font4;
 
@@ -81,3 +79,4 @@ void setup() {
 }
 
 void draw() {}
+

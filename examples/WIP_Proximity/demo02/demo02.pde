@@ -29,8 +29,8 @@ void setup() {
     .add ( new HRect(cellSize) )
     .layout (
       new HGridLayout()
-      .startX(20)
-      .startY(20)
+      .startX(21)
+      .startY(21)
       .spacing(cellSize+1,cellSize+1)
       .cols(24)
     )

@@ -1,9 +1,3 @@
-// As seen here, we need to preload Images and Fonts.
-//
-// See http://processingjs.org/reference/preload/
-// and http://processingjs.org/reference/font/
-// for more information.
-
 /* @pjs preload="sintra.jpg"; */
 
 HDrawablePool pool;
@@ -30,8 +24,8 @@ void setup() {
 		)
 		.layout (
 			new HGridLayout()
-			.startX(16)
-			.startY(16)
+			.startX(21)
+			.startY(21)
 			.spacing(cellSize+1,cellSize+1)
 			.cols(24)
 		)
@@ -56,3 +50,4 @@ void setup() {
 }
 
 void draw() {}
+

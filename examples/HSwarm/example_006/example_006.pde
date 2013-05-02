@@ -1,12 +1,4 @@
-// As seen here, we need to preload Images and Fonts.
-//
-// See http://processingjs.org/reference/preload/
-// and http://processingjs.org/reference/font/
-// for more information.
-
-/*
-@pjs preload="sintra.jpg";
-*/
+/* @pjs preload="sintra.jpg"; */
 
 HDrawablePool pool;
 HSwarm swarm;
@@ -26,7 +18,7 @@ void setup() {
     ;
 
 	swarm = new HSwarm()
-		.goal(width/2,height/2)
+		.addGoal(H.mouse())
 		.speed(5)
 		.turnEase(0.05f)
 		.twitch(20)
@@ -79,9 +71,6 @@ void draw() {
 		d.alpha(50);
 	}
 
-    if(H.mouseStarted()) {
-      swarm.goal(mouseX,mouseY);
-    }
-
 	H.drawStage();
 }
+

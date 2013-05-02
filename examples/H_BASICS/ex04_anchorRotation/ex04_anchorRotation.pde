@@ -79,3 +79,4 @@ void draw() {
 	ellipse(width/2, height - 180, 4, 4);
 	ellipse(width-100, height - 180, 4, 4);
 }
+

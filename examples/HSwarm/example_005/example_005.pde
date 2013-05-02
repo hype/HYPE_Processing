@@ -17,7 +17,7 @@ void setup() {
     ;
 
 	swarm = new HSwarm()
-		.goal(width/2,height/2)
+		.addGoal(H.mouse())
 		.speed(5)
 		.turnEase(0.05f)
 		.twitch(20)
@@ -72,9 +72,6 @@ void draw() {
 		colors.applyColor(d);
 	}
 
-    if(H.mouseStarted()) {
-      swarm.goal(mouseX,mouseY);
-    }
-
 	H.drawStage();
 }
+

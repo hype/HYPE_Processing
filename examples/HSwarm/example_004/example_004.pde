@@ -10,7 +10,7 @@ void setup() {
 	final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
 	swarm = new HSwarm()
-		.goal(width/2,height/2)
+		.addGoal(H.mouse())
 		.speed(5)
 		.turnEase(0.05f)
 		.twitch(20)
@@ -56,10 +56,6 @@ void setup() {
 }
 
 void draw() {
-	// use the mouse as the swarm point
-	if(H.mouseStarted()) {
-		swarm.goal(mouseX,mouseY);
-	}
-
 	H.drawStage();
 }
+

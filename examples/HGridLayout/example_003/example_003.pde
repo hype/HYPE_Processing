@@ -26,8 +26,8 @@ void setup() {
 		)
 		.layout (
 			new HGridLayout()
-			.startX(30)
-			.startY(30)
+			.startX(32)
+			.startY(32)
 			.spacing(cellSize/2,cellSize/2)
 			.cols(24)
 		)
@@ -62,3 +62,4 @@ void draw() {
 
 	H.drawStage();
 }
+

@@ -4,9 +4,7 @@
 // and http://processingjs.org/reference/font/
 // for more information.
 
-/*
-  @pjs font="DroidSerifBoldItalic.ttf";
- */
+/* @pjs font="DroidSerifBoldItalic.ttf"; */
 
 HDrawablePool pool;
 
@@ -44,3 +42,4 @@ void setup() {
 }
 
 void draw() {}
+

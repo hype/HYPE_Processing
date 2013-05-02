@@ -10,7 +10,7 @@ void setup() {
 	final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
 	swarm = new HSwarm()
-		.goal(width/2,height-200)
+		.addGoal(width/2,height-200)
 		.speed(4)
 		.turnEase(0.025f)
 		.twitch(0)
@@ -68,3 +68,4 @@ void draw() {
 	noFill(); strokeWeight(2); stroke(#FF3300);
 	ellipse(width/2, 200, 4, 4);
 }
+

@@ -34,10 +34,6 @@ void setup() {
 		.requestAll();
 }
 
-// when testing in browsers - it does NOT work in Safari
-// works fine in Chrome and Firefox
-// any ideas ?
-
 void draw() {
 	HIterator<HDrawable> it = pool.iterator();
 	while(it.hasNext()) {
@@ -48,3 +44,4 @@ void draw() {
 
 	H.drawStage();
 }
+

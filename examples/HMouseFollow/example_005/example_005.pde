@@ -1,12 +1,4 @@
-// As seen here, we need to preload Images and Fonts.
-//
-// See http://processingjs.org/reference/preload/
-// and http://processingjs.org/reference/font/
-// for more information.
-
-/*
-@pjs preload="sintra.jpg";
-*/
+/* @pjs preload="sintra.jpg"; */
 
 HFollow mf;
 HRect rect;
@@ -47,3 +39,4 @@ void draw() {
 
 	H.drawStage();
 }
+
