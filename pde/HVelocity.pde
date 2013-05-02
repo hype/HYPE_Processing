@@ -1,7 +1,7 @@
 public static class HVelocity extends HBehavior {
 	protected boolean _autoRegisters;
 	protected float _velocityX, _velocityY, _accelX, _accelY;
-	protected HMovable _target;
+	protected HLocatable _target;
 	public HVelocity() {
 		_autoRegisters = true;
 	}
@@ -15,7 +15,7 @@ public static class HVelocity extends HBehavior {
 	public boolean autoRegisters() {
 		return _autoRegisters;
 	}
-	public HVelocity target(HMovable t) {
+	public HVelocity target(HLocatable t) {
 		if(_autoRegisters) {
 			if(t == null) unregister();
 			else register();
@@ -23,7 +23,7 @@ public static class HVelocity extends HBehavior {
 		_target = t;
 		return this;
 	}
-	public HMovable target() {
+	public HLocatable target() {
 		return _target;
 	}
 	public HVelocity velocity(float velocity, float deg) {

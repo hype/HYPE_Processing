@@ -1,5 +1,5 @@
 public static abstract class HDrawable extends HNode<HDrawable>
-		implements HSwarmer, HFollowable, HHittable {
+		implements HSwarmer, HHittable {
 	protected HDrawable _parent, _firstChild, _lastChild;
 	protected HBundle _extras;
 	protected float
@@ -451,12 +451,6 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	}
 	public HDrawable alphaShiftPerc(float daPerc) {
 		return alphaPerc(_alpha + daPerc);
-	}
-	public float followableX() {
-		return _x;
-	}
-	public float followableY() {
-		return _y;
 	}
 	public HDrawable extras(HBundle b) {
 		_extras = b;

@@ -1,6 +1,6 @@
 package hype.behavior;
 
-import hype.interfaces.HMovable;
+import hype.interfaces.HLocatable;
 import hype.util.H;
 import hype.util.HConstants;
 import hype.util.HWarnings;
@@ -9,7 +9,7 @@ import processing.core.PApplet;
 public class HVelocity extends HBehavior {
 	protected boolean _autoRegisters;
 	protected float _velocityX, _velocityY, _accelX, _accelY;
-	protected HMovable _target;
+	protected HLocatable _target;
 	
 	public HVelocity() {
 		_autoRegisters = true;
@@ -28,7 +28,7 @@ public class HVelocity extends HBehavior {
 		return _autoRegisters;
 	}
 	
-	public HVelocity target(HMovable t) {
+	public HVelocity target(HLocatable t) {
 		if(_autoRegisters) {
 			if(t == null) unregister();
 			else register();
@@ -37,7 +37,7 @@ public class HVelocity extends HBehavior {
 		return this;
 	}
 	
-	public HMovable target() {
+	public HLocatable target() {
 		return _target;
 	}
 	

@@ -1,14 +1,13 @@
 package hype.behavior;
 
-import hype.interfaces.HFollowable;
-import hype.interfaces.HMovable;
+import hype.interfaces.HLocatable;
 import hype.util.H;
 import processing.core.PApplet;
 
 public class HFollow extends HBehavior {
 	protected float _ease, _spring, _dx, _dy;
-	protected HFollowable _goal;
-	protected HMovable _follower;
+	protected HLocatable _goal;
+	protected HLocatable _follower;
 	
 	public HFollow() {
 		this(1);
@@ -22,7 +21,7 @@ public class HFollow extends HBehavior {
 		this(ease, spring, H.mouse());
 	}
 	
-	public HFollow(float ease, float spring, HFollowable goal) {
+	public HFollow(float ease, float spring, HLocatable goal) {
 		_ease = ease;
 		_spring = spring;
 		_goal = goal;
@@ -46,12 +45,12 @@ public class HFollow extends HBehavior {
 		return _spring;
 	}
 	
-	public HFollow goal(HFollowable g) {
+	public HFollow goal(HLocatable g) {
 		_goal = g;
 		return this;
 	}
 	
-	public HFollowable goal() {
+	public HLocatable goal() {
 		return _goal;
 	}
 	
@@ -60,7 +59,7 @@ public class HFollow extends HBehavior {
 		return this;
 	}
 	
-	public HFollow target(HMovable f) {
+	public HFollow target(HLocatable f) {
 		if(f == null) unregister();
 		else register();
 		
@@ -68,7 +67,7 @@ public class HFollow extends HBehavior {
 		return this;
 	}
 	
-	public HMovable target() {
+	public HLocatable target() {
 		return _follower;
 	}
 	
@@ -76,12 +75,8 @@ public class HFollow extends HBehavior {
 	public void runBehavior(PApplet app) {
 		if(_follower==null || ! H.mouse().started()) return;
 		
-		_dx = _dx*_spring +
-			(_goal.followableX()-_follower.x()) * _ease;
-		
-		_dy = _dy*_spring +
-			(_goal.followableY()-_follower.y()) * _ease;
-		
+		_dx = _dx*_spring + (_goal.x()-_follower.x()) * _ease;
+		_dy = _dy*_spring + (_goal.y()-_follower.y()) * _ease;
 		_follower.move(_dx,_dy);
 	}
 	

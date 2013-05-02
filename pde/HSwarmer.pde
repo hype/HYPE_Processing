@@ -1,1 +1,1 @@
-public static interface HSwarmer extends HMovable, HRotatable {}
+public static interface HSwarmer extends HLocatable, HRotatable {}

@@ -1,12 +1,12 @@
 public static class HSwarm extends HBehavior {
-	protected HLinkedHashSet<HGoal> _goals;
+	protected HLinkedHashSet<HLocatable> _goals;
 	protected HLinkedHashSet<HSwarmer> _targets;
 	protected float _speed, _turnEase, _twitchRad, _idleGoalX, _idleGoalY;
 	public HSwarm() {
 		_speed = 1;
 		_turnEase = 1;
 		_twitchRad = 0;
-		_goals = new HLinkedHashSet<HGoal>();
+		_goals = new HLinkedHashSet<HLocatable>();
 		_targets = new HLinkedHashSet<HSwarmer>();
 	}
 	public HSwarm addTarget(HSwarmer t) {
@@ -22,18 +22,18 @@ public static class HSwarm extends HBehavior {
 	public HLinkedHashSet<HSwarmer> targets() {
 		return _targets;
 	}
-	public HSwarm addGoal(HGoal g) {
+	public HSwarm addGoal(HLocatable g) {
 		_goals.add(g);
 		return this;
 	}
 	public HSwarm addGoal(float x, float y) {
 		return addGoal(new HVector(x,y));
 	}
-	public HSwarm removeGoal(HGoal g) {
+	public HSwarm removeGoal(HLocatable g) {
 		_goals.remove(g);
 		return this;
 	}
-	public HLinkedHashSet<HGoal> goals() {
+	public HLinkedHashSet<HLocatable> goals() {
 		return _goals;
 	}
 	public HSwarm idleGoal(float x, float y) {
@@ -75,12 +75,12 @@ public static class HSwarm extends HBehavior {
 	public float twitchRad() {
 		return _twitchRad;
 	}
-	protected HGoal getGoal(HSwarmer target) {
+	protected HLocatable getGoal(HSwarmer target) {
 		PApplet app = H.app();
-		HGoal goal = null;
+		HLocatable goal = null;
 		float nearestDist = -1;
-		for(HIterator<HGoal> it=_goals.iterator(); it.hasNext();) {
-			HGoal h = it.next();
+		for(HIterator<HLocatable> it=_goals.iterator(); it.hasNext();) {
+			HLocatable h = it.next();
 			float dist = app.dist(target.x(),target.y(), h.x(),h.y());
 			if(nearestDist<0 || dist<nearestDist) {
 				nearestDist = dist;
@@ -99,7 +99,7 @@ public static class HSwarm extends HBehavior {
 			float ty = target.y();
 			float goalx = _idleGoalX;
 			float goaly = _idleGoalY;
-			HGoal goal = getGoal(target);
+			HLocatable goal = getGoal(target);
 			if(goal != null) {
 				goalx = goal.x();
 				goaly = goal.y();

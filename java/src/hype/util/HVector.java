@@ -1,9 +1,9 @@
 package hype.util;
 
-import hype.interfaces.HGoal;
+import hype.interfaces.HLocatable;
 import processing.core.PVector;
 
-public class HVector extends PVector implements HGoal {
+public class HVector extends PVector implements HLocatable {
 	private static final long serialVersionUID = 1;
 	
 	public HVector() {
@@ -29,15 +29,5 @@ public class HVector extends PVector implements HGoal {
 		x += dx;
 		y += dy;
 		return this;
-	}
-
-	@Override
-	public float followableX() {
-		return x;
-	}
-
-	@Override
-	public float followableY() {
-		return y;
 	}
 }

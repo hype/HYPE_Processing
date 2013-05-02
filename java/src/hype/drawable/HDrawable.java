@@ -2,7 +2,6 @@ package hype.drawable;
 
 import hype.collection.HIterator;
 import hype.collection.HNode;
-import hype.interfaces.HFollowable;
 import hype.interfaces.HHittable;
 import hype.interfaces.HSwarmer;
 import hype.util.H;
@@ -17,7 +16,7 @@ import processing.core.PGraphics;
 import processing.core.PVector;
 
 public abstract class HDrawable extends HNode<HDrawable>
-		implements HSwarmer, HFollowable, HHittable {
+		implements HSwarmer, HHittable {
 	
 	protected HDrawable _parent, _firstChild, _lastChild;
 	protected HBundle _extras;
@@ -628,16 +627,6 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	
 	// UTILITY //
-	
-	@Override
-	public float followableX() {
-		return _x;
-	}
-	
-	@Override
-	public float followableY() {
-		return _y;
-	}
 	
 	public HDrawable extras(HBundle b) {
 		_extras = b;

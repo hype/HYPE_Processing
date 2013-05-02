@@ -1,4 +1,4 @@
-public static class HVector extends PVector implements HGoal {
+public static class HVector extends PVector implements HLocatable {
 	private static final long serialVersionUID = 1;
 	public HVector() {
 		super();
@@ -16,11 +16,5 @@ public static class HVector extends PVector implements HGoal {
 		x += dx;
 		y += dy;
 		return this;
-	}
-	public float followableX() {
-		return x;
-	}
-	public float followableY() {
-		return y;
 	}
 }

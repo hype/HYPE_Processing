@@ -1,3 +1,3 @@
 package hype.interfaces;
 
-public interface HSwarmer extends HMovable, HRotatable {}
+public interface HSwarmer extends HLocatable, HRotatable {}

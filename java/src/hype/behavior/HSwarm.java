@@ -2,7 +2,7 @@ package hype.behavior;
 
 import hype.collection.HIterator;
 import hype.collection.HLinkedHashSet;
-import hype.interfaces.HGoal;
+import hype.interfaces.HLocatable;
 import hype.interfaces.HSwarmer;
 import hype.util.H;
 import hype.util.HConstants;
@@ -12,7 +12,7 @@ import processing.core.PApplet;
 
 @SuppressWarnings("static-access")
 public class HSwarm extends HBehavior {
-	protected HLinkedHashSet<HGoal> _goals;
+	protected HLinkedHashSet<HLocatable> _goals;
 	protected HLinkedHashSet<HSwarmer> _targets;
 	protected float _speed, _turnEase, _twitchRad, _idleGoalX, _idleGoalY;
 	
@@ -20,7 +20,7 @@ public class HSwarm extends HBehavior {
 		_speed = 1;
 		_turnEase = 1;
 		_twitchRad = 0;
-		_goals = new HLinkedHashSet<HGoal>();
+		_goals = new HLinkedHashSet<HLocatable>();
 		_targets = new HLinkedHashSet<HSwarmer>();
 	}
 	
@@ -40,7 +40,7 @@ public class HSwarm extends HBehavior {
 		return _targets;
 	}
 	
-	public HSwarm addGoal(HGoal g) {
+	public HSwarm addGoal(HLocatable g) {
 		_goals.add(g);
 		return this;
 	}
@@ -49,12 +49,12 @@ public class HSwarm extends HBehavior {
 		return addGoal(new HVector(x,y));
 	}
 	
-	public HSwarm removeGoal(HGoal g) {
+	public HSwarm removeGoal(HLocatable g) {
 		_goals.remove(g);
 		return this;
 	}
 	
-	public HLinkedHashSet<HGoal> goals() {
+	public HLinkedHashSet<HLocatable> goals() {
 		return _goals;
 	}
 	
@@ -108,13 +108,13 @@ public class HSwarm extends HBehavior {
 		return _twitchRad;
 	}
 	
-	protected HGoal getGoal(HSwarmer target) {
+	protected HLocatable getGoal(HSwarmer target) {
 		PApplet app = H.app();
-		HGoal goal = null;
+		HLocatable goal = null;
 		float nearestDist = -1;
 		
-		for(HIterator<HGoal> it=_goals.iterator(); it.hasNext();) {
-			HGoal h = it.next();
+		for(HIterator<HLocatable> it=_goals.iterator(); it.hasNext();) {
+			HLocatable h = it.next();
 			float dist = app.dist(target.x(),target.y(), h.x(),h.y());
 			if(nearestDist<0 || dist<nearestDist) {
 				nearestDist = dist;
@@ -137,7 +137,7 @@ public class HSwarm extends HBehavior {
 			
 			float goalx = _idleGoalX;
 			float goaly = _idleGoalY;
-			HGoal goal = getGoal(target);
+			HLocatable goal = getGoal(target);
 			if(goal != null) {
 				goalx = goal.x();
 				goaly = goal.y();

@@ -1,4 +1,4 @@
-public static class HMouse implements HGoal {
+public static class HMouse implements HLocatable {
 	private PApplet _app;
 	private boolean _started;
 	public HMouse(PApplet app) {
@@ -10,12 +10,6 @@ public static class HMouse implements HGoal {
 	public void handleEvents() {
 		if(!_started && _app.pmouseX+_app.pmouseY > 0)
 			_started = true;
-	}
-	public float followableX() {
-		return _app.mouseX;
-	}
-	public float followableY() {
-		return _app.mouseY;
 	}
 	public float x() {
 		return _app.mouseX;
