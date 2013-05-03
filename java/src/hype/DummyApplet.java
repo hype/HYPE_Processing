@@ -1,5 +1,6 @@
 package hype;
 
+import hype.behavior.HFollow;
 import hype.drawable.HDrawable;
 import hype.drawable.HPath;
 import hype.util.H;
@@ -27,8 +28,9 @@ public class DummyApplet extends PApplet {
 		H.init(this);
 		
 		//d = new HEllipse().scale(random(.5f,1.5f),random(.5f,1.5f)).proportional(true);
-		d = new HPath().star(5, H.PHI_1);//.triangle(H.RIGHT, H.LEFT);
-		H.add(d);
+		d = new HPath().star(5, H.PHI_1,-90);//.triangle(H.RIGHT, H.LEFT);
+		H.add(d).anchorAt(H.CENTER).locAt(H.CENTER);
+		new HFollow().target(d);
 	}
 	
 	@Override

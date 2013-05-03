@@ -9,7 +9,7 @@ public static class HMouse implements HLocatable {
 		return _started;
 	}
 	public void handleEvents() {
-		if(!_started && _app.pmouseX+_app.pmouseY > 0) _started = true;
+		if(!_started && _app.pmouseX!=0 && _app.pmouseY!=0) _started = true;
 		_button = _app.mouseButton;
 		if(!_moved) _moved = (_app.pmouseX != 0) || (_app.pmouseY != 0);
 	}
