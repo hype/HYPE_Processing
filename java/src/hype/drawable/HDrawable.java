@@ -24,9 +24,9 @@ public abstract class HDrawable extends HNode<HDrawable>
 		_x, _y,
 		_anchorPercX, _anchorPercY,
 		_width, _height,
-		_rotationRad, _strokeWeight, _alpha;
+		_rotationRad, _strokeWeight, _alpha, _sizeProportion;
 	protected int _numChildren, _fill, _stroke, _strokeCap, _strokeJoin;
-	protected boolean _fixedSizeRatio;
+	protected boolean _proportional;
 	
 	
 	// COPY & CREATE //
@@ -242,19 +242,20 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	public HDrawable locAt(int where) {
 		if(_parent!=null) {
-			if(HMath.hasBits(where,HConstants.CENTER_X))
+			if(HMath.hasBits(where, HConstants.CENTER_X)) {
 				_x = _parent.width()/2 - _parent.anchorX();
-			else if(HMath.hasBits(where,HConstants.LEFT))
+			} else if(HMath.hasBits(where, HConstants.LEFT)) {
 				_x = -_parent.anchorX();
-			else if(HMath.hasBits(where,HConstants.RIGHT))
+			} else if(HMath.hasBits(where, HConstants.RIGHT)) {
 				_x = _parent.width() - _parent.anchorX();
-			
-			if(HMath.hasBits(where,HConstants.CENTER_Y))
+			}
+			if(HMath.hasBits(where, HConstants.CENTER_Y)) {
 				_y = _parent.height()/2 - _parent.anchorY();
-			else if(HMath.hasBits(where,HConstants.TOP))
+			} else if(HMath.hasBits(where, HConstants.TOP)) {
 				_y = -_parent.anchorY();
-			else if(HMath.hasBits(where,HConstants.BOTTOM))
+			} else if(HMath.hasBits(where, HConstants.BOTTOM)) {
 				_y = _parent.height() - _parent.anchorY();
+			}
 		}
 		return this;
 	}
@@ -338,18 +339,18 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 	
 	public HDrawable anchorAt(int where) {
-		if(HMath.hasBits(where,HConstants.CENTER_X))
+		if(HMath.hasBits(where, HConstants.CENTER_X))
 			_anchorPercX = 0.5f;
-		else if(HMath.hasBits(where,HConstants.LEFT))
+		else if(HMath.hasBits(where, HConstants.LEFT))
 			_anchorPercX = 0;
-		else if(HMath.hasBits(where,HConstants.RIGHT))
+		else if(HMath.hasBits(where, HConstants.RIGHT))
 			_anchorPercX = 1;
 		
-		if(HMath.hasBits(where,HConstants.CENTER_Y))
+		if(HMath.hasBits(where, HConstants.CENTER_Y))
 			_anchorPercY = 0.5f;
-		else if(HMath.hasBits(where,HConstants.TOP))
+		else if(HMath.hasBits(where, HConstants.TOP))
 			_anchorPercY = 0;
-		else if(HMath.hasBits(where,HConstants.BOTTOM))
+		else if(HMath.hasBits(where, HConstants.BOTTOM))
 			_anchorPercY = 1;
 		return this;
 	}
@@ -373,6 +374,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 	
 	public HDrawable width(float w) {
+		if(_proportional) _height = w/_sizeProportion;
 		_width = w;
 		return this;
 	}
@@ -382,6 +384,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 	
 	public HDrawable height(float h) {
+		if(_proportional) _width = h*_sizeProportion;
 		_height = h;
 		return this;
 	}
@@ -400,17 +403,23 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return this;
 	}
 	
-	public HDrawable fixedSizeRatio(boolean b) {
-		_fixedSizeRatio = b;
+	public HDrawable proportional(boolean b) {
+		_proportional = b;
+		if(_proportional) {
+			_sizeProportion = _width/_height;
+		}
 		return this;
 	}
 	
-	public boolean fixedSizeRatio() {
-		return _fixedSizeRatio;
+	public boolean proportional() {
+		return _proportional;
 	}
 	
 	@SuppressWarnings("static-access")
 	public PVector boundingSize() {
+		// TODO boundingBox()
+		// this code probably needs some *actual* optimization too.
+		
 		// !!CAUTION!! Maths ahead! 
 		PApplet app = H.app();
 		

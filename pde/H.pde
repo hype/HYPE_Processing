@@ -13,9 +13,17 @@ public static class H implements HConstants {
 		if(_behaviors == null) _behaviors = new HBehaviorRegistry();
 		if(_mouse == null) _mouse = new HMouse(_app);
 		try {
-			int dummy = _app.g.A;
+			/* HACK
+			 * This arbitrary reference to a field in _app.g will throw an error
+			 * in Processing.js as `g` doesn't exist in that mode.
+			 */
+			int dummyVar = _app.g.A;
 			_graphicsContext = _app.g;
 		} catch(Error e) {
+			/* This roundabout assignment bypasses java's compile-time type
+			 * checking. Normally, this would cause a class-cast exception in
+			 * java, but js mode doesn't mind due to duck-typing.
+			 */
 			Object o = _app;
 			_graphicsContext = (PGraphics) o;
 		}

@@ -13,31 +13,27 @@ public class DummyApplet extends PApplet {
 	 * - [x] triangle stuff
 	 * - [x] hype update script
 	 * - [x] js PGraphics hack
-	 * - [ ] HDrawable.sizeRatioFixed()
-	 * - [ ] remove HPath.preserveSizeRatio()
+	 * - [x] HDrawable.proportional()
+	 * - [x] remove HPath.preserveSizeRatio()
 	 * - [ ] HMouse._started tweaks
 	 * - [ ] HMouse flags
 	 */
 	
 	HDrawable d;
 	
-	@SuppressWarnings("static-access")
 	@Override
 	public void setup() {
 		size(512,512);
-		noLoop();
-		H.init(this).background(H.WHITE);
+		H.init(this);
 		
-		d = new HPath().triangle(H.EQUILATERAL, H.TOP);
-		H.add(d).size(15,100);
+		//d = new HEllipse().scale(random(.5f,1.5f),random(.5f,1.5f)).proportional(true);
+		d = new HPath().triangle(H.RIGHT, H.LEFT);
+		H.add(d);
 	}
 	
 	@Override
 	public void draw() {
 		H.drawStage();
-//		stroke(H.MAGENTA,128);
-//		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
-//			if(d.contains(x,y)) point(x,y);
-//		}
+		d.size(mouseX-d.x(),mouseY-d.y());
 	}
 }

@@ -54,5 +54,7 @@ public static interface HConstants {
 		EQUILATERAL = 1;
 	public static final float
 		D2R = PConstants.PI / 180f,
-		R2D = 180f / PConstants.PI;
+		R2D = 180f / PConstants.PI,
+		SQRT2 = 1.4142135623730951f,
+		PHI = 1.618033988749895f;
 }

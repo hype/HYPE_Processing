@@ -13,7 +13,6 @@ import processing.core.PGraphics;
 public class HPath extends HDrawable {
 	protected ArrayList<HVertex> _vertices;
 	protected int _mode;
-	protected boolean _preserveSizeRatio;
 	
 	public HPath() {
 		this(PConstants.PATH);
@@ -156,39 +155,18 @@ public class HPath extends HDrawable {
 		return this;
 	}
 	
-	public HPath preserveSizeRatio(boolean b) {
-		_preserveSizeRatio = b;
-		return this;
-	}
-	
-	public boolean preserveSizeRatio() {
-		return _preserveSizeRatio;
-	}
-	
-	@Override
-	public HPath width(float w) {
-		if(_preserveSizeRatio) {
-			float ratio = _height / _width;
-			_height = ratio * w;
-		}
-		return (HPath) super.width(w);
-	}
-	
-	@Override
-	public HPath height(float h) {
-		if(_preserveSizeRatio) {
-			float ratio = _width / _height;
-			_width = ratio * h;
-		}
-		return (HPath) super.height(h);
-	}
-	
+	@SuppressWarnings("static-access")
 	public HPath triangle(int type, int direction) {
 		_vertices.clear();
 		
-		@SuppressWarnings("static-access")
-		float eqRatio = (type == HConstants.EQUILATERAL)?
-			H.app().sin(PConstants.TWO_PI/6) : 1;
+		float ratio = 1;
+		
+		switch(type) {
+		case HConstants.EQUILATERAL:
+			ratio = H.app().sin(PConstants.TWO_PI/6); break;
+		case HConstants.RIGHT:
+			ratio = H.app().sin(PConstants.TWO_PI/8) / HConstants.SQRT2; break;
+		}
 		
 		switch(direction) {
 		case HConstants.TOP:
@@ -196,28 +174,28 @@ public class HPath extends HDrawable {
 			vertexPerc(0.5f, 0);
 			vertexPerc(0, 1);
 			vertexPerc(1, 1);
-			scale(1,eqRatio);
+			height(_width*ratio);
 			break;
 		case HConstants.BOTTOM:
 		case HConstants.CENTER_BOTTOM:
 			vertexPerc(0.5f, 1);
 			vertexPerc(1, 0);
 			vertexPerc(0, 0);
-			scale(1,eqRatio);
+			height(_width*ratio);
 			break;
 		case HConstants.RIGHT:
 		case HConstants.CENTER_RIGHT:
 			vertexPerc(1, 0.5f);
 			vertexPerc(0, 0);
 			vertexPerc(0, 1);
-			scale(eqRatio,1);
+			width(_height*ratio);
 			break;
 		case HConstants.LEFT:
 		case HConstants.CENTER_LEFT:
 			vertexPerc(0, 0.5f);
 			vertexPerc(1, 1);
 			vertexPerc(1, 0);
-			scale(eqRatio,1);
+			width(_height*ratio);
 			break;
 		case HConstants.TOP_LEFT:
 			vertexPerc(0, 0);
@@ -241,7 +219,10 @@ public class HPath extends HDrawable {
 			break;
 		}
 		_mode = PConstants.POLYGON;
-		if(type == HConstants.EQUILATERAL) _preserveSizeRatio = true;
+		
+		if(type == HConstants.EQUILATERAL || type == HConstants.RIGHT) {
+			proportional(true);
+		}
 		return this;
 	}
 	

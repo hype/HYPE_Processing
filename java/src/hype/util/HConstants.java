@@ -79,5 +79,9 @@ public interface HConstants {
 	public static final float
 		// Degree-Radians conversion shortcuts
 		D2R = PConstants.PI / 180f,
-		R2D = 180f / PConstants.PI;
+		R2D = 180f / PConstants.PI,
+		
+		// Misc Math constants
+		SQRT2 = 1.4142135623730951f,
+		PHI = 1.618033988749895f;
 }
