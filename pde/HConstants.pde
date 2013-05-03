@@ -56,5 +56,6 @@ public static interface HConstants {
 		D2R = PConstants.PI / 180f,
 		R2D = 180f / PConstants.PI,
 		SQRT2 = 1.4142135623730951f,
-		PHI = 1.618033988749895f;
+		PHI = 1.618033988749895f,
+		PHI_1 = 0.618033988749895f;
 }

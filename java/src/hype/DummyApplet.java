@@ -27,13 +27,13 @@ public class DummyApplet extends PApplet {
 		H.init(this);
 		
 		//d = new HEllipse().scale(random(.5f,1.5f),random(.5f,1.5f)).proportional(true);
-		d = new HPath().triangle(H.RIGHT, H.LEFT);
+		d = new HPath().star(5, H.PHI_1);//.triangle(H.RIGHT, H.LEFT);
 		H.add(d);
 	}
 	
 	@Override
 	public void draw() {
 		H.drawStage();
-		d.size(mouseX-d.x(),mouseY-d.y());
+		//d.size(mouseX-d.x(),mouseY-d.y());
 	}
 }
