@@ -77,7 +77,9 @@ public class HFollow extends HBehavior {
 		
 		_dx = _dx*_spring + (_goal.x()-_follower.x()) * _ease;
 		_dy = _dy*_spring + (_goal.y()-_follower.y()) * _ease;
-		_follower.move(_dx,_dy);
+		
+		_follower.x(_follower.x() + _dx);
+		_follower.y(_follower.y() + _dy);
 	}
 	
 	@Override

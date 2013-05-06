@@ -75,8 +75,7 @@ public static class HSwarm extends HBehavior {
 	public float twitchRad() {
 		return _twitchRad;
 	}
-	protected HLocatable getGoal(HSwarmer target) {
-		PApplet app = H.app();
+	protected HLocatable getGoal(HSwarmer target, PApplet app) {
 		HLocatable goal = null;
 		float nearestDist = -1;
 		for(HIterator<HLocatable> it=_goals.iterator(); it.hasNext();) {
@@ -99,10 +98,12 @@ public static class HSwarm extends HBehavior {
 			float ty = target.y();
 			float goalx = _idleGoalX;
 			float goaly = _idleGoalY;
-			HLocatable goal = getGoal(target);
+			float goalz = 0;
+			HLocatable goal = getGoal(target, app);
 			if(goal != null) {
 				goalx = goal.x();
 				goaly = goal.y();
+				goalz = goal.z();
 			}
 			float tmp = HMath.xAxisAngle(tx,ty, goalx,goaly) - rot;
 			float dRot = app.atan2(app.sin(tmp),app.cos(tmp)) * _turnEase;
@@ -110,7 +111,9 @@ public static class HSwarm extends HBehavior {
 			float noise = app.noise(i*numTargets + app.frameCount/8f);
 			rot += app.map(noise, 0,1, -_twitchRad,_twitchRad);
 			target.rotationRad(rot);
-			target.move(app.cos(rot)*_speed, app.sin(rot)*_speed);
+			target.x(target.x() + app.cos(rot)*_speed);
+			target.y(target.y() + app.sin(rot)*_speed);
+			target.z(goalz);
 		}
 	}
 	public HSwarm register() {

@@ -115,7 +115,8 @@ public class HVelocity extends HBehavior {
 	
 	@Override
 	public void runBehavior(PApplet app) {
-		_target.move(_velocityX, _velocityY);
+		_target.x(_target.x() + _velocityX);
+		_target.y(_target.y() + _velocityY);
 		_velocityX += _accelX;
 		_velocityY += _accelY;
 	}

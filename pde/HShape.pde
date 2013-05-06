@@ -60,9 +60,31 @@ public static class HShape extends HDrawable {
 	}
 	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
 		if(_shape == null) return;
+		int wscale;
+		int hscale;
+		float w;
+		float h;
+		if(_width < 0) {
+			w = -_width;
+			wscale = -1;
+			drawX = -drawX;
+		} else {
+			w = _width;
+			wscale = 1;
+		}
+		if(_height < 0) {
+			h = -_height;
+			hscale = -1;
+			drawY = - drawY;
+		} else {
+			h = _height;
+			hscale = 1;
+		}
 		applyStyle(g,currAlphaPerc);
+		g.pushMatrix();
+		g.scale(wscale, hscale);
 		if(_randomColors == null) {
-			g.shape(_shape, drawX,drawY, _width,_height);
+			g.shape(_shape, drawX,drawY, w,h);
 		} else for(int i=0; i<_shape.getChildCount(); ++i) {
 			PShape childShape = _shape.getChild(i);
 			childShape.width = _shape.width;
@@ -71,7 +93,8 @@ public static class HShape extends HDrawable {
 				g.fill(_randomColors.getColor());
 			if(_randomColors.appliesStroke())
 				g.stroke(_randomColors.getColor());
-			g.shape(childShape, drawX,drawY, _width,_height);
+			g.shape(childShape, drawX,drawY, w,h);
 		}
+		g.popMatrix();
 	}
 }

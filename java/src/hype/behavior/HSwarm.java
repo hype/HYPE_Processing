@@ -4,7 +4,6 @@ import hype.collection.HIterator;
 import hype.collection.HLinkedHashSet;
 import hype.interfaces.HLocatable;
 import hype.interfaces.HSwarmer;
-import hype.util.H;
 import hype.util.HConstants;
 import hype.util.HMath;
 import hype.util.HVector;
@@ -108,8 +107,7 @@ public class HSwarm extends HBehavior {
 		return _twitchRad;
 	}
 	
-	protected HLocatable getGoal(HSwarmer target) {
-		PApplet app = H.app();
+	protected HLocatable getGoal(HSwarmer target, PApplet app) {
 		HLocatable goal = null;
 		float nearestDist = -1;
 		
@@ -137,10 +135,12 @@ public class HSwarm extends HBehavior {
 			
 			float goalx = _idleGoalX;
 			float goaly = _idleGoalY;
-			HLocatable goal = getGoal(target);
+			float goalz = 0;
+			HLocatable goal = getGoal(target, app);
 			if(goal != null) {
 				goalx = goal.x();
 				goaly = goal.y();
+				goalz = goal.z();
 			}
 			
 			// Get rotation that points towards the goal, plus easing
@@ -154,7 +154,9 @@ public class HSwarm extends HBehavior {
 			
 			// Apply the rotation and move to the direction of its rotation
 			target.rotationRad(rot);
-			target.move(app.cos(rot)*_speed, app.sin(rot)*_speed);
+			target.x(target.x() + app.cos(rot)*_speed);
+			target.y(target.y() + app.sin(rot)*_speed);
+			target.z(goalz);
 		}
 	}
 	

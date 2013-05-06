@@ -54,7 +54,8 @@ public static class HFollow extends HBehavior {
 		if(_follower==null || ! H.mouse().started()) return;
 		_dx = _dx*_spring + (_goal.x()-_follower.x()) * _ease;
 		_dy = _dy*_spring + (_goal.y()-_follower.y()) * _ease;
-		_follower.move(_dx,_dy);
+		_follower.x(_follower.x() + _dx);
+		_follower.y(_follower.y() + _dy);
 	}
 	public HFollow register() {
 		return (HFollow) super.register();

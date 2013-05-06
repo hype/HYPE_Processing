@@ -14,20 +14,40 @@ public class HVector extends PVector implements HLocatable {
 		super(xCoord, yCoord);
 	}
 	
+	public HVector(float xCoord, float yCoord, float zCoord) {
+		super(xCoord, yCoord, zCoord);
+	}
+	
 	@Override
 	public float x() {
-		return x;
+		return super.x;
+	}
+	
+	@Override
+	public HVector x(float newX) {
+		super.x = newX;
+		return this;
 	}
 
 	@Override
 	public float y() {
-		return y;
+		return super.y;
 	}
 
 	@Override
-	public HVector move(float dx, float dy) {
-		x += dx;
-		y += dy;
+	public HVector y(float newY) {
+		super.y = newY;
+		return this;
+	}
+
+	@Override
+	public float z() {
+		return super.z;
+	}
+
+	@Override
+	public HVector z(float newZ) {
+		super.z = newZ;
 		return this;
 	}
 }

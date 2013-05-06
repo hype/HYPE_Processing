@@ -16,10 +16,19 @@ public static class HMouse implements HLocatable {
 	public float x() {
 		return _app.mouseX;
 	}
+	public HMouse x(float newX) {
+		return this;
+	}
 	public float y() {
 		return _app.mouseY;
 	}
-	public HMouse move(float dx, float dy) {
+	public HMouse y(float newY) {
+		return this;
+	}
+	public float z() {
+		return 0;
+	}
+	public HMouse z(float newZ) {
 		return this;
 	}
 }

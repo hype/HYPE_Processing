@@ -223,34 +223,39 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return new PVector(_x,_y,_z);
 	}
 	
+	@Override
 	public HDrawable x(float newX) {
 		_x = newX;
 		return this;
 	}
 	
+	@Override
 	public float x() {
 		return _x;
 	}
 	
+	@Override
 	public HDrawable y(float newY) {
 		_y = newY;
 		return this;
 	}
 	
+	@Override
 	public float y() {
 		return _y;
 	}
 	
+	@Override
 	public HDrawable z(float newZ) {
 		_z = newZ;
 		return this;
 	}
 	
+	@Override
 	public float z() {
 		return _z;
 	}
 	
-	@Override
 	public HDrawable move(float dx, float dy) {
 		_x += dx;
 		_y += dy;

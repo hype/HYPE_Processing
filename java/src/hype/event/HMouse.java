@@ -29,6 +29,11 @@ public class HMouse implements HLocatable {
 	public float x() {
 		return _app.mouseX;
 	}
+	
+	@Override
+	public HMouse x(float newX) {
+		return this;
+	}
 
 	@Override
 	public float y() {
@@ -36,7 +41,17 @@ public class HMouse implements HLocatable {
 	}
 
 	@Override
-	public HMouse move(float dx, float dy) {
+	public HMouse y(float newY) {
+		return this;
+	}
+
+	@Override
+	public float z() {
+		return 0;
+	}
+
+	@Override
+	public HMouse z(float newZ) {
 		return this;
 	}
 }
