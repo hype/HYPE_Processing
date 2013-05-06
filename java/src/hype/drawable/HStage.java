@@ -41,7 +41,7 @@ public class HStage extends HDrawable {
 		return this;
 	}
 	
-	public boolean autoClear() {
+	public boolean autoClears() {
 		return _autoClearFlag;
 	}
 	
@@ -121,6 +121,8 @@ public class HStage extends HDrawable {
 	public HDrawable x(float newX) { return this; }
 	@Override
 	public HDrawable y(float newY) { return this; }
+	@Override
+	public HDrawable z(float newY) { return this; }
 	@Override
 	public HDrawable move(float dx, float dy) { return this; }
 	@Override

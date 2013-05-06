@@ -139,7 +139,8 @@ public static class HCanvas extends HDrawable {
 	public void paintAll(PGraphics g, float currAlphaPerc) {
 		if(_alpha<=0 || _width==0 || _height==0) return;
 		g.pushMatrix();
-			g.translate(_x,_y);
+			if(H.uses3D()) g.translate(_x,_y,_z);
+			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
 			currAlphaPerc *= _alpha;
 			_buffer.beginDraw();

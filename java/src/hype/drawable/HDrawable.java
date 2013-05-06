@@ -21,7 +21,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	protected HDrawable _parent, _firstChild, _lastChild;
 	protected HBundle _extras;
 	protected float
-		_x, _y,
+		_x, _y, _z,
 		_anchorPercX, _anchorPercY,
 		_width, _height,
 		_rotationRad, _strokeWeight, _alpha, _sizeProportion;
@@ -205,14 +205,22 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return this;
 	}
 	
+	public HDrawable loc(float newX, float newY, float newZ) {
+		_x = newX;
+		_y = newY;
+		_z = newZ;
+		return this;
+	}
+	
 	public HDrawable loc(PVector pt) {
 		_x = pt.x;
 		_y = pt.y;
+		_z = pt.z;
 		return this;
 	}
 	
 	public PVector loc() {
-		return new PVector(_x,_y);
+		return new PVector(_x,_y,_z);
 	}
 	
 	public HDrawable x(float newX) {
@@ -233,10 +241,26 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return _y;
 	}
 	
+	public HDrawable z(float newZ) {
+		_z = newZ;
+		return this;
+	}
+	
+	public float z() {
+		return _z;
+	}
+	
 	@Override
 	public HDrawable move(float dx, float dy) {
 		_x += dx;
 		_y += dy;
+		return this;
+	}
+	
+	public HDrawable move(float dx, float dy, float dz) {
+		_x += dx;
+		_y += dy;
+		_z += dz;
 		return this;
 	}
 	
@@ -692,7 +716,8 @@ public abstract class HDrawable extends HNode<HDrawable>
 		if(_alpha<=0) return;
 		g.pushMatrix();
 			// Rotate and translate
-			g.translate(_x,_y);
+			if(H.uses3D()) g.translate(_x,_y,_z);
+			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
 			
 			// Compute current alpha

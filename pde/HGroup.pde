@@ -7,7 +7,8 @@ public static class HGroup extends HDrawable {
 	public void paintAll(PGraphics g, float currAlphaPerc) {
 		if(_alpha<=0) return;
 		g.pushMatrix();
-			g.translate(_x,_y);
+			if(H.uses3D()) g.translate(_x,_y,_z);
+			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
 			currAlphaPerc *= _alpha;
 			HDrawable child = _firstChild;

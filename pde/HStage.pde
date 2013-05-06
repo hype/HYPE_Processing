@@ -23,7 +23,7 @@ public static class HStage extends HDrawable {
 		_autoClearFlag = b;
 		return this;
 	}
-	public boolean autoClear() {
+	public boolean autoClears() {
 		return _autoClearFlag;
 	}
 	public HStage clear() {
@@ -69,6 +69,7 @@ public static class HStage extends HDrawable {
 	public HDrawable loc(float newX, float newY) { return this; }
 	public HDrawable x(float newX) { return this; }
 	public HDrawable y(float newY) { return this; }
+	public HDrawable z(float newY) { return this; }
 	public HDrawable move(float dx, float dy) { return this; }
 	public HDrawable locAt(int where) { return this; }
 	public HDrawable rotation(float deg) { return this; }

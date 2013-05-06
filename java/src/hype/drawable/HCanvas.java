@@ -194,7 +194,8 @@ public class HCanvas extends HDrawable {
 		if(_alpha<=0 || _width==0 || _height==0) return;
 		g.pushMatrix();
 			// Rotate and translate
-			g.translate(_x,_y);
+			if(H.uses3D()) g.translate(_x,_y,_z);
+			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
 			
 			// Compute current alpha

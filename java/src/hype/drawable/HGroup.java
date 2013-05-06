@@ -1,5 +1,6 @@
 package hype.drawable;
 
+import hype.util.H;
 import processing.core.PGraphics;
 
 public class HGroup extends HDrawable {
@@ -17,7 +18,8 @@ public class HGroup extends HDrawable {
 		
 		// Perform a trimmed down version of super.paintAll()Ê
 		g.pushMatrix();
-			g.translate(_x,_y);
+			if(H.uses3D()) g.translate(_x,_y,_z);
+			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
 			
 			currAlphaPerc *= _alpha;

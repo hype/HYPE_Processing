@@ -14,6 +14,7 @@ public class H implements HConstants {
 	private static HStage _stage;
 	private static HBehaviorRegistry _behaviors;
 	private static HMouse _mouse;
+	private static boolean _uses3D;
 	
 	
 	// INIT & INSTANCES //
@@ -66,6 +67,15 @@ public class H implements HConstants {
 		return _mouse;
 	}
 	
+	public static H use3D(boolean b) {
+		_uses3D = b;
+		return _self;
+	}
+	
+	public static boolean uses3D() {
+		return _uses3D;
+	}
+	
 	
 	// STAGE METHODS //
 	
@@ -84,8 +94,8 @@ public class H implements HConstants {
 		return _self;
 	}
 	
-	public static boolean autoClear() {
-		return _stage.autoClear();
+	public static boolean autoClears() {
+		return _stage.autoClears();
 	}
 	
 	public static H clearStage() {

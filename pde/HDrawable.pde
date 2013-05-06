@@ -3,7 +3,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	protected HDrawable _parent, _firstChild, _lastChild;
 	protected HBundle _extras;
 	protected float
-		_x, _y,
+		_x, _y, _z,
 		_anchorPercX, _anchorPercY,
 		_width, _height,
 		_rotationRad, _strokeWeight, _alpha, _sizeProportion;
@@ -137,13 +137,20 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_y = newY;
 		return this;
 	}
+	public HDrawable loc(float newX, float newY, float newZ) {
+		_x = newX;
+		_y = newY;
+		_z = newZ;
+		return this;
+	}
 	public HDrawable loc(PVector pt) {
 		_x = pt.x;
 		_y = pt.y;
+		_z = pt.z;
 		return this;
 	}
 	public PVector loc() {
-		return new PVector(_x,_y);
+		return new PVector(_x,_y,_z);
 	}
 	public HDrawable x(float newX) {
 		_x = newX;
@@ -159,9 +166,22 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public float y() {
 		return _y;
 	}
+	public HDrawable z(float newZ) {
+		_z = newZ;
+		return this;
+	}
+	public float z() {
+		return _z;
+	}
 	public HDrawable move(float dx, float dy) {
 		_x += dx;
 		_y += dy;
+		return this;
+	}
+	public HDrawable move(float dx, float dy, float dz) {
+		_x += dx;
+		_y += dy;
+		_z += dz;
 		return this;
 	}
 	public HDrawable locAt(int where) {
@@ -499,7 +519,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public void paintAll(PGraphics g, float currAlphaPerc) {
 		if(_alpha<=0) return;
 		g.pushMatrix();
-			g.translate(_x,_y);
+			if(H.uses3D()) g.translate(_x,_y,_z);
+			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
 			currAlphaPerc *= _alpha;
 			draw(g,-anchorX(),-anchorY(),currAlphaPerc);

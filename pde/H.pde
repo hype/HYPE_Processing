@@ -5,6 +5,7 @@ public static class H implements HConstants {
 	private static HStage _stage;
 	private static HBehaviorRegistry _behaviors;
 	private static HMouse _mouse;
+	private static boolean _uses3D;
 	public static H init(PApplet applet) {
 		_app = applet;
 		HMath.init(_app);
@@ -41,6 +42,13 @@ public static class H implements HConstants {
 	public static HMouse mouse() {
 		return _mouse;
 	}
+	public static H use3D(boolean b) {
+		_uses3D = b;
+		return _self;
+	}
+	public static boolean uses3D() {
+		return _uses3D;
+	}
 	public static H background(int clr) {
 		_stage.background(clr);
 		return _self;
@@ -53,8 +61,8 @@ public static class H implements HConstants {
 		_stage.autoClear(b);
 		return _self;
 	}
-	public static boolean autoClear() {
-		return _stage.autoClear();
+	public static boolean autoClears() {
+		return _stage.autoClears();
 	}
 	public static H clearStage() {
 		_stage.clear();
