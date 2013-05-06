@@ -95,6 +95,30 @@ public class HImage extends HDrawable {
 		currAlphaPerc *= (_fill>>>24);
 		g.tint( _fill | 0xFF000000, H.app().round(currAlphaPerc) );
 		
-		g.image(_image,drawX,drawY,_width,_height);
+		float wscale;
+		float hscale;
+		float w;
+		float h;
+		if(_width < 0) {
+			w = -_width;
+			wscale = -1;
+			drawX = -drawX;
+		} else {
+			w = _width;
+			wscale = 1;
+		}
+		if(_height < 0) {
+			h = -_height;
+			hscale = -1;
+			drawY = - drawY;
+		} else {
+			h = _height;
+			hscale = 1;
+		}
+		
+		g.pushMatrix();
+		g.scale(wscale, hscale);
+		g.image(_image, drawX,drawY, w,h);
+		g.popMatrix();
 	}
 }

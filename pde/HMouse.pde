@@ -1,7 +1,7 @@
 public static class HMouse implements HLocatable {
 	private PApplet _app;
 	private int _button;
-	private boolean _started, _moved, _isPressed, _isReleased, _isClicked;
+	private boolean _started, _moved, _clicked, _dragged;
 	public HMouse(PApplet app) {
 		_app = app;
 	}
@@ -9,9 +9,9 @@ public static class HMouse implements HLocatable {
 		return _started;
 	}
 	public void handleEvents() {
-		if(!_started && _app.pmouseX!=0 && _app.pmouseY!=0) _started = true;
 		_button = _app.mouseButton;
 		if(!_moved) _moved = (_app.pmouseX != 0) || (_app.pmouseY != 0);
+		else if(!_started) _started = true;
 	}
 	public float x() {
 		return _app.mouseX;

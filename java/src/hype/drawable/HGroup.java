@@ -13,7 +13,7 @@ public class HGroup extends HDrawable {
 	
 	@Override
 	public void paintAll(PGraphics g, float currAlphaPerc) {
-		if(_alpha<=0 || _width<=0 || _height<=0) return;
+		if(_alpha<=0) return;
 		
 		// Perform a trimmed down version of super.paintAll()Ê
 		g.pushMatrix();

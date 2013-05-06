@@ -1,8 +1,6 @@
 package hype;
 
-import hype.behavior.HFollow;
-import hype.drawable.HDrawable;
-import hype.drawable.HPath;
+import hype.drawable.HImage;
 import hype.util.H;
 import processing.core.PApplet;
 
@@ -11,31 +9,32 @@ public class DummyApplet extends PApplet {
 	
 	/*
 	 * TODO
-	 * - [x] triangle stuff
-	 * - [x] hype update script
-	 * - [x] js PGraphics hack
 	 * - [x] HDrawable.proportional()
 	 * - [x] remove HPath.preserveSizeRatio()
 	 * - [x] HMouse._started tweaks
+	 * 
+	 * - flipping via width() & height() / allow negative width & height
+	 * 	- [ ] HImage
+	 * 	- [ ] HEllipse
+	 * 	- [ ] HPath
+	 * 	- [ ] HShape
+	 * 	- [ ] HText
+	 * 
+	 * - [ ] HDrawable.firstChild(), HDrawable.lastChild();
 	 * - [ ] HMouse flags
 	 */
-	
-	HDrawable d;
 	
 	@Override
 	public void setup() {
 		size(512,512);
 		H.init(this);
 		
-		//d = new HEllipse().scale(random(.5f,1.5f),random(.5f,1.5f)).proportional(true);
-		d = new HPath().star(5, H.PHI_1,-90);//.triangle(H.RIGHT, H.LEFT);
-		H.add(d).anchorAt(H.CENTER).locAt(H.CENTER);
-		new HFollow().target(d);
+		H.add(new HImage("Tux.png")).scale(1,-.75f).locAt(H.CENTER).anchorAt(H.CENTER);
 	}
 	
 	@Override
 	public void draw() {
 		H.drawStage();
-		//d.size(mouseX-d.x(),mouseY-d.y());
+		noLoop();//
 	}
 }

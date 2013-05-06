@@ -497,7 +497,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		} else g.noStroke();
 	}
 	public void paintAll(PGraphics g, float currAlphaPerc) {
-		if(_alpha<=0 || _width<0 || _height<0) return;
+		if(_alpha<=0) return;
 		g.pushMatrix();
 			g.translate(_x,_y);
 			g.rotate(_rotationRad);
