@@ -24,8 +24,9 @@ public class DummyApplet extends PApplet {
 	 * 	- [x] HPath
 	 * 	- [ ] HShape
 	 * 	- [x] HText
-	 * - [ ] Z-axis on HSwarm & HLocatable
+	 * - [x] Z-axis on HSwarm & HLocatable
 	 * - [ ] HDrawable.firstChild(), HDrawable.lastChild();
+	 * - [ ] issue #10
 	 * - [ ] HMouse flags
 	 * 
 	 * - [ ] Standardize boolean getters
