@@ -1,6 +1,7 @@
 package hype;
 
-import hype.drawable.HImage;
+import hype.drawable.HPath;
+import hype.drawable.HText;
 import hype.util.H;
 import processing.core.PApplet;
 
@@ -31,10 +32,11 @@ public class DummyApplet extends PApplet {
 		size(512,512);
 		H.init(this);
 		
-		H.add(new HImage("Tux.png")).scale(1,1).locAt(H.CENTER).anchorAt(H.CENTER);
+//		H.add(new HImage("Tux.png")).scale(1,1).locAt(H.CENTER).anchorAt(H.CENTER);
+		H.add(new HText("hey")).scale(-1,1).locAt(H.CENTER).anchorAt(H.CENTER);
 //		H.add(new HPath().vertexPerc(0,0).vertexPerc(1,0).vertexPerc(0,1)).locAt(H.CENTER).width(64).height(64).strokeWeight(2);
-//		H.add(new HPath().vertex(0,height/2).vertex(width,height/2).endPath());
-//		H.add(new HPath().vertex(width/2,0).vertex(width/2,height).endPath());
+		H.add(new HPath().vertex(0,height/2).vertex(width,height/2).endPath());
+		H.add(new HPath().vertex(width/2,0).vertex(width/2,height).endPath());
 	}
 	
 	@Override

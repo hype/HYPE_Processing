@@ -16,6 +16,8 @@ public static class HText extends HDrawable {
 		_height = size;
 		font(fontArg);
 		height(size);
+		_fill = HConstants.BLACK;
+		_stroke = HConstants.CLEAR;
 	}
 	public HText createCopy() {
 		HText copy = new HText(_text,_height,_font);
@@ -59,32 +61,20 @@ public static class HText extends HDrawable {
 	protected void adjustMetrics() {
 		PApplet app = H.app();
 		app.pushStyle();
-		app.textFont(_font,_height);
+		app.textFont(_font,(_height < 0)? -_height : _height);
 		_descent = app.textDescent();
-		super.width( (_text==null)? 0 : app.textWidth(_text) );
+		_width = (_text==null)? 0 :
+			(_width<0)? -app.textWidth(_text) : app.textWidth(_text);
 		app.popStyle();
 	}
 	public HText width(float w) {
+		if(w<0 == _width>0) _width = -_width;
 		return this;
 	}
 	public HText height(float h) {
-		super.height(h);
+		_height = h;
 		adjustMetrics();
 		return this;
-	}
-	public HText size(float w, float h) {
-		return height(h);
-	}
-	public HText size(float s) {
-		return height(s);
-	}
-	public HText scale(float s) {
-		super.scale(s);
-		adjustMetrics();
-		return this;
-	}
-	public HText scale(float sw, float sh) {
-		return scale(sh);
 	}
 	public boolean containsRel(float relX, float relY) {
 		if(_text == null || _height == 0) return false;
@@ -108,7 +98,28 @@ public static class HText extends HDrawable {
 	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
 		if(_text == null) return;
 		applyStyle(g,currAlphaPerc);
-		g.textFont(_font,_height);
-		g.text(_text,drawX,drawY+_height-_descent);
+		int wscale;
+		int hscale;
+		float h;
+		if(_width < 0) {
+			wscale = -1;
+			drawX = -drawX;
+		} else {
+			wscale = 1;
+		}
+		if(_height < 0) {
+			h = -_height;
+			hscale = -1;
+			drawY = -drawY;
+		} else {
+			h = _height;
+			hscale = 1;
+		}
+		System.out.println(drawX);
+		g.pushMatrix();
+			g.scale(wscale, hscale);
+			g.textFont(_font,h);
+			g.text(_text,drawX,drawY+h-_descent);
+		g.popMatrix();
 	}
 }
