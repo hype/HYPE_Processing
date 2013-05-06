@@ -115,7 +115,6 @@ public static class HText extends HDrawable {
 			h = _height;
 			hscale = 1;
 		}
-		System.out.println(drawX);
 		g.pushMatrix();
 			g.scale(wscale, hscale);
 			g.textFont(_font,h);
