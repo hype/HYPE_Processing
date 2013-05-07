@@ -53,17 +53,17 @@ public static class HStage extends HDrawable {
 	public float height() {
 		return _app.height;
 	}
-	public void paintAll(PGraphics g, float currAlphaPerc) {
+	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPerc) {
 		g.pushStyle();
 			if(_autoClearFlag) clear();
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(g,1);
+				child.paintAll(g, usesZ, currAlphaPerc);
 				child = child.next();
 			}
 		g.popStyle();
 	}
-	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {}
+	public void draw(PGraphics g,boolean b,float x,float y,float p) {}
 	public void copyPropertiesFrom(HDrawable other) {}
 	public HDrawable createCopy() { return null; }
 	public HDrawable loc(float newX, float newY) { return this; }

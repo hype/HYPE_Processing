@@ -58,7 +58,9 @@ public static class HShape extends HDrawable {
 		_randomColors = null;
 		return this;
 	}
-	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
+	public void draw( PGraphics g, boolean usesZ,
+		float drawX,float drawY,float currAlphaPerc
+	) {
 		if(_shape == null) return;
 		int wscale;
 		int hscale;

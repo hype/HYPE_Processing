@@ -1,5 +1,6 @@
 package hype;
 
+import hype.behavior.HFollow;
 import hype.behavior.HSwarm;
 import hype.drawable.HDrawable;
 import hype.drawable.HPath;
@@ -16,8 +17,11 @@ public class DummyApplet extends PApplet {
 	 * - [x] HDrawable.proportional()
 	 * - [x] remove HPath.preserveSizeRatio()
 	 * - [x] HMouse._started tweaks
-	 * 
 	 * - [x] Z-axis on HDrawable
+	 * 
+	 * - [x] HDrawable.paintAll( ... boolean use3D )
+	 * - [x] HCanvas.graphics
+	 * - [ ] Renderers for HCanvas
 	 * 
 	 * - [ ] flipping via width() & height() / allow negative width & height
 	 * 	- [x] HImage
@@ -44,12 +48,12 @@ public class DummyApplet extends PApplet {
 		H.add(new HPath().vertex(0,height/2).vertex(width,height/2).endPath());
 		H.add(new HPath().vertex(width/2,0).vertex(width/2,height).endPath());
 		
-		HSwarm s = new HSwarm().idleGoal(width/2,height/2).addGoal(width*3/4,height*3/4).twitch(30).turnEase(.05f).speed(4);
+		HSwarm s = new HSwarm().idleGoal(width/2,height/2).addGoal(d).twitch(15).turnEase(.05f).speed(4);
 		for(int i=0; i<40; ++i) {
 			s.addTarget(H.add(new HRect().size(16,4)).anchorAt(H.CENTER));
 		}
 		
-		//new HFollow().target(d);
+		new HFollow().target(d);
 		//new HVelocity().target(d).accel(1,45);
 	}
 	

@@ -6,7 +6,8 @@ import processing.core.PConstants;
 import processing.core.PGraphics;
 
 public class HCanvas extends HDrawable {
-	protected PGraphics _buffer;
+	protected PGraphics _graphics;
+	protected String _renderer;
 	protected float _filterParam;
 	protected int _filterKind, _blendMode;
 	protected boolean _autoClear,_hasFade,_hasFilter,_hasFilterParam,_hasBlend;
@@ -15,8 +16,60 @@ public class HCanvas extends HDrawable {
 		this(H.app().width, H.app().height);
 	}
 	
+	public HCanvas(String bufferRenderer) {
+		this(H.app().width, H.app().height, bufferRenderer);
+	}
+	
 	public HCanvas(float w, float h) {
+		this(w, h, PConstants.JAVA2D);
+	}
+	
+	public HCanvas(float w, float h, String bufferRenderer) {
+		_renderer = bufferRenderer;
 		size(w,h);
+	}
+	
+	@Override
+	public HCanvas createCopy() {
+		HCanvas copy = new HCanvas(_width,_height,_renderer);
+		
+		copy.autoClear(_autoClear).hasFade(_hasFade);
+		if(_hasFilter) copy.filter(_filterKind, _filterParam);
+		if(_hasBlend) copy.blend(_blendMode);
+		
+		copy.copyPropertiesFrom(this);
+		return copy;
+	}
+
+	@SuppressWarnings("static-access")
+	protected void updateBuffer() {
+		PApplet app = H.app();
+		
+		int w = app.round(_width);
+		int h = app.round(_height);
+		
+		_graphics = app.createGraphics(w, h, _renderer);
+		_width = w;
+		_height = h;
+	}
+	
+	public HCanvas renderer(String s) {
+		_renderer = s;
+		updateBuffer();
+		return this;
+	}
+	
+	public String renderer() {
+		return _renderer;
+	}
+	
+	public boolean usesZ() {
+		return _renderer.equals(PConstants.P3D) ||
+			_renderer.equals(PConstants.OPENGL);
+	}
+	
+	public PGraphics graphics() {
+		return _graphics;
 	}
 	
 	public HCanvas filter(int kind) {
@@ -26,7 +79,7 @@ public class HCanvas extends HDrawable {
 		return this;
 	}
 	
-	public HCanvas filter(int kind, int param) {
+	public HCanvas filter(int kind, float param) {
 		_hasFilter = true;
 		_hasFilterParam = true;
 		_filterKind = kind;
@@ -151,50 +204,36 @@ public class HCanvas extends HDrawable {
 		return (HCanvas) noFill();
 	}
 	
-	@SuppressWarnings("static-access")
 	@Override
 	public HCanvas size(float w, float h) {
-		PApplet app = H.app();
-		
-		int tmpw = app.round(w);
-		int tmph = app.round(h);
-		
-		_buffer = app.createGraphics(tmpw, tmph);
-		
-		_width = tmpw;
-		_height = tmph;
-		
+		super.width(w);
+		super.height(h);
+		updateBuffer();
 		return this;
 	}
 	
 	@Override
-	public HCanvas size(float s) {
-		return size(s,s);
-	}
-	
-	@Override
 	public HCanvas width(float w) {
-		return size(w, _height);
+		super.width(w);
+		updateBuffer();
+		return this;
 	}
 	
 	@Override
 	public HCanvas height(float h) {
-		return size(_width, h);
+		super.height(h);
+		updateBuffer();
+		return this;
 	}
 	
 	@Override
-	public HCanvas createCopy() {
-		HCanvas copy = new HCanvas(_width,_height);
-		copy.copyPropertiesFrom(this);
-		return copy;
-	}
-	
-	@Override
-	public void paintAll(PGraphics g, float currAlphaPerc) {
+	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPerc) {
+		// TODO manual drawing
+		
 		if(_alpha<=0 || _width==0 || _height==0) return;
 		g.pushMatrix();
 			// Rotate and translate
-			if(H.uses3D()) g.translate(_x,_y,_z);
+			if(usesZ) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
 			
@@ -202,43 +241,43 @@ public class HCanvas extends HDrawable {
 			currAlphaPerc *= _alpha;
 			
 			// Initialize the buffer
-			_buffer.beginDraw();
+			_graphics.beginDraw();
 			
 			// Prepare the buffer for this frame
 			if(_autoClear) {
-				_buffer.clear();
+				_graphics.clear();
 			} else {
 				if(_hasFilter) {
-					if(_hasFilterParam) _buffer.filter(_filterKind,_filterParam);
-					else _buffer.filter(_filterKind);
+					if(_hasFilterParam) _graphics.filter(_filterKind,_filterParam);
+					else _graphics.filter(_filterKind);
 				}
 				if(_hasFade) {
-					applyStyle(_buffer, currAlphaPerc);
-					_buffer.rect(0,0, _buffer.width,_buffer.height);
+					applyStyle(_graphics, currAlphaPerc);
+					_graphics.rect(0,0, _graphics.width,_graphics.height);
 				}
 				if(_hasBlend) {
-					_buffer.blend(
-						0,0, _buffer.width,_buffer.height,
-						0,0, _buffer.width,_buffer.height, _blendMode);
+					_graphics.blend(
+						0,0, _graphics.width,_graphics.height,
+						0,0, _graphics.width,_graphics.height, _blendMode);
 				}
 			}
 			
 			// Draw children
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(_buffer,currAlphaPerc);
+				child.paintAll(_graphics, usesZ(),currAlphaPerc);
 				child = child.next();
 			}
 			
 			// Finalize the buffer
-			_buffer.endDraw();
+			_graphics.endDraw();
 			
 			// Draw the buffer
-			g.image(_buffer,0,0);
+			g.image(_graphics,0,0);
 		g.popMatrix();
 	}
 	
 	@Override
-	public void draw(
-		PGraphics g, float drawX, float drawY, float currAlphaPerc) {}
+	public void draw( PGraphics g, boolean usesZ,
+		float drawX, float drawY, float currAlphaPerc) {}
 }

@@ -62,7 +62,9 @@ public static class HRect extends HDrawable {
 	public float roundingBL() {
 		return _bl;
 	}
-	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
+	public void draw( PGraphics g, boolean usesZ,
+		float drawX, float drawY, float currAlphaPerc
+	) {
 		applyStyle(g,currAlphaPerc);
 		g.rect(drawX,drawY, _width,_height, _tl,_tr,_br,_bl);
 	}

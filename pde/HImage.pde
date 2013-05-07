@@ -59,13 +59,10 @@ public static class HImage extends HDrawable {
 		int iy = H.app().round(relY * _image.height/_height);
 		return (0 < _image.get(ix,iy)>>>24);
 	}
-	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
+	public void draw( PGraphics g, boolean usesZ,
+		float drawX, float drawY, float currAlphaPerc
+	) {
 		if(_image==null) return;
-		/*
-		 * The awkward alpha separation from the tint color is a workaround for
-		 * a quirk in js mode where the alpha in the first param doesn't apply
-		 * on jpg images.
-		 */
 		currAlphaPerc *= (_fill>>>24);
 		g.tint( _fill | 0xFF000000, H.app().round(currAlphaPerc) );
 		int wscale;

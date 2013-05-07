@@ -516,23 +516,23 @@ public static abstract class HDrawable extends HNode<HDrawable>
 			g.strokeJoin(_strokeJoin);
 		} else g.noStroke();
 	}
-	public void paintAll(PGraphics g, float currAlphaPerc) {
+	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPerc) {
 		if(_alpha<=0) return;
 		g.pushMatrix();
-			if(H.uses3D()) g.translate(_x,_y,_z);
+			if(usesZ) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
 			currAlphaPerc *= _alpha;
-			draw(g,-anchorX(),-anchorY(),currAlphaPerc);
+			draw(g, usesZ,-anchorX(),-anchorY(),currAlphaPerc);
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(g,currAlphaPerc);
+				child.paintAll(g, usesZ, currAlphaPerc);
 				child = child._next;
 			}
 		g.popMatrix();
 	}
-	public abstract void draw(
-		PGraphics g, float drawX, float drawY, float currAlphaPerc);
+	public abstract void draw( PGraphics g, boolean usesZ,
+		float drawX, float drawY, float currAlphaPerc);
 	public static class HDrawableIterator implements HIterator<HDrawable> {
 		private HDrawable parent, d1, d2;
 		public HDrawableIterator(HDrawable parentDrawable) {

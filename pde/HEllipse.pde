@@ -98,7 +98,9 @@ public static class HEllipse extends HDrawable {
 			return HMath.rightOfLine(pt1[0],pt1[1], pt2[0],pt2[1], relX,relY);
 		}
 	}
-	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
+	public void draw( PGraphics g, boolean usesZ,
+		float drawX,float drawY,float currAlphaPerc
+	) {
 		applyStyle(g,currAlphaPerc);
 		drawX += _width/2;
 		drawY += _height/2;

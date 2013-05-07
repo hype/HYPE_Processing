@@ -258,7 +258,9 @@ public static class HPath extends HDrawable {
 		}
 		return isIn;
 	}
-	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
+	public void draw( PGraphics g, boolean usesZ,
+		float drawX, float drawY, float currAlphaPerc
+	) {
 		int numVertices = _vertices.size();
 		if(numVertices <= 0) return;
 		applyStyle(g,currAlphaPerc);

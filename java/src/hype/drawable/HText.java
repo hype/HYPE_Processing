@@ -134,7 +134,9 @@ public class HText extends HDrawable {
 	} 
 	
 	@Override
-	public void draw(PGraphics g,float drawX,float drawY,float currAlphaPerc) {
+	public void draw( PGraphics g, boolean usesZ,
+		float drawX, float drawY, float currAlphaPerc
+	) {
 		if(_text == null) return;
 		
 		applyStyle(g,currAlphaPerc);
