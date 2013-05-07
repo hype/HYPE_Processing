@@ -2,7 +2,7 @@ public static class HCanvas extends HDrawable {
 	protected PGraphics _graphics;
 	protected String _renderer;
 	protected float _filterParam;
-	protected int _filterKind, _blendMode;
+	protected int _filterKind, _blendMode, _fadeAmt;
 	protected boolean _autoClear,_hasFade,_hasFilter,_hasFilterParam,_hasBlend;
 	public HCanvas() {
 		this(H.app().width, H.app().height);
@@ -30,6 +30,7 @@ public static class HCanvas extends HDrawable {
 		int w = app.round(_width);
 		int h = app.round(_height);
 		_graphics = app.createGraphics(w, h, _renderer);
+		_graphics.loadPixels();
 		_width = w;
 		_height = h;
 	}
@@ -107,13 +108,9 @@ public static class HCanvas extends HDrawable {
 	public int blendMode() {
 		return _blendMode;
 	}
-	public HCanvas fade() {
+	public HCanvas fade(int fadeAmt) {
 		_hasFade = true;
-		return this;
-	}
-	public HCanvas fade(int bgAlpha) {
-		_hasFade = true;
-		background(_fill, bgAlpha);
+		_fadeAmt = fadeAmt;
 		return this;
 	}
 	public HCanvas noFade() {
@@ -184,8 +181,16 @@ public static class HCanvas extends HDrawable {
 					else _graphics.filter(_filterKind);
 				}
 				if(_hasFade) {
-					applyStyle(_graphics, currAlphaPerc);
-					_graphics.rect(0,0, _graphics.width,_graphics.height);
+					int[] pix = _graphics.pixels;
+					for(int i=0; i<pix.length; ++i) {
+						int clr = pix[i];
+						int a = clr >>> 24;
+						if(a == 0) continue;
+						a -= _fadeAmt;
+						if(a < 0) a = 0;
+						pix[i] = clr & 0xFFFFFF | (a << 24);
+					}
+					_graphics.updatePixels();
 				}
 				if(_hasBlend) {
 					_graphics.blend(

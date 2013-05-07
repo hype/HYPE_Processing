@@ -2,6 +2,7 @@ package hype;
 
 import hype.behavior.HFollow;
 import hype.behavior.HSwarm;
+import hype.drawable.HCanvas;
 import hype.drawable.HDrawable;
 import hype.drawable.HPath;
 import hype.drawable.HRect;
@@ -38,7 +39,7 @@ public class DummyApplet extends PApplet {
 	
 	@Override
 	public void setup() {
-		size(512,512);
+		size(1024,768);
 		H.init(this);
 		
 //		H.add(new HImage("Tux.png")).scale(1,1).locAt(H.CENTER).anchorAt(H.CENTER);
@@ -48,9 +49,11 @@ public class DummyApplet extends PApplet {
 		H.add(new HPath().vertex(0,height/2).vertex(width,height/2).endPath());
 		H.add(new HPath().vertex(width/2,0).vertex(width/2,height).endPath());
 		
+		HCanvas c = new HCanvas().fade(16);
+		H.add(c);
 		HSwarm s = new HSwarm().idleGoal(width/2,height/2).addGoal(d).twitch(15).turnEase(.05f).speed(4);
 		for(int i=0; i<40; ++i) {
-			s.addTarget(H.add(new HRect().size(16,4)).anchorAt(H.CENTER));
+			s.addTarget(c.add(new HRect().size(16,4)).anchorAt(H.CENTER));
 		}
 		
 		new HFollow().target(d);
