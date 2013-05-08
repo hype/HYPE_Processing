@@ -494,6 +494,40 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HBundle extras() {
 		return _extras;
 	}
+	public HDrawable obj(String key, Object value) {
+		if(_extras == null) _extras = new HBundle();
+		_extras.obj(key,value);
+		return this;
+	}
+	public HDrawable num(String key, float value) {
+		_extras.num(key,value);
+		return this;
+	}
+	public Object obj(String key) {
+		if(_extras == null)
+			return null;
+		return _extras.obj(key);
+	}
+	public String str(String key) {
+		if(_extras == null)
+			return null;
+		return _extras.str(key);
+	}
+	public float num(String key) {
+		if(_extras == null)
+			return 0;
+		return _extras.num(key);
+	}
+	public int numI(String key) {
+		if(_extras == null)
+			return 0;
+		return _extras.numI(key);
+	}
+	public boolean bool(String key) {
+		if(_extras == null)
+			return false;
+		return _extras.bool(key);
+	}
 	public boolean contains(float absX, float absY) {
 		float[] rel = HMath.relLocArr(this, absX, absY);
 		rel[0] += anchorX();

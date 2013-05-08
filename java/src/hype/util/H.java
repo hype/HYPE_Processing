@@ -39,7 +39,7 @@ public class H implements HConstants {
 			
 			_graphicsContext = _app.g;
 			
-		} catch(Error e) {
+		} catch(Exception e) {
 			/* This roundabout assignment bypasses java's compile-time type
 			 * checking. Normally, this would cause a class-cast exception in
 			 * java, but js mode doesn't mind due to duck-typing.

@@ -27,6 +27,13 @@ public class HBundle {
 		return objectContents.get(key);
 	}
 	
+	public String str(String key) {
+		Object o = objectContents.get(key);
+		if(o instanceof String)
+			return (String) o;
+		return null;
+	}
+	
 	public float num(String key) {
 		return numberContents.get(key);
 	}
@@ -35,7 +42,7 @@ public class HBundle {
 		return H.app().round(numberContents.get(key));
 	}
 	
-	public boolean numB(String key) {
+	public boolean bool(String key) {
 		return (numberContents.get(key) != 0);
 	}
 }

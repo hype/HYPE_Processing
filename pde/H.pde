@@ -20,7 +20,7 @@ public static class H implements HConstants {
 			 */
 			int dummyVar = _app.g.A;
 			_graphicsContext = _app.g;
-		} catch(Error e) {
+		} catch(Exception e) {
 			/* This roundabout assignment bypasses java's compile-time type
 			 * checking. Normally, this would cause a class-cast exception in
 			 * java, but js mode doesn't mind due to duck-typing.
