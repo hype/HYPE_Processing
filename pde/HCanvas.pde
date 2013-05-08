@@ -31,6 +31,9 @@ public static class HCanvas extends HDrawable {
 		int h = app.round(_height);
 		_graphics = app.createGraphics(w, h, _renderer);
 		_graphics.loadPixels();
+		_graphics.beginDraw();
+			_graphics.background(H.CLEAR);
+		_graphics.endDraw();
 		_width = w;
 		_height = h;
 	}
@@ -181,6 +184,8 @@ public static class HCanvas extends HDrawable {
 					else _graphics.filter(_filterKind);
 				}
 				if(_hasFade) {
+					if(!_renderer.equals(PConstants.JAVA2D))
+						_graphics.loadPixels();
 					int[] pix = _graphics.pixels;
 					for(int i=0; i<pix.length; ++i) {
 						int clr = pix[i];
@@ -200,7 +205,7 @@ public static class HCanvas extends HDrawable {
 			}
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(_graphics, usesZ(),currAlphaPerc);
+				child.paintAll(_graphics, usesZ(), currAlphaPerc);
 				child = child.next();
 			}
 			_graphics.endDraw();

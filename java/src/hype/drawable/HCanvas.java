@@ -50,6 +50,10 @@ public class HCanvas extends HDrawable {
 		
 		_graphics = app.createGraphics(w, h, _renderer);
 		_graphics.loadPixels();
+		_graphics.beginDraw();
+			_graphics.background(H.CLEAR);
+		_graphics.endDraw();
+		
 		_width = w;
 		_height = h;
 	}
@@ -225,6 +229,7 @@ public class HCanvas extends HDrawable {
 	@Override
 	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPerc) {
 		if(_alpha<=0 || _width==0 || _height==0) return;
+		
 		g.pushMatrix();
 			// Rotate and translate
 			if(usesZ) g.translate(_x,_y,_z);
@@ -246,6 +251,9 @@ public class HCanvas extends HDrawable {
 					else _graphics.filter(_filterKind);
 				}
 				if(_hasFade) {
+					if(!_renderer.equals(PConstants.JAVA2D))
+						_graphics.loadPixels();
+					
 					int[] pix = _graphics.pixels;
 					for(int i=0; i<pix.length; ++i) {
 						int clr = pix[i];
@@ -267,7 +275,7 @@ public class HCanvas extends HDrawable {
 			// Draw children
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(_graphics, usesZ(),currAlphaPerc);
+				child.paintAll(_graphics, usesZ(), currAlphaPerc);
 				child = child.next();
 			}
 			

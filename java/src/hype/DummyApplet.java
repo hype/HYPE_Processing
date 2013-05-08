@@ -19,10 +19,12 @@ public class DummyApplet extends PApplet {
 	 * - [x] remove HPath.preserveSizeRatio()
 	 * - [x] HMouse._started tweaks
 	 * - [x] Z-axis on HDrawable
-	 * 
 	 * - [x] HDrawable.paintAll( ... boolean use3D )
 	 * - [x] HCanvas.graphics
-	 * - [ ] Renderers for HCanvas
+	 * - [x] Renderers for HCanvas
+	 * 
+	 * - [x] Pre-clear the _graphics in HCanvas
+	 * - [x] Call loadPixels on hasFade
 	 * 
 	 * - [ ] flipping via width() & height() / allow negative width & height
 	 * 	- [x] HImage
