@@ -62,25 +62,19 @@ public static class HShape extends HDrawable {
 		float drawX,float drawY,float currAlphaPerc
 	) {
 		if(_shape == null) return;
-		int wscale;
-		int hscale;
-		float w;
-		float h;
+		int wscale = 1;
+		int hscale = 1;
+		float w = _width;
+		float h = _height;
 		if(_width < 0) {
 			w = -_width;
 			wscale = -1;
 			drawX = -drawX;
-		} else {
-			w = _width;
-			wscale = 1;
 		}
 		if(_height < 0) {
 			h = -_height;
 			hscale = -1;
 			drawY = - drawY;
-		} else {
-			h = _height;
-			hscale = 1;
 		}
 		applyStyle(g,currAlphaPerc);
 		g.pushMatrix();

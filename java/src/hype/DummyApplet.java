@@ -1,41 +1,36 @@
 package hype;
 
-import hype.behavior.HFollow;
-import hype.behavior.HSwarm;
-import hype.drawable.HCanvas;
-import hype.drawable.HDrawable;
 import hype.drawable.HPath;
-import hype.drawable.HRect;
-import hype.drawable.HShape;
+import hype.drawable.HText;
 import hype.util.H;
 import processing.core.PApplet;
-import processing.core.PShape;
 
 public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
-	/*
-	 * TODO
+	/* TODO
 	 * - [x] HDrawable.proportional()
 	 * - [x] remove HPath.preserveSizeRatio()
 	 * - [x] HMouse._started tweaks
 	 * - [x] Z-axis on HDrawable
-	 * - [x] HDrawable.paintAll( ... boolean use3D )
-	 * - [x] HCanvas.graphics
+	 * - [x] HDrawable.paintAll( ... boolean usesZ )
+	 * - [x] HCanvas.graphics()
+	 * - [x] flipping via width() & height() / allow negative width & height
+	 * 	- [x] HImage
+	 * 	- [x] HPath
+	 * 	- [x] HShape
+	 * 	- [x] HText
+	 * - [x] Z-axis on HSwarm & HLocatable
 	 * - [x] Renderers for HCanvas
 	 * - [x] Pre-clear the _graphics in HCanvas
 	 * - [x] Call loadPixels on hasFade
-	 * 
 	 * - [x] HBundle shortcuts for HDrawable
+	 * 
+	 * - [ ] HShape hit detection
+	 * - [ ] use pgraphics buffer for HText
 	 * - [ ] child-passable transformations
 	 * - [ ] disable style for HShape in P3D
 	 * 
-	 * - [ ] flipping via width() & height() / allow negative width & height
-	 * 	- [x] HImage
-	 * 	- [x] HPath
-	 * 	- [ ] HShape
-	 * 	- [x] HText
-	 * - [x] Z-axis on HSwarm & HLocatable
 	 * - [ ] HDrawable.firstChild(), HDrawable.lastChild();
 	 * - [ ] issue #10
 	 * - [ ] HMouse flags
@@ -48,31 +43,14 @@ public class DummyApplet extends PApplet {
 		size(1024,768);
 		H.init(this);
 		
-//		H.add(new HImage("Tux.png")).scale(1,1).locAt(H.CENTER).anchorAt(H.CENTER);
-//		H.add(new HText("hey")).scale(-1,1).locAt(H.CENTER).anchorAt(H.CENTER);
-		HDrawable d = H.add(new HShape("bot1.svg").enableStyle(false)).scale(-1,1).locAt(H.CENTER).anchorAt(H.CENTER);
-//		H.add(new HPath().vertexPerc(0,0).vertexPerc(1,0).vertexPerc(0,1)).locAt(H.CENTER).width(64).height(64).strokeWeight(2);
+		H.add(new HText("Tux.png")).scale(1,1).locAt(H.CENTER).anchorAt(H.CENTER);
 		H.add(new HPath().vertex(0,height/2).vertex(width,height/2).endPath());
 		H.add(new HPath().vertex(width/2,0).vertex(width/2,height).endPath());
-		
-		HCanvas c = new HCanvas().fade(16);
-		H.add(c);
-		HSwarm s = new HSwarm().idleGoal(width/2,height/2).addGoal(d).twitch(15).turnEase(.05f).speed(4);
-		for(int i=0; i<40; ++i) {
-			s.addTarget(c.add(new HRect().size(16,4)).anchorAt(H.CENTER));
-		}
-		
-		new HFollow().target(d);
-		//new HVelocity().target(d).accel(1,45);
 	}
-	
-	PShape shp;
 	
 	@Override
 	public void draw() {
 		H.drawStage();
-		
-//		PImage img = loadImage("Tux.png");
-		//noLoop();//
+		noLoop();//
 	}
 }

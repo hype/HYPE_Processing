@@ -100,22 +100,17 @@ public static class HText extends HDrawable {
 	) {
 		if(_text == null) return;
 		applyStyle(g,currAlphaPerc);
-		int wscale;
-		int hscale;
-		float h;
+		int wscale = 1;
+		int hscale = 1;
+		float h = _height;
 		if(_width < 0) {
 			wscale = -1;
 			drawX = -drawX;
-		} else {
-			wscale = 1;
 		}
 		if(_height < 0) {
 			h = -_height;
 			hscale = -1;
 			drawY = -drawY;
-		} else {
-			h = _height;
-			hscale = 1;
 		}
 		g.pushMatrix();
 			g.scale(wscale, hscale);
