@@ -26,14 +26,16 @@ public class DummyApplet extends PApplet {
 	 * - [x] Call loadPixels on hasFade
 	 * - [x] HBundle shortcuts for HDrawable
 	 * 
-	 * - [ ] HShape hit detection
+	 * - [ ] HShape hit detection + pgraphics buffer
 	 * - [ ] use pgraphics buffer for HText
 	 * - [ ] child-passable transformations
 	 * - [ ] disable style for HShape in P3D
 	 * 
 	 * - [ ] HDrawable.firstChild(), HDrawable.lastChild();
-	 * - [ ] issue #10
+	 * - [ ] issue #10 (make HVector a PVector container instead of subclass)
 	 * - [ ] HMouse flags
+	 * - [ ] protected HDrawable.onSizeChange();
+	 * - [ ] migration of math calls to java.lang.Math
 	 * 
 	 * - [ ] Standardize boolean getters
 	 */
