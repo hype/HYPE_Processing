@@ -1,5 +1,6 @@
 public static class HTween extends HBehavior {
 	protected HDrawable _target;
+	protected HCallback _callback;
 	protected float _currVal, _dVal, _endVal,
 		_spring, _ease,
 		_origVal1, _origVal2, _dirRad;
@@ -29,6 +30,13 @@ public static class HTween extends HBehavior {
 	}
 	public HDrawable target() {
 		return _target;
+	}
+	public HTween callback(HCallback c) {
+		_callback = c;
+		return this;
+	}
+	public HCallback callback() {
+		return _callback;
 	}
 	public HTween start(float f) {
 		_currVal = f;
@@ -122,6 +130,13 @@ public static class HTween extends HBehavior {
 			_target.size(w,h);
 			break;
 		default: break;
+		}
+		float tolerance = 1f/512;
+		if(_endVal-tolerance<val && val<_endVal+tolerance &&
+			app.abs(_dVal)<tolerance
+		) {
+			unregister();
+			if(_callback != null) _callback.run(val);
 		}
 	}
 	public HTween register() {

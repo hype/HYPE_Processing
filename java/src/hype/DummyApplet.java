@@ -4,6 +4,7 @@ import hype.behavior.HTween;
 import hype.drawable.HDrawable;
 import hype.drawable.HPath;
 import hype.drawable.HRect;
+import hype.interfaces.HCallback;
 import hype.util.H;
 import processing.core.PApplet;
 
@@ -42,7 +43,8 @@ public class DummyApplet extends PApplet {
 	 * - [ ] migration of math calls to java.lang.Math
 	 * - [ ] privatize fields for non-subclassed classes
 	 * - [ ] refactor HOscillator
-	 * - [ ] negative ease on everything
+	 * - [ ] negative ease on stuff
+	 * - [ ] use int ratios instead of float for HTween
 	 * 
 	 * - [ ] Standardize boolean getters
 	 */
@@ -53,7 +55,13 @@ public class DummyApplet extends PApplet {
 		H.init(this);
 		
 		HDrawable d = H.add(new HRect()).locAt(H.BOTTOM_RIGHT).move(-64,-64);
-		new HTween().target(d).property(H.LOCATION).ease(.05f).spring(.9f).start(width,height).end(width/2,height/2);
+		new HTween().target(d).property(H.LOCATION).ease(.01f).spring(0.9f).start(width,height).end(width/2,height/2).callback(new HCallback() {
+			
+			@Override
+			public void run(Object obj) {
+				System.out.println("Hey");
+			}
+		});
 		H.add(new HPath().vertex(0,height/2).vertex(width,height/2).endPath());
 		H.add(new HPath().vertex(width/2,0).vertex(width/2,height).endPath());
 	}
