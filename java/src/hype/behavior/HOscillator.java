@@ -142,10 +142,10 @@ public class HOscillator extends HBehavior {
 		
 		float outVal = 0;
 		switch(_waveform) {
-		case HConstants.SINE:	outVal = HMath.sineWave(currentDeg);	break;
-		case HConstants.TRIANGLE:outVal = HMath.triangleWave(currentDeg);break;
-		case HConstants.SAW:		outVal = HMath.sawWave(currentDeg);		break;
-		case HConstants.SQUARE:	outVal = HMath.squareWave(currentDeg);	break;
+		case HConstants.SINE:     outVal = HMath.sineWave(currentDeg);    break;
+		case HConstants.TRIANGLE: outVal = HMath.triangleWave(currentDeg);break;
+		case HConstants.SAW:      outVal = HMath.sawWave(currentDeg);     break;
+		case HConstants.SQUARE:   outVal = HMath.squareWave(currentDeg);  break;
 		}
 		outVal = H.app().map(outVal, -1,1, _min,_max) + _relValue;
 		
