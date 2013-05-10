@@ -12,28 +12,29 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [x] HDrawable.proportional()
-	 * - [x] remove HPath.preserveSizeRatio()
-	 * - [x] HMouse._started tweaks
-	 * - [x] Z-axis on HDrawable
-	 * - [x] HDrawable.paintAll( ... boolean usesZ )
-	 * - [x] HCanvas.graphics()
-	 * - [x] flipping via width() & height() / allow negative width & height
-	 * 	- [x] HImage
-	 * 	- [x] HPath
-	 * 	- [x] HShape
-	 * 	- [x] HText
-	 * - [x] Z-axis on HSwarm & HLocatable
-	 * - [x] Renderers for HCanvas
-	 * - [x] Pre-clear the _graphics in HCanvas
-	 * - [x] Call loadPixels on hasFade
-	 * - [x] HBundle shortcuts for HDrawable
-	 * - [x] HTween
+	 * - [ ] 2d point from 3d
 	 * 
-	 * - [ ] pointInScreen
 	 * - [ ] HShape hit detection + pgraphics buffer
 	 * - [ ] use pgraphics buffer for HText
-	 * - [ ] child-passable transformations
+	 * - [ ] bezier stuff for HPath
+	 * 
+	 * - [ ] masking
+	 * - [ ] Proximity
+	 * - [ ] Adjuster
+	 * 	- drawable.adjuster(true)
+	 * 	- move on drag
+	 * 	- delete = remove from parent
+	 * 
+	 * - [ ] recursive spatial transforms HDrawable
+	 * - [ ] recursive stuff for HGroup / child-passable transformations
+	 * 
+	 * - [ ] DepthShuffle
+	 * - [ ] H.capture(<input event>, <filename>) capture static frame
+	 * - [ ] H.capture(<start>,<end>,<filename>) capture sequence of frames
+	 * - [ ] capture pdf (keep copies when moving for the pdf export OR keep a record of past transforms)
+	 * - [ ] HVelocity examples (check AS3::SimpleBallistic)
+	 * - [ ] check AS3::Vibration classes
+	 * 
 	 * - [ ] disable style for HShape in P3D
 	 * 
 	 * - [ ] HDrawable.firstChild(), HDrawable.lastChild();
@@ -46,6 +47,7 @@ public class DummyApplet extends PApplet {
 	 * - [ ] negative ease on stuff
 	 * - [ ] use int ratios instead of float for HTween
 	 * 
+	 * - [ ] AS3::SoundAnalyzer
 	 * - [ ] Standardize boolean getters
 	 */
 	
