@@ -1,0 +1,207 @@
+\hypertarget{classhype_1_1colorist_1_1_h_color_field}{\section{hype.\-colorist.\-H\-Color\-Field Class Reference}
+\label{classhype_1_1colorist_1_1_h_color_field}\index{hype.\-colorist.\-H\-Color\-Field@{hype.\-colorist.\-H\-Color\-Field}}
+}
+Inheritance diagram for hype.\-colorist.\-H\-Color\-Field\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhype_1_1colorist_1_1_h_color_field}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class {\bfseries H\-Color\-Point}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classhype_1_1colorist_1_1_h_color_field_aa87f3f020dd4b494696e0a7922ea5b13}{H\-Color\-Field} ()
+\item 
+\hyperlink{classhype_1_1colorist_1_1_h_color_field_a4d9aeee6ae7f36dc74dbd6d60783ad2b}{H\-Color\-Field} (float x\-Bound, float y\-Bound)
+\item 
+\hyperlink{classhype_1_1colorist_1_1_h_color_field_a7cf00c369cc444b69a9ba01e81a2cfe2}{H\-Color\-Field} (float maximum\-Distance)
+\item 
+\hyperlink{classhype_1_1colorist_1_1_h_color_field}{H\-Color\-Field} \hyperlink{classhype_1_1colorist_1_1_h_color_field_aa7420b1c48ee67d00f60221259b435d3}{add\-Point} (P\-Vector loc, int clr, float radius)
+\item 
+\hyperlink{classhype_1_1colorist_1_1_h_color_field}{H\-Color\-Field} \hyperlink{classhype_1_1colorist_1_1_h_color_field_a22631cf70898c465f84c928f93d2d3fd}{add\-Point} (float x, float y, int clr, float radius)
+\item 
+int \hyperlink{classhype_1_1colorist_1_1_h_color_field_af067697990b6499242ad756b3e55e253}{get\-Color} (float x, float y, int base\-Color)
+\item 
+\hyperlink{classhype_1_1colorist_1_1_h_color_field}{H\-Color\-Field} \hyperlink{classhype_1_1colorist_1_1_h_color_field_ae86c070c33668ac7ef6094e801c7b0c8}{applies\-Alpha} (boolean b)
+\item 
+boolean \hyperlink{classhype_1_1colorist_1_1_h_color_field_ae93ddcc1e07c7921bc5aa249f7af50e9}{applies\-Alpha} ()
+\item 
+\hyperlink{classhype_1_1colorist_1_1_h_color_field}{H\-Color\-Field} \hyperlink{classhype_1_1colorist_1_1_h_color_field_ac6553b106581afbedf61aa8ac8da30ed}{fill\-Only} ()
+\item 
+\hyperlink{classhype_1_1colorist_1_1_h_color_field}{H\-Color\-Field} \hyperlink{classhype_1_1colorist_1_1_h_color_field_a8de85f8b123d449c06b42bd9e8849523}{stroke\-Only} ()
+\item 
+\hyperlink{classhype_1_1colorist_1_1_h_color_field}{H\-Color\-Field} \hyperlink{classhype_1_1colorist_1_1_h_color_field_af8b807169ebbcce47a71c0192217fbea}{fill\-And\-Stroke} ()
+\item 
+boolean \hyperlink{classhype_1_1colorist_1_1_h_color_field_aca61204b4b1541e37a9e8d46c7abeee4}{applies\-Fill} ()
+\item 
+boolean \hyperlink{classhype_1_1colorist_1_1_h_color_field_ae925f839b73a26464b8b0a5a0466c89e}{applies\-Stroke} ()
+\item 
+\hyperlink{classhype_1_1drawable_1_1_h_drawable}{H\-Drawable} \hyperlink{classhype_1_1colorist_1_1_h_color_field_aa1356a58a8aea022fa7e24a47a82e437}{apply\-Color} (\hyperlink{classhype_1_1drawable_1_1_h_drawable}{H\-Drawable} drawable)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Array\-List$<$ H\-Color\-Point $>$ \hyperlink{classhype_1_1colorist_1_1_h_color_field_a3405873de28ef44d2f8bce4770202048}{\-\_\-color\-Points}
+\item 
+float \hyperlink{classhype_1_1colorist_1_1_h_color_field_a49741a866fdcc404a396cb387d04b7eb}{\-\_\-max\-Dist}
+\item 
+boolean \hyperlink{classhype_1_1colorist_1_1_h_color_field_ade8032b9b41ab7a1d2cd62b43c890167}{\-\_\-applies\-Fill}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_aa87f3f020dd4b494696e0a7922ea5b13}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!H\-Color\-Field@{H\-Color\-Field}}
+\index{H\-Color\-Field@{H\-Color\-Field}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{H\-Color\-Field}]{\setlength{\rightskip}{0pt plus 5cm}hype.\-colorist.\-H\-Color\-Field.\-H\-Color\-Field (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_aa87f3f020dd4b494696e0a7922ea5b13}
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_a4d9aeee6ae7f36dc74dbd6d60783ad2b}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!H\-Color\-Field@{H\-Color\-Field}}
+\index{H\-Color\-Field@{H\-Color\-Field}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{H\-Color\-Field}]{\setlength{\rightskip}{0pt plus 5cm}hype.\-colorist.\-H\-Color\-Field.\-H\-Color\-Field (
+\begin{DoxyParamCaption}
+\item[{float}]{x\-Bound, }
+\item[{float}]{y\-Bound}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_a4d9aeee6ae7f36dc74dbd6d60783ad2b}
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_a7cf00c369cc444b69a9ba01e81a2cfe2}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!H\-Color\-Field@{H\-Color\-Field}}
+\index{H\-Color\-Field@{H\-Color\-Field}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{H\-Color\-Field}]{\setlength{\rightskip}{0pt plus 5cm}hype.\-colorist.\-H\-Color\-Field.\-H\-Color\-Field (
+\begin{DoxyParamCaption}
+\item[{float}]{maximum\-Distance}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_a7cf00c369cc444b69a9ba01e81a2cfe2}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_aa7420b1c48ee67d00f60221259b435d3}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!add\-Point@{add\-Point}}
+\index{add\-Point@{add\-Point}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{add\-Point}]{\setlength{\rightskip}{0pt plus 5cm}{\bf H\-Color\-Field} hype.\-colorist.\-H\-Color\-Field.\-add\-Point (
+\begin{DoxyParamCaption}
+\item[{P\-Vector}]{loc, }
+\item[{int}]{clr, }
+\item[{float}]{radius}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_aa7420b1c48ee67d00f60221259b435d3}
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_a22631cf70898c465f84c928f93d2d3fd}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!add\-Point@{add\-Point}}
+\index{add\-Point@{add\-Point}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{add\-Point}]{\setlength{\rightskip}{0pt plus 5cm}{\bf H\-Color\-Field} hype.\-colorist.\-H\-Color\-Field.\-add\-Point (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{int}]{clr, }
+\item[{float}]{radius}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_a22631cf70898c465f84c928f93d2d3fd}
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_ae86c070c33668ac7ef6094e801c7b0c8}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!applies\-Alpha@{applies\-Alpha}}
+\index{applies\-Alpha@{applies\-Alpha}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{applies\-Alpha}]{\setlength{\rightskip}{0pt plus 5cm}{\bf H\-Color\-Field} hype.\-colorist.\-H\-Color\-Field.\-applies\-Alpha (
+\begin{DoxyParamCaption}
+\item[{boolean}]{b}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_ae86c070c33668ac7ef6094e801c7b0c8}
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_ae93ddcc1e07c7921bc5aa249f7af50e9}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!applies\-Alpha@{applies\-Alpha}}
+\index{applies\-Alpha@{applies\-Alpha}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{applies\-Alpha}]{\setlength{\rightskip}{0pt plus 5cm}boolean hype.\-colorist.\-H\-Color\-Field.\-applies\-Alpha (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_ae93ddcc1e07c7921bc5aa249f7af50e9}
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_aca61204b4b1541e37a9e8d46c7abeee4}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!applies\-Fill@{applies\-Fill}}
+\index{applies\-Fill@{applies\-Fill}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{applies\-Fill}]{\setlength{\rightskip}{0pt plus 5cm}boolean hype.\-colorist.\-H\-Color\-Field.\-applies\-Fill (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_aca61204b4b1541e37a9e8d46c7abeee4}
+
+
+Implements \hyperlink{interfacehype_1_1colorist_1_1_h_colorist_acf79ff4b96368ee59574c5e733ac7227}{hype.\-colorist.\-H\-Colorist}.
+
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_ae925f839b73a26464b8b0a5a0466c89e}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!applies\-Stroke@{applies\-Stroke}}
+\index{applies\-Stroke@{applies\-Stroke}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{applies\-Stroke}]{\setlength{\rightskip}{0pt plus 5cm}boolean hype.\-colorist.\-H\-Color\-Field.\-applies\-Stroke (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_ae925f839b73a26464b8b0a5a0466c89e}
+
+
+Implements \hyperlink{interfacehype_1_1colorist_1_1_h_colorist_ac1737f3e14cd909ff185c11feeae6a5c}{hype.\-colorist.\-H\-Colorist}.
+
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_aa1356a58a8aea022fa7e24a47a82e437}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!apply\-Color@{apply\-Color}}
+\index{apply\-Color@{apply\-Color}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{apply\-Color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf H\-Drawable} hype.\-colorist.\-H\-Color\-Field.\-apply\-Color (
+\begin{DoxyParamCaption}
+\item[{{\bf H\-Drawable}}]{drawable}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_aa1356a58a8aea022fa7e24a47a82e437}
+
+
+Implements \hyperlink{interfacehype_1_1colorist_1_1_h_colorist_a2abb7d4de895ac051b6f2126fd83a5fc}{hype.\-colorist.\-H\-Colorist}.
+
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_af8b807169ebbcce47a71c0192217fbea}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!fill\-And\-Stroke@{fill\-And\-Stroke}}
+\index{fill\-And\-Stroke@{fill\-And\-Stroke}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{fill\-And\-Stroke}]{\setlength{\rightskip}{0pt plus 5cm}{\bf H\-Color\-Field} hype.\-colorist.\-H\-Color\-Field.\-fill\-And\-Stroke (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_af8b807169ebbcce47a71c0192217fbea}
+
+
+Implements \hyperlink{interfacehype_1_1colorist_1_1_h_colorist_ac17f131eb3153c400eb6efa1a8d3db61}{hype.\-colorist.\-H\-Colorist}.
+
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_ac6553b106581afbedf61aa8ac8da30ed}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!fill\-Only@{fill\-Only}}
+\index{fill\-Only@{fill\-Only}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{fill\-Only}]{\setlength{\rightskip}{0pt plus 5cm}{\bf H\-Color\-Field} hype.\-colorist.\-H\-Color\-Field.\-fill\-Only (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_ac6553b106581afbedf61aa8ac8da30ed}
+
+
+Implements \hyperlink{interfacehype_1_1colorist_1_1_h_colorist_a5f9f9cae6981d0a4775a153402bea719}{hype.\-colorist.\-H\-Colorist}.
+
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_af067697990b6499242ad756b3e55e253}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!get\-Color@{get\-Color}}
+\index{get\-Color@{get\-Color}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{get\-Color}]{\setlength{\rightskip}{0pt plus 5cm}int hype.\-colorist.\-H\-Color\-Field.\-get\-Color (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{int}]{base\-Color}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_af067697990b6499242ad756b3e55e253}
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_a8de85f8b123d449c06b42bd9e8849523}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!stroke\-Only@{stroke\-Only}}
+\index{stroke\-Only@{stroke\-Only}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{stroke\-Only}]{\setlength{\rightskip}{0pt plus 5cm}{\bf H\-Color\-Field} hype.\-colorist.\-H\-Color\-Field.\-stroke\-Only (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classhype_1_1colorist_1_1_h_color_field_a8de85f8b123d449c06b42bd9e8849523}
+
+
+Implements \hyperlink{interfacehype_1_1colorist_1_1_h_colorist_ac55134266720e757465c9b60ca8f10eb}{hype.\-colorist.\-H\-Colorist}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_ade8032b9b41ab7a1d2cd62b43c890167}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!\-\_\-applies\-Fill@{\-\_\-applies\-Fill}}
+\index{\-\_\-applies\-Fill@{\-\_\-applies\-Fill}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{\-\_\-applies\-Fill}]{\setlength{\rightskip}{0pt plus 5cm}boolean hype.\-colorist.\-H\-Color\-Field.\-\_\-applies\-Fill\hspace{0.3cm}{\ttfamily [protected]}}}\label{classhype_1_1colorist_1_1_h_color_field_ade8032b9b41ab7a1d2cd62b43c890167}
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_a3405873de28ef44d2f8bce4770202048}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!\-\_\-color\-Points@{\-\_\-color\-Points}}
+\index{\-\_\-color\-Points@{\-\_\-color\-Points}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{\-\_\-color\-Points}]{\setlength{\rightskip}{0pt plus 5cm}Array\-List$<$H\-Color\-Point$>$ hype.\-colorist.\-H\-Color\-Field.\-\_\-color\-Points\hspace{0.3cm}{\ttfamily [protected]}}}\label{classhype_1_1colorist_1_1_h_color_field_a3405873de28ef44d2f8bce4770202048}
+\hypertarget{classhype_1_1colorist_1_1_h_color_field_a49741a866fdcc404a396cb387d04b7eb}{\index{hype\-::colorist\-::\-H\-Color\-Field@{hype\-::colorist\-::\-H\-Color\-Field}!\-\_\-max\-Dist@{\-\_\-max\-Dist}}
+\index{\-\_\-max\-Dist@{\-\_\-max\-Dist}!hype::colorist::HColorField@{hype\-::colorist\-::\-H\-Color\-Field}}
+\subsubsection[{\-\_\-max\-Dist}]{\setlength{\rightskip}{0pt plus 5cm}float hype.\-colorist.\-H\-Color\-Field.\-\_\-max\-Dist\hspace{0.3cm}{\ttfamily [protected]}}}\label{classhype_1_1colorist_1_1_h_color_field_a49741a866fdcc404a396cb387d04b7eb}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/\-Users/brettf/\-Documents/\-Processing examples \& libraries/\-H\-Y\-P\-E\-\_\-\-Processing/java/src/hype/colorist/\hyperlink{_h_color_field_8java}{H\-Color\-Field.\-java}\end{DoxyCompactItemize}
