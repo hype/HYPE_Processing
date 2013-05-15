@@ -1,0 +1,100 @@
+.TH "hype.behavior.HSwarm" 3 "Wed May 15 2013" "HYPE_processing" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+hype.behavior.HSwarm \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBhype\&.behavior\&.HBehavior\fP, \fBhype\&.interfaces\&.HMovable\fP, and \fBhype\&.interfaces\&.HFollowable\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHSwarm\fP \fBaddTarget\fP (\fBHSwarmer\fP d)"
+.br
+.ti -1c
+.RI "\fBHSwarm\fP \fBremoveTarget\fP (\fBHSwarmer\fP d)"
+.br
+.ti -1c
+.RI "\fBHSwarm\fP \fBgoal\fP (float x, float y)"
+.br
+.ti -1c
+.RI "PVector \fBgoal\fP ()"
+.br
+.ti -1c
+.RI "\fBHSwarm\fP \fBgoalX\fP (float x)"
+.br
+.ti -1c
+.RI "float \fBgoalX\fP ()"
+.br
+.ti -1c
+.RI "\fBHSwarm\fP \fBgoalY\fP (float y)"
+.br
+.ti -1c
+.RI "float \fBgoalY\fP ()"
+.br
+.ti -1c
+.RI "\fBHSwarm\fP \fBspeed\fP (float s)"
+.br
+.ti -1c
+.RI "float \fBspeed\fP ()"
+.br
+.ti -1c
+.RI "\fBHSwarm\fP \fBturnEase\fP (float e)"
+.br
+.ti -1c
+.RI "float \fBturnEase\fP ()"
+.br
+.ti -1c
+.RI "\fBHSwarm\fP \fBtwitch\fP (float deg)"
+.br
+.ti -1c
+.RI "\fBHSwarm\fP \fBtwitchRad\fP (float rad)"
+.br
+.ti -1c
+.RI "float \fBtwitch\fP ()"
+.br
+.ti -1c
+.RI "float \fBtwitchRad\fP ()"
+.br
+.ti -1c
+.RI "float \fBx\fP ()"
+.br
+.ti -1c
+.RI "float \fBy\fP ()"
+.br
+.ti -1c
+.RI "float \fBfollowableX\fP ()"
+.br
+.ti -1c
+.RI "float \fBfollowableY\fP ()"
+.br
+.ti -1c
+.RI "\fBHSwarm\fP \fBmove\fP (float dx, float dy)"
+.br
+.ti -1c
+.RI "void \fBrunBehavior\fP (PApplet app)"
+.br
+.ti -1c
+.RI "\fBHSwarm\fP \fBregister\fP ()"
+.br
+.ti -1c
+.RI "\fBHSwarm\fP \fBunregister\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "float \fB_goalX\fP"
+.br
+.ti -1c
+.RI "HLinkedHashSet< \fBHSwarmer\fP > \fB_swarmers\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for HYPE_processing from the source code\&.
