@@ -40,7 +40,7 @@ Inherits \fBhype\&.drawable\&.HDrawable\fP\&.
 .RI "int \fBnumVertices\fP ()"
 .br
 .ti -1c
-.RI "\fBHPath\fP \fBadjustVertices\fP ()"
+.RI "\fBHPath\fP \fBendPath\fP ()"
 .br
 .ti -1c
 .RI "\fBHPath\fP \fBvertex\fP (float pxX, float pxY)"
@@ -55,10 +55,25 @@ Inherits \fBhype\&.drawable\&.HDrawable\fP\&.
 .RI "\fBHPath\fP \fBvertexPerc\fP (float handlePercX1, float handlePercY1, float handlePercX2, float handlePercY2, float percX, float percY)"
 .br
 .ti -1c
+.RI "\fBHPath\fP \fBtriangle\fP (int type, int direction)"
+.br
+.ti -1c
 .RI "\fBHPath\fP \fBpolygon\fP (int numEdges)"
 .br
 .ti -1c
+.RI "\fBHPath\fP \fBpolygon\fP (int numEdges, float startDeg)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBpolygonRad\fP (int numEdges, float startRad)"
+.br
+.ti -1c
 .RI "\fBHPath\fP \fBstar\fP (int numEdges, float depth)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBstar\fP (int numEdges, float depth, float startDeg)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBstarRad\fP (int numEdges, float depth, float startRad)"
 .br
 .ti -1c
 .RI "\fBHPath\fP \fBclear\fP ()"
@@ -67,7 +82,7 @@ Inherits \fBhype\&.drawable\&.HDrawable\fP\&.
 .RI "boolean \fBcontainsRel\fP (float relX, float relY)"
 .br
 .ti -1c
-.RI "void \fBdraw\fP (PApplet app, float drawX, float drawY, float currAlphaPerc)"
+.RI "void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float currAlphaPerc)"
 .br
 .in -1c
 .SS "Protected Attributes"

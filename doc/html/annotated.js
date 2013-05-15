@@ -9,6 +9,7 @@ var annotated =
         [ "HOscillator", "classhype_1_1behavior_1_1_h_oscillator.html", "classhype_1_1behavior_1_1_h_oscillator" ],
         [ "HRotate", "classhype_1_1behavior_1_1_h_rotate.html", "classhype_1_1behavior_1_1_h_rotate" ],
         [ "HSwarm", "classhype_1_1behavior_1_1_h_swarm.html", "classhype_1_1behavior_1_1_h_swarm" ],
+        [ "HTween", "classhype_1_1behavior_1_1_h_tween.html", "classhype_1_1behavior_1_1_h_tween" ],
         [ "HVelocity", "classhype_1_1behavior_1_1_h_velocity.html", "classhype_1_1behavior_1_1_h_velocity" ]
       ] ],
       [ "collection", null, [
@@ -25,6 +26,7 @@ var annotated =
         [ "HPixelColorist", "classhype_1_1colorist_1_1_h_pixel_colorist.html", "classhype_1_1colorist_1_1_h_pixel_colorist" ]
       ] ],
       [ "drawable", null, [
+        [ "HCanvas", "classhype_1_1drawable_1_1_h_canvas.html", "classhype_1_1drawable_1_1_h_canvas" ],
         [ "HDrawable", "classhype_1_1drawable_1_1_h_drawable.html", "classhype_1_1drawable_1_1_h_drawable" ],
         [ "HEllipse", "classhype_1_1drawable_1_1_h_ellipse.html", "classhype_1_1drawable_1_1_h_ellipse" ],
         [ "HGroup", "classhype_1_1drawable_1_1_h_group.html", "classhype_1_1drawable_1_1_h_group" ],
@@ -33,17 +35,15 @@ var annotated =
         [ "HRect", "classhype_1_1drawable_1_1_h_rect.html", "classhype_1_1drawable_1_1_h_rect" ],
         [ "HShape", "classhype_1_1drawable_1_1_h_shape.html", "classhype_1_1drawable_1_1_h_shape" ],
         [ "HStage", "classhype_1_1drawable_1_1_h_stage.html", "classhype_1_1drawable_1_1_h_stage" ],
-        [ "HText", "classhype_1_1drawable_1_1_h_text.html", "classhype_1_1drawable_1_1_h_text" ],
-        [ "HTriangle", "classhype_1_1drawable_1_1_h_triangle.html", "classhype_1_1drawable_1_1_h_triangle" ]
+        [ "HText", "classhype_1_1drawable_1_1_h_text.html", "classhype_1_1drawable_1_1_h_text" ]
       ] ],
       [ "event", null, [
         [ "HMouse", "classhype_1_1event_1_1_h_mouse.html", "classhype_1_1event_1_1_h_mouse" ]
       ] ],
       [ "interfaces", null, [
         [ "HCallback", "interfacehype_1_1interfaces_1_1_h_callback.html", "interfacehype_1_1interfaces_1_1_h_callback" ],
-        [ "HFollowable", "interfacehype_1_1interfaces_1_1_h_followable.html", "interfacehype_1_1interfaces_1_1_h_followable" ],
         [ "HHittable", "interfacehype_1_1interfaces_1_1_h_hittable.html", "interfacehype_1_1interfaces_1_1_h_hittable" ],
-        [ "HMovable", "interfacehype_1_1interfaces_1_1_h_movable.html", "interfacehype_1_1interfaces_1_1_h_movable" ],
+        [ "HLocatable", "interfacehype_1_1interfaces_1_1_h_locatable.html", "interfacehype_1_1interfaces_1_1_h_locatable" ],
         [ "HPoolAdapter", "classhype_1_1interfaces_1_1_h_pool_adapter.html", "classhype_1_1interfaces_1_1_h_pool_adapter" ],
         [ "HPoolListener", "interfacehype_1_1interfaces_1_1_h_pool_listener.html", "interfacehype_1_1interfaces_1_1_h_pool_listener" ],
         [ "HRotatable", "interfacehype_1_1interfaces_1_1_h_rotatable.html", "interfacehype_1_1interfaces_1_1_h_rotatable" ],
@@ -51,9 +51,11 @@ var annotated =
       ] ],
       [ "layout", null, [
         [ "HGridLayout", "classhype_1_1layout_1_1_h_grid_layout.html", "classhype_1_1layout_1_1_h_grid_layout" ],
-        [ "HLayout", "interfacehype_1_1layout_1_1_h_layout.html", "interfacehype_1_1layout_1_1_h_layout" ]
+        [ "HLayout", "interfacehype_1_1layout_1_1_h_layout.html", "interfacehype_1_1layout_1_1_h_layout" ],
+        [ "HShapeLayout", "classhype_1_1layout_1_1_h_shape_layout.html", "classhype_1_1layout_1_1_h_shape_layout" ]
       ] ],
       [ "trigger", null, [
+        [ "HEventTrigger", "classhype_1_1trigger_1_1_h_event_trigger.html", "classhype_1_1trigger_1_1_h_event_trigger" ],
         [ "HRandomTrigger", "classhype_1_1trigger_1_1_h_random_trigger.html", "classhype_1_1trigger_1_1_h_random_trigger" ],
         [ "HTimer", "classhype_1_1trigger_1_1_h_timer.html", "classhype_1_1trigger_1_1_h_timer" ],
         [ "HTrigger", "classhype_1_1trigger_1_1_h_trigger.html", "classhype_1_1trigger_1_1_h_trigger" ]
@@ -65,8 +67,8 @@ var annotated =
         [ "HConstants", "interfacehype_1_1util_1_1_h_constants.html", "interfacehype_1_1util_1_1_h_constants" ],
         [ "HDrawablePool", "classhype_1_1util_1_1_h_drawable_pool.html", "classhype_1_1util_1_1_h_drawable_pool" ],
         [ "HMath", "classhype_1_1util_1_1_h_math.html", "classhype_1_1util_1_1_h_math" ],
+        [ "HVector", "classhype_1_1util_1_1_h_vector.html", "classhype_1_1util_1_1_h_vector" ],
         [ "HWarnings", "classhype_1_1util_1_1_h_warnings.html", "classhype_1_1util_1_1_h_warnings" ]
-      ] ],
-      [ "DummyApplet", "classhype_1_1_dummy_applet.html", "classhype_1_1_dummy_applet" ]
+      ] ]
     ] ]
 ];

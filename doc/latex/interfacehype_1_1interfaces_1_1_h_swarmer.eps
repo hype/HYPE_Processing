@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 462.427746
+%%BoundingBox: 0 0 500 454.545455
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,7 +19,7 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 1.081250 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 1.100000 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
@@ -174,9 +174,10 @@
 boxfont setfont
 1 boundaspect scale
 (hype.interfaces.HSwarmer) cw
-(hype.interfaces.HMovable) cw
+(hype.interfaces.HLocatable) cw
 (hype.interfaces.HRotatable) cw
 (hype.drawable.HDrawable) cw
+(hype.drawable.HCanvas) cw
 (hype.drawable.HEllipse) cw
 (hype.drawable.HGroup) cw
 (hype.drawable.HImage) cw
@@ -185,7 +186,6 @@ boxfont setfont
 (hype.drawable.HShape) cw
 (hype.drawable.HStage) cw
 (hype.drawable.HText) cw
-(hype.drawable.HTriangle) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -198,18 +198,18 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- classes -----
 
  (hype.interfaces.HSwarmer) 0.500000 10.000000 box
- (hype.interfaces.HMovable) 0.000000 11.000000 box
+ (hype.interfaces.HLocatable) 0.000000 11.000000 box
  (hype.interfaces.HRotatable) 1.000000 11.000000 box
  (hype.drawable.HDrawable) 0.500000 9.000000 box
- (hype.drawable.HEllipse) 1.500000 8.000000 box
- (hype.drawable.HGroup) 1.500000 7.000000 box
- (hype.drawable.HImage) 1.500000 6.000000 box
- (hype.drawable.HPath) 1.500000 5.000000 box
- (hype.drawable.HRect) 1.500000 4.000000 box
- (hype.drawable.HShape) 1.500000 3.000000 box
- (hype.drawable.HStage) 1.500000 2.000000 box
- (hype.drawable.HText) 1.500000 1.000000 box
- (hype.drawable.HTriangle) 1.500000 0.000000 box
+ (hype.drawable.HCanvas) 1.500000 8.000000 box
+ (hype.drawable.HEllipse) 1.500000 7.000000 box
+ (hype.drawable.HGroup) 1.500000 6.000000 box
+ (hype.drawable.HImage) 1.500000 5.000000 box
+ (hype.drawable.HPath) 1.500000 4.000000 box
+ (hype.drawable.HRect) 1.500000 3.000000 box
+ (hype.drawable.HShape) 1.500000 2.000000 box
+ (hype.drawable.HStage) 1.500000 1.000000 box
+ (hype.drawable.HText) 1.500000 0.000000 box
 
 % ----- relations -----
 

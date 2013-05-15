@@ -24,7 +24,7 @@ Inherits \fBhype\&.drawable\&.HDrawable\fP\&.
 .RI "\fBHStage\fP \fBautoClear\fP (boolean b)"
 .br
 .ti -1c
-.RI "boolean \fBautoClear\fP ()"
+.RI "boolean \fBautoClears\fP ()"
 .br
 .ti -1c
 .RI "\fBHStage\fP \fBclear\fP ()"
@@ -51,10 +51,10 @@ Inherits \fBhype\&.drawable\&.HDrawable\fP\&.
 .RI "float \fBheight\fP ()"
 .br
 .ti -1c
-.RI "void \fBpaintAll\fP (PApplet app, float currAlphaPerc)"
+.RI "void \fBpaintAll\fP (PGraphics g, boolean usesZ, float currAlphaPerc)"
 .br
 .ti -1c
-.RI "void \fBdraw\fP (PApplet app, float drawX, float drawY, float currAlphaPerc)"
+.RI "void \fBdraw\fP (PGraphics g, boolean b, float x, float y, float p)"
 .br
 .ti -1c
 .RI "void \fBcopyPropertiesFrom\fP (\fBHDrawable\fP other)"
@@ -70,6 +70,9 @@ Inherits \fBhype\&.drawable\&.HDrawable\fP\&.
 .br
 .ti -1c
 .RI "\fBHDrawable\fP \fBy\fP (float newY)"
+.br
+.ti -1c
+.RI "\fBHDrawable\fP \fBz\fP (float newY)"
 .br
 .ti -1c
 .RI "\fBHDrawable\fP \fBmove\fP (float dx, float dy)"

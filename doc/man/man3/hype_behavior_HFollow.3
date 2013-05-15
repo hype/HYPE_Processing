@@ -18,7 +18,7 @@ Inherits \fBhype\&.behavior\&.HBehavior\fP\&.
 .RI "\fBHFollow\fP (float ease, float spring)"
 .br
 .ti -1c
-.RI "\fBHFollow\fP (float ease, float spring, \fBHFollowable\fP goal)"
+.RI "\fBHFollow\fP (float ease, float spring, \fBHLocatable\fP goal)"
 .br
 .ti -1c
 .RI "\fBHFollow\fP \fBease\fP (float f)"
@@ -33,19 +33,19 @@ Inherits \fBhype\&.behavior\&.HBehavior\fP\&.
 .RI "float \fBspring\fP ()"
 .br
 .ti -1c
-.RI "\fBHFollow\fP \fBgoal\fP (\fBHFollowable\fP g)"
+.RI "\fBHFollow\fP \fBgoal\fP (\fBHLocatable\fP g)"
 .br
 .ti -1c
-.RI "\fBHFollowable\fP \fBgoal\fP ()"
+.RI "\fBHLocatable\fP \fBgoal\fP ()"
 .br
 .ti -1c
 .RI "\fBHFollow\fP \fBfollowMouse\fP ()"
 .br
 .ti -1c
-.RI "\fBHFollow\fP \fBtarget\fP (\fBHMovable\fP f)"
+.RI "\fBHFollow\fP \fBtarget\fP (\fBHLocatable\fP f)"
 .br
 .ti -1c
-.RI "\fBHMovable\fP \fBtarget\fP ()"
+.RI "\fBHLocatable\fP \fBtarget\fP ()"
 .br
 .ti -1c
 .RI "void \fBrunBehavior\fP (PApplet app)"
@@ -64,10 +64,10 @@ Inherits \fBhype\&.behavior\&.HBehavior\fP\&.
 .RI "float \fB_ease\fP"
 .br
 .ti -1c
-.RI "\fBHFollowable\fP \fB_goal\fP"
+.RI "\fBHLocatable\fP \fB_goal\fP"
 .br
 .ti -1c
-.RI "\fBHMovable\fP \fB_follower\fP"
+.RI "\fBHLocatable\fP \fB_follower\fP"
 .br
 .in -1c
 

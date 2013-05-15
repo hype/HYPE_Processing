@@ -7,9 +7,9 @@ hype.drawable.HDrawable \-
 .br
 .PP
 .PP
-Inherits HNode< HDrawable >, \fBhype\&.interfaces\&.HSwarmer\fP, \fBhype\&.interfaces\&.HFollowable\fP, and \fBhype\&.interfaces\&.HHittable\fP\&.
+Inherits HNode< HDrawable >, \fBhype\&.interfaces\&.HSwarmer\fP, and \fBhype\&.interfaces\&.HHittable\fP\&.
 .PP
-Inherited by \fBhype\&.drawable\&.HEllipse\fP, \fBhype\&.drawable\&.HGroup\fP, \fBhype\&.drawable\&.HImage\fP, \fBhype\&.drawable\&.HPath\fP, \fBhype\&.drawable\&.HRect\fP, \fBhype\&.drawable\&.HShape\fP, \fBhype\&.drawable\&.HStage\fP, \fBhype\&.drawable\&.HText\fP, and \fBhype\&.drawable\&.HTriangle\fP\&.
+Inherited by \fBhype\&.drawable\&.HCanvas\fP, \fBhype\&.drawable\&.HEllipse\fP, \fBhype\&.drawable\&.HGroup\fP, \fBhype\&.drawable\&.HImage\fP, \fBhype\&.drawable\&.HPath\fP, \fBhype\&.drawable\&.HRect\fP, \fBhype\&.drawable\&.HShape\fP, \fBhype\&.drawable\&.HStage\fP, and \fBhype\&.drawable\&.HText\fP\&.
 .SS "Classes"
 
 .in +1c
@@ -69,6 +69,9 @@ Inherited by \fBhype\&.drawable\&.HEllipse\fP, \fBhype\&.drawable\&.HGroup\fP, \
 .RI "\fBHDrawable\fP \fBloc\fP (float newX, float newY)"
 .br
 .ti -1c
+.RI "\fBHDrawable\fP \fBloc\fP (float newX, float newY, float newZ)"
+.br
+.ti -1c
 .RI "\fBHDrawable\fP \fBloc\fP (PVector pt)"
 .br
 .ti -1c
@@ -87,7 +90,16 @@ Inherited by \fBhype\&.drawable\&.HEllipse\fP, \fBhype\&.drawable\&.HGroup\fP, \
 .RI "float \fBy\fP ()"
 .br
 .ti -1c
+.RI "\fBHDrawable\fP \fBz\fP (float newZ)"
+.br
+.ti -1c
+.RI "float \fBz\fP ()"
+.br
+.ti -1c
 .RI "\fBHDrawable\fP \fBmove\fP (float dx, float dy)"
+.br
+.ti -1c
+.RI "\fBHDrawable\fP \fBmove\fP (float dx, float dy, float dz)"
 .br
 .ti -1c
 .RI "\fBHDrawable\fP \fBlocAt\fP (int where)"
@@ -160,6 +172,12 @@ Inherited by \fBhype\&.drawable\&.HEllipse\fP, \fBhype\&.drawable\&.HGroup\fP, \
 .br
 .ti -1c
 .RI "\fBHDrawable\fP \fBscale\fP (float sw, float sh)"
+.br
+.ti -1c
+.RI "\fBHDrawable\fP \fBproportional\fP (boolean b)"
+.br
+.ti -1c
+.RI "boolean \fBproportional\fP ()"
 .br
 .ti -1c
 .RI "PVector \fBboundingSize\fP ()"
@@ -267,16 +285,31 @@ Inherited by \fBhype\&.drawable\&.HEllipse\fP, \fBhype\&.drawable\&.HGroup\fP, \
 .RI "\fBHDrawable\fP \fBalphaShiftPerc\fP (float daPerc)"
 .br
 .ti -1c
-.RI "float \fBfollowableX\fP ()"
-.br
-.ti -1c
-.RI "float \fBfollowableY\fP ()"
-.br
-.ti -1c
 .RI "\fBHDrawable\fP \fBextras\fP (\fBHBundle\fP b)"
 .br
 .ti -1c
 .RI "\fBHBundle\fP \fBextras\fP ()"
+.br
+.ti -1c
+.RI "\fBHDrawable\fP \fBobj\fP (String key, Object value)"
+.br
+.ti -1c
+.RI "\fBHDrawable\fP \fBnum\fP (String key, float value)"
+.br
+.ti -1c
+.RI "Object \fBobj\fP (String key)"
+.br
+.ti -1c
+.RI "String \fBstr\fP (String key)"
+.br
+.ti -1c
+.RI "float \fBnum\fP (String key)"
+.br
+.ti -1c
+.RI "int \fBnumI\fP (String key)"
+.br
+.ti -1c
+.RI "boolean \fBbool\fP (String key)"
 .br
 .ti -1c
 .RI "boolean \fBcontains\fP (float absX, float absY)"
@@ -285,10 +318,10 @@ Inherited by \fBhype\&.drawable\&.HEllipse\fP, \fBhype\&.drawable\&.HGroup\fP, \
 .RI "boolean \fBcontainsRel\fP (float relX, float relY)"
 .br
 .ti -1c
-.RI "void \fBpaintAll\fP (PApplet app, float currAlphaPerc)"
+.RI "void \fBpaintAll\fP (PGraphics g, boolean usesZ, float currAlphaPerc)"
 .br
 .ti -1c
-.RI "abstract void \fBdraw\fP (PApplet app, float drawX, float drawY, float currAlphaPerc)"
+.RI "abstract void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float currAlphaPerc)"
 .br
 .in -1c
 .SS "Protected Member Functions"
@@ -298,7 +331,7 @@ Inherited by \fBhype\&.drawable\&.HEllipse\fP, \fBhype\&.drawable\&.HGroup\fP, \
 .RI "boolean \fBinvalidDest\fP (\fBHDrawable\fP dest, String warnLoc)"
 .br
 .ti -1c
-.RI "void \fBapplyStyle\fP (PApplet app, float currAlphaPerc)"
+.RI "void \fBapplyStyle\fP (PGraphics g, float currAlphaPerc)"
 .br
 .in -1c
 .SS "Protected Attributes"
@@ -315,6 +348,9 @@ Inherited by \fBhype\&.drawable\&.HEllipse\fP, \fBhype\&.drawable\&.HGroup\fP, \
 .br
 .ti -1c
 .RI "int \fB_numChildren\fP"
+.br
+.ti -1c
+.RI "boolean \fB_proportional\fP"
 .br
 .in -1c
 

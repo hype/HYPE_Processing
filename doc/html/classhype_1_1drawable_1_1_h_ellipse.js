@@ -5,7 +5,7 @@ var classhype_1_1drawable_1_1_h_ellipse =
     [ "HEllipse", "classhype_1_1drawable_1_1_h_ellipse.html#ac8ad625849845ef75503bccedcf101c3", null ],
     [ "containsRel", "classhype_1_1drawable_1_1_h_ellipse.html#ac9695d60c9229944ae52e83e16b19b97", null ],
     [ "createCopy", "classhype_1_1drawable_1_1_h_ellipse.html#adbad5480f5cb60d2aa3f767d2f93067b", null ],
-    [ "draw", "classhype_1_1drawable_1_1_h_ellipse.html#a94aa4d65e442b481e73eb3f14275fcfd", null ],
+    [ "draw", "classhype_1_1drawable_1_1_h_ellipse.html#a71c00a9c23e26f066688212d47fdd8fc", null ],
     [ "end", "classhype_1_1drawable_1_1_h_ellipse.html#a512275d60e55379d4a961bd8c2cdb1a7", null ],
     [ "end", "classhype_1_1drawable_1_1_h_ellipse.html#a6ff1384aa920dcc6c15690057ae33c24", null ],
     [ "endRad", "classhype_1_1drawable_1_1_h_ellipse.html#a5b307e00cc0df0f7a9ebe8384a150e8d", null ],

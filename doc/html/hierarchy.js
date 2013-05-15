@@ -16,9 +16,9 @@ var hierarchy =
       [ "hype.util.HMath", "classhype_1_1util_1_1_h_math.html", null ]
     ] ],
     [ "hype.util.HDrawablePool", "classhype_1_1util_1_1_h_drawable_pool.html", null ],
-    [ "hype.interfaces.HFollowable", "interfacehype_1_1interfaces_1_1_h_followable.html", [
-      [ "hype.behavior.HSwarm", "classhype_1_1behavior_1_1_h_swarm.html", null ],
+    [ "hype.interfaces.HHittable", "interfacehype_1_1interfaces_1_1_h_hittable.html", [
       [ "hype.drawable.HDrawable", "classhype_1_1drawable_1_1_h_drawable.html", [
+        [ "hype.drawable.HCanvas", "classhype_1_1drawable_1_1_h_canvas.html", null ],
         [ "hype.drawable.HEllipse", "classhype_1_1drawable_1_1_h_ellipse.html", null ],
         [ "hype.drawable.HGroup", "classhype_1_1drawable_1_1_h_group.html", null ],
         [ "hype.drawable.HImage", "classhype_1_1drawable_1_1_h_image.html", null ],
@@ -26,30 +26,27 @@ var hierarchy =
         [ "hype.drawable.HRect", "classhype_1_1drawable_1_1_h_rect.html", null ],
         [ "hype.drawable.HShape", "classhype_1_1drawable_1_1_h_shape.html", null ],
         [ "hype.drawable.HStage", "classhype_1_1drawable_1_1_h_stage.html", null ],
-        [ "hype.drawable.HText", "classhype_1_1drawable_1_1_h_text.html", null ],
-        [ "hype.drawable.HTriangle", "classhype_1_1drawable_1_1_h_triangle.html", null ]
-      ] ],
-      [ "hype.event.HMouse", "classhype_1_1event_1_1_h_mouse.html", null ]
-    ] ],
-    [ "hype.interfaces.HHittable", "interfacehype_1_1interfaces_1_1_h_hittable.html", [
-      [ "hype.drawable.HDrawable", "classhype_1_1drawable_1_1_h_drawable.html", null ]
+        [ "hype.drawable.HText", "classhype_1_1drawable_1_1_h_text.html", null ]
+      ] ]
     ] ],
     [ "hype.collection.HIterator< U >", "interfacehype_1_1collection_1_1_h_iterator_3_01_u_01_4.html", [
       [ "hype.collection.HLinkedList< T >.HLinkedListIterator< U >", "classhype_1_1collection_1_1_h_linked_list_3_01_t_01_4_1_1_h_linked_list_iterator_3_01_u_01_4.html", null ]
     ] ],
     [ "hype.layout.HLayout", "interfacehype_1_1layout_1_1_h_layout.html", [
-      [ "hype.layout.HGridLayout", "classhype_1_1layout_1_1_h_grid_layout.html", null ]
+      [ "hype.layout.HGridLayout", "classhype_1_1layout_1_1_h_grid_layout.html", null ],
+      [ "hype.layout.HShapeLayout", "classhype_1_1layout_1_1_h_shape_layout.html", null ]
     ] ],
     [ "hype.collection.HLinkedList< T >", "classhype_1_1collection_1_1_h_linked_list_3_01_t_01_4.html", [
       [ "hype.collection.HLinkedHashSet< T >", "classhype_1_1collection_1_1_h_linked_hash_set_3_01_t_01_4.html", null ]
     ] ],
-    [ "hype.behavior.HMagneticField.HMagnet", "classhype_1_1behavior_1_1_h_magnetic_field_1_1_h_magnet.html", null ],
-    [ "hype.interfaces.HMovable", "interfacehype_1_1interfaces_1_1_h_movable.html", [
-      [ "hype.behavior.HSwarm", "classhype_1_1behavior_1_1_h_swarm.html", null ],
+    [ "hype.interfaces.HLocatable", "interfacehype_1_1interfaces_1_1_h_locatable.html", [
+      [ "hype.event.HMouse", "classhype_1_1event_1_1_h_mouse.html", null ],
       [ "hype.interfaces.HSwarmer", "interfacehype_1_1interfaces_1_1_h_swarmer.html", [
         [ "hype.drawable.HDrawable", "classhype_1_1drawable_1_1_h_drawable.html", null ]
-      ] ]
+      ] ],
+      [ "hype.util.HVector", "classhype_1_1util_1_1_h_vector.html", null ]
     ] ],
+    [ "hype.behavior.HMagneticField.HMagnet", "classhype_1_1behavior_1_1_h_magnetic_field_1_1_h_magnet.html", null ],
     [ "hype.collection.HNode< T extends HNode< T > >", "classhype_1_1collection_1_1_h_node_3_01_t_01extends_01_h_node_3_01_t_01_4_01_4.html", null ],
     [ "hype.interfaces.HPoolListener", "interfacehype_1_1interfaces_1_1_h_pool_listener.html", [
       [ "hype.interfaces.HPoolAdapter", "classhype_1_1interfaces_1_1_h_pool_adapter.html", null ]
@@ -70,8 +67,10 @@ var hierarchy =
         [ "hype.behavior.HOscillator", "classhype_1_1behavior_1_1_h_oscillator.html", null ],
         [ "hype.behavior.HRotate", "classhype_1_1behavior_1_1_h_rotate.html", null ],
         [ "hype.behavior.HSwarm", "classhype_1_1behavior_1_1_h_swarm.html", null ],
+        [ "hype.behavior.HTween", "classhype_1_1behavior_1_1_h_tween.html", null ],
         [ "hype.behavior.HVelocity", "classhype_1_1behavior_1_1_h_velocity.html", null ],
         [ "hype.trigger.HTrigger", "classhype_1_1trigger_1_1_h_trigger.html", [
+          [ "hype.trigger.HEventTrigger", "classhype_1_1trigger_1_1_h_event_trigger.html", null ],
           [ "hype.trigger.HRandomTrigger", "classhype_1_1trigger_1_1_h_random_trigger.html", null ],
           [ "hype.trigger.HTimer", "classhype_1_1trigger_1_1_h_timer.html", null ]
         ] ]
@@ -79,7 +78,7 @@ var hierarchy =
       [ "hype.collection.HLinkedList< T >.HLinkedListNode< U >", "classhype_1_1collection_1_1_h_linked_list_3_01_t_01_4_1_1_h_linked_list_node_3_01_u_01_4.html", null ],
       [ "hype.drawable.HDrawable", "classhype_1_1drawable_1_1_h_drawable.html", null ]
     ] ],
-    [ "PApplet", null, [
-      [ "hype.DummyApplet", "classhype_1_1_dummy_applet.html", null ]
+    [ "PVector", null, [
+      [ "hype.util.HVector", "classhype_1_1util_1_1_h_vector.html", null ]
     ] ]
 ];

@@ -7,33 +7,39 @@ hype.behavior.HSwarm \-
 .br
 .PP
 .PP
-Inherits \fBhype\&.behavior\&.HBehavior\fP, \fBhype\&.interfaces\&.HMovable\fP, and \fBhype\&.interfaces\&.HFollowable\fP\&.
+Inherits \fBhype\&.behavior\&.HBehavior\fP\&.
 .SS "Public Member Functions"
 
 .in +1c
 .ti -1c
-.RI "\fBHSwarm\fP \fBaddTarget\fP (\fBHSwarmer\fP d)"
+.RI "\fBHSwarm\fP \fBaddTarget\fP (\fBHSwarmer\fP t)"
 .br
 .ti -1c
-.RI "\fBHSwarm\fP \fBremoveTarget\fP (\fBHSwarmer\fP d)"
+.RI "\fBHSwarm\fP \fBremoveTarget\fP (\fBHSwarmer\fP t)"
 .br
 .ti -1c
-.RI "\fBHSwarm\fP \fBgoal\fP (float x, float y)"
+.RI "HLinkedHashSet< \fBHSwarmer\fP > \fBtargets\fP ()"
 .br
 .ti -1c
-.RI "PVector \fBgoal\fP ()"
+.RI "\fBHSwarm\fP \fBaddGoal\fP (\fBHLocatable\fP g)"
 .br
 .ti -1c
-.RI "\fBHSwarm\fP \fBgoalX\fP (float x)"
+.RI "\fBHSwarm\fP \fBaddGoal\fP (float x, float y)"
 .br
 .ti -1c
-.RI "float \fBgoalX\fP ()"
+.RI "\fBHSwarm\fP \fBremoveGoal\fP (\fBHLocatable\fP g)"
 .br
 .ti -1c
-.RI "\fBHSwarm\fP \fBgoalY\fP (float y)"
+.RI "HLinkedHashSet< \fBHLocatable\fP > \fBgoals\fP ()"
 .br
 .ti -1c
-.RI "float \fBgoalY\fP ()"
+.RI "\fBHSwarm\fP \fBidleGoal\fP (float x, float y)"
+.br
+.ti -1c
+.RI "float \fBidleGoalX\fP ()"
+.br
+.ti -1c
+.RI "float \fBidleGoalY\fP ()"
 .br
 .ti -1c
 .RI "\fBHSwarm\fP \fBspeed\fP (float s)"
@@ -60,21 +66,6 @@ Inherits \fBhype\&.behavior\&.HBehavior\fP, \fBhype\&.interfaces\&.HMovable\fP, 
 .RI "float \fBtwitchRad\fP ()"
 .br
 .ti -1c
-.RI "float \fBx\fP ()"
-.br
-.ti -1c
-.RI "float \fBy\fP ()"
-.br
-.ti -1c
-.RI "float \fBfollowableX\fP ()"
-.br
-.ti -1c
-.RI "float \fBfollowableY\fP ()"
-.br
-.ti -1c
-.RI "\fBHSwarm\fP \fBmove\fP (float dx, float dy)"
-.br
-.ti -1c
 .RI "void \fBrunBehavior\fP (PApplet app)"
 .br
 .ti -1c
@@ -84,14 +75,24 @@ Inherits \fBhype\&.behavior\&.HBehavior\fP, \fBhype\&.interfaces\&.HMovable\fP, 
 .RI "\fBHSwarm\fP \fBunregister\fP ()"
 .br
 .in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHLocatable\fP \fBgetGoal\fP (\fBHSwarmer\fP target, PApplet app)"
+.br
+.in -1c
 .SS "Protected Attributes"
 
 .in +1c
 .ti -1c
-.RI "float \fB_goalX\fP"
+.RI "HLinkedHashSet< \fBHLocatable\fP > \fB_goals\fP"
 .br
 .ti -1c
-.RI "HLinkedHashSet< \fBHSwarmer\fP > \fB_swarmers\fP"
+.RI "HLinkedHashSet< \fBHSwarmer\fP > \fB_targets\fP"
+.br
+.ti -1c
+.RI "float \fB_speed\fP"
 .br
 .in -1c
 
