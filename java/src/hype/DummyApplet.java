@@ -12,21 +12,26 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] 2d point from 3d
+	 * - [ ] default size = 100
+	 * - [ ] base size for computing perc stuff = 0, if size = 0
+	 * 
+	 * - [ ] HDrawable.firstChild(), HDrawable.lastChild();
+	 * - [ ] issue #10 (make HVector a PVector container instead of subclass)
 	 * 
 	 * - [ ] HShape hit detection + pgraphics buffer
 	 * - [ ] use pgraphics buffer for HText
 	 * - [ ] bezier stuff for HPath
 	 * 
+	 * - [ ] 2d point from 3d
+	 * 
 	 * - [ ] masking
-	 * - [ ] Proximity
-	 * - [ ] Adjuster
+	 * - [ ] wipfile: Proximity
+	 * - [ ] wipfile: Adjuster
 	 * 	- drawable.adjuster(true)
 	 * 	- move on drag
-	 * 	- delete = remove from parent
+	 * 	- del key = remove from parent
 	 * 
-	 * - [ ] recursive spatial transforms HDrawable
-	 * - [ ] recursive stuff for HGroup / child-passable transformations
+	 * - [ ] recursive spatial transforms for HDrawable & HGroup
 	 * 
 	 * - [ ] DepthShuffle
 	 * - [ ] H.capture(<input event>, <filename>) capture static frame
@@ -37,9 +42,6 @@ public class DummyApplet extends PApplet {
 	 * 
 	 * - [ ] disable style for HShape in P3D
 	 * 
-	 * - [ ] HDrawable.firstChild(), HDrawable.lastChild();
-	 * - [ ] issue #10 (make HVector a PVector container instead of subclass)
-	 * - [ ] HMouse flags
 	 * - [ ] protected HDrawable.onSizeChange();
 	 * - [ ] migration of math calls to java.lang.Math
 	 * - [ ] privatize fields for non-subclassed classes
