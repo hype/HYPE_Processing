@@ -20,4 +20,4 @@
 - new HDrawable methods:
 	- `firstChild()`
 	- `lastChild()`
-- HVector is _no longer_ a subclass of PVector. Now it's just a container of x & y values
+- HVector is _no longer_ a subclass of PVector. Now it's just a container of x, y & z values
