@@ -114,12 +114,12 @@ public static class HColorTransform implements HColorist {
 	}
 	public int getColor(int origColor) {
 		PApplet app = H.app();
-		int[] clrs = HColorUtil.explode(origColor);
+		int[] clrs = HColors.explode(origColor);
 		clrs[0] = app.round(clrs[0] * _percA) + _offsetA;
 		clrs[1] = app.round(clrs[1] * _percR) + _offsetR;
 		clrs[2] = app.round(clrs[2] * _percG) + _offsetG;
 		clrs[3] = app.round(clrs[3] * _percB) + _offsetB;
-		return HColorUtil.merge(clrs[0],clrs[1],clrs[2],clrs[3]);
+		return HColors.merge(clrs[0],clrs[1],clrs[2],clrs[3]);
 	}
 	public HColorTransform fillOnly() {
 		fillFlag = true;

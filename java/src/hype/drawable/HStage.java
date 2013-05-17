@@ -1,6 +1,6 @@
 package hype.drawable;
 
-import hype.util.HColorUtil;
+import hype.util.HColors;
 import hype.util.HConstants;
 import processing.core.PApplet;
 import processing.core.PGraphics;
@@ -64,7 +64,7 @@ public class HStage extends HDrawable {
 	
 	@Override
 	public HDrawable fill(int r, int g, int b) {
-		return fill(HColorUtil.merge(255,r,g,b));
+		return fill(HColors.merge(255,r,g,b));
 	}
 	
 	@Override

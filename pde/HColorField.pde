@@ -27,7 +27,7 @@ public static class HColorField implements HColorist {
 	}
 	public int getColor(float x, float y, int baseColor) {
 		PApplet app = H.app();
-		int[] baseClrs = HColorUtil.explode(baseColor);
+		int[] baseClrs = HColors.explode(baseColor);
 		int[] maxClrs = new int[4];
 		int initJ;
 		if(_appliesAlpha) {
@@ -38,7 +38,7 @@ public static class HColorField implements HColorist {
 		}
 		for(int i=0; i<_colorPoints.size(); ++i) {
 			HColorPoint pt = _colorPoints.get(i);
-			int[] ptClrs = HColorUtil.explode(pt.clr);
+			int[] ptClrs = HColors.explode(pt.clr);
 			float distLimit = _maxDist * pt.radius;
 			float dist = app.dist(x,y, pt.x,pt.y);
 			if(dist > distLimit)
@@ -50,7 +50,7 @@ public static class HColorField implements HColorist {
 					maxClrs[j] = newClrVal;
 			}
 		}
-		return HColorUtil.merge(maxClrs[0],maxClrs[1],maxClrs[2],maxClrs[3]);
+		return HColors.merge(maxClrs[0],maxClrs[1],maxClrs[2],maxClrs[3]);
 	}
 	public HColorField appliesAlpha(boolean b) {
 		_appliesAlpha = b;

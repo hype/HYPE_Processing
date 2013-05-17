@@ -1,0 +1,13 @@
+### build_20130517.0 (May 17, 2013)
+- new file: changelog.txt
+- migrate documentation from markdown to Doxygen
+- set the default size of HDrawable from 64x64 to 100x100
+- new method: `HMouse.moved()`
+- rename: HColorUtil -> HColors
+- remove deprecated HColors methods:
+	- `multiply()`
+	- `multiplyAlpha()`
+	- `multiplyRed()`
+	- `multiplyGreen()`
+	- `multiplyBlue()`
+- migrate PApplet math calls to Math

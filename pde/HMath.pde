@@ -1,9 +1,12 @@
 public static class HMath implements HConstants {
-	private static PApplet _app;
+	private static PApplet _app; 
 	private static boolean _usingTempSeed;
 	private static int _resetSeedValue;
 	public static void init(PApplet applet) {
 		_app = applet;
+	}
+	public static float dist(float x1, float y1, float x2, float y2) {
+		return 0;
 	}
 	public static float[] rotatePointArr(float x, float y, float rad) {
 		float[] pt = new float[2];
@@ -129,6 +132,21 @@ public static class HMath implements HConstants {
 	) {
 		return (lineSide(x1,y1, x2,y2, ptx,pty) > 0);
 	}
+	public static float random() {
+		return 0;
+	}
+	public static float random(float max) {
+		return 0;
+	}
+	public static float random(float min, float max) {
+		return 0;
+	}
+	public static float randomInt(float max) {
+		return 0;
+	}
+	public static float randomInt(float min, float max) {
+		return 0;
+	}
 	public static int randomInt32() {
 		float f = _app.random(1);
 		f = _app.map(f, 0, 1, -2147483648, 2147483647);
@@ -166,5 +184,10 @@ public static class HMath implements HConstants {
 	}
 	public static boolean hasBits(int target, int val) {
 		return ( (target & val) == val );
+	}
+	public static float map(float val,
+		float start1, float stop1, float start2, float stop2
+	) {
+		return 0;
 	}
 }

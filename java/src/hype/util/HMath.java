@@ -6,7 +6,7 @@ import processing.core.PConstants;
 import processing.core.PVector;
 
 public class HMath implements HConstants {
-	private static PApplet _app;
+	private static PApplet _app; // TODO
 	private static boolean _usingTempSeed;
 	private static int _resetSeedValue;
 	
@@ -14,8 +14,12 @@ public class HMath implements HConstants {
 		_app = applet;
 	}
 	
-	
 	// GEOMETRY //
+	
+	public static float dist(float x1, float y1, float x2, float y2) {
+		// TODO
+		return 0;
+	}
 	
 	@SuppressWarnings("static-access")
 	public static float[] rotatePointArr(float x, float y, float rad) {
@@ -181,8 +185,34 @@ public class HMath implements HConstants {
 	
 	// RNG //
 	
+	public static float random() {
+		// TODO
+		return 0;
+	}
+	
+	public static float random(float max) {
+		// TODO
+		return 0;
+	}
+	
+	public static float random(float min, float max) {
+		// TODO
+		return 0;
+	}
+	
+	public static float randomInt(float max) {
+		// TODO
+		return 0;
+	}
+	
+	public static float randomInt(float min, float max) {
+		// TODO
+		return 0;
+	}
+	
 	@SuppressWarnings("static-access")
 	public static int randomInt32() {
+		// TODO
 		float f = _app.random(1);
 		f = _app.map(f, 0, 1, -2147483648, 2147483647);
 		return _app.round(f);
@@ -233,5 +263,12 @@ public class HMath implements HConstants {
 	
 	public static boolean hasBits(int target, int val) {
 		return ( (target & val) == val );
+	}
+	
+	public static float map(float val,
+		float start1, float stop1, float start2, float stop2
+	) {
+		// TODO
+		return 0;
 	}
 }

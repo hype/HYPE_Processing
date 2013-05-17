@@ -6,45 +6,48 @@ import hype.drawable.HPath;
 import hype.drawable.HRect;
 import hype.interfaces.HCallback;
 import hype.util.H;
+import hype.util.HColors;
 import processing.core.PApplet;
 
 public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [x] default size = 100
 	 * - [ ] migration of math calls to java.lang.Math
 	 * - [ ] base size for computing perc stuff = 0, if size = 0
 	 * - [ ] HDrawable.firstChild(), HDrawable.lastChild();
 	 * - [ ] issue #10 (make HVector a PVector container instead of subclass)
 	 * 
+	 * - [ ] recursive spatial transforms for HDrawable & HGroup
+	 * 
 	 * - [ ] documentation update script
-	 * - [ ] 2d point from 3d
+	 * - [ ] pointInScreen(x,y,z)
 	 * 
 	 * - [ ] HShape hit detection + pgraphics buffer
+	 * - [ ] disable style for HShape in P3D
 	 * - [ ] use pgraphics buffer for HText + use that for hitbox checking
-	 * - [ ] bezier stuff for HPath
+	 * - [ ] bezier hitbox for HPath
 	 * 
 	 * - [ ] masking
 	 * - [ ] wipfile: Proximity
 	 * - [ ] wipfile: Adjuster; drawable.adjuster(true); del key = remove from parent
 	 * 
-	 * - [ ] recursive spatial transforms for HDrawable & HGroup
 	 * 
+	 * - [ ] HText textbox
 	 * - [ ] DepthShuffle
-	 * - [ ] H.capture(<input event>, <filename>) capture static frame
-	 * - [ ] H.capture(<start>,<end>,<filename>) capture sequence of frames
-	 * - [ ] capture pdf (keep copies when moving for the pdf export OR keep a record of past transforms)
-	 * - [ ] HVelocity examples (check AS3::SimpleBallistic)
-	 * - [ ] check AS3::Vibration classes
-	 * 
-	 * - [ ] disable style for HShape in P3D
+	 * - [ ] HVelocity testfiles (check AS3::SimpleBallistic)
+	 * - [ ] AS3::Vibration
+	 * - [ ] H.capture()
+	 * 		- static frame
+	 * 		- frame sequence
+	 * 		- pdf frames (remember that pdf frames don't ignores autoClear(false))
 	 * 
 	 * - [ ] protected HDrawable.onSizeChange();
-	 * - [ ] privatize fields for non-subclassed classes
+	 * - [ ] use private instead of protected as much as possible
 	 * - [ ] refactor/cleanup HOscillator
-	 * - [ ] negative ease on stuff
+	 * - [ ] negative ease
 	 * 
+	 * - [ ] HTween refinements
 	 * - [ ] AS3::SoundAnalyzer
 	 * - [ ] Standardize boolean getters
 	 */
@@ -53,6 +56,10 @@ public class DummyApplet extends PApplet {
 	public void setup() {
 		size(512,512);
 		H.init(this);
+		
+		int clr = HColors.merge(-512,-512,-412,-512);
+		println(hex(HColors.merge(-512,-512,-412,-512)));
+		println(hex(HColors.setBlue(clr, -512)));
 		
 		HDrawable d = H.add(new HRect()).locAt(H.BOTTOM_RIGHT).move(-64,-64);
 		new HTween().target(d).property(H.LOCATION).ease(.01f).spring(0.9f).start(width,height).end(width/2,height/2).callback(new HCallback() {

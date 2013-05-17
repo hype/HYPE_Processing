@@ -39,7 +39,7 @@ public static class HStage extends HDrawable {
 		return fill(clr);
 	}
 	public HDrawable fill(int r, int g, int b) {
-		return fill(HColorUtil.merge(255,r,g,b));
+		return fill(HColors.merge(255,r,g,b));
 	}
 	public HDrawable fill(int r, int g, int b, int a) {
 		return fill(r,g,b);

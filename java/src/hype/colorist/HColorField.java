@@ -2,7 +2,7 @@ package hype.colorist;
 
 import hype.drawable.HDrawable;
 import hype.util.H;
-import hype.util.HColorUtil;
+import hype.util.HColors;
 
 import java.util.ArrayList;
 
@@ -45,7 +45,7 @@ public class HColorField implements HColorist {
 	
 	public int getColor(float x, float y, int baseColor) {
 		PApplet app = H.app();
-		int[] baseClrs = HColorUtil.explode(baseColor);
+		int[] baseClrs = HColors.explode(baseColor);
 		int[] maxClrs = new int[4];
 		
 		int initJ;
@@ -59,7 +59,7 @@ public class HColorField implements HColorist {
 		for(int i=0; i<_colorPoints.size(); ++i) {
 			HColorPoint pt = _colorPoints.get(i);
 			
-			int[] ptClrs = HColorUtil.explode(pt.clr);
+			int[] ptClrs = HColors.explode(pt.clr);
 			
 			// Get the adjusted distance between the two points.
 			float distLimit = _maxDist * pt.radius;
@@ -76,7 +76,7 @@ public class HColorField implements HColorist {
 					maxClrs[j] = newClrVal;
 			}
 		}
-		return HColorUtil.merge(maxClrs[0],maxClrs[1],maxClrs[2],maxClrs[3]);
+		return HColors.merge(maxClrs[0],maxClrs[1],maxClrs[2],maxClrs[3]);
 	}
 	
 	public HColorField appliesAlpha(boolean b) {

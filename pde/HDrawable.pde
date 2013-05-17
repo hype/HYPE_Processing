@@ -367,15 +367,15 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	}
 	public HDrawable fill(int clr, int alpha) {
 		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16;
-		_fill = HColorUtil.setAlpha(clr,alpha);
+		_fill = HColors.setAlpha(clr,alpha);
 		return this;
 	}
 	public HDrawable fill(int r, int g, int b) {
-		_fill = HColorUtil.merge(255,r,g,b);
+		_fill = HColors.merge(255,r,g,b);
 		return this;
 	}
 	public HDrawable fill(int r, int g, int b, int a) {
-		_fill = HColorUtil.merge(a,r,g,b);
+		_fill = HColors.merge(a,r,g,b);
 		return this;
 	}
 	public int fill() {
@@ -391,15 +391,15 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	}
 	public HDrawable stroke(int clr, int alpha) {
 		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16;
-		_stroke = HColorUtil.setAlpha(clr,alpha);
+		_stroke = HColors.setAlpha(clr,alpha);
 		return this;
 	}
 	public HDrawable stroke(int r, int g, int b) {
-		_stroke = HColorUtil.merge(255,r,g,b);
+		_stroke = HColors.merge(255,r,g,b);
 		return this;
 	}
 	public HDrawable stroke(int r, int g, int b, int a) {
-		_stroke = HColorUtil.merge(a,r,g,b);
+		_stroke = HColors.merge(a,r,g,b);
 		return this;
 	}
 	public int stroke() {
