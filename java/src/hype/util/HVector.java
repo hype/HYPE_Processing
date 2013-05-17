@@ -1,53 +1,53 @@
 package hype.util;
 
 import hype.interfaces.HLocatable;
-import processing.core.PVector;
 
-public class HVector extends PVector implements HLocatable {
-	private static final long serialVersionUID = 1;
+public class HVector implements HLocatable {
+	public float _x, _y, _z;
 	
-	public HVector() {
-		super();
-	}
+	public HVector() {}
 	
 	public HVector(float xCoord, float yCoord) {
-		super(xCoord, yCoord);
+		_x = xCoord;
+		_y = yCoord;
 	}
 	
 	public HVector(float xCoord, float yCoord, float zCoord) {
-		super(xCoord, yCoord, zCoord);
+		_x = xCoord;
+		_y = yCoord;
+		_z = zCoord;
 	}
 	
 	@Override
 	public float x() {
-		return super.x;
+		return _x;
 	}
 	
 	@Override
 	public HVector x(float newX) {
-		super.x = newX;
+		_x = newX;
 		return this;
 	}
 
 	@Override
 	public float y() {
-		return super.y;
+		return _y;
 	}
 
 	@Override
 	public HVector y(float newY) {
-		super.y = newY;
+		_y = newY;
 		return this;
 	}
 
 	@Override
 	public float z() {
-		return super.z;
+		return _z;
 	}
 
 	@Override
 	public HVector z(float newZ) {
-		super.z = newZ;
+		_z = newZ;
 		return this;
 	}
 }
