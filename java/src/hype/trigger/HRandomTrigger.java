@@ -1,6 +1,7 @@
 package hype.trigger;
 
 import hype.interfaces.HCallback;
+import hype.util.HMath;
 import processing.core.PApplet;
 
 public class HRandomTrigger extends HTrigger {
@@ -23,7 +24,7 @@ public class HRandomTrigger extends HTrigger {
 	
 	@Override
 	public void runBehavior(PApplet app) {
-		if(app.random(1) <= _chance) {
+		if(HMath.random() <= _chance) {
 			if(_callback != null) _callback.run(null);
 		}
 	}

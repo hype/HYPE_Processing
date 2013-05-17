@@ -3,17 +3,16 @@ package hype.colorist;
 import hype.drawable.HDrawable;
 import hype.util.H;
 import hype.util.HColors;
+import hype.util.HMath;
 
 import java.util.ArrayList;
 
-import processing.core.PApplet;
 import processing.core.PVector;
 
-@SuppressWarnings("static-access")
 public class HColorField implements HColorist {
-	protected ArrayList<HColorPoint> _colorPoints;
-	protected float _maxDist;
-	protected boolean _appliesFill, _appliesStroke, _appliesAlpha;
+	private ArrayList<HColorPoint> _colorPoints;
+	private float _maxDist;
+	private boolean _appliesFill, _appliesStroke, _appliesAlpha;
 	
 	public HColorField() {
 		this(H.app().width, H.app().height);
@@ -44,7 +43,6 @@ public class HColorField implements HColorist {
 	}
 	
 	public int getColor(float x, float y, int baseColor) {
-		PApplet app = H.app();
 		int[] baseClrs = HColors.explode(baseColor);
 		int[] maxClrs = new int[4];
 		
@@ -63,14 +61,14 @@ public class HColorField implements HColorist {
 			
 			// Get the adjusted distance between the two points.
 			float distLimit = _maxDist * pt.radius;
-			float dist = app.dist(x,y, pt.x,pt.y);
+			float dist = HMath.dist(x,y, pt.x,pt.y);
 			if(dist > distLimit)
 				dist = distLimit;
 			
 			// Compute the color based on the distance from the color point.
 			for(int j=initJ; j<4; ++j) {
 				int newClrVal = Math.round(
-					app.map(dist, 0,distLimit, ptClrs[j], baseClrs[j]));
+					HMath.map(dist, 0,distLimit, ptClrs[j], baseClrs[j]));
 				
 				if(newClrVal > maxClrs[j]) 
 					maxClrs[j] = newClrVal;

@@ -4,7 +4,6 @@ var classhype_1_1behavior_1_1_h_swarm =
     [ "addGoal", "classhype_1_1behavior_1_1_h_swarm.html#a5ef1ca80cd3665610fdfcffdced4d555", null ],
     [ "addGoal", "classhype_1_1behavior_1_1_h_swarm.html#aa61d36f719a43f5c37fca4e6b03b2143", null ],
     [ "addTarget", "classhype_1_1behavior_1_1_h_swarm.html#a1b92710850c45201d9479a9898578172", null ],
-    [ "getGoal", "classhype_1_1behavior_1_1_h_swarm.html#a59001a8cf3c6e29e5f5f57dc5e822f4c", null ],
     [ "goals", "classhype_1_1behavior_1_1_h_swarm.html#a2abe07950101007b1b300baf4223ae8e", null ],
     [ "idleGoal", "classhype_1_1behavior_1_1_h_swarm.html#afa26071c412bbfbb2e44197ca7b914e5", null ],
     [ "idleGoalX", "classhype_1_1behavior_1_1_h_swarm.html#aef275f064077f4016503c8e15bee09ec", null ],
@@ -22,8 +21,5 @@ var classhype_1_1behavior_1_1_h_swarm =
     [ "twitch", "classhype_1_1behavior_1_1_h_swarm.html#ac2e03a345f2060a9b1031a032610a254", null ],
     [ "twitchRad", "classhype_1_1behavior_1_1_h_swarm.html#a86b51abc01db6f16dee416eed5cf5009", null ],
     [ "twitchRad", "classhype_1_1behavior_1_1_h_swarm.html#a1c8e689465a9d5fe631bc82048f5b92f", null ],
-    [ "unregister", "classhype_1_1behavior_1_1_h_swarm.html#a421e4284f278470402c8fab4b262a01f", null ],
-    [ "_goals", "classhype_1_1behavior_1_1_h_swarm.html#aec61dc0c68e73db2b198824564ed90f6", null ],
-    [ "_speed", "classhype_1_1behavior_1_1_h_swarm.html#a6475450a0026cc10f9d12c0d5ce7b5a5", null ],
-    [ "_targets", "classhype_1_1behavior_1_1_h_swarm.html#a0785786a794a11d6cb66d2432fd9f642", null ]
+    [ "unregister", "classhype_1_1behavior_1_1_h_swarm.html#a421e4284f278470402c8fab4b262a01f", null ]
 ];

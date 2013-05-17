@@ -1,15 +1,11 @@
 var classhype_1_1behavior_1_1_h_velocity =
 [
-    [ "HVelocity", "classhype_1_1behavior_1_1_h_velocity.html#a2b405b29380bb222ef394307943597a1", null ],
-    [ "HVelocity", "classhype_1_1behavior_1_1_h_velocity.html#a067a4ac0bfad5766b5cca18d11c0262f", null ],
     [ "accel", "classhype_1_1behavior_1_1_h_velocity.html#a688277ffa9fc211da32da7f1671f0b43", null ],
     [ "accelRad", "classhype_1_1behavior_1_1_h_velocity.html#a7c3bf557241fa32dc95a88682a1557e9", null ],
     [ "accelX", "classhype_1_1behavior_1_1_h_velocity.html#a76fdbb8a084fd536c8d2f4245a9e9578", null ],
     [ "accelX", "classhype_1_1behavior_1_1_h_velocity.html#ab44947a8dd5df4a12ee2cd3295beea59", null ],
     [ "accelY", "classhype_1_1behavior_1_1_h_velocity.html#ad1dc3d8cf2f5ce87c2a5c5dd5048e399", null ],
     [ "accelY", "classhype_1_1behavior_1_1_h_velocity.html#a71da143ee1531bb9a57a9d155eaa7028", null ],
-    [ "autoRegisters", "classhype_1_1behavior_1_1_h_velocity.html#a1397d4e380ef7c9fc693ee199e269d94", null ],
-    [ "autoRegisters", "classhype_1_1behavior_1_1_h_velocity.html#a678bf4387901792c45ac4c5bd3d9aba9", null ],
     [ "launchTo", "classhype_1_1behavior_1_1_h_velocity.html#ade008f6666ba982dfa247e6eb16e39c8", null ],
     [ "register", "classhype_1_1behavior_1_1_h_velocity.html#acefec10ae890e65be256238ed0e2800f", null ],
     [ "runBehavior", "classhype_1_1behavior_1_1_h_velocity.html#acc6d4560989de30788ec2ae4f1ea6913", null ],
@@ -21,8 +17,5 @@ var classhype_1_1behavior_1_1_h_velocity =
     [ "velocityX", "classhype_1_1behavior_1_1_h_velocity.html#a0bc49a845f80bada67082e07334f2472", null ],
     [ "velocityX", "classhype_1_1behavior_1_1_h_velocity.html#a469184301800322041f55f972829494b", null ],
     [ "velocityY", "classhype_1_1behavior_1_1_h_velocity.html#afbb6fed1e65bef526d495911d8c1acf3", null ],
-    [ "velocityY", "classhype_1_1behavior_1_1_h_velocity.html#abe7dc26576adae8adb48ce955702fff0", null ],
-    [ "_autoRegisters", "classhype_1_1behavior_1_1_h_velocity.html#a406b8d2770d53f58f2acb61c281ac4e2", null ],
-    [ "_target", "classhype_1_1behavior_1_1_h_velocity.html#a9dde29b6b58fe3eb8827dff834a74edc", null ],
-    [ "_velocityX", "classhype_1_1behavior_1_1_h_velocity.html#a9f3e36117e086a406bd2cdda2493687f", null ]
+    [ "velocityY", "classhype_1_1behavior_1_1_h_velocity.html#abe7dc26576adae8adb48ce955702fff0", null ]
 ];

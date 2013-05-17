@@ -5,8 +5,8 @@ import hype.util.HConstants;
 import processing.core.PApplet;
 
 public class HRotate extends HBehavior {
-	protected HRotatable _target;
-	protected float _speedRad;
+	private HRotatable _target;
+	private float _speedRad;
 	
 	public HRotate() {}
 	

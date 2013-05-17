@@ -17,7 +17,5 @@ var classhype_1_1trigger_1_1_h_timer =
     [ "useFrames", "classhype_1_1trigger_1_1_h_timer.html#afc5dc40c9f10802bc39b4eeb5cebec62", null ],
     [ "useMillis", "classhype_1_1trigger_1_1_h_timer.html#a64e6f685c73eae6455b62f5df34c5e70", null ],
     [ "usesFrames", "classhype_1_1trigger_1_1_h_timer.html#abd2ee4b5e2c1636f2363e02102eb8d15", null ],
-    [ "usesMillis", "classhype_1_1trigger_1_1_h_timer.html#a93639f4424715bdf47f3cd2fbc03dc45", null ],
-    [ "_lastInterval", "classhype_1_1trigger_1_1_h_timer.html#a172caaedb3f2ef2fcb7b3a0a1aef17d3", null ],
-    [ "_usesFrames", "classhype_1_1trigger_1_1_h_timer.html#a9765f8be860ff8b30120cdddc85fe4e7", null ]
+    [ "usesMillis", "classhype_1_1trigger_1_1_h_timer.html#a93639f4424715bdf47f3cd2fbc03dc45", null ]
 ];

@@ -9,11 +9,10 @@ import hype.util.HMath;
 import hype.util.HVector;
 import processing.core.PApplet;
 
-@SuppressWarnings("static-access")
 public class HSwarm extends HBehavior {
-	protected HLinkedHashSet<HLocatable> _goals;
-	protected HLinkedHashSet<HSwarmer> _targets;
-	protected float _speed, _turnEase, _twitchRad, _idleGoalX, _idleGoalY;
+	private HLinkedHashSet<HLocatable> _goals;
+	private HLinkedHashSet<HSwarmer> _targets;
+	private float _speed, _turnEase, _twitchRad, _idleGoalX, _idleGoalY;
 	
 	public HSwarm() {
 		_speed = 1;
@@ -107,13 +106,13 @@ public class HSwarm extends HBehavior {
 		return _twitchRad;
 	}
 	
-	protected HLocatable getGoal(HSwarmer target, PApplet app) {
+	private HLocatable getGoal(HSwarmer target, PApplet app) {
 		HLocatable goal = null;
 		float nearestDist = -1;
 		
 		for(HIterator<HLocatable> it=_goals.iterator(); it.hasNext();) {
 			HLocatable h = it.next();
-			float dist = app.dist(target.x(),target.y(), h.x(),h.y());
+			float dist = HMath.dist(target.x(),target.y(), h.x(),h.y());
 			if(nearestDist<0 || dist<nearestDist) {
 				nearestDist = dist;
 				goal = h;
@@ -151,7 +150,7 @@ public class HSwarm extends HBehavior {
 			
 			// Add some random twitching to the rotation via perlin noise
 			float noise = app.noise(i*numTargets + app.frameCount/8f);
-			rot += app.map(noise, 0,1, -_twitchRad,_twitchRad);
+			rot += HMath.map(noise, 0,1, -_twitchRad,_twitchRad);
 			
 			// Apply the rotation and move to the direction of its rotation
 			target.rotationRad(rot);

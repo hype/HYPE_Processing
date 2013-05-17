@@ -11,7 +11,5 @@ var classhype_1_1drawable_1_1_h_shape =
     [ "resetRandomColors", "classhype_1_1drawable_1_1_h_shape.html#aae1e34b239b134035a1f0ec05e35a7b7", null ],
     [ "resetSize", "classhype_1_1drawable_1_1_h_shape.html#a7b53aa8764021e6036540ceb0750541c", null ],
     [ "shape", "classhype_1_1drawable_1_1_h_shape.html#ae495de06427f5e8349fb3bd0274f6c29", null ],
-    [ "shape", "classhype_1_1drawable_1_1_h_shape.html#a2df9d3cd17b1a313c9967ba38178883f", null ],
-    [ "_randomColors", "classhype_1_1drawable_1_1_h_shape.html#a7962441789cf8714456a573fc448ec56", null ],
-    [ "_shape", "classhype_1_1drawable_1_1_h_shape.html#ac2a70c1f4682dad262d45a9e71438e5c", null ]
+    [ "shape", "classhype_1_1drawable_1_1_h_shape.html#a2df9d3cd17b1a313c9967ba38178883f", null ]
 ];

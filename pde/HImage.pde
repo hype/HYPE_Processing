@@ -1,5 +1,5 @@
 public static class HImage extends HDrawable {
-	protected PImage _image;
+	private PImage _image;
 	public HImage() {
 		this(null);
 	}

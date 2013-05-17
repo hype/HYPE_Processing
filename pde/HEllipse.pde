@@ -1,6 +1,6 @@
 public static class HEllipse extends HDrawable {
-	protected int _mode;
-	protected float _startRad, _endRad;
+	private int _mode;
+	private float _startRad, _endRad;
 	public HEllipse() {
 		_mode = PConstants.PIE;
 	}

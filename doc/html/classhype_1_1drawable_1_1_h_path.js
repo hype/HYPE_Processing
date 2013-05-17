@@ -23,7 +23,5 @@ var classhype_1_1drawable_1_1_h_path =
     [ "vertex", "classhype_1_1drawable_1_1_h_path.html#af1af9ef7fd6c172ff05f4ebd42ef43f0", null ],
     [ "vertex", "classhype_1_1drawable_1_1_h_path.html#aacc6d6046734ec6b64f03eaa333146c0", null ],
     [ "vertexPerc", "classhype_1_1drawable_1_1_h_path.html#ac5ea1af96c05276213cf2de7af9d7e20", null ],
-    [ "vertexPerc", "classhype_1_1drawable_1_1_h_path.html#a478a911f3547139618369efe3dc28b5d", null ],
-    [ "_mode", "classhype_1_1drawable_1_1_h_path.html#ac3f65fdd8abc15cf5a2d9f007282b33a", null ],
-    [ "_vertices", "classhype_1_1drawable_1_1_h_path.html#a61f9c092fff56509a72121fb4e707611", null ]
+    [ "vertexPerc", "classhype_1_1drawable_1_1_h_path.html#a478a911f3547139618369efe3dc28b5d", null ]
 ];

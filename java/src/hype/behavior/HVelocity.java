@@ -6,32 +6,12 @@ import hype.util.HWarnings;
 import processing.core.PApplet;
 
 public class HVelocity extends HBehavior {
-	protected boolean _autoRegisters;
-	protected float _velocityX, _velocityY, _accelX, _accelY;
-	protected HLocatable _target;
-	
-	public HVelocity() {
-		_autoRegisters = true;
-	}
-	
-	public HVelocity(boolean isAutoRegister) {
-		_autoRegisters = isAutoRegister;
-	}
-	
-	public HVelocity autoRegisters(boolean b) {
-		_autoRegisters = b;
-		return this;
-	}
-	
-	public boolean autoRegisters() {
-		return _autoRegisters;
-	}
+	private float _velocityX, _velocityY, _accelX, _accelY;
+	private HLocatable _target;
 	
 	public HVelocity target(HLocatable t) {
-		if(_autoRegisters) {
-			if(t == null) unregister();
-			else register();
-		}
+		if(t == null) unregister();
+		else register();
 		_target = t;
 		return this;
 	}

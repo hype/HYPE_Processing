@@ -1,7 +1,7 @@
 public static class HSwarm extends HBehavior {
-	protected HLinkedHashSet<HLocatable> _goals;
-	protected HLinkedHashSet<HSwarmer> _targets;
-	protected float _speed, _turnEase, _twitchRad, _idleGoalX, _idleGoalY;
+	private HLinkedHashSet<HLocatable> _goals;
+	private HLinkedHashSet<HSwarmer> _targets;
+	private float _speed, _turnEase, _twitchRad, _idleGoalX, _idleGoalY;
 	public HSwarm() {
 		_speed = 1;
 		_turnEase = 1;
@@ -75,12 +75,12 @@ public static class HSwarm extends HBehavior {
 	public float twitchRad() {
 		return _twitchRad;
 	}
-	protected HLocatable getGoal(HSwarmer target, PApplet app) {
+	private HLocatable getGoal(HSwarmer target, PApplet app) {
 		HLocatable goal = null;
 		float nearestDist = -1;
 		for(HIterator<HLocatable> it=_goals.iterator(); it.hasNext();) {
 			HLocatable h = it.next();
-			float dist = app.dist(target.x(),target.y(), h.x(),h.y());
+			float dist = HMath.dist(target.x(),target.y(), h.x(),h.y());
 			if(nearestDist<0 || dist<nearestDist) {
 				nearestDist = dist;
 				goal = h;
@@ -110,7 +110,7 @@ public static class HSwarm extends HBehavior {
 				Math.atan2( Math.sin(tmp), Math.cos(tmp) );
 			rot += dRot;
 			float noise = app.noise(i*numTargets + app.frameCount/8f);
-			rot += app.map(noise, 0,1, -_twitchRad,_twitchRad);
+			rot += HMath.map(noise, 0,1, -_twitchRad,_twitchRad);
 			target.rotationRad(rot);
 			target.x(target.x() + (float)Math.cos(rot)*_speed);
 			target.y(target.y() + (float)Math.sin(rot)*_speed);

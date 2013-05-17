@@ -41,10 +41,5 @@ var classhype_1_1drawable_1_1_h_canvas =
     [ "size", "classhype_1_1drawable_1_1_h_canvas.html#aa23f93ad22eb3aea5810fc337411d310", null ],
     [ "updateBuffer", "classhype_1_1drawable_1_1_h_canvas.html#af03fa8512ff9955433a25e265929f6ae", null ],
     [ "usesZ", "classhype_1_1drawable_1_1_h_canvas.html#a9568a4eaab025dfd2fe66e68c9ef1d01", null ],
-    [ "width", "classhype_1_1drawable_1_1_h_canvas.html#a3d44daed96f1b010848c73ee31f3a103", null ],
-    [ "_autoClear", "classhype_1_1drawable_1_1_h_canvas.html#aa77e165d0056b7e5b3ae4d8070fb2248", null ],
-    [ "_filterKind", "classhype_1_1drawable_1_1_h_canvas.html#af2a85848e140db5ca64232972f7eb193", null ],
-    [ "_filterParam", "classhype_1_1drawable_1_1_h_canvas.html#ab582bec5ae85657991f59444b4cee307", null ],
-    [ "_graphics", "classhype_1_1drawable_1_1_h_canvas.html#aa01f31017be2da64ca6c1b471948c9cc", null ],
-    [ "_renderer", "classhype_1_1drawable_1_1_h_canvas.html#a02ab4098086b4c43b6b903bf1560cf08", null ]
+    [ "width", "classhype_1_1drawable_1_1_h_canvas.html#a3d44daed96f1b010848c73ee31f3a103", null ]
 ];

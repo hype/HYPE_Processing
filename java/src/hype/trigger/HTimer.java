@@ -5,8 +5,8 @@ import processing.core.PApplet;
 
 
 public class HTimer extends HTrigger {
-	protected int _lastInterval, _interval, _cycleCounter, _numCycles;
-	protected boolean _usesFrames;
+	private int _lastInterval, _interval, _cycleCounter, _numCycles;
+	private boolean _usesFrames;
 	
 	public HTimer() {
 		_interval = 1000;

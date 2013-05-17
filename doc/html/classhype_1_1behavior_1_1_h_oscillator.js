@@ -25,8 +25,5 @@ var classhype_1_1behavior_1_1_h_oscillator =
     [ "target", "classhype_1_1behavior_1_1_h_oscillator.html#a6f01827f6f900708b87c76927300ae45", null ],
     [ "unregister", "classhype_1_1behavior_1_1_h_oscillator.html#aa76d91f3a0d1c3c3955e0d15bbec7202", null ],
     [ "waveform", "classhype_1_1behavior_1_1_h_oscillator.html#a8bff5aa9e36d40ce17c07ea3ea34e9ed", null ],
-    [ "waveform", "classhype_1_1behavior_1_1_h_oscillator.html#ab86521034151a0c585058d590f4cad8b", null ],
-    [ "_propertyId", "classhype_1_1behavior_1_1_h_oscillator.html#a0f5690e41080e6de41ca6e36379a9f9f", null ],
-    [ "_stepDeg", "classhype_1_1behavior_1_1_h_oscillator.html#acecd0b2ab56531647aa02f4347a2fa3d", null ],
-    [ "_target", "classhype_1_1behavior_1_1_h_oscillator.html#af0894f7446ea5ec658c4c472d4436ef5", null ]
+    [ "waveform", "classhype_1_1behavior_1_1_h_oscillator.html#ab86521034151a0c585058d590f4cad8b", null ]
 ];

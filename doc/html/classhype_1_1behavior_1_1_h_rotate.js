@@ -10,7 +10,5 @@ var classhype_1_1behavior_1_1_h_rotate =
     [ "speedRad", "classhype_1_1behavior_1_1_h_rotate.html#ace262138ac083d1a30fd043be87544b8", null ],
     [ "target", "classhype_1_1behavior_1_1_h_rotate.html#aadc86b852d80f55fdf5b8d4b79181238", null ],
     [ "target", "classhype_1_1behavior_1_1_h_rotate.html#a80a8496b98f75284b75b51b71bba337d", null ],
-    [ "unregister", "classhype_1_1behavior_1_1_h_rotate.html#a0ff42539a4246ef9bc2235fc391d43b7", null ],
-    [ "_speedRad", "classhype_1_1behavior_1_1_h_rotate.html#a5061f65cfd851f59f492ae6324eb7df6", null ],
-    [ "_target", "classhype_1_1behavior_1_1_h_rotate.html#a820318c2953c93624ab29ebe3f3e6182", null ]
+    [ "unregister", "classhype_1_1behavior_1_1_h_rotate.html#a0ff42539a4246ef9bc2235fc391d43b7", null ]
 ];

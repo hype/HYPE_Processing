@@ -1,14 +1,12 @@
 package hype.layout;
 
 import hype.drawable.HDrawable;
-import hype.util.H;
 import hype.util.HMath;
-import processing.core.PApplet;
 import processing.core.PVector;
 
 public class HShapeLayout implements HLayout {
-	protected HDrawable _target;
-	protected int _iterationLimit;
+	private HDrawable _target;
+	private int _iterationLimit;
 	
 	public HShapeLayout() {
 		_iterationLimit = 1024;
@@ -42,8 +40,6 @@ public class HShapeLayout implements HLayout {
 	public PVector getNextPoint() {
 		if(_target == null) return null;
 		
-		PApplet app = H.app();
-		
 		float[] loc = HMath.absLocArr(_target,0,0);
 		float x1 = loc[0] - _target.anchorX();
 		float y1 = loc[1] - _target.anchorY();
@@ -51,8 +47,8 @@ public class HShapeLayout implements HLayout {
 		float y2 = y1 + _target.height();
 		
 		for(int i=0; i<_iterationLimit; ++i) {
-			float x = app.random(x1,x2);
-			float y = app.random(y1,y2);
+			float x = HMath.random(x1,x2);
+			float y = HMath.random(y1,y2);
 			if(_target.contains(x,y))
 				return new PVector(x,y);
 		}

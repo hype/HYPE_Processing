@@ -1,7 +1,7 @@
 public static class HColorField implements HColorist {
-	protected ArrayList<HColorPoint> _colorPoints;
-	protected float _maxDist;
-	protected boolean _appliesFill, _appliesStroke, _appliesAlpha;
+	private ArrayList<HColorPoint> _colorPoints;
+	private float _maxDist;
+	private boolean _appliesFill, _appliesStroke, _appliesAlpha;
 	public HColorField() {
 		this(H.app().width, H.app().height);
 	}
@@ -26,7 +26,6 @@ public static class HColorField implements HColorist {
 		return this;
 	}
 	public int getColor(float x, float y, int baseColor) {
-		PApplet app = H.app();
 		int[] baseClrs = HColors.explode(baseColor);
 		int[] maxClrs = new int[4];
 		int initJ;
@@ -40,12 +39,12 @@ public static class HColorField implements HColorist {
 			HColorPoint pt = _colorPoints.get(i);
 			int[] ptClrs = HColors.explode(pt.clr);
 			float distLimit = _maxDist * pt.radius;
-			float dist = app.dist(x,y, pt.x,pt.y);
+			float dist = HMath.dist(x,y, pt.x,pt.y);
 			if(dist > distLimit)
 				dist = distLimit;
 			for(int j=initJ; j<4; ++j) {
 				int newClrVal = Math.round(
-					app.map(dist, 0,distLimit, ptClrs[j], baseClrs[j]));
+					HMath.map(dist, 0,distLimit, ptClrs[j], baseClrs[j]));
 				if(newClrVal > maxClrs[j]) 
 					maxClrs[j] = newClrVal;
 			}

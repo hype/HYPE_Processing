@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 
 public class HMagneticField extends HBehavior {
-	protected ArrayList<HMagnet> _magnets;
-	protected HLinkedHashSet<HDrawable> _targets;
+	private ArrayList<HMagnet> _magnets;
+	private HLinkedHashSet<HDrawable> _targets;
 	
 	public HMagneticField() {
 		_magnets = new ArrayList<HMagneticField.HMagnet>();

@@ -6,7 +6,7 @@ import hype.util.HColors;
 public class HColorTransform implements HColorist {
 	public float _percA, _percR, _percG, _percB;
 	public int _offsetA, _offsetR, _offsetG, _offsetB;
-	protected boolean fillFlag, strokeFlag;
+	private boolean fillFlag, strokeFlag;
 	
 	public HColorTransform() {
 		_percA = _percR = _percG = _percB = 1;

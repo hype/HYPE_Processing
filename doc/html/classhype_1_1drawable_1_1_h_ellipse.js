@@ -22,7 +22,5 @@ var classhype_1_1drawable_1_1_h_ellipse =
     [ "start", "classhype_1_1drawable_1_1_h_ellipse.html#a4c22811a583ef8f35f2ef3ae46920791", null ],
     [ "start", "classhype_1_1drawable_1_1_h_ellipse.html#a07ea457eb86627aa14018eb5f09e6ec9", null ],
     [ "startRad", "classhype_1_1drawable_1_1_h_ellipse.html#a6c62de3878dff1b5a57cddf6a03f2306", null ],
-    [ "startRad", "classhype_1_1drawable_1_1_h_ellipse.html#ab3f78c9de4b22b83339389b08127351a", null ],
-    [ "_mode", "classhype_1_1drawable_1_1_h_ellipse.html#aa135a1010364048f6c02b7a01451cc8e", null ],
-    [ "_startRad", "classhype_1_1drawable_1_1_h_ellipse.html#a68c2277274139f7b1866f5b49812457f", null ]
+    [ "startRad", "classhype_1_1drawable_1_1_h_ellipse.html#ab3f78c9de4b22b83339389b08127351a", null ]
 ];

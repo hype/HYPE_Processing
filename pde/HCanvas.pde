@@ -1,9 +1,9 @@
 public static class HCanvas extends HDrawable {
-	protected PGraphics _graphics;
-	protected String _renderer;
-	protected float _filterParam;
-	protected int _filterKind, _blendMode, _fadeAmt;
-	protected boolean _autoClear,_hasFade,_hasFilter,_hasFilterParam,_hasBlend;
+	private PGraphics _graphics;
+	private String _renderer;
+	private float _filterParam;
+	private int _filterKind, _blendMode, _fadeAmt;
+	private boolean _autoClear,_hasFade,_hasFilter,_hasFilterParam,_hasBlend;
 	public HCanvas() {
 		this(H.app().width, H.app().height);
 	}

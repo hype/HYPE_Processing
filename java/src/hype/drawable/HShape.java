@@ -6,8 +6,8 @@ import processing.core.PGraphics;
 import processing.core.PShape;
 
 public class HShape extends HDrawable {
-	protected PShape _shape;
-	protected HColorPool _randomColors;
+	private PShape _shape;
+	private HColorPool _randomColors;
 	
 	public HShape() {
 		shape(null);

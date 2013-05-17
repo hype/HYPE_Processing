@@ -4,8 +4,8 @@ import hype.drawable.HDrawable;
 import processing.core.PVector;
 
 public class HGridLayout implements HLayout {
-	protected int _currentIndex, _numCols;
-	protected float _startX, _startY, _xSpace, _ySpace;
+	private int _currentIndex, _numCols;
+	private float _startX, _startY, _xSpace, _ySpace;
 
 	public HGridLayout() {
 		_xSpace = _ySpace = _numCols = 16;

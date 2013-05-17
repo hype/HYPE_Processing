@@ -1,6 +1,6 @@
 public static class HMagneticField extends HBehavior {
-	protected ArrayList<HMagnet> _magnets;
-	protected HLinkedHashSet<HDrawable> _targets;
+	private ArrayList<HMagnet> _magnets;
+	private HLinkedHashSet<HDrawable> _targets;
 	public HMagneticField() {
 		_magnets = new ArrayList<HMagneticField.HMagnet>();
 		_targets = new HLinkedHashSet<HDrawable>();

@@ -10,17 +10,15 @@ import hype.layout.HLayout;
 
 import java.util.ArrayList;
 
-import processing.core.PApplet;
-
 public class HDrawablePool {
-	protected HLinkedHashSet<HDrawable> _activeSet, _inactiveSet;
-	protected ArrayList<HDrawable> _prototypes;
+	private HLinkedHashSet<HDrawable> _activeSet, _inactiveSet;
+	private ArrayList<HDrawable> _prototypes;
 	public HCallback _onCreate, _onRequest, _onRelease;
 	public HPoolListener _listener;
-	protected HLayout _layout;
-	protected HColorist _colorist;
-	protected HDrawable _autoParent;
-	protected int _max;
+	private HLayout _layout;
+	private HColorist _colorist;
+	private HDrawable _autoParent;
+	private int _max;
 	
 	public HDrawablePool() {
 		this(64);
@@ -226,11 +224,8 @@ public class HDrawablePool {
 		return _inactiveSet;
 	}
 	
-	@SuppressWarnings("static-access")
-	protected HDrawable createRandomDrawable() {
-		PApplet app = H.app();
-		int numPrototypes = _prototypes.size();
-		int index = app.floor( app.random(numPrototypes) );
+	private HDrawable createRandomDrawable() {
+		int index = HMath.randomInt(_prototypes.size());
 		return _prototypes.get(index).createCopy();
 	}
 

@@ -6,8 +6,8 @@ import hype.util.H;
 import processing.core.PImage;
 
 public class HPixelColorist implements HColorist {
-	protected PImage img;
-	protected boolean fillFlag, strokeFlag;
+	private PImage img;
+	private boolean fillFlag, strokeFlag;
 	
 	public HPixelColorist() {
 		fillAndStroke();

@@ -1,5 +1,5 @@
 public static class HLinkedHashSet<T> extends HLinkedList<T> {
-	protected HashMap<T,HLinkedListNode<T>> nodeMap;
+	private HashMap<T,HLinkedListNode<T>> nodeMap;
 	public HLinkedHashSet() {
 		nodeMap = new HashMap<T, HLinkedListNode<T>>();
 	}

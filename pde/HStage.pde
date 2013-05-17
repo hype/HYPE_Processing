@@ -1,7 +1,7 @@
 public static class HStage extends HDrawable {
-	protected PApplet _app;
-	protected PImage _bgImg;
-	protected boolean _autoClearFlag;
+	private PApplet _app;
+	private PImage _bgImg;
+	private boolean _autoClearFlag;
 	public HStage(PApplet papplet) {
 		_app = papplet;
 		_autoClearFlag = true;

@@ -10,7 +10,7 @@ var hierarchy =
       [ "hype.colorist.HPixelColorist", "classhype_1_1colorist_1_1_h_pixel_colorist.html", null ]
     ] ],
     [ "hype.colorist.HColorField.HColorPoint", "classhype_1_1colorist_1_1_h_color_field_1_1_h_color_point.html", null ],
-    [ "hype.util.HColorUtil", "classhype_1_1util_1_1_h_color_util.html", null ],
+    [ "hype.util.HColors", "classhype_1_1util_1_1_h_colors.html", null ],
     [ "hype.util.HConstants", "interfacehype_1_1util_1_1_h_constants.html", [
       [ "hype.util.H", "classhype_1_1util_1_1_h.html", null ],
       [ "hype.util.HMath", "classhype_1_1util_1_1_h_math.html", null ]
@@ -70,7 +70,6 @@ var hierarchy =
         [ "hype.behavior.HTween", "classhype_1_1behavior_1_1_h_tween.html", null ],
         [ "hype.behavior.HVelocity", "classhype_1_1behavior_1_1_h_velocity.html", null ],
         [ "hype.trigger.HTrigger", "classhype_1_1trigger_1_1_h_trigger.html", [
-          [ "hype.trigger.HEventTrigger", "classhype_1_1trigger_1_1_h_event_trigger.html", null ],
           [ "hype.trigger.HRandomTrigger", "classhype_1_1trigger_1_1_h_random_trigger.html", null ],
           [ "hype.trigger.HTimer", "classhype_1_1trigger_1_1_h_timer.html", null ]
         ] ]

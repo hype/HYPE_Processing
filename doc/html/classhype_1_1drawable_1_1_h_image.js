@@ -12,6 +12,5 @@ var classhype_1_1drawable_1_1_h_image =
     [ "tint", "classhype_1_1drawable_1_1_h_image.html#a90ddb7283518bb1716f542e7fb81be85", null ],
     [ "tint", "classhype_1_1drawable_1_1_h_image.html#ab1f3b794734b3bf69a8ae730cb341f49", null ],
     [ "tint", "classhype_1_1drawable_1_1_h_image.html#a5a3f54f38e840c9ea82f00e7e4dd6467", null ],
-    [ "tint", "classhype_1_1drawable_1_1_h_image.html#adf558fb9f12c04e7de5b345f8d7a00c7", null ],
-    [ "_image", "classhype_1_1drawable_1_1_h_image.html#a26ed394b0920e18b39ed31e750dcc002", null ]
+    [ "tint", "classhype_1_1drawable_1_1_h_image.html#adf558fb9f12c04e7de5b345f8d7a00c7", null ]
 ];

@@ -10,7 +10,5 @@ var classhype_1_1behavior_1_1_h_magnetic_field =
     [ "removeMagnet", "classhype_1_1behavior_1_1_h_magnetic_field.html#a4940ac844de98bef6834b97b9ae81bdc", null ],
     [ "removeTarget", "classhype_1_1behavior_1_1_h_magnetic_field.html#af3af967e4ab6e1671994bb73f624ebe6", null ],
     [ "runBehavior", "classhype_1_1behavior_1_1_h_magnetic_field.html#ae48e7966cb683687cd6a05ea8319ecbd", null ],
-    [ "unregister", "classhype_1_1behavior_1_1_h_magnetic_field.html#a3b17a1968dee1b61220256a06e10980f", null ],
-    [ "_magnets", "classhype_1_1behavior_1_1_h_magnetic_field.html#a571dc191ead43a576513fb710a184bb4", null ],
-    [ "_targets", "classhype_1_1behavior_1_1_h_magnetic_field.html#a2d6fe89f3ad7910e52f5af6f3d2b8c26", null ]
+    [ "unregister", "classhype_1_1behavior_1_1_h_magnetic_field.html#a3b17a1968dee1b61220256a06e10980f", null ]
 ];

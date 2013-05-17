@@ -1,6 +1,6 @@
 public static class HPath extends HDrawable {
-	protected ArrayList<HVertex> _vertices;
-	protected int _mode;
+	private ArrayList<HVertex> _vertices;
+	private int _mode;
 	public HPath() {
 		this(PConstants.PATH);
 	}

@@ -20,7 +20,5 @@ var classhype_1_1layout_1_1_h_grid_layout =
     [ "startX", "classhype_1_1layout_1_1_h_grid_layout.html#a7bbf02fcd85ed4e6953e30ac03df5b66", null ],
     [ "startX", "classhype_1_1layout_1_1_h_grid_layout.html#a471d1d2f0b5a91e025b49cbdf747c916", null ],
     [ "startY", "classhype_1_1layout_1_1_h_grid_layout.html#ac47e7b4c4705ae384c6d9b88e23a1002", null ],
-    [ "startY", "classhype_1_1layout_1_1_h_grid_layout.html#a8c0e18120f08a017cb75680f9ea37b36", null ],
-    [ "_currentIndex", "classhype_1_1layout_1_1_h_grid_layout.html#aff606e11fbf16dea38b279a9838472e7", null ],
-    [ "_startX", "classhype_1_1layout_1_1_h_grid_layout.html#a2e35053d040218e53532d5fc5dbf7e58", null ]
+    [ "startY", "classhype_1_1layout_1_1_h_grid_layout.html#a8c0e18120f08a017cb75680f9ea37b36", null ]
 ];

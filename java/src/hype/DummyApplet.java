@@ -13,7 +13,6 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] migration of math calls to java.lang.Math
 	 * - [ ] base size for computing perc stuff = 0, if size = 0
 	 * - [ ] HDrawable.firstChild(), HDrawable.lastChild();
 	 * - [ ] issue #10 (make HVector a PVector container instead of subclass)
@@ -43,9 +42,7 @@ public class DummyApplet extends PApplet {
 	 * 		- pdf frames (remember that pdf frames don't ignores autoClear(false))
 	 * 
 	 * - [ ] protected HDrawable.onSizeChange();
-	 * - [ ] use private instead of protected as much as possible
 	 * - [ ] refactor/cleanup HOscillator
-	 * - [ ] negative ease
 	 * 
 	 * - [ ] HTween refinements
 	 * - [ ] AS3::SoundAnalyzer

@@ -15,8 +15,5 @@ var classhype_1_1behavior_1_1_h_follow =
     [ "spring", "classhype_1_1behavior_1_1_h_follow.html#a51a1cb2abc314c1ace9f62207f8c9295", null ],
     [ "target", "classhype_1_1behavior_1_1_h_follow.html#a39deb7437d22b1c953c1f95182ff1615", null ],
     [ "target", "classhype_1_1behavior_1_1_h_follow.html#a27d358cfb6ed4c1d21685c202ef19827", null ],
-    [ "unregister", "classhype_1_1behavior_1_1_h_follow.html#a7f1254633c3c04d687817ae0d8cec63c", null ],
-    [ "_ease", "classhype_1_1behavior_1_1_h_follow.html#a37c6ea2c768435a71cab8cc695526612", null ],
-    [ "_follower", "classhype_1_1behavior_1_1_h_follow.html#ab75b456b17c259986c8fb7e46d0bb920", null ],
-    [ "_goal", "classhype_1_1behavior_1_1_h_follow.html#a9c774922dc7ef22703be4bd8762ba131", null ]
+    [ "unregister", "classhype_1_1behavior_1_1_h_follow.html#a7f1254633c3c04d687817ae0d8cec63c", null ]
 ];

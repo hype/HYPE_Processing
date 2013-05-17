@@ -12,7 +12,7 @@ Inherits \fBhype\&.util\&.HConstants\fP\&.
 
 .in +1c
 .ti -1c
-.RI "static void \fBinit\fP (PApplet applet)"
+.RI "static float \fBdist\fP (float x1, float y1, float x2, float y2)"
 .br
 .ti -1c
 .RI "static float[] \fBrotatePointArr\fP (float x, float y, float rad)"
@@ -93,6 +93,21 @@ Inherits \fBhype\&.util\&.HConstants\fP\&.
 .RI "static boolean \fBrightOfLine\fP (float x1, float y1, float x2, float y2, float ptx, float pty)"
 .br
 .ti -1c
+.RI "static float \fBrandom\fP ()"
+.br
+.ti -1c
+.RI "static float \fBrandom\fP (float high)"
+.br
+.ti -1c
+.RI "static float \fBrandom\fP (float low, float high)"
+.br
+.ti -1c
+.RI "static int \fBrandomInt\fP (float high)"
+.br
+.ti -1c
+.RI "static int \fBrandomInt\fP (float low, float high)"
+.br
+.ti -1c
 .RI "static int \fBrandomInt32\fP ()"
 .br
 .ti -1c
@@ -115,6 +130,9 @@ Inherits \fBhype\&.util\&.HConstants\fP\&.
 .br
 .ti -1c
 .RI "static boolean \fBhasBits\fP (int target, int val)"
+.br
+.ti -1c
+.RI "static float \fBmap\fP (float val, float start1, float stop1, float start2, float stop2)"
 .br
 .in -1c
 .SS "Additional Inherited Members"

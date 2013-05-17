@@ -11,7 +11,6 @@ var classhype_1_1util_1_1_h_drawable_pool =
     [ "colorist", "classhype_1_1util_1_1_h_drawable_pool.html#ad6392eb93c82c0f84793dc94da598070", null ],
     [ "colorist", "classhype_1_1util_1_1_h_drawable_pool.html#af1a34fd7a8507f25bc23823f302d0fd9", null ],
     [ "count", "classhype_1_1util_1_1_h_drawable_pool.html#a9b54aed98225477498edc3e923705932", null ],
-    [ "createRandomDrawable", "classhype_1_1util_1_1_h_drawable_pool.html#a7ffe28f86dea669b090082941cfb9a7d", null ],
     [ "currentIndex", "classhype_1_1util_1_1_h_drawable_pool.html#a82f0c3a5068f6a88ba1e21a2312bb1fe", null ],
     [ "destroy", "classhype_1_1util_1_1_h_drawable_pool.html#ad04926d581f304a3592ad3c63e30847e", null ],
     [ "inactiveSet", "classhype_1_1util_1_1_h_drawable_pool.html#a3b6820ee8be2d8416d252f701f41eb3b", null ],
@@ -34,12 +33,6 @@ var classhype_1_1util_1_1_h_drawable_pool =
     [ "release", "classhype_1_1util_1_1_h_drawable_pool.html#a87405a81b72caacd0b94280ebbe60143", null ],
     [ "request", "classhype_1_1util_1_1_h_drawable_pool.html#a5d67b9c6cd38a3b2d3a4b001f3d03e92", null ],
     [ "requestAll", "classhype_1_1util_1_1_h_drawable_pool.html#a2ec580c20cc33c9510183aec65e454bb", null ],
-    [ "_activeSet", "classhype_1_1util_1_1_h_drawable_pool.html#a4424f26db4515c01f37ff844b106656a", null ],
-    [ "_autoParent", "classhype_1_1util_1_1_h_drawable_pool.html#ae4641976db634b01d779855c7781fcfe", null ],
-    [ "_colorist", "classhype_1_1util_1_1_h_drawable_pool.html#a43ec5c3cdb73cb7f19f67c71d714fae7", null ],
-    [ "_layout", "classhype_1_1util_1_1_h_drawable_pool.html#a97dc79fcad128a6fbebfebbe03098e59", null ],
     [ "_listener", "classhype_1_1util_1_1_h_drawable_pool.html#af89c46b9354c43572322ecfef05be36d", null ],
-    [ "_max", "classhype_1_1util_1_1_h_drawable_pool.html#affe9b7ec7bb037a7a6dc94a03e0d0d34", null ],
-    [ "_onCreate", "classhype_1_1util_1_1_h_drawable_pool.html#acd09bbc8813c3fab35dd5495ba443873", null ],
-    [ "_prototypes", "classhype_1_1util_1_1_h_drawable_pool.html#a7146e4d423fde5a2a163c7d2840790bc", null ]
+    [ "_onCreate", "classhype_1_1util_1_1_h_drawable_pool.html#acd09bbc8813c3fab35dd5495ba443873", null ]
 ];

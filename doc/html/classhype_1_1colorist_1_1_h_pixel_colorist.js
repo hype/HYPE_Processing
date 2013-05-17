@@ -10,7 +10,5 @@ var classhype_1_1colorist_1_1_h_pixel_colorist =
     [ "getColor", "classhype_1_1colorist_1_1_h_pixel_colorist.html#ae1f9eceeb77784831b7ea6abc7d53c70", null ],
     [ "getImage", "classhype_1_1colorist_1_1_h_pixel_colorist.html#a251ab048fc63631825ead9787da3e0d2", null ],
     [ "setImage", "classhype_1_1colorist_1_1_h_pixel_colorist.html#a70a068a1181343118f90eabc320f7b60", null ],
-    [ "strokeOnly", "classhype_1_1colorist_1_1_h_pixel_colorist.html#a4bbe4b11242fa7e250f296b9c8156331", null ],
-    [ "fillFlag", "classhype_1_1colorist_1_1_h_pixel_colorist.html#a761a58901f795cdd1191f8a5ce21d2b9", null ],
-    [ "img", "classhype_1_1colorist_1_1_h_pixel_colorist.html#a700427af96c00907f5b583f019b7d6af", null ]
+    [ "strokeOnly", "classhype_1_1colorist_1_1_h_pixel_colorist.html#a4bbe4b11242fa7e250f296b9c8156331", null ]
 ];

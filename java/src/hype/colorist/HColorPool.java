@@ -1,16 +1,13 @@
 package hype.colorist;
 
 import hype.drawable.HDrawable;
-import hype.util.H;
 import hype.util.HMath;
 
 import java.util.ArrayList;
 
-import processing.core.PApplet;
-
 public class HColorPool implements HColorist {
-	protected ArrayList<Integer> _colorList;
-	protected boolean _fillFlag, _strokeFlag;
+	private ArrayList<Integer> _colorList;
+	private boolean _fillFlag, _strokeFlag;
 	
 	public HColorPool(int... colors) {
 		_colorList = new ArrayList<Integer>();
@@ -45,12 +42,10 @@ public class HColorPool implements HColorist {
 		return this;
 	}
 	
-	@SuppressWarnings("static-access")
 	public int getColor() {
 		if(_colorList.size() <= 0) return 0;
 		
-		PApplet app = H.app();
-		int index = app.floor(app.random(_colorList.size()));
+		int index = HMath.randomInt(_colorList.size());
 		return _colorList.get(index);
 	}
 	

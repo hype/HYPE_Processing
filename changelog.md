@@ -16,3 +16,4 @@
 	- `random()`
 	- `map()`
 - remove deprecated `HMath.init()` method
+- remove unimplemented HEventTrigger

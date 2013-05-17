@@ -55,7 +55,6 @@ var annotated =
         [ "HShapeLayout", "classhype_1_1layout_1_1_h_shape_layout.html", "classhype_1_1layout_1_1_h_shape_layout" ]
       ] ],
       [ "trigger", null, [
-        [ "HEventTrigger", "classhype_1_1trigger_1_1_h_event_trigger.html", "classhype_1_1trigger_1_1_h_event_trigger" ],
         [ "HRandomTrigger", "classhype_1_1trigger_1_1_h_random_trigger.html", "classhype_1_1trigger_1_1_h_random_trigger" ],
         [ "HTimer", "classhype_1_1trigger_1_1_h_timer.html", "classhype_1_1trigger_1_1_h_timer" ],
         [ "HTrigger", "classhype_1_1trigger_1_1_h_trigger.html", "classhype_1_1trigger_1_1_h_trigger" ]
@@ -63,7 +62,7 @@ var annotated =
       [ "util", null, [
         [ "H", "classhype_1_1util_1_1_h.html", "classhype_1_1util_1_1_h" ],
         [ "HBundle", "classhype_1_1util_1_1_h_bundle.html", "classhype_1_1util_1_1_h_bundle" ],
-        [ "HColorUtil", "classhype_1_1util_1_1_h_color_util.html", "classhype_1_1util_1_1_h_color_util" ],
+        [ "HColors", "classhype_1_1util_1_1_h_colors.html", "classhype_1_1util_1_1_h_colors" ],
         [ "HConstants", "interfacehype_1_1util_1_1_h_constants.html", "interfacehype_1_1util_1_1_h_constants" ],
         [ "HDrawablePool", "classhype_1_1util_1_1_h_drawable_pool.html", "classhype_1_1util_1_1_h_drawable_pool" ],
         [ "HMath", "classhype_1_1util_1_1_h_math.html", "classhype_1_1util_1_1_h_math" ],

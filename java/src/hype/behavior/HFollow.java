@@ -5,9 +5,9 @@ import hype.util.H;
 import processing.core.PApplet;
 
 public class HFollow extends HBehavior {
-	protected float _ease, _spring, _dx, _dy;
-	protected HLocatable _goal;
-	protected HLocatable _follower;
+	private float _ease, _spring, _dx, _dy;
+	private HLocatable _goal;
+	private HLocatable _follower;
 	
 	public HFollow() {
 		this(1);

@@ -6,12 +6,12 @@ import hype.util.HMath;
 import processing.core.PApplet;
 
 public class HOscillator extends HBehavior {
-	protected HDrawable _target;
-	protected float
+	private HDrawable _target;
+	private float
 		_stepDeg, _speed, _min,
 		_max, _freq, _relValue,
 		_origW, _origH;
-	protected int _propertyId, _waveform;
+	private int _propertyId, _waveform;
 	
 	public HOscillator() {
 		_speed = 1;

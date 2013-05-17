@@ -22,10 +22,5 @@ var classhype_1_1behavior_1_1_h_tween =
     [ "start", "classhype_1_1behavior_1_1_h_tween.html#a4f93eecfc67afcdc474da9ea54e9c56f", null ],
     [ "target", "classhype_1_1behavior_1_1_h_tween.html#ab015140e0806c21540dd26a36c1a0fa5", null ],
     [ "target", "classhype_1_1behavior_1_1_h_tween.html#a5ba73efa9d77e23f0dc21e2cec2438ae", null ],
-    [ "unregister", "classhype_1_1behavior_1_1_h_tween.html#ac1571701e84ef4a06f9d87ec66246ad5", null ],
-    [ "updateOrigVal", "classhype_1_1behavior_1_1_h_tween.html#a5d92b85e690e33e68cadff24cbf81409", null ],
-    [ "_callback", "classhype_1_1behavior_1_1_h_tween.html#af30be22943f5e767b21bb48a5b8a0d88", null ],
-    [ "_currVal", "classhype_1_1behavior_1_1_h_tween.html#a1237f8e693f4b0b01e1e5cfa6013a997", null ],
-    [ "_propertyId", "classhype_1_1behavior_1_1_h_tween.html#a571d76a999f6a22a58fdbd0d515359de", null ],
-    [ "_target", "classhype_1_1behavior_1_1_h_tween.html#ac5b429cf1e3caadb491c5f17de1d5b30", null ]
+    [ "unregister", "classhype_1_1behavior_1_1_h_tween.html#ac1571701e84ef4a06f9d87ec66246ad5", null ]
 ];

@@ -26,8 +26,5 @@ var classhype_1_1drawable_1_1_h_stage =
     [ "width", "classhype_1_1drawable_1_1_h_stage.html#ae31a077cefbeb64d9d90cf109a3f01d9", null ],
     [ "x", "classhype_1_1drawable_1_1_h_stage.html#a28aabd3bca1fdabfa092ebe3c7c3a82d", null ],
     [ "y", "classhype_1_1drawable_1_1_h_stage.html#a0cb3ba260c10dc0795441102e575dc7c", null ],
-    [ "z", "classhype_1_1drawable_1_1_h_stage.html#a11bc569898118ace4345b069c3e32029", null ],
-    [ "_app", "classhype_1_1drawable_1_1_h_stage.html#acc8f556b5932d9ec0517827624f0a78a", null ],
-    [ "_autoClearFlag", "classhype_1_1drawable_1_1_h_stage.html#a897a86463a443c95adaa9adbaca8b449", null ],
-    [ "_bgImg", "classhype_1_1drawable_1_1_h_stage.html#a889be7b38d96ba3d74b714161a96146c", null ]
+    [ "z", "classhype_1_1drawable_1_1_h_stage.html#a11bc569898118ace4345b069c3e32029", null ]
 ];

@@ -11,6 +11,5 @@ var classhype_1_1collection_1_1_h_linked_hash_set_3_01_t_01_4 =
     [ "remove", "classhype_1_1collection_1_1_h_linked_hash_set_3_01_t_01_4.html#a1ad10cacbf30beccd66d3a5399a120c0", null ],
     [ "removeAll", "classhype_1_1collection_1_1_h_linked_hash_set_3_01_t_01_4.html#a50e3ea3477deffafbdbff2656436a1f4", null ],
     [ "removeAt", "classhype_1_1collection_1_1_h_linked_hash_set_3_01_t_01_4.html#a51eb13bff6a30dd73beef4f8c3356696", null ],
-    [ "unregister", "classhype_1_1collection_1_1_h_linked_hash_set_3_01_t_01_4.html#af592576c6f64717a767e5836e7cb88e5", null ],
-    [ "nodeMap", "classhype_1_1collection_1_1_h_linked_hash_set_3_01_t_01_4.html#a6d6e269397d50752ff3551d3d59d3443", null ]
+    [ "unregister", "classhype_1_1collection_1_1_h_linked_hash_set_3_01_t_01_4.html#af592576c6f64717a767e5836e7cb88e5", null ]
 ];

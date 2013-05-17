@@ -7,9 +7,9 @@ import processing.core.PFont;
 import processing.core.PGraphics;
 
 public class HText extends HDrawable {
-	protected PFont _font;
-	protected String _text;
-	protected float _descent;
+	private PFont _font;
+	private String _text;
+	private float _descent;
 	
 	public HText() {
 		this(null,16);
@@ -82,7 +82,7 @@ public class HText extends HDrawable {
 		return _height;
 	}
 	
-	protected void adjustMetrics() {
+	private void adjustMetrics() {
 		PApplet app = H.app();
 		app.pushStyle();
 		app.textFont(_font,(_height < 0)? -_height : _height);

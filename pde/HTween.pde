@@ -1,15 +1,15 @@
 public static class HTween extends HBehavior {
-	protected HDrawable _target;
-	protected HCallback _callback;
-	protected float _currVal, _dVal, _endVal,
+	private HDrawable _target;
+	private HCallback _callback;
+	private float _currVal, _dVal, _endVal,
 		_spring, _ease,
 		_origVal1, _origVal2, _dirRad;
-	protected int _propertyId;
+	private int _propertyId;
 	public HTween() {
 		_propertyId = HConstants.X;
 		_ease = 1;
 	}
-	protected void updateOrigVal() {
+	private void updateOrigVal() {
 		if(_target == null) return;
 		switch(_propertyId) {
 		case HConstants.LOCATION:

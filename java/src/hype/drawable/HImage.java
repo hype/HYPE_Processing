@@ -5,7 +5,7 @@ import processing.core.PGraphics;
 import processing.core.PImage;
 
 public class HImage extends HDrawable {
-	protected PImage _image;
+	private PImage _image;
 
 	public HImage() {
 		this(null);
