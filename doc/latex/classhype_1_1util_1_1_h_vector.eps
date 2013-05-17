@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 113.636364
+%%BoundingBox: 0 0 500 227.272727
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,13 +19,13 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 4.400000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 2.200000 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
 /rows 2 def
-/cols 2 def
+/cols 1 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
 
@@ -174,7 +174,6 @@
 boxfont setfont
 1 boundaspect scale
 (hype.util.HVector) cw
-(PVector) cw
 (hype.interfaces.HLocatable) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
@@ -187,17 +186,12 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (hype.util.HVector) 0.500000 0.000000 box
- (PVector) 0.000000 1.000000 box
- (hype.interfaces.HLocatable) 1.000000 1.000000 box
+ (hype.util.HVector) 0.000000 0.000000 box
+ (hype.interfaces.HLocatable) 0.000000 1.000000 box
 
 % ----- relations -----
 
 solid
-0 0.500000 0.000000 out
-solid
-0.000000 1.000000 1.000000 conn
+0 0.000000 0.000000 out
 solid
 1 0.000000 1.000000 in
-solid
-1 1.000000 1.000000 in

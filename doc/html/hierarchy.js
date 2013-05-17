@@ -76,8 +76,5 @@ var hierarchy =
       ] ],
       [ "hype.collection.HLinkedList< T >.HLinkedListNode< U >", "classhype_1_1collection_1_1_h_linked_list_3_01_t_01_4_1_1_h_linked_list_node_3_01_u_01_4.html", null ],
       [ "hype.drawable.HDrawable", "classhype_1_1drawable_1_1_h_drawable.html", null ]
-    ] ],
-    [ "PVector", null, [
-      [ "hype.util.HVector", "classhype_1_1util_1_1_h_vector.html", null ]
     ] ]
 ];
