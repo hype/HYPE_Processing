@@ -1,12 +1,18 @@
 public static class HMouse implements HLocatable {
 	private PApplet _app;
 	private int _button;
-	private boolean _started, _moved, _clicked, _dragged;
+	private boolean _started, _moved;
 	public HMouse(PApplet app) {
 		_app = app;
 	}
 	public boolean started() {
 		return _started;
+	}
+	public boolean moved() {
+		return _moved;
+	}
+	public int button() {
+		return _button;
 	}
 	public void handleEvents() {
 		_button = _app.mouseButton;
