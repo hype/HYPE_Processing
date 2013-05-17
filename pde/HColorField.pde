@@ -6,7 +6,7 @@ public static class HColorField implements HColorist {
 		this(H.app().width, H.app().height);
 	}
 	public HColorField(float xBound, float yBound) {
-		this(H.app().sqrt(xBound*xBound + yBound*yBound));
+		this( (float) Math.sqrt(xBound*xBound + yBound*yBound) );
 	}
 	public HColorField(float maximumDistance) {
 		_colorPoints = new ArrayList<HColorField.HColorPoint>();
@@ -44,7 +44,7 @@ public static class HColorField implements HColorist {
 			if(dist > distLimit)
 				dist = distLimit;
 			for(int j=initJ; j<4; ++j) {
-				int newClrVal = app.round(
+				int newClrVal = Math.round(
 					app.map(dist, 0,distLimit, ptClrs[j], baseClrs[j]));
 				if(newClrVal > maxClrs[j]) 
 					maxClrs[j] = newClrVal;

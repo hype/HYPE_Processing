@@ -145,7 +145,8 @@ public class HSwarm extends HBehavior {
 			
 			// Get rotation that points towards the goal, plus easing
 			float tmp = HMath.xAxisAngle(tx,ty, goalx,goaly) - rot;
-			float dRot = app.atan2(app.sin(tmp),app.cos(tmp)) * _turnEase;
+			float dRot = _turnEase * (float)
+				Math.atan2( Math.sin(tmp), Math.cos(tmp) );
 			rot += dRot;
 			
 			// Add some random twitching to the rotation via perlin noise
@@ -154,8 +155,8 @@ public class HSwarm extends HBehavior {
 			
 			// Apply the rotation and move to the direction of its rotation
 			target.rotationRad(rot);
-			target.x(target.x() + app.cos(rot)*_speed);
-			target.y(target.y() + app.sin(rot)*_speed);
+			target.x(target.x() + (float)Math.cos(rot)*_speed);
+			target.y(target.y() + (float)Math.sin(rot)*_speed);
 			target.z(goalz);
 		}
 	}

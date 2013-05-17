@@ -23,7 +23,6 @@ public class H implements HConstants {
 		_app = applet;
 		
 		// Initialize this class' objects
-		HMath.init(_app);
 		if(_self == null) _self = new H();
 		if(_stage == null) _stage = new HStage(_app);
 		if(_behaviors == null) _behaviors = new HBehaviorRegistry();

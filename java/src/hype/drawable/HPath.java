@@ -1,12 +1,10 @@
 package hype.drawable;
 
-import hype.util.H;
 import hype.util.HConstants;
 import hype.util.HWarnings;
 
 import java.util.ArrayList;
 
-import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
@@ -155,7 +153,6 @@ public class HPath extends HDrawable {
 		return this;
 	}
 	
-	@SuppressWarnings("static-access")
 	public HPath triangle(int type, int direction) {
 		_vertices.clear();
 		
@@ -163,9 +160,12 @@ public class HPath extends HDrawable {
 		
 		switch(type) {
 		case HConstants.EQUILATERAL:
-			ratio = H.app().sin(PConstants.TWO_PI/6); break;
+			ratio = (float) Math.sin(PConstants.TWO_PI/6);
+			break;
 		case HConstants.RIGHT:
-			ratio = H.app().sin(PConstants.TWO_PI/8) / HConstants.SQRT2; break;
+			ratio = ((float) Math.sin(PConstants.TWO_PI/8))
+				/ HConstants.SQRT2;
+			break;
 		}
 		
 		switch(direction) {
@@ -226,17 +226,15 @@ public class HPath extends HDrawable {
 		return this;
 	}
 	
-	@SuppressWarnings("static-access")
 	public HPath polygon(int numEdges) {
 		_vertices.clear();
-		PApplet app = H.app();
 		
 		float radInc = PConstants.TWO_PI / numEdges;
 		for(int i=0; i<numEdges; ++i) {
 			float rad = radInc * i;
 			vertexPerc(
-				0.5f + 0.5f*app.cos(rad),
-				0.5f + 0.5f*app.sin(rad));
+				0.5f + 0.5f*(float)Math.cos(rad),
+				0.5f + 0.5f*(float)Math.sin(rad));
 		}
 		_mode = PConstants.POLYGON;
 		return this;
@@ -246,17 +244,15 @@ public class HPath extends HDrawable {
 		return polygonRad(numEdges, startDeg * HConstants.D2R);
 	}
 	
-	@SuppressWarnings("static-access")
 	public HPath polygonRad(int numEdges, float startRad) {
 		_vertices.clear();
-		PApplet app = H.app();
 		
 		float radInc = PConstants.TWO_PI / numEdges;
 		for(int i=0; i<numEdges; ++i) {
 			float rad = startRad + radInc*i;
 			vertexPerc(
-				0.5f + 0.5f*app.cos(rad),
-				0.5f + 0.5f*app.sin(rad));
+				0.5f + 0.5f*(float)Math.cos(rad),
+				0.5f + 0.5f*(float)Math.sin(rad));
 		}
 		_mode = PConstants.POLYGON;
 		return this;
@@ -270,22 +266,21 @@ public class HPath extends HDrawable {
 		return starRad(numEdges, depth, startDeg * HConstants.D2R);
 	}
 	
-	@SuppressWarnings("static-access")
 	public HPath starRad(int numEdges, float depth, float startRad) {
 		_vertices.clear();
-		PApplet app = H.app();
 		
 		float radInc = PConstants.TWO_PI / numEdges;
+		float idepth = 1 - depth;
 		for(int i=0; i<numEdges; ++i) {
 			float rad = startRad + radInc*i;
 			vertexPerc(
-				0.5f + 0.5f*app.cos(rad),
-				0.5f + 0.5f*app.sin(rad));
+				0.5f + 0.5f*(float)Math.cos(rad),
+				0.5f + 0.5f*(float)Math.sin(rad));
 			
 			rad = startRad + radInc*(i + 0.5f);
 			vertexPerc(
-				0.5f + 0.5f*app.cos(rad)*(1-depth),
-				0.5f + 0.5f*app.sin(rad)*(1-depth));
+				0.5f + 0.5f*idepth*(float)Math.cos(rad),
+				0.5f + 0.5f*idepth*(float)Math.sin(rad));
 		}
 		_mode = PConstants.POLYGON;
 		return this;

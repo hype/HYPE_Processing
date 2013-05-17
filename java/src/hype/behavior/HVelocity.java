@@ -1,7 +1,6 @@
 package hype.behavior;
 
 import hype.interfaces.HLocatable;
-import hype.util.H;
 import hype.util.HConstants;
 import hype.util.HWarnings;
 import processing.core.PApplet;
@@ -45,11 +44,9 @@ public class HVelocity extends HBehavior {
 		return velocityRad(velocity, deg*HConstants.D2R);
 	}
 	
-	@SuppressWarnings("static-access")
 	public HVelocity velocityRad(float velocity, float rad) {
-		PApplet app = H.app();
-		_velocityX = velocity * app.cos(rad);
-		_velocityY = velocity * app.sin(rad);
+		_velocityX = velocity * (float)Math.cos(rad);
+		_velocityY = velocity * (float)Math.sin(rad);
 		return this;
 	}
 	
@@ -87,11 +84,9 @@ public class HVelocity extends HBehavior {
 		return accelRad(acceleration, deg*HConstants.D2R);
 	}
 
-	@SuppressWarnings("static-access")
 	public HVelocity accelRad(float acceleration, float rad) {
-		PApplet app = H.app();
-		_accelX = acceleration * app.cos(rad);
-		_accelY = acceleration * app.sin(rad);
+		_accelX = acceleration * (float)Math.cos(rad);
+		_accelY = acceleration * (float)Math.sin(rad);
 		return this;
 	}
 	

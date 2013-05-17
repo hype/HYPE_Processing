@@ -1,12 +1,10 @@
 package hype.behavior;
 
 import hype.drawable.HDrawable;
-import hype.util.H;
 import hype.util.HConstants;
 import hype.util.HMath;
 import processing.core.PApplet;
 
-@SuppressWarnings("static-access")
 public class HOscillator extends HBehavior {
 	protected HDrawable _target;
 	protected float
@@ -147,7 +145,7 @@ public class HOscillator extends HBehavior {
 		case HConstants.SAW:      outVal = HMath.sawWave(currentDeg);     break;
 		case HConstants.SQUARE:   outVal = HMath.squareWave(currentDeg);  break;
 		}
-		outVal = H.app().map(outVal, -1,1, _min,_max) + _relValue;
+		outVal = HMath.map(outVal, -1,1, _min,_max) + _relValue;
 		
 		_stepDeg += speed();
 		return outVal;
@@ -163,7 +161,7 @@ public class HOscillator extends HBehavior {
 		case HConstants.WIDTH:		_target.width(val); break;
 		case HConstants.HEIGHT:		_target.height(val); break;
 		case HConstants.SIZE:		_target.size(val); break;
-		case HConstants.ALPHA:		_target.alpha(H.app().round(val)); break;
+		case HConstants.ALPHA:		_target.alpha(Math.round(val)); break;
 		case HConstants.X:			_target.x(val); break;
 		case HConstants.Y:			_target.y(val); break;
 		case HConstants.LOCATION:	_target.loc(val,val); break;

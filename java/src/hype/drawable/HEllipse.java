@@ -2,7 +2,6 @@ package hype.drawable;
 
 import hype.util.H;
 import hype.util.HMath;
-import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
@@ -108,7 +107,6 @@ public class HEllipse extends HDrawable {
 		return _endRad;
 	}
 	
-	@SuppressWarnings("static-access")
 	@Override
 	public boolean containsRel(float relX, float relY) {
 		float cx = _width/2;
@@ -124,9 +122,8 @@ public class HEllipse extends HDrawable {
 		// Return false regardless of mode if it's not inside the ellipse
 		else if(!inEllipse) return false;
 		
-		PApplet app = H.app();
 		if(_mode == PConstants.PIE) {
-			float ptAngle = app.atan2(dcy*cx, dcx*cy);
+			float ptAngle = (float) Math.atan2(dcy*cx, dcx*cy);
 			if(_startRad > ptAngle) ptAngle += PConstants.TWO_PI;
 			return (_startRad<=ptAngle && ptAngle<=_endRad);
 		} else {

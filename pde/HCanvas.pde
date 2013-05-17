@@ -26,10 +26,9 @@ public static class HCanvas extends HDrawable {
 		return copy;
 	}
 	protected void updateBuffer() {
-		PApplet app = H.app();
-		int w = app.round(_width);
-		int h = app.round(_height);
-		_graphics = app.createGraphics(w, h, _renderer);
+		int w = Math.round(_width);
+		int h = Math.round(_height);
+		_graphics = H.app().createGraphics(w, h, _renderer);
 		_graphics.loadPixels();
 		_graphics.beginDraw();
 			_graphics.background(H.CLEAR);

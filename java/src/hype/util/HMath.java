@@ -1,32 +1,26 @@
 package hype.util;
 
 import hype.drawable.HDrawable;
-import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
 
 public class HMath implements HConstants {
-	private static PApplet _app; // TODO
 	private static boolean _usingTempSeed;
 	private static int _resetSeedValue;
-	
-	public static void init(PApplet applet) {
-		_app = applet;
-	}
 	
 	// GEOMETRY //
 	
 	public static float dist(float x1, float y1, float x2, float y2) {
-		// TODO
-		return 0;
+		float w = x2 - x1;
+		float h = y2 - y1;
+		return (float) Math.sqrt(w*w + h*h);
 	}
 	
-	@SuppressWarnings("static-access")
 	public static float[] rotatePointArr(float x, float y, float rad) {
 		float[] pt = new float[2];
 		
-		float c = _app.cos(rad);
-		float s = _app.sin(rad);
+		float c = (float) Math.cos(rad);
+		float s = (float) Math.sin(rad);
 		
 		pt[0] = x*c - y*s;
 		pt[1] = x*s + y*c;
@@ -39,14 +33,12 @@ public class HMath implements HConstants {
 		return new PVector(f[0], f[1]);
 	}
 	
-	@SuppressWarnings("static-access")
 	public static float yAxisAngle(float x1, float y1, float x2, float y2) {
-		return _app.atan2(x2-x1, y2-y1);
+		return (float) Math.atan2(x2-x1, y2-y1);
 	}
 	
-	@SuppressWarnings("static-access")
 	public static float xAxisAngle(float x1, float y1, float x2, float y2) {
-		return _app.atan2(y2-y1, x2-x1);
+		return (float) Math.atan2(y2-y1, x2-x1);
 	}
 	
 	public static float[] absLocArr(HDrawable ref, float relX, float relY) {
@@ -95,11 +87,10 @@ public class HMath implements HConstants {
 		return ellipseRadiusRad(a,b, deg * D2R);
 	}
 	
-	@SuppressWarnings("static-access")
 	public static float ellipseRadiusRad(float a, float b, float rad) {
-		float cosb = b * _app.cos(rad);
-		float sina = a * _app.sin(rad);
-		return a*b / _app.sqrt(cosb*cosb + sina*sina);
+		float cosb = b * (float)Math.cos(rad);
+		float sina = a * (float)Math.sin(rad);
+		return a*b / (float)Math.sqrt(cosb*cosb + sina*sina);
 	}
 	
 	public static PVector ellipsePoint(
@@ -115,14 +106,13 @@ public class HMath implements HConstants {
 		return new PVector(f[0], f[1]);
 	}
 	
-	@SuppressWarnings("static-access")
 	public static float[] ellipsePointRadArr(
 		float cx, float cy, float a, float b, float rad
 	) {
 		float[] f = new float[3];
 		f[2] = ellipseRadiusRad(a, b, rad);
-		f[0] = _app.cos(rad) * f[2] + cx;
-		f[1] = _app.sin(rad) * f[2] + cy;
+		f[0] = f[2] * (float)Math.cos(rad) + cx;
+		f[1] = f[2] * (float)Math.sin(rad) + cy;
 		return f;
 	}
 	
@@ -151,11 +141,10 @@ public class HMath implements HConstants {
 		return squishAngle(w, h, deg * D2R) * R2D;
 	}
 	
-	@SuppressWarnings("static-access")
 	public static float squishAngleRad(float w, float h, float rad) {
-		float dx = _app.cos(rad) * w/h;
-		float dy = _app.sin(rad);
-		return _app.atan2(dy,dx);
+		float dx = (float)Math.cos(rad) * w/h;
+		float dy = (float)Math.sin(rad);
+		return (float) Math.atan2(dy,dx);
 	}
 	
 	public static float lineSide(
@@ -186,36 +175,32 @@ public class HMath implements HConstants {
 	// RNG //
 	
 	public static float random() {
-		// TODO
-		return 0;
+		return random(1);
 	}
 	
-	public static float random(float max) {
-		// TODO
-		return 0;
+	public static float random(float high) {
+		float val;
+		do { // this loop is for a rare rounding bug
+			val = (float)Math.random() * high;
+		} while(val == high);
+		return val;
 	}
 	
-	public static float random(float min, float max) {
-		// TODO
-		return 0;
+	public static float random(float low, float high) {
+		if(low >= high) return low;
+		return random(high-low) + low;
 	}
 	
-	public static float randomInt(float max) {
-		// TODO
-		return 0;
+	public static int randomInt(float high) {
+		return (int) Math.floor( random(high) );
 	}
 	
-	public static float randomInt(float min, float max) {
-		// TODO
-		return 0;
+	public static int randomInt(float low, float high) {
+		return (int) Math.floor( random(low,high) );
 	}
 	
-	@SuppressWarnings("static-access")
 	public static int randomInt32() {
-		// TODO
-		float f = _app.random(1);
-		f = _app.map(f, 0, 1, -2147483648, 2147483647);
-		return _app.round(f);
+		return randomInt(-2147483648,2147483647);
 	}
 	
 	public static void tempSeed(long seed) {
@@ -223,19 +208,18 @@ public class HMath implements HConstants {
 			_resetSeedValue = randomInt32();
 			_usingTempSeed = true;
 		}
-		_app.randomSeed(seed);
+		H.app().randomSeed(seed);
 	}
 	
 	public static void removeTempSeed() {
-		_app.randomSeed(_resetSeedValue);
+		H.app().randomSeed(_resetSeedValue);
 	}
 	
 	
 	// WAVES //
 	
-	@SuppressWarnings("static-access")
 	public static float sineWave(float stepDegrees) {
-		return _app.sin(stepDegrees * H.D2R);
+		return (float) Math.sin(stepDegrees * H.D2R);
 	}
 	
 	public static float triangleWave(float stepDegrees) {
@@ -268,7 +252,6 @@ public class HMath implements HConstants {
 	public static float map(float val,
 		float start1, float stop1, float start2, float stop2
 	) {
-		// TODO
-		return 0;
+		return start2 + (stop2-start2) * (val-start1)/(stop1-start1);
 	}
 }

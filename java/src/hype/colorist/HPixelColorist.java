@@ -3,10 +3,8 @@ package hype.colorist;
 import hype.drawable.HDrawable;
 import hype.drawable.HImage;
 import hype.util.H;
-import processing.core.PApplet;
 import processing.core.PImage;
 
-@SuppressWarnings("static-access")
 public class HPixelColorist implements HColorist {
 	protected PImage img;
 	protected boolean fillFlag, strokeFlag;
@@ -38,10 +36,7 @@ public class HPixelColorist implements HColorist {
 	}
 	
 	public int getColor(float x, float y) {
-		if(img == null)
-			return 0;
-		PApplet app = H.app();
-		return img.get(app.round(x), app.round(y));
+		return (img==null)? 0 : img.get(Math.round(x), Math.round(y));
 	}
 
 	@Override

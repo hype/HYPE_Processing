@@ -78,7 +78,6 @@ public static class HText extends HDrawable {
 	}
 	public boolean containsRel(float relX, float relY) {
 		if(_text == null || _height == 0) return false;
-		PApplet app = H.app();
 		int numChars = _text.length();
 		float ratio = 64 / _height;
 		float xoff = 0;
@@ -88,8 +87,8 @@ public static class HText extends HDrawable {
 		for(int i=0; i<numChars; ++i) {
 			char c = _text.charAt(i);
 			PFont.Glyph g = _font.getGlyph(c);
-			int pxx = app.round(relX - xoff);
-			int pxy = app.round(relY - yoff) + g.topExtent;
+			int pxx = Math.round(relX - xoff);
+			int pxy = Math.round(relY - yoff) + g.topExtent;
 			if(g.image.get(pxx, pxy)>>>24 > 0) return true;
 			xoff += g.setWidth;
 		}

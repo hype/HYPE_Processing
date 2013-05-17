@@ -30,9 +30,8 @@ public static class HVelocity extends HBehavior {
 		return velocityRad(velocity, deg*HConstants.D2R);
 	}
 	public HVelocity velocityRad(float velocity, float rad) {
-		PApplet app = H.app();
-		_velocityX = velocity * app.cos(rad);
-		_velocityY = velocity * app.sin(rad);
+		_velocityX = velocity * (float)Math.cos(rad);
+		_velocityY = velocity * (float)Math.sin(rad);
 		return this;
 	}
 	public HVelocity velocityX(float dx) {
@@ -64,9 +63,8 @@ public static class HVelocity extends HBehavior {
 		return accelRad(acceleration, deg*HConstants.D2R);
 	}
 	public HVelocity accelRad(float acceleration, float rad) {
-		PApplet app = H.app();
-		_accelX = acceleration * app.cos(rad);
-		_accelY = acceleration * app.sin(rad);
+		_accelX = acceleration * (float)Math.cos(rad);
+		_accelY = acceleration * (float)Math.sin(rad);
 		return this;
 	}
 	public HVelocity accelX(float ddx) {

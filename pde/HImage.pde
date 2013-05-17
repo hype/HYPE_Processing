@@ -55,8 +55,8 @@ public static class HImage extends HDrawable {
 				_image.width <= 0 || _image.height <= 0 ||
 				_width <= 0 || _height <= 0)
 			return false;
-		int ix = H.app().round(relX * _image.width/_width);
-		int iy = H.app().round(relY * _image.height/_height);
+		int ix = Math.round(relX * _image.width/_width);
+		int iy = Math.round(relY * _image.height/_height);
 		return (0 < _image.get(ix,iy)>>>24);
 	}
 	public void draw( PGraphics g, boolean usesZ,
@@ -64,7 +64,7 @@ public static class HImage extends HDrawable {
 	) {
 		if(_image==null) return;
 		currAlphaPerc *= (_fill>>>24);
-		g.tint( _fill | 0xFF000000, H.app().round(currAlphaPerc) );
+		g.tint( _fill | 0xFF000000, Math.round(currAlphaPerc) );
 		int wscale = 1;
 		int hscale = 1;
 		float w = _width;

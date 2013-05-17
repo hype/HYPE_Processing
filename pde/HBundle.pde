@@ -26,7 +26,7 @@ public static class HBundle {
 		return numberContents.get(key);
 	}
 	public int numI(String key) {
-		return H.app().round(numberContents.get(key));
+		return Math.round(numberContents.get(key));
 	}
 	public boolean bool(String key) {
 		return (numberContents.get(key) != 0);

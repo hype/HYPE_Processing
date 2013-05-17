@@ -85,9 +85,8 @@ public static class HEllipse extends HDrawable {
 		boolean inEllipse = ((dcx*dcx)/(cx*cx) + (dcy*dcy)/(cy*cy) <= 1);
 		if(_startRad == _endRad) return inEllipse;
 		else if(!inEllipse) return false;
-		PApplet app = H.app();
 		if(_mode == PConstants.PIE) {
-			float ptAngle = app.atan2(dcy*cx, dcx*cy);
+			float ptAngle = (float) Math.atan2(dcy*cx, dcx*cy);
 			if(_startRad > ptAngle) ptAngle += PConstants.TWO_PI;
 			return (_startRad<=ptAngle && ptAngle<=_endRad);
 		} else {

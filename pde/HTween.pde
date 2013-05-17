@@ -53,9 +53,8 @@ public static class HTween extends HBehavior {
 		return _currVal;
 	}
 	public PVector currPt() {
-		PApplet app = H.app();
-		float x = _origVal1 + app.cos(_dirRad)*_currVal;
-		float y = _origVal2 + app.sin(_dirRad)*_currVal;
+		float x = _origVal1 + _currVal*(float)Math.cos(_dirRad);
+		float y = _origVal2 + _currVal*(float)Math.sin(_dirRad);
 		return new PVector(x,y);
 	}
 	public HTween end(float f) {
@@ -64,7 +63,7 @@ public static class HTween extends HBehavior {
 		return this;
 	}
 	public HTween end(float x, float y) {
-		_endVal = H.app().dist(_origVal1,_origVal2, x,y);
+		_endVal = HMath.dist(_origVal1,_origVal2, x,y);
 		_dirRad = HMath.xAxisAngle(_origVal1,_origVal2, x,y);
 		return this;
 	}
@@ -72,9 +71,8 @@ public static class HTween extends HBehavior {
 		return _endVal;
 	}
 	public PVector endPt() {
-		PApplet app = H.app();
-		float x = _origVal1 + app.cos(_dirRad)*_endVal;
-		float y = _origVal2 + app.sin(_dirRad)*_endVal;
+		float x = _origVal1 + _endVal*(float)Math.cos(_dirRad);
+		float y = _origVal2 + _endVal*(float)Math.sin(_dirRad);
 		return new PVector(x,y);
 	}
 	public HTween spring(float f) {
@@ -111,12 +109,12 @@ public static class HTween extends HBehavior {
 		case HConstants.WIDTH:		_target.width(val);				break;
 		case HConstants.HEIGHT:		_target.height(val);			break;
 		case HConstants.SIZE:		_target.size(val);				break;
-		case HConstants.ALPHA:		_target.alpha(app.round(val));	break;
+		case HConstants.ALPHA:		_target.alpha(Math.round(val));	break;
 		case HConstants.X:			_target.x(val);					break;
 		case HConstants.Y:			_target.y(val);					break;
 		case HConstants.LOCATION:
-			float x = _origVal1 + app.cos(_dirRad)*val;
-			float y = _origVal2 + app.sin(_dirRad)*val;
+			float x = _origVal1 + val*(float)Math.cos(_dirRad);
+			float y = _origVal2 + val*(float)Math.sin(_dirRad);
 			_target.loc(x,y);
 			break;
 		case HConstants.ROTATION:	_target.rotation(val);			break;
@@ -133,7 +131,7 @@ public static class HTween extends HBehavior {
 		}
 		float tolerance = 1f/512;
 		if(_endVal-tolerance<val && val<_endVal+tolerance &&
-			app.abs(_dVal)<tolerance
+			Math.abs(_dVal)<tolerance
 		) {
 			unregister();
 			if(_callback != null) _callback.run(val);

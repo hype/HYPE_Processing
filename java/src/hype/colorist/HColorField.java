@@ -20,7 +20,7 @@ public class HColorField implements HColorist {
 	}
 	
 	public HColorField(float xBound, float yBound) {
-		this(H.app().sqrt(xBound*xBound + yBound*yBound));
+		this( (float) Math.sqrt(xBound*xBound + yBound*yBound) );
 	}
 	
 	public HColorField(float maximumDistance) {
@@ -69,7 +69,7 @@ public class HColorField implements HColorist {
 			
 			// Compute the color based on the distance from the color point.
 			for(int j=initJ; j<4; ++j) {
-				int newClrVal = app.round(
+				int newClrVal = Math.round(
 					app.map(dist, 0,distLimit, ptClrs[j], baseClrs[j]));
 				
 				if(newClrVal > maxClrs[j]) 

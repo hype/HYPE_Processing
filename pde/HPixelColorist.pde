@@ -24,10 +24,7 @@ public static class HPixelColorist implements HColorist {
 		return img;
 	}
 	public int getColor(float x, float y) {
-		if(img == null)
-			return 0;
-		PApplet app = H.app();
-		return img.get(app.round(x), app.round(y));
+		return (img==null)? 0 : img.get(Math.round(x), Math.round(y));
 	}
 	public HPixelColorist fillOnly() {
 		fillFlag = true;

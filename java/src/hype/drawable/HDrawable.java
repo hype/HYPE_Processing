@@ -4,13 +4,11 @@ import hype.collection.HIterator;
 import hype.collection.HNode;
 import hype.interfaces.HHittable;
 import hype.interfaces.HSwarmer;
-import hype.util.H;
 import hype.util.HBundle;
 import hype.util.HColors;
 import hype.util.HConstants;
 import hype.util.HMath;
 import hype.util.HWarnings;
-import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 import processing.core.PVector;
@@ -444,16 +442,13 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return _proportional;
 	}
 	
-	@SuppressWarnings("static-access")
 	public PVector boundingSize() {
 		// TODO boundingBox()
 		// this code probably needs some *actual* optimization too.
 		
 		// !!CAUTION!! Maths ahead! 
-		PApplet app = H.app();
-		
-		float cosVal = app.cos(_rotationRad);
-		float sinVal = app.sin(_rotationRad);
+		float cosVal = (float)Math.cos(_rotationRad);
+		float sinVal = (float)Math.sin(_rotationRad);
 		float drawX = -anchorX();
 		float drawY = -anchorY();
 		
@@ -630,9 +625,8 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return alphaPerc(a/255f);
 	}
 	
-	@SuppressWarnings("static-access")
 	public int alpha() {
-		return H.app().round( alphaPerc()*255 );
+		return Math.round( alphaPerc()*255 );
 	}
 	
 	public HDrawable alphaPerc(float aPerc) {
@@ -743,15 +737,13 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	// DRAWING //
 	
-	@SuppressWarnings("static-access")
 	protected void applyStyle(PGraphics g, float currAlphaPerc) {
-		PApplet app = H.app();
 		float faPerc = currAlphaPerc * (_fill >>> 24);
-		g.fill(_fill | 0xFF000000, app.round(faPerc));
+		g.fill(_fill | 0xFF000000, Math.round(faPerc));
 		
 		if(_strokeWeight > 0) {
 			float saPerc = currAlphaPerc * (_stroke >>> 24);
-			g.stroke(_stroke | 0xFF000000, app.round(saPerc));
+			g.stroke(_stroke | 0xFF000000, Math.round(saPerc));
 			g.strokeWeight(_strokeWeight);
 			g.strokeCap(_strokeCap);
 			g.strokeJoin(_strokeJoin);

@@ -8,7 +8,6 @@ public static class H implements HConstants {
 	private static boolean _uses3D;
 	public static H init(PApplet applet) {
 		_app = applet;
-		HMath.init(_app);
 		if(_self == null) _self = new H();
 		if(_stage == null) _stage = new HStage(_app);
 		if(_behaviors == null) _behaviors = new HBehaviorRegistry();

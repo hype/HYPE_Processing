@@ -126,9 +126,12 @@ public static class HPath extends HDrawable {
 		float ratio = 1;
 		switch(type) {
 		case HConstants.EQUILATERAL:
-			ratio = H.app().sin(PConstants.TWO_PI/6); break;
+			ratio = (float) Math.sin(PConstants.TWO_PI/6);
+			break;
 		case HConstants.RIGHT:
-			ratio = H.app().sin(PConstants.TWO_PI/8) / HConstants.SQRT2; break;
+			ratio = ((float) Math.sin(PConstants.TWO_PI/8))
+				/ HConstants.SQRT2;
+			break;
 		}
 		switch(direction) {
 		case HConstants.TOP:
@@ -188,13 +191,12 @@ public static class HPath extends HDrawable {
 	}
 	public HPath polygon(int numEdges) {
 		_vertices.clear();
-		PApplet app = H.app();
 		float radInc = PConstants.TWO_PI / numEdges;
 		for(int i=0; i<numEdges; ++i) {
 			float rad = radInc * i;
 			vertexPerc(
-				0.5f + 0.5f*app.cos(rad),
-				0.5f + 0.5f*app.sin(rad));
+				0.5f + 0.5f*(float)Math.cos(rad),
+				0.5f + 0.5f*(float)Math.sin(rad));
 		}
 		_mode = PConstants.POLYGON;
 		return this;
@@ -204,13 +206,12 @@ public static class HPath extends HDrawable {
 	}
 	public HPath polygonRad(int numEdges, float startRad) {
 		_vertices.clear();
-		PApplet app = H.app();
 		float radInc = PConstants.TWO_PI / numEdges;
 		for(int i=0; i<numEdges; ++i) {
 			float rad = startRad + radInc*i;
 			vertexPerc(
-				0.5f + 0.5f*app.cos(rad),
-				0.5f + 0.5f*app.sin(rad));
+				0.5f + 0.5f*(float)Math.cos(rad),
+				0.5f + 0.5f*(float)Math.sin(rad));
 		}
 		_mode = PConstants.POLYGON;
 		return this;
@@ -223,17 +224,17 @@ public static class HPath extends HDrawable {
 	}
 	public HPath starRad(int numEdges, float depth, float startRad) {
 		_vertices.clear();
-		PApplet app = H.app();
 		float radInc = PConstants.TWO_PI / numEdges;
+		float idepth = 1 - depth;
 		for(int i=0; i<numEdges; ++i) {
 			float rad = startRad + radInc*i;
 			vertexPerc(
-				0.5f + 0.5f*app.cos(rad),
-				0.5f + 0.5f*app.sin(rad));
+				0.5f + 0.5f*(float)Math.cos(rad),
+				0.5f + 0.5f*(float)Math.sin(rad));
 			rad = startRad + radInc*(i + 0.5f);
 			vertexPerc(
-				0.5f + 0.5f*app.cos(rad)*(1-depth),
-				0.5f + 0.5f*app.sin(rad)*(1-depth));
+				0.5f + 0.5f*idepth*(float)Math.cos(rad),
+				0.5f + 0.5f*idepth*(float)Math.sin(rad));
 		}
 		_mode = PConstants.POLYGON;
 		return this;

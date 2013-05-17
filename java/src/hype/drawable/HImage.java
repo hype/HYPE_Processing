@@ -70,19 +70,17 @@ public class HImage extends HDrawable {
 		return fill();
 	}
 	
-	@SuppressWarnings("static-access")
 	@Override
 	public boolean containsRel(float relX, float relY) {
 		if(_image == null ||
 				_image.width <= 0 || _image.height <= 0 ||
 				_width <= 0 || _height <= 0)
 			return false;
-		int ix = H.app().round(relX * _image.width/_width);
-		int iy = H.app().round(relY * _image.height/_height);
+		int ix = Math.round(relX * _image.width/_width);
+		int iy = Math.round(relY * _image.height/_height);
 		return (0 < _image.get(ix,iy)>>>24);
 	}
 	
-	@SuppressWarnings("static-access")
 	@Override
 	public void draw( PGraphics g, boolean usesZ,
 		float drawX, float drawY, float currAlphaPerc
@@ -91,7 +89,7 @@ public class HImage extends HDrawable {
 		
 		// This awkward alpha separation is due to pjs compatibility issues
 		currAlphaPerc *= (_fill>>>24);
-		g.tint( _fill | 0xFF000000, H.app().round(currAlphaPerc) );
+		g.tint( _fill | 0xFF000000, Math.round(currAlphaPerc) );
 		
 		// Determine if the image will be flipped
 		int wscale = 1;

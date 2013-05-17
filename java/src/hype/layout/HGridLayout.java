@@ -1,7 +1,6 @@
 package hype.layout;
 
 import hype.drawable.HDrawable;
-import hype.util.H;
 import processing.core.PVector;
 
 public class HGridLayout implements HLayout {
@@ -97,16 +96,11 @@ public class HGridLayout implements HLayout {
 	}
 	
 	@Override
-	@SuppressWarnings("static-access")
 	public PVector getNextPoint() {
-		int currentRow = H.app().floor(_currentIndex / _numCols);
-		int currentCol = _currentIndex % _numCols;
-		
+		int row = (int) Math.floor(_currentIndex / _numCols);
+		int col = _currentIndex % _numCols;
 		++_currentIndex;
-		return new PVector(
-			currentCol*_xSpace + _startX,
-			currentRow*_ySpace + _startY
-		);
+		return new PVector(col*_xSpace + _startX, row*_ySpace + _startY);
 	}
 
 	@Override

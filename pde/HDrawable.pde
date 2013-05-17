@@ -327,9 +327,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		return _proportional;
 	}
 	public PVector boundingSize() {
-		PApplet app = H.app();
-		float cosVal = app.cos(_rotationRad);
-		float sinVal = app.sin(_rotationRad);
+		float cosVal = (float)Math.cos(_rotationRad);
+		float sinVal = (float)Math.sin(_rotationRad);
 		float drawX = -anchorX();
 		float drawY = -anchorY();
 		float x1 = drawX;			
@@ -455,7 +454,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		return alphaPerc(a/255f);
 	}
 	public int alpha() {
-		return H.app().round( alphaPerc()*255 );
+		return Math.round( alphaPerc()*255 );
 	}
 	public HDrawable alphaPerc(float aPerc) {
 		_alpha = (aPerc<0)? 0 : (aPerc>1)? 1 : aPerc;
@@ -539,12 +538,11 @@ public static abstract class HDrawable extends HNode<HDrawable>
 			(0 <= relY) && (relY <= height());
 	}
 	protected void applyStyle(PGraphics g, float currAlphaPerc) {
-		PApplet app = H.app();
 		float faPerc = currAlphaPerc * (_fill >>> 24);
-		g.fill(_fill | 0xFF000000, app.round(faPerc));
+		g.fill(_fill | 0xFF000000, Math.round(faPerc));
 		if(_strokeWeight > 0) {
 			float saPerc = currAlphaPerc * (_stroke >>> 24);
-			g.stroke(_stroke | 0xFF000000, app.round(saPerc));
+			g.stroke(_stroke | 0xFF000000, Math.round(saPerc));
 			g.strokeWeight(_strokeWeight);
 			g.strokeCap(_strokeCap);
 			g.strokeJoin(_strokeJoin);

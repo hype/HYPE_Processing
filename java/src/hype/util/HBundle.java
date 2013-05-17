@@ -1,9 +1,7 @@
 package hype.util;
 
-
 import java.util.HashMap;
 
-@SuppressWarnings("static-access")
 public class HBundle {
 	private HashMap<String,Object> objectContents;
 	private HashMap<String,Float> numberContents;
@@ -39,7 +37,7 @@ public class HBundle {
 	}
 	
 	public int numI(String key) {
-		return H.app().round(numberContents.get(key));
+		return Math.round(numberContents.get(key));
 	}
 	
 	public boolean bool(String key) {

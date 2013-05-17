@@ -2,7 +2,7 @@
 - new file: changelog.txt
 - migrate documentation from markdown to Doxygen
 - set the default size of HDrawable from 64x64 to 100x100
-- new method: `HMouse.moved()`
+- new HMouse method: `moved()`
 - rename: HColorUtil -> HColors
 - remove deprecated HColors methods:
 	- `multiply()`
@@ -11,3 +11,8 @@
 	- `multiplyGreen()`
 	- `multiplyBlue()`
 - migrate PApplet math calls to Math
+- various new HMath methods:
+	- `dist()`
+	- `random()`
+	- `map()`
+- remove deprecated `HMath.init()` method

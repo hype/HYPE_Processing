@@ -1,7 +1,6 @@
 package hype.drawable;
 
 import hype.util.H;
-import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
@@ -41,14 +40,11 @@ public class HCanvas extends HDrawable {
 		return copy;
 	}
 
-	@SuppressWarnings("static-access")
 	protected void updateBuffer() {
-		PApplet app = H.app();
+		int w = Math.round(_width);
+		int h = Math.round(_height);
 		
-		int w = app.round(_width);
-		int h = app.round(_height);
-		
-		_graphics = app.createGraphics(w, h, _renderer);
+		_graphics = H.app().createGraphics(w, h, _renderer);
 		_graphics.loadPixels();
 		_graphics.beginDraw();
 			_graphics.background(H.CLEAR);

@@ -106,13 +106,14 @@ public static class HSwarm extends HBehavior {
 				goalz = goal.z();
 			}
 			float tmp = HMath.xAxisAngle(tx,ty, goalx,goaly) - rot;
-			float dRot = app.atan2(app.sin(tmp),app.cos(tmp)) * _turnEase;
+			float dRot = _turnEase * (float)
+				Math.atan2( Math.sin(tmp), Math.cos(tmp) );
 			rot += dRot;
 			float noise = app.noise(i*numTargets + app.frameCount/8f);
 			rot += app.map(noise, 0,1, -_twitchRad,_twitchRad);
 			target.rotationRad(rot);
-			target.x(target.x() + app.cos(rot)*_speed);
-			target.y(target.y() + app.sin(rot)*_speed);
+			target.x(target.x() + (float)Math.cos(rot)*_speed);
+			target.y(target.y() + (float)Math.sin(rot)*_speed);
 			target.z(goalz);
 		}
 	}
