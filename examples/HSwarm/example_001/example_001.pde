@@ -13,7 +13,7 @@ void setup() {
 		.addGoal(width/2,height/2)
 		.speed(4)
 		.turnEase(0.025f)
-		.twitch(0)
+		.twitch(20)
 	;
 
 	pool = new HDrawablePool(40);
