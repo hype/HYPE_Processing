@@ -12,24 +12,20 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] default size = 100
+	 * - [x] default size = 100
+	 * - [ ] migration of math calls to java.lang.Math
 	 * - [ ] base size for computing perc stuff = 0, if size = 0
-	 * 
 	 * - [ ] HDrawable.firstChild(), HDrawable.lastChild();
 	 * - [ ] issue #10 (make HVector a PVector container instead of subclass)
+	 * - [ ] 2d point from 3d
 	 * 
 	 * - [ ] HShape hit detection + pgraphics buffer
-	 * - [ ] use pgraphics buffer for HText
+	 * - [ ] use pgraphics buffer for HText + use that for hitbox checking
 	 * - [ ] bezier stuff for HPath
-	 * 
-	 * - [ ] 2d point from 3d
 	 * 
 	 * - [ ] masking
 	 * - [ ] wipfile: Proximity
-	 * - [ ] wipfile: Adjuster
-	 * 	- drawable.adjuster(true)
-	 * 	- move on drag
-	 * 	- del key = remove from parent
+	 * - [ ] wipfile: Adjuster; drawable.adjuster(true); del key = remove from parent
 	 * 
 	 * - [ ] recursive spatial transforms for HDrawable & HGroup
 	 * 
@@ -43,11 +39,9 @@ public class DummyApplet extends PApplet {
 	 * - [ ] disable style for HShape in P3D
 	 * 
 	 * - [ ] protected HDrawable.onSizeChange();
-	 * - [ ] migration of math calls to java.lang.Math
 	 * - [ ] privatize fields for non-subclassed classes
-	 * - [ ] refactor HOscillator
+	 * - [ ] refactor/cleanup HOscillator
 	 * - [ ] negative ease on stuff
-	 * - [ ] use int ratios instead of float for HTween
 	 * 
 	 * - [ ] AS3::SoundAnalyzer
 	 * - [ ] Standardize boolean getters
