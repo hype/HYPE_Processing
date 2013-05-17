@@ -1,7 +1,9 @@
 var classhype_1_1event_1_1_h_mouse =
 [
     [ "HMouse", "classhype_1_1event_1_1_h_mouse.html#a0ac8e5d2ccc6c12a7b1e05a6c42d94d1", null ],
+    [ "button", "classhype_1_1event_1_1_h_mouse.html#a28b9c5b4e422ab3a6cafad3836936f33", null ],
     [ "handleEvents", "classhype_1_1event_1_1_h_mouse.html#abb6b90eddc9ed4c5c572f06cb47cf02d", null ],
+    [ "moved", "classhype_1_1event_1_1_h_mouse.html#ab7460ed1c2567297329223027e675da2", null ],
     [ "started", "classhype_1_1event_1_1_h_mouse.html#ac573179fd6a317b9655c5c85f35ad682", null ],
     [ "x", "classhype_1_1event_1_1_h_mouse.html#a46e064610253ef6c3af70c75617768ed", null ],
     [ "x", "classhype_1_1event_1_1_h_mouse.html#a03b9ab054a4717ce62a88c0f9825b7f3", null ],

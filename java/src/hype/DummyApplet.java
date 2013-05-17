@@ -17,6 +17,8 @@ public class DummyApplet extends PApplet {
 	 * - [ ] base size for computing perc stuff = 0, if size = 0
 	 * - [ ] HDrawable.firstChild(), HDrawable.lastChild();
 	 * - [ ] issue #10 (make HVector a PVector container instead of subclass)
+	 * 
+	 * - [ ] documentation update script
 	 * - [ ] 2d point from 3d
 	 * 
 	 * - [ ] HShape hit detection + pgraphics buffer
