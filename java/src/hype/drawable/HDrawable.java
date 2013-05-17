@@ -160,6 +160,14 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return _parent;
 	}
 	
+	public HDrawable firstChild() {
+		return _firstChild;
+	}
+	
+	public HDrawable lastChild() {
+		return _lastChild;
+	}
+	
 	public boolean parentOf(HDrawable d) {
 		return (d != null) && (d._parent != null) && (d._parent.equals(this));
 	}

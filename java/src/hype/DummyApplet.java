@@ -14,7 +14,6 @@ public class DummyApplet extends PApplet {
 	
 	/* TODO
 	 * - [ ] base size for computing perc stuff = 0, if size = 0
-	 * - [ ] HDrawable.firstChild(), HDrawable.lastChild();
 	 * - [ ] issue #10 (make HVector a PVector container instead of subclass)
 	 * 
 	 * - [ ] recursive spatial transforms for HDrawable & HGroup
