@@ -13,7 +13,10 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
+	 * - [ ] fix random color bug
 	 * - [ ] base size for computing perc stuff = 0, if size = 0
+	 * 	- [ ] anchor
+	 * 	- [ ] vertex
 	 * 
 	 * - [ ] HDrawable.transformChildren(bool)
 	 * - [ ] recursive spatial transforms for HDrawable & HGroup

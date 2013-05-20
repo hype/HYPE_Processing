@@ -29,7 +29,7 @@ public static class HColorPool implements HColorist {
 	}
 	public int getColor() {
 		if(_colorList.size() <= 0) return 0;
-		int index = HMath.randomInt(_colorList.size());
+		int index = (int) Math.floor(H.app().random(_colorList.size()));
 		return _colorList.get(index);
 	}
 	public int getColor(int seed) {

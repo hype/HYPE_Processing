@@ -1,6 +1,7 @@
 package hype.colorist;
 
 import hype.drawable.HDrawable;
+import hype.util.H;
 import hype.util.HMath;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class HColorPool implements HColorist {
 	public int getColor() {
 		if(_colorList.size() <= 0) return 0;
 		
-		int index = HMath.randomInt(_colorList.size());
+		int index = (int) Math.floor(H.app().random(_colorList.size()));
 		return _colorList.get(index);
 	}
 	
