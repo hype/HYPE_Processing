@@ -47,6 +47,10 @@ public class HSwarm extends HBehavior {
 		return addGoal(new HVector(x,y));
 	}
 	
+	public HSwarm addGoal(float x, float y, float z) {
+		return addGoal(new HVector(x,y,z));
+	}
+	
 	public HSwarm removeGoal(HLocatable g) {
 		_goals.remove(g);
 		return this;
