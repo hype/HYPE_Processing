@@ -1,3 +1,9 @@
+### build_20130520.0 (May 20, 2013)
+- bugfix: `HColorPool.getColor(int)` didn't properly seed their colors
+- renamed `HDrawable._alpha` into `_alphaPerc`
+- initial documentation contents for HDrawable
+- width and/or height in `HDrawable.anchor(float,float)`, `anchorX(float)` and `anchorY(float)` are now assumed to be 100 when its width and/or height is 0 to prevent division-by-zero errors.
+
 ### build_20130517.0 (May 17, 2013)
 - new file: changelog.txt
 - migrate documentation from markdown to Doxygen

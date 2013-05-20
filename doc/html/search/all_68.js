@@ -14,6 +14,7 @@ var searchData=
   ['hcolors',['HColors',['../classhype_1_1util_1_1_h_colors.html',1,'hype::util']]],
   ['hcolortransform',['HColorTransform',['../classhype_1_1colorist_1_1_h_color_transform.html',1,'hype::colorist']]],
   ['hconstants',['HConstants',['../interfacehype_1_1util_1_1_h_constants.html',1,'hype::util']]],
+  ['hdrawable',['HDrawable',['../classhype_1_1drawable_1_1_h_drawable.html#a4e50b6062d301f3181bb258e71e8a93a',1,'hype::drawable::HDrawable']]],
   ['hdrawable',['HDrawable',['../classhype_1_1drawable_1_1_h_drawable.html',1,'hype::drawable']]],
   ['hdrawableiterator',['HDrawableIterator',['../classhype_1_1drawable_1_1_h_drawable_1_1_h_drawable_iterator.html',1,'hype::drawable::HDrawable']]],
   ['hdrawablepool',['HDrawablePool',['../classhype_1_1util_1_1_h_drawable_pool.html',1,'hype::util']]],

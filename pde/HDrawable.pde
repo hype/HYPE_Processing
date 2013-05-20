@@ -1,16 +1,53 @@
+/**
+ * Abcd. Efgh.
+ * 
+ * Ijk lmno.
+ * 
+ * @author james
+ */
 public static abstract class HDrawable extends HNode<HDrawable>
 		implements HSwarmer, HHittable {
-	protected HDrawable _parent, _firstChild, _lastChild;
-	protected HBundle _extras;
+	protected HDrawable
+		_parent,
+		_firstChild,
+		_lastChild;
+	protected HBundle
+		_extras;
 	protected float
-		_x, _y, _z,
-		_anchorPercX, _anchorPercY,
-		_width, _height,
-		_rotationRad, _strokeWeight, _alpha, _sizeProportion;
-	protected int _numChildren, _fill, _stroke, _strokeCap, _strokeJoin;
-	protected boolean _proportional;
+		_x,
+		_y,
+		_z,
+		_anchorPercX,
+		_anchorPercY,
+		_width,
+		_height,
+		_rotationRad,
+		_strokeWeight,
+		_alphaPerc,
+		_sizeProportion;
+	protected int
+		_numChildren,
+		_fill,
+		_stroke,
+		_strokeCap,
+		_strokeJoin;
+	protected boolean
+		_proportional;
+	/**
+	 * The default constructor for HDrawable.
+	 * 
+	 * It sets several fields into their proper default values:
+	 * - alpha percentage = 1 (100%)
+	 * - fill = white
+	 * - stroke = black
+	 * - stroke cap = round
+	 * - stroke join = miter
+	 * - stroke weight = 1
+	 * - width = 100
+	 * - height = 100
+	 */
 	public HDrawable() {
-		_alpha = 1;
+		_alphaPerc = 1;
 		_fill = HConstants.DEFAULT_FILL;
 		_stroke = HConstants.DEFAULT_STROKE;
 		_strokeCap = PConstants.ROUND;
@@ -19,6 +56,21 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_width = HConstants.DEFAULT_WIDTH;
 		_height = HConstants.DEFAULT_HEIGHT;
 	}
+	/**
+	 * Copies the values of `other`'s basic HDrawable fields.
+	 * 
+	 * This method is primarily used for implementing createCopy().
+	 * It copies the following fields from `other`:
+	 * - x & y coordinates
+	 * - x & y anchors
+	 * - width & height
+	 * - rotation
+	 * - alpha
+	 * - stroke & fill properties
+	 * 
+	 * @see createCopy()
+	 * @param other    The drawable to copy its properties from. 
+	 */
 	public void copyPropertiesFrom(HDrawable other) {
 		_x = other._x;
 		_y = other._y;
@@ -27,15 +79,23 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_width = other._width;
 		_height = other._height;
 		_rotationRad = other._rotationRad;
-		_alpha = other._alpha;
+		_alphaPerc = other._alphaPerc;
 		_strokeWeight = other._strokeWeight;
 		_fill = other._fill;
 		_stroke = other._stroke;
 		_strokeCap = other._strokeCap;
 		_strokeJoin = other._strokeJoin;
 	}
+	/**
+	 * Creates a copy of this drawable.
+	 * 
+	 * This method is abstract and is meant to be implemented by the children
+	 * of this class.
+	 * 
+	 * @return A copy of this drawable.
+	 */
 	public abstract HDrawable createCopy();
-	protected boolean invalidDest(HDrawable dest, String warnLoc) {
+	private boolean invalidDest(HDrawable dest, String warnLoc) {
 		String warnType;
 		String warnMsg;
 		if( dest == null ) {
@@ -101,21 +161,62 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		if(_prev == null) _parent._firstChild = this;
 		if(_next == null) _parent._lastChild = this;
 	}
+	/**
+	 * Returns the parent of this drawable.
+	 * 
+	 * @return The parent of this drawable, or null if there's none.
+	 */
 	public HDrawable parent() {
 		return _parent;
 	}
+	/**
+	 * Returns the first child of this drawable.
+	 * 
+	 * If this drawable has only one child, then the first child is also
+	 * considered as the last child.
+	 * 
+	 * @return The first child of this drawable, or null if there's none.
+	 */
 	public HDrawable firstChild() {
 		return _firstChild;
 	}
+	/**
+	 * Returns the last child of this drawable.
+	 * 
+	 * If this drawable has only one child, then the last child is also
+	 * considered as the first child.
+	 * 
+	 * @return The last child of this drawable, or null if there's none.
+	 */
 	public HDrawable lastChild() {
 		return _lastChild;
 	}
+	/**
+	 * Checks if the given drawable is the parent of this drawable.
+	 * 
+	 * @param d    The drawable to be checked
+	 * @return True if this drawable is the parent of `d`
+	 */
 	public boolean parentOf(HDrawable d) {
 		return (d != null) && (d._parent != null) && (d._parent.equals(this));
 	}
+	/**
+	 * Returns the number of children of this drawable.
+	 * 
+	 * @return The number of children of this drawable.
+	 */
 	public int numChildren() {
 		return _numChildren;
 	}
+	/**
+	 * Adds the passed drawable as this drawable's child.
+	 * 
+	 * If `child` is already a child of another drawable, it removes itself from
+	 * its current parent and gets added to this drawable.
+	 * 
+	 * @param child    The child to be added to this drawable.
+	 * @return The drawable passed through this method.
+	 */
 	public HDrawable add(HDrawable child) {
 		if(child == null) {
 			HWarnings.warn("An Empty Child", "HDrawable.add()",
@@ -130,31 +231,79 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		}
 		return child;
 	}
+	/**
+	 * Removes a child from this drawable.
+	 * 
+	 * If `child` isn't a child of this drawable, this method will do nothing.
+	 * Regardless, it will still return `child`.
+	 * 
+	 * @param child    The child to be removed from this drawable
+	 * @return The drawable passed through this method.
+	 */
 	public HDrawable remove(HDrawable child) {
 		if( parentOf(child) ) child.popOut();
 		else HWarnings.warn("Not a Child", "HDrawable.remove()", null);
 		return child;
 	}
+	/**
+	 * Creates a new HIterator for this drawable.
+	 * 
+	 * Note that while HIterator has similar functions for java.util.Iterator,
+	 * the former does _not_ extend the latter. This is due to js mode
+	 * compatibility issues.
+	 * 
+	 * @see HDrawableIterator, HIterator
+	 * @return A new HIterator for this drawable
+	 */
 	public HDrawableIterator iterator() {
 		return new HDrawableIterator(this);
 	}
+	/**
+	 * Sets the x and y position of this drawable.
+	 * 
+	 * @chainable
+	 * @param newX    The new x coordinate for this drawable.
+	 * @param newY    The new y coordinate for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable loc(float newX, float newY) {
 		_x = newX;
 		_y = newY;
 		return this;
 	}
+	/**
+	 * Sets the x, y and z position of this drawable.
+	 * 
+	 * @chainable
+	 * @param newX    The new x coordinate for this drawable. 
+	 * @param newY    The new y coordinate for this drawable.
+	 * @param newZ    The new z coordinate for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable loc(float newX, float newY, float newZ) {
 		_x = newX;
 		_y = newY;
 		_z = newZ;
 		return this;
 	}
+	/**
+	 * Sets the position of this drawable via PVector.
+	 * 
+	 * @chainable
+	 * @param pt    A PVector containing the new coordinates for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable loc(PVector pt) {
 		_x = pt.x;
 		_y = pt.y;
 		_z = pt.z;
 		return this;
 	}
+	/**
+	 * Returns the position of this drawable as a PVector.
+	 * 
+	 * @return A new PVector containing the coordinates of this drawable.
+	 */
 	public PVector loc() {
 		return new PVector(_x,_y,_z);
 	}
@@ -179,17 +328,64 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public float z() {
 		return _z;
 	}
+	/**
+	 * Moves this drawable from its original x & y position.
+	 * 
+	 * @chainable
+	 * @param dx    The amount this drawable will be moved on the x-axis.
+	 * @param dy    The amount this drawable will be moved on the y-axis.
+	 * @return This drawable.
+	 */
 	public HDrawable move(float dx, float dy) {
 		_x += dx;
 		_y += dy;
 		return this;
 	}
+	/**
+	 * Moves this drawable from its original x, y & z position.
+	 * 
+	 * @chainable
+	 * @param dx    The amount this drawable will be moved on the x-axis.
+	 * @param dy    The amount this drawable will be moved on the y-axis.
+	 * @param dz    The amount this drawable will be moved on the z-axis.
+	 * @return This drawable.
+	 */
 	public HDrawable move(float dx, float dy, float dz) {
 		_x += dx;
 		_y += dy;
 		_z += dz;
 		return this;
 	}
+	/**
+	 * Positions this drawable at the defined location in relation to its
+	 * parent, or (0,0) if the parent is null.
+	 * 
+	 * The `where` parameter can be any of the following HConstants values:
+	 * - `HConstants.NONE` (does nothing)
+	 * - `HConstants.LEFT`
+	 * - `HConstants.RIGHT`
+	 * - `HConstants.CENTER_X`
+	 * - `HConstants.TOP`
+	 * - `HConstants.BOTTOM`
+	 * - `HConstants.CENTER_Y`
+	 * - `HConstants.CENTER`
+	 * - `HConstants.TOP_LEFT`
+	 * - `HConstants.TOP_RIGHT`
+	 * - `HConstants.BOTTOM_LEFT`
+	 * - `HConstants.BOTTOM_RIGHT`
+	 * - `HConstants.CENTER_LEFT`
+	 * - `HConstants.CENTER_RIGHT`
+	 * - `HConstants.CENTER_TOP`
+	 * - `HConstants.CENTER_BOTTOM`
+	 * 
+	 * These values can be combined via bitwise OR, so `H.TOP | H.LEFT` would be
+	 * equal to `H.TOP_LEFT`.
+	 * 
+	 * @chainable
+	 * @see anchorAt(int)
+	 * @param where    The value that represents the location for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable locAt(int where) {
 		if(_parent!=null) {
 			if(HMath.hasBits(where, HConstants.CENTER_X)) {
@@ -209,68 +405,206 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		}
 		return this;
 	}
+	/**
+	 * Sets the anchor of this drawable by pixels.
+	 * 
+	 * Note that HDrawable stores its anchor coordinates as a percentage of its
+	 * width and height. So if the current size of this drawable is `(100,100)`,
+	 * setting the anchor to `(75,75)` will be stored as `(0.75,0.75)`.
+	 * 
+	 * In case that the current width or height is 0, then the width or height
+	 * is assumed to be 100 when computing the anchor in this method.
+	 * 
+	 * @chainable
+	 * @see anchor(PVector), anchorX(float), anchorY(float)
+	 * @param pxX    The desired x anchor for this drawable, in pixels.
+	 * @param pxY    The desired y anchor for this drawable, in pixels.
+	 * @return This drawable.
+	 */
 	public HDrawable anchor(float pxX, float pxY) {
-		if(_height == 0 || _width == 0) {
-			HWarnings.warn("Division by 0", "HDrawable.anchor()",
-					HWarnings.ANCHORPX_ERR);
-		} else {
-			_anchorPercX = pxX / _width;
-			_anchorPercY = pxY / _height;
-		}
-		return this;
+		return anchorX(pxX).anchorY(pxY);
 	}
+	/**
+	 * Sets the anchor of this drawable by pixels via a PVector.
+	 * 
+	 * This method calls anchor(float,float) with `pt`'s x and y fields as the
+	 * arguments.
+	 * 
+	 * @chainable
+	 * @see anchor(float,float)
+	 * @param pt    The PVector containing the desired x and y anchor for this drawable, in pixels
+	 * @return This drawable.
+	 */
 	public HDrawable anchor(PVector pt) {
 		return anchor(pt.x, pt.y);
 	}
+	/**
+	 * Returns the anchor of this drawable in pixels.
+	 * 
+	 * The result of this method is the product of its width & height and its
+	 * x & y anchor percentages respectively. So if this drawable is anchored at
+	 * the center, this method will return `(50,50)` when the size is
+	 * `(100,100)`, `(30,30)` when the size is `(60,60)` and `(0,0)` when size
+	 * is `(0,0)`.
+	 * 
+	 * @see anchorX(), anchorY()
+	 * @return A new PVector containing the anchor of this drawable, in pixels.
+	 */
 	public PVector anchor() {
 		return new PVector( anchorX(), anchorY() );
 	}
+	/**
+	 * Sets the x anchor of this drawable by pixels.
+	 * 
+	 * Note that HDrawable stores its x anchor coordinates as a percentage of
+	 * its width. If the width of this drawable is 0, it is assumed as 100 when
+	 * computing the x anchor in this method.
+	 * 
+	 * @chainable
+	 * @see anchor(float,float), anchor(PVector), anchorY(float)
+	 * @param pxX    The desired x anchor for this drawable, in pixels.
+	 * @return This drawable.
+	 */
 	public HDrawable anchorX(float pxX) {
-		if(_width == 0) {
-			HWarnings.warn("Division by 0", "HDrawable.anchorX()",
-					HWarnings.ANCHORPX_ERR);
-		} else {
-			_anchorPercX = pxX / _width;
-		}
+		_anchorPercX = pxX / (_width==0? 100 : _width);
 		return this;
 	}
+	/**
+	 * Returns the x anchor of this drawable in pixels.
+	 * 
+	 * The result of this method is the product of its width and x anchor
+	 * percentage.
+	 * 
+	 * @see anchor(), anchorY()
+	 * @return The x anchor of this drawable, in pixels.
+	 */
 	public float anchorX() {
 		return _width * _anchorPercX;
 	}
+	/**
+	 * Sets the y anchor of this drawable by pixels.
+	 * 
+	 * Note that HDrawable stores its y anchor coordinates as a percentage of
+	 * its height. If the height of this drawable is 0, it is assumed as 100
+	 * when computing the y anchor in this method
+	 * 
+	 * @chainable
+	 * @see anchor(float,float), anchor(PVector), anchorX(float)
+	 * @param pxY    The desired y anchor for this drawable, in pixels.
+	 * @return This drawable.
+	 */
 	public HDrawable anchorY(float pxY) {
-		if(_height == 0) {
-			HWarnings.warn("Division by 0", "HDrawable.anchorY()",
-					HWarnings.ANCHORPX_ERR);
-		} else {
-			_anchorPercY = pxY / _height;
-		}
+		_anchorPercY = pxY / (_height==0? 100 : _height);
 		return this;
 	}
+	/**
+	 * Returns the y anchor of this drawable in pixels.
+	 * 
+	 * The result of this method is the product of its height and y anchor
+	 * percentage.
+	 * 
+	 * @see anchor(), anchorX()
+	 * @return The y anchor of this drawable, in pixels.
+	 */
 	public float anchorY() {
 		return _height * _anchorPercY;
 	}
+	/**
+	 * Sets the anchor of this drawable as percentage of its width and height.
+	 * 
+	 * 0 is equivalent to 0% and 1 is equivalent to 100%
+	 * 
+	 * @chainable
+	 * @see anchorPercX(float), anchorPercY(float)
+	 * @param percX    The desired x anchor for this drawable, as percentage.
+	 * @param percY    The desired y anchor for this drawable, as percentage.
+	 * @return This drawable.
+	 */
 	public HDrawable anchorPerc(float percX, float percY) {
-		_anchorPercX = percX;
-		_anchorPercY = percY;
-		return this;
+		return anchorPercX(percX).anchorPercY(percY);
 	}
+	/**
+	 * Returns the x & y anchor of this drawable, as percentage of its width and
+	 * height respectively.
+	 * 
+	 * @see anchorPercX(), anchorPercY()
+	 * @return A new PVector containing this drawable's anchor as percentage
+	 */
 	public PVector anchorPerc() {
 		return new PVector(_anchorPercX, _anchorPercY);
 	}
+	/**
+	 * Sets the x anchor of this drawable, as percentage of its width.
+	 * 
+	 * @chainable
+	 * @see anchorPerc(float,float), anchorPercY(float)
+	 * @param percX    The desired x anchor for this drawable, as percentage.
+	 * @return This drawable.
+	 */
 	public HDrawable anchorPercX(float percX) {
 		_anchorPercX = percX;
 		return this;
 	}
+	/**
+	 * Returns the x anchor of this drawable, as percentage of its width.
+	 * 
+	 * @see anchorPerc(), anchorPercY()
+	 * @return The x anchor of this drawable, as percentage.
+	 */
 	public float anchorPercX() {
 		return _anchorPercX;
 	}
+	/**
+	 * Sets the y anchor of this drawable, as percentage of its height.
+	 * 
+	 * @chainable
+	 * @see anchorPerc(), anchorPercX()
+	 * @param percY    The desired y anchor for this drawable, as percentage.
+	 * @return This drawable.
+	 */
 	public HDrawable anchorPercY(float percY) {
 		_anchorPercY = percY;
 		return this;
 	}
+	/**
+	 * Returns the y anchnor of this drawable, as percentage of its height.
+	 * 
+	 * @see anchorPerc(), anchorPercX()
+	 * @return The y anchor of this drawable.
+	 */
 	public float anchorPercY() {
 		return _anchorPercY;
 	}
+	/**
+	 * Sets the anchor of this drawable at the defined location in relation to
+	 * itself.
+	 * 
+	 * The `where` parameter can be any of the following HConstants values:
+	 * - `HConstants.NONE` (does nothing)
+	 * - `HConstants.LEFT`
+	 * - `HConstants.RIGHT`
+	 * - `HConstants.CENTER_X`
+	 * - `HConstants.TOP`
+	 * - `HConstants.BOTTOM`
+	 * - `HConstants.CENTER_Y`
+	 * - `HConstants.CENTER`
+	 * - `HConstants.TOP_LEFT`
+	 * - `HConstants.TOP_RIGHT`
+	 * - `HConstants.BOTTOM_LEFT`
+	 * - `HConstants.BOTTOM_RIGHT`
+	 * - `HConstants.CENTER_LEFT`
+	 * - `HConstants.CENTER_RIGHT`
+	 * - `HConstants.CENTER_TOP`
+	 * - `HConstants.CENTER_BOTTOM`
+	 * 
+	 * These values can be combined via bitwise OR, so `H.TOP | H.LEFT` would be
+	 * equal to `H.TOP_LEFT`.
+	 * 
+	 * @chainable
+	 * @see locAt(int)
+	 * @param where    The value that represents the anchor for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable anchorAt(int where) {
 		if(HMath.hasBits(where, HConstants.CENTER_X))
 			_anchorPercX = 0.5f;
@@ -463,22 +797,22 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		return Math.round( alphaPerc()*255 );
 	}
 	public HDrawable alphaPerc(float aPerc) {
-		_alpha = (aPerc<0)? 0 : (aPerc>1)? 1 : aPerc;
+		_alphaPerc = (aPerc<0)? 0 : (aPerc>1)? 1 : aPerc;
 		return this;
 	}
 	public float alphaPerc() {
-		return (_alpha<0)? 0 : _alpha;
+		return (_alphaPerc<0)? 0 : _alphaPerc;
 	}
 	public HDrawable visibility(boolean v) {
-		if(v && _alpha == 0) {
-			_alpha = 1;
-		} else if(v == _alpha < 0) {
-			_alpha = -_alpha;
+		if(v && _alphaPerc == 0) {
+			_alphaPerc = 1;
+		} else if(v == _alphaPerc < 0) {
+			_alphaPerc = -_alphaPerc;
 		}
 		return this;
 	}
 	public boolean visibility() {
-		return _alpha > 0;
+		return _alphaPerc > 0;
 	}
 	public HDrawable show() {
 		return visibility(true);
@@ -490,7 +824,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		return alphaShiftPerc( da/255f );
 	}
 	public HDrawable alphaShiftPerc(float daPerc) {
-		return alphaPerc(_alpha + daPerc);
+		return alphaPerc(_alphaPerc + daPerc);
 	}
 	public HDrawable extras(HBundle b) {
 		_extras = b;
@@ -555,12 +889,12 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		} else g.noStroke();
 	}
 	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPerc) {
-		if(_alpha<=0) return;
+		if(_alphaPerc<=0) return;
 		g.pushMatrix();
 			if(usesZ) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
-			currAlphaPerc *= _alpha;
+			currAlphaPerc *= _alphaPerc;
 			draw(g, usesZ,-anchorX(),-anchorY(),currAlphaPerc);
 			HDrawable child = _firstChild;
 			while(child != null) {

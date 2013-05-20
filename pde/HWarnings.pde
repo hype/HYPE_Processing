@@ -12,10 +12,6 @@ public static class HWarnings {
 		"The destination cannot be itself",
 		CHILDCEPTION =
 		"Can't add this parent as its own child.",
-		ANCHORPX_ERR =
-		"Set a non-zero size first for this drawable before setting the\n\t" +
-		"anchor by pixels, or use the anchorPerc() & anchorAt() methods\n\t" +
-		"instead.",
 		VERTEXPX_ERR =
 		"Set a non-zero size first for this path before setting the\n\t" +
 		"vertex by pixels, or use the vertexPerc() methods instead.";

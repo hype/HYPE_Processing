@@ -1,19 +1,16 @@
 package hype;
 
-import hype.behavior.HTween;
-import hype.drawable.HDrawable;
+import hype.drawable.HEllipse;
 import hype.drawable.HPath;
-import hype.drawable.HRect;
-import hype.interfaces.HCallback;
 import hype.util.H;
-import hype.util.HColors;
 import processing.core.PApplet;
 
 public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] fix random color bug
+	 * - [ ] docs
+	 * - [ ] target z for HSwarm
 	 * - [ ] base size for computing perc stuff = 0, if size = 0
 	 * 	- [ ] anchor
 	 * 	- [ ] vertex
@@ -56,6 +53,7 @@ public class DummyApplet extends PApplet {
 		size(512,512);
 		H.init(this);
 		
+		/*
 		int clr = HColors.merge(-512,-512,-412,-512);
 		println(hex(HColors.merge(-512,-512,-412,-512)));
 		println(hex(HColors.setBlue(clr, -512)));
@@ -68,6 +66,11 @@ public class DummyApplet extends PApplet {
 				System.out.println("Hey");
 			}
 		});
+		//*/
+		
+		HEllipse circ = new HEllipse();
+		H.add(circ).locAt(H.CENTER).size(0).anchor(75,75).size(50);
+		
 		H.add(new HPath().vertex(0,height/2).vertex(width,height/2).endPath());
 		H.add(new HPath().vertex(width/2,0).vertex(width/2,height).endPath());
 	}

@@ -1,6 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"classhype_1_1util_1_1_h_math.html":[0,0,0,8,5],
 "classhype_1_1util_1_1_h_math.html#a0398dbad7de59e58af8982a9130bec5b":[0,0,0,8,5,13],
 "classhype_1_1util_1_1_h_math.html#a0bbeefb9f57d4341c5059687ad528682":[0,0,0,8,5,25],
 "classhype_1_1util_1_1_h_math.html#a0ed7dff059ec1f5e67ed231e715f030d":[0,0,0,8,5,7],
@@ -56,6 +55,8 @@ var NAVTREEINDEX3 =
 "classhype_1_1util_1_1_h_warnings.html":[0,0,0,8,7],
 "classhype_1_1util_1_1_h_warnings.html#a8992fc45f97be882c79eceb0df3b4cec":[0,0,0,8,7,1],
 "classhype_1_1util_1_1_h_warnings.html#adb2c54a7d206d7e7bdeb58cfad2d0169":[0,0,0,8,7,0],
+"functions.html":[0,3,0],
+"functions_func.html":[0,3,1],
 "hierarchy.html":[0,2],
 "index.html":[],
 "interfacehype_1_1collection_1_1_h_iterator_3_01_u_01_4.html":[0,0,0,1,0],

@@ -168,12 +168,12 @@ public static class HCanvas extends HDrawable {
 		return this;
 	}
 	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPerc) {
-		if(_alpha<=0 || _width==0 || _height==0) return;
+		if(_alphaPerc<=0 || _width==0 || _height==0) return;
 		g.pushMatrix();
 			if(usesZ) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
-			currAlphaPerc *= _alpha;
+			currAlphaPerc *= _alphaPerc;
 			_graphics.beginDraw();
 			if(_autoClear) {
 				_graphics.clear();

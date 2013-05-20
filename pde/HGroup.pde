@@ -5,12 +5,12 @@ public static class HGroup extends HDrawable {
 		return copy;
 	}
 	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPerc) {
-		if(_alpha<=0) return;
+		if(_alphaPerc<=0) return;
 		g.pushMatrix();
 			if(usesZ) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
-			currAlphaPerc *= _alpha;
+			currAlphaPerc *= _alphaPerc;
 			HDrawable child = _firstChild;
 			while(child != null) {
 				child.paintAll(g, usesZ, currAlphaPerc);
