@@ -3,6 +3,7 @@
 - renamed `HDrawable._alpha` into `_alphaPerc`
 - initial documentation contents for HDrawable
 - width and/or height in `HDrawable.anchor(float,float)`, `anchorX(float)` and `anchorY(float)` are now assumed to be 100 when its width and/or height is 0 to prevent division-by-zero errors.
+- new method: `HSwarm.addGoal(float,float,float)`.
 
 ### build_20130517.0 (May 17, 2013)
 - new file: changelog.txt

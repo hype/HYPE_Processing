@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classhype_1_1colorist_1_1_h_color_pool.html#afb113623317e9f893b3f08348e2e6ced":[0,0,0,2,2,8],
 "classhype_1_1colorist_1_1_h_color_transform.html":[0,0,0,2,3],
 "classhype_1_1colorist_1_1_h_color_transform.html#a01bf05464310cb363c9d95deb3e9a83c":[0,0,0,2,3,26],
 "classhype_1_1colorist_1_1_h_color_transform.html#a11a6293c6f446a732c214a7f6aaf2679":[0,0,0,2,3,30],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classhype_1_1drawable_1_1_h_image.html#ad4c1133fc8f5075e901a573e240d896e":[0,0,0,3,4,7],
 "classhype_1_1drawable_1_1_h_image.html#adf558fb9f12c04e7de5b345f8d7a00c7":[0,0,0,3,4,12],
 "classhype_1_1drawable_1_1_h_path.html":[0,0,0,3,5],
-"classhype_1_1drawable_1_1_h_path.html#a0c21a2817cb1840d50de03bfa7683842":[0,0,0,3,5,7],
-"classhype_1_1drawable_1_1_h_path.html#a1701e5c6f61b12c155831d225622fe69":[0,0,0,3,5,1]
+"classhype_1_1drawable_1_1_h_path.html#a0c21a2817cb1840d50de03bfa7683842":[0,0,0,3,5,7]
 };

@@ -16,9 +16,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"classhype_1_1colorist_1_1_h_color_transform.html",
-"classhype_1_1drawable_1_1_h_path.html#a2e50e660109761776241d9c41e8fb132",
-"classhype_1_1util_1_1_h_math.html#a0398dbad7de59e58af8982a9130bec5b"
+"classhype_1_1colorist_1_1_h_color_pool.html#afb113623317e9f893b3f08348e2e6ced",
+"classhype_1_1drawable_1_1_h_path.html#a1701e5c6f61b12c155831d225622fe69",
+"classhype_1_1util_1_1_h_math.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

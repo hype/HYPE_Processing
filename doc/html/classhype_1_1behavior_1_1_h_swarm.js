@@ -3,6 +3,7 @@ var classhype_1_1behavior_1_1_h_swarm =
     [ "HSwarm", "classhype_1_1behavior_1_1_h_swarm.html#aab7c00c66ca06be3f58b5ec35c127848", null ],
     [ "addGoal", "classhype_1_1behavior_1_1_h_swarm.html#a5ef1ca80cd3665610fdfcffdced4d555", null ],
     [ "addGoal", "classhype_1_1behavior_1_1_h_swarm.html#aa61d36f719a43f5c37fca4e6b03b2143", null ],
+    [ "addGoal", "classhype_1_1behavior_1_1_h_swarm.html#af3e48eea009f675e4893b83af1a9541e", null ],
     [ "addTarget", "classhype_1_1behavior_1_1_h_swarm.html#a1b92710850c45201d9479a9898578172", null ],
     [ "goals", "classhype_1_1behavior_1_1_h_swarm.html#a2abe07950101007b1b300baf4223ae8e", null ],
     [ "idleGoal", "classhype_1_1behavior_1_1_h_swarm.html#afa26071c412bbfbb2e44197ca7b914e5", null ],
