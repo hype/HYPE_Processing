@@ -9,11 +9,8 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] docs
-	 * - [ ] target z for HSwarm
-	 * - [ ] base size for computing perc stuff = 0, if size = 0
-	 * 	- [ ] anchor
-	 * 	- [ ] vertex
+	 * - [ ] bool() for HBundle
+	 * - [ ] base size for computing perc vertex stuff = 0, if size = 0
 	 * 
 	 * - [ ] HDrawable.transformChildren(bool)
 	 * - [ ] recursive spatial transforms for HDrawable & HGroup

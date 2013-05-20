@@ -14,9 +14,7 @@ import processing.core.PGraphics;
 import processing.core.PVector;
 
 /**
- * Abcd. Efgh.
- * 
- * Ijk lmno.
+ * TODO
  * 
  * @author james
  */
@@ -24,15 +22,23 @@ public abstract class HDrawable extends HNode<HDrawable>
 		implements HSwarmer, HHittable {
 	
 	protected HDrawable
+		/** The parent of this drawable @see parent() */
 		_parent,
+		/** The first child of this drawable @see firstChild() */
 		_firstChild,
+		/** The last child of this drawable @see lastChild() */
 		_lastChild;
 	protected HBundle
+		/** The extras bundle of this drawable @see extras() */
 		_extras;
 	protected float
+		/** The x location of this drawable @see x() */
 		_x,
+		/** The y location of this drawable @see y() */
 		_y,
+		/** The z location of this drawable @see z() */
 		_z,
+		/** TODO */
 		_anchorPercX,
 		_anchorPercY,
 		_width,
@@ -308,11 +314,11 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 	
 	/**
-	 * Creates a new HIterator for this drawable.
+	 * Creates a new iterator for this drawable to iterate through its children.
 	 * 
-	 * Note that while HIterator has similar functions for java.util.Iterator,
-	 * the former does _not_ extend the latter. This is due to js mode
-	 * compatibility issues.
+	 * Note that while HIterator has similar functionalities with
+	 * java.util.Iterator, the former does _not_ extend the latter. This is due
+	 * to js mode compatibility issues.
 	 * 
 	 * @see HDrawableIterator, HIterator
 	 * @return A new HIterator for this drawable
@@ -726,51 +732,130 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	// SIZE //
 	
+	/**
+	 * Sets the size of this drawable.
+	 * 
+	 * @chainable
+	 * @see size(float), width(float), height(float)
+	 * @param w    The new width for this drawable.
+	 * @param h    The new height for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable size(float w, float h) {
-		width(w);
-		height(h);
-		return this;
+		return width(w).height(h);
 	}
 	
+	/**
+	 * Sets the size of this drawable, where `s` will be the new width and
+	 * height for this drawable.
+	 * 
+	 * @chainable
+	 * @see size(float,float), width(float), height(float)
+	 * @param s    The new width and height for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable size(float s) {
 		size(s,s);
 		return this;
 	}
 	
+	/**
+	 * Returns the size of this drawable.
+	 * 
+	 * @see width(), height()
+	 * @return A new PVector containing the width and height of this drawable.
+	 */
 	public PVector size() {
 		return new PVector(_width,_height);
 	}
 	
+	/**
+	 * Sets the width of this drawable.
+	 * 
+	 * @chainable
+	 * @see size(float,float), size(float), height(float)
+	 * @param w    The new width for this drawable
+	 * @return This drawable.
+	 */
 	public HDrawable width(float w) {
 		if(_proportional) _height = w/_sizeProportion;
 		_width = w;
 		return this;
 	}
 	
+	/**
+	 * Returns the width of this drawable.
+	 * 
+	 * @see size(), height()
+	 * @return This drawable's width.
+	 */
 	public float width() {
 		return _width;
 	}
 	
+	/**
+	 * Sets the height of this drawable.
+	 * 
+	 * @chainable
+	 * @see size(float,float), size(float), width(float)
+	 * @param h    The new height for this drawable
+	 * @return This drawable.
+	 */
 	public HDrawable height(float h) {
 		if(_proportional) _width = h*_sizeProportion;
 		_height = h;
 		return this;
 	}
 	
+	/**
+	 * Returns the height of this drawable.
+	 * 
+	 * @see size(), width()
+	 * @return This drawable's height
+	 */
 	public float height() {
 		return _height;
 	}
 	
+	/**
+	 * Multiplies the width and height of this drawable by the given multipler.
+	 * 
+	 * If this drawable is sized `(100,100)` and `scale(2)` is called, this will
+	 * be resized to `(200,200)`.
+	 * 
+	 * @chainable
+	 * @see scale(float,float)
+	 * @param s    The multiplier for the size of this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable scale(float s) {
-		size(_width*s, _height*s);
-		return this;
+		return size(_width*s, _height*s);
 	}
 	
+	/**
+	 * Multiplies the width and height of this drawable by the given width and
+	 * height multipliers.
+	 * 
+	 * @chainble
+	 * @see scale(float)
+	 * @param sw    The width multiplier for this drawable
+	 * @param sh    The height multiplier for this drawable
+	 * @return This drawable.
+	 */
 	public HDrawable scale(float sw, float sh) {
-		size(_width*sw, _height*sh);
-		return this;
+		return size(_width*sw, _height*sh);
 	}
 	
+	/**
+	 * Sets whether or not this drawable will be resized proportionally.
+	 * 
+	 * If set to true, then this drawable will try to keep the width and height
+	 * at the same ratio when you try to change either the width or height.
+	 * 
+	 * @chainable
+	 * @param b    Whether this drawable will keep its size proportional.
+	 * @return This drawable.
+	 */
 	public HDrawable proportional(boolean b) {
 		_proportional = b;
 		if(_proportional) {
@@ -779,10 +864,22 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return this;
 	}
 	
+	/**
+	 * Returns whether or not this drawable is in proportional mode.
+	 * 
+	 * @return True if this drawable is in proportional mode, else false.
+	 */
 	public boolean proportional() {
 		return _proportional;
 	}
 	
+	/**
+	 * Returns the bounding size of this drawable based on this drawble's
+	 * rotation.
+	 * 
+	 * @deprecated This will be replaced with boundingBox() in the future.
+	 * @return The bounding size of this drawable.
+	 */
 	public PVector boundingSize() {
 		// TODO boundingBox()
 		// this code probably needs some *actual* optimization too.
@@ -839,89 +936,275 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	// STYLE //
 	
+	/**
+	 * Sets the fill for this drawable.
+	 * 
+	 * This method takes in a standard Processing color integer, which are
+	 * commonly represented as `0xAARRGGBB` or `#RRGGBB`.
+	 * 
+	 * @chainable
+	 * @see fill(int,int), fill(int,int,int), fill(int,int,int,int)
+	 * @param clr    The new fill for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable fill(int clr) {
 		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16 | 0xFF000000;
 		_fill = clr;
 		return this;
 	}
 	
+	/**
+	 * Sets the fill for this drawable.
+	 * 
+	 * The `clr` parameter is a standard Processing color integer and alpha is
+	 * any number from 0 to 255.
+	 * 
+	 * Note that `alpha` would override the existing alpha value of `clr`. So if
+	 * `clr` is `0x80FFFFFF` and `alpha` is `0x40`, the fill will become
+	 * `0x40FFFFFF`.
+	 * 
+	 * @chainable
+	 * @see fill(int), fill(int,int,int), fill(int,int,int,int), noFill()
+	 * @param clr    The new fill for this drawable, excluding its alpha value.
+	 * @param alpha  The alpha for the new fill for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable fill(int clr, int alpha) {
 		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16;
 		_fill = HColors.setAlpha(clr,alpha);
 		return this;
 	}
 	
+	/**
+	 * Sets the fill for this drawable.
+	 * 
+	 * The parameters `r`, `g` and `b` can be any number from 0 to 255.
+	 * 
+	 * @chainable
+	 * @see fill(int), fill(int,int), fill(int,int,int,int), noFill()
+	 * @param r    The red component for the new fill for this drawable
+	 * @param g    The green component for the new fill for this drawable
+	 * @param b    The blue component for the new fill for this drawable
+	 * @return This drawable.
+	 */
 	public HDrawable fill(int r, int g, int b) {
 		_fill = HColors.merge(255,r,g,b);
 		return this;
 	}
 	
+	/**
+	 * Sets the fill for this drawable.
+	 * 
+	 * The parameters `r`, `g`, `b` and `a` can be any number from 0 to 255.
+	 * 
+	 * @chainable
+	 * @see fill(int), fill(int,int), fill(int,int,int), noFill()
+	 * @param r    The red component for the new fill for this drawable
+	 * @param g    The green component for the new fill for this drawable
+	 * @param b    The blue component for the new fill for this drawable
+	 * @param a    The alpha component for the new fill for this drawable
+	 * @return This drawable.
+	 */
 	public HDrawable fill(int r, int g, int b, int a) {
 		_fill = HColors.merge(a,r,g,b);
 		return this;
 	}
 	
+	/**
+	 * Returns the fill for this drawable.
+	 * 
+	 * The color returned by this method is a standard Processing color integer.
+	 * 
+	 * @return The fill of this drawable.
+	 */
 	public int fill() {
 		return _fill;
 	}
 	
+	/**
+	 * Removes the fill of this drawable.
+	 * 
+	 * Technically, this method sets the fill to HConstants.CLEAR, which is
+	 * `0x00FFFFFF` or fully transparent white.
+	 * 
+	 * @chainable
+	 * @see fill(int), fill(int,int), fill(int,int,int), fill(int,int,int,int)
+	 * @return This drawable.
+	 */
 	public HDrawable noFill() {
 		return fill(HConstants.CLEAR);
 	}
 
+	/**
+	 * Sets the stroke color for this drawable.
+	 * 
+	 * This method takes in a standard Processing color integer, which are
+	 * commonly represented as `0xAARRGGBB` or `#RRGGBB`.
+	 * 
+	 * @chainable
+	 * @see stroke(int,int), stroke(int,int,int), stroke(int,int,int,int), noStroke()
+	 * @param clr    The new stroke color for this drawable.
+	 * @return This drawable
+	 */
 	public HDrawable stroke(int clr) {
 		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16 | 0xFF000000;
 		_stroke = clr;
 		return this;
 	}
 	
+	/**
+	 * Sets the stroke color for this drawable.
+	 * 
+	 * The `clr` parameter is a standard Processing color integer and alpha is
+	 * any number from 0 to 255.
+	 * 
+	 * Note that `alpha` would override the existing alpha value of `clr`. So if
+	 * `clr` is `0x80FFFFFF` and `alpha` is `0x40`, the fill will become
+	 * `0x40FFFFFF`.
+	 * 
+	 * @chainable
+	 * @see stroke(int), stroke(int,int,int), stroke(int,int,int,int), noStroke()
+	 * @param clr    The new stroke color for this drawable, excluding its alpha value.
+	 * @param alpha  The alpha for the new stroke color for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable stroke(int clr, int alpha) {
 		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16;
 		_stroke = HColors.setAlpha(clr,alpha);
 		return this;
 	}
 	
+	/**
+	 * Sets the stroke color for this drawable.
+	 * 
+	 * The parameters `r`, `g` and `b` can be any number from 0 to 255.
+	 * 
+	 * @chainable
+	 * @see stroke(int), stroke(int,int), stroke(int,int,int,int), noStroke()
+	 * @param r    The red component for the new stroke color for this drawable
+	 * @param g    The green component for the new stroke color for this drawable
+	 * @param b    The blue component for the new stroke color for this drawable
+	 * @return This drawable.
+	 */
 	public HDrawable stroke(int r, int g, int b) {
 		_stroke = HColors.merge(255,r,g,b);
 		return this;
 	}
 	
+	/**
+	 * Sets the stroke color for this drawable.
+	 * 
+	 * The parameters `r`, `g` `b` and `a` can be any number from 0 to 255.
+	 * 
+	 * @chainable
+	 * @see stroke(int), stroke(int,int), stroke(int,int,int), noStroke()
+	 * @param r    The red component for the new stroke color for this drawable
+	 * @param g    The green component for the new stroke color for this drawable
+	 * @param b    The blue component for the new stroke color for this drawable
+	 * @param a    The alpha component for the new stroke color for this drawable
+	 * @return This drawable.
+	 */
 	public HDrawable stroke(int r, int g, int b, int a) {
 		_stroke = HColors.merge(a,r,g,b);
 		return this;
 	}
 
+	/**
+	 * Returns the stroke color for this drawable.
+	 * 
+	 * The color returned by this method is a standard Processing color integer.
+	 * 
+	 * @return The stroke color of this drawable.
+	 */
 	public int stroke() {
 		return _stroke;
 	}
 	
+	/**
+	 * Removes the stroke color of this drawable.
+	 * 
+	 * Technically, this method sets the stroke color to HConstants.CLEAR, which
+	 * is equalt to `0x00FFFFFF` or fully transparent white.
+	 * 
+	 * @chainable
+	 * @see stroke(int), stroke(int,int), stroke(int,int,int), stroke(int,int,int,int)
+	 * @return This drawable.
+	 */
 	public HDrawable noStroke() {
 		return stroke(HConstants.CLEAR);
 	}
-
+	
+	/**
+	 * Sets the stroke cap for this drawable.
+	 * 
+	 * The stroke cap can be any of the following values:
+	 * - `PConstants.SQUARE`
+	 * - `PConstants.PROJECT`
+	 * - `PConstants.ROUND`
+	 * 
+	 * @chainable
+	 * @see Processing::strokeCap()
+	 * @param type    The stroke cap type for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable strokeCap(int type) {
 		_strokeCap = type;
 		return this;
 	}
 
+	/**
+	 * Returns the stroke cap for this drawable.
+	 * 
+	 * @return The integer representing the stroke cap of this drawable.
+	 */
 	public int strokeCap() {
 		return _strokeCap;
 	}
 
+	/**
+	 * Sets the stroke join for this drawable.
+	 * 
+	 * The stroke join can be any of the following values:
+	 * - `PConstants.MITER`
+	 * - `PConstants.BEVEL`
+	 * - `PConstants.ROUND`
+	 * 
+	 * @chainable
+	 * @see Processing::strokeJoin()
+	 * @param type    The stroke join type for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable strokeJoin(int type) {
 		_strokeJoin = type;
 		return this;
 	}
 
+	/**
+	 * Returns the stroke join for this drawable.
+	 * 
+	 * @return The integer representing the stroke join of this drawable.
+	 */
 	public int strokeJoin() {
 		return _strokeJoin;
 	}
 	
+	/**
+	 * Sets the stroke weight, or thickness of this drawable.
+	 * 
+	 * @chainable
+	 * @param f    The thickness for this drawable's stroke in pixels.
+	 * @return This drawable
+	 */
 	public HDrawable strokeWeight(float f) {
 		_strokeWeight = f;
 		return this;
 	}
 	
+	/**
+	 * Returns the stroke weight, or thickness of this drawable.
+	 * 
+	 * @return The stroke weight for this drawable, in pixels.
+	 */
 	public float strokeWeight() {
 		return _strokeWeight;
 	}
@@ -929,11 +1212,23 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	// ROTATION //
 	
+	/**
+	 * Sets the rotation for this drawable, in degrees.
+	 * 
+	 * @chainable
+	 * @param deg    The new rotation for this drawable, in degrees.
+	 * @return This drawable.
+	 */
 	public HDrawable rotation(float deg) {
 		_rotationRad = deg * HConstants.D2R;
 		return this;
 	}
 	
+	/**
+	 * Returns the rotation for this drawable, in degrees.
+	 * 
+	 * @return This drawable's rotation in degrees.
+	 */
 	public float rotation() {
 		return _rotationRad * HConstants.R2D;
 	}
@@ -949,11 +1244,25 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return _rotationRad;
 	}
 	
+	/**
+	 * Shifts this drawable's current rotation by the passed value, in degrees.
+	 * 
+	 * @chainable
+	 * @param deg    The amount of degrees for the current rotation to be shifted.
+	 * @return This drawable.
+	 */
 	public HDrawable rotate(float deg) {
 		_rotationRad += deg * HConstants.D2R;
 		return this;
 	}
 	
+	/**
+	 * Shifts this drawable's current rotation by the passed value, in radians.
+	 * 
+	 * @chainable
+	 * @param rad    The amount of radians for the current rotation to be shifted.
+	 * @return This drawable.
+	 */
 	public HDrawable rotateRad(float rad) {
 		_rotationRad += rad;
 		return this;
@@ -962,48 +1271,146 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	// VISIBILITY //
 	
+	/**
+	 * Sets the transparency for this drawable.
+	 * 
+	 * The argument for this method can be any number from 0 to 255. Otherwise,
+	 * if the argument is less than 0, the alpha will be 0; and if the argument
+	 * is greater than 255, the alpha will be 255.
+	 * 
+	 * Note that transparency _is independent from fill and stroke color_, even
+	 * if the fill and stroke can also have alpha values. And unlike fill and
+	 * stroke, this transparency can be passed down to this drawable's children.
+	 * 
+	 * Also note that HDrawable actually stores `alpha` as a percentage ranging
+	 * from 0 to 1 to keep the draw() and paintAll() methods a bit faster.
+	 * 
+	 * @chainable
+	 * @see alphaPerc(float)
+	 * @param a    The new alpha for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable alpha(int a) {
 		return alphaPerc(a/255f);
 	}
 	
+	/**
+	 * Returns the transparency for this drawable, ranging from 0 to 255.
+	 * 
+	 * You can be assured that the return value will only be in the
+	 * aforementioned range.
+	 * 
+	 * @see alphaPerc()
+	 * @return The alpha for this drawable with range `(0,255)`.
+	 */
 	public int alpha() {
 		return Math.round( alphaPerc()*255 );
 	}
 	
+	/**
+	 * Sets the transparency for this drawable, as percentage.
+	 * 
+	 * The argument for this method can be any number from 0 to 1. Otherwise, if
+	 * the argument is less than 0f, the alpha will be 0f; and if the argument
+	 * is greater than 1f, the alpha will be 1f. 
+	 * 
+	 * @chainable
+	 * @see alpha(float)
+	 * @param aPerc    The new alpha for this drawable, as percentage.
+	 * @return This drawable.
+	 */
 	public HDrawable alphaPerc(float aPerc) {
 		_alphaPerc = (aPerc<0)? 0 : (aPerc>1)? 1 : aPerc;
 		return this;
 	}
 	
+	/**
+	 * Returns the transparency for this drawable, ranging from 0 to 255.
+	 * 
+	 * You can be assured that the return value will only be in the
+	 * aforementioned range.
+	 * 
+	 * @see alpha()
+	 * @return The alpha for this drawable with range `(0f,1f)`.
+	 */
 	public float alphaPerc() {
 		return (_alphaPerc<0)? 0 : _alphaPerc;
 	}
 	
+	/**
+	 * Sets the visibility of this drawable.
+	 * 
+	 * Technically this method manipulates the alpha of this drawable. If `v` is
+	 * false, the alpha will become the negative of the current alpha, making
+	 * this drawable invisible. Otherwise, if `v` is true, the alpha will become
+	 * the positive of the current alpha (or 1f if the current alpha is 0),
+	 * making this drawable visible. 
+	 * 
+	 * @chainable
+	 * @see show(), hide()
+	 * @param v    True if this drawable will be visible, false if invisible.
+	 * @return This drawable.
+	 */
 	public HDrawable visibility(boolean v) {
-		if(v && _alphaPerc == 0) {
+		if( v && (_alphaPerc==0) ) {
 			_alphaPerc = 1;
-		} else if(v == _alphaPerc < 0) {
+		} else if( v == (_alphaPerc<0) ) {
 			_alphaPerc = -_alphaPerc;
 		}
 		return this;
 	}
 	
+	/**
+	 * Returns the visibility of this drawable.
+	 * 
+	 * @return True if this drawable is visible, otherwise false.
+	 */
 	public boolean visibility() {
 		return _alphaPerc > 0;
 	}
 	
+	/**
+	 * Makes this drawable visible by calling `visibility(true)`.
+	 * 
+	 * @chainable
+	 * @see visibility(boolean), hide()
+	 * @return This drawable.
+	 */
 	public HDrawable show() {
 		return visibility(true);
 	}
 	
+	/**
+	 * Makes this drawable invisible by calling `visibility(false)`.
+	 * 
+	 * @chainable
+	 * @see visibility(boolean), show()
+	 * @return This drawable.
+	 */
 	public HDrawable hide() {
 		return visibility(false);
 	}
 	
+	/**
+	 * Shifts the current alpha of this drawable by the given value.
+	 * 
+	 * @chainable
+	 * @see alpha(int)
+	 * @param da    The amount that the alpha will be shifted.
+	 * @return This drawable.
+	 */
 	public HDrawable alphaShift(int da) {
 		return alphaShiftPerc( da/255f );
 	}
 	
+	/**
+	 * Shifts the current alpha of this drawable, by percentage.
+	 * 
+	 * @chainable.
+	 * @see alphaPerc(float)
+	 * @param daPerc    The amount that alpha will be shifted, by percentage.
+	 * @return This drawable.
+	 */
 	public HDrawable alphaShiftPerc(float daPerc) {
 		return alphaPerc(_alphaPerc + daPerc);
 	}
@@ -1011,50 +1418,122 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	// UTILITY //
 	
+	/**
+	 * Assigns an _extras bundle_ for this drawable to hold arbitrary data.
+	 * 
+	 * This follows the same idea as with Android's Bundles.
+	 * 
+	 * @chainable
+	 * @see Android::Bundle
+	 * @param b    The new extras bundle for this drawable.
+	 * @return This drawable.
+	 */
 	public HDrawable extras(HBundle b) {
 		_extras = b;
 		return this;
 	}
 	
+	/**
+	 * Returns this drawable's _extras bundle_.
+	 * 
+	 * @return The extras bundle for this drawable.
+	 */
 	public HBundle extras() {
 		return _extras;
 	}
 	
+	/**
+	 * Puts any arbitrary object into this drawable's _extras bundle_.
+	 * 
+	 * If the extras bundle is null, this method will create a new one.
+	 * 
+	 * @chainable
+	 * @see HBundle.obj(String,Object)
+	 * @param key    The string that will be the key for `value`.
+	 * @param value  The object to be stored.
+	 * @return This drawable.
+	 */
 	public HDrawable obj(String key, Object value) {
 		if(_extras == null) _extras = new HBundle();
 		_extras.obj(key,value);
 		return this;
 	}
 	
+	/**
+	 * Puts any arbitrary native value into this drawable's _extras bundle_.
+	 * 
+	 * If the extras bundle is null, this method will create a new one.
+	 * 
+	 * @chainable
+	 * @see HBundle.num(String,float)
+	 * @param key    The string that will be the key for `value`.
+	 * @param value  The native value to be stored.
+	 * @return This drawable.
+	 */
 	public HDrawable num(String key, float value) {
 		_extras.num(key,value);
 		return this;
 	}
 	
+	/**
+	 * Returns the object from the _extras bundle_ with the corresponding key.
+	 * 
+	 * If the extras bundle is null, this method will return null.
+	 * 
+	 * @see HBundle.num(String)
+	 * @param key   The key that will be used to fetch the object.
+	 * @return The object with the corresponding key.
+	 */
 	public Object obj(String key) {
-		if(_extras == null)
-			return null;
-		return _extras.obj(key);
+		return (_extras==null)? null : _extras.obj(key);
 	}
 	
+	/**
+	 * Returns the string from the _extras bundle_ with the corresponding key.
+	 * 
+	 * This is a shorthand for `(String) obj(key)`. If the extras bundle is
+	 * null, this method will return null.
+	 * 
+	 * @see HBundle.str(String)
+	 * @param key    The key that will be used to fetch the string.
+	 * @return The string with the corresponding key.
+	 */
 	public String str(String key) {
-		if(_extras == null)
-			return null;
-		return _extras.str(key);
+		return (_extras==null)? null : _extras.str(key);
 	}
 	
+	/**
+	 * Returns the number from the _extras bundle_ with the corresponding key.
+	 * 
+	 * If the extras bundle is null, this method will return 0.
+	 * 
+	 * @see HBundle.num(String)
+	 * @param key    The key that will be used to fetch the float value.
+	 * @return The float value with the corresponding key.
+	 */
 	public float num(String key) {
-		if(_extras == null)
-			return 0;
-		return _extras.num(key);
+		return (_extras==null)? 0 : _extras.num(key);
 	}
 	
+	/**
+	 * Returns the rounded number from the _extras bundle_ with the corresponding key.
+	 * 
+	 * If the extras bundle is null, this method will return 0.
+	 * 
+	 * @param key    The key that will be used to fetch the integer value.
+	 * @return The integer value with the corresponding key.
+	 */
 	public int numI(String key) {
-		if(_extras == null)
-			return 0;
-		return _extras.numI(key);
+		return (_extras==null)? 0 : _extras.numI(key);
 	}
 	
+	/**
+	 * Returns the equivalent boolean value from the _extras bundle_ with the corresponding key.
+	 * 
+	 * @see HBundle.bool(String)
+	 * @param key
+	 * @return
+	 */
 	public boolean bool(String key) {
 		if(_extras == null)
 			return false;
@@ -1078,6 +1557,14 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	// DRAWING //
 	
+	/**
+	 * Applies this drawable's styling to the given graphics context.
+	 * 
+	 * This method is primarily used by some subclasses' `draw()` method.
+	 * 
+	 * @param g    The graphics context for this drawable.
+	 * @param currAlphaPerc    The current alpha value in the draw cycle.
+	 */
 	protected void applyStyle(PGraphics g, float currAlphaPerc) {
 		float faPerc = currAlphaPerc * (_fill >>> 24);
 		g.fill(_fill | 0xFF000000, Math.round(faPerc));
@@ -1091,6 +1578,16 @@ public abstract class HDrawable extends HNode<HDrawable>
 		} else g.noStroke();
 	}
 	
+	/**
+	 * Prepares the environment for drawing this drawable and its children.
+	 * 
+	 * This method is primarily called internally during the draw cycle and
+	 * probably wouldn't need to be called directly.
+	 * 
+	 * @param g    The graphics context for this drawable.
+	 * @param usesZ    Indicates if z-coordinates are used.
+	 * @param currAlphaPerc    The current alpha value in the draw cycle.
+	 */
 	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPerc) {
 		if(_alphaPerc<=0) return;
 		g.pushMatrix();
@@ -1114,11 +1611,29 @@ public abstract class HDrawable extends HNode<HDrawable>
 		g.popMatrix();
 	}
 	
+	/**
+	 * Draws this drawable.
+	 * 
+	 * This method is abstract and is meant to be implemented by the children
+	 * of this class. Also, this method is primarily called internally during
+	 * the draw cycle and probably wouldn't need to be called directly.
+	 * 
+	 * @param g     The graphics context for this drawable.
+	 * @param usesZ Indicates if z-coordinates are used.
+	 * @param drawX The x coordinate where this drawable would consider as 0
+	 * @param drawY The y coordinate where this drawable would consider as 0
+	 * @param currAlphaPerc    The current alpha value in the draw cycle.
+	 */
 	public abstract void draw( PGraphics g, boolean usesZ,
 		float drawX, float drawY, float currAlphaPerc);
 	
 	
 	
+	/**
+	 * An HIterator use in iterating through HDrawable's children.
+	 * 
+	 * @author james
+	 */
 	public static class HDrawableIterator implements HIterator<HDrawable> {
 		private HDrawable parent, d1, d2;
 		
