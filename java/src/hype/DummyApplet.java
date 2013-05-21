@@ -1,7 +1,10 @@
 package hype;
 
-import hype.drawable.HEllipse;
+import hype.behavior.HTween;
+import hype.drawable.HDrawable;
 import hype.drawable.HPath;
+import hype.drawable.HRect;
+import hype.interfaces.HCallback;
 import hype.util.H;
 import processing.core.PApplet;
 
@@ -9,8 +12,8 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] bool() for HBundle
-	 * - [ ] base size for computing perc vertex stuff = 0, if size = 0
+	 * - [ ] bool(boolean) for HBundle
+	 * - [ ] HPath: base size for computing perc vertex stuff = 100, if size = 0
 	 * 
 	 * - [ ] HDrawable.transformChildren(bool)
 	 * - [ ] recursive spatial transforms for HDrawable & HGroup
@@ -37,12 +40,18 @@ public class DummyApplet extends PApplet {
 	 * 		- frame sequence
 	 * 		- pdf frames (remember that pdf frames don't ignores autoClear(false))
 	 * 
+	 * - [ ] HTween: DLOC stuff
+	 * 
+	 * (Refactors)
 	 * - [ ] protected HDrawable.onSizeChange();
 	 * - [ ] refactor/cleanup HOscillator
+	 * - [ ] use registered() for autoregistering behaviors
+	 * - [ ] remove register/unregister overrides
+	 * - [ ] privatize remaining public fields
+	 * - [ ] standardize boolean getter names
 	 * 
-	 * - [ ] HTween refinements
+	 * (Far Future Stuff)
 	 * - [ ] AS3::SoundAnalyzer
-	 * - [ ] Standardize boolean getters
 	 */
 	
 	@Override
@@ -50,23 +59,15 @@ public class DummyApplet extends PApplet {
 		size(512,512);
 		H.init(this);
 		
-		/*
-		int clr = HColors.merge(-512,-512,-412,-512);
-		println(hex(HColors.merge(-512,-512,-412,-512)));
-		println(hex(HColors.setBlue(clr, -512)));
-		
-		HDrawable d = H.add(new HRect()).locAt(H.BOTTOM_RIGHT).move(-64,-64);
-		new HTween().target(d).property(H.LOCATION).ease(.01f).spring(0.9f).start(width,height).end(width/2,height/2).callback(new HCallback() {
-			
-			@Override
+//		/*
+		HDrawable d = H.add(new HRect()).locAt(H.CENTER).anchorAt(H.CENTER);
+		new HTween().target(d).property(H.Z).ease(random(1/1024f,1)).spring(random(1)).start(0).end(1).callback(new HCallback() {
 			public void run(Object obj) {
-				System.out.println("Hey");
+				HTween t = (HTween) obj;
+				t.target().fill(H.RED);
 			}
 		});
 		//*/
-		
-		HEllipse circ = new HEllipse();
-		H.add(circ).locAt(H.CENTER).size(0).anchor(75,75).size(50);
 		
 		H.add(new HPath().vertex(0,height/2).vertex(width,height/2).endPath());
 		H.add(new HPath().vertex(width/2,0).vertex(width/2,height).endPath());

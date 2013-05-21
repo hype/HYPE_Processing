@@ -17,6 +17,12 @@ public abstract class HBehavior extends HNode<HBehavior> {
 		return this;
 	}
 	
+	public HBehavior registered(boolean b) {
+		if(b) H.behaviors().register(this);
+		else H.behaviors().unregister(this);
+		return this;
+	}
+	
 	@Override
 	public boolean poppedOut() {
 		return _registry == null;

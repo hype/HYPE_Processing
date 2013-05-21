@@ -191,4 +191,7 @@ public static class HMath implements HConstants {
 	) {
 		return start2 + (stop2-start2) * (val-start1)/(stop1-start1);
 	}
+	public static float round512(float val) {
+		return Math.round(val*512)/512f;
+	}
 }

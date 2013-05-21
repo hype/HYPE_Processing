@@ -180,7 +180,7 @@ public class HMath implements HConstants {
 	
 	public static float random(float high) {
 		float val;
-		do { // this loop is for a rare rounding bug
+		do { // this loop is for a rare rounding bug (see PApplet.java)
 			val = (float)Math.random() * high;
 		} while(val == high);
 		return val;
@@ -253,5 +253,9 @@ public class HMath implements HConstants {
 		float start1, float stop1, float start2, float stop2
 	) {
 		return start2 + (stop2-start2) * (val-start1)/(stop1-start1);
+	}
+	
+	public static float round512(float val) {
+		return Math.round(val*512)/512f;
 	}
 }

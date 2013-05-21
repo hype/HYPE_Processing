@@ -8,6 +8,11 @@ public static abstract class HBehavior extends HNode<HBehavior> {
 		H.behaviors().unregister(this);
 		return this;
 	}
+	public HBehavior registered(boolean b) {
+		if(b) H.behaviors().register(this);
+		else H.behaviors().unregister(this);
+		return this;
+	}
 	public boolean poppedOut() {
 		return _registry == null;
 	}
