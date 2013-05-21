@@ -1,4 +1,4 @@
-.TH "hype.drawable.HImage" 3 "Mon May 20 2013" "HYPE_processing" \" -*- nroff -*-
+.TH "hype.drawable.HImage" 3 "Tue May 21 2013" "HYPE_processing" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -31,7 +31,7 @@ Inherits \fBhype\&.drawable\&.HDrawable\fP\&.
 .RI "\fBHImage\fP \fBtint\fP (int clr)"
 .br
 .ti -1c
-.RI "\fBHImage\fP \fBtint\fP (int clr, int alpha)"
+.RI "\fBHImage\fP \fBtint\fP (int clr, int \fBalpha\fP)"
 .br
 .ti -1c
 .RI "\fBHImage\fP \fBtint\fP (int r, int g, int b)"
@@ -48,6 +48,7 @@ Inherits \fBhype\&.drawable\&.HDrawable\fP\&.
 .ti -1c
 .RI "void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float currAlphaPerc)"
 .br
+.RI "\fIDraws this drawable\&. \fP"
 .in -1c
 .SS "Additional Inherited Members"
 .SH "Member Function Documentation"
@@ -60,6 +61,27 @@ Creates a copy of this drawable\&. This method is abstract and is meant to be im
 \fBReturns:\fP
 .RS 4
 A copy of this drawable\&. 
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.drawable\&.HDrawable\fP\&.
+.SS "void hype\&.drawable\&.HImage\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatcurrAlphaPerc)\fC [virtual]\fP"
+
+.PP
+Draws this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&. Also, this method is primarily called internally during the draw cycle and probably wouldn't need to be called directly\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIg\fP The graphics context for this drawable\&. 
+.br
+\fIusesZ\fP Indicates if z-coordinates are used\&. 
+.br
+\fIdrawX\fP The x coordinate where this drawable would consider as 0 
+.br
+\fIdrawY\fP The y coordinate where this drawable would consider as 0 
+.br
+\fIcurrAlphaPerc\fP The current alpha value in the draw cycle\&. 
 .RE
 .PP
 

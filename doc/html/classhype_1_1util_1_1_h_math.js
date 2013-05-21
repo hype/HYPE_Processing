@@ -32,6 +32,7 @@ var classhype_1_1util_1_1_h_math =
     [ "rightOfLine", "classhype_1_1util_1_1_h_math.html#aed97b073b226899b8c8750cf58a282ca", null ],
     [ "rotatePoint", "classhype_1_1util_1_1_h_math.html#aa4e1bf088df604f61f7bf8a621cb8e99", null ],
     [ "rotatePointArr", "classhype_1_1util_1_1_h_math.html#ae8023e98d4523ae08d796cf9f62191f2", null ],
+    [ "round512", "classhype_1_1util_1_1_h_math.html#a5ccd337fcd316215786488fc34aeb487", null ],
     [ "sawWave", "classhype_1_1util_1_1_h_math.html#ae2cbf7905c5ec87a10ea532f2164f861", null ],
     [ "sineWave", "classhype_1_1util_1_1_h_math.html#a70432ca80abf61919404cd778100304a", null ],
     [ "squareWave", "classhype_1_1util_1_1_h_math.html#a8fd18e82bb54ba01f12b3b87d329ec5f", null ],

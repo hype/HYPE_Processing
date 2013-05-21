@@ -26,6 +26,7 @@ var interfacehype_1_1util_1_1_h_constants =
     [ "DROTATION", "interfacehype_1_1util_1_1_h_constants.html#a9a003d3a606bf4c32f1f8557b7ef90a0", null ],
     [ "DX", "interfacehype_1_1util_1_1_h_constants.html#a5997f9d92cb60752e7cce01550da3da3", null ],
     [ "DY", "interfacehype_1_1util_1_1_h_constants.html#aed933731959c48c64fde171d709f05c3", null ],
+    [ "DZ", "interfacehype_1_1util_1_1_h_constants.html#a78cbb4bc450010358fc2f2e119a64711", null ],
     [ "EQUILATERAL", "interfacehype_1_1util_1_1_h_constants.html#a1d9dbd4ac52de3b1fc2feb6c234c747f", null ],
     [ "GREEN", "interfacehype_1_1util_1_1_h_constants.html#ac52c8cc0389c65df0da774a31a7a4b65", null ],
     [ "GREY", "interfacehype_1_1util_1_1_h_constants.html#af1d38afc78b578a34c20998836f23a0a", null ],
@@ -56,5 +57,6 @@ var interfacehype_1_1util_1_1_h_constants =
     [ "WIDTH", "interfacehype_1_1util_1_1_h_constants.html#ab7b4a41660845c816b13511eaec79e4b", null ],
     [ "X", "interfacehype_1_1util_1_1_h_constants.html#aad002b8922a9db0a55d3a88b77068354", null ],
     [ "Y", "interfacehype_1_1util_1_1_h_constants.html#aeb289bdf5e7b1285c682c96d5efa4216", null ],
-    [ "YELLOW", "interfacehype_1_1util_1_1_h_constants.html#afcc8e6a8df20855af26d4102a4676e93", null ]
+    [ "YELLOW", "interfacehype_1_1util_1_1_h_constants.html#afcc8e6a8df20855af26d4102a4676e93", null ],
+    [ "Z", "interfacehype_1_1util_1_1_h_constants.html#a08d5aa6c959a02476ba1d70f3cc3545d", null ]
 ];

@@ -24,6 +24,7 @@ var searchData=
   ['hgridlayout',['HGridLayout',['../classhype_1_1layout_1_1_h_grid_layout.html',1,'hype::layout']]],
   ['hgroup',['HGroup',['../classhype_1_1drawable_1_1_h_group.html',1,'hype::drawable']]],
   ['hhittable',['HHittable',['../interfacehype_1_1interfaces_1_1_h_hittable.html',1,'hype::interfaces']]],
+  ['hide',['hide',['../classhype_1_1drawable_1_1_h_drawable.html#adc8b09823e0c47cf1e72df0820dad1e3',1,'hype::drawable::HDrawable']]],
   ['himage',['HImage',['../classhype_1_1drawable_1_1_h_image.html',1,'hype::drawable']]],
   ['hiterator_3c_20u_20_3e',['HIterator&lt; U &gt;',['../interfacehype_1_1collection_1_1_h_iterator_3_01_u_01_4.html',1,'hype::collection']]],
   ['hlayout',['HLayout',['../interfacehype_1_1layout_1_1_h_layout.html',1,'hype::layout']]],

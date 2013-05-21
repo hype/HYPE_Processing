@@ -1,13 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"classhype_1_1colorist_1_1_h_color_pool.html#afb113623317e9f893b3f08348e2e6ced":[1,0,0,2,2,8],
-"classhype_1_1colorist_1_1_h_color_transform.html":[1,0,0,2,3],
-"classhype_1_1colorist_1_1_h_color_transform.html#a01bf05464310cb363c9d95deb3e9a83c":[1,0,0,2,3,26],
-"classhype_1_1colorist_1_1_h_color_transform.html#a11a6293c6f446a732c214a7f6aaf2679":[1,0,0,2,3,30],
-"classhype_1_1colorist_1_1_h_color_transform.html#a11a82ede183e9a997722972de295aa9b":[1,0,0,2,3,29],
-"classhype_1_1colorist_1_1_h_color_transform.html#a120b58dd5d1824362b163ff1f218df3c":[1,0,0,2,3,9],
-"classhype_1_1colorist_1_1_h_color_transform.html#a19ba4182cc31366e7475bdda401d5498":[1,0,0,2,3,0],
-"classhype_1_1colorist_1_1_h_color_transform.html#a1bf96a7fd90a82fd525c39cb2056cd4b":[1,0,0,2,3,15],
 "classhype_1_1colorist_1_1_h_color_transform.html#a22244bd5c15dd3885e50eeb8aff0a70f":[1,0,0,2,3,19],
 "classhype_1_1colorist_1_1_h_color_transform.html#a2dc07ab67ba6812c920be35802007834":[1,0,0,2,3,8],
 "classhype_1_1colorist_1_1_h_color_transform.html#a31978f7946261d061bfceff7cfc0a648":[1,0,0,2,3,21],
@@ -249,5 +241,13 @@ var NAVTREEINDEX1 =
 "classhype_1_1drawable_1_1_h_image.html#ad4c1133fc8f5075e901a573e240d896e":[1,0,0,3,4,7],
 "classhype_1_1drawable_1_1_h_image.html#adf558fb9f12c04e7de5b345f8d7a00c7":[1,0,0,3,4,12],
 "classhype_1_1drawable_1_1_h_path.html":[1,0,0,3,5],
-"classhype_1_1drawable_1_1_h_path.html#a0c21a2817cb1840d50de03bfa7683842":[1,0,0,3,5,7]
+"classhype_1_1drawable_1_1_h_path.html#a0c21a2817cb1840d50de03bfa7683842":[1,0,0,3,5,7],
+"classhype_1_1drawable_1_1_h_path.html#a1701e5c6f61b12c155831d225622fe69":[1,0,0,3,5,1],
+"classhype_1_1drawable_1_1_h_path.html#a2e50e660109761776241d9c41e8fb132":[1,0,0,3,5,13],
+"classhype_1_1drawable_1_1_h_path.html#a2f3932e890ba712db9935def871ffc5d":[1,0,0,3,5,4],
+"classhype_1_1drawable_1_1_h_path.html#a4676c6d265941525f20e20b364fd1937":[1,0,0,3,5,2],
+"classhype_1_1drawable_1_1_h_path.html#a478a911f3547139618369efe3dc28b5d":[1,0,0,3,5,23],
+"classhype_1_1drawable_1_1_h_path.html#a49b3107bf885940fe95c28087ab03f9a":[1,0,0,3,5,18],
+"classhype_1_1drawable_1_1_h_path.html#a5660ce0ff6d511e224bf275cfeec8c48":[1,0,0,3,5,9],
+"classhype_1_1drawable_1_1_h_path.html#a65290bbef7be8e80f1384f884e781745":[1,0,0,3,5,14]
 };

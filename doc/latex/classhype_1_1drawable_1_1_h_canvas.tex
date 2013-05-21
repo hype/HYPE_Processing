@@ -99,7 +99,7 @@ Inheritance diagram for hype.\-drawable.\-H\-Canvas\-:\begin{figure}[H]
 \hypertarget{classhype_1_1drawable_1_1_h_canvas_a7e7dd71ef4819dafafa028dd20cf9d22}{\hyperlink{classhype_1_1drawable_1_1_h_canvas}{H\-Canvas} {\bfseries background} (int clr)}\label{classhype_1_1drawable_1_1_h_canvas_a7e7dd71ef4819dafafa028dd20cf9d22}
 
 \item 
-\hypertarget{classhype_1_1drawable_1_1_h_canvas_a34c0c7103ea6bb5ef8593b1953e61833}{\hyperlink{classhype_1_1drawable_1_1_h_canvas}{H\-Canvas} {\bfseries background} (int clr, int alpha)}\label{classhype_1_1drawable_1_1_h_canvas_a34c0c7103ea6bb5ef8593b1953e61833}
+\hypertarget{classhype_1_1drawable_1_1_h_canvas_a34c0c7103ea6bb5ef8593b1953e61833}{\hyperlink{classhype_1_1drawable_1_1_h_canvas}{H\-Canvas} {\bfseries background} (int clr, int \hyperlink{classhype_1_1drawable_1_1_h_drawable_a03c7275f5caab5cc9034b18d4c2f1305}{alpha})}\label{classhype_1_1drawable_1_1_h_canvas_a34c0c7103ea6bb5ef8593b1953e61833}
 
 \item 
 \hypertarget{classhype_1_1drawable_1_1_h_canvas_ace774d85d8dd3c0dc4f5402e50468989}{\hyperlink{classhype_1_1drawable_1_1_h_canvas}{H\-Canvas} {\bfseries background} (int r, int g, int b)}\label{classhype_1_1drawable_1_1_h_canvas_ace774d85d8dd3c0dc4f5402e50468989}
@@ -126,9 +126,8 @@ Inheritance diagram for hype.\-drawable.\-H\-Canvas\-:\begin{figure}[H]
 \hypertarget{classhype_1_1drawable_1_1_h_canvas_ab9c4170736dfd90149b29acd671ffd76}{void {\bfseries paint\-All} (P\-Graphics g, boolean uses\-Z, float curr\-Alpha\-Perc)}\label{classhype_1_1drawable_1_1_h_canvas_ab9c4170736dfd90149b29acd671ffd76}
 
 \item 
-\hypertarget{classhype_1_1drawable_1_1_h_canvas_a1a0c59344a132623f8c6e999b2cf232a}{void {\bfseries draw} (P\-Graphics g, boolean uses\-Z, float draw\-X, float draw\-Y, float curr\-Alpha\-Perc)}\label{classhype_1_1drawable_1_1_h_canvas_a1a0c59344a132623f8c6e999b2cf232a}
-
-\end{DoxyCompactItemize}
+void \hyperlink{classhype_1_1drawable_1_1_h_canvas_a1a0c59344a132623f8c6e999b2cf232a}{draw} (P\-Graphics g, boolean uses\-Z, float draw\-X, float draw\-Y, float curr\-Alpha\-Perc)
+\begin{DoxyCompactList}\small\item\em Draws this drawable. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -158,6 +157,40 @@ A copy of this drawable.
 
 
 Implements \hyperlink{classhype_1_1drawable_1_1_h_drawable_a9664f945675efa02d30228ca27d5819d}{hype.\-drawable.\-H\-Drawable}.
+
+\hypertarget{classhype_1_1drawable_1_1_h_canvas_a1a0c59344a132623f8c6e999b2cf232a}{\index{hype\-::drawable\-::\-H\-Canvas@{hype\-::drawable\-::\-H\-Canvas}!draw@{draw}}
+\index{draw@{draw}!hype::drawable::HCanvas@{hype\-::drawable\-::\-H\-Canvas}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}void hype.\-drawable.\-H\-Canvas.\-draw (
+\begin{DoxyParamCaption}
+\item[{P\-Graphics}]{g, }
+\item[{boolean}]{uses\-Z, }
+\item[{float}]{draw\-X, }
+\item[{float}]{draw\-Y, }
+\item[{float}]{curr\-Alpha\-Perc}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classhype_1_1drawable_1_1_h_canvas_a1a0c59344a132623f8c6e999b2cf232a}
+
+
+Draws this drawable. 
+
+This method is abstract and is meant to be implemented by the children of this class. Also, this method is primarily called internally during the draw cycle and probably wouldn't need to be called directly.
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & The graphics context for this drawable. \\
+\hline
+{\em uses\-Z} & Indicates if z-\/coordinates are used. \\
+\hline
+{\em draw\-X} & The x coordinate where this drawable would consider as 0 \\
+\hline
+{\em draw\-Y} & The y coordinate where this drawable would consider as 0 \\
+\hline
+{\em curr\-Alpha\-Perc} & The current alpha value in the draw cycle. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classhype_1_1drawable_1_1_h_drawable_a8e0af2cfaa89a93b3dab6b5f0ecdf964}{hype.\-drawable.\-H\-Drawable}.
 
 
 

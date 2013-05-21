@@ -72,9 +72,8 @@ Inheritance diagram for hype.\-drawable.\-H\-Ellipse\-:\begin{figure}[H]
 \hypertarget{classhype_1_1drawable_1_1_h_ellipse_ac9695d60c9229944ae52e83e16b19b97}{boolean {\bfseries contains\-Rel} (float rel\-X, float rel\-Y)}\label{classhype_1_1drawable_1_1_h_ellipse_ac9695d60c9229944ae52e83e16b19b97}
 
 \item 
-\hypertarget{classhype_1_1drawable_1_1_h_ellipse_a71c00a9c23e26f066688212d47fdd8fc}{void {\bfseries draw} (P\-Graphics g, boolean uses\-Z, float draw\-X, float draw\-Y, float curr\-Alpha\-Perc)}\label{classhype_1_1drawable_1_1_h_ellipse_a71c00a9c23e26f066688212d47fdd8fc}
-
-\end{DoxyCompactItemize}
+void \hyperlink{classhype_1_1drawable_1_1_h_ellipse_a71c00a9c23e26f066688212d47fdd8fc}{draw} (P\-Graphics g, boolean uses\-Z, float draw\-X, float draw\-Y, float curr\-Alpha\-Perc)
+\begin{DoxyCompactList}\small\item\em Draws this drawable. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
@@ -98,6 +97,40 @@ A copy of this drawable.
 
 
 Implements \hyperlink{classhype_1_1drawable_1_1_h_drawable_a9664f945675efa02d30228ca27d5819d}{hype.\-drawable.\-H\-Drawable}.
+
+\hypertarget{classhype_1_1drawable_1_1_h_ellipse_a71c00a9c23e26f066688212d47fdd8fc}{\index{hype\-::drawable\-::\-H\-Ellipse@{hype\-::drawable\-::\-H\-Ellipse}!draw@{draw}}
+\index{draw@{draw}!hype::drawable::HEllipse@{hype\-::drawable\-::\-H\-Ellipse}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}void hype.\-drawable.\-H\-Ellipse.\-draw (
+\begin{DoxyParamCaption}
+\item[{P\-Graphics}]{g, }
+\item[{boolean}]{uses\-Z, }
+\item[{float}]{draw\-X, }
+\item[{float}]{draw\-Y, }
+\item[{float}]{curr\-Alpha\-Perc}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classhype_1_1drawable_1_1_h_ellipse_a71c00a9c23e26f066688212d47fdd8fc}
+
+
+Draws this drawable. 
+
+This method is abstract and is meant to be implemented by the children of this class. Also, this method is primarily called internally during the draw cycle and probably wouldn't need to be called directly.
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & The graphics context for this drawable. \\
+\hline
+{\em uses\-Z} & Indicates if z-\/coordinates are used. \\
+\hline
+{\em draw\-X} & The x coordinate where this drawable would consider as 0 \\
+\hline
+{\em draw\-Y} & The y coordinate where this drawable would consider as 0 \\
+\hline
+{\em curr\-Alpha\-Perc} & The current alpha value in the draw cycle. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classhype_1_1drawable_1_1_h_drawable_a8e0af2cfaa89a93b3dab6b5f0ecdf964}{hype.\-drawable.\-H\-Drawable}.
 
 
 
