@@ -19,8 +19,8 @@ var NAVTREEINDEX =
 [
 ".html",
 "classhype_1_1colorist_1_1_h_color_transform.html#a22244bd5c15dd3885e50eeb8aff0a70f",
-"classhype_1_1drawable_1_1_h_path.html#a65290bbef7be8e80f1384f884e781745",
-"classhype_1_1util_1_1_h_math.html#a3145b6a9fe9e455970a3c6baba26093a"
+"classhype_1_1drawable_1_1_h_image.html#a90ddb7283518bb1716f542e7fb81be85",
+"classhype_1_1util_1_1_h_drawable_pool.html#acd09bbc8813c3fab35dd5495ba443873"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -19,6 +19,7 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
+	 * - [ ] HTween: set _curr = 1, if tweening end is detected
 	 * - [ ] HPath: base size for computing perc vertex stuff = 100, if size = 0
 	 * 
 	 * - [ ] HDrawable.transformChildren(bool)
@@ -67,7 +68,7 @@ public class DummyApplet extends PApplet {
 		
 //		/*
 		HDrawable d = H.add(new HRect()).locAt(H.CENTER).anchorAt(H.CENTER);
-		new HTween().target(d).property(H.Z).ease(random(1/1024f,1)).spring(random(1)).start(0).end(1).callback(new HCallback() {
+		new HTween().target(d).property(H.SCALE).ease(random(1/1024f,1)).spring(random(1)).start(0).end(1).callback(new HCallback() {
 			public void run(Object obj) {
 				HTween t = (HTween) obj;
 				t.target().fill(H.RED);

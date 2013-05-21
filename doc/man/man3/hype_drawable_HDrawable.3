@@ -444,6 +444,14 @@ Inherited by \fBhype\&.drawable\&.HCanvas\fP, \fBhype\&.drawable\&.HEllipse\fP, 
 .br
 .RI "\fIThe parent of this drawable\&. \fP"
 .ti -1c
+.RI "\fBHDrawable\fP \fB_firstChild\fP"
+.br
+.RI "\fIThe first child of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fB_lastChild\fP"
+.br
+.RI "\fIThe last child of this drawable\&. \fP"
+.ti -1c
 .RI "\fBHBundle\fP \fB_extras\fP"
 .br
 .RI "\fIThe extras bundle of this drawable\&. \fP"
@@ -452,11 +460,69 @@ Inherited by \fBhype\&.drawable\&.HCanvas\fP, \fBhype\&.drawable\&.HEllipse\fP, 
 .br
 .RI "\fIThe x location of this drawable\&. \fP"
 .ti -1c
+.RI "float \fB_y\fP"
+.br
+.RI "\fIThe y location of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_z\fP"
+.br
+.RI "\fIThe z location of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_anchorPercX\fP"
+.br
+.RI "\fIThe x anchor percentage of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_anchorPercY\fP"
+.br
+.RI "\fIThe y anchor percentage of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_width\fP"
+.br
+.RI "\fIThe width of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_height\fP"
+.br
+.RI "\fIThe height of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_rotationRad\fP"
+.br
+.RI "\fIThe rotation of this drawable, in radians\&. \fP"
+.ti -1c
+.RI "float \fB_strokeWeight\fP"
+.br
+.RI "\fIThe stroke width of this drawable, in pixels\&. \fP"
+.ti -1c
+.RI "float \fB_alphaPerc\fP"
+.br
+.RI "\fIThe alpha of this drawable, in percentage\&. \fP"
+.ti -1c
+.RI "float \fB_sizeProportion\fP"
+.br
+.RI "\fIThe width-to-height ratio used for proportional resizing\&. \fP"
+.ti -1c
 .RI "int \fB_numChildren\fP"
 .br
+.RI "\fIThe number of this drawable's children\&. \fP"
+.ti -1c
+.RI "int \fB_fill\fP"
+.br
+.RI "\fIThe fill color of this drawable\&. \fP"
+.ti -1c
+.RI "int \fB_stroke\fP"
+.br
+.RI "\fIThe stroke color of this drawable\&. \fP"
+.ti -1c
+.RI "int \fB_strokeCap\fP"
+.br
+.RI "\fIThe stroke cap of this drawable\&. \fP"
+.ti -1c
+.RI "int \fB_strokeJoin\fP"
+.br
+.RI "\fIThe stroke join of this drawable\&. \fP"
 .ti -1c
 .RI "boolean \fB_proportional\fP"
 .br
+.RI "\fIThe flag that determines if this drawable will be resized proportionally\&. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -562,7 +628,7 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-alpha(float) 
+\fBalphaPerc(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -2192,12 +2258,84 @@ This drawable's width\&.
 
 .SH "Member Data Documentation"
 .PP 
+.SS "float hype\&.drawable\&.HDrawable\&._alphaPerc\fC [protected]\fP"
+
+.PP
+The alpha of this drawable, in percentage\&. \fBSee Also:\fP
+.RS 4
+\fBalphaPerc()\fP 
+.RE
+.PP
+
+.SS "float hype\&.drawable\&.HDrawable\&._anchorPercX\fC [protected]\fP"
+
+.PP
+The x anchor percentage of this drawable\&. \fBSee Also:\fP
+.RS 4
+\fBanchorPercX()\fP 
+.RE
+.PP
+
+.SS "float hype\&.drawable\&.HDrawable\&._anchorPercY\fC [protected]\fP"
+
+.PP
+The y anchor percentage of this drawable\&. \fBSee Also:\fP
+.RS 4
+\fBanchorPercY()\fP 
+.RE
+.PP
+
 .SS "\fBHBundle\fP hype\&.drawable\&.HDrawable\&._extras\fC [protected]\fP"
 
 .PP
 The extras bundle of this drawable\&. \fBSee Also:\fP
 .RS 4
 \fBextras()\fP 
+.RE
+.PP
+
+.SS "int hype\&.drawable\&.HDrawable\&._fill\fC [protected]\fP"
+
+.PP
+The fill color of this drawable\&. \fBSee Also:\fP
+.RS 4
+\fBfill()\fP 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.drawable\&.HDrawable\&._firstChild\fC [protected]\fP"
+
+.PP
+The first child of this drawable\&. \fBSee Also:\fP
+.RS 4
+\fBfirstChild()\fP 
+.RE
+.PP
+
+.SS "float hype\&.drawable\&.HDrawable\&._height\fC [protected]\fP"
+
+.PP
+The height of this drawable\&. \fBSee Also:\fP
+.RS 4
+\fBheight()\fP 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.drawable\&.HDrawable\&._lastChild\fC [protected]\fP"
+
+.PP
+The last child of this drawable\&. \fBSee Also:\fP
+.RS 4
+\fBlastChild()\fP 
+.RE
+.PP
+
+.SS "int hype\&.drawable\&.HDrawable\&._numChildren\fC [protected]\fP"
+
+.PP
+The number of this drawable's children\&. \fBSee Also:\fP
+.RS 4
+\fBnumChildren()\fP 
 .RE
 .PP
 
@@ -2210,12 +2348,102 @@ The parent of this drawable\&. \fBSee Also:\fP
 .RE
 .PP
 
+.SS "boolean hype\&.drawable\&.HDrawable\&._proportional\fC [protected]\fP"
+
+.PP
+The flag that determines if this drawable will be resized proportionally\&. \fBSee Also:\fP
+.RS 4
+\fBproportional()\fP 
+.RE
+.PP
+
+.SS "float hype\&.drawable\&.HDrawable\&._rotationRad\fC [protected]\fP"
+
+.PP
+The rotation of this drawable, in radians\&. \fBSee Also:\fP
+.RS 4
+rotationRad() 
+.RE
+.PP
+
+.SS "float hype\&.drawable\&.HDrawable\&._sizeProportion\fC [protected]\fP"
+
+.PP
+The width-to-height ratio used for proportional resizing\&. \fBSee Also:\fP
+.RS 4
+\fBproportional()\fP 
+.RE
+.PP
+
+.SS "int hype\&.drawable\&.HDrawable\&._stroke\fC [protected]\fP"
+
+.PP
+The stroke color of this drawable\&. \fBSee Also:\fP
+.RS 4
+\fBstroke()\fP 
+.RE
+.PP
+
+.SS "int hype\&.drawable\&.HDrawable\&._strokeCap\fC [protected]\fP"
+
+.PP
+The stroke cap of this drawable\&. \fBSee Also:\fP
+.RS 4
+\fBstrokeCap()\fP 
+.RE
+.PP
+
+.SS "int hype\&.drawable\&.HDrawable\&._strokeJoin\fC [protected]\fP"
+
+.PP
+The stroke join of this drawable\&. \fBSee Also:\fP
+.RS 4
+\fBstrokeJoin()\fP 
+.RE
+.PP
+
+.SS "float hype\&.drawable\&.HDrawable\&._strokeWeight\fC [protected]\fP"
+
+.PP
+The stroke width of this drawable, in pixels\&. \fBSee Also:\fP
+.RS 4
+\fBstrokeWeight()\fP 
+.RE
+.PP
+
+.SS "float hype\&.drawable\&.HDrawable\&._width\fC [protected]\fP"
+
+.PP
+The width of this drawable\&. \fBSee Also:\fP
+.RS 4
+\fBwidth()\fP 
+.RE
+.PP
+
 .SS "float hype\&.drawable\&.HDrawable\&._x\fC [protected]\fP"
 
 .PP
 The x location of this drawable\&. \fBSee Also:\fP
 .RS 4
 x() 
+.RE
+.PP
+
+.SS "float hype\&.drawable\&.HDrawable\&._y\fC [protected]\fP"
+
+.PP
+The y location of this drawable\&. \fBSee Also:\fP
+.RS 4
+y() 
+.RE
+.PP
+
+.SS "float hype\&.drawable\&.HDrawable\&._z\fC [protected]\fP"
+
+.PP
+The z location of this drawable\&. \fBSee Also:\fP
+.RS 4
+z() 
 .RE
 .PP
 

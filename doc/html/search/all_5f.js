@@ -1,6 +1,24 @@
 var searchData=
 [
+  ['_5falphaperc',['_alphaPerc',['../classhype_1_1drawable_1_1_h_drawable.html#a6c87f0a8619c53b4895ea14125ff8996',1,'hype::drawable::HDrawable']]],
+  ['_5fanchorpercx',['_anchorPercX',['../classhype_1_1drawable_1_1_h_drawable.html#a98b48c17667a22aaa8adfdedbd040661',1,'hype::drawable::HDrawable']]],
+  ['_5fanchorpercy',['_anchorPercY',['../classhype_1_1drawable_1_1_h_drawable.html#a5b0e557854feedc7e19292bdb28c7739',1,'hype::drawable::HDrawable']]],
   ['_5fextras',['_extras',['../classhype_1_1drawable_1_1_h_drawable.html#a77a64d01b7766ad4d0e338f82ab23f12',1,'hype::drawable::HDrawable']]],
+  ['_5ffill',['_fill',['../classhype_1_1drawable_1_1_h_drawable.html#a3f0dce6dfbc31cc1538d8e21c9c12194',1,'hype::drawable::HDrawable']]],
+  ['_5ffirstchild',['_firstChild',['../classhype_1_1drawable_1_1_h_drawable.html#a69d5c4b696ca07da01e245a88348962d',1,'hype::drawable::HDrawable']]],
+  ['_5fheight',['_height',['../classhype_1_1drawable_1_1_h_drawable.html#ad6213a21c5284ead8f127b1da90b9902',1,'hype::drawable::HDrawable']]],
+  ['_5flastchild',['_lastChild',['../classhype_1_1drawable_1_1_h_drawable.html#a913a87558ada09b12cbe57fd88ecdd10',1,'hype::drawable::HDrawable']]],
+  ['_5fnumchildren',['_numChildren',['../classhype_1_1drawable_1_1_h_drawable.html#a1e2205f639598af5f419b82ae5bdc0cf',1,'hype::drawable::HDrawable']]],
   ['_5fparent',['_parent',['../classhype_1_1drawable_1_1_h_drawable.html#a1f95d00444c6964efa4239ddf135a10e',1,'hype::drawable::HDrawable']]],
-  ['_5fx',['_x',['../classhype_1_1drawable_1_1_h_drawable.html#a20c0ae16de46b74c903667ac2db1640a',1,'hype::drawable::HDrawable']]]
+  ['_5fproportional',['_proportional',['../classhype_1_1drawable_1_1_h_drawable.html#a7f9bb1ed841a8c8fe52e351ee3bf5844',1,'hype::drawable::HDrawable']]],
+  ['_5frotationrad',['_rotationRad',['../classhype_1_1drawable_1_1_h_drawable.html#ae9b0ebe09024a9b3b41c8a94b97420af',1,'hype::drawable::HDrawable']]],
+  ['_5fsizeproportion',['_sizeProportion',['../classhype_1_1drawable_1_1_h_drawable.html#ac392c998fcc0709faa477e2ffa0d8b00',1,'hype::drawable::HDrawable']]],
+  ['_5fstroke',['_stroke',['../classhype_1_1drawable_1_1_h_drawable.html#af1f14544d296c95e0e3323b045a474bc',1,'hype::drawable::HDrawable']]],
+  ['_5fstrokecap',['_strokeCap',['../classhype_1_1drawable_1_1_h_drawable.html#aecbc1d0d94d82b8b6cd3c5ebb3aa49d7',1,'hype::drawable::HDrawable']]],
+  ['_5fstrokejoin',['_strokeJoin',['../classhype_1_1drawable_1_1_h_drawable.html#adccbb5aa62cca3f1615e79af5eed0c99',1,'hype::drawable::HDrawable']]],
+  ['_5fstrokeweight',['_strokeWeight',['../classhype_1_1drawable_1_1_h_drawable.html#a2acc834533b5ca66f767d766fb6fed58',1,'hype::drawable::HDrawable']]],
+  ['_5fwidth',['_width',['../classhype_1_1drawable_1_1_h_drawable.html#a3db419b74918a85aee0744fd18aad058',1,'hype::drawable::HDrawable']]],
+  ['_5fx',['_x',['../classhype_1_1drawable_1_1_h_drawable.html#a20c0ae16de46b74c903667ac2db1640a',1,'hype::drawable::HDrawable']]],
+  ['_5fy',['_y',['../classhype_1_1drawable_1_1_h_drawable.html#a42f6ddcf3b67293eab4d61d08eccbd5c',1,'hype::drawable::HDrawable']]],
+  ['_5fz',['_z',['../classhype_1_1drawable_1_1_h_drawable.html#a3d0f13d023b008b211fdb60a87ade649',1,'hype::drawable::HDrawable']]]
 ];

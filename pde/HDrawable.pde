@@ -5,40 +5,48 @@
  */
 public static abstract class HDrawable extends HNode<HDrawable>
 		implements HSwarmer, HHittable {
-	protected HDrawable
-		/** The parent of this drawable @see parent() */
-		_parent,
-		/** The first child of this drawable @see firstChild() */
-		_firstChild,
-		/** The last child of this drawable @see lastChild() */
-		_lastChild;
-	protected HBundle
-		/** The extras bundle of this drawable @see extras() */
-		_extras;
-	protected float
-		/** The x location of this drawable @see x() */
-		_x,
-		/** The y location of this drawable @see y() */
-		_y,
-		/** The z location of this drawable @see z() */
-		_z,
-		/** TODO */
-		_anchorPercX,
-		_anchorPercY,
-		_width,
-		_height,
-		_rotationRad,
-		_strokeWeight,
-		_alphaPerc,
-		_sizeProportion;
-	protected int
-		_numChildren,
-		_fill,
-		_stroke,
-		_strokeCap,
-		_strokeJoin;
-	protected boolean
-		_proportional;
+	/** The parent of this drawable @see parent() */
+	protected HDrawable _parent;
+	/** The first child of this drawable @see firstChild() */
+	protected HDrawable _firstChild;
+	/** The last child of this drawable @see lastChild() */
+	protected HDrawable _lastChild;
+	/** The extras bundle of this drawable @see extras() */
+	protected HBundle _extras;
+	/** The x location of this drawable @see x() */
+	protected float _x;
+	/** The y location of this drawable @see y() */
+	protected float _y;
+	/** The z location of this drawable @see z() */
+	protected float _z;
+	/** The x anchor percentage of this drawable @see anchorPercX() */
+	protected float _anchorPercX;
+	/** The y anchor percentage of this drawable @see anchorPercY() */
+	protected float _anchorPercY;
+	/** The width of this drawable @see width() */
+	protected float _width;
+	/** The height of this drawable @see height() */
+	protected float _height;
+	/** The rotation of this drawable, in radians @see rotationRad() */
+	protected float _rotationRad;
+	/** The stroke width of this drawable, in pixels @see strokeWeight() */
+	protected float _strokeWeight;
+	/** The alpha of this drawable, in percentage @see alphaPerc() */
+	protected float _alphaPerc;
+	/** The width-to-height ratio used for proportional resizing @see proportional() */
+	protected float _sizeProportion;
+	/** The number of this drawable's children @see numChildren() */
+	protected int _numChildren;
+	/** The fill color of this drawable @see fill() */
+	protected int _fill;
+	/** The stroke color of this drawable @see stroke() */
+	protected int _stroke;
+	/** The stroke cap of this drawable @see strokeCap() */
+	protected int _strokeCap;
+	/** The stroke join of this drawable @see strokeJoin() */
+	protected int _strokeJoin;
+	/** The flag that determines if this drawable will be resized proportionally @see proportional() */
+	protected boolean _proportional;
 	/**
 	 * The default constructor for HDrawable.
 	 * 
@@ -1141,7 +1149,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * is greater than 1f, the alpha will be 1f. 
 	 * 
 	 * @chainable
-	 * @see alpha(float)
+	 * @see alphaPerc(float)
 	 * @param aPerc    The new alpha for this drawable, as percentage.
 	 * @return This drawable.
 	 */
