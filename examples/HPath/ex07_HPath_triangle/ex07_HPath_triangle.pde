@@ -17,7 +17,7 @@ void setup() {
 	HPath triangle2 = new HPath();
 	triangle2
 		.triangle( H.ISOCELES, H.RIGHT ) // ISOCELES / type, direction
-		.size(125,150)
+		.size(150,125)
 		.strokeWeight(6)
 		.stroke(#000000, 100)
 		.fill(#FF6600)
