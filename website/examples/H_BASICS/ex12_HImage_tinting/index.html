@@ -49,13 +49,13 @@
 
         <div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
 
-        <a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&gt;&gt; back</b></a> <br /><br />
+        <a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
 
       </div>
 
 		<div id="content">
 			<div>
-				<canvas id="ez11text" data-processing-sources="index.pde" 
+				<canvas id="index" data-processing-sources="index.pde" 
 						width="640" height="640">
 					<p>Your browser does not support the canvas tag.</p>
 					<!-- Note: you can put any alternative content here. -->
@@ -67,8 +67,8 @@
 
 	    	<div style="background-color: #181818; padding:10px 20px 15px 20px;">
 				<b style="font-size: 15px; font-weight: 700; color: #ECECEC;">
-				ez11_text </b><br /><br />
-	    		HYPE, HText, HDrawablePool, HColorPool <br /><br />
+				ex12_HImage_tinting </b><br /><br />
+	    		HYPE, HImage, HText, backgroundImg(), createCopy(), tint() <br /><br />
 				<a href="index.pde">Source code</a>
 			</div>
 		</div>
@@ -80,38 +80,52 @@
 // and http://processingjs.org/reference/font/
 // for more information.
 
-/* @pjs font="DroidSerifBoldItalic.ttf"; */
-
-HDrawablePool pool;
+/* @pjs preload=" bg.jpg, sintra.jpg "; */
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#000000).backgroundImg("bg.jpg");
 	smooth();
 
-	PFont type = createFont("DroidSerifBoldItalic.ttf", 24);
-	final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
+	HImage img0 = (HImage) H.add(new HImage("sintra.jpg")).size(320);
+	HImage img1 = (HImage) H.add(img0.createCopy()).x(320);
+	HImage img2 = (HImage) H.add(img0.createCopy()).y(320);
 
-	pool = new HDrawablePool(100);
-	pool.autoAddToStage()
-		.add (new HText( "q", 24, type ))
-		.add (new HText( "w", 24, type ))
-		.add (new HText( "e", 24, type ))
-		.add (new HText( "r", 24, type ))
-		.add (new HText( "t", 24, type ))
-		.add (new HText( "y", 24, type ))
-	    .setOnCreate (
-		    new HCallback() {
-		    	public void run(Object obj) {
-		    		HText t = (HText) obj;
-					t.fill( colors.getColor() );
-					t.scale( ((int)random(10)*2) + 1 );
-					t.anchorAt(H.CENTER);
-					t.loc( (int)random(width), (int)random(height) );
-				}
-			}
-		)
-		.requestAll();
+	HImage img3 = (HImage) H.add(img0.createCopy()).size(160).loc(320,320);
+	HImage img4 = (HImage) H.add(img3.createCopy()).loc(480,320);
+	HImage img5 = (HImage) H.add(img3.createCopy()).loc(320,480);
+
+	/*
+	* You can set an HImage's tint via fill().
+	* 
+	* There's also the HImage-specific method,
+	* tint() which is aliased to fill(). And like
+	* fill, you could use the following parameters:
+	*
+	* - tint(color)
+	* - tint(r,g,b)
+	* - tint(color,alpha)
+	* - tint(r,g,b,a)
+	*/
+
+	img0.tint(0,255,255); // Top Left, Cyan, using tint()
+
+	img1.fill(255,0,255); // Top Right, Magenta, using fill()
+
+	img2.fill(#FFFF00); // Bottom Left, Yellow
+
+	img3.fill(#00FFFF,200); // Bottom Right, Green + Alpha
+	img4.fill(#00FFFF,150); // Bottom Right, Green + Alpha
+	img5.fill(#00FFFF,100); // Bottom Right, Green + Alpha
+
+	HText txt0 = (HText) H.add(new HText("Cyan Tint")).anchorAt(H.CENTER_X)
+		.fill(#FFFFFF).loc(160,10);
+	HText txt1 = (HText) H.add(txt0.createCopy().text("Magenta Tint"))
+		.move(320,0);
+	HText txt2 = (HText) H.add(txt0.createCopy().text("Yellow Tint"))
+		.move(0,320);
+	HText txt3 = (HText) H.add(txt0.createCopy().text("Green + Alpha Tint"))
+		.move(320,320);
 
 	H.drawStage();
 	noLoop();
