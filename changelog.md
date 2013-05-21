@@ -11,6 +11,10 @@
 	- HConstants.Z is now available for HTween
 	- z coordinates are now computed with HTween when using HConstants.LOC
 	- HTween now passes itself to the callback, instead of the current value
+- new stuff for HBundle:
+	- new method: `HBundle.bool(String,boolean)`
+	- new HDrawable extras shortcut: `HDrawable.bool(String,boolean)`
+	- bugfix: `num(String,float)` now creates a new extras bundle when extras is null
 
 ### build_20130520.0 (May 20, 2013)
 - bugfix: `HColorPool.getColor(int)` didn't properly seed their colors

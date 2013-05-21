@@ -1471,7 +1471,23 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable.
 	 */
 	public HDrawable num(String key, float value) {
+		if(_extras == null) _extras = new HBundle();
 		_extras.num(key,value);
+		return this;
+	}
+	
+	/**
+	 * Puts any arbitrary boolean value into this drawable's _extras bundle_.
+	 * 
+	 * @chainable
+	 * @see HBundle.bool(String,boolean)
+	 * @param key    The string the will be the key for `value`.
+	 * @param value  The boolean to be stored
+	 * @return This drawable.
+	 */
+	public HDrawable bool(String key, boolean value) {
+		if(_extras == null) _extras = new HBundle();
+		_extras.bool(key,value);
 		return this;
 	}
 	

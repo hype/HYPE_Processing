@@ -21,6 +21,11 @@ public class HBundle {
 		return this;
 	}
 	
+	public HBundle bool(String key, boolean value) {
+		numberContents.put(key, (value? 1f : 0f) );
+		return this;
+	}
+	
 	public Object obj(String key) {
 		return objectContents.get(key);
 	}
