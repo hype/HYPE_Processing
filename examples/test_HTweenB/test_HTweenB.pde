@@ -20,7 +20,7 @@ void setup() {
     .target(H.add(new HEllipse()).anchorAt(H.CENTER).loc(width*3/4,height*3/4))
     .property(H.Z)
     .ease(random(.01,1))
-    .spring(random(1))
+    .spring(random(9))
     .start(0)
     .end(-500)
     .callback(new HCallback(){public void run(Object obj){

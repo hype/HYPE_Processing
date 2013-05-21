@@ -20,17 +20,33 @@ void setup() {
 	    .onRequest (
 		    new HCallback() {
 		    	public void run(Object obj) {
-		    		HDrawable d = (HDrawable) obj;
+		    		final HDrawable d = (HDrawable) obj;
 					d
-						// .noStroke()
-						.strokeWeight(1)
-						.stroke(#000000, 50)
+						.noStroke()
 						.fill( colors.getColor() )
 						.loc( (int)random(width), (int)random(height), -(int)random(2000) )
 						.anchorAt(H.CENTER)
-						// .rotation(45)
 						.size( 5+((int)random(10)*5) )
 					;
+
+					int i = pool.currentIndex();
+
+					final HOscillator ro = new HOscillator().speed(1f).range(-90,90).freq(2f).property(H.ROTATION).waveform(H.SINE);
+					ro.target( d ).currentStep( i*2 );
+
+					final HOscillator so = new HOscillator().speed(0.5f).range(0,2).freq(4f).property(H.SCALE).waveform(H.SINE);
+					so.target( d ).currentStep( i*2 );
+
+					final HTween zTween = new HTween()
+						.target(d).property(H.Z)
+						.start(-(int)random(2000)).end(100).ease(0.0005).spring(0.95)
+					;
+
+					final HCallback onDisappear = new HCallback(){public void run(Object obj) {
+						pool.release(d);
+					}};
+
+					zTween.callback(onDisappear);
 				}
 			}
 		)
@@ -38,7 +54,7 @@ void setup() {
 
 	timer = new HTimer()
 		.numCycles( pool.numActive() )
-		.interval(25)
+		.interval(250)
 		.callback(
 			new HCallback() { 
 				public void run(Object obj) {
@@ -50,20 +66,6 @@ void setup() {
 }
 
 void draw() {
-	HIterator<HDrawable> it = pool.iterator();
-
-	while(it.hasNext()) {
-		HDrawable d = it.next();
-		// d.strokeWeight(3);
-		// d.stroke(#000000, 10);
-		d.rotation( d.z() / 1.5 );
-		d.loc(d.x(), d.y(), d.z() + 4 );
-
-		if(d.z() > 4000) {
-			pool.release(d);
-		}
-	}
-
 	H.drawStage();
 }
 
