@@ -8,11 +8,17 @@ import hype.interfaces.HCallback;
 import hype.util.H;
 import processing.core.PApplet;
 
+/**
+ * @mainpage
+ * Welcome to the HYPE_processing documentation! The library itself is currently
+ * under construction, so naturally, the documentation is far from complete yet.
+ * 
+ * @cond FALSE
+ */
 public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] bool(boolean) for HBundle
 	 * - [ ] HPath: base size for computing perc vertex stuff = 100, if size = 0
 	 * 
 	 * - [ ] HDrawable.transformChildren(bool)
@@ -78,3 +84,4 @@ public class DummyApplet extends PApplet {
 		H.drawStage();
 	}
 }
+/** @endcond */

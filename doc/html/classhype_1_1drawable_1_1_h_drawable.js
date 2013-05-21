@@ -24,6 +24,7 @@ var classhype_1_1drawable_1_1_h_drawable =
     [ "anchorY", "classhype_1_1drawable_1_1_h_drawable.html#a5f01745bf4fbd08a6740144cf5845da5", null ],
     [ "anchorY", "classhype_1_1drawable_1_1_h_drawable.html#aed21ff57386ffdc3266ff7721bcfe3e3", null ],
     [ "applyStyle", "classhype_1_1drawable_1_1_h_drawable.html#a1888aed57c719a397222b9e82ed08a4e", null ],
+    [ "bool", "classhype_1_1drawable_1_1_h_drawable.html#afd9c440d3b5d30006d2644d1f07dc23e", null ],
     [ "bool", "classhype_1_1drawable_1_1_h_drawable.html#a138a8d2253dbfccb39889cb01b452f7c", null ],
     [ "boundingSize", "classhype_1_1drawable_1_1_h_drawable.html#a70e91337f0ceafe27f5119e12063cc8e", null ],
     [ "contains", "classhype_1_1drawable_1_1_h_drawable.html#a6662671b3f2c3f96cdd8883e0eb21fd6", null ],

@@ -390,6 +390,10 @@ Inherited by \fBhype\&.drawable\&.HCanvas\fP, \fBhype\&.drawable\&.HEllipse\fP, 
 .br
 .RI "\fIPuts any arbitrary native value into this drawable's \fIextras bundle\fP\&. \fP"
 .ti -1c
+.RI "\fBHDrawable\fP \fBbool\fP (String key, boolean value)"
+.br
+.RI "\fIPuts any arbitrary boolean value into this drawable's \fIextras bundle\fP\&. \fP"
+.ti -1c
 .RI "Object \fBobj\fP (String key)"
 .br
 .RI "\fIReturns the object from the \fIextras bundle\fP with the corresponding key\&. \fP"
@@ -951,6 +955,29 @@ Applies this drawable's styling to the given graphics context\&. This method is 
 \fIg\fP The graphics context for this drawable\&. 
 .br
 \fIcurrAlphaPerc\fP The current alpha value in the draw cycle\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.drawable\&.HDrawable\&.bool (Stringkey, booleanvalue)"
+
+.PP
+Puts any arbitrary boolean value into this drawable's \fIextras bundle\fP\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+HBundle\&.bool(String,boolean) 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkey\fP The string the will be the key for \fCvalue\fP\&. 
+.br
+\fIvalue\fP The boolean to be stored 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
 .RE
 .PP
 

@@ -1,5 +1,7 @@
 var NAVTREEINDEX3 =
 {
+"classhype_1_1util_1_1_h_math.html#a3145b6a9fe9e455970a3c6baba26093a":[1,0,0,8,5,24],
+"classhype_1_1util_1_1_h_math.html#a363476101dfefce8fb96f4de6a19ec16":[1,0,0,8,5,41],
 "classhype_1_1util_1_1_h_math.html#a57230ddf5b0c28c1868a64904f3f19f7":[1,0,0,8,5,5],
 "classhype_1_1util_1_1_h_math.html#a572a4aa9b5038abed726c0e6676f3405":[1,0,0,8,5,0],
 "classhype_1_1util_1_1_h_math.html#a5ccd337fcd316215786488fc34aeb487":[1,0,0,8,5,32],

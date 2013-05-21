@@ -1,6 +1,7 @@
 var classhype_1_1util_1_1_h_bundle =
 [
     [ "HBundle", "classhype_1_1util_1_1_h_bundle.html#a85deb3d06dd850fc340a80d37e41fe44", null ],
+    [ "bool", "classhype_1_1util_1_1_h_bundle.html#a38b92d226128547719c0adceebdb8ef8", null ],
     [ "bool", "classhype_1_1util_1_1_h_bundle.html#aec9b498495c782a30c937e8cf0307cf7", null ],
     [ "num", "classhype_1_1util_1_1_h_bundle.html#a0dfbb17eba2677cae1caaed013b36ea6", null ],
     [ "num", "classhype_1_1util_1_1_h_bundle.html#abc6fde0b241eb0bf81a19b1706c40d89", null ],
