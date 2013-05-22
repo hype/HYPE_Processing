@@ -129,4 +129,10 @@ public static class HTween extends HBehavior {
 			if(_callback!=null) _callback.run(this);
 		}
 	}
+	public HTween register() {
+		return (HTween) super.register();
+	}
+	public HBehavior unregister() {
+		return (HTween) super.unregister();
+	}
 }

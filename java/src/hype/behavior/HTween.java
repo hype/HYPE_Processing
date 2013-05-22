@@ -156,4 +156,14 @@ public class HTween extends HBehavior {
 			if(_callback!=null) _callback.run(this);
 		}
 	}
+	
+	@Override
+	public HTween register() {
+		return (HTween) super.register();
+	}
+	
+	@Override
+	public HBehavior unregister() {
+		return (HTween) super.unregister();
+	}
 }

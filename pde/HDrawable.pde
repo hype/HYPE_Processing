@@ -1,4 +1,6 @@
 /**
+ * The superclass of all HDrawables.
+ * 
  * TODO
  * 
  * @author james

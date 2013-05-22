@@ -14,6 +14,8 @@ import processing.core.PGraphics;
 import processing.core.PVector;
 
 /**
+ * The superclass of all HDrawables.
+ * 
  * TODO
  * 
  * @author james
