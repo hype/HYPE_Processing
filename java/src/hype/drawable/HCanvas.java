@@ -223,12 +223,12 @@ public class HCanvas extends HDrawable {
 	}
 	
 	@Override
-	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPerc) {
+	public void paintAll(PGraphics g, boolean zFlag, float currAlphaPerc) {
 		if(_alphaPerc<=0 || _width==0 || _height==0) return;
 		
 		g.pushMatrix();
 			// Rotate and translate
-			if(usesZ) g.translate(_x,_y,_z);
+			if(zFlag) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
 			
@@ -284,6 +284,5 @@ public class HCanvas extends HDrawable {
 	}
 	
 	@Override
-	public void draw( PGraphics g, boolean usesZ,
-		float drawX, float drawY, float currAlphaPerc) {}
+	public void draw(PGraphics g,boolean b,float x,float y,float f) {}
 }
