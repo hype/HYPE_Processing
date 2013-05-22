@@ -1,3 +1,6 @@
+### build_20130522.0 (May 22, 2013)
+- bugfix: HTween didn't override `unregister()` and `register()` so it would return itself as HTween, instead of HBehavior
+
 ### build_20130521.0 (May 21, 2013)
 - new HBehavior method: `registered(boolean)`
 - new static HMath method: `round512(float)` (sets rounds a given) float to the nearest 1/152 interval.
