@@ -42,10 +42,9 @@ void setup() {
 						.alpha( (int)random(50,200) )
 						.anchorAt(H.CENTER)
 					;
-					
-					d.extras(
-						new HBundle().num( "letsRotate",random(-2,2) )
-					);
+
+					HRotate rot = new HRotate();
+					rot.target(d).speed( random(-2,2) );
 				}
 			}
 		)
@@ -53,13 +52,6 @@ void setup() {
 }
 
 void draw() {
-	HIterator<HDrawable> it = pool.iterator();
-	while(it.hasNext()) {
-		HDrawable d = it.next();
-		HBundle extras = d.extras();
-		d.rotate(extras.num("letsRotate"));
-	}
-
 	H.drawStage();
 }
 

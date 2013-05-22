@@ -19,6 +19,7 @@ void setup() {
 
 				final HTween tween = new HTween()
 					.target(r).property(H.LOCATION)
+					.start( width/2, height/2 )
 					.end( (int)random(width), (int)random(height) )
 					.ease(0.01)
 					.spring(0.9)

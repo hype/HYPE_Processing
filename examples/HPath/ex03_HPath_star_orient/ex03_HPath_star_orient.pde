@@ -38,6 +38,9 @@ void setup() {
 
 	H.drawStage();
 	noLoop();
+
+	fill(#FF3300);
+	textSize(18); text("Heavy Metal", 463, 443);
 }
 
 void draw() {}
