@@ -1,7 +1,7 @@
 HCanvas canvas;
 HOscillator roBase;
 
-color[]palette = {#333333, #666666, #999999, #CCCCCC, #F7F7F7};
+final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
 void setup() {
 	size(640,640);
@@ -11,26 +11,27 @@ void setup() {
 	canvas = new HCanvas().autoClear(true);
 	H.add(canvas);
 
-    roBase = new HOscillator().speed(0.2).range(-20,20).freq(8).property(H.ROTATION).waveform(H.SINE);
+    roBase = new HOscillator().speed(0.4).range(-20,20).freq(8).property(H.ROTATION).waveform(H.SINE);
 
 	int starScale = 200;
-	int starOffest = 40;
+	int starOffest = 20;
 
 	for (int i = 0; i<9; i++){
-		for (int j = 0; j<5; j++){
+
+		int ranEdges = round(random(5, 10));
+		float ranDepth = random(0.2, 0.6);
+
+		for (int j = 0; j<9; j++){
 
 			int row = (int) Math.floor(i / 3);
 			int col = i % 3;
-
-			int ranEdges = round(random(5, 10));
-			float ranDepth = random(0.25, 0.75);
 
 			HPath poly = new HPath();
 			poly
 				.star( ranEdges, ranDepth )
 				.size(starScale)
 				.noStroke()
-				.fill( palette[j] )
+				.fill( colors.getColor() )
 				.anchorAt(H.CENTER)
 				.loc(col*200+120, row*200+120)
 			;
@@ -48,3 +49,4 @@ void setup() {
 void draw() {
 	H.drawStage();
 }
+

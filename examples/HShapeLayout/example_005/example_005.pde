@@ -2,12 +2,12 @@
 
 HDrawablePool pool;
 
+final HColorPool colors = new HColorPool(#CCE70B, #80C41C, #40A629, #237D26, #FF3300, #FF6600);
+
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
 	smooth();
-
-	final HColorPool colors = new HColorPool(#CCE70B, #80C41C, #40A629, #237D26, #FF3300, #FF6600);
 
 	HImage hitObj = new HImage("theAmericas.png");
 	H.add(hitObj);
