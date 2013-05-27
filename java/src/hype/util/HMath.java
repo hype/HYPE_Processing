@@ -172,8 +172,7 @@ public class HMath implements HConstants {
 	}
 	
 	/**
-	 * Solves for the valid parameters (`t`) of a given cubic bezier equation
-	 * with the given value and anchor/control points.
+	 * Solves for the valid parameters of a given cubic bezier equation.
 	 * 
 	 * This method calls `solveCubic()` to solve for the said equation.
 	 * 
@@ -237,8 +236,7 @@ public class HMath implements HConstants {
 	}
 	
 	/**
-	 * Solves for the real roots of a cubic equation
-	 * with the given coefficients.
+	 * Solves for the real roots of a cubic equation with the given coefficients.
 	 * 
 	 * Said equation is in the standard polynomial form:
 	 * 
@@ -246,14 +244,15 @@ public class HMath implements HConstants {
 	 * 
 	 * where `a`, `b`, `c` & `d` are the coefficients of said equation.
 	 * 
-	 * Since the maximum amount of roots that a cubic equation can have is
+	 * Since the maximum amount of real roots that a cubic equation can have is
 	 * three, the `roots` array is expected to have a size of at least 3.
 	 * 
-	 * If the given coefficients of the equation happens to be a straight line
-	 * lying on the x-axis, then this method will 
+	 * If this equation happens to be a straight line lying on the x-axis, then
+	 * this method will return `-1`, meaning that there are infinite number of
+	 * roots for this equation.
 	 * 
-	 * This method may delegate itself to `solveQuadratic()` if `a` 0
-	 * (in other words, the equation is actually quadratic.)
+	 * This method may delegate itself to `solveQuadratic()` if `a` equals 0
+	 * (in other words, the equation is quadratic.)
 	 * 
 	 * The code for this method is heavily based from paper.js (MIT License)
 	 * which in turn is based from the Uintah Library (also MIT License).
@@ -313,8 +312,8 @@ public class HMath implements HConstants {
 	}
 	
 	/**
-	 * Solves for the real roots of a quadratic equation
-	 * with the given coefficients.
+	 * Solves for the real roots of a quadratic equation with the given
+	 * coefficients.
 	 * 
 	 * Said equation is in the standard polynomial form:
 	 * 
@@ -324,6 +323,10 @@ public class HMath implements HConstants {
 	 * 
 	 * Since the maximum amount of roots that a quadratic equation can have is
 	 * two, the `roots` array is expected to have a size of at least 2.
+	 * 
+	 * If this equation happens to be a straight line lying on the x-axis, then
+	 * this method will return `-1`, meaning that there are infinite number of
+	 * roots for this equation.
 	 * 
 	 * The code for this method is heavily based from paper.js (MIT License)
 	 * which in turn is based from the Uintah Library (also MIT License).

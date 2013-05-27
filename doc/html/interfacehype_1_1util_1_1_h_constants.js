@@ -27,6 +27,7 @@ var interfacehype_1_1util_1_1_h_constants =
     [ "DX", "interfacehype_1_1util_1_1_h_constants.html#a5997f9d92cb60752e7cce01550da3da3", null ],
     [ "DY", "interfacehype_1_1util_1_1_h_constants.html#aed933731959c48c64fde171d709f05c3", null ],
     [ "DZ", "interfacehype_1_1util_1_1_h_constants.html#a78cbb4bc450010358fc2f2e119a64711", null ],
+    [ "EPSILON", "interfacehype_1_1util_1_1_h_constants.html#a2eedba9bfbb2bb9235b7c4c72432db30", null ],
     [ "EQUILATERAL", "interfacehype_1_1util_1_1_h_constants.html#a1d9dbd4ac52de3b1fc2feb6c234c747f", null ],
     [ "GREEN", "interfacehype_1_1util_1_1_h_constants.html#ac52c8cc0389c65df0da774a31a7a4b65", null ],
     [ "GREY", "interfacehype_1_1util_1_1_h_constants.html#af1d38afc78b578a34c20998836f23a0a", null ],

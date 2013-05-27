@@ -91,6 +91,12 @@ Inheritance diagram for hype.\-util.\-H\-Math\-:\begin{figure}[H]
 \hypertarget{classhype_1_1util_1_1_h_math_aed97b073b226899b8c8750cf58a282ca}{static boolean {\bfseries right\-Of\-Line} (float x1, float y1, float x2, float y2, float ptx, float pty)}\label{classhype_1_1util_1_1_h_math_aed97b073b226899b8c8750cf58a282ca}
 
 \item 
+static int \hyperlink{classhype_1_1util_1_1_h_math_a7c43d0c4017e4b65c8f00788a0170bbc}{bezier\-Param} (float p0, float p1, float p2, float p3, float val, float\mbox{[}$\,$\mbox{]} params)
+\begin{DoxyCompactList}\small\item\em Solves for the valid parameters of a given cubic bezier equation. \end{DoxyCompactList}\item 
+static int \hyperlink{classhype_1_1util_1_1_h_math_a505f12b6206cede660900972055aae67}{solve\-Cubic} (float a, float b, float c, float d, float\mbox{[}$\,$\mbox{]} roots)
+\begin{DoxyCompactList}\small\item\em Solves for the real roots of a cubic equation with the given coefficients. \end{DoxyCompactList}\item 
+static int \hyperlink{classhype_1_1util_1_1_h_math_ab825adc4d94c5feef8c357d2720df28b}{solve\-Quadratic} (float a, float b, float c, float\mbox{[}$\,$\mbox{]} roots)
+\begin{DoxyCompactList}\small\item\em Solves for the real roots of a quadratic equation with the given coefficients. \end{DoxyCompactList}\item 
 \hypertarget{classhype_1_1util_1_1_h_math_a8cb35fab331a42c739c6c0e80aaf55ca}{static float {\bfseries random} ()}\label{classhype_1_1util_1_1_h_math_a8cb35fab331a42c739c6c0e80aaf55ca}
 
 \item 
@@ -137,6 +143,149 @@ Inheritance diagram for hype.\-util.\-H\-Math\-:\begin{figure}[H]
 
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classhype_1_1util_1_1_h_math_a7c43d0c4017e4b65c8f00788a0170bbc}{\index{hype\-::util\-::\-H\-Math@{hype\-::util\-::\-H\-Math}!bezier\-Param@{bezier\-Param}}
+\index{bezier\-Param@{bezier\-Param}!hype::util::HMath@{hype\-::util\-::\-H\-Math}}
+\subsubsection[{bezier\-Param}]{\setlength{\rightskip}{0pt plus 5cm}static int hype.\-util.\-H\-Math.\-bezier\-Param (
+\begin{DoxyParamCaption}
+\item[{float}]{p0, }
+\item[{float}]{p1, }
+\item[{float}]{p2, }
+\item[{float}]{p3, }
+\item[{float}]{val, }
+\item[{float\mbox{[}$\,$\mbox{]}}]{params}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classhype_1_1util_1_1_h_math_a7c43d0c4017e4b65c8f00788a0170bbc}
+
+
+Solves for the valid parameters of a given cubic bezier equation. 
+
+This method calls {\ttfamily \hyperlink{classhype_1_1util_1_1_h_math_a505f12b6206cede660900972055aae67}{solve\-Cubic()}} to solve for the said equation.
+
+Since cubic bezier curves can have at most three parameters that could give the same value, the {\ttfamily params} array is expected to have a size of at least 3.
+
+The {\ttfamily val} argument is the value to be tested, where\-: \begin{DoxyVerb}val = bezier(p0,p1,p2,p3,param)
+\end{DoxyVerb}
+
+
+If the above equation is in such a way that it could not be true, then this method will return {\ttfamily 0} valid parameters.
+
+Note that due to optimization purposes, it's not assured that if the number of valid parameters are less than 3, the leftover spaces of the {\ttfamily params} array wouldn't change. So if for example, your {\ttfamily params} array is initially {\ttfamily \{0,0,0\}}, and you received just 2 valid parameters, {\ttfamily params\mbox{[}2\mbox{]}} can still contain a non-\/zero value.
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{classhype_1_1util_1_1_h_math_a505f12b6206cede660900972055aae67}{solve\-Cubic(float,float,float,float,float\mbox{[}$\,$\mbox{]})} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em p0} & The first anchor point \\
+\hline
+{\em p1} & The first control point \\
+\hline
+{\em p2} & The second control point \\
+\hline
+{\em p3} & The second anchor point \\
+\hline
+{\em val} & The value to be tested with the curve \\
+\hline
+{\em params} & The array that will contain the valid parameters of the bezier equation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of valid parameters of the given bezier equation 
+\end{DoxyReturn}
+\hypertarget{classhype_1_1util_1_1_h_math_a505f12b6206cede660900972055aae67}{\index{hype\-::util\-::\-H\-Math@{hype\-::util\-::\-H\-Math}!solve\-Cubic@{solve\-Cubic}}
+\index{solve\-Cubic@{solve\-Cubic}!hype::util::HMath@{hype\-::util\-::\-H\-Math}}
+\subsubsection[{solve\-Cubic}]{\setlength{\rightskip}{0pt plus 5cm}static int hype.\-util.\-H\-Math.\-solve\-Cubic (
+\begin{DoxyParamCaption}
+\item[{float}]{a, }
+\item[{float}]{b, }
+\item[{float}]{c, }
+\item[{float}]{d, }
+\item[{float\mbox{[}$\,$\mbox{]}}]{roots}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classhype_1_1util_1_1_h_math_a505f12b6206cede660900972055aae67}
+
+
+Solves for the real roots of a cubic equation with the given coefficients. 
+
+Said equation is in the standard polynomial form\-: \begin{DoxyVerb}ax^3 + bx^2 + cx + d = 0
+\end{DoxyVerb}
+
+
+where {\ttfamily a}, {\ttfamily b}, {\ttfamily c} \& {\ttfamily d} are the coefficients of said equation.
+
+Since the maximum amount of roots that a cubic equation can have is three, the {\ttfamily roots} array is expected to have a size of at least 3.
+
+If this equation happens to be a straight line lying on the x-\/axis, then this method will return {\ttfamily -\/1}, meaning that there are infinite number of roots for this equation.
+
+This method may delegate itself to {\ttfamily \hyperlink{classhype_1_1util_1_1_h_math_ab825adc4d94c5feef8c357d2720df28b}{solve\-Quadratic()}} if {\ttfamily a} equals 0 (in other words, the equation is quadratic.)
+
+The code for this method is heavily based from paper.\-js (M\-I\-T License) which in turn is based from the Uintah Library (also M\-I\-T License).
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{classhype_1_1util_1_1_h_math_ab825adc4d94c5feef8c357d2720df28b}{solve\-Quadratic(float,float,float,float\mbox{[}$\,$\mbox{]})} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The coefficient for the first term (ax$^\wedge$3) \\
+\hline
+{\em b} & The coefficient for the second term (bx$^\wedge$2) \\
+\hline
+{\em c} & The coefficient for the third term (cx) \\
+\hline
+{\em d} & The coefficient for the fourth term (d) \\
+\hline
+{\em roots} & The array that will contain the roots of the equation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of roots of the given equation 
+\end{DoxyReturn}
+\hypertarget{classhype_1_1util_1_1_h_math_ab825adc4d94c5feef8c357d2720df28b}{\index{hype\-::util\-::\-H\-Math@{hype\-::util\-::\-H\-Math}!solve\-Quadratic@{solve\-Quadratic}}
+\index{solve\-Quadratic@{solve\-Quadratic}!hype::util::HMath@{hype\-::util\-::\-H\-Math}}
+\subsubsection[{solve\-Quadratic}]{\setlength{\rightskip}{0pt plus 5cm}static int hype.\-util.\-H\-Math.\-solve\-Quadratic (
+\begin{DoxyParamCaption}
+\item[{float}]{a, }
+\item[{float}]{b, }
+\item[{float}]{c, }
+\item[{float\mbox{[}$\,$\mbox{]}}]{roots}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classhype_1_1util_1_1_h_math_ab825adc4d94c5feef8c357d2720df28b}
+
+
+Solves for the real roots of a quadratic equation with the given coefficients. 
+
+Said equation is in the standard polynomial form\-: \begin{DoxyVerb}ax^2 + bx + c = 0
+\end{DoxyVerb}
+
+
+where {\ttfamily a}, {\ttfamily b} \& {\ttfamily c} are the coefficients of said equation.
+
+Since the maximum amount of roots that a quadratic equation can have is two, the {\ttfamily roots} array is expected to have a size of at least 2.
+
+If this equation happens to be a straight line lying on the x-\/axis, then this method will return {\ttfamily -\/1}, meaning that there are infinite number of roots for this equation.
+
+The code for this method is heavily based from paper.\-js (M\-I\-T License) which in turn is based from the Uintah Library (also M\-I\-T License).
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{classhype_1_1util_1_1_h_math_a505f12b6206cede660900972055aae67}{solve\-Cubic(float,float,float,float,float\mbox{[}$\,$\mbox{]})} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The coefficient for the first term ({\ttfamily ax$^\wedge$2}) \\
+\hline
+{\em b} & The coefficient for the second term ({\ttfamily bx}) \\
+\hline
+{\em c} & The coefficient for the third term ({\ttfamily c}) \\
+\hline
+{\em roots} & The array that will contain the roots of the equation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of roots of the given equation 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}

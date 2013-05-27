@@ -8,10 +8,12 @@ var classhype_1_1behavior_1_1_h_tween =
     [ "end", "classhype_1_1behavior_1_1_h_tween.html#a3ef4bfd90e208df60214bbb50b38d59f", null ],
     [ "property", "classhype_1_1behavior_1_1_h_tween.html#a7f0d7cd38ab1ca1650b5ee561a367872", null ],
     [ "property", "classhype_1_1behavior_1_1_h_tween.html#a9ed83d075e0e6f13117f47dc33cbd35f", null ],
+    [ "register", "classhype_1_1behavior_1_1_h_tween.html#acc1ec1b56ea2daf3188308a1029e31f6", null ],
     [ "runBehavior", "classhype_1_1behavior_1_1_h_tween.html#ac12d69a33663b6c1ece91571cacfbefa", null ],
     [ "spring", "classhype_1_1behavior_1_1_h_tween.html#a23f243a79d0e1e31e884dd641f48b92d", null ],
     [ "spring", "classhype_1_1behavior_1_1_h_tween.html#a0ef1eb7d510b05aebfb8f9c008eb0c72", null ],
     [ "start", "classhype_1_1behavior_1_1_h_tween.html#ab73344a0272c5ad7ad5bcfabb2047c5f", null ],
     [ "target", "classhype_1_1behavior_1_1_h_tween.html#ab015140e0806c21540dd26a36c1a0fa5", null ],
-    [ "target", "classhype_1_1behavior_1_1_h_tween.html#a5ba73efa9d77e23f0dc21e2cec2438ae", null ]
+    [ "target", "classhype_1_1behavior_1_1_h_tween.html#a5ba73efa9d77e23f0dc21e2cec2438ae", null ],
+    [ "unregister", "classhype_1_1behavior_1_1_h_tween.html#a3ad9f4805d56e94f4b1b4b56efb1fbab", null ]
 ];

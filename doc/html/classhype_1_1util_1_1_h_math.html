@@ -202,6 +202,15 @@ static boolean&#160;</td><td class="memItemRight" valign="bottom"><b>leftOfLine<
 <tr class="memitem:aed97b073b226899b8c8750cf58a282ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed97b073b226899b8c8750cf58a282ca"></a>
 static boolean&#160;</td><td class="memItemRight" valign="bottom"><b>rightOfLine</b> (float x1, float y1, float x2, float y2, float ptx, float pty)</td></tr>
 <tr class="separator:aed97b073b226899b8c8750cf58a282ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c43d0c4017e4b65c8f00788a0170bbc"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1util_1_1_h_math.html#a7c43d0c4017e4b65c8f00788a0170bbc">bezierParam</a> (float p0, float p1, float p2, float p3, float val, float[] params)</td></tr>
+<tr class="memdesc:a7c43d0c4017e4b65c8f00788a0170bbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solves for the valid parameters of a given cubic bezier equation.  <a href="#a7c43d0c4017e4b65c8f00788a0170bbc">More...</a><br/></td></tr>
+<tr class="separator:a7c43d0c4017e4b65c8f00788a0170bbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a505f12b6206cede660900972055aae67"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1util_1_1_h_math.html#a505f12b6206cede660900972055aae67">solveCubic</a> (float a, float b, float c, float d, float[] roots)</td></tr>
+<tr class="memdesc:a505f12b6206cede660900972055aae67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solves for the real roots of a cubic equation with the given coefficients.  <a href="#a505f12b6206cede660900972055aae67">More...</a><br/></td></tr>
+<tr class="separator:a505f12b6206cede660900972055aae67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab825adc4d94c5feef8c357d2720df28b"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1util_1_1_h_math.html#ab825adc4d94c5feef8c357d2720df28b">solveQuadratic</a> (float a, float b, float c, float[] roots)</td></tr>
+<tr class="memdesc:ab825adc4d94c5feef8c357d2720df28b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solves for the real roots of a quadratic equation with the given coefficients.  <a href="#ab825adc4d94c5feef8c357d2720df28b">More...</a><br/></td></tr>
+<tr class="separator:ab825adc4d94c5feef8c357d2720df28b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cb35fab331a42c739c6c0e80aaf55ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8cb35fab331a42c739c6c0e80aaf55ca"></a>
 static float&#160;</td><td class="memItemRight" valign="bottom"><b>random</b> ()</td></tr>
 <tr class="separator:a8cb35fab331a42c739c6c0e80aaf55ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -428,7 +437,228 @@ static final float&#160;</td><td class="memItemRight" valign="bottom"><b>PHI</b>
 <tr class="memitem:a1d71bbb29142357c1db975fe388751a8 inherit pub_static_attribs_interfacehype_1_1util_1_1_h_constants"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d71bbb29142357c1db975fe388751a8"></a>
 static final float&#160;</td><td class="memItemRight" valign="bottom"><b>PHI_1</b> = 0.618033988749895f</td></tr>
 <tr class="separator:a1d71bbb29142357c1db975fe388751a8 inherit pub_static_attribs_interfacehype_1_1util_1_1_h_constants"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eedba9bfbb2bb9235b7c4c72432db30 inherit pub_static_attribs_interfacehype_1_1util_1_1_h_constants"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2eedba9bfbb2bb9235b7c4c72432db30"></a>
+static final float&#160;</td><td class="memItemRight" valign="bottom"><b>EPSILON</b> = (float)10e-12</td></tr>
+<tr class="separator:a2eedba9bfbb2bb9235b7c4c72432db30 inherit pub_static_attribs_interfacehype_1_1util_1_1_h_constants"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a7c43d0c4017e4b65c8f00788a0170bbc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int hype.util.HMath.bezierParam </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float[]&#160;</td>
+          <td class="paramname"><em>params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Solves for the valid parameters of a given cubic bezier equation. </p>
+<p>This method calls <code><a class="el" href="classhype_1_1util_1_1_h_math.html#a505f12b6206cede660900972055aae67" title="Solves for the real roots of a cubic equation with the given coefficients.">solveCubic()</a></code> to solve for the said equation.</p>
+<p>Since cubic bezier curves can have at most three parameters that could give the same value, the <code>params</code> array is expected to have a size of at least 3.</p>
+<p>The <code>val</code> argument is the value to be tested, where: </p>
+<pre class="fragment">val = bezier(p0,p1,p2,p3,param)
+</pre><p>If the above equation is in such a way that it could not be true, then this method will return <code>0</code> valid parameters.</p>
+<p>Note that due to optimization purposes, it's not assured that if the number of valid parameters are less than 3, the leftover spaces of the <code>params</code> array wouldn't change. So if for example, your <code>params</code> array is initially <code>{0,0,0}</code>, and you received just 2 valid parameters, <code>params[2]</code> can still contain a non-zero value.</p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1util_1_1_h_math.html#a505f12b6206cede660900972055aae67" title="Solves for the real roots of a cubic equation with the given coefficients.">solveCubic(float,float,float,float,float[])</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p0</td><td>The first anchor point </td></tr>
+    <tr><td class="paramname">p1</td><td>The first control point </td></tr>
+    <tr><td class="paramname">p2</td><td>The second control point </td></tr>
+    <tr><td class="paramname">p3</td><td>The second anchor point </td></tr>
+    <tr><td class="paramname">val</td><td>The value to be tested with the curve </td></tr>
+    <tr><td class="paramname">params</td><td>The array that will contain the valid parameters of the bezier equation </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of valid parameters of the given bezier equation </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a505f12b6206cede660900972055aae67"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int hype.util.HMath.solveCubic </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float[]&#160;</td>
+          <td class="paramname"><em>roots</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Solves for the real roots of a cubic equation with the given coefficients. </p>
+<p>Said equation is in the standard polynomial form: </p>
+<pre class="fragment">ax^3 + bx^2 + cx + d = 0
+</pre><p>where <code>a</code>, <code>b</code>, <code>c</code> &amp; <code>d</code> are the coefficients of said equation.</p>
+<p>Since the maximum amount of roots that a cubic equation can have is three, the <code>roots</code> array is expected to have a size of at least 3.</p>
+<p>If this equation happens to be a straight line lying on the x-axis, then this method will return <code>-1</code>, meaning that there are infinite number of roots for this equation.</p>
+<p>This method may delegate itself to <code><a class="el" href="classhype_1_1util_1_1_h_math.html#ab825adc4d94c5feef8c357d2720df28b" title="Solves for the real roots of a quadratic equation with the given coefficients.">solveQuadratic()</a></code> if <code>a</code> equals 0 (in other words, the equation is quadratic.)</p>
+<p>The code for this method is heavily based from paper.js (MIT License) which in turn is based from the Uintah Library (also MIT License).</p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1util_1_1_h_math.html#ab825adc4d94c5feef8c357d2720df28b" title="Solves for the real roots of a quadratic equation with the given coefficients.">solveQuadratic(float,float,float,float[])</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>The coefficient for the first term (ax^3) </td></tr>
+    <tr><td class="paramname">b</td><td>The coefficient for the second term (bx^2) </td></tr>
+    <tr><td class="paramname">c</td><td>The coefficient for the third term (cx) </td></tr>
+    <tr><td class="paramname">d</td><td>The coefficient for the fourth term (d) </td></tr>
+    <tr><td class="paramname">roots</td><td>The array that will contain the roots of the equation </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of roots of the given equation </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab825adc4d94c5feef8c357d2720df28b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int hype.util.HMath.solveQuadratic </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float[]&#160;</td>
+          <td class="paramname"><em>roots</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Solves for the real roots of a quadratic equation with the given coefficients. </p>
+<p>Said equation is in the standard polynomial form: </p>
+<pre class="fragment">ax^2 + bx + c = 0
+</pre><p>where <code>a</code>, <code>b</code> &amp; <code>c</code> are the coefficients of said equation.</p>
+<p>Since the maximum amount of roots that a quadratic equation can have is two, the <code>roots</code> array is expected to have a size of at least 2.</p>
+<p>If this equation happens to be a straight line lying on the x-axis, then this method will return <code>-1</code>, meaning that there are infinite number of roots for this equation.</p>
+<p>The code for this method is heavily based from paper.js (MIT License) which in turn is based from the Uintah Library (also MIT License).</p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1util_1_1_h_math.html#a505f12b6206cede660900972055aae67" title="Solves for the real roots of a cubic equation with the given coefficients.">solveCubic(float,float,float,float,float[])</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>The coefficient for the first term (<code>ax^2</code>) </td></tr>
+    <tr><td class="paramname">b</td><td>The coefficient for the second term (<code>bx</code>) </td></tr>
+    <tr><td class="paramname">c</td><td>The coefficient for the third term (<code>c</code>) </td></tr>
+    <tr><td class="paramname">roots</td><td>The array that will contain the roots of the equation </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of roots of the given equation </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>java/src/hype/util/HMath.java</li>
 </ul>
@@ -438,7 +668,7 @@ static final float&#160;</td><td class="memItemRight" valign="bottom"><b>PHI_1</
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>hype</b></li><li class="navelem"><b>util</b></li><li class="navelem"><a class="el" href="classhype_1_1util_1_1_h_math.html">HMath</a></li>
-    <li class="footer">Generated on Tue May 21 2013 20:11:45 for HYPE_processing by
+    <li class="footer">Generated on Mon May 27 2013 20:00:28 for HYPE_processing by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

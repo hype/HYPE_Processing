@@ -1,4 +1,4 @@
-.TH "hype.drawable.HStage" 3 "Tue May 21 2013" "HYPE_processing" \" -*- nroff -*-
+.TH "hype.drawable.HStage" 3 "Mon May 27 2013" "HYPE_processing" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -54,7 +54,7 @@ Inherits \fBhype\&.drawable\&.HDrawable\fP\&.
 .RI "void \fBpaintAll\fP (PGraphics g, boolean usesZ, float currAlphaPerc)"
 .br
 .ti -1c
-.RI "void \fBdraw\fP (PGraphics g, boolean b, float x, float y, float p)"
+.RI "void \fBdraw\fP (PGraphics g, boolean b, float \fBx\fP, float \fBy\fP, float p)"
 .br
 .RI "\fIDraws this drawable\&. \fP"
 .ti -1c
@@ -70,12 +70,15 @@ Inherits \fBhype\&.drawable\&.HDrawable\fP\&.
 .ti -1c
 .RI "\fBHDrawable\fP \fBx\fP (float newX)"
 .br
+.RI "\fITODO\&. \fP"
 .ti -1c
 .RI "\fBHDrawable\fP \fBy\fP (float newY)"
 .br
+.RI "\fITODO\&. \fP"
 .ti -1c
 .RI "\fBHDrawable\fP \fBz\fP (float newY)"
 .br
+.RI "\fITODO\&. \fP"
 .ti -1c
 .RI "\fBHDrawable\fP \fBmove\fP (float dx, float dy)"
 .br
@@ -132,6 +135,57 @@ Draws this drawable\&. This method is abstract and is meant to be implemented by
 
 .PP
 Implements \fBhype\&.drawable\&.HDrawable\fP\&.
+.SS "\fBHDrawable\fP hype\&.drawable\&.HStage\&.x (floatnewX)"
+
+.PP
+TODO\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInewX\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.interfaces\&.HLocatable\fP\&.
+.SS "\fBHDrawable\fP hype\&.drawable\&.HStage\&.y (floatnewY)"
+
+.PP
+TODO\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInewY\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.interfaces\&.HLocatable\fP\&.
+.SS "\fBHDrawable\fP hype\&.drawable\&.HStage\&.z (floatnewZ)"
+
+.PP
+TODO\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInewZ\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.interfaces\&.HLocatable\fP\&.
 
 .SH "Author"
 .PP 
