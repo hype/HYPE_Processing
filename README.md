@@ -5,7 +5,7 @@ A Code and Theory project / http://www.codeandtheory.com
 
 maintained by Joshua Davis and James Cruz, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
 
-If you want to keep track of the changes, you could read the [changelog](changelog.md) for the latest developments in the code.
+If you want to keep track of the changes, you could read the [changelog](CHANGELOG.md) for the latest developments in the code.
 
 
 How To Import HYPE_Processing?
