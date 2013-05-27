@@ -1,3 +1,10 @@
+### build_20130527.0 (May 27, 2013)
+- new static HMath methods:
+	- `bezierParam()`
+	- `solveCubic()`
+	- `solveQuadratic()`
+- added _paper.js_' license to license.txt
+
 ### build_20130522.0 (May 22, 2013)
 - bugfix: HTween didn't override `unregister()` and `register()` so it would return itself as HTween, instead of HBehavior
 

@@ -130,6 +130,172 @@ public static class HMath implements HConstants {
 	) {
 		return (lineSide(x1,y1, x2,y2, ptx,pty) > 0);
 	}
+	/**
+	 * Solves for the valid parameters (`t`) of a given cubic bezier equation
+	 * with the given value and anchor/control points.
+	 * 
+	 * This method calls `solveCubic()` to solve for the said equation.
+	 * 
+	 * Since cubic bezier curves can have at most three parameters that could
+	 * give the same value, the `params` array is expected to have a size of at
+	 * least 3.
+	 * 
+	 * The `val` argument is the value to be tested, where:
+	 * 
+	 *     val = bezier(p0,p1,p2,p3,param)
+	 * 
+	 * If the above equation is in such a way that it could not be true, then
+	 * this method will return `0` valid parameters.
+	 * 
+	 * Note that due to optimization purposes, it's not assured that if the
+	 * number of valid parameters are less than 3, the leftover spaces of the
+	 * `params` array wouldn't change. So if for example, your `params` array is
+	 * initially `{0,0,0}`, and you received just 2 valid parameters,
+	 * `params[2]` can still contain a non-zero value.
+	 * 
+	 * @see solveCubic(float,float,float,float,float[])
+	 * @param p0    The first anchor point
+	 * @param p1    The first control point
+	 * @param p2    The second control point
+	 * @param p3    The second anchor point
+	 * @param val   The value to be tested with the curve
+	 * @param params    The array that will contain the valid parameters of the bezier equation
+	 * @return The number of valid parameters of the given bezier equation
+	 */
+	public static int bezierParam(
+		float p0, float p1, float p2, float p3,
+		float val, float[] params
+	) {
+		float max = p0;
+		if(max < p1) max = p1;
+		if(max < p2) max = p2;
+		if(max < p3) max = p3;
+		float min = p0;
+		if(min > p1) min = p1;
+		if(min > p2) min = p2;
+		if(min > p3) min = p3;
+		if(val<min || val>max) return 0;
+		float a = 3*(p1-p2) - p0 + p3;
+		float b = 3*(p0 - 2*p1 + p2);
+		float c = 3*(p1-p0);
+		float d = p0 - val;
+		int numRoots = solveCubic(a,b,c,d,params);
+		int numParams = 0;
+		for(int i=0; i<numRoots; ++i) {
+			if(params[i]<0 || params[i]>1) continue;
+			params[numParams++] = params[i];
+		}
+		return numParams;
+	}
+	/**
+	 * Solves for the real roots of a cubic equation
+	 * with the given coefficients.
+	 * 
+	 * Said equation is in the standard polynomial form:
+	 * 
+	 *     ax^3 + bx^2 + cx + d = 0
+	 * 
+	 * where `a`, `b`, `c` & `d` are the coefficients of said equation.
+	 * 
+	 * Since the maximum amount of roots that a cubic equation can have is
+	 * three, the `roots` array is expected to have a size of at least 3.
+	 * 
+	 * If the given coefficients of the equation happens to be a straight line
+	 * lying on the x-axis, then this method will 
+	 * 
+	 * This method may delegate itself to `solveQuadratic()` if `a` 0
+	 * (in other words, the equation is actually quadratic.)
+	 * 
+	 * The code for this method is heavily based from paper.js (MIT License)
+	 * which in turn is based from the Uintah Library (also MIT License).
+	 * 
+	 * @see solveQuadratic(float,float,float,float[])
+	 * @param a    The coefficient for the first term (ax^3)
+	 * @param b    The coefficient for the second term (bx^2)
+	 * @param c    The coefficient for the third term (cx)
+	 * @param d    The coefficient for the fourth term (d)
+	 * @param roots    The array that will contain the roots of the equation
+	 * @return The number of roots of the given equation
+	 */
+	public static int solveCubic(
+		float a, float b, float c, float d, float[] roots
+	) {
+		if(Math.abs(a) < EPSILON) return solveQuadratic(b,c,d,roots);
+		b /= a;
+		c /= a;
+		d /= a;
+		float bb = b*b;
+		float p = (bb - 3*c) / 9f;
+		float ppp = p*p*p;
+		float q = (2*bb*b - 9*b*c + 27*d) / 54;
+		float D = q*q - ppp;
+		b /= 3f;
+		if(Math.abs(D) < EPSILON) {
+			if(Math.abs(q) < EPSILON) {
+				roots[0] = -b;
+				return 1;
+			}
+			float sqrtp = (float)Math.sqrt(p);
+			float signq = (q>0)? 1 : -1;
+			roots[0] = -signq*2*sqrtp - b;
+			roots[1] = signq*sqrtp - b;
+			return 2;
+		}
+		if(D < 0) {
+			float sqrtp = (float)Math.sqrt(p);
+			float phi = (float)Math.acos(q / (sqrtp*sqrtp*sqrtp)) / 3;
+			float t = -2*sqrtp;
+			float o = PConstants.TWO_PI/3f;
+			roots[0] = t*(float)Math.cos(phi) - b;
+			roots[1] = t*(float)Math.cos(phi + o) - b;
+			roots[2] = t*(float)Math.cos(phi - o) - b;
+			return 3;
+		}
+		float A = (q>0?-1:1) *
+			(float)Math.pow(Math.abs(q) + Math.sqrt(D), 1.0/3.0);
+		roots[0] = A + p/A - b;
+		return 1;
+	}
+	/**
+	 * Solves for the real roots of a quadratic equation
+	 * with the given coefficients.
+	 * 
+	 * Said equation is in the standard polynomial form:
+	 * 
+	 *     ax^2 + bx + c = 0
+	 * 
+	 * where `a`, `b` & `c` are the coefficients of said equation.
+	 * 
+	 * Since the maximum amount of roots that a quadratic equation can have is
+	 * two, the `roots` array is expected to have a size of at least 2.
+	 * 
+	 * The code for this method is heavily based from paper.js (MIT License)
+	 * which in turn is based from the Uintah Library (also MIT License).
+	 * 
+	 * @see solveCubic(float,float,float,float,float[])
+	 * @param a    The coefficient for the first term (`ax^2`)
+	 * @param b    The coefficient for the second term (`bx`)
+	 * @param c    The coefficient for the third term (`c`)
+	 * @param roots    The array that will contain the roots of the equation
+	 * @return The number of roots of the given equation
+	 */
+	public static int solveQuadratic(float a, float b, float c, float[] roots) {
+		if(Math.abs(a) < EPSILON) {
+			if(Math.abs(b) >= EPSILON) {
+				roots[0] = -c/b;
+				return 1;
+			}
+			return (Math.abs(c)<EPSILON)? -1 : 0;
+		}
+		float q = b*b - 4*a*c;
+		if(q < 0) return 0;
+		q = (float)Math.sqrt(q);
+		a *= 2;
+		int numRoots = 0;
+		roots[numRoots++] = (-b-q) / a;
+		if(q > 0) roots[numRoots++] = (-b+q) / a;
+		return numRoots;
+	}
 	public static float random() {
 		return random(1);
 	}

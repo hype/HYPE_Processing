@@ -59,5 +59,6 @@ public static interface HConstants {
 		R2D = 180f / PConstants.PI,
 		SQRT2 = 1.4142135623730951f,
 		PHI = 1.618033988749895f,
-		PHI_1 = 0.618033988749895f;
+		PHI_1 = 0.618033988749895f,
+		EPSILON = (float)10e-12;
 }
