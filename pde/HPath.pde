@@ -100,8 +100,8 @@ public static class HPath extends HDrawable {
 	}
 	public HPath vertexPerc(float percX, float percY) {
 		HVertex v = new HVertex();
-		v.x = v.hx1 = v.hx2 = percX;
-		v.y = v.hy1 = v.hy2 = percY;
+		v.x = HMath.round512(percX);
+		v.y = HMath.round512(percY);
 		_vertices.add(v);
 		return this;
 	}
@@ -112,12 +112,12 @@ public static class HPath extends HDrawable {
 	) {
 		HVertex v = new HVertex();
 		v.isBezier = true;
-		v.x = percX;
-		v.y = percY;
-		v.hx1 = handlePercX1;
-		v.hy1 = handlePercY1;
-		v.hx2 = handlePercX2;
-		v.hy2 = handlePercY2;
+		v.x = HMath.round512(percX);
+		v.y = HMath.round512(percY);
+		v.hx1 = HMath.round512(handlePercX1);
+		v.hy1 = HMath.round512(handlePercY1);
+		v.hx2 = HMath.round512(handlePercX2);
+		v.hy2 = HMath.round512(handlePercY2);
 		_vertices.add(v);
 		return this;
 	}
@@ -126,11 +126,10 @@ public static class HPath extends HDrawable {
 		float ratio = 1;
 		switch(type) {
 		case HConstants.EQUILATERAL:
-			ratio = (float) Math.sin(PConstants.TWO_PI/6);
+			ratio = (float)Math.sin(PConstants.TWO_PI/6);
 			break;
 		case HConstants.RIGHT:
-			ratio = ((float) Math.sin(PConstants.TWO_PI/8))
-				/ HConstants.SQRT2;
+			ratio = (float)Math.sin(PConstants.TWO_PI/8) / HConstants.SQRT2;
 			break;
 		}
 		switch(direction) {
@@ -220,7 +219,7 @@ public static class HPath extends HDrawable {
 		return starRad(numEdges, depth, 0);
 	}
 	public HPath star(int numEdges, float depth, float startDeg) {
-		return starRad(numEdges, depth, startDeg * HConstants.D2R);
+		return starRad(numEdges, depth, startDeg*HConstants.D2R);
 	}
 	public HPath starRad(int numEdges, float depth, float startRad) {
 		_vertices.clear();
@@ -245,16 +244,29 @@ public static class HPath extends HDrawable {
 	}
 	public boolean containsRel(float relX, float relY) {
 		boolean isIn = false;
-		float xPerc = relX / _width;
-		float yPerc = relY / _height;
+		float xPerc = HMath.round512(relX/_width);
+		float yPerc = HMath.round512(relY/_height);
+		float currX = 0;
 		for(int i=0; i<numVertices(); ++i) {
 			HVertex v1 = _vertices.get(i);
 			HVertex v2 = _vertices.get((i>=numVertices()-1)? 0 : i+1);
-			float t = (yPerc-v1.y) / (v2.y-v1.y);
-			if(0<t && t<=1) {
-				float currX = v1.x + (v2.x-v1.x)*t;
-				if(currX == xPerc) return true;
-				if(currX < xPerc) isIn = !isIn;
+			if(v2.isBezier) {
+				float[] params = new float[3];
+				int numParams = HMath.bezierParam(
+					v1.y, v2.hy1, v2.hy2, v2.y, yPerc, params);
+				for(int j=0; j<numParams; ++j) {
+					currX = H.app().bezierPoint(
+						v1.x,v2.hx1,v2.hx2,v2.x, params[j]);
+					if(currX == xPerc) return true;
+					if(currX < xPerc) isIn = !isIn;
+				}
+			} else {
+				float t = (yPerc-v1.y) / (v2.y-v1.y);
+				if(0<=t && t<=1) {
+					currX = v1.x + (v2.x-v1.x)*t;
+					if(currX == xPerc) return true;
+					if(currX < xPerc) isIn = !isIn;
+				}
 			}
 		}
 		return isIn;

@@ -1,7 +1,7 @@
 package hype;
 
+import hype.drawable.HPath;
 import hype.util.H;
-import hype.util.HMath;
 import processing.core.PApplet;
 
 /**
@@ -67,51 +67,43 @@ public class DummyApplet extends PApplet {
 	 * - [ ] HContext overhaul
 	 */
 	
+	HPath path;
+	
 	@Override
 	public void setup() {
-//		size(512,512);
+		size(600,600);
 		H.init(this);
 		
-		float p0 = random(1024);
-		float p1 = random(1024);
-		float p2 = random(1024);
-		float p3 = random(1024);
-		float t  = random(1);
-		
-		float val = bezierPoint(p0,p1,p2,p3,t);
-		
-		float[] roots = new float[3];
-		int numRoots = HMath.bezierParam(p0,p1,p2,p3,val,roots);
-		println("root = "+t);
-		println("roots:");
-		println(roots);
-		
-		println("\nnum roots: "+numRoots);
-		
-		println("\nval = "+val);
-		println("vals:");
-		float[] vals = new float[numRoots];
-		for(int i=0; i<numRoots; ++i) vals[i] = bezierPoint(p0,p1,p2,p3,roots[i]);
-		println(vals);
-		
-		exit();//
-		/*
-		HDrawable d = H.add(new HRect()).locAt(H.CENTER).anchorAt(H.CENTER);
-		new HTween().target(d).property(H.SCALE).ease(random(1/1024f,1)).spring(random(1)).start(0).end(1).callback(new HCallback() {
-			public void run(Object obj) {
-ã				HTween t = (HTween) obj;
-				t.target().fill(H.RED);
-			}
-		});
-		
-		H.add(new HPath().vertex(0,height/2).vertex(width,height/2).endPath());
-		H.add(new HPath().vertex(width/2,0).vertex(width/2,height).endPath());
-		//*/
+		path = new HPath(POLYGON)
+//			.vertexPerc(-.5f,.5f,.5f,.5f,0,0)
+//			.vertexPerc(.5f,-.5f,.5f,.5f,1,0)
+//			.vertexPerc(1.5f,.5f,.5f,.5f,1,1)
+//			.vertexPerc(.5f,1.5f,.5f,.5f,0,1)
+			.vertexPerc(0,0)
+			.vertexPerc(1,0)
+			.vertexPerc(1,1)
+			.vertexPerc(2/3f,1)
+			.vertexPerc(2/3f,2/3f,1/3f,1/3f,0,1/3f)
+//			.star(5,H.PHI_1)
+//			.polygon(5)
+		;
+		H.add(path).locAt(H.CENTER).anchorAt(H.CENTER);
 	}
 	
 	@Override
 	public void draw() {
-		//H.drawStage();
+		H.drawStage();
+//		if(path.contains(mouseX,mouseY)) {
+//			path.fill(H.RED);
+//		} else {
+//			path.fill(H.WHITE);
+//		}
+		stroke(H.MAGENTA,128);
+		for(int y=0;y<height;++y) for(int x=0;x<width;++x) {
+			if(path.contains(x,y)) {
+				point(x,y);
+			}
+		}
 		noLoop();
 	}
 }
