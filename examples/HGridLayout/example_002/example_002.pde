@@ -1,7 +1,5 @@
 HDrawablePool pool;
 
-int cellSize = 36;
-
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
@@ -40,7 +38,7 @@ void setup() {
 						.fill( colors.getColor() )
 						.anchorAt(H.CENTER)
 						.rotation( 45 )
-						.size( cellSize )
+						.size(36)
 					;
 				}
 			}

@@ -1,7 +1,5 @@
 HDrawablePool pool;
 
-int cellSize = 25;
-
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
@@ -17,7 +15,7 @@ void setup() {
 			new HGridLayout()
 			.startX(21)
 			.startY(21)
-			.spacing(cellSize+1,cellSize+1)
+			.spacing(26,26)
 			.cols(24)
 		)
 		.onCreate (
@@ -28,7 +26,7 @@ void setup() {
 						.noStroke()
 						.fill( #ECECEC )
 						.anchorAt(H.CENTER)
-						.size( cellSize )
+						.size( 25 )
 					;
 				}
 			}
