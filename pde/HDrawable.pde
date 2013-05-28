@@ -1371,11 +1371,23 @@ public static abstract class HDrawable extends HNode<HDrawable>
 			return false;
 		return _extras.bool(key);
 	}
+	public boolean contains(float absX, float absY, float absZ) {
+		PApplet app = H.app();
+		return contains(
+			app.screenX(absX,absY,absZ),
+			app.screenY(absX,absY,absZ));
+	}
 	public boolean contains(float absX, float absY) {
 		float[] rel = HMath.relLocArr(this, absX, absY);
 		rel[0] += anchorX();
 		rel[1] += anchorY();
 		return containsRel(rel[0], rel[1]);
+	}
+	public boolean containsRel(float relX, float relY, float relZ) {
+		PApplet app = H.app();
+		return containsRel(
+			app.screenX(relX,relY,relZ),
+			app.screenY(relX,relY,relZ));
 	}
 	public boolean containsRel(float relX, float relY) {
 		return (0 <= relX) && (relX <= width()) &&

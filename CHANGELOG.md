@@ -3,6 +3,7 @@
 	- ending position should now sit exactly at the values defined by `end()`.
 	- bugfix #21: processing.js incompatibility with `HTween.start()` and `end()`
 	- code cleanup and refactors
+- hitbox checking for 3d points
 
 ### build_20130527.0 (May 27, 2013)
 - new static HMath methods:

@@ -4,11 +4,13 @@ import hype.collection.HIterator;
 import hype.collection.HNode;
 import hype.interfaces.HHittable;
 import hype.interfaces.HSwarmer;
+import hype.util.H;
 import hype.util.HBundle;
 import hype.util.HColors;
 import hype.util.HConstants;
 import hype.util.HMath;
 import hype.util.HWarnings;
+import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 import processing.core.PVector;
@@ -1571,11 +1573,27 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 	
 	@Override
+	public boolean contains(float absX, float absY, float absZ) {
+		PApplet app = H.app();
+		return contains(
+			app.screenX(absX,absY,absZ),
+			app.screenY(absX,absY,absZ));
+	}
+	
+	@Override
 	public boolean contains(float absX, float absY) {
 		float[] rel = HMath.relLocArr(this, absX, absY);
 		rel[0] += anchorX();
 		rel[1] += anchorY();
 		return containsRel(rel[0], rel[1]);
+	}
+	
+	@Override
+	public boolean containsRel(float relX, float relY, float relZ) {
+		PApplet app = H.app();
+		return containsRel(
+			app.screenX(relX,relY,relZ),
+			app.screenY(relX,relY,relZ));
 	}
 	
 	@Override
