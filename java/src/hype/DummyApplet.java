@@ -15,8 +15,9 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] bezier hitbox for HPath
 	 * - [ ] HTween: set _curr = 1, if tweening end is detected
+	 * - [ ] pointInScreen(x,y,z)
+	 * - [ ] static random colors for HShape
 	 * - [ ] HPath: base size for computing perc vertex stuff = 100, if size = 0
 	 * 
 	 * - [ ] HDrawable.transformChildren(bool)
@@ -24,9 +25,7 @@ public class DummyApplet extends PApplet {
 	 * 
 	 * (Licensing Stuff)
 	 * - [ ] copyright disclaimer for each source file
-	 * - [ ] capitalize license.txt and changelog.md
 	 * 
-	 * - [ ] pointInScreen(x,y,z)
 	 * 
 	 * - [ ] HShape hit detection + pgraphics buffer
 	 * - [ ] disable style for HShape in P3D

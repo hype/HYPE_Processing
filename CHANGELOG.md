@@ -1,3 +1,6 @@
+### build_20130527.1 (May 27, 2013)
+- hitbox checking for HPath's bezier curves
+
 ### build_20130527.0 (May 27, 2013)
 - new static HMath methods:
 	- `bezierParam()`
