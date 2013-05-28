@@ -1,6 +1,10 @@
 package hype;
 
+import hype.behavior.HTween;
+import hype.drawable.HDrawable;
 import hype.drawable.HPath;
+import hype.drawable.HRect;
+import hype.interfaces.HCallback;
 import hype.util.H;
 import processing.core.PApplet;
 
@@ -50,7 +54,7 @@ public class DummyApplet extends PApplet {
 	 * 
 	 * 
 	 * (Refactors)
-	 * - [ ] quadratic HVertex
+	 * - [ ] use float arrays instead of HVertex
 	 * - [ ] bezierParam() for quadratic curves
 	 * - [ ] HMath: use processing's random()
 	 * - [ ] HMath: change "arr" methods to use method(val, float[] loc) format
@@ -66,37 +70,49 @@ public class DummyApplet extends PApplet {
 	 * - [ ] HContext overhaul
 	 */
 	
-	HPath path;
+//	HPath path;
 	
 	@Override
 	public void setup() {
 		size(600,600);
 		H.init(this);
 		
+		final HDrawable d = H.add(new HRect());
+		new HTween().ease(.05f).spring(0.9f)
+			.target(d).property(H.SCALE)
+			.start(1).end(3)
+			.callback(new HCallback(){public void run(Object obj) {
+				d.fill(H.GREEN);
+			}})
+		;
+		
+		H.add(new HPath().vertex(0,height/2).vertex(width,height/2));
+		H.add(new HPath().vertex(width/2,0).vertex(width/2,height));
+		
+		/*
 		path = new HPath(POLYGON)
 //			.vertexPerc(-.5f,.5f,.5f,.5f,0,0)
 //			.vertexPerc(.5f,-.5f,.5f,.5f,1,0)
 //			.vertexPerc(1.5f,.5f,.5f,.5f,1,1)
 //			.vertexPerc(.5f,1.5f,.5f,.5f,0,1)
-			.vertexPerc(0,0)
-			.vertexPerc(1,0)
-			.vertexPerc(1,1)
-			.vertexPerc(2/3f,1)
-			.vertexPerc(2/3f,2/3f,1/3f,1/3f,0,1/3f)
+			
+//			.vertexPerc(0,0)
+//			.vertexPerc(1,0)
+//			.vertexPerc(1,1)
+//			.vertexPerc(2/3f,1)
+//			.vertexPerc(2/3f,2/3f,1/3f,1/3f,0,1/3f)
+
 //			.star(5,H.PHI_1)
 //			.polygon(5)
 		;
 		H.add(path).locAt(H.CENTER).anchorAt(H.CENTER);
+		//*/
 	}
 	
 	@Override
 	public void draw() {
 		H.drawStage();
-//		if(path.contains(mouseX,mouseY)) {
-//			path.fill(H.RED);
-//		} else {
-//			path.fill(H.WHITE);
-//		}
+		/*
 		stroke(H.MAGENTA,128);
 		for(int y=0;y<height;++y) for(int x=0;x<width;++x) {
 			if(path.contains(x,y)) {
@@ -104,6 +120,7 @@ public class DummyApplet extends PApplet {
 			}
 		}
 		noLoop();
+		//*/
 	}
 }
 /** @endcond */

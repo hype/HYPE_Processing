@@ -1,5 +1,8 @@
-### build_20130527.1 (May 27, 2013)
-- hitbox checking for HPath's bezier curves
+### build_20130528.0 (May 28, 2013)
+- changes for HTween:
+	- ending position should now sit exactly at the values defined by `end()`.
+	- bugfix #21: processing.js incompatibility with `HTween.start()` and `end()`
+	- code cleanup and refactors
 
 ### build_20130527.0 (May 27, 2013)
 - new static HMath methods:
@@ -7,6 +10,7 @@
 	- `solveCubic()`
 	- `solveQuadratic()`
 - added _paper.js_' license to license.txt
+- hitbox checking for HPath's bezier curves
 
 ### build_20130522.0 (May 22, 2013)
 - bugfix: HTween didn't override `unregister()` and `register()` so it would return itself as HTween, instead of HBehavior

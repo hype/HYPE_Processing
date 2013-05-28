@@ -4,12 +4,13 @@ import hype.drawable.HDrawable;
 import hype.interfaces.HCallback;
 import hype.util.HConstants;
 import hype.util.HMath;
+import hype.util.HWarnings;
 import processing.core.PApplet;
 
 public class HTween extends HBehavior {
 	private HDrawable _target;
 	private HCallback _callback;
-	private float[] _starts, _ends;
+	private float _s1,_s2,_s3, _e1,_e2,_e3;
 	private float _curr, _dcurr, _spring, _ease;
 	private int _property;
 	
@@ -36,55 +37,65 @@ public class HTween extends HBehavior {
 		return _callback;
 	}
 	
-	public HTween start(float... fs) {
-		int numVals;
-		switch(_property) {
-		case HConstants.LOCATION:
-		case HConstants.DLOC:
-			numVals = 3; break;
-		case HConstants.SIZE:
-			numVals = 2; break;
-		default:
-			numVals = 1; break;
-		}
-		if(_property==HConstants.SCALE) {
-			if(_starts==null||_starts.length<2) _starts = new float[2];
-			if(_target!=null) {
-				_starts[0] = _target.width() * fs[0];
-				_starts[1] = _target.height() * fs[0];
-			}
+	private void setScaleStart() {
+		if(_property!=HConstants.SCALE) return;
+		if(_target==null) {
+			HWarnings.warn(HWarnings.NULL_TARGET,"HTween.start()",null);
 		} else {
-			if(_starts==null||_starts.length<numVals) _starts = new float[numVals];
-			int numInput = (_starts.length<fs.length)?_starts.length : fs.length;
-			for(int i=0; i<numInput; ++i) _starts[i] = fs[i];
+			_s1 *= _target.width();
+			_s2 *= _target.height();
 		}
-		_curr = 0;
+	}
+	
+	public HTween start(float a) {
+		_s1 = _s2 = a;
+		setScaleStart();
 		return this;
 	}
 	
-	public HTween end(float... fs) {
-		int numVals;
-		switch(_property) {
-		case HConstants.LOCATION:
-		case HConstants.DLOC:
-			numVals = 3; break;
-		case HConstants.SIZE:
-		case HConstants.SCALE:
-			numVals = 2; break;
-		default:
-			numVals = 1; break;
-		}
-		if(_property==HConstants.SCALE) {
-			if(_ends==null||_ends.length<2) _ends = new float[2];
-			if(_target!=null) {
-				_ends[0] = _target.width() * fs[0];
-				_ends[1] = _target.height() * fs[0];
-			}
+	public HTween start(float a, float b) {
+		_s1 = a;
+		_s2 = b;
+		setScaleStart();
+		return this;
+	}
+	
+	public HTween start(float a, float b, float c) {
+		_s1 = a;
+		_s2 = b;
+		_s3 = c;
+		setScaleStart();
+		return this;
+	}
+	
+	private void setScaleEnd() {
+		if(_property!=HConstants.SCALE) return;
+		if(_target==null) {
+			HWarnings.warn(HWarnings.NULL_TARGET,"HTween.end()",null);
 		} else {
-			if(_ends==null||_ends.length<numVals) _ends = new float[numVals];
-			int numInput = (_ends.length<fs.length)? _ends.length : fs.length;
-			for(int i=0; i<numInput; ++i) _ends[i] = fs[i];
+			_e1 *= _target.width();
+			_e2 *= _target.height();
 		}
+	}
+	
+	public HTween end(float a) {
+		_e1 = _e2 = a;
+		setScaleEnd();
+		return this;
+	}
+	
+	public HTween end(float a, float b) {
+		_e1 = a;
+		_e2 = b;
+		setScaleEnd();
+		return this;
+	}
+	
+	public HTween end(float a, float b, float c) {
+		_e1 = a;
+		_e2 = b;
+		_e3 = c;
+		setScaleEnd();
 		return this;
 	}
 	
@@ -120,40 +131,31 @@ public class HTween extends HBehavior {
 		if(_target==null) return;
 		
 		_curr += _dcurr = _dcurr*_spring + (1-_curr)*_ease;
-		
-		float v1 = HMath.map(_curr, 0,1, _starts[0],_ends[0]);
+		float c = HMath.round512(_curr);
+		float v1 = HMath.map(c,0,1,_s1,_e1);
+		float v2 = HMath.map(c,0,1,_s2,_e2);
+		float v3 = HMath.map(c,0,1,_s3,_e3);
 		
 		switch(_property) {
 		case HConstants.WIDTH:		_target.width(v1); break;
 		case HConstants.HEIGHT:		_target.height(v1); break;
-		case HConstants.SIZE: {
-			float v2 = HMath.map(_curr, 0,1, _starts[1],_ends[1]);
-			_target.size(v1,v2);
-			} break;
+		case HConstants.SCALE:		// same as SIZE
+		case HConstants.SIZE:		_target.size(v1,v2); break;
 		case HConstants.ALPHA:		_target.alpha(Math.round(v1)); break;
 		case HConstants.X:			_target.x(v1); break;
 		case HConstants.Y:			_target.y(v1); break;
 		case HConstants.Z:			_target.z(v1); break;
-		case HConstants.LOCATION: {
-			float v2 = HMath.map(_curr, 0,1, _starts[1],_ends[1]);
-			float v3 = HMath.map(_curr, 0,1, _starts[2],_ends[2]);
-			_target.loc(v1,v2,v3);
-			} break;
+		case HConstants.LOCATION:	_target.loc(v1,v2,v3); break;
 		case HConstants.ROTATION:	_target.rotation(v1); break;
 		case HConstants.DROTATION:	_target.rotate(v1); break;
 		case HConstants.DX:			_target.move(v1,0); break;
 		case HConstants.DY:			_target.move(0,v1); break;
 		case HConstants.DLOC:		_target.move(v1,v1); break;
-		case HConstants.SCALE: {
-			float v2 = HMath.map(_curr, 0,1, _starts[1],_ends[1]);
-			_target.size(v1,v2);
-			} break;
 		default: break;
 		}
-		
-		if(HMath.round512(_curr)==1 && HMath.round512(_dcurr)==0) {
+		if(c==1 && HMath.round512(_dcurr)==0) {
 			unregister();
-			if(_callback!=null) _callback.run(this);
+			if(_callback != null) _callback.run(this);
 		}
 	}
 	
