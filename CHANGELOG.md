@@ -4,6 +4,11 @@
 	- bugfix #21: processing.js incompatibility with `HTween.start()` and `end()`
 	- code cleanup and refactors
 - hitbox checking for 3d points
+- made HShape store a static set of random colors instead of fetching it upon `draw()` when `randomColors()` is called.
+- removed the ff. HShape methods:
+	- `randomColors()`
+	- `randomColors(HColorPool,boolean)`
+- `randomColors(HColorPool)` now returns `this`
 
 ### build_20130527.0 (May 27, 2013)
 - new static HMath methods:
