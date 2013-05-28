@@ -1,4 +1,4 @@
-.TH "hype.drawable.HDrawable" 3 "Mon May 27 2013" "HYPE_processing" \" -*- nroff -*-
+.TH "hype.drawable.HDrawable" 3 "Tue May 28 2013" "HYPE_processing" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -420,7 +420,13 @@ Inherited by \fBhype\&.drawable\&.HCanvas\fP, \fBhype\&.drawable\&.HEllipse\fP, 
 .br
 .RI "\fIReturns the equivalent boolean value from the \fIextras bundle\fP with the corresponding key\&. \fP"
 .ti -1c
+.RI "boolean \fBcontains\fP (float absX, float absY, float absZ)"
+.br
+.ti -1c
 .RI "boolean \fBcontains\fP (float absX, float absY)"
+.br
+.ti -1c
+.RI "boolean \fBcontainsRel\fP (float relX, float relY, float relZ)"
 .br
 .ti -1c
 .RI "boolean \fBcontainsRel\fP (float relX, float relY)"
@@ -1149,7 +1155,7 @@ Draws this drawable\&. This method is abstract and is meant to be implemented by
 .PP
 
 .PP
-Implemented in \fBhype\&.drawable\&.HPath\fP, \fBhype\&.drawable\&.HCanvas\fP, \fBhype\&.drawable\&.HEllipse\fP, \fBhype\&.drawable\&.HText\fP, \fBhype\&.drawable\&.HStage\fP, \fBhype\&.drawable\&.HRect\fP, \fBhype\&.drawable\&.HImage\fP, \fBhype\&.drawable\&.HShape\fP, and \fBhype\&.drawable\&.HGroup\fP\&.
+Implemented in \fBhype\&.drawable\&.HPath\fP, \fBhype\&.drawable\&.HCanvas\fP, \fBhype\&.drawable\&.HEllipse\fP, \fBhype\&.drawable\&.HText\fP, \fBhype\&.drawable\&.HStage\fP, \fBhype\&.drawable\&.HShape\fP, \fBhype\&.drawable\&.HRect\fP, \fBhype\&.drawable\&.HImage\fP, and \fBhype\&.drawable\&.HGroup\fP\&.
 .SS "\fBHDrawable\fP hype\&.drawable\&.HDrawable\&.extras (\fBHBundle\fPb)"
 
 .PP
