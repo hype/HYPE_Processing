@@ -28,7 +28,7 @@ void setup() {
   g.endDraw();
 
   canvasHits  = new HCanvas().autoClear(true);
-  canvasBody = new HCanvas(P3D).autoClear(true);
+  canvasBody = new HCanvas(P3D).autoClear(false).fade(2);
   canvasCam   = new HCanvas().autoClear(true);
 
   H.add(canvasCam);
