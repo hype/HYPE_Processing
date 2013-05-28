@@ -7,7 +7,7 @@ import processing.core.PShape;
 
 public class HShape extends HDrawable {
 	private PShape _shape;
-	private HColorPool _randomColors;
+	private int[] _randomFills, _randomStrokes;
 	
 	public HShape() {
 		shape(null);
@@ -56,25 +56,34 @@ public class HShape extends HDrawable {
 		return this;
 	}
 	
-	public HColorPool randomColors(HColorPool colorPool) {
-		return randomColors(colorPool,true);
-	}
-	
-	public HColorPool randomColors(HColorPool colorPool, boolean isCopy) {
-		if(isCopy)
-			colorPool = colorPool.createCopy();
+	public HShape randomColors(HColorPool colors) {
+		int numChildren = _shape.getChildCount();
+		boolean isFill = colors.appliesFill();
+		boolean isStroke = colors.appliesStroke();
+		if(isFill) {
+			if(_randomFills==null || _randomFills.length<numChildren)
+				_randomFills = new int[numChildren];
+		} else {
+			_randomFills = null;
+		}
+		if(isStroke) {
+			if(_randomStrokes==null || _randomStrokes.length<numChildren)
+				_randomStrokes = new int[numChildren];
+		} else {
+			_randomStrokes = null;
+		}
+		for(int i=0; i<numChildren; ++i) {
+			if(isFill) _randomFills[i] = colors.getColor();
+			if(isStroke) _randomStrokes[i] = colors.getColor();
+		}
 		_shape.disableStyle();
-		_randomColors = colorPool;
-		return _randomColors;
-	}
-	
-	public HColorPool randomColors() {
-		return _randomColors;
+		return this;
 	}
 	
 	public HShape resetRandomColors() {
 		_shape.enableStyle();
-		_randomColors = null;
+		_randomFills = null;
+		_randomStrokes = null;
 		return this;
 	}
 	
@@ -105,7 +114,7 @@ public class HShape extends HDrawable {
 		g.pushMatrix();
 		g.scale(wscale, hscale);
 		
-		if(_randomColors == null) {
+		if(_randomFills==null && _randomStrokes==null) {
 			g.shape(_shape, drawX,drawY, w,h);
 		} else for(int i=0; i<_shape.getChildCount(); ++i) {
 			PShape childShape = _shape.getChild(i);
@@ -114,11 +123,10 @@ public class HShape extends HDrawable {
 			childShape.width = _shape.width;
 			childShape.height = _shape.height;
 			
-			if(_randomColors.appliesFill())
-				g.fill(_randomColors.getColor());
-			if(_randomColors.appliesStroke())
-				g.stroke(_randomColors.getColor());
-			
+			if(_randomFills != null) g.fill(_randomFills[i]);
+			else g.noFill();
+			if(_randomStrokes != null) g.stroke(_randomStrokes[i]);
+			else g.noStroke();
 			g.shape(childShape, drawX,drawY, w,h);
 		}
 		g.popMatrix();
