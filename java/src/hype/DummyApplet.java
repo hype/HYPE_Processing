@@ -11,14 +11,8 @@
 
 package hype;
 
-import hype.behavior.HTween;
-import hype.colorist.HColorPool;
-import hype.drawable.HDrawable;
-import hype.drawable.HRect;
-import hype.drawable.HShape;
-import hype.interfaces.HCallback;
-import hype.trigger.HTimer;
 import hype.util.H;
+import hype.util.HMath;
 import processing.core.PApplet;
 
 /**
@@ -32,13 +26,22 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
+	 * - [ ] new class: HVertex
 	 * - [ ] HPath: base size for computing perc vertex stuff = 100, if size = 0
-	 * 
-	 * - [ ] add z index for abs/relLoc()
+	 * - [ ] HPath: include the vertice's ctrl points
+	 * - [ ] HMath.bezierParam() for quadratic curves
 	 * 
 	 * - [ ] HDrawable.transformChildren(bool)
-	 * - [ ] recursive spatial transforms for HDrawable & HGroup
-	 * - [ ] HHittable.contains(x,y,z)
+	 * - [ ] recursive spatial transforms for HDrawable
+	 * 		- size
+	 * 		- anchor
+	 * - [ ] recursive style transforms for HDrawable
+	 * 		- stroke
+	 * 		- stroke weight
+	 * 		- stroke join
+	 * 		- stroke cap
+	 * 		- fill
+	 * - [ ] protected HDrawable.onSizeChange();
 	 * 
 	 * - [ ] HShape hit detection + pgraphics buffer
 	 * - [ ] disable style for HShape in P3D
@@ -47,7 +50,6 @@ public class DummyApplet extends PApplet {
 	 * - [ ] masking
 	 * - [ ] wipfile: Proximity
 	 * - [ ] wipfile: Adjuster; drawable.adjuster(true); del key = remove from parent
-	 * 
 	 * 
 	 * - [ ] HText textbox
 	 * - [ ] DepthShuffle
@@ -60,11 +62,11 @@ public class DummyApplet extends PApplet {
 	 * 		- pdf frames (remember that individual pdf frames ignores autoClear(false))
 	 * 
 	 * (Refactors)
-	 * - [ ] use float arrays instead of HVertex
+	 * - [ ] rearrange HDrawable's fields
 	 * - [ ] bezierParam() for quadratic curves
+	 * - [ ] HMath: add z index for abs/relLoc()
 	 * - [ ] HMath: use processing's random()
 	 * - [ ] HMath: change "arr" methods to use method(val, float[] loc) format
-	 * - [ ] protected HDrawable.onSizeChange();
 	 * - [ ] refactor/cleanup HOscillator
 	 * - [ ] use registered() for autoregistering behaviors
 	 * - [ ] remove register/unregister overrides
@@ -76,55 +78,36 @@ public class DummyApplet extends PApplet {
 	 * - [ ] HContext overhaul
 	 */
 	
-	HShape s1,s2,s3,s4;
-	HColorPool colors;
-	
 	@Override
 	public void setup() {
-		size(600,600);
-		//frameRate(6);
 		H.init(this);
-		H.background(64);
 		
-		colors = new HColorPool(
-			0xFFFFFFFF, 0xFFF7F7F7, 0xFFECECEC, 0xFF333333,
-			0xFF0095A8, 0xFF00616F, 0xFFFF3300, 0xFFFF6600);
+		float p0 = random(1024);
+		float p1 = random(1024);
+		float p2 = random(1024);
+		float t  = random(1);
+		float val = quadratic(p0,p1,p2,t);
 		
-		s1 = new HShape("bot1.svg");
-		H.add(s1).scale(0.5f);
+		float[] params = new float[2];
+		int numParams = HMath.bezierParam(p0,p1,p2,val,params);
+		println("t:  "+t);
+		println(params);
+		println("num: "+numParams);
 		
-		s2 = new HShape("bot1.svg");
-		H.add(s2).scale(0.5f).anchorAt(H.CENTER).locAt(H.CENTER);
+		float[] vals = new float[2];
+		for(int i=0; i<2; ++i) vals[i] = quadratic(p0,p1,p2,params[i]);
+		println("val:"+val);
+		println(vals);
 		
-		s3 = new HShape("bot1.svg");
-		H.add(s3).scale(0.5f).anchorAt(H.BOTTOM_RIGHT).locAt(H.BOTTOM_RIGHT);
-		
-		s4 = new HShape("bot1.svg");
-		H.add(s4).scale(0.5f).anchorAt(H.BOTTOM_LEFT).locAt(H.BOTTOM_LEFT);
-		
-		
-		colors.fillOnly();
-		s1.randomColors(colors);
-		
-		colors.strokeOnly();
-		s2.randomColors(colors);
-		
-		colors.fillAndStroke();
-		s3.randomColors(colors);
-		
-		HDrawable d = H.add(new HRect());
-		final HTween t = new HTween();
-		t.property(H.SCALE).target(d).start(0).end(1).ease(.03f).spring(.9f).callback(new HCallback(){public void run(Object o) {
-			new HTimer(1000,1).callback(new HCallback(){public void run(Object obj) {
-				t.start(1).end(0).spring(0).ease(.03f).register();
-			}});
-		}});
+		exit();
 	}
 	
-	@Override
-	public void draw() {
-		H.drawStage();
-		//s4.randomColors(colors);
+	float quadratic(float p0, float p1, float p2, float t) {
+		float a = p2 - 2*p1 + p0;
+		float b = 2 * (p1-p0);
+		float c = p0;
+		float tt = t*t;
+		return a*tt + b*t + c;
 	}
 }
 /** @endcond */

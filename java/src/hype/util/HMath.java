@@ -161,7 +161,7 @@ public class HMath implements HConstants {
 	public static float lineSide(
 		float x1, float y1, float x2, float y2, float ptx, float pty
 	) {
-		return ( (x2-x1)*(pty-y1) - (y2-y1)*(ptx-x1) );
+		return (x2-x1)*(pty-y1) - (y2-y1)*(ptx-x1);
 	}
 	
 	public static boolean collinear(
@@ -204,7 +204,7 @@ public class HMath implements HConstants {
 	 * initially `{0,0,0}`, and you received just 2 valid parameters,
 	 * `params[2]` can still contain a non-zero value.
 	 * 
-	 * @see solveCubic(float,float,float,float,float[])
+	 * @see solveCubic(float,float,float,float,float[]), bezierParam(float,float,float,float,float[])
 	 * @param p0    The first anchor point
 	 * @param p1    The first control point
 	 * @param p2    The second control point
@@ -235,9 +235,39 @@ public class HMath implements HConstants {
 		float b = 3*(p0 - 2*p1 + p2);
 		float c = 3*(p1-p0);
 		float d = p0 - val;
+		int numRoots = solveCubic(a,b,c,d,params);
 		
 		// Pack all the valid parameters (0 < t < 1) to the left
-		int numRoots = solveCubic(a,b,c,d,params);
+		int numParams = 0;
+		for(int i=0; i<numRoots; ++i) {
+			if(params[i]<0 || params[i]>1) continue;
+			params[numParams++] = params[i];
+		}
+		return numParams;
+	}
+	
+	public static int bezierParam(
+		float p0, float p1, float p2,
+		float val, float[] params
+	) {
+		// If `val` is outside the control & anchor points, return 0
+		float max = p0;
+		if(max < p1) max = p1;
+		if(max < p2) max = p2;
+		
+		float min = p0;
+		if(min > p1) min = p1;
+		if(min > p2) min = p2;
+		
+		if(val<min || val>max) return 0;
+		
+		
+		float a = p2 - 2*p1 + p0;
+		float b = 2 * (p1-p0);
+		float c = p0 - val;
+		int numRoots = solveQuadratic(a,b,c,params);
+		
+		// Pack all the valid parameters (0 < t < 1) to the left
 		int numParams = 0;
 		for(int i=0; i<numRoots; ++i) {
 			if(params[i]<0 || params[i]>1) continue;

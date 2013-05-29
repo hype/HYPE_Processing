@@ -1691,7 +1691,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	
 	/**
-	 * An HIterator use in iterating through HDrawable's children.
+	 * An HIterator used for iterating through HDrawable's children.
 	 * 
 	 * @author james
 	 */
@@ -1721,6 +1721,5 @@ public abstract class HDrawable extends HNode<HDrawable>
 		public void remove() {
 			if(d1 != null) d1.popOut();
 		}
-		
 	}
 }

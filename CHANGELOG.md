@@ -1,4 +1,8 @@
-### build_21030528.0 (May 29, 2013)
+### build_20130529.1 (May 29, 2013)
+- new class: `hype.util.HVertexNEW` _(this will replace HPath.HVertex soon)_
+- new method: `HMath.bezierParam(float,float,float,float,float[])` _(this is like the other bezierParam(), but for quadratic bezier curves)_
+
+### build_20130529.0 (May 29, 2013)
 - bugfix: HPath overrides fill and stroke during random colors mode, even if `fillOnly()` or `strokeOnly()` are set
 - bugfix: HTween doesn't reset its current value when it's finished its tweening
 - the HDrawable methods `contains(float,float,float)` and `containsRel(float,float,float)` now takes for account the drawable's own z coordinates.

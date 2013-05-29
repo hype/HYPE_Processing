@@ -1465,7 +1465,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public abstract void draw( PGraphics g, boolean usesZ,
 		float drawX, float drawY, float currAlphaPerc);
 	/**
-	 * An HIterator use in iterating through HDrawable's children.
+	 * An HIterator used for iterating through HDrawable's children.
 	 * 
 	 * @author james
 	 */
