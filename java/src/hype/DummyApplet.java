@@ -1,7 +1,6 @@
 package hype;
 
 import hype.colorist.HColorPool;
-import hype.drawable.HCanvas;
 import hype.drawable.HShape;
 import hype.util.H;
 import processing.core.PApplet;
@@ -17,7 +16,6 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] static random colors for HShape
 	 * - [ ] HPath: base size for computing perc vertex stuff = 100, if size = 0
 	 * 
 	 * - [ ] HDrawable.transformChildren(bool)

@@ -1,3 +1,6 @@
+### build_21030528.0 (May 29, 2013)
+- bugfix: HPath would override fill and stroke during random colors mode, even if `fillOnly()` or `strokeOnly()` are set.
+
 ### build_20130528.0 (May 28, 2013)
 - changes for HTween:
 	- ending position should now sit exactly at the values defined by `end()`.
