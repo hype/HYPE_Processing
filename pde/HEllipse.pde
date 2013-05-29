@@ -1,3 +1,13 @@
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static class HEllipse extends HDrawable {
 	private int _mode;
 	private float _startRad, _endRad;

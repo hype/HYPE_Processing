@@ -1,3 +1,13 @@
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static class HColorTransform implements HColorist {
 	public float _percA, _percR, _percG, _percB;
 	public int _offsetA, _offsetR, _offsetG, _offsetB;

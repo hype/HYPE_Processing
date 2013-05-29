@@ -1,3 +1,14 @@
+/*
+ * HYPE_Processing
+ * http://www.hypeframework.org/ & https://github.com/hype/HYPE_Processing
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
+
 package hype;
 
 import hype.behavior.HTween;
@@ -29,9 +40,6 @@ public class DummyApplet extends PApplet {
 	 * - [ ] recursive spatial transforms for HDrawable & HGroup
 	 * - [ ] HHittable.contains(x,y,z)
 	 * 
-	 * (Licensing Stuff)
-	 * - [ ] copyright disclaimer for each source file
-	 * 
 	 * - [ ] HShape hit detection + pgraphics buffer
 	 * - [ ] disable style for HShape in P3D
 	 * - [ ] use pgraphics buffer for HText + use that for hitbox checking
@@ -50,9 +58,6 @@ public class DummyApplet extends PApplet {
 	 * 		- capture(1) -- single frame
 	 * 		- capture(1,10) -- frame sequence
 	 * 		- pdf frames (remember that individual pdf frames ignores autoClear(false))
-	 * 
-	 * - [ ] HTween: DLOC stuff
-	 * 
 	 * 
 	 * (Refactors)
 	 * - [ ] use float arrays instead of HVertex

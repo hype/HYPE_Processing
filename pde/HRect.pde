@@ -1,3 +1,13 @@
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static class HRect extends HDrawable {
 	public float _tl, _tr, _bl, _br;
 	public HRect() {}
