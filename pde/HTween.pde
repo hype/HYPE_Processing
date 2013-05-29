@@ -99,7 +99,7 @@ public static class HTween extends HBehavior {
 	}
 	public void runBehavior(PApplet app) {
 		if(_target==null) return;
-		_curr += _dcurr = _dcurr*_spring + (1-_curr)*_ease;
+		_curr += (_dcurr) = (_dcurr*_spring + (1-_curr)*_ease);
 		float c = HMath.round512(_curr);
 		float v1 = HMath.map(c,0,1,_s1,_e1);
 		float v2 = HMath.map(c,0,1,_s2,_e2);
@@ -130,6 +130,7 @@ public static class HTween extends HBehavior {
 		return (HTween) super.register();
 	}
 	public HTween unregister() {
+		_curr = _dcurr = 0;
 		return (HTween) super.unregister();
 	}
 }

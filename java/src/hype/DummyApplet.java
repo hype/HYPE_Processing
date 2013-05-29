@@ -1,7 +1,12 @@
 package hype;
 
+import hype.behavior.HTween;
 import hype.colorist.HColorPool;
+import hype.drawable.HDrawable;
+import hype.drawable.HRect;
 import hype.drawable.HShape;
+import hype.interfaces.HCallback;
+import hype.trigger.HTimer;
 import hype.util.H;
 import processing.core.PApplet;
 
@@ -70,7 +75,7 @@ public class DummyApplet extends PApplet {
 	@Override
 	public void setup() {
 		size(600,600);
-		frameRate(6);
+		//frameRate(6);
 		H.init(this);
 		H.background(64);
 		
@@ -99,12 +104,20 @@ public class DummyApplet extends PApplet {
 		
 		colors.fillAndStroke();
 		s3.randomColors(colors);
+		
+		HDrawable d = H.add(new HRect());
+		final HTween t = new HTween();
+		t.property(H.SCALE).target(d).start(0).end(1).ease(.03f).spring(.9f).callback(new HCallback(){public void run(Object o) {
+			new HTimer(1000,1).callback(new HCallback(){public void run(Object obj) {
+				t.start(1).end(0).spring(0).ease(.03f).register();
+			}});
+		}});
 	}
 	
 	@Override
 	public void draw() {
 		H.drawStage();
-		s4.randomColors(colors);
+		//s4.randomColors(colors);
 	}
 }
 /** @endcond */
