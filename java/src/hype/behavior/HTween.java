@@ -165,7 +165,7 @@ public class HTween extends HBehavior {
 	}
 	
 	@Override
-	public HBehavior unregister() {
+	public HTween unregister() {
 		return (HTween) super.unregister();
 	}
 }

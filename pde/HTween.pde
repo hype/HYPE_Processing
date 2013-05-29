@@ -129,7 +129,7 @@ public static class HTween extends HBehavior {
 	public HTween register() {
 		return (HTween) super.register();
 	}
-	public HBehavior unregister() {
+	public HTween unregister() {
 		return (HTween) super.unregister();
 	}
 }
