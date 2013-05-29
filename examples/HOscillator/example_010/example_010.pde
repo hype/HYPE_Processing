@@ -41,7 +41,7 @@ void setup() {
 
 			starScale -= starOffest;
 		}
-		starScale = 200;		
+		starScale = 200;
 	}
 }
 
