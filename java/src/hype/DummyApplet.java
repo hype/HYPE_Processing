@@ -1,6 +1,7 @@
 package hype;
 
 import hype.colorist.HColorPool;
+import hype.drawable.HCanvas;
 import hype.drawable.HShape;
 import hype.util.H;
 import processing.core.PApplet;
@@ -72,7 +73,8 @@ public class DummyApplet extends PApplet {
 	public void setup() {
 		size(600,600);
 		frameRate(6);
-		H.init(this).background(64);
+		H.init(this);
+		H.background(64);
 		
 		colors = new HColorPool(
 			0xFFFFFFFF, 0xFFF7F7F7, 0xFFECECEC, 0xFF333333,

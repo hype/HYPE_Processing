@@ -97,9 +97,7 @@ public static class HShape extends HDrawable {
 			childShape.width = _shape.width;
 			childShape.height = _shape.height;
 			if(_randomFills != null) g.fill(_randomFills[i]);
-			else g.noFill();
 			if(_randomStrokes != null) g.stroke(_randomStrokes[i]);
-			else g.noStroke();
 			g.shape(childShape, drawX,drawY, w,h);
 		}
 		g.popMatrix();
