@@ -23,6 +23,8 @@ public class DummyApplet extends PApplet {
 	/* TODO
 	 * - [ ] HPath: base size for computing perc vertex stuff = 100, if size = 0
 	 * 
+	 * - [ ] add z index for abs/relLoc()
+	 * 
 	 * - [ ] HDrawable.transformChildren(bool)
 	 * - [ ] recursive spatial transforms for HDrawable & HGroup
 	 * - [ ] HHittable.contains(x,y,z)

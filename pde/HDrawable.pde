@@ -1373,6 +1373,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	}
 	public boolean contains(float absX, float absY, float absZ) {
 		PApplet app = H.app();
+		absZ -= _z;
 		return contains(
 			app.screenX(absX,absY,absZ),
 			app.screenY(absX,absY,absZ));
@@ -1385,6 +1386,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	}
 	public boolean containsRel(float relX, float relY, float relZ) {
 		PApplet app = H.app();
+		relZ -= _z;
 		return containsRel(
 			app.screenX(relX,relY,relZ),
 			app.screenY(relX,relY,relZ));
