@@ -1,5 +1,6 @@
 ### build_21030528.0 (May 29, 2013)
-- bugfix: HPath would override fill and stroke during random colors mode, even if `fillOnly()` or `strokeOnly()` are set.
+- bugfix: HPath overrides fill and stroke during random colors mode, even if `fillOnly()` or `strokeOnly()` are set
+- bugfix: HTween doesn't reset its current value when it's finished its tweening
 
 ### build_20130528.0 (May 28, 2013)
 - changes for HTween:
