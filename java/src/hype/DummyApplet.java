@@ -11,8 +11,9 @@
 
 package hype;
 
+import hype.interfaces.HCallback;
+import hype.trigger.HTimer;
 import hype.util.H;
-import hype.util.HMath;
 import processing.core.PApplet;
 
 /**
@@ -82,24 +83,9 @@ public class DummyApplet extends PApplet {
 	public void setup() {
 		H.init(this);
 		
-		float p0 = random(1024);
-		float p1 = random(1024);
-		float p2 = random(1024);
-		float t  = random(1);
-		float val = quadratic(p0,p1,p2,t);
-		
-		float[] params = new float[2];
-		int numParams = HMath.bezierParam(p0,p1,p2,val,params);
-		println("t:  "+t);
-		println(params);
-		println("num: "+numParams);
-		
-		float[] vals = new float[2];
-		for(int i=0; i<2; ++i) vals[i] = quadratic(p0,p1,p2,params[i]);
-		println("val:"+val);
-		println(vals);
-		
-		exit();
+		new HTimer(1000,1).callback(new HCallback() {public void run(Object obj) {
+			println("hey");
+		}}).unregister();
 	}
 	
 	float quadratic(float p0, float p1, float p2, float t) {
