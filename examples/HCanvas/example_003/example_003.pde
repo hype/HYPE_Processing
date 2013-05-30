@@ -8,14 +8,9 @@ void setup() {
   H.init(this).background(#202020).use3D(true);
   smooth();
   
-  colors = new HColorPool(
-    #FFFFFF, #F7F7F7, #ECECEC, #333333,
-    #0095A8, #00616F, #FF3300, #FF6600)
-    .fillOnly();
+  colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333,#0095A8, #00616F, #FF3300, #FF6600);
   
-  canvas = (HCanvas) H.add(new HCanvas(P3D)
-    .autoClear(false)
-    .fade(2));
+  canvas = (HCanvas) H.add(new HCanvas(P3D).autoClear(false).fade(2));
   
   onTweenEnd = new HCallback(){public void run(Object obj) {
     HTween tween = (HTween) obj;
@@ -24,51 +19,59 @@ void setup() {
   
   pool = new HDrawablePool(300);
   pool.autoParent(canvas)
-    .add( new HRect()
-      .rounding(5)
+    .add( new HRect(10)
+      .rounding(20)
       .noStroke()
-      .anchorAt(H.CENTER))
-    .colorist(colors)
+      .noFill()
+    )
+
     .onCreate(new HCallback(){public void run(Object obj) {
       HDrawable d = (HDrawable) obj;
-      d.obj("tween", new HTween()
+      d
+        .fill(colors.getColor())
+        .scale(0)
+
+        .obj("tween", new HTween()
           .target(d)
           .property(H.Z)
           .ease(.0005)
-          .spring(.95)
-          .callback(onTweenEnd))
+          .spring(.97)
+          .callback(onTweenEnd)
+        )
+
         .obj("rosc", new HOscillator()
           .property(H.ROTATION)
           .waveform(H.SINE)
-          .speed(1)
+          .speed(0.3)
           .freq(2)
-          .range(-90,90))
+          .range( -(int)random(180,360) , (int)random(180,360) )
+        )
+
         .obj("sosc", new HOscillator()
           .property(H.SCALE)
           .waveform(H.SINE)
-          .speed(0.5)
+          .speed(0.75)
           .freq(4)
-          .range(0,2));
+          .range(0.2,2)
+        )
+      ;
     }})
+
     .onRequest(new HCallback(){public void run(Object obj) {
+      int i = pool.currentIndex();
       HDrawable d = (HDrawable) obj;
+
+      HTween tween = (HTween) d.obj("tween");
       HOscillator rosc = (HOscillator) d.obj("rosc");
       HOscillator sosc = (HOscillator) d.obj("sosc");
-      HTween tween = (HTween) d.obj("tween");
-      int i = pool.currentIndex();
-      
-      d.loc(random(width), random(height), random(-2000))
-        .size(HMath.randomInt(1,11)*5);
-      tween.register()
-        .start(d.z())
-        .end(100);
-      rosc.register()
-        .currentStep(i*2)
-        .target(d);
-      sosc.register()
-        .currentStep(i*2)
-        .target(d);
+
+      d.loc(random(width), random(height), random(-2000)).size(HMath.randomInt(1,11)*5);
+
+      tween.register().start(d.z()).end(100);
+      rosc.register().currentStep(i*2).target(d);
+      sosc.register().currentStep(i*2).target(d);
     }})
+
     .onRelease(new HCallback(){public void run(Object obj) {
       HDrawable d = (HDrawable) obj;
       HOscillator rosc = (HOscillator) d.obj("rosc");
@@ -78,7 +81,7 @@ void setup() {
       sosc.unregister();
     }});
   
-  new HTimer(250).callback(new HCallback(){public void run(Object obj){
+  new HTimer(150).callback(new HCallback(){public void run(Object obj){
     pool.request();
   }});
 }
