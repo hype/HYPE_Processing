@@ -43,13 +43,7 @@ void setup() {
     // timer starts / holds art on screen for 3 seconds / then calls onDisappear
     final HCallback onPause = new HCallback(){public void run(Object obj) {
       timer.unregister();
-      
-      // james: we now need to explicitly call start() due to
-      // the internal changes in HTween  
-      tween.start(1).end(0)
-        .ease(0.1).spring(0.7)
-        .register()
-        .callback(onDisappear);
+      tween.start(1).end(0).ease(0.1).spring(0.7).register().callback(onDisappear);
     }};
     
     tween.callback(onAppear);

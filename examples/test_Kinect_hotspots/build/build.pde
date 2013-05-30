@@ -109,14 +109,14 @@ void draw() {
       
       HDrawable lhand = leftHands.get(userId);
       HDrawable rhand = rightHands.get(userId);
-      float lx=lhand.x(), ly=lhand.y();
-      float rx=rhand.x(), ry=rhand.y();
+      float lx=lhand.x(), ly=lhand.y(), lz=lhand.z();
+      float rx=rhand.x(), ry=rhand.y(), lz=rhand.z();
 
       for(int j=0; j<hitboxes.length; ++j) {
         if(hitList[j]) continue;
 
         HDrawable hitbox = hitboxes[j];
-        hitList[j] = hitbox.contains(lx,ly) || hitbox.contains(rx,ry);
+        hitList[j] = hitbox.contains(lx,ly,lz) || hitbox.contains(rx,ry,rz);
         if(hitList[j]) hitbox.fill(H.GREEN, 150);
         else hitbox.fill(#333333, 150);
       }

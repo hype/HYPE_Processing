@@ -10,9 +10,10 @@
  */
 public static abstract class HTrigger extends HBehavior {
 	public HCallback _callback;
+	public HTrigger() {
+		register();
+	}
 	public HTrigger callback(HCallback cb) {
-		if(cb == null) unregister();
-		else register();
 		_callback = cb;
 		return this;
 	}
