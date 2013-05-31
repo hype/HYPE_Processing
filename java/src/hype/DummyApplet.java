@@ -27,11 +27,14 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] add z level for HOscillator
+	 * - [ ] add z coords for HOscillator
 	 * - [ ] fix HVertexNEW and HPathNEW's hitbox
+	 * - [ ] eager registration for HBehaviors
 	 * 
-	 * - [ ] HNonChild interface (will indicate HDrawable.add() to not add it
-	 *       as a child.)
+	 * - [ ] HTween: start/end 1/2/3 getters
+	 * - [ ] HTween: delegate start() & end() methods to start(a,b,c) & start(a,b,c)
+	 * 
+	 * - [ ] implement HNonChild interface to HStage and apply change to add()
 	 * 
 	 * - [ ] HDrawable.transformChildren(bool)
 	 * - [ ] recursive spatial transforms for HDrawable
@@ -44,8 +47,6 @@ public class DummyApplet extends PApplet {
 	 * 		- stroke cap
 	 * 		- fill
 	 * - [ ] protected HDrawable.onSizeChange();
-	 * 
-	 * - [ ] HContext
 	 * 
 	 * - [ ] HShape hit detection + pgraphics buffer
 	 * - [ ] disable style for HShape in P3D
@@ -66,14 +67,15 @@ public class DummyApplet extends PApplet {
 	 * 		- pdf frames (remember that individual pdf frames ignores autoClear(false))
 	 * 
 	 * (Refactors)
+	 * - [ ] property setter objects
 	 * - [ ] have HColors implement HConstants
-	 * - [ ] have HDrawable perc stuff use x2pc()/y2pc()/x2px()/y2px()
+	 * - [ ] have HDrawable perc stuff use x2y()/y2v()/u2x()/v2y()
 	 * - [ ] rename xxxPerc -> xxxUV or xxxPc
 	 * - [ ] rearrange HDrawable's fields by category
 	 * - [ ] bezierParam() for quadratic curves
 	 * - [ ] HMath: add z index for abs/relLoc()
 	 * - [ ] HMath: use processing's random()
-	 * - [ ] HMath: change "arr" methods to use method(val, float[] loc) format
+	 * - [ ] change util methods that returns arrays to use the method(val, float[] loc) format
 	 * - [ ] refactor/cleanup HOscillator
 	 * - [ ] use registered() for autoregistering behaviors
 	 * - [ ] remove register/unregister overrides
@@ -83,6 +85,7 @@ public class DummyApplet extends PApplet {
 	 * (Far Future Stuff)
 	 * - [ ] AS3::SoundAnalyzer
 	 * - [ ] HContext overhaul
+	 * - [ ] real parser for j2p.pl
 	 */
 	
 	@Override

@@ -1,4 +1,13 @@
-### build_20130531.2 (May 31, 2013)
+### build_??? (???, 2013)
+- included z coordinate oscillation for HOscillator
+- removed unused constructor `new HOscillator(HDrawable)`
+- removed deprecated method `HOscillator.createCopy()`
+- new HOscillator methods:
+	- `minimum(float,float)` & `minimum(float,float,float)`
+	- `maximum(float,float)` & `maximum(float,float,float)`
+	- `range(float,float,float,float)` & `range(float,float,float,float,float,float)`
+	- `min1()`, `min2()` & `min3()`
+	- `max1()`, `max2()` & `max3()`
 - BLAHRG
 
 ### build_20130531.1 (May 31, 2013)
