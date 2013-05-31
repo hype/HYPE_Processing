@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['move',['move',['../classhype_1_1drawable_1_1_h_drawable.html#a0e5c5a9eb856155384d4b34a90cd38eb',1,'hype.drawable.HDrawable.move(float dx, float dy)'],['../classhype_1_1drawable_1_1_h_drawable.html#a11c1fec4c2f01bb4e86f42fd76800194',1,'hype.drawable.HDrawable.move(float dx, float dy, float dz)']]]
+  ['move',['move',['../classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab9246d4d8feb9277df280c3255ba9966',1,'hype.core.drawable.HDrawable.move(float dx, float dy)'],['../classhype_1_1core_1_1drawable_1_1_h_drawable.html#ac245654fba5be06dec5e18ef06dbc743',1,'hype.core.drawable.HDrawable.move(float dx, float dy, float dz)']]]
 ];

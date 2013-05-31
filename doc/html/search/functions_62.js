@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['bezierparam',['bezierParam',['../classhype_1_1util_1_1_h_math.html#a7c43d0c4017e4b65c8f00788a0170bbc',1,'hype::util::HMath']]],
-  ['bool',['bool',['../classhype_1_1drawable_1_1_h_drawable.html#afd9c440d3b5d30006d2644d1f07dc23e',1,'hype.drawable.HDrawable.bool(String key, boolean value)'],['../classhype_1_1drawable_1_1_h_drawable.html#a138a8d2253dbfccb39889cb01b452f7c',1,'hype.drawable.HDrawable.bool(String key)']]],
-  ['boundingsize',['boundingSize',['../classhype_1_1drawable_1_1_h_drawable.html#a70e91337f0ceafe27f5119e12063cc8e',1,'hype::drawable::HDrawable']]]
+  ['bezierparam',['bezierParam',['../classhype_1_1core_1_1util_1_1_h_math.html#a8f9294fdca858a741815dce119f344d4',1,'hype::core::util::HMath']]],
+  ['bool',['bool',['../classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5df0b54383b13fd0d121d78af53b125a',1,'hype.core.drawable.HDrawable.bool(String key, boolean value)'],['../classhype_1_1core_1_1drawable_1_1_h_drawable.html#a05b3317714513026e65a83cd7820f49b',1,'hype.core.drawable.HDrawable.bool(String key)']]],
+  ['boundingsize',['boundingSize',['../classhype_1_1core_1_1drawable_1_1_h_drawable.html#a0441f8e79c68e194dac8a67002d58442',1,'hype::core::drawable::HDrawable']]]
 ];
