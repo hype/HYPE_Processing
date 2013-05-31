@@ -12,6 +12,7 @@
 package hype;
 
 import hype.drawable.HDrawable;
+import hype.drawable.HEllipse;
 import hype.drawable.HPathNEW;
 import hype.util.H;
 import processing.core.PApplet;
@@ -27,8 +28,10 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * (new HVertices)
 	 * - [ ] fix HVertexNEW and HPathNEW's hitbox
+	 * 
+	 * - [ ] HNonChild interface (will indicate HDrawable.add() to not add it
+	 *       as a child.)
 	 * 
 	 * - [ ] HDrawable.transformChildren(bool)
 	 * - [ ] recursive spatial transforms for HDrawable
@@ -41,6 +44,8 @@ public class DummyApplet extends PApplet {
 	 * 		- stroke cap
 	 * 		- fill
 	 * - [ ] protected HDrawable.onSizeChange();
+	 * 
+	 * - [ ] HContext
 	 * 
 	 * - [ ] HShape hit detection + pgraphics buffer
 	 * - [ ] disable style for HShape in P3D
@@ -60,11 +65,10 @@ public class DummyApplet extends PApplet {
 	 * 		- capture(1,10) -- frame sequence
 	 * 		- pdf frames (remember that individual pdf frames ignores autoClear(false))
 	 * 
-	 * - [ ] H.add() for each drawable type
-	 * 
 	 * (Refactors)
+	 * - [ ] Separate hype.core and hype.ext 
 	 * - [ ] have HDrawable perc stuff use x2pc()/y2pc()/x2px()/y2px()
-	 * - [ ] rename xxxPerc -> xxxUV
+	 * - [ ] rename xxxPerc -> xxxUV or xxxPc
 	 * - [ ] rearrange HDrawable's fields by category
 	 * - [ ] bezierParam() for quadratic curves
 	 * - [ ] HMath: add z index for abs/relLoc()
@@ -86,6 +90,8 @@ public class DummyApplet extends PApplet {
 		size(600,600);
 		H.init(this);
 		H.background(H.BLUE);
+		
+		HEllipse circ = H.add(new HEllipse());
 		
 		HDrawable d = H.add(new HPathNEW(POLYGON)
 			.vertex(-25f, 50f, 25f, 50f, 0,0)

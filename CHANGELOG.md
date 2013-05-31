@@ -1,3 +1,14 @@
+### build_20130531.1 (May 31, 2013)
+- removed casting requirements for `H.add()` and `H.remove()` for the ff classes:
+	- HCanvas
+	- HEllipse
+	- HGroup
+	- HImage
+	- HPath
+	- HRect
+	- HShape
+	- HText
+
 ### build_20130530.0 (May 30, 2013)
 - new HDrawable methods:
 	- `x2u(float)` -- converts an `x` coordinate to its UV coordinate equvialent, or percentage of the drawable's width (if width is 0, then it computes with 100)

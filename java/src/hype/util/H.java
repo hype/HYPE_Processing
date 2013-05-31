@@ -12,8 +12,16 @@
 package hype.util;
 
 import hype.behavior.HBehaviorRegistry;
+import hype.drawable.HCanvas;
 import hype.drawable.HDrawable;
+import hype.drawable.HEllipse;
+import hype.drawable.HGroup;
+import hype.drawable.HImage;
+import hype.drawable.HPath;
+import hype.drawable.HRect;
+import hype.drawable.HShape;
 import hype.drawable.HStage;
+import hype.drawable.HText;
 import hype.event.HMouse;
 import processing.core.PApplet;
 import processing.core.PGraphics;
@@ -113,8 +121,72 @@ public class H implements HConstants {
 		return _self;
 	}
 	
+	public static HCanvas add(HCanvas stageChild) {
+		return (HCanvas) _stage.add(stageChild);
+	}
+	
+	public static HEllipse add(HEllipse stageChild) {
+		return (HEllipse) _stage.add(stageChild);
+	}
+	
+	public static HGroup add(HGroup stageChild) {
+		return (HGroup) _stage.add(stageChild);
+	}
+	
+	public static HImage add(HImage stageChild) {
+		return (HImage) _stage.add(stageChild);
+	}
+	
+	public static HPath add(HPath stageChild) {
+		return (HPath) _stage.add(stageChild);
+	}
+	
+	public static HRect add(HRect stageChild) {
+		return (HRect) _stage.add(stageChild);
+	}
+	
+	public static HShape add(HShape stageChild) {
+		return (HShape) _stage.add(stageChild);
+	}
+	
+	public static HText add(HText stageChild) {
+		return (HText) _stage.add(stageChild);
+	}
+	
 	public static HDrawable add(HDrawable stageChild) {
 		return _stage.add(stageChild);
+	}
+	
+	public static HCanvas remove(HCanvas stageChild) {
+		return (HCanvas) _stage.remove(stageChild);
+	}
+	
+	public static HEllipse remove(HEllipse stageChild) {
+		return (HEllipse) _stage.remove(stageChild);
+	}
+	
+	public static HGroup remove(HGroup stageChild) {
+		return (HGroup) _stage.remove(stageChild);
+	}
+	
+	public static HImage remove(HImage stageChild) {
+		return (HImage) _stage.remove(stageChild);
+	}
+	
+	public static HPath remove(HPath stageChild) {
+		return (HPath) _stage.remove(stageChild);
+	}
+	
+	public static HRect remove(HRect stageChild) {
+		return (HRect) _stage.remove(stageChild);
+	}
+	
+	public static HShape remove(HShape stageChild) {
+		return (HShape) _stage.remove(stageChild);
+	}
+	
+	public static HText remove(HText stageChild) {
+		return (HText) _stage.remove(stageChild);
 	}
 	
 	public static HDrawable remove(HDrawable stageChild) {
