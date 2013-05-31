@@ -1,4 +1,15 @@
+### build_20130531.2 (May 31, 2013)
+- BLAHRG
+
 ### build_20130531.1 (May 31, 2013)
+- java packaging changes:
+	- moved HMouse from the `hype.core.event` package to `hype.core.util`
+	- split the "core" classes from the extended classes (core generally contains the superclasses and other core classes, while extended generally contains the subclasses)
+	- merged the classes from the `trigger` package into `behavior`.
+- rename: HSwarmer -> HDirectable
+- new interface: HNonChild (this will indicate if a drawable could not be added inside another drawable sometime in the future)
+
+### build_20130531.0 (May 31, 2013)
 - removed casting requirements for `H.add()` and `H.remove()` for the ff classes:
 	- HCanvas
 	- HEllipse

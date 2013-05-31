@@ -1,6 +1,6 @@
 /*
  * HYPE_Processing
- * http:
+ * http://www.hypeframework.org/ & https://github.com/hype/HYPE_Processing
  * 
  * Copyright (c) 2013 Joshua Davis & James Cruz
  * 
@@ -8,6 +8,24 @@
  * 
  * All rights reserved.
  */
+
+package hype.core.drawable;
+
+import hype.core.collection.HIterator;
+import hype.core.collection.HNode;
+import hype.core.interfaces.HHittable;
+import hype.core.interfaces.HDirectable;
+import hype.core.util.H;
+import hype.core.util.HBundle;
+import hype.core.util.HColors;
+import hype.core.util.HConstants;
+import hype.core.util.HMath;
+import hype.core.util.HWarnings;
+import processing.core.PApplet;
+import processing.core.PConstants;
+import processing.core.PGraphics;
+import processing.core.PVector;
+
 /**
  * The superclass of all HDrawables.
  * 
@@ -15,16 +33,19 @@
  * 
  * @author james
  */
-public static abstract class HDrawable extends HNode<HDrawable>
+public abstract class HDrawable extends HNode<HDrawable>
 		implements HDirectable, HHittable {
+	
 	/** The parent of this drawable @see parent() */
 	protected HDrawable _parent;
 	/** The first child of this drawable @see firstChild() */
 	protected HDrawable _firstChild;
 	/** The last child of this drawable @see lastChild() */
 	protected HDrawable _lastChild;
+	
 	/** The extras bundle of this drawable @see extras() */
 	protected HBundle _extras;
+	
 	/** The x location of this drawable @see x() */
 	protected float _x;
 	/** The y location of this drawable @see y() */
@@ -47,6 +68,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	protected float _alphaPerc;
 	/** The width-to-height ratio used for proportional resizing @see proportional() */
 	protected float _sizeProportion;
+	
 	/** The number of this drawable's children @see numChildren() */
 	protected int _numChildren;
 	/** The fill color of this drawable @see fill() */
@@ -57,8 +79,13 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	protected int _strokeCap;
 	/** The stroke join of this drawable @see strokeJoin() */
 	protected int _strokeJoin;
+	
 	/** The flag that determines if this drawable will be resized proportionally @see proportional() */
 	protected boolean _proportional;
+	
+	
+	// COPY & CREATE //
+	
 	/**
 	 * The default constructor for HDrawable.
 	 * 
@@ -74,14 +101,17 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 */
 	public HDrawable() {
 		_alphaPerc = 1;
+		
 		_fill = HConstants.DEFAULT_FILL;
 		_stroke = HConstants.DEFAULT_STROKE;
 		_strokeCap = PConstants.ROUND;
 		_strokeJoin = PConstants.MITER;
 		_strokeWeight = 1;
+		
 		_width = HConstants.DEFAULT_WIDTH;
 		_height = HConstants.DEFAULT_HEIGHT;
 	}
+	
 	/**
 	 * Copies the values of `other`'s basic HDrawable fields.
 	 * 
@@ -112,6 +142,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_strokeCap = other._strokeCap;
 		_strokeJoin = other._strokeJoin;
 	}
+	
 	/**
 	 * Creates a copy of this drawable.
 	 * 
@@ -121,9 +152,14 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return A copy of this drawable.
 	 */
 	public abstract HDrawable createCopy();
+	
+	
+	// PARENT & CHILD //
+	
 	private boolean invalidDest(HDrawable dest, String warnLoc) {
 		String warnType;
 		String warnMsg;
+		
 		if( dest == null ) {
 			warnType = "Null Destination";
 			warnMsg = HWarnings.NULL_ARGUMENT;
@@ -137,56 +173,82 @@ public static abstract class HDrawable extends HNode<HDrawable>
 			warnType = "Invalid Destination";
 			warnMsg = HWarnings.DESTCEPTION;
 		} else return false;
+		
 		HWarnings.warn(warnType, warnLoc, warnMsg);
 		return true;
 	}
+	
+	@Override
 	public boolean poppedOut() {
 		return (_parent == null);
 	}
+	
+	@Override
 	public void popOut() {
 		if(_parent == null) return;
+		
 		if(_prev == null) _parent._firstChild = _next;
 		if(_next == null) _parent._lastChild = _prev;
 		--_parent._numChildren;
 		_parent = null;
 		super.popOut();
 	}
+	
+	@Override
 	public void putBefore(HDrawable dest) {
 		if(invalidDest(dest,"HDrawable.putBefore()")) return;
+		
 		popOut();
 		super.putBefore(dest);
 		_parent = dest._parent;
 		if(_prev == null) _parent._firstChild = this;
 		++_parent._numChildren;
 	}
+	
+	@Override
 	public void putAfter(HDrawable dest) {
 		if(invalidDest(dest,"HDrawable.putAfter()")) return;
+		
 		popOut();
 		super.putAfter(dest);
 		_parent = dest._parent;
 		if(_next == null) _parent._lastChild = this;
 		++_parent._numChildren;
 	}
+	
+	@Override
 	public void swapLeft() {
 		boolean isLast = (_next == null);
+		
 		super.swapLeft();
+		
 		if(_prev == null) _parent._firstChild = this;
 		if(_next != null && isLast) _parent._lastChild = _next;
 	}
+	
+	@Override
 	public void swapRight() {
 		boolean isFirst = (_prev == null);
+		
 		super.swapRight();
+		
 		if(_next == null) _parent._lastChild = this;
 		if(_prev != null && isFirst) _parent._firstChild = _prev;
 	}
+	
+	@Override
 	public void replaceNode(HDrawable dest) {
 		if(invalidDest(dest,"HDrawable.replaceNode()")) return;
+		
 		super.replaceNode(dest);
+		
 		_parent = dest._parent;
 		dest._parent = null;
+		
 		if(_prev == null) _parent._firstChild = this;
 		if(_next == null) _parent._lastChild = this;
 	}
+	
 	/**
 	 * Returns the parent of this drawable.
 	 * 
@@ -195,6 +257,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable parent() {
 		return _parent;
 	}
+	
 	/**
 	 * Returns the first child of this drawable.
 	 * 
@@ -206,6 +269,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable firstChild() {
 		return _firstChild;
 	}
+	
 	/**
 	 * Returns the last child of this drawable.
 	 * 
@@ -217,6 +281,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable lastChild() {
 		return _lastChild;
 	}
+	
 	/**
 	 * Checks if the given drawable is the parent of this drawable.
 	 * 
@@ -226,6 +291,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public boolean parentOf(HDrawable d) {
 		return (d != null) && (d._parent != null) && (d._parent.equals(this));
 	}
+	
 	/**
 	 * Returns the number of children of this drawable.
 	 * 
@@ -234,6 +300,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public int numChildren() {
 		return _numChildren;
 	}
+	
 	/**
 	 * Adds the passed drawable as this drawable's child.
 	 * 
@@ -257,6 +324,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		}
 		return child;
 	}
+	
 	/**
 	 * Removes a child from this drawable.
 	 * 
@@ -271,6 +339,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		else HWarnings.warn("Not a Child", "HDrawable.remove()", null);
 		return child;
 	}
+	
 	/**
 	 * Creates a new iterator for this drawable to iterate through its children.
 	 * 
@@ -284,6 +353,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawableIterator iterator() {
 		return new HDrawableIterator(this);
 	}
+	
+	
+	// POSITION //
+	
 	/**
 	 * Sets the x and y position of this drawable.
 	 * 
@@ -297,6 +370,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_y = newY;
 		return this;
 	}
+	
 	/**
 	 * Sets the x, y and z position of this drawable.
 	 * 
@@ -312,6 +386,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_z = newZ;
 		return this;
 	}
+	
 	/**
 	 * Sets the position of this drawable via PVector.
 	 * 
@@ -325,6 +400,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_z = pt.z;
 		return this;
 	}
+	
 	/**
 	 * Returns the position of this drawable as a PVector.
 	 * 
@@ -333,27 +409,40 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public PVector loc() {
 		return new PVector(_x,_y,_z);
 	}
+	
+	@Override
 	public HDrawable x(float newX) {
 		_x = newX;
 		return this;
 	}
+	
+	@Override
 	public float x() {
 		return _x;
 	}
+	
+	@Override
 	public HDrawable y(float newY) {
 		_y = newY;
 		return this;
 	}
+	
+	@Override
 	public float y() {
 		return _y;
 	}
+	
+	@Override
 	public HDrawable z(float newZ) {
 		_z = newZ;
 		return this;
 	}
+	
+	@Override
 	public float z() {
 		return _z;
 	}
+	
 	/**
 	 * Moves this drawable from its original x & y position.
 	 * 
@@ -367,6 +456,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_y += dy;
 		return this;
 	}
+	
 	/**
 	 * Moves this drawable from its original x, y & z position.
 	 * 
@@ -382,6 +472,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_z += dz;
 		return this;
 	}
+	
 	/**
 	 * Positions this drawable at the defined location in relation to its
 	 * parent, or (0,0) if the parent is null.
@@ -431,6 +522,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		}
 		return this;
 	}
+	
+	
+	// ANCHOR //
+	
 	/**
 	 * Sets the anchor of this drawable by pixels.
 	 * 
@@ -450,6 +545,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable anchor(float pxX, float pxY) {
 		return anchorX(pxX).anchorY(pxY);
 	}
+	
 	/**
 	 * Sets the anchor of this drawable by pixels via a PVector.
 	 * 
@@ -464,6 +560,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable anchor(PVector pt) {
 		return anchor(pt.x, pt.y);
 	}
+	
 	/**
 	 * Returns the anchor of this drawable in pixels.
 	 * 
@@ -479,6 +576,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public PVector anchor() {
 		return new PVector( anchorX(), anchorY() );
 	}
+	
 	/**
 	 * Sets the x anchor of this drawable by pixels.
 	 * 
@@ -495,6 +593,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_anchorPercX = pxX / (_width==0? 100 : _width);
 		return this;
 	}
+	
 	/**
 	 * Returns the x anchor of this drawable in pixels.
 	 * 
@@ -507,6 +606,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public float anchorX() {
 		return _width * _anchorPercX;
 	}
+	
 	/**
 	 * Sets the y anchor of this drawable by pixels.
 	 * 
@@ -523,6 +623,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_anchorPercY = pxY / (_height==0? 100 : _height);
 		return this;
 	}
+	
 	/**
 	 * Returns the y anchor of this drawable in pixels.
 	 * 
@@ -535,6 +636,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public float anchorY() {
 		return _height * _anchorPercY;
 	}
+	
 	/**
 	 * Sets the anchor of this drawable as percentage of its width and height.
 	 * 
@@ -549,6 +651,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable anchorPerc(float percX, float percY) {
 		return anchorPercX(percX).anchorPercY(percY);
 	}
+	
 	/**
 	 * Returns the x & y anchor of this drawable, as percentage of its width and
 	 * height respectively.
@@ -559,6 +662,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public PVector anchorPerc() {
 		return new PVector(_anchorPercX, _anchorPercY);
 	}
+	
 	/**
 	 * Sets the x anchor of this drawable, as percentage of its width.
 	 * 
@@ -571,6 +675,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_anchorPercX = percX;
 		return this;
 	}
+	
 	/**
 	 * Returns the x anchor of this drawable, as percentage of its width.
 	 * 
@@ -580,6 +685,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public float anchorPercX() {
 		return _anchorPercX;
 	}
+	
 	/**
 	 * Sets the y anchor of this drawable, as percentage of its height.
 	 * 
@@ -592,6 +698,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_anchorPercY = percY;
 		return this;
 	}
+	
 	/**
 	 * Returns the y anchnor of this drawable, as percentage of its height.
 	 * 
@@ -601,6 +708,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public float anchorPercY() {
 		return _anchorPercY;
 	}
+	
 	/**
 	 * Sets the anchor of this drawable at the defined location in relation to
 	 * itself.
@@ -638,6 +746,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 			_anchorPercX = 0;
 		else if(HMath.hasBits(where, HConstants.RIGHT))
 			_anchorPercX = 1;
+		
 		if(HMath.hasBits(where, HConstants.CENTER_Y))
 			_anchorPercY = 0.5f;
 		else if(HMath.hasBits(where, HConstants.TOP))
@@ -646,6 +755,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 			_anchorPercY = 1;
 		return this;
 	}
+	
+	
+	// SIZE //
+	
 	/**
 	 * Sets the size of this drawable.
 	 * 
@@ -658,6 +771,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable size(float w, float h) {
 		return width(w).height(h);
 	}
+	
 	/**
 	 * Sets the size of this drawable, where `s` will be the new width and
 	 * height for this drawable.
@@ -671,6 +785,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		size(s,s);
 		return this;
 	}
+	
 	/**
 	 * Returns the size of this drawable.
 	 * 
@@ -680,6 +795,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public PVector size() {
 		return new PVector(_width,_height);
 	}
+	
 	/**
 	 * Sets the width of this drawable.
 	 * 
@@ -693,6 +809,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_width = w;
 		return this;
 	}
+	
 	/**
 	 * Returns the width of this drawable.
 	 * 
@@ -702,6 +819,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public float width() {
 		return _width;
 	}
+	
 	/**
 	 * Sets the height of this drawable.
 	 * 
@@ -715,6 +833,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_height = h;
 		return this;
 	}
+	
 	/**
 	 * Returns the height of this drawable.
 	 * 
@@ -724,6 +843,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public float height() {
 		return _height;
 	}
+	
 	/**
 	 * Multiplies the width and height of this drawable by the given multipler.
 	 * 
@@ -738,6 +858,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable scale(float s) {
 		return size(_width*s, _height*s);
 	}
+	
 	/**
 	 * Multiplies the width and height of this drawable by the given width and
 	 * height multipliers.
@@ -751,6 +872,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable scale(float sw, float sh) {
 		return size(_width*sw, _height*sh);
 	}
+	
 	/**
 	 * Sets whether or not this drawable will be resized proportionally.
 	 * 
@@ -768,6 +890,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		}
 		return this;
 	}
+	
 	/**
 	 * Returns whether or not this drawable is in proportional mode.
 	 * 
@@ -776,6 +899,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public boolean proportional() {
 		return _proportional;
 	}
+	
 	/**
 	 * Returns the bounding size of this drawable based on this drawble's
 	 * rotation.
@@ -784,24 +908,40 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return The bounding size of this drawable.
 	 */
 	public PVector boundingSize() {
+		// TODO boundingBox()
+		// this code probably needs some *actual* optimization too.
+		
+		// !!CAUTION!! Maths ahead! 
 		float cosVal = (float)Math.cos(_rotationRad);
 		float sinVal = (float)Math.sin(_rotationRad);
 		float drawX = -anchorX();
 		float drawY = -anchorY();
-		float x1 = drawX;			
-		float x2 = _width + drawX;	
-		float y1 = drawY;			
-		float y2 = _height + drawY;	
+		
+		float x1 = drawX;			// left x
+		float x2 = _width + drawX;	// right x
+		float y1 = drawY;			// top y
+		float y2 = _height + drawY;	// bottom y
+		
 		float[] xCoords = new float[4];
 		float[] yCoords = new float[4];
+		
+		// top-left
 		xCoords[0] = x1*cosVal + y1*sinVal;
 		yCoords[0] = x1*sinVal + y1*cosVal;
+		
+		// top-right
 		xCoords[1] = x2*cosVal + y1*sinVal;
 		yCoords[1] = x2*sinVal + y1*cosVal;
+		
+		// bottom-left
 		xCoords[2] = x1*cosVal + y2*sinVal;
 		yCoords[2] = x1*sinVal + y2*cosVal;
+		
+		// bottom-right
 		xCoords[3] = x2*cosVal + y2*sinVal;
 		yCoords[3] = x2*sinVal + y2*cosVal;
+		
+		// get the min/max x & y with one loop 
 		float minX = xCoords[3];
 		float maxX = minX;
 		float minY = yCoords[3];
@@ -809,13 +949,20 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		for(int i=0; i<3; ++i) {
 			float x = xCoords[i];
 			float y = yCoords[i];
+			
 			if(x < minX) minX = x;
 			else if(x > maxX) maxX = x;
+			
 			if(y < minY) minY = y;
 			else if(y > maxY) maxY = y;
 		}
+		
 		return new PVector(maxX-minX, maxY-minY);
 	}
+	
+	
+	// STYLE //
+	
 	/**
 	 * Sets the fill for this drawable.
 	 * 
@@ -832,6 +979,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_fill = clr;
 		return this;
 	}
+	
 	/**
 	 * Sets the fill for this drawable.
 	 * 
@@ -853,6 +1001,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_fill = HColors.setAlpha(clr,alpha);
 		return this;
 	}
+	
 	/**
 	 * Sets the fill for this drawable.
 	 * 
@@ -869,6 +1018,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_fill = HColors.merge(255,r,g,b);
 		return this;
 	}
+	
 	/**
 	 * Sets the fill for this drawable.
 	 * 
@@ -886,6 +1036,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_fill = HColors.merge(a,r,g,b);
 		return this;
 	}
+	
 	/**
 	 * Returns the fill for this drawable.
 	 * 
@@ -896,6 +1047,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public int fill() {
 		return _fill;
 	}
+	
 	/**
 	 * Removes the fill of this drawable.
 	 * 
@@ -909,6 +1061,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable noFill() {
 		return fill(HConstants.CLEAR);
 	}
+
 	/**
 	 * Sets the stroke color for this drawable.
 	 * 
@@ -925,6 +1078,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_stroke = clr;
 		return this;
 	}
+	
 	/**
 	 * Sets the stroke color for this drawable.
 	 * 
@@ -946,6 +1100,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_stroke = HColors.setAlpha(clr,alpha);
 		return this;
 	}
+	
 	/**
 	 * Sets the stroke color for this drawable.
 	 * 
@@ -962,6 +1117,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_stroke = HColors.merge(255,r,g,b);
 		return this;
 	}
+	
 	/**
 	 * Sets the stroke color for this drawable.
 	 * 
@@ -979,6 +1135,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_stroke = HColors.merge(a,r,g,b);
 		return this;
 	}
+
 	/**
 	 * Returns the stroke color for this drawable.
 	 * 
@@ -989,6 +1146,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public int stroke() {
 		return _stroke;
 	}
+	
 	/**
 	 * Removes the stroke color of this drawable.
 	 * 
@@ -1002,6 +1160,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable noStroke() {
 		return stroke(HConstants.CLEAR);
 	}
+	
 	/**
 	 * Sets the stroke cap for this drawable.
 	 * 
@@ -1019,6 +1178,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_strokeCap = type;
 		return this;
 	}
+
 	/**
 	 * Returns the stroke cap for this drawable.
 	 * 
@@ -1027,6 +1187,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public int strokeCap() {
 		return _strokeCap;
 	}
+
 	/**
 	 * Sets the stroke join for this drawable.
 	 * 
@@ -1044,6 +1205,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_strokeJoin = type;
 		return this;
 	}
+
 	/**
 	 * Returns the stroke join for this drawable.
 	 * 
@@ -1052,6 +1214,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public int strokeJoin() {
 		return _strokeJoin;
 	}
+	
 	/**
 	 * Sets the stroke weight, or thickness of this drawable.
 	 * 
@@ -1063,6 +1226,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_strokeWeight = f;
 		return this;
 	}
+	
 	/**
 	 * Returns the stroke weight, or thickness of this drawable.
 	 * 
@@ -1071,6 +1235,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public float strokeWeight() {
 		return _strokeWeight;
 	}
+	
+	
+	// ROTATION //
+	
 	/**
 	 * Sets the rotation for this drawable, in degrees.
 	 * 
@@ -1082,6 +1250,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_rotationRad = deg * HConstants.D2R;
 		return this;
 	}
+	
 	/**
 	 * Returns the rotation for this drawable, in degrees.
 	 * 
@@ -1090,13 +1259,18 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public float rotation() {
 		return _rotationRad * HConstants.R2D;
 	}
+	
+	@Override
 	public HDrawable rotationRad(float rad) {
 		_rotationRad = rad;
 		return this;
 	}
+	
+	@Override
 	public float rotationRad() {
 		return _rotationRad;
 	}
+	
 	/**
 	 * Shifts this drawable's current rotation by the passed value, in degrees.
 	 * 
@@ -1108,6 +1282,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_rotationRad += deg * HConstants.D2R;
 		return this;
 	}
+	
 	/**
 	 * Shifts this drawable's current rotation by the passed value, in radians.
 	 * 
@@ -1119,6 +1294,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_rotationRad += rad;
 		return this;
 	}
+	
+	
+	// VISIBILITY //
+	
 	/**
 	 * Sets the transparency for this drawable.
 	 * 
@@ -1141,6 +1320,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable alpha(int a) {
 		return alphaPerc(a/255f);
 	}
+	
 	/**
 	 * Returns the transparency for this drawable, ranging from 0 to 255.
 	 * 
@@ -1153,6 +1333,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public int alpha() {
 		return Math.round( alphaPerc()*255 );
 	}
+	
 	/**
 	 * Sets the transparency for this drawable, as percentage.
 	 * 
@@ -1169,6 +1350,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_alphaPerc = (aPerc<0)? 0 : (aPerc>1)? 1 : aPerc;
 		return this;
 	}
+	
 	/**
 	 * Returns the transparency for this drawable, ranging from 0 to 255.
 	 * 
@@ -1181,6 +1363,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public float alphaPerc() {
 		return (_alphaPerc<0)? 0 : _alphaPerc;
 	}
+	
 	/**
 	 * Sets the visibility of this drawable.
 	 * 
@@ -1203,6 +1386,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		}
 		return this;
 	}
+	
 	/**
 	 * Returns the visibility of this drawable.
 	 * 
@@ -1211,6 +1395,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public boolean visibility() {
 		return _alphaPerc > 0;
 	}
+	
 	/**
 	 * Makes this drawable visible by calling `visibility(true)`.
 	 * 
@@ -1221,6 +1406,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable show() {
 		return visibility(true);
 	}
+	
 	/**
 	 * Makes this drawable invisible by calling `visibility(false)`.
 	 * 
@@ -1231,6 +1417,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable hide() {
 		return visibility(false);
 	}
+	
 	/**
 	 * Shifts the current alpha of this drawable by the given value.
 	 * 
@@ -1242,6 +1429,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable alphaShift(int da) {
 		return alphaShiftPerc( da/255f );
 	}
+	
 	/**
 	 * Shifts the current alpha of this drawable, by percentage.
 	 * 
@@ -1253,18 +1441,26 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable alphaShiftPerc(float daPerc) {
 		return alphaPerc(_alphaPerc + daPerc);
 	}
+	
+	
+	// UTILITY //
+	
 	public float x2u(float px) {
 		return px / (_width==0? 100 : _width);
 	}
+	
 	public float y2v(float px) {
 		return px / (_height==0? 100 : _height);
 	}
+	
 	public float u2x(float pc) {
 		return pc * _width;
 	}
+	
 	public float v2y(float pc) {
 		return pc * _height;
 	}
+	
 	/**
 	 * Assigns an _extras bundle_ for this drawable to hold arbitrary data.
 	 * 
@@ -1279,6 +1475,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_extras = b;
 		return this;
 	}
+	
 	/**
 	 * Returns this drawable's _extras bundle_.
 	 * 
@@ -1287,6 +1484,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HBundle extras() {
 		return _extras;
 	}
+	
 	/**
 	 * Puts any arbitrary object into this drawable's _extras bundle_.
 	 * 
@@ -1303,6 +1501,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_extras.obj(key,value);
 		return this;
 	}
+	
 	/**
 	 * Puts any arbitrary native value into this drawable's _extras bundle_.
 	 * 
@@ -1319,6 +1518,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_extras.num(key,value);
 		return this;
 	}
+	
 	/**
 	 * Puts any arbitrary boolean value into this drawable's _extras bundle_.
 	 * 
@@ -1333,6 +1533,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_extras.bool(key,value);
 		return this;
 	}
+	
 	/**
 	 * Returns the object from the _extras bundle_ with the corresponding key.
 	 * 
@@ -1345,6 +1546,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public Object obj(String key) {
 		return (_extras==null)? null : _extras.obj(key);
 	}
+	
 	/**
 	 * Returns the string from the _extras bundle_ with the corresponding key.
 	 * 
@@ -1358,6 +1560,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public String str(String key) {
 		return (_extras==null)? null : _extras.str(key);
 	}
+	
 	/**
 	 * Returns the number from the _extras bundle_ with the corresponding key.
 	 * 
@@ -1370,6 +1573,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public float num(String key) {
 		return (_extras==null)? 0 : _extras.num(key);
 	}
+	
 	/**
 	 * Returns the rounded number from the _extras bundle_ with the corresponding key.
 	 * 
@@ -1381,6 +1585,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public int numI(String key) {
 		return (_extras==null)? 0 : _extras.numI(key);
 	}
+	
 	/**
 	 * Returns the equivalent boolean value from the _extras bundle_ with the corresponding key.
 	 * 
@@ -1393,6 +1598,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 			return false;
 		return _extras.bool(key);
 	}
+	
+	@Override
 	public boolean contains(float absX, float absY, float absZ) {
 		PApplet app = H.app();
 		absZ -= _z;
@@ -1400,12 +1607,16 @@ public static abstract class HDrawable extends HNode<HDrawable>
 			app.screenX(absX,absY,absZ),
 			app.screenY(absX,absY,absZ));
 	}
+	
+	@Override
 	public boolean contains(float absX, float absY) {
 		float[] rel = HMath.relLocArr(this, absX, absY);
 		rel[0] += anchorX();
 		rel[1] += anchorY();
 		return containsRel(rel[0], rel[1]);
 	}
+	
+	@Override
 	public boolean containsRel(float relX, float relY, float relZ) {
 		PApplet app = H.app();
 		relZ -= _z;
@@ -1413,10 +1624,16 @@ public static abstract class HDrawable extends HNode<HDrawable>
 			app.screenX(relX,relY,relZ),
 			app.screenY(relX,relY,relZ));
 	}
+	
+	@Override
 	public boolean containsRel(float relX, float relY) {
 		return (0 <= relX) && (relX <= width()) &&
 			(0 <= relY) && (relY <= height());
 	}
+	
+	
+	// DRAWING //
+	
 	/**
 	 * Applies this drawable's styling to the given graphics context.
 	 * 
@@ -1428,6 +1645,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	protected void applyStyle(PGraphics g, float alphaPc) {
 		float faPerc = alphaPc * (_fill >>> 24);
 		g.fill(_fill | 0xFF000000, Math.round(faPerc));
+		
 		if(_strokeWeight > 0) {
 			float saPerc = alphaPc * (_stroke >>> 24);
 			g.stroke(_stroke | 0xFF000000, Math.round(saPerc));
@@ -1436,6 +1654,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 			g.strokeJoin(_strokeJoin);
 		} else g.noStroke();
 	}
+	
 	/**
 	 * Prepares the environment for drawing this drawable and its children.
 	 * 
@@ -1449,11 +1668,18 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public void paintAll(PGraphics g, boolean usesZ, float alphaPc) {
 		if(_alphaPerc<=0) return;
 		g.pushMatrix();
+			// Rotate and translate
 			if(usesZ) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
+			
+			// Compute current alpha
 			alphaPc *= _alphaPerc;
+			
+			// Draw self
 			draw(g, usesZ,-anchorX(),-anchorY(),alphaPc);
+			
+			// Draw children
 			HDrawable child = _firstChild;
 			while(child != null) {
 				child.paintAll(g, usesZ, alphaPc);
@@ -1461,6 +1687,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 			}
 		g.popMatrix();
 	}
+	
 	/**
 	 * Draws this drawable.
 	 * 
@@ -1476,6 +1703,9 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 */
 	public abstract void draw( PGraphics g, boolean usesZ,
 		float drawX, float drawY, float alphaPc);
+	
+	
+	
 	/**
 	 * An HIterator used for iterating through HDrawable's children.
 	 * 
@@ -1483,20 +1713,27 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 */
 	public static class HDrawableIterator implements HIterator<HDrawable> {
 		private HDrawable parent, d1, d2;
+		
 		public HDrawableIterator(HDrawable parentDrawable) {
 			parent = parentDrawable;
 			d1 = parent._firstChild;
 			if(d1 != null) d2 = d1._next;
 		}
+		
+		@Override
 		public boolean hasNext() {
 			return (d1 != null);
 		}
+		
+		@Override
 		public HDrawable next() {
 			HDrawable nxt = d1;
 			d1 = d2;
 			if(d2 != null) d2 = d2._next;
 			return nxt;
 		}
+		
+		@Override
 		public void remove() {
 			if(d1 != null) d1.popOut();
 		}

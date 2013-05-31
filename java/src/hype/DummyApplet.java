@@ -11,10 +11,9 @@
 
 package hype;
 
-import hype.drawable.HDrawable;
-import hype.drawable.HEllipse;
-import hype.drawable.HPathNEW;
-import hype.util.H;
+import hype.core.drawable.HDrawable;
+import hype.core.util.H;
+import hype.extended.drawable.HPathNEW;
 import processing.core.PApplet;
 
 /**
@@ -28,6 +27,7 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
+	 * - [ ] add z level for HOscillator
 	 * - [ ] fix HVertexNEW and HPathNEW's hitbox
 	 * 
 	 * - [ ] HNonChild interface (will indicate HDrawable.add() to not add it
@@ -66,7 +66,7 @@ public class DummyApplet extends PApplet {
 	 * 		- pdf frames (remember that individual pdf frames ignores autoClear(false))
 	 * 
 	 * (Refactors)
-	 * - [ ] Separate hype.core and hype.ext 
+	 * - [ ] have HColors implement HConstants
 	 * - [ ] have HDrawable perc stuff use x2pc()/y2pc()/x2px()/y2px()
 	 * - [ ] rename xxxPerc -> xxxUV or xxxPc
 	 * - [ ] rearrange HDrawable's fields by category
@@ -90,8 +90,6 @@ public class DummyApplet extends PApplet {
 		size(600,600);
 		H.init(this);
 		H.background(H.BLUE);
-		
-		HEllipse circ = H.add(new HEllipse());
 		
 		HDrawable d = H.add(new HPathNEW(POLYGON)
 			.vertex(-25f, 50f, 25f, 50f, 0,0)
