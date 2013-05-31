@@ -234,7 +234,7 @@ public class HCanvas extends HDrawable {
 	}
 	
 	@Override
-	public void paintAll(PGraphics g, boolean zFlag, float currAlphaPerc) {
+	public void paintAll(PGraphics g, boolean zFlag, float alphaPc) {
 		if(_alphaPerc<=0 || _width==0 || _height==0) return;
 		
 		g.pushMatrix();
@@ -244,7 +244,7 @@ public class HCanvas extends HDrawable {
 			g.rotate(_rotationRad);
 			
 			// Compute current alpha
-			currAlphaPerc *= _alphaPerc;
+			alphaPc *= _alphaPerc;
 			
 			// Initialize the buffer
 			_graphics.beginDraw();
@@ -282,7 +282,7 @@ public class HCanvas extends HDrawable {
 			// Draw children
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(_graphics, usesZ(), currAlphaPerc);
+				child.paintAll(_graphics, usesZ(), alphaPc);
 				child = child.next();
 			}
 			

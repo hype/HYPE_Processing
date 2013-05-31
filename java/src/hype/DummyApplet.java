@@ -11,8 +11,8 @@
 
 package hype;
 
-import hype.interfaces.HCallback;
-import hype.trigger.HTimer;
+import hype.drawable.HDrawable;
+import hype.drawable.HPathNEW;
 import hype.util.H;
 import processing.core.PApplet;
 
@@ -27,10 +27,8 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] new class: HVertex
-	 * - [ ] HPath: base size for computing perc vertex stuff = 100, if size = 0
-	 * - [ ] HPath: include the vertice's ctrl points
-	 * - [ ] HMath.bezierParam() for quadratic curves
+	 * (new HVertices)
+	 * - [ ] fix HVertexNEW and HPathNEW's hitbox
 	 * 
 	 * - [ ] HDrawable.transformChildren(bool)
 	 * - [ ] recursive spatial transforms for HDrawable
@@ -62,8 +60,12 @@ public class DummyApplet extends PApplet {
 	 * 		- capture(1,10) -- frame sequence
 	 * 		- pdf frames (remember that individual pdf frames ignores autoClear(false))
 	 * 
+	 * - [ ] H.add() for each drawable type
+	 * 
 	 * (Refactors)
-	 * - [ ] rearrange HDrawable's fields
+	 * - [ ] have HDrawable perc stuff use x2pc()/y2pc()/x2px()/y2px()
+	 * - [ ] rename xxxPerc -> xxxUV
+	 * - [ ] rearrange HDrawable's fields by category
 	 * - [ ] bezierParam() for quadratic curves
 	 * - [ ] HMath: add z index for abs/relLoc()
 	 * - [ ] HMath: use processing's random()
@@ -81,19 +83,29 @@ public class DummyApplet extends PApplet {
 	
 	@Override
 	public void setup() {
+		size(600,600);
 		H.init(this);
+		H.background(H.BLUE);
 		
-		new HTimer(1000,1).callback(new HCallback() {public void run(Object obj) {
-			println("hey");
-		}}).unregister();
-	}
-	
-	float quadratic(float p0, float p1, float p2, float t) {
-		float a = p2 - 2*p1 + p0;
-		float b = 2 * (p1-p0);
-		float c = p0;
-		float tt = t*t;
-		return a*tt + b*t + c;
+		HDrawable d = H.add(new HPathNEW(POLYGON)
+			.vertex(-25f, 50f, 25f, 50f, 0,0)
+			.vertex( 50f,-25f, 50f, 25f, 100,0)
+			.vertex(125f, 50f, 75f, 50f, 100,100)
+//			.vertex(0,0)
+//			.vertex(100,0)
+//			.vertex(100,100)
+//			.vertex(0,100)
+			.endPath()
+		).locAt(H.CENTER).stroke(H.WHITE).strokeWeight(3).fill(0xFFC0FFEE);
+		
+		H.drawStage();
+		stroke(H.RED,192);
+		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
+			if(d.contains(x,y)) {
+				point(x,y);
+			}
+		}
+		noLoop();
 	}
 }
 /** @endcond */

@@ -401,6 +401,24 @@ public class HMath implements HConstants {
 		return numRoots;
 	}
 	
+	public static float bezierPoint(
+		float p0, float p1, float p2, float p3, float t
+	) {
+		float tt = t*t;
+		float a = 3*(p1-p2) - p0 + p3;
+		float b = 3*(p0 - 2*p1 + p2);
+		float c = 3*(p1-p0);
+		return a*tt*t + b*tt + c*t + p0;
+	}
+	
+	public static float bezierPoint(
+		float p0, float p1, float p2, float t
+	) {
+		float a = p2 - 2*p1 + p0;
+		float b = 2 * (p1-p0);
+		return a*t*t + b*t + p0;
+	}
+	
 	
 	// RNG //
 	

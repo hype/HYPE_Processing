@@ -105,10 +105,10 @@ public static class HText extends HDrawable {
 		return false;
 	} 
 	public void draw( PGraphics g, boolean usesZ,
-		float drawX, float drawY, float currAlphaPerc
+		float drawX, float drawY, float alphaPc
 	) {
 		if(_text == null) return;
-		applyStyle(g,currAlphaPerc);
+		applyStyle(g,alphaPc);
 		int wscale = 1;
 		int hscale = 1;
 		float h = _height;

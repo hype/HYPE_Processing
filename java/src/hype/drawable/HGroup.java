@@ -23,7 +23,7 @@ public class HGroup extends HDrawable {
 	}
 	
 	@Override
-	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPerc) {
+	public void paintAll(PGraphics g, boolean usesZ, float alphaPc) {
 		if(_alphaPerc<=0) return;
 		
 		// Perform a trimmed down version of super.paintAll()Ê
@@ -32,11 +32,11 @@ public class HGroup extends HDrawable {
 			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
 			
-			currAlphaPerc *= _alphaPerc;
+			alphaPc *= _alphaPerc;
 			
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(g, usesZ, currAlphaPerc);
+				child.paintAll(g, usesZ, alphaPc);
 				child = child.next();
 			}
 		g.popMatrix();

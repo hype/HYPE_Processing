@@ -177,13 +177,13 @@ public static class HCanvas extends HDrawable {
 		updateBuffer();
 		return this;
 	}
-	public void paintAll(PGraphics g, boolean zFlag, float currAlphaPerc) {
+	public void paintAll(PGraphics g, boolean zFlag, float alphaPc) {
 		if(_alphaPerc<=0 || _width==0 || _height==0) return;
 		g.pushMatrix();
 			if(zFlag) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
-			currAlphaPerc *= _alphaPerc;
+			alphaPc *= _alphaPerc;
 			_graphics.beginDraw();
 			if(_autoClear) {
 				_graphics.clear();
@@ -214,7 +214,7 @@ public static class HCanvas extends HDrawable {
 			}
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(_graphics, usesZ(), currAlphaPerc);
+				child.paintAll(_graphics, usesZ(), alphaPc);
 				child = child.next();
 			}
 			_graphics.endDraw();

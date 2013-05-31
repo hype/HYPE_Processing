@@ -1,3 +1,11 @@
+### build_20130530.0 (May 30, 2013)
+- new HDrawable methods:
+	- `x2u(float)` -- converts an `x` coordinate to its UV coordinate equvialent, or percentage of the drawable's width (if width is 0, then it computes with 100)
+	- `y2u(float)` -- same as above, but with y and height
+	- `u2x(float)` -- converts a `u` coordinate to its XY coordinate equivalent
+	- `v2y(float)` -- same as above, but with y and height
+	
+
 ### build_20130529.1 (May 29, 2013)
 - new class: `hype.util.HVertexNEW` _(this will replace HPath.HVertex soon)_
 - new method: `HMath.bezierParam(float,float,float,float,float[])` _(this is like the other bezierParam(), but for quadratic bezier curves)_

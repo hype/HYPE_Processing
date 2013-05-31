@@ -1,20 +1,42 @@
+/*
+ * HYPE_Processing
+ * http://www.hypeframework.org/ & https://github.com/hype/HYPE_Processing
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
+
 package hype.util;
 
-import hype.drawable.HPath;
+import hype.drawable.HPathNEW;
 import hype.interfaces.HLocatable;
 import processing.core.PGraphics;
 
 public class HVertexNEW implements HLocatable {
-	private HPath _parent;
+	private HPathNEW _parent;
 	private float[] _cpts;
-	private float _xPerc, _yPerc;
+	private float _u, _v;
 
-	public HVertexNEW(HPath parent) {
+	public HVertexNEW(HPathNEW parent) {
 		_parent = parent;
 	}
 	
-	public HPath parent() {
+	public HPathNEW parent() {
 		return _parent;
+	}
+	
+	public HVertexNEW createCopy() {
+		HVertexNEW copy = new HVertexNEW(_parent);
+		copy._u = _u;
+		copy._v = _v;
+		if(_cpts != null) {
+			copy._cpts = new float[_cpts.length];
+			for(int i=0; i<_cpts.length; ++i) copy._cpts[i] = _cpts[i];
+		}
+		return copy;
 	}
 	
 	public boolean isCurved() {
@@ -29,107 +51,122 @@ public class HVertexNEW implements HLocatable {
 		return (_cpts != null) && (_cpts.length >= 4);
 	}
 	
-	private float x2perc(float f) {
-		float w = _parent.width();
-		if(w==0) w = 100;
-		return _parent.anchorPercX() + f/w;
+	private float x2u(float px) {
+		return _parent.anchorPercX() + _parent.x2u(px);
 	}
 	
-	private float y2perc(float f) {
-		float h = _parent.height();
-		if(h==0) h = 100;
-		return _parent.anchorPercY() + f/h;
+	private float y2v(float px) {
+		return _parent.anchorPercY() + _parent.y2v(px);
 	}
 	
-	private float x2px(float f) {
-		return _parent.width() * (f-_parent.anchorPercX());
+	private float u2x(float pc) {
+		return _parent.u2x(pc-_parent.anchorPercX());
 	}
 	
-	private float y2px(float f) {
-		return _parent.height() * (f-_parent.anchorPercY());
+	private float v2y(float pc) {
+		return _parent.v2y(pc-_parent.anchorPercY());
 	}
 	
-	public HVertexNEW set(float pxX, float pxY) {
-		return setPerc( x2perc(pxX), y2perc(pxY) );
+	public HVertexNEW set(float xpx, float ypx) {
+		return setUV( x2u(xpx), y2v(ypx) );
 	}
 	
-	public HVertexNEW set(float cx, float cy, float pxX, float pxY) {
-		return setPerc( x2perc(cx), y2perc(cy), x2perc(pxX), x2perc(pxY) );
+	public HVertexNEW set(float cx, float cy, float xpx, float ypx) {
+		return setUV( x2u(cx),y2v(cy), x2u(xpx),y2v(ypx) );
 	}
 	
 	public HVertexNEW set(
-		float cx1, float cy1,
-		float cx2, float cy2,
-		float pxX, float pxY
+		float cx1,float cy1, float cx2,float cy2, float xpx,float ypx
 	) {
-		return setPerc(
-			x2perc(cx1), y2perc(cy1),
-			x2perc(cx2), y2perc(cy2),
-			x2perc(pxX), x2perc(pxY));
+		return setUV(
+			x2u(cx1), y2v(cy1),  x2u(cx2), y2v(cy2),
+			x2u(xpx), y2v(ypx));
 	}
 	
-	public HVertexNEW setPerc(float percX, float percY) {
-		_xPerc = percX;
-		_yPerc = percY;
+	public HVertexNEW setUV(float newU, float newV) {
+		_u = newU;
+		_v = newV;
 		return this;
 	}
 	
-	public HVertexNEW setPerc(float cx1, float cy1, float percX, float percY) {
+	public HVertexNEW setUV(float cx1, float cy1, float xpc, float ypc) {
 		if(_cpts==null || _cpts.length!=2) _cpts = new float[2];
 		_cpts[0] = cx1;
 		_cpts[1] = cy1;
-		return setPerc(percX,percY);
+		return setUV(xpc,ypc);
 	}
 	
-	public HVertexNEW setPerc(
-		float cx2, float cy2,
-		float cx1, float cy1,
-		float percX, float percY
+	public HVertexNEW setUV(
+		float cu1,float cv1, float cu2,float cv2, float newU,float newV
 	) {
 		if(_cpts==null || _cpts.length<4) _cpts = new float[4];
-		_cpts[0] = cx1;
-		_cpts[1] = cy1;
-		_cpts[3] = cx2;
-		_cpts[4] = cy2;
-		return setPerc(percX,percY);
+		_cpts[0] = cu1;
+		_cpts[1] = cv1;
+		_cpts[2] = cu2;
+		_cpts[3] = cv2;
+		return setUV(newU,newV);
 	}
 	
 	public float cx1() {
-		return (_cpts==null||_cpts.length<4)? 0 : x2px(_cpts[0]);
+		return (_cpts==null||_cpts.length<4)? 0 : u2x(_cpts[0]);
 	}
 	
 	public float cy1() {
-		return (_cpts==null||_cpts.length<4)? 0 : y2px(_cpts[1]);
+		return (_cpts==null||_cpts.length<4)? 0 : v2y(_cpts[1]);
 	}
 	
 	public float cx2() {
-		return (_cpts==null||_cpts.length<4)? 0 : x2px(_cpts[2]);
+		return (_cpts==null||_cpts.length<4)? 0 : u2x(_cpts[2]);
 	}
 	
 	public float cy2() {
-		return (_cpts==null||_cpts.length<4)? 0 : y2px(_cpts[3]);
+		return (_cpts==null||_cpts.length<4)? 0 : v2y(_cpts[3]);
+	}
+	
+	public float cu1() {
+		return (_cpts==null||_cpts.length<4)? 0 : _cpts[0];
+	}
+	
+	public float cv1() {
+		return (_cpts==null||_cpts.length<4)? 0 : _cpts[1];
+	}
+	
+	public float cu2() {
+		return (_cpts==null||_cpts.length<4)? 0 : _cpts[2];
+	}
+	
+	public float cv2() {
+		return (_cpts==null||_cpts.length<4)? 0 : _cpts[3];
 	}
 	
 	@Override
 	public float x() {
-		return x2px(_xPerc);
+		return u2x(_u);
 	}
 
 	@Override
-	public HVertexNEW x(float pxX) {
-		_xPerc = x2perc(pxX);
+	public HVertexNEW x(float xpx) {
+		_u = x2u(xpx);
 		return this;
 	}
 
 	@Override
 	public float y() {
-		return y2px(_yPerc);
+		return v2y(_v);
 	}
 
 	@Override
-	public HLocatable y(float pxY) {
-		_yPerc = y2perc(pxY);
+	public HLocatable y(float ypx) {
+		_v = y2v(ypx);
 		return this;
+	}
+	
+	public float u() {
+		return _u;
+	}
+	
+	public float v() {
+		return _v;
 	}
 
 	@Override
@@ -143,11 +180,11 @@ public class HVertexNEW implements HLocatable {
 	}
 	
 	public void computeMinMax(float[] minmax) {
-		if(_xPerc < minmax[0]) minmax[0] = _xPerc;
-		else if(_xPerc > minmax[2]) minmax[2] = _xPerc;
+		if(_u < minmax[0]) minmax[0] = _u;
+		else if(_u > minmax[2]) minmax[2] = _u;
 		
-		if(_yPerc < minmax[1]) minmax[1] = _xPerc;
-		else if(_yPerc > minmax[3]) minmax[3] = _xPerc;
+		if(_v < minmax[1]) minmax[1] = _u;
+		else if(_v > minmax[3]) minmax[3] = _u;
 		
 		if(_cpts == null) return;
 		for(int i=0; i<4; ++i) {
@@ -158,47 +195,86 @@ public class HVertexNEW implements HLocatable {
 		}
 	}
 	
-	public int numCrossings(HVertexNEW prev, float ptx, float pty) {
-		float x1 = prev._xPerc;
-		float y1 = prev._yPerc;
-		float x2 = _xPerc;
-		float y2 = _yPerc;
-		
-		if(_cpts==null) {
-			float side = HMath.round512(HMath.lineSide(x1,y1, x2,y2, ptx,pty));
-			return (side==0)? -1 : (side<0 || _yPerc==pty)? 0 : 1;
-		} else {
-			int crossings = 0;
-			if(_cpts.length==2) {
-				float[] params = new float[2];
-				
-				// NOTE also check if numParams = -1
-				
-				// TODO
+	public void adjust(float minx, float miny, float wpc, float hpc) {
+		_u = (_u-minx) / wpc;
+		_v = (_v-miny) / hpc;
+		if(_cpts != null) for(int i=0; i<_cpts.length; ++i) {
+			float min, pc;
+			if((i&1)==0) {
+				min = minx;
+				pc = wpc;
 			} else {
-				float[] params = new float[3];
-				
-				// NOTE also check if numParams = -1
-				
-				// TODO
+				min = miny;
+				pc = hpc;
 			}
-			if(crossings>0 && _yPerc==pty) --crossings;
-			return crossings;
+			_cpts[i] = (_cpts[i]-min) / pc;
 		}
 	}
 	
-	public void draw(PGraphics g, HVertexNEW prev) {
-		if(_cpts==null || prev==null) {
-			g.vertex(x2px(_xPerc), y2px(_yPerc));
+	public int getCrossings(HVertexNEW prev, float tx, float ty) {
+//		float x1 = prev._u;
+//		float y1 = prev._v;
+//		float x2 = _u;
+//		float y2 = _v;
+//		
+//		if(_cpts==null) {
+//			float t = (ty-y1) / (y2-y1);
+//			if(0 < t && t <= 1) {
+//				float currx = x1 + (x2-x1)*t;
+////				if(currx == tx) return -1;
+////				if(currx < tx) return 1;
+//				if(currx <= tx) return 1;
+//			}
+//			return 0;
+//			// FIXME
+////			if( (ty<y1 && ty>y2) || (tx<x1 && tx<x2) ) return 0;
+////			float side = HMath.round512(HMath.lineSide(x1,y1, x2,y2, tx,ty));
+////			return (side==0)? -1 : (side<0 || _v==ty)? 0 : 1;
+//		} else {
+//			int crossings = 0;
+//			float cx1 = u2x(_cpts[0]);
+//			float cy1 = v2y(_cpts[1]);
+//			if(_cpts.length==2) {
+//				float[] params = new float[2];
+//				int numParams = HMath.bezierParam(y1,cy1,y2, ty, params);
+//				
+//				for(int i=0; i<numParams; ++i) {
+//					float currx = HMath.bezierPoint(x1,cx1,x2, params[i]);
+////					if(HMath.round512(currx) == ty) return -1;
+////					else if(currx < ty) ++crossings;
+//					if(currx <= ty) ++crossings;
+//				}
+//			} else {
+//				float cx2 = u2x(_cpts[2]);
+//				float cy2 = v2y(_cpts[3]);
+//				float[] params = new float[3];
+//				int numParams = HMath.bezierParam(y1,cy1,cy2,y2, ty, params);
+//				
+//				for(int i=0; i<numParams; ++i) {
+//					float currx = HMath.bezierPoint(x1,cx1,cx2,x2, params[i]);
+////					if(HMath.round512(currx) == ty) return -1;
+////					else
+//						if(currx < ty) ++crossings;
+//				}
+//			}
+////			if(crossings>0 && _v==ty) --crossings;
+//			return crossings;
+//		}
+		return 0; // TODO
+	}
+	
+	public void draw(PGraphics g, boolean isSimple) {
+		if(_cpts==null || isSimple) {
+			g.vertex(u2x(_u), v2y(_v));
 		} else if(_cpts.length==2) {
 			g.quadraticVertex(
-				x2px(_cpts[0]), y2px(_cpts[1]),
-				x2px(_xPerc), y2px(_yPerc));
+				u2x(_cpts[0]), v2y(_cpts[1]),
+				u2x(_u), v2y(_v));
 		} else {
 			g.bezierVertex(
-				x2px(_cpts[0]), y2px(_cpts[1]),
-				x2px(_cpts[2]), y2px(_cpts[3]),
-				x2px(_xPerc), y2px(_yPerc));
+				u2x(_cpts[0]), v2y(_cpts[1]),
+				u2x(_cpts[2]), v2y(_cpts[3]),
+				u2x(_u), v2y(_v));
 		}
 	}
 }

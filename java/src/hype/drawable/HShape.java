@@ -100,7 +100,7 @@ public class HShape extends HDrawable {
 	
 	@Override
 	public void draw( PGraphics g, boolean usesZ,
-		float drawX,float drawY,float currAlphaPerc
+		float drawX,float drawY,float alphaPc
 	) {
 		if(_shape == null) return;
 		
@@ -120,7 +120,7 @@ public class HShape extends HDrawable {
 			drawY = - drawY;
 		}
 		
-		applyStyle(g,currAlphaPerc);
+		applyStyle(g,alphaPc);
 		
 		g.pushMatrix();
 		g.scale(wscale, hscale);

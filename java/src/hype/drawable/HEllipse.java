@@ -148,9 +148,9 @@ public class HEllipse extends HDrawable {
 	
 	@Override
 	public void draw( PGraphics g, boolean usesZ,
-		float drawX,float drawY,float currAlphaPerc
+		float drawX,float drawY,float alphaPc
 	) {
-		applyStyle(g,currAlphaPerc);
+		applyStyle(g,alphaPc);
 		
 		drawX += _width/2;
 		drawY += _height/2;

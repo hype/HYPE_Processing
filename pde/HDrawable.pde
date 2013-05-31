@@ -1253,6 +1253,18 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable alphaShiftPerc(float daPerc) {
 		return alphaPerc(_alphaPerc + daPerc);
 	}
+	public float x2u(float px) {
+		return px / (_width==0? 100 : _width);
+	}
+	public float y2v(float px) {
+		return px / (_height==0? 100 : _height);
+	}
+	public float u2x(float pc) {
+		return pc * _width;
+	}
+	public float v2y(float pc) {
+		return pc * _height;
+	}
 	/**
 	 * Assigns an _extras bundle_ for this drawable to hold arbitrary data.
 	 * 
@@ -1411,13 +1423,13 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * This method is primarily used by some subclasses' `draw()` method.
 	 * 
 	 * @param g    The graphics context for this drawable.
-	 * @param currAlphaPerc    The current alpha value in the draw cycle.
+	 * @param alphaPc    The current alpha value in the draw cycle.
 	 */
-	protected void applyStyle(PGraphics g, float currAlphaPerc) {
-		float faPerc = currAlphaPerc * (_fill >>> 24);
+	protected void applyStyle(PGraphics g, float alphaPc) {
+		float faPerc = alphaPc * (_fill >>> 24);
 		g.fill(_fill | 0xFF000000, Math.round(faPerc));
 		if(_strokeWeight > 0) {
-			float saPerc = currAlphaPerc * (_stroke >>> 24);
+			float saPerc = alphaPc * (_stroke >>> 24);
 			g.stroke(_stroke | 0xFF000000, Math.round(saPerc));
 			g.strokeWeight(_strokeWeight);
 			g.strokeCap(_strokeCap);
@@ -1432,19 +1444,19 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * 
 	 * @param g    The graphics context for this drawable.
 	 * @param usesZ    Indicates if z-coordinates are used.
-	 * @param currAlphaPerc    The current alpha value in the draw cycle.
+	 * @param alphaPc    The current alpha value in the draw cycle.
 	 */
-	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPerc) {
+	public void paintAll(PGraphics g, boolean usesZ, float alphaPc) {
 		if(_alphaPerc<=0) return;
 		g.pushMatrix();
 			if(usesZ) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
-			currAlphaPerc *= _alphaPerc;
-			draw(g, usesZ,-anchorX(),-anchorY(),currAlphaPerc);
+			alphaPc *= _alphaPerc;
+			draw(g, usesZ,-anchorX(),-anchorY(),alphaPc);
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(g, usesZ, currAlphaPerc);
+				child.paintAll(g, usesZ, alphaPc);
 				child = child._next;
 			}
 		g.popMatrix();
@@ -1460,10 +1472,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @param usesZ Indicates if z-coordinates are used.
 	 * @param drawX The x coordinate where this drawable would consider as 0
 	 * @param drawY The y coordinate where this drawable would consider as 0
-	 * @param currAlphaPerc    The current alpha value in the draw cycle.
+	 * @param alphaPc    The current alpha value in the draw cycle.
 	 */
 	public abstract void draw( PGraphics g, boolean usesZ,
-		float drawX, float drawY, float currAlphaPerc);
+		float drawX, float drawY, float alphaPc);
 	/**
 	 * An HIterator used for iterating through HDrawable's children.
 	 * 

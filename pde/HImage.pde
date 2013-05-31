@@ -70,11 +70,11 @@ public static class HImage extends HDrawable {
 		return (0 < _image.get(ix,iy)>>>24);
 	}
 	public void draw( PGraphics g, boolean usesZ,
-		float drawX, float drawY, float currAlphaPerc
+		float drawX, float drawY, float alphaPc
 	) {
 		if(_image==null) return;
-		currAlphaPerc *= (_fill>>>24);
-		g.tint( _fill | 0xFF000000, Math.round(currAlphaPerc) );
+		alphaPc *= (_fill>>>24);
+		g.tint( _fill | 0xFF000000, Math.round(alphaPc) );
 		int wscale = 1;
 		int hscale = 1;
 		float w = _width;

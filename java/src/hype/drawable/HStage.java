@@ -105,13 +105,13 @@ public class HStage extends HDrawable {
 	// PAINTALL //
 	
 	@Override
-	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPerc) {
+	public void paintAll(PGraphics g, boolean usesZ, float alphaPc) {
 		g.pushStyle();
 			if(_autoClearFlag) clear();
 			
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(g, usesZ, currAlphaPerc);
+				child.paintAll(g, usesZ, alphaPc);
 				child = child.next();
 			}
 		g.popStyle();
