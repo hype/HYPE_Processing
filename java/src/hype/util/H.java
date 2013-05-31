@@ -22,7 +22,6 @@ import hype.drawable.HRect;
 import hype.drawable.HShape;
 import hype.drawable.HStage;
 import hype.drawable.HText;
-import hype.event.HMouse;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 

@@ -9,7 +9,7 @@
  * All rights reserved.
  */
 
-package hype.event;
+package hype.util;
 
 import hype.interfaces.HLocatable;
 import processing.core.PApplet;
