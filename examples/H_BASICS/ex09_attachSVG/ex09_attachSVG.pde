@@ -5,7 +5,7 @@ void setup() {
 	H.init(this).background(#202020);
 	smooth();
 
-	final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
+	final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600).fillOnly();
 
 	PShape svg1 = loadShape("art_01.svg");
 	PShape svg2 = loadShape("art_02.svg");
@@ -38,7 +38,7 @@ void setup() {
 						.strokeWeight(2)
 						.rotation( ((int)random(4)) * 90 )
 					;
-					d.randomColors(colors).fillOnly();
+					d.randomColors(colors);
 				}
 			}
 		)

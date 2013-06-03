@@ -36,7 +36,7 @@ void setup() {
    */
 
   HRotate rot1 = new HRotate();
-  rot1.target(rect1).speed( -10 );
+  rot1.target(rect1).speed( 2 );
 
   /*
    * There is also a radians version

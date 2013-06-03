@@ -24,12 +24,10 @@ void setup() {
 // - new HFollow(float ease, float spring, HFollowable goal)
 
 	// HMouseFollow
-	mf = new HFollow()
-		.target(rect)
-		// un/register this behavior from HStage 
-		// .unregister()
-		// .register()
-	;
+	mf = new HFollow().target(rect);
+	// un/register this behavior from HStage 
+	// .unregister()
+	// .register()
 }
 
 // There are also alternate ways of un/registering HBehaviors:
