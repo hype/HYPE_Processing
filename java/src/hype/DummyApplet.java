@@ -11,9 +11,9 @@
 
 package hype;
 
-import hype.core.drawable.HDrawable;
 import hype.core.util.H;
-import hype.extended.drawable.HPathNEW;
+import hype.extended.behavior.HOscillator;
+import hype.extended.drawable.HPath;
 import processing.core.PApplet;
 
 /**
@@ -33,9 +33,11 @@ public class DummyApplet extends PApplet {
 	 * 
 	 * - [ ] HTween: start/end 1/2/3 getters
 	 * - [ ] HTween: delegate start() & end() methods to start(a,b,c) & start(a,b,c)
+	 * - [ ] new HBehavior(isRegistered) + isRegistered constructors for other behaviors
 	 * 
-	 * - [ ] implement HNonChild interface to HStage and apply change to add()
+	 * - [ ] HPath.line(x,y,x,y);
 	 * 
+	 * - [ ] remove HNonChild interface, replace with `isValidChild(parent)`
 	 * - [ ] HDrawable.transformChildren(bool)
 	 * - [ ] recursive spatial transforms for HDrawable
 	 * 		- size
@@ -56,7 +58,7 @@ public class DummyApplet extends PApplet {
 	 * - [ ] wipfile: Proximity
 	 * - [ ] wipfile: Adjuster; drawable.adjuster(true); del key = remove from parent
 	 * 
-	 * - [ ] HText textbox
+	 * - [ ] textboxing for HText
 	 * - [ ] DepthShuffle
 	 * - [ ] HVelocity testfiles (check AS3::SimpleBallistic)
 	 * - [ ] AS3::Vibration
@@ -94,25 +96,41 @@ public class DummyApplet extends PApplet {
 		H.init(this);
 		H.background(H.BLUE);
 		
-		HDrawable d = H.add(new HPathNEW(POLYGON)
-			.vertex(-25f, 50f, 25f, 50f, 0,0)
-			.vertex( 50f,-25f, 50f, 25f, 100,0)
-			.vertex(125f, 50f, 75f, 50f, 100,100)
-//			.vertex(0,0)
-//			.vertex(100,0)
-//			.vertex(100,100)
-//			.vertex(0,100)
-			.endPath()
-		).locAt(H.CENTER).stroke(H.WHITE).strokeWeight(3).fill(0xFFC0FFEE);
+		HPath p = H.add(new HPath()).triangle(H.ISOCELES,H.TOP);
+		p.size(50,100).locAt(H.CENTER).anchorAt(H.CENTER);
 		
+		H.add(new HPath().vertex(0,300).vertex(600,300));
+		H.add(new HPath().vertex(300,0).vertex(300,600));
+		
+		new HOscillator().target(p)
+			.property(H.LOCATION)
+			.range(0,0,300,300)
+			.relativeVal(300,300);
+		
+//		HDrawable d = H.add(new HPathNEW(POLYGON)
+//			.vertex(-25f, 50f, 25f, 50f, 0,0)
+//			.vertex( 50f,-25f, 50f, 25f, 100,0)
+//			.vertex(125f, 50f, 75f, 50f, 100,100)
+////			.vertex(0,0)
+////			.vertex(100,0)
+////			.vertex(100,100)
+////			.vertex(0,100)
+//			.endPath()
+//		).locAt(H.CENTER).stroke(H.WHITE).strokeWeight(3).fill(0xFFC0FFEE);
+//		
+//		H.drawStage();
+//		stroke(H.RED,192);
+//		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
+//			if(d.contains(x,y)) {
+//				point(x,y);
+//			}
+//		}
+//		noLoop();
+	}
+	
+	@Override
+	public void draw() {
 		H.drawStage();
-		stroke(H.RED,192);
-		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
-			if(d.contains(x,y)) {
-				point(x,y);
-			}
-		}
-		noLoop();
 	}
 }
 /** @endcond */

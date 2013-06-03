@@ -1,5 +1,8 @@
-### build_??? (???, 2013)
+### build_20130603.1 (Jun 6, 2013)
+- HOscillator now has an internal structure similar to HTween
+- the property H.SCALE is now treated like H.SIZE in when `runBehavior()` is called, except that the min and max values are multiplied by the target's width and height.
 - included z coordinate oscillation for HOscillator
+- z coordinates can now oscillate with H.LOCATION
 - removed unused constructor `new HOscillator(HDrawable)`
 - removed deprecated method `HOscillator.createCopy()`
 - new HOscillator methods:
@@ -8,7 +11,7 @@
 	- `range(float,float,float,float)` & `range(float,float,float,float,float,float)`
 	- `min1()`, `min2()` & `min3()`
 	- `max1()`, `max2()` & `max3()`
-- BLAHRG
+	- `relativeVal1()`, `relativeVal2()`, `relativeVal3()`
 
 ### build_20130531.1 (May 31, 2013)
 - java packaging changes:
