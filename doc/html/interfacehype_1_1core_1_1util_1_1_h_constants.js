@@ -38,6 +38,7 @@ var interfacehype_1_1core_1_1util_1_1_h_constants =
     [ "LOCATION", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a833361ea1b76c508183b80113c464381", null ],
     [ "MAGENTA", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a4644b11acfbb29ffa8d09bacf0675d9f", null ],
     [ "NONE", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a53eec9886ac706b6e9b6dc7b22fd5770", null ],
+    [ "ONES", "interfacehype_1_1core_1_1util_1_1_h_constants.html#ad08e46794b996211ee5f65ab03acf324", null ],
     [ "PHI", "interfacehype_1_1core_1_1util_1_1_h_constants.html#ae05e0f9228654eda8d3fcb6e5b010fd9", null ],
     [ "PHI_1", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a38004c29ec77f13033b3a5993a7d4818", null ],
     [ "R2D", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a00136241c26d0d042b11318116c74b93", null ],
@@ -59,5 +60,6 @@ var interfacehype_1_1core_1_1util_1_1_h_constants =
     [ "X", "interfacehype_1_1core_1_1util_1_1_h_constants.html#ac1d00affd8f0d61585d8b66510d61fc1", null ],
     [ "Y", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a7e01c352a42e6dc3c20f8411dfb379a8", null ],
     [ "YELLOW", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a63ccd0f032f891c7029a2e53704bac97", null ],
-    [ "Z", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a3146d8361d07bdeb9e70532decd4fd98", null ]
+    [ "Z", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a3146d8361d07bdeb9e70532decd4fd98", null ],
+    [ "ZEROES", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a8a78fc9d19353efdcc19bf1cdecf8378", null ]
 ];

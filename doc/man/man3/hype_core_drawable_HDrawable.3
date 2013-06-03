@@ -37,6 +37,9 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .br
 .RI "\fICreates a copy of this drawable\&. \fP"
 .ti -1c
+.RI "boolean \fBinvalidChild\fP (\fBHDrawable\fP destParent)"
+.br
+.ti -1c
 .RI "boolean \fBpoppedOut\fP ()"
 .br
 .ti -1c
@@ -204,7 +207,7 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .ti -1c
 .RI "\fBHDrawable\fP \fBsize\fP (float s)"
 .br
-.RI "\fISets the size of this drawable, where \fCs\fP will be the new width and height for this drawable\&. \fP"
+.RI "\fISets the size of this drawable\&. \fP"
 .ti -1c
 .RI "PVector \fBsize\fP ()"
 .br
@@ -228,11 +231,11 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .ti -1c
 .RI "\fBHDrawable\fP \fBscale\fP (float s)"
 .br
-.RI "\fIMultiplies the width and height of this drawable by the given multipler\&. \fP"
+.RI "\fIMultiplies the width and height of this drawable by the given scale factor\&. \fP"
 .ti -1c
 .RI "\fBHDrawable\fP \fBscale\fP (float sw, float sh)"
 .br
-.RI "\fIMultiplies the width and height of this drawable by the given width and height multipliers\&. \fP"
+.RI "\fIMultiplies the width and height of this drawable by the given scale factors\&. \fP"
 .ti -1c
 .RI "\fBHDrawable\fP \fBproportional\fP (boolean b)"
 .br
@@ -241,6 +244,12 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .RI "boolean \fBproportional\fP ()"
 .br
 .RI "\fIReturns whether or not this drawable is in proportional mode\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBtransformsChildren\fP (boolean b)"
+.br
+.ti -1c
+.RI "boolean \fBtransformsChildren\fP ()"
+.br
 .ti -1c
 .RI "PVector \fBboundingSize\fP ()"
 .br
@@ -452,9 +461,33 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .br
 .RI "\fIDraws this drawable\&. \fP"
 .in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static final byte \fBBITMASK_PROPORTIONAL\fP = 1"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "static final byte \fBBITMASK_TRANSFORMS_CHILDREN\fP = 2"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "static final byte \fBBITMASK_STYLES_CHILDREN\fP = 4"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "static final byte \fBBITMASK_ROTATES_CHILDREN\fP = 8"
+.br
+.RI "\fITODO\&. \fP"
+.in -1c
 .SS "Protected Member Functions"
 
 .in +1c
+.ti -1c
+.RI "void \fBonResize\fP (float oldW, float oldH, float newW, float newH)"
+.br
+.RI "\fICalled after the size of this drawable is changed\&. \fP"
 .ti -1c
 .RI "void \fBapplyStyle\fP (PGraphics g, float alphaPc)"
 .br
@@ -520,13 +553,9 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .br
 .RI "\fIThe alpha of this drawable, in percentage\&. \fP"
 .ti -1c
-.RI "float \fB_sizeProportion\fP"
-.br
-.RI "\fIThe width-to-height ratio used for proportional resizing\&. \fP"
-.ti -1c
 .RI "int \fB_numChildren\fP"
 .br
-.RI "\fIThe number of this drawable's children\&. \fP"
+.RI "\fIThe width-to-height ratio used for proportional resizing\&. \fP"
 .ti -1c
 .RI "int \fB_fill\fP"
 .br
@@ -544,9 +573,9 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .br
 .RI "\fIThe stroke join of this drawable\&. \fP"
 .ti -1c
-.RI "boolean \fB_proportional\fP"
+.RI "byte \fB_flags\fP"
 .br
-.RI "\fIThe flag that determines if this drawable will be resized proportionally\&. \fP"
+.RI "\fIThe bitset that determines proportional resizing, and child transforms\&. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -590,6 +619,8 @@ height = 100
 
 .PP
 Adds the passed drawable as this drawable's child\&. If \fCchild\fP is already a child of another drawable, it removes itself from its current parent and gets added to this drawable\&.
+.PP
+If \fCchild\fP is already a child of this drawable, then it does nothing\&.
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1331,7 +1362,9 @@ The first child of this drawable, or null if there's none\&.
 .SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.height (floath)"
 
 .PP
-Sets the height of this drawable\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+Sets the height of this drawable\&. If this drawable is set to resize proportionally, the width will also change accordingly\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
 .PP
 \fBSee Also:\fP
 .RS 4
@@ -1718,6 +1751,25 @@ The object with the corresponding key\&.
 .RE
 .PP
 
+.SS "void hype\&.core\&.drawable\&.HDrawable\&.onResize (floatoldW, floatoldH, floatnewW, floatnewH)\fC [protected]\fP"
+
+.PP
+Called after the size of this drawable is changed\&. By default, this method handles proportional resizing, child transformations\&.
+.PP
+If you subclass \fBHDrawable\fP and want to execute code whenever your custom class changes size, override this method\&. But remember to call \fCsuper\&.onResize()\fP at the start of your override when you want to keep proportional resizing and child transforms\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIoldW\fP The old width before being resize\&. 
+.br
+\fIoldH\fP The old height before being resize\&. 
+.br
+\fInewW\fP The new width after being resized\&. 
+.br
+\fInewH\fP The new height after being resized\&. 
+.RE
+.PP
+
 .SS "void hype\&.core\&.drawable\&.HDrawable\&.paintAll (PGraphicsg, booleanusesZ, floatalphaPc)"
 
 .PP
@@ -1765,7 +1817,7 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBParameters:\fP
 .RS 4
-\fIb\fP Whether this drawable will keep its size proportional\&. 
+\fIb\fP True, if this drawable will keep its size proportionally\&. 
 .RE
 .PP
 \fBReturns:\fP
@@ -1859,7 +1911,7 @@ This drawable's rotation in degrees\&.
 .SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.scale (floats)"
 
 .PP
-Multiplies the width and height of this drawable by the given multipler\&. If this drawable is sized \fC(100,100)\fP and \fCscale(2)\fP is called, this will be resized to \fC(200,200)\fP\&.
+Multiplies the width and height of this drawable by the given scale factor\&. This method delegates \fBsize(float,float)\fP\&.
 .PP
 This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
 .PP
@@ -1870,7 +1922,7 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBParameters:\fP
 .RS 4
-\fIs\fP The multiplier for the size of this drawable\&. 
+\fIs\fP The scale factor for the width and height\&. 
 .RE
 .PP
 \fBReturns:\fP
@@ -1882,16 +1934,20 @@ This drawable\&.
 .SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.scale (floatsw, floatsh)"
 
 .PP
-Multiplies the width and height of this drawable by the given width and height multipliers\&. \fBSee Also:\fP
+Multiplies the width and height of this drawable by the given scale factors\&. This method delegates \fBsize(float,float)\fP\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
 .RS 4
 \fBscale(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
 .RS 4
-\fIsw\fP The width multiplier for this drawable 
+\fIsw\fP The scale factor for the width\&. 
 .br
-\fIsh\fP The height multiplier for this drawable 
+\fIsh\fP The scale factor for the height\&. 
 .RE
 .PP
 \fBReturns:\fP
@@ -1919,7 +1975,9 @@ This drawable\&.
 .SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.size (floatw, floath)"
 
 .PP
-Sets the size of this drawable\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+Sets the size of this drawable\&. If this drawable is set to resize proportionally, the new width will be adjusted according to the new height by default\&. (The exception to this is if the new height is the same as the old height, then the new height will be adjusted according to the new width instead\&.)
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
 .PP
 \fBSee Also:\fP
 .RS 4
@@ -1942,7 +2000,9 @@ This drawable\&.
 .SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.size (floats)"
 
 .PP
-Sets the size of this drawable, where \fCs\fP will be the new width and height for this drawable\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+Sets the size of this drawable\&. This method delegates \fBsize(float,float)\fP\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
 .PP
 \fBSee Also:\fP
 .RS 4
@@ -2250,7 +2310,9 @@ True if this drawable is visible, otherwise false\&.
 .SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.width (floatw)"
 
 .PP
-Sets the width of this drawable\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+Sets the width of this drawable\&. If this drawable is set to resize proportionally, the height will also change accordingly via \fBonResize(float,float,float,float)\fP\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
 .PP
 \fBSee Also:\fP
 .RS 4
@@ -2440,8 +2502,10 @@ The last child of this drawable\&. \fBSee Also:\fP
 .SS "int hype\&.core\&.drawable\&.HDrawable\&._numChildren\fC [protected]\fP"
 
 .PP
-The number of this drawable's children\&. \fBSee Also:\fP
+The width-to-height ratio used for proportional resizing\&. \fBSee Also:\fP
 .RS 4
+\fBproportional()\fP The number of this drawable's children
+.PP
 \fBnumChildren()\fP 
 .RE
 .PP
@@ -2455,30 +2519,12 @@ The parent of this drawable\&. \fBSee Also:\fP
 .RE
 .PP
 
-.SS "boolean hype\&.core\&.drawable\&.HDrawable\&._proportional\fC [protected]\fP"
-
-.PP
-The flag that determines if this drawable will be resized proportionally\&. \fBSee Also:\fP
-.RS 4
-\fBproportional()\fP 
-.RE
-.PP
-
 .SS "float hype\&.core\&.drawable\&.HDrawable\&._rotationRad\fC [protected]\fP"
 
 .PP
 The rotation of this drawable, in radians\&. \fBSee Also:\fP
 .RS 4
 rotationRad() 
-.RE
-.PP
-
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._sizeProportion\fC [protected]\fP"
-
-.PP
-The width-to-height ratio used for proportional resizing\&. \fBSee Also:\fP
-.RS 4
-\fBproportional()\fP 
 .RE
 .PP
 

@@ -25,7 +25,6 @@ var annotated =
           [ "HDirectable", "interfacehype_1_1core_1_1interfaces_1_1_h_directable.html", null ],
           [ "HHittable", "interfacehype_1_1core_1_1interfaces_1_1_h_hittable.html", "interfacehype_1_1core_1_1interfaces_1_1_h_hittable" ],
           [ "HLocatable", "interfacehype_1_1core_1_1interfaces_1_1_h_locatable.html", "interfacehype_1_1core_1_1interfaces_1_1_h_locatable" ],
-          [ "HNonChild", "interfacehype_1_1core_1_1interfaces_1_1_h_non_child.html", null ],
           [ "HRotatable", "interfacehype_1_1core_1_1interfaces_1_1_h_rotatable.html", "interfacehype_1_1core_1_1interfaces_1_1_h_rotatable" ]
         ] ],
         [ "layout", null, [

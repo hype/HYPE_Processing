@@ -150,7 +150,16 @@ Inherits \fBhype\&.core\&.util\&.HConstants\fP\&.
 .RI "static float \fBsquareWave\fP (float stepDegrees)"
 .br
 .ti -1c
-.RI "static boolean \fBhasBits\fP (int target, int val)"
+.RI "static boolean \fBhasBits\fP (byte target, byte mask)"
+.br
+.ti -1c
+.RI "static boolean \fBhasBits\fP (int target, int mask)"
+.br
+.ti -1c
+.RI "static byte \fBsetBits\fP (byte target, byte mask, boolean val)"
+.br
+.ti -1c
+.RI "static int \fBsetBits\fP (int target, int mask, boolean val)"
 .br
 .ti -1c
 .RI "static float \fBmap\fP (float val, float start1, float stop1, float start2, float stop2)"

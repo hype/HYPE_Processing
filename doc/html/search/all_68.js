@@ -39,7 +39,6 @@ var searchData=
   ['hmath',['HMath',['../classhype_1_1core_1_1util_1_1_h_math.html',1,'hype::core::util']]],
   ['hmouse',['HMouse',['../classhype_1_1core_1_1util_1_1_h_mouse.html',1,'hype::core::util']]],
   ['hnode_3c_20t_20extends_20hnode_3c_20t_20_3e_20_3e',['HNode&lt; T extends HNode&lt; T &gt; &gt;',['../classhype_1_1core_1_1collection_1_1_h_node_3_01_t_01extends_01_h_node_3_01_t_01_4_01_4.html',1,'hype::core::collection']]],
-  ['hnonchild',['HNonChild',['../interfacehype_1_1core_1_1interfaces_1_1_h_non_child.html',1,'hype::core::interfaces']]],
   ['hoscillator',['HOscillator',['../classhype_1_1extended_1_1behavior_1_1_h_oscillator.html',1,'hype::extended::behavior']]],
   ['hpath',['HPath',['../classhype_1_1extended_1_1drawable_1_1_h_path.html',1,'hype::extended::drawable']]],
   ['hpathnew',['HPathNEW',['../classhype_1_1extended_1_1drawable_1_1_h_path_n_e_w.html',1,'hype::extended::drawable']]],
