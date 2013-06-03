@@ -36,6 +36,15 @@ import processing.core.PVector;
 public abstract class HDrawable extends HNode<HDrawable>
 		implements HDirectable, HHittable {
 	
+	/** TODO */
+	public static final byte BITMASK_PROPORTIONAL = 1;		// 0b0001
+	/** TODO */
+	public static final byte BITMASK_TRANSFORMS_CHILDREN = 2;// 0b0010
+	/** TODO */
+	public static final byte BITMASK_STYLES_CHILDREN = 4;	// 0b0100
+	/** TODO */
+	public static final byte BITMASK_ROTATES_CHILDREN = 8;	// 0b1000
+	
 	/** The parent of this drawable @see parent() */
 	protected HDrawable _parent;
 	/** The first child of this drawable @see firstChild() */
@@ -67,7 +76,6 @@ public abstract class HDrawable extends HNode<HDrawable>
 	/** The alpha of this drawable, in percentage @see alphaPerc() */
 	protected float _alphaPerc;
 	/** The width-to-height ratio used for proportional resizing @see proportional() */
-	protected float _sizeProportion;
 	
 	/** The number of this drawable's children @see numChildren() */
 	protected int _numChildren;
@@ -80,8 +88,8 @@ public abstract class HDrawable extends HNode<HDrawable>
 	/** The stroke join of this drawable @see strokeJoin() */
 	protected int _strokeJoin;
 	
-	/** The flag that determines if this drawable will be resized proportionally @see proportional() */
-	protected boolean _proportional;
+	/** The bitset that determines proportional resizing, and child transforms */
+	protected byte _flags;
 	
 	
 	// COPY & CREATE //
@@ -155,6 +163,12 @@ public abstract class HDrawable extends HNode<HDrawable>
 	
 	
 	// PARENT & CHILD //
+	
+	public boolean invalidChild(HDrawable destParent) {
+		if(destParent == null) return true;
+		if(destParent.equals(this)) return true;
+		return false;
+	}
 	
 	private boolean invalidDest(HDrawable dest, String warnLoc) {
 		String warnType;
@@ -307,6 +321,8 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 * If `child` is already a child of another drawable, it removes itself from
 	 * its current parent and gets added to this drawable.
 	 * 
+	 * If `child` is already a child of this drawable, then it does nothing.
+	 * 
 	 * @param child    The child to be added to this drawable.
 	 * @return The drawable passed through this method.
 	 */
@@ -314,6 +330,9 @@ public abstract class HDrawable extends HNode<HDrawable>
 		if(child == null) {
 			HWarnings.warn("An Empty Child", "HDrawable.add()",
 					HWarnings.NULL_ARGUMENT);
+		} else if( child.invalidChild(this) ) {
+			HWarnings.warn("Invalid Child", "HDrawable.add()",
+					HWarnings.INVALID_CHILD);
 		} else if( !parentOf(child) ) {
 			if(_lastChild == null) {
 				_firstChild = _lastChild = child;
@@ -762,6 +781,11 @@ public abstract class HDrawable extends HNode<HDrawable>
 	/**
 	 * Sets the size of this drawable.
 	 * 
+	 * If this drawable is set to resize proportionally, the new width will be
+	 * adjusted according to the new height by default. (The exception to this
+	 * is if the new height is the same as the old height, then the new height
+	 * will be adjusted according to the new width instead.)
+	 * 
 	 * @chainable
 	 * @see size(float), width(float), height(float)
 	 * @param w    The new width for this drawable.
@@ -769,12 +793,14 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable.
 	 */
 	public HDrawable size(float w, float h) {
-		return width(w).height(h);
+		onResize( _width, _height, _width=w, _height=h );
+		return this;
 	}
 	
 	/**
-	 * Sets the size of this drawable, where `s` will be the new width and
-	 * height for this drawable.
+	 * Sets the size of this drawable.
+	 * 
+	 * This method delegates size(float,float).
 	 * 
 	 * @chainable
 	 * @see size(float,float), width(float), height(float)
@@ -782,8 +808,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable.
 	 */
 	public HDrawable size(float s) {
-		size(s,s);
-		return this;
+		return size(s,s);
 	}
 	
 	/**
@@ -799,14 +824,16 @@ public abstract class HDrawable extends HNode<HDrawable>
 	/**
 	 * Sets the width of this drawable.
 	 * 
+	 * If this drawable is set to resize proportionally, the height will also
+	 * change accordingly via onResize(float,float,float,float).
+	 * 
 	 * @chainable
 	 * @see size(float,float), size(float), height(float)
 	 * @param w    The new width for this drawable
 	 * @return This drawable.
 	 */
 	public HDrawable width(float w) {
-		if(_proportional) _height = w/_sizeProportion;
-		_width = w;
+		onResize( _width, _height, _width=w, _height );
 		return this;
 	}
 	
@@ -823,14 +850,16 @@ public abstract class HDrawable extends HNode<HDrawable>
 	/**
 	 * Sets the height of this drawable.
 	 * 
+	 * If this drawable is set to resize proportionally, the width will also
+	 * change accordingly.
+	 * 
 	 * @chainable
 	 * @see size(float,float), size(float), width(float)
 	 * @param h    The new height for this drawable
 	 * @return This drawable.
 	 */
 	public HDrawable height(float h) {
-		if(_proportional) _width = h*_sizeProportion;
-		_height = h;
+		onResize( _width, _height, _width, _height=h );
 		return this;
 	}
 	
@@ -845,14 +874,14 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 	
 	/**
-	 * Multiplies the width and height of this drawable by the given multipler.
+	 * Multiplies the width and height of this drawable by the given scale
+	 * factor.
 	 * 
-	 * If this drawable is sized `(100,100)` and `scale(2)` is called, this will
-	 * be resized to `(200,200)`.
+	 * This method delegates size(float,float).
 	 * 
 	 * @chainable
 	 * @see scale(float,float)
-	 * @param s    The multiplier for the size of this drawable.
+	 * @param s    The scale factor for the width and height.
 	 * @return This drawable.
 	 */
 	public HDrawable scale(float s) {
@@ -860,13 +889,15 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 	
 	/**
-	 * Multiplies the width and height of this drawable by the given width and
-	 * height multipliers.
+	 * Multiplies the width and height of this drawable by the given scale
+	 * factors.
 	 * 
-	 * @chainble
+	 * This method delegates size(float,float).
+	 * 
+	 * @chainable
 	 * @see scale(float)
-	 * @param sw    The width multiplier for this drawable
-	 * @param sh    The height multiplier for this drawable
+	 * @param sw    The scale factor for the width.
+	 * @param sh    The scale factor for the height.
 	 * @return This drawable.
 	 */
 	public HDrawable scale(float sw, float sh) {
@@ -880,14 +911,11 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 * at the same ratio when you try to change either the width or height.
 	 * 
 	 * @chainable
-	 * @param b    Whether this drawable will keep its size proportional.
+	 * @param b    True, if this drawable will keep its size proportionally.
 	 * @return This drawable.
 	 */
 	public HDrawable proportional(boolean b) {
-		_proportional = b;
-		if(_proportional) {
-			_sizeProportion = _width/_height;
-		}
+		_flags = HMath.setBits(_flags, BITMASK_PROPORTIONAL, b);
 		return this;
 	}
 	
@@ -897,7 +925,52 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 * @return True if this drawable is in proportional mode, else false.
 	 */
 	public boolean proportional() {
-		return _proportional;
+		return HMath.hasBits(_flags,BITMASK_PROPORTIONAL);
+	}
+	
+	public HDrawable transformsChildren(boolean b) {
+		_flags = HMath.setBits(_flags,BITMASK_TRANSFORMS_CHILDREN,b);
+		return this;
+	}
+	
+	public boolean transformsChildren() {
+		return HMath.hasBits(_flags,BITMASK_TRANSFORMS_CHILDREN);
+	}
+	
+	/**
+	 * Called after the size of this drawable is changed.
+	 * 
+	 * By default, this method handles proportional resizing, child
+	 * transformations.
+	 * 
+	 * If you subclass HDrawable and want to execute code whenever your custom
+	 * class changes size, override this method. But remember to call
+	 * `super.onResize()` at the start of your override when you want to keep
+	 * proportional resizing and child transforms.
+	 * 
+	 * @param oldW    The old width before being resize.
+	 * @param oldH    The old height before being resize.
+	 * @param newW    The new width after being resized.
+	 * @param newH    The new height after being resized.
+	 */
+	protected void onResize(float oldW, float oldH, float newW, float newH) {
+		if(proportional()) {
+			if(newH != oldH) {
+				if(oldH != 0) _width = oldW * newH/oldH;
+			} else if(newW != oldW) {
+				if(oldW != 0) _height = oldH * newW/oldW;
+			}
+		}
+		if(transformsChildren()) {
+			float scalew = (oldW==0)? 1 : _width/oldW;
+			float scaleh = (oldH==0)? 1 : _height/oldH;
+			HDrawable child = _firstChild;
+			while(child != null) {
+				child.loc(child._x*scalew, child._y*scaleh);
+				child.scale(scalew,scaleh);
+				child = child._next;
+			}
+		}
 	}
 	
 	/**
@@ -1236,6 +1309,8 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return _strokeWeight;
 	}
 	
+	// TODO stylesChildren
+	
 	
 	// ROTATION //
 	
@@ -1294,6 +1369,8 @@ public abstract class HDrawable extends HNode<HDrawable>
 		_rotationRad += rad;
 		return this;
 	}
+	
+	// TODO rotatesChildren
 	
 	
 	// VISIBILITY //

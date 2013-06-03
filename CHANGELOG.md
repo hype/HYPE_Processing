@@ -1,3 +1,17 @@
+### build_20130603.2 (Jun 6, 2013)
+- removed the unused `HNonChild` interface in favor of `invalidChild(HDrawable)`
+- new HDrawable methods:
+	- `invalidChild(HDrawable)` checks if the caller will be an invalid child of the passed drawable
+	- `onResize(float,float,float,float)` listener method that is called on every resize
+	- `transformsChildren()` and `transformsChildren(boolean)` gets and sets the flag that determines if the drawable's children will be resized and moved along with it
+- moved the code for adjusting proportional HDrawable sizes to `onResize()`
+- HDrawable now stores all its boolean values (including `_proportional`) in a byte sized bitset
+- new HDrawable constants (all are of type byte):
+	- `BITMASK_PROPORTIONAL` is the bitmask for the "proportional" bit flag
+	- `BITMASK_TRANSFORM_CHILDREN` is the bitmask for the "transforms children" bit flag
+	- `BITMASK_STYLE_CHILDREN` is the bitmask for the "styles children" bit flag _(will be used for a future feature)_
+	- `BITMASK_ROTATE_CHILDREN`is the bitmask for the "rotates children" bit flag _(will be used for a future feature)_
+
 ### build_20130603.1 (Jun 6, 2013)
 - HOscillator now has an internal structure similar to HTween
 - the property H.SCALE is now treated like H.SIZE in when `runBehavior()` is called, except that the min and max values are multiplied by the target's width and height.

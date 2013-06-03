@@ -12,8 +12,7 @@
 package hype;
 
 import hype.core.util.H;
-import hype.extended.behavior.HOscillator;
-import hype.extended.drawable.HPath;
+import hype.extended.drawable.HRect;
 import processing.core.PApplet;
 
 /**
@@ -27,38 +26,73 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] add z coords for HOscillator
-	 * - [ ] fix HVertexNEW and HPathNEW's hitbox
-	 * - [ ] eager registration for HBehaviors
-	 * 
-	 * - [ ] HTween: start/end 1/2/3 getters
-	 * - [ ] HTween: delegate start() & end() methods to start(a,b,c) & start(a,b,c)
-	 * - [ ] new HBehavior(isRegistered) + isRegistered constructors for other behaviors
-	 * 
-	 * - [ ] HPath.line(x,y,x,y);
-	 * 
-	 * - [ ] remove HNonChild interface, replace with `isValidChild(parent)`
-	 * - [ ] HDrawable.transformChildren(bool)
+	 * (HDrawable)
+	 * - [ ] HDrawable.styleChildren(bool)
+	 * - [ ] HDrawable.rotatesChildren(bool)
 	 * - [ ] recursive spatial transforms for HDrawable
+	 * 		- location
 	 * 		- size
-	 * 		- anchor
 	 * - [ ] recursive style transforms for HDrawable
 	 * 		- stroke
 	 * 		- stroke weight
 	 * 		- stroke join
 	 * 		- stroke cap
 	 * 		- fill
-	 * - [ ] protected HDrawable.onSizeChange();
+	 * - [ ] apply UV stuff
 	 * 
+	 * (HPath)
+	 * - [ ] fix HVertexNEW and HPathNEW's hitbox
+	 * - [ ] HPathNEW.line(x,y,x,y);
+	 * 
+	 * (HBehavior)
+	 * - [ ] boolean params for HBehavior constructors (default=true, true - register, false don't register)
+	 * - [ ] HTween: start/end 1/2/3 getters
+	 * - [ ] HTween: delegate start() & end() methods to start(a,b,c) & start(a,b,c)
+	 * - [ ] new HBehavior(isRegistered) + isRegistered constructors for other behaviors
+	 * - [ ] HTween & HOscillator: store the scale factor when using H.SCALE instead
+	 *       of the multiplied sizes; just compute the "multiplier" in runBehavior()
+	 *       to multiply the curent values (in this case, width and height)
+	 * 
+	 * (HShape)
 	 * - [ ] HShape hit detection + pgraphics buffer
 	 * - [ ] disable style for HShape in P3D
-	 * - [ ] use pgraphics buffer for HText + use that for hitbox checking
 	 * 
+	 * (HText)
+	 * - [ ] click buffer for HText
+	 * - [ ] textbox mode for HText
+	 * - [ ] use onResize() when adjusting metrics
+	 * 
+	 * (HCallback NOP)
+	 * - HConstants.NOP (an empty HCallback that does nothing, to be used as
+	 *   sentinel; test this on JS mode)
+	 * - HDrawablePool
+	 * 		- Replace HCallback null checks with NOP
+	 * 		- if onCreate/Request/Release(null), then assign NOP
+	 * 		- privatize _onCreate/Request/Release
+	 * - HTriggers & HTween
+	 * 		- Replace HCallback null checks with NOP
+	 * 		- if callback(null), then assign NOP
+	 * 
+	 * (HRect)
+	 * - [ ] rounding() getter (returns _tl)
+	 * - [ ] privatize _tl/_tr/_br/_bl fields
+	 * 
+	 * 
+	 * (Experiments and New Features)
+	 * - [ ] new interface: HImageHolder
+	 * 		- interface methods: image(Object imgArg), image()
+	 * 		- H.extractImage(Object imgArg)
+	 * 			- if arg is PImage: use the image
+	 * 			- if arg is HImageHolder: call image()
+	 * 			- if arg is String: load file
+	 * 			- else: return null
+	 * 		- implement this to HImage and HPixelColorist and HStage (for img bg)
+	 * 		- apply when setting images
 	 * - [ ] masking
 	 * - [ ] wipfile: Proximity
-	 * - [ ] wipfile: Adjuster; drawable.adjuster(true); del key = remove from parent
-	 * 
-	 * - [ ] textboxing for HText
+	 * - [ ] wipfile: Adjuster
+	 * 		- drawable.adjuster(true)
+	 * 		- del key = remove from parent
 	 * - [ ] DepthShuffle
 	 * - [ ] HVelocity testfiles (check AS3::SimpleBallistic)
 	 * - [ ] AS3::Vibration
@@ -67,8 +101,9 @@ public class DummyApplet extends PApplet {
 	 * 		- capture(1) -- single frame
 	 * 		- capture(1,10) -- frame sequence
 	 * 		- pdf frames (remember that individual pdf frames ignores autoClear(false))
+	 * - [ ] store HDrawable coordinates as UV
 	 * 
-	 * (Refactors)
+	 * (Future Refactors)
 	 * - [ ] property setter objects
 	 * - [ ] have HColors implement HConstants
 	 * - [ ] have HDrawable perc stuff use x2y()/y2v()/u2x()/v2y()
@@ -78,16 +113,22 @@ public class DummyApplet extends PApplet {
 	 * - [ ] HMath: add z index for abs/relLoc()
 	 * - [ ] HMath: use processing's random()
 	 * - [ ] change util methods that returns arrays to use the method(val, float[] loc) format
-	 * - [ ] refactor/cleanup HOscillator
-	 * - [ ] use registered() for autoregistering behaviors
-	 * - [ ] remove register/unregister overrides
 	 * - [ ] privatize remaining public fields
 	 * - [ ] standardize boolean getter names
+	 * - [ ] color mask constants
+	 * - [ ] HColors.invisible() -- use color masks `(clr & maskAlpha) == 0`
+	 * 
+	 * (Docs)
+	 * - [ ] use full sentence format with @param and @return statements
+	 * - [ ] use multiple @see tags
+	 * - [ ] use a single line break for doc summaries if they're too long
 	 * 
 	 * (Far Future Stuff)
-	 * - [ ] AS3::SoundAnalyzer
 	 * - [ ] HContext overhaul
-	 * - [ ] real parser for j2p.pl
+	 * - [ ] FSM java to pde parser
+	 * - [ ] HYPE Coding Standards documentation for devs
+	 * - [ ] HTML Page for the Documentation
+	 * - [ ] AS3::SoundAnalyzer
 	 */
 	
 	@Override
@@ -96,16 +137,14 @@ public class DummyApplet extends PApplet {
 		H.init(this);
 		H.background(H.BLUE);
 		
-		HPath p = H.add(new HPath()).triangle(H.ISOCELES,H.TOP);
-		p.size(50,100).locAt(H.CENTER).anchorAt(H.CENTER);
-		
-		H.add(new HPath().vertex(0,300).vertex(600,300));
-		H.add(new HPath().vertex(300,0).vertex(300,600));
-		
-		new HOscillator().target(p)
-			.property(H.LOCATION)
-			.range(0,0,300,300)
-			.relativeVal(300,300);
+		HRect rect = H.add(new HRect()).rounding(10);
+		rect.add(new HRect(10)).locAt(H.TOP_LEFT).alpha(128);
+		rect.add(new HRect(10)).locAt(H.TOP_RIGHT).alpha(128);
+		rect.add(new HRect(10)).locAt(H.BOTTOM_RIGHT).alpha(128);
+		rect.add(new HRect(10)).locAt(H.BOTTOM_LEFT).alpha(128);
+		rect.add(new HRect(10)).locAt(H.CENTER).alpha(128);
+		rect.transformsChildren(true);
+		rect.size(200,200);
 		
 //		HDrawable d = H.add(new HPathNEW(POLYGON)
 //			.vertex(-25f, 50f, 25f, 50f, 0,0)

@@ -17,6 +17,9 @@ public static class HStage extends HDrawable {
 		_autoClearFlag = true;
 		background(HConstants.DEFAULT_BACKGROUND_COLOR);
 	}
+	public boolean invalidChild(HDrawable destParent) {
+		return true;
+	}
 	public void background(int clr) {
 		_fill = clr;
 		clear();

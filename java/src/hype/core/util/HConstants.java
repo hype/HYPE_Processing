@@ -87,7 +87,12 @@ public interface HConstants {
 		
 		// HTriangle types
 		ISOCELES = 0,
-		EQUILATERAL = 1;
+		EQUILATERAL = 1,
+		// RIGHT = 2,
+		
+		// Bitmasks
+		ONES = 0xFFFFFFFF,
+		ZEROES = 0;
 	
 	public static final float
 		// Degree-Radians conversion shortcuts

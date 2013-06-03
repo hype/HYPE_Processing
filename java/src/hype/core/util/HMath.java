@@ -491,11 +491,26 @@ public class HMath implements HConstants {
 	}
 	
 	
-	// MISC //
+	// BITWISE OPERATIONS //
 	
-	public static boolean hasBits(int target, int val) {
-		return ( (target & val) == val );
+	public static boolean hasBits(byte target, byte mask) {
+		return (target&mask) == mask;
 	}
+	
+	public static boolean hasBits(int target, int mask) {
+		return (target&mask) == mask;
+	}
+	
+	public static byte setBits(byte target, byte mask, boolean val) {
+		return (byte) (val? target|mask : target&(~mask));
+	}
+	
+	public static int setBits(int target, int mask, boolean val) {
+		return (val)? target|mask : target&(~mask);
+	}
+	
+	
+	// MISC //
 	
 	public static float map(float val,
 		float start1, float stop1, float start2, float stop2

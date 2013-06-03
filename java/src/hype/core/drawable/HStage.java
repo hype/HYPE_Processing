@@ -31,6 +31,14 @@ public class HStage extends HDrawable {
 	}
 	
 	
+	// PARENT & CHILD //
+	
+	@Override
+	public boolean invalidChild(HDrawable destParent) {
+		return true;
+	}
+	
+	
 	// BACKGROUND //
 	
 	public void background(int clr) {
