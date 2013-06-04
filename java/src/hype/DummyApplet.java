@@ -11,7 +11,9 @@
 
 package hype;
 
+import hype.core.drawable.HDrawable;
 import hype.core.util.H;
+import hype.extended.behavior.HOscillator;
 import hype.extended.drawable.HRect;
 import processing.core.PApplet;
 
@@ -55,6 +57,8 @@ public class DummyApplet extends PApplet {
 	 * - [ ] HTween & HOscillator: store the scale factor when using H.SCALE instead
 	 *       of the multiplied sizes; just compute the "multiplier" in runBehavior()
 	 *       to multiply the curent values (in this case, width and height)
+	 * - [ ] remove `registered()`
+	 * - [ ] abstract `HBehavior.createCopy()`
 	 * 
 	 * (HShape)
 	 * - [ ] HShape hit detection + pgraphics buffer
@@ -140,14 +144,9 @@ public class DummyApplet extends PApplet {
 		H.init(this);
 		H.background(H.BLUE);
 		
-		HRect rect = H.add(new HRect()).rounding(10);
-		rect.add(new HRect(10)).locAt(H.TOP_LEFT).alpha(128);
-		rect.add(new HRect(10)).locAt(H.TOP_RIGHT).alpha(128);
-		rect.add(new HRect(10)).locAt(H.BOTTOM_RIGHT).alpha(128);
-		rect.add(new HRect(10)).locAt(H.BOTTOM_LEFT).alpha(128);
-		rect.add(new HRect(10)).locAt(H.CENTER).alpha(128);
-		rect.transformsChildren(true);
-		rect.size(200,200);
+		HDrawable d = H.add(new HRect(300,300)).rounding(10);
+		new HOscillator().property(H.Y).target(d)
+			.range(-100,100).relativeVal(300);
 		
 //		HDrawable d = H.add(new HPathNEW(POLYGON)
 //			.vertex(-25f, 50f, 25f, 50f, 0,0)
