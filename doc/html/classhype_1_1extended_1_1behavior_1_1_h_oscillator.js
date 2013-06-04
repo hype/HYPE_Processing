@@ -1,6 +1,7 @@
 var classhype_1_1extended_1_1behavior_1_1_h_oscillator =
 [
     [ "HOscillator", "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#a2fe6b5591de8b393981a91e83f8342d6", null ],
+    [ "createCopy", "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#ab02c6bcd7d5533cedc28ffc1e2495e13", null ],
     [ "currentStep", "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#a6e430fb2c944de1ff83d5bd2cc1d43b5", null ],
     [ "currentStep", "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#a94273b7bb9e446857b74eb41e8afc1f9", null ],
     [ "freq", "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#aafbe426771494957890a178bdd94525e", null ],
