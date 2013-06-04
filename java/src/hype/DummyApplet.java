@@ -26,6 +26,13 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
+	 * - [ ] remove old oscillator_overhaul branch
+	 * - [ ] Testfile for HDrawable.transformsChildren()
+	 * 
+	 * (HPath)
+	 * - [ ] fix HVertexNEW and HPathNEW's hitbox
+	 * - [ ] HPathNEW.line(x,y,x,y);
+	 * 
 	 * (HDrawable)
 	 * - [ ] HDrawable.styleChildren(bool)
 	 * - [ ] HDrawable.rotatesChildren(bool)
@@ -38,11 +45,7 @@ public class DummyApplet extends PApplet {
 	 * 		- stroke join
 	 * 		- stroke cap
 	 * 		- fill
-	 * - [ ] apply UV stuff
-	 * 
-	 * (HPath)
-	 * - [ ] fix HVertexNEW and HPathNEW's hitbox
-	 * - [ ] HPathNEW.line(x,y,x,y);
+	 * - [ ] apply the UV stuff
 	 * 
 	 * (HBehavior)
 	 * - [ ] boolean params for HBehavior constructors (default=true, true - register, false don't register)

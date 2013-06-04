@@ -1,4 +1,4 @@
-### build_20130603.2 (Jun 6, 2013)
+### build_20130603.1 (Jun 6, 2013)
 - removed the unused `HNonChild` interface in favor of `invalidChild(HDrawable)`
 - new HDrawable methods:
 	- `invalidChild(HDrawable)` checks if the caller will be an invalid child of the passed drawable
@@ -12,7 +12,7 @@
 	- `BITMASK_STYLE_CHILDREN` is the bitmask for the "styles children" bit flag _(will be used for a future feature)_
 	- `BITMASK_ROTATE_CHILDREN`is the bitmask for the "rotates children" bit flag _(will be used for a future feature)_
 
-### build_20130603.1 (Jun 6, 2013)
+### build_20130603.0 (Jun 6, 2013)
 - HOscillator now has an internal structure similar to HTween
 - the property H.SCALE is now treated like H.SIZE in when `runBehavior()` is called, except that the min and max values are multiplied by the target's width and height.
 - included z coordinate oscillation for HOscillator
