@@ -9,6 +9,9 @@
  * All rights reserved.
  */
 public static class HGroup extends HDrawable {
+	public HGroup() {
+		transformsChildren(true);
+	}
 	public HGroup createCopy() {
 		HGroup copy = new HGroup();
 		copy.copyPropertiesFrom(this);

@@ -13,8 +13,8 @@ package hype.core.drawable;
 
 import hype.core.collection.HIterator;
 import hype.core.collection.HNode;
-import hype.core.interfaces.HHittable;
 import hype.core.interfaces.HDirectable;
+import hype.core.interfaces.HHittable;
 import hype.core.util.H;
 import hype.core.util.HBundle;
 import hype.core.util.HColors;

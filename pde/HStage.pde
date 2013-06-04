@@ -85,6 +85,7 @@ public static class HStage extends HDrawable {
 	public HDrawable z(float newY) { return this; }
 	public HDrawable move(float dx, float dy) { return this; }
 	public HDrawable locAt(int where) { return this; }
+	protected void onResize(float oldW, float oldH, float newW, float newH) {}
 	public HDrawable rotation(float deg) { return this; }
 	public HDrawable rotationRad(float rad) { return this; }
 	public HDrawable rotate(float deg) { return this; }

@@ -16,6 +16,10 @@ import processing.core.PGraphics;
 
 public class HGroup extends HDrawable {
 	
+	public HGroup() {
+		transformsChildren(true);
+	}
+	
 	@Override
 	public HGroup createCopy() {
 		HGroup copy = new HGroup();

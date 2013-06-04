@@ -11,10 +11,11 @@
 
 package hype;
 
-import hype.core.drawable.HDrawable;
 import hype.core.util.H;
-import hype.extended.behavior.HOscillator;
+import hype.extended.drawable.HEllipse;
+import hype.extended.drawable.HGroup;
 import hype.extended.drawable.HRect;
+import hype.extended.drawable.HText;
 import processing.core.PApplet;
 
 /**
@@ -28,7 +29,7 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] remove old oscillator_overhaul branch
+	 * - [ ] HGroup.transformsChildren(true) by default
 	 * - [ ] Testfile for HDrawable.transformsChildren()
 	 * 
 	 * (HPath)
@@ -142,15 +143,45 @@ public class DummyApplet extends PApplet {
 	 * - [ ] AS3::SoundAnalyzer
 	 */
 	
+	HGroup grp;
+	HRect r1, r2;
+	
 	@Override
 	public void setup() {
 		size(600,600);
 		H.init(this);
-		H.background(H.BLUE);
+
+		r1 = H.add(new HRect());
+		r1.fill(H.RED);
 		
-		HDrawable d = H.add(new HRect(300,300)).rounding(10);
-		new HOscillator().property(H.SCALE).target(d)
-			.range(-1,1).relativeVal(1);
+		r2 = H.add(new HRect());
+		r2.fill(H.BLUE)
+			.x(width/3)
+			.transformsChildren(true);
+		
+		grp = H.add(new HGroup());
+		grp.x(width*2/3);
+		
+		
+		
+		H.add(new HText("transformsChildren(false)",12)).y(height-12);
+		H.add(new HText("transformsChildren(true)",12)).loc(width/3,height-12);
+		H.add(new HText("HGroup default",12)).loc(width*2/3,height-12);
+		r1.add(new HEllipse(5));
+		r1.add(new HEllipse(5)).locAt(H.TOP_RIGHT).anchorAt(H.TOP_RIGHT);
+		r1.add(new HEllipse(5)).locAt(H.CENTER).anchorAt(H.CENTER);
+		r1.add(new HEllipse(5)).locAt(H.BOTTOM_RIGHT).anchorAt(H.BOTTOM_RIGHT);
+		r1.add(new HEllipse(5)).locAt(H.BOTTOM_LEFT).anchorAt(H.BOTTOM_LEFT);
+		r2.add(new HEllipse(5));
+		r2.add(new HEllipse(5)).locAt(H.TOP_RIGHT).anchorAt(H.TOP_RIGHT);
+		r2.add(new HEllipse(5)).locAt(H.CENTER).anchorAt(H.CENTER);
+		r2.add(new HEllipse(5)).locAt(H.BOTTOM_RIGHT).anchorAt(H.BOTTOM_RIGHT);
+		r2.add(new HEllipse(5)).locAt(H.BOTTOM_LEFT).anchorAt(H.BOTTOM_LEFT);
+		grp.add(new HEllipse(5));
+		grp.add(new HEllipse(5)).locAt(H.TOP_RIGHT).anchorAt(H.TOP_RIGHT);
+		grp.add(new HEllipse(5)).locAt(H.CENTER).anchorAt(H.CENTER);
+		grp.add(new HEllipse(5)).locAt(H.BOTTOM_RIGHT).anchorAt(H.BOTTOM_RIGHT);
+		grp.add(new HEllipse(5)).locAt(H.BOTTOM_LEFT).anchorAt(H.BOTTOM_LEFT);
 		
 //		HDrawable d = H.add(new HPathNEW(POLYGON)
 //			.vertex(-25f, 50f, 25f, 50f, 0,0)
@@ -175,6 +206,13 @@ public class DummyApplet extends PApplet {
 	
 	@Override
 	public void draw() {
+		if(H.mouseStarted()) {
+			float w = max(10,mouseX/3);
+			float h = max(10,mouseY);
+			r1.size(w,h);
+			r2.size(w,h);
+			grp.size(w,h);
+		}
 		H.drawStage();
 	}
 }

@@ -147,6 +147,8 @@ public class HStage extends HDrawable {
 	@Override
 	public HDrawable locAt(int where) { return this; }
 	@Override
+	protected void onResize(float oldW, float oldH, float newW, float newH) {}
+	@Override
 	public HDrawable rotation(float deg) { return this; }
 	@Override
 	public HDrawable rotationRad(float rad) { return this; }

@@ -1,3 +1,7 @@
+### build_20130604.1 (Jun 4, 2013)
+- HGroup is now set to transform/resize its children by default; to turn this off, call `transformsChildren(false)`
+- the `transformsChildren()` method for HStage is now deactivated
+
 ### build_20130604.0 (Jun 4, 2013)
 - restored the `HOscillator.createCopy()` method due to backwards compatibility issues
 - debug: HOscillator skips a step every 359 steps
