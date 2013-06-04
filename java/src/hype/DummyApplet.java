@@ -50,13 +50,17 @@ public class DummyApplet extends PApplet {
 	 * - [ ] apply the UV stuff
 	 * 
 	 * (HBehavior)
-	 * - [ ] boolean params for HBehavior constructors (default=true, true - register, false don't register)
+	 * - [ ] boolean params for HBehavior constructors (default=true,
+	 *       true - register, false - don't register)
 	 * - [ ] HTween: start/end 1/2/3 getters
-	 * - [ ] HTween: delegate start() & end() methods to start(a,b,c) & start(a,b,c)
-	 * - [ ] new HBehavior(isRegistered) + isRegistered constructors for other behaviors
-	 * - [ ] HTween & HOscillator: store the scale factor when using H.SCALE instead
-	 *       of the multiplied sizes; just compute the "multiplier" in runBehavior()
-	 *       to multiply the curent values (in this case, width and height)
+	 * - [ ] HTween: delegate start() & end() methods to start(a,b,c) &
+	 *       start(a,b,c)
+	 * - [ ] new HBehavior(isRegistered) + isRegistered constructors for other
+	 *       behaviors
+	 * - [ ] HTween & HOscillator: store the scale factor when using H.SCALE
+	 *       instead of the multiplied sizes; just compute the "multiplier" in
+	 *       runBehavior() to multiply the curent values (in this case, width
+	 *       and height)
 	 * - [ ] remove `registered()`
 	 * - [ ] abstract `HBehavior.createCopy()`
 	 * 
@@ -145,8 +149,8 @@ public class DummyApplet extends PApplet {
 		H.background(H.BLUE);
 		
 		HDrawable d = H.add(new HRect(300,300)).rounding(10);
-		new HOscillator().property(H.Y).target(d)
-			.range(-100,100).relativeVal(300);
+		new HOscillator().property(H.SCALE).target(d)
+			.range(-1,1).relativeVal(1);
 		
 //		HDrawable d = H.add(new HPathNEW(POLYGON)
 //			.vertex(-25f, 50f, 25f, 50f, 0,0)

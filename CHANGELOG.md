@@ -1,6 +1,7 @@
 ### build_20130604.0 (Jun 4, 2013)
 - restored the `HOscillator.createCopy()` method due to backwards compatibility issues
 - debug: HOscillator skips a step every 359 steps
+- if HOscillator's property field is equal to `HConstants.SCALE`, it now stores the min and max values as raw scale factors, instead of width and height
 
 ### build_20130603.1 (Jun 3, 2013)
 - removed the unused `HNonChild` interface in favor of `invalidChild(HDrawable)`
