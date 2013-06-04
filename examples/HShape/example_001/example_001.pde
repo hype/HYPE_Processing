@@ -63,20 +63,21 @@ void setup() {
     .loc(width - 120, height/2 + 100)
   ;
 
-  colors.strokeOnly();    s1.randomColors(colors);
-  colors.fillOnly();      s2.randomColors(colors);
-  colors.fillAndStroke(); s3.randomColors(colors);
+  s1.randomColors(colors.strokeOnly());
+  s2.randomColors(colors.fillOnly());
+  s3.randomColors(colors.fillAndStroke());
 
-  colors.strokeOnly();    s4.randomColors(colors);
-  colors.fillOnly();      s5.randomColors(colors);
-  colors.fillAndStroke(); s6.randomColors(colors);
+  s4.randomColors(colors.strokeOnly());
+  s5.randomColors(colors.fillOnly());
+  s6.randomColors(colors.fillAndStroke());
 
 }
 
 void draw() {
   H.drawStage();
 
-  colors.strokeOnly();    s4.randomColors(colors);
-  colors.fillOnly();      s5.randomColors(colors);
-  colors.fillAndStroke(); s6.randomColors(colors);
+  s4.randomColors(colors.strokeOnly());
+  s5.randomColors(colors.fillOnly());
+  s6.randomColors(colors.fillAndStroke());
 }
+
