@@ -26,7 +26,7 @@ void setup() {
 		.anchorAt(H.TOP|H.RIGHT)
 		.strokeWeight(2)
 	;
-	svg2.randomColors(colors).fillAndStroke();
+	svg2.randomColors(colors.fillAndStroke());
 	H.add(svg2);
 
 // random Fills being pulled from HColorPool colors / all Strokes = 1 color
@@ -38,7 +38,7 @@ void setup() {
 		.stroke(#000000)
 		.strokeWeight(2)
 	;
-	svg3.randomColors(colors).fillOnly();
+	svg3.randomColors(colors.fillOnly());
 	H.add(svg3);
 
 // random Strokes being pulled from HColorPool colors / all Fills = 1 color
@@ -50,7 +50,7 @@ void setup() {
 		.fill(#181818)
 		.strokeWeight(2)
 	;
-	svg4.randomColors(colors).strokeOnly();
+	svg4.randomColors(colors.strokeOnly());
 	H.add(svg4);
 
 
