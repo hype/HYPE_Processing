@@ -21,7 +21,6 @@ void setup() {
 	pool.autoParent(canvas)
 		.add (
 			new HPath()
-			.star( 5, 0.4, -90 ).size(75).noStroke().fill(#FFFFFF)
 		)
 		.layout(new HGridLayout()
 			.startX(0)
@@ -34,9 +33,14 @@ void setup() {
 		    	public void run(Object obj) {
 		    		int i = pool.currentIndex();
 
-		    		HDrawable d = (HDrawable) obj;
-		    		d.noStroke().fill( colors.getColor(i*100), 3 );
-		    		d.anchor(0,75);
+		    		HPath d = (HPath) obj;
+		    		d
+		    			.star( 5, 0.4, -90 )
+		    			.size(75)
+		    			.noStroke()
+			    		.fill( colors.getColor(i*100), 3 )
+		    			.anchor(0,75)
+		    		;
 
 					HOscillator xo = xoBase.createCopy().relativeVal(d.x());
 					HOscillator yo = yoBase.createCopy().relativeVal(d.y());

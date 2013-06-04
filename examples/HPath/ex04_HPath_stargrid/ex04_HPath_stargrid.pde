@@ -28,6 +28,7 @@ void setup() {
 		    		HPath path = (HPath) obj;
 					path
 						.star( ranEdges, ranDepth )
+						.size(64)
 						.noStroke()
 						.fill( colors.getColor() )
 						.anchorAt(H.CENTER)
