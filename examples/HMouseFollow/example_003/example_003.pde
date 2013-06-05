@@ -1,13 +1,13 @@
 HFollow mf;
-HRect rect;
+HRect d;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
 	smooth();
-	
-	rect = new HRect(100);
-	rect
+
+	d = new HRect(100);
+	d
 		.rounding(40)
 		.noStroke()
 		.fill(#ECECEC)
@@ -15,11 +15,12 @@ void setup() {
 		.anchorAt(H.CENTER)
 		.rotation(45)
 	;
-	H.add(rect);
+	H.add(d);
 
 	// HFollow / ease and spring
+	
 	mf = new HFollow()
-		.target(rect)
+		.target(d)
 		.ease(0.1)
 		.spring(0.95)
 	;

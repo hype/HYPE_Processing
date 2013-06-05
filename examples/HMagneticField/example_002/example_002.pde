@@ -1,49 +1,54 @@
-private HDrawablePool pool;
-private HMagneticField field;
+HDrawablePool pool;
+HMagneticField field;
+HColorPool colors;
 
 void setup() {
-  size(640,640);
-  H.init(this).background(#202020);
-  smooth();
+	size(640,640);
+	H.init(this).background(#202020);
+	smooth();
 
-  final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600).fillOnly();
-  
-  PShape arrow = loadShape("arrow.svg");
+	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600).fillOnly();
 
-  field = new HMagneticField().addMagnet(width/2,height/2, 320, 140);
+	PShape arrow = loadShape("arrow.svg");
 
-  pool = new HDrawablePool(930);
-  pool.autoAddToStage()
-    .add (
-      new HShape(arrow)
-      .enableStyle(false)
-      .anchorAt(H.CENTER)
-      // .scale(1.25)
-    )
-    .layout(
-      new HGridLayout()
-      .startX(5)
-      .startY(15)
-      .spacing(21,21)
-      .cols(31)
-    )
-    .colorist(colors)
-    .onCreate (
-        new HCallback() {
-          public void run(Object obj) {
-            HDrawable d = (HDrawable) obj;
-          d.noStroke();
-          field.addTarget(d);
-        }
-      }
-    )
-    .requestAll();
+	field = new HMagneticField().addMagnet(width/2,height/2, 320, 140);
+
+	pool = new HDrawablePool(930);
+	pool.autoAddToStage()
+		.add (
+			new HShape(arrow)
+			.enableStyle(false)
+			.anchorAt(H.CENTER)
+		)
+
+		.colorist(colors)
+
+		.layout(
+			new HGridLayout()
+			.startX(5)
+			.startY(15)
+			.spacing(21,21)
+			.cols(31)
+		)
+
+		.onCreate (
+			new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
+					d.noStroke();
+					field.addTarget(d);
+				}
+			}
+		)
+
+		.requestAll()
+	;
 }
 
 void draw() {
-  HMagneticField.HMagnet m = field.magnet(0);
-  m.southx = mouseX;
-  m.southy = mouseY;
-  H.drawStage();
+	HMagneticField.HMagnet m = field.magnet(0);
+	m.southx = mouseX;
+	m.southy = mouseY;
+	H.drawStage();
 }
 

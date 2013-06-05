@@ -5,121 +5,146 @@ HDrawablePool pool;
 HPixelColorist colors;
 
 void setup() {
-  size(640,640,P3D);
-  H.init(this).background(#000000).autoClear(true).use3D(true);
-  smooth();
+	size(640,640,P3D);
+	H.init(this).background(#000000).autoClear(true).use3D(true);
+	smooth();
+
+	PImage img = loadImage("gradient.jpg");
+	colors = new HPixelColorist(img);
+
+	canvas = new HCanvas(P3D).autoClear(true);
+	H.add(canvas);
+
+	pool = new HDrawablePool(1000);
+	pool.autoParent(canvas)
+		.add(
+			new HRect()
+			.rounding(10)
+		)
+
+		.onCreate(
+			new HCallback() {
+				public void run(Object obj) {
+					int i = pool.currentIndex();
+
+					HDrawable d = (HDrawable) obj;
+					d
+						.noStroke()
+						.size( (int)random(40,80) , (int)random(60,80) )
+						.loc(  (int)random(width), (int)random(height) )
+						.anchorAt(H.CENTER)
+
+						.obj("xo", new HOscillator()
+							.target(d)
+							.property(H.X)
+							.relativeVal(d.x())
+							.range( -(int)random(5,10) , (int)random(5,10) )
+							.speed( random(.005,.2) )
+							.freq(10)
+							.currentStep(i)
+						)
+
+						.obj("ao", new HOscillator()
+							.target(d)
+							.property(H.ALPHA)
+							.range(50,255)
+							.speed( random(.3,.9) )
+							.freq(5)
+							.currentStep(i)
+						)
+
+						.obj("wo", new HOscillator()
+							.target(d)
+							.property(H.WIDTH)
+							.range(-d.width(),d.width())
+							.speed( random(.05,.2) )
+							.freq(10)
+							.currentStep(i)
+						)
+
+						.obj("ro", new HOscillator()
+							.target(d)
+							.property(H.ROTATION)
+							.range(-180,180)
+							.speed( random(.005,.05) )
+							.freq(10)
+							.currentStep(i)
+						)
+
+						.obj("zo", new HOscillator()
+							.target(d)
+							.property(H.Z)
+							.range( -400 , 400 )
+							.speed( random(.005,.01) )
+							.freq(15)
+							.currentStep(i*5)
+						)
+					;
+				}
+			}
+		)
+
+		.onRequest(
+			new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
+					d.scale(1).alpha(0).loc((int)random(width),(int)random(height),-(int)random(200));
+
+					HOscillator xo = (HOscillator) d.obj("xo"); xo.register();
+					HOscillator ao = (HOscillator) d.obj("ao"); ao.register();
+					HOscillator wo = (HOscillator) d.obj("wo"); wo.register();
+					HOscillator ro = (HOscillator) d.obj("ro"); ro.register();
+					HOscillator zo = (HOscillator) d.obj("zo"); zo.register();
+				}
+			}
+		)
+
+		.onRelease(
+			new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
+
+					HOscillator xo = (HOscillator) d.obj("xo"); xo.unregister();
+					HOscillator ao = (HOscillator) d.obj("ao"); ao.unregister();
+					HOscillator wo = (HOscillator) d.obj("wo"); wo.unregister();
+					HOscillator ro = (HOscillator) d.obj("ro"); ro.unregister();
+					HOscillator zo = (HOscillator) d.obj("zo"); zo.unregister();
+				}
+			}
+		)
+	;
   
-  PImage img = loadImage("gradient.jpg");
-  colors = new HPixelColorist(img);
-
-  canvas = new HCanvas(P3D).autoClear(true);
-  H.add(canvas);
-
-  pool = new HDrawablePool(1000);
-
-  pool.autoParent(canvas)
-    .add( new HRect().rounding(10) )
-
-    .onCreate(new HCallback(){public void run(Object obj) {
-      HDrawable d = (HDrawable) obj;
-      d
-        .size( (int)random(40,80) , (int)random(60,80) )
-        .loc(  (int)random(width), (int)random(height) )
-        .anchorAt(H.CENTER)
-
-        .obj("xo", new HOscillator()
-          .property(H.X)
-          .waveform(H.SINE)
-          .speed( random(.005,.2) )
-          .freq(10)
-          .range( d.x() - (int)random(5,10) , d.x() + (int)random(5,10) )
-        )
-
-        .obj("ao", new HOscillator()
-          .property(H.ALPHA)
-          .waveform(H.SINE)
-          .speed( random(.3,.9) )
-          .freq(5)
-          .range(50,255)
-        )
-
-        .obj("wo", new HOscillator()
-          .property(H.WIDTH)
-          .waveform(H.SINE)
-          .speed( random(.05,.2) )
-          .freq(10)
-          .range(-d.width(),d.width())
-        )
-
-        .obj("ro", new HOscillator()
-          .property(H.ROTATION)
-          .waveform(H.SINE)
-          .speed( random(.005,.05) )
-          .freq(10)
-          .range(-180,180)
-        )
-
-        .obj("zo", new HOscillator()
-          .property(H.Z)
-          .waveform(H.SINE)
-          .speed( random(.005,.01) )
-          .freq(15)
-          .range( -400 , 400 )
-        )
-      ;
-    }})
-
-    .onRequest(new HCallback(){public void run(Object obj) {
-      int i = pool.currentIndex();
-
-      HDrawable d = (HDrawable) obj;
-      d.scale(1);
-      d.alpha(0);
-      d.loc((int)random(width),(int)random(height),-(int)random(200));
-
-      HOscillator xo = (HOscillator) d.obj("xo"); xo.register().currentStep(i).target(d);
-      HOscillator ao = (HOscillator) d.obj("ao"); ao.register().currentStep(i).target(d);
-      HOscillator wo = (HOscillator) d.obj("wo"); wo.register().currentStep(i).target(d);
-      HOscillator ro = (HOscillator) d.obj("ro"); ro.register().currentStep(i).target(d);
-      HOscillator zo = (HOscillator) d.obj("zo"); zo.register().currentStep(i*5).target(d);
-
-    }})
-
-    .onRelease(new HCallback(){public void run(Object obj) {
-      HDrawable d = (HDrawable) obj;
-
-      HOscillator xo = (HOscillator) d.obj("xo"); xo.unregister();
-      HOscillator ao = (HOscillator) d.obj("ao"); ao.unregister();
-      HOscillator wo = (HOscillator) d.obj("wo"); wo.unregister();
-      HOscillator ro = (HOscillator) d.obj("ro"); ro.unregister();
-      HOscillator zo = (HOscillator) d.obj("zo"); zo.unregister();
-
-    }});
-  
-  new HTimer(50).callback(new HCallback(){public void run(Object obj){
-    pool.request();
-  }});
+	new HTimer(50)
+		.callback(
+			new HCallback() {
+				public void run(Object obj) {
+					pool.request();
+				}
+			}
+		)
+	;
 }
 
 void draw() {
-  HIterator<HDrawable> it = pool.iterator();
-  while(it.hasNext()) {
-    HDrawable d = it.next();
-    d.loc( d.x(), d.y() - random(0.25,1), d.z() );
+	HIterator<HDrawable> it = pool.iterator();
 
-    d.noStroke();
-    d.fill(colors.getColor(d.x(), d.y()));
+	while(it.hasNext()) {
+		HDrawable d = it.next();
+		d.loc( d.x(), d.y() - random(0.25,1), d.z() );
 
-    // if the z axis hits this range, change fill to white
-    if (d.z() > -10 && d.z() < 10){
-      d.fill(#FFFFCC);
-    }
+		d.noStroke();
+		d.fill(colors.getColor(d.x(), d.y()));
 
-    if (d.y() < -40) {
-      pool.release(d);
-    }
-  }
+		// if the z axis hits this range, change fill to white
+		if (d.z() > -10 && d.z() < 10){
+			d.fill(#FFFFCC);
+		}
 
-  H.drawStage();
+		if (d.y() < -40) {
+			pool.release(d);
+		}
+	}
+
+	H.drawStage();
 }
 

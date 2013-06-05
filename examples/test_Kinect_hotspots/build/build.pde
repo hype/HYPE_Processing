@@ -110,7 +110,7 @@ void draw() {
       HDrawable lhand = leftHands.get(userId);
       HDrawable rhand = rightHands.get(userId);
       float lx=lhand.x(), ly=lhand.y(), lz=lhand.z();
-      float rx=rhand.x(), ry=rhand.y(), lz=rhand.z();
+      float rx=rhand.x(), ry=rhand.y(), rz=rhand.z();
 
       for(int j=0; j<hitboxes.length; ++j) {
         if(hitList[j]) continue;

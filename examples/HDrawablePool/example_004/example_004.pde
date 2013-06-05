@@ -11,10 +11,11 @@ void setup() {
 			new HRect()
 			.rounding(4)
 		)
-	    .onCreate (
-		    new HCallback() {
-		    	public void run(Object obj) {
-		    		HDrawable d = (HDrawable) obj;
+
+		.onCreate (
+			new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
 					d
 						.fill(#242424)
 						.strokeWeight(1)
@@ -24,18 +25,21 @@ void setup() {
 						.rotation( (int)random(360) )
 						.size(50,50)
 					;
-					
+
 					d.extras(
 						new HBundle().num( "letsRotate",random(-2,2) )
 					);
 				}
 			}
 		)
-		.requestAll();
+
+		.requestAll()
+	;
 }
 
 void draw() {
 	HIterator<HDrawable> it = pool.iterator();
+
 	while(it.hasNext()) {
 		HDrawable d = it.next();
 		HBundle extras = d.extras();
