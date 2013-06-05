@@ -1,63 +1,70 @@
 HDrawablePool pool;
-HOscillator xoBase, yoBase, roBase, soBase;
 HCanvas canvas;
-
-final HColorPool colors = new HColorPool(#CCE70B, #80C41C, #40A629, #237D26, #FF3300, #FF6600, #0095a8, #00616f);
+HColorPool colors;
 
 void setup() {
-	size(640,640);
-	H.init(this).background(#111111);
-	smooth();
+  size(640, 640);
+  H.init(this).background(#111111);
+  
+  colors = new HColorPool(
+    #CCE70B, #80C41C, #40A629, #237D26,
+    #FF3300, #FF6600, #0095a8, #00616f);
 
-	canvas = new HCanvas().autoClear(false).fade(10);
-	H.add(canvas);
+  canvas = H.add( new HCanvas() )
+    .autoClear(false)
+    .fade(10);
+  
+  pool = new HDrawablePool(400);
+  pool.autoParent(canvas)
+    .add( new HPath()
+      .star(5, 0.4, -90)
+      .size(75)
+      .noStroke()
+      .anchor(0, 75) )
+    .layout( new HGridLayout(400)
+      .startLoc(0, height/2)
+      .spacing(2, 0) )
+    .onCreate( new HCallback() { public void run(Object obj) {
+      int i = pool.currentIndex();
 
-    xoBase = new HOscillator().speed(0.3).range(-600,300).freq(0.5).property(H.X).waveform(H.SINE);
-    yoBase = new HOscillator().speed(0.2).range(-300,300).freq(0.7).property(H.Y).waveform(H.SINE);
-    roBase = new HOscillator().speed(0.7).range(0,360).freq(2).property(H.ROTATION).waveform(H.SINE);
-    soBase = new HOscillator().speed(0.3).range(0.5,4).freq(5).property(H.SCALE).waveform(H.SINE);
-
-	pool = new HDrawablePool(400);
-	pool.autoParent(canvas)
-		.add (
-			new HPath()
-		)
-		.layout(new HGridLayout()
-			.startX(0)
-			.startY(height/2)
-			.spacing(2,0)
-			.cols(400)
-		)
-		.onCreate (
-		    new HCallback() {
-		    	public void run(Object obj) {
-		    		int i = pool.currentIndex();
-
-		    		HPath d = (HPath) obj;
-		    		d
-		    			.star( 5, 0.4, -90 )
-		    			.size(75)
-		    			.noStroke()
-			    		.fill( colors.getColor(i*100), 3 )
-		    			.anchor(0,75)
-		    		;
-
-					HOscillator xo = xoBase.createCopy().relativeVal(d.x());
-					HOscillator yo = yoBase.createCopy().relativeVal(d.y());
-					HOscillator ro = roBase.createCopy();
-					HOscillator so = soBase.createCopy();
-
-					xo.target( d ).currentStep( i );
-					yo.target( d ).currentStep( i );
-					ro.target( d ).currentStep( i );
-					so.target( d ).currentStep( i );
-				}
-			}
-		)
-		.requestAll();
+      HPath d = (HPath) obj;
+      d.fill( colors.getColor(i*100), 3 );
+      
+      new HOscillator()
+        .target(d)
+        .speed(0.3)
+        .freq(0.5)
+        .relativeVal(d.x())
+        .range(-600, 300)
+        .property(H.X)
+        .currentStep(i);
+      new HOscillator()
+        .target(d)
+        .speed(0.2)
+        .relativeVal(d.y())
+        .range(-300, 300)
+        .freq(0.7)
+        .property(H.Y)
+        .currentStep(i);
+      new HOscillator()
+        .target(d)
+        .speed(0.7)
+        .range(0, 360)
+        .freq(2)
+        .property(H.ROTATION)
+        .currentStep(i);
+      new HOscillator()
+        .target(d)
+        .speed(0.3)
+        .range(0.5, 4)
+        .freq(5)
+        .property(H.SCALE)
+        .currentStep(i);
+    }})
+    .requestAll();
 }
 
 void draw() {
-	H.drawStage();
+  H.drawStage();
 }
 

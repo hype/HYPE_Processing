@@ -29,6 +29,10 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
+	 * - [ ] remove createCopy from the HOscillator examples
+	 * - [ ] update HYPE on the examples
+	 * - [ ] test them again
+	 * 
 	 * (HPath)
 	 * - [ ] fix HVertexNEW and HPathNEW's hitbox
 	 * - [ ] HPathNEW.line(x,y,x,y);
