@@ -1,3 +1,7 @@
+### build_20130605.0 (Jun 5, 2013)
+- bugfix: `HPath.createCopy()` now copies its vertices properly
+- some further code for HPathNEW and HVertexNEW
+
 ### build_20130604.1 (Jun 4, 2013)
 - HGroup is now set to transform/resize its children by default; to turn this off, call `transformsChildren(false)`
 - the `transformsChildren()` method for HStage is now deactivated

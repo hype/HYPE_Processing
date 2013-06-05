@@ -1,4 +1,4 @@
-.TH "hype.extended.drawable.HPathNEW" 3 "Tue Jun 4 2013" "HYPE_processing" \" -*- nroff -*-
+.TH "hype.extended.drawable.HPathNEW" 3 "Wed Jun 5 2013" "HYPE_processing" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -15,14 +15,20 @@ Inherits \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
 .RI "\fBHPathNEW\fP (int pathMode)"
 .br
 .ti -1c
-.RI "\fBHDrawable\fP \fBcreateCopy\fP ()"
+.RI "\fBHPathNEW\fP \fBcreateCopy\fP ()"
 .br
 .RI "\fICreates a copy of this drawable\&. \fP"
 .ti -1c
-.RI "\fBHPathNEW\fP \fBmode\fP (int m)"
+.RI "\fBHPathNEW\fP \fBmode\fP (int modeId)"
 .br
 .ti -1c
 .RI "int \fBmode\fP ()"
+.br
+.ti -1c
+.RI "\fBHPathNEW\fP \fBdrawsHandles\fP (boolean b)"
+.br
+.ti -1c
+.RI "boolean \fBdrawsHandles\fP ()"
 .br
 .ti -1c
 .RI "int \fBnumVertices\fP ()"
@@ -31,28 +37,31 @@ Inherits \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
 .RI "\fBHVertexNEW\fP \fBvertex\fP (int index)"
 .br
 .ti -1c
-.RI "\fBHPathNEW\fP \fBvertex\fP (float xpx, float ypx)"
+.RI "\fBHPathNEW\fP \fBvertex\fP (float \fBx\fP, float \fBy\fP)"
 .br
 .ti -1c
-.RI "\fBHPathNEW\fP \fBvertex\fP (float cx, float cy, float xpx, float ypx)"
+.RI "\fBHPathNEW\fP \fBvertex\fP (float cx, float cy, float \fBx\fP, float \fBy\fP)"
 .br
 .ti -1c
-.RI "\fBHPathNEW\fP \fBvertex\fP (float cx1, float cy1, float cx2, float cy2, float xpx, float ypx)"
+.RI "\fBHPathNEW\fP \fBvertex\fP (float cx1, float cy1, float cx2, float cy2, float \fBx\fP, float \fBy\fP)"
 .br
 .ti -1c
-.RI "\fBHPathNEW\fP \fBvertexUV\fP (float xpc, float ypc)"
+.RI "\fBHPathNEW\fP \fBvertexUV\fP (float u, float v)"
 .br
 .ti -1c
-.RI "\fBHPathNEW\fP \fBvertexUV\fP (float cx, float cy, float xpx, float ypx)"
+.RI "\fBHPathNEW\fP \fBvertexUV\fP (float cu, float cv, float u, float v)"
 .br
 .ti -1c
-.RI "\fBHPathNEW\fP \fBvertexUV\fP (float cx1, float cy1, float cx2, float cy2, float xpx, float ypx)"
+.RI "\fBHPathNEW\fP \fBvertexUV\fP (float cu1, float cv1, float cu2, float cv2, float u, float v)"
 .br
 .ti -1c
-.RI "\fBHPathNEW\fP \fBclear\fP ()"
+.RI "\fBHPathNEW\fP \fBadjust\fP ()"
 .br
 .ti -1c
 .RI "\fBHPathNEW\fP \fBendPath\fP ()"
+.br
+.ti -1c
+.RI "\fBHPathNEW\fP \fBclear\fP ()"
 .br
 .ti -1c
 .RI "\fBHPathNEW\fP \fBtriangle\fP (int type, int direction)"
@@ -79,14 +88,14 @@ Inherits \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
 .RI "boolean \fBcontainsRel\fP (float relX, float relY)"
 .br
 .ti -1c
-.RI "void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float currAlphaPerc)"
+.RI "void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float alphaPc)"
 .br
 .RI "\fIDraws this drawable\&. \fP"
 .in -1c
 .SS "Additional Inherited Members"
 .SH "Member Function Documentation"
 .PP 
-.SS "\fBHDrawable\fP hype\&.extended\&.drawable\&.HPathNEW\&.createCopy ()\fC [virtual]\fP"
+.SS "\fBHPathNEW\fP hype\&.extended\&.drawable\&.HPathNEW\&.createCopy ()\fC [virtual]\fP"
 
 .PP
 Creates a copy of this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&.

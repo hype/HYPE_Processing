@@ -51,6 +51,7 @@ var interfacehype_1_1core_1_1util_1_1_h_constants =
     [ "SIZE", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a98ac9bdb378da716d8f2f0e0429ac399", null ],
     [ "SQRT2", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a39c184dac11cef9f4b1ddc54f052e612", null ],
     [ "SQUARE", "interfacehype_1_1core_1_1util_1_1_h_constants.html#af7be0fe920c08b370fe3088ff20f17b4", null ],
+    [ "TOLERANCE", "interfacehype_1_1core_1_1util_1_1_h_constants.html#ac385cb8b9b7903b151f1c4c94e66fa44", null ],
     [ "TOP", "interfacehype_1_1core_1_1util_1_1_h_constants.html#af802876b0d58b824f5f5e93fb9f9b18b", null ],
     [ "TOP_LEFT", "interfacehype_1_1core_1_1util_1_1_h_constants.html#ad85c118bf29885ad6fd50b3d81913398", null ],
     [ "TOP_RIGHT", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a47bdbbc4ca5cf46200d037d04e331cbb", null ],

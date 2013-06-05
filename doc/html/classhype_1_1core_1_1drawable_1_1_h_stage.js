@@ -18,6 +18,7 @@ var classhype_1_1core_1_1drawable_1_1_h_stage =
     [ "loc", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a935031858d09241c5d5102402fea2ed3", null ],
     [ "locAt", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a7fb9cfa38223648ff70c40961f5ef9ac", null ],
     [ "move", "classhype_1_1core_1_1drawable_1_1_h_stage.html#ae53aae5fef1912b31816edce4efcad24", null ],
+    [ "onResize", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a1cb882a27bf39bde49e9c39805cff7f3", null ],
     [ "paintAll", "classhype_1_1core_1_1drawable_1_1_h_stage.html#aa768839177687e105f78c6769bbfcb0b", null ],
     [ "rotate", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a4b305733a2a18d6f3bc998355aa69a03", null ],
     [ "rotateRad", "classhype_1_1core_1_1drawable_1_1_h_stage.html#ac3eff74da94b587a40689503dc74bfa5", null ],
