@@ -103,5 +103,6 @@ public interface HConstants {
 		SQRT2 = 1.4142135623730951f,
 		PHI = 1.618033988749895f,
 		PHI_1 = 0.618033988749895f,
+		TOLERANCE = (float)10e-6,
 		EPSILON = (float)10e-12;
 }

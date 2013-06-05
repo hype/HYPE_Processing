@@ -23,9 +23,15 @@ public static class HPath extends HDrawable {
 		copy.copyPropertiesFrom(this);
 		for(int i=0; i<_vertices.size(); ++i) {
 			HVertex v = _vertices.get(i);
-			copy.vertexPerc(v.x, v.y,
-				v.hx1, v.hy1,
-				v.hx2, v.hy2);
+			HVertex vcopy = new HVertex();
+			vcopy.x = v.x;
+			vcopy.y = v.y;
+			vcopy.hx1 = v.hx1;
+			vcopy.hy1 = v.hy1;
+			vcopy.hx2 = v.hx2;
+			vcopy.hy2 = v.hy2;
+			vcopy.isBezier = v.isBezier;
+			copy._vertices.add(vcopy);
 		}
 		return copy;
 	}

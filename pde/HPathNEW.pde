@@ -9,83 +9,98 @@
  * All rights reserved.
  */
 public static class HPathNEW extends HDrawable {
-	private ArrayList<HVertexNEW> _vtcs;
+	private ArrayList<HVertexNEW> _vertices;
 	private int _mode;
+	private boolean _drawHandles;
 	public HPathNEW() {
 		this(PConstants.PATH);
 	}
 	public HPathNEW(int pathMode) {
-		_vtcs = new ArrayList<HVertexNEW>();
 		_mode = pathMode;
+		_vertices = new ArrayList<HVertexNEW>();
 	}
-	public HDrawable createCopy() {
-		HPathNEW copy = new HPathNEW(_mode);
+	public HPathNEW createCopy() {
+		HPathNEW copy = new HPathNEW();
 		copy.copyPropertiesFrom(this);
-		for(int i=0; i<_vtcs.size(); ++i) copy._vtcs.add(_vtcs.get(i));
+		copy._mode = _mode;
+		copy._drawHandles = _drawHandles;
 		return copy;
 	}
-	public HPathNEW mode(int m) {
-		_mode = m;
+	public HPathNEW mode(int modeId) {
+		_mode = modeId;
 		return this;
 	}
 	public int mode() {
 		return _mode;
 	}
-	public int numVertices() {
-		return _vtcs.size();
-	}
-	public HVertexNEW vertex(int index) {
-		return _vtcs.get(index);
-	}
-	public HPathNEW vertex(float xpx, float ypx) {
-		_vtcs.add(new HVertexNEW(this).set(xpx,ypx));
+	public HPathNEW drawsHandles(boolean b) {
+		_drawHandles = b;
 		return this;
 	}
-	public HPathNEW vertex(float cx, float cy, float xpx, float ypx) {
-		_vtcs.add(new HVertexNEW(this).set(cx,cy, xpx,ypx));
+	public boolean drawsHandles() {
+		return _drawHandles;
+	}
+	public int numVertices() {
+		return _vertices.size();
+	}
+	public HVertexNEW vertex(int index) {
+		return _vertices.get(index);
+	}
+	public HPathNEW vertex(float x, float y) {
+		_vertices.add(new HVertexNEW(this).set(x,y));
+		return this;
+	}
+	public HPathNEW vertex(float cx, float cy, float x, float y) {
+		_vertices.add(new HVertexNEW(this).set(cx,cy, x,y));
 		return this;
 	}
 	public HPathNEW vertex(
-		float cx1, float cy1,  float cx2, float cy2,
-		float xpx, float ypx
+		float cx1, float cy1,
+		float cx2, float cy2,
+		float x, float y
 	) {
-		_vtcs.add(new HVertexNEW(this).set(cx1,cy1, cx2,cy2, xpx,ypx));
+		_vertices.add(new HVertexNEW(this).set(cx1,cy1, cx2,cy2, x,y));
 		return this;
 	}
-	public HPathNEW vertexUV(float xpc, float ypc) {
-		_vtcs.add(new HVertexNEW(this).setUV(xpc,ypc));
+	public HPathNEW vertexUV(float u, float v) {
+		_vertices.add(new HVertexNEW(this).setUV(u,v));
 		return this;
 	}
-	public HPathNEW vertexUV(float cx, float cy, float xpx, float ypx) {
-		_vtcs.add(new HVertexNEW(this).setUV(cx,cy, xpx,ypx));
+	public HPathNEW vertexUV(float cu, float cv, float u, float v) {
+		_vertices.add(new HVertexNEW(this).setUV(cu,cv, u,v));
 		return this;
 	}
 	public HPathNEW vertexUV(
-		float cx1, float cy1,  float cx2, float cy2,
-		float xpx, float ypx
+		float cu1, float cv1,
+		float cu2, float cv2,
+		float u, float v
 	) {
-		_vtcs.add(new HVertexNEW(this).setUV(cx1,cy1, cx2,cy2, xpx,ypx));
+		_vertices.add(new HVertexNEW(this).setUV(cu1,cv1, cu2,cv2, u,v));
 		return this;
 	}
-	public HPathNEW clear() {
-		_vtcs.clear();
+	public HPathNEW adjust() {
+		int numv = numVertices();
+		float[] minmax = new float[4];
+		for(int i=0; i<numv; ++i) vertex(i).computeMinMax(minmax);
+		float scaleW = minmax[2] - minmax[0];
+		float scaleH = minmax[3] - minmax[1];
+		float offU = -minmax[0];
+		float offV = -minmax[1];
+		for(int i=0; i<numv; ++i) vertex(i).adjust(offU,offV, scaleW,scaleH);
+		float ancU = (scaleW==0? offU : offU/scaleW);
+		float ancV = (scaleH==0? offV : offV/scaleH);
+		scale(scaleW,scaleH).anchorPerc(ancU,ancV);
 		return this;
 	}
 	public HPathNEW endPath() {
-		int numVtcs = _vtcs.size();
-		float[] minmax = new float[4];
-		for(int i=0; i<numVtcs; ++i) _vtcs.get(i).computeMinMax(minmax);
-		float minx = minmax[0];
-		float miny = minmax[1];
-		float wpc = minmax[2] - minx;
-		float hpc = minmax[3] - miny;
-		scale(wpc,hpc);
-		anchorPerc((wpc==0? 0 : -minx/wpc), (hpc==0? 0 : -miny/wpc));
-		for(int i=0; i<numVtcs; ++i) _vtcs.get(i).adjust(minx,miny,wpc,hpc);
+		return adjust();
+	}
+	public HPathNEW clear() {
+		_vertices.clear();
 		return this;
 	}
 	public HPathNEW triangle(int type, int direction) {
-		_vtcs.clear();
+		clear();
 		_mode = PConstants.POLYGON;
 		float ratio = 2;
 		switch(type) {
@@ -131,7 +146,7 @@ public static class HPathNEW extends HDrawable {
 		return polygonRad(numEdges, startDeg*HConstants.D2R);
 	}
 	public HPathNEW polygonRad(int numEdges, float startRad) {
-		_vtcs.clear();
+		clear();
 		_mode = PConstants.POLYGON;
 		float inc = PConstants.TWO_PI / numEdges;
 		for(int i=0; i<numEdges; ++i) {
@@ -149,7 +164,7 @@ public static class HPathNEW extends HDrawable {
 		return starRad(numEdges, depth, startDeg*HConstants.D2R);
 	}
 	public HPathNEW starRad(int numEdges, float depth, float startRad) {
-		_vtcs.clear();
+		clear();
 		_mode = PConstants.POLYGON;
 		float inc = PConstants.TWO_PI / numEdges;
 		float idepth2 = (1-depth) * 0.5f;
@@ -166,23 +181,34 @@ public static class HPathNEW extends HDrawable {
 		return this;
 	}
 	public boolean containsRel(float relX, float relY) {
-		return false; 
+		relX /= _width;
+		relY /= _height;
+		int numCrossings = 0;
+		int numv = numVertices();
+		HVertexNEW lastVtx = vertex(numv-1);
+		for(int i=0; i<numv; ++i) {
+			HVertexNEW v = vertex(i);
+			int tmp = v.getCrossings(lastVtx, relX, relY);
+			if(tmp<0) return true;
+			numCrossings += tmp;
+			lastVtx = v;
+		}
+		return (numCrossings&1) == 1;
 	}
 	public void draw( PGraphics g, boolean usesZ,
-		float drawX, float drawY, float currAlphaPerc
+		float drawX, float drawY, float alphaPc
 	) {
-		int numVtcs = _vtcs.size();
-		if(numVtcs <= 0) return;
-		applyStyle(g,currAlphaPerc);
-		boolean hasLines = (_mode != PConstants.POINTS);
+		int numv = numVertices();
+		if(numv <= 0) return;
+		applyStyle(g, alphaPc);
+		boolean isPoints = (_mode == PConstants.POINTS);
 		boolean isPolygon = (_mode == PConstants.POLYGON);
 		boolean isFirst = true;
-		if(hasLines) g.beginShape();
-		else g.beginShape(PConstants.POINTS);
-		int itrs = (isPolygon)? numVtcs+1 : numVtcs;
+		if(isPoints) g.beginShape(PConstants.POINTS);
+		else g.beginShape();
+		int itrs = (isPolygon)? numv+1 : numv;
 		for(int i=0; i<itrs; ++i) {
-			HVertexNEW v = _vtcs.get(i<numVtcs? i : 0);
-			v.draw( g, isFirst && hasLines );
+			vertex(i<numv? i : 0).draw(g, isFirst || isPoints, _drawHandles);
 			if(isFirst) isFirst = false;
 		}
 		if(isPolygon) g.endShape(PConstants.CLOSE);

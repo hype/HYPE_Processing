@@ -19,10 +19,10 @@ public static interface HLocatable {
 	 * TODO
 	 * 
 	 * @chainable
-	 * @param newX
+	 * @param f
 	 * @return
 	 */
-	public HLocatable x(float newX);
+	public HLocatable x(float f);
 	/**
 	 * TODO
 	 * 
@@ -33,10 +33,10 @@ public static interface HLocatable {
 	 * TODO
 	 * 
 	 * @chainable
-	 * @param newY
+	 * @param f
 	 * @return
 	 */
-	public HLocatable y(float newY);
+	public HLocatable y(float f);
 	/**
 	 * TODO
 	 * 
@@ -47,8 +47,8 @@ public static interface HLocatable {
 	 * TODO
 	 *
 	 * @chainable
-	 * @param newZ
+	 * @param f
 	 * @return
 	 */
-	public HLocatable z(float newZ);
+	public HLocatable z(float f);
 }
