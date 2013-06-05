@@ -1,6 +1,7 @@
 ### build_20130605.0 (Jun 5, 2013)
 - bugfix: `HPath.createCopy()` now copies its vertices properly
 - some further code for HPathNEW and HVertexNEW
+- marked `HOscillator.createCopy()`` as deprecated
 
 ### build_20130604.1 (Jun 4, 2013)
 - HGroup is now set to transform/resize its children by default; to turn this off, call `transformsChildren(false)`
@@ -70,7 +71,7 @@
 ### build_20130529.1 (May 29, 2013)
 - new class: `hype.util.HVertexNEW` _(this will replace HPath.HVertex soon)_
 - new method: `HMath.bezierParam(float,float,float,float,float[])` _(this is like the other bezierParam(), but for quadratic bezier curves)_
-
+bb
 ### build_20130529.0 (May 29, 2013)
 - bugfix: HPath overrides fill and stroke during random colors mode, even if `fillOnly()` or `strokeOnly()` are set
 - bugfix: HTween doesn't reset its current value when it's finished its tweening

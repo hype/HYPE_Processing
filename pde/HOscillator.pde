@@ -22,6 +22,7 @@ public static class HOscillator extends HBehavior {
 		_property = HConstants.Y;
 		register();
 	}
+	/** @deprecated */
 	public HOscillator createCopy() {
 		HOscillator copy = new HOscillator();
 		copy._min1 = _min1;

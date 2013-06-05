@@ -15,7 +15,6 @@ import hype.core.behavior.HBehavior;
 import hype.core.drawable.HDrawable;
 import hype.core.util.HConstants;
 import hype.core.util.HMath;
-import hype.core.util.HWarnings;
 import processing.core.PApplet;
 
 public class HOscillator extends HBehavior {
@@ -34,6 +33,7 @@ public class HOscillator extends HBehavior {
 		register();
 	}
 	
+	/** @deprecated */
 	public HOscillator createCopy() {
 		HOscillator copy = new HOscillator();
 		copy._min1 = _min1;
