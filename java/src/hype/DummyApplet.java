@@ -11,12 +11,8 @@
 
 package hype;
 
-import hype.core.drawable.HDrawable;
-import hype.core.util.H;
-import hype.extended.drawable.HGroup;
-import hype.extended.drawable.HPathNEW;
-import hype.extended.drawable.HRect;
 import processing.core.PApplet;
+import SimpleOpenNI.SimpleOpenNI;
 
 /**
  * @mainpage
@@ -43,6 +39,7 @@ public class DummyApplet extends PApplet {
 	 * 		- fill
 	 * - [ ] HDrawable.rotatesChildren(bool)
 	 * - [ ] apply the UV coordinate stuff
+	 * - [ ] remove casting reqs for add() / remove()
 	 * 
 	 * (HBehavior)
 	 * - [ ] boolean params for HBehavior constructors (default=true,
@@ -146,41 +143,22 @@ public class DummyApplet extends PApplet {
 	 * - [ ] AS3::SoundAnalyzer
 	 */
 	
-	HGroup grp;
-	HRect r1, r2;
+	SimpleOpenNI oni;
 	
 	@Override
 	public void setup() {
-		size(600,600);
-		H.init(this);
-		H.background(H.BLUE);
-		
-		HDrawable d = H.add(new HPathNEW(POLYGON)
-//			.vertex(-25f, 50f, 25f, 50f, 0,0)
-//			.vertex( 50f,-25f, 50f, 25f, 100,0)
-//			.vertex(125f, 50f, 75f, 50f, 100,100)
-			.vertex(0,0)
-			.vertex(100,0)
-			.vertex(100,100)
-			.vertex(0,100)
-			.adjust()
-			.star(5,.5f)
-			.polygon(6)
-		).locAt(H.CENTER).stroke(H.WHITE).strokeWeight(3).fill(0xFFC0FFEE);
-		
-		// UNIT TEST:
-		// 1. Check handles
-		// 2. Check anchor & size
-		// 3. Redo hitbox
-		
-		H.drawStage();
-		stroke(H.RED,64);
-		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
-			if(d.contains(x,y)) {
-				point(x,y);
-			}
-		}
-		noLoop();
+		size(800,600);
+		oni = new SimpleOpenNI(this);
+		oni.enableIR();
+	}
+	
+	@Override
+	public void draw() {
+		print("[");
+		print(frameCount);
+//		oni.update();
+		println("]");
+//		image(oni.irImage(),0,0);
 	}
 }
 /** @endcond */
