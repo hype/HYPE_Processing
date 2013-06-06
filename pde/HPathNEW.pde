@@ -181,6 +181,7 @@ public static class HPathNEW extends HDrawable {
 		return this;
 	}
 	public boolean containsRel(float relX, float relY) {
+		if(numVertices() <= 0) return false;
 		relX /= _width;
 		relY /= _height;
 		int numCrossings = 0;

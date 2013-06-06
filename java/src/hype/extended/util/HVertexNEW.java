@@ -126,7 +126,7 @@ public class HVertexNEW implements HLocatable {
 
 	@Override
 	public float x() {
-		return _path.u2x(_u);
+		return _path.u2x(_u - _path.anchorPercX());
 	}
 
 	@Override
@@ -136,7 +136,7 @@ public class HVertexNEW implements HLocatable {
 
 	@Override
 	public float y() {
-		return _path.v2y(_v);
+		return _path.v2y(_v - _path.anchorPercY());
 	}
 
 	@Override
@@ -204,7 +204,7 @@ public class HVertexNEW implements HLocatable {
 	}
 
 	public float cx1() {
-		return _path.u2x(_cu1);
+		return _path.u2x(_cu1 - _path.anchorPercX());
 	}
 
 	public HVertexNEW cy1(float f) {
@@ -212,7 +212,7 @@ public class HVertexNEW implements HLocatable {
 	}
 
 	public float cy1() {
-		return _path.v2y(_cv1);
+		return _path.v2y(_cv1 - _path.anchorPercY());
 	}
 
 	public HVertexNEW cu1(float f) {
@@ -238,7 +238,7 @@ public class HVertexNEW implements HLocatable {
 	}
 
 	public float cx2() {
-		return _path.u2x(_cu2);
+		return _path.u2x(_cu2 - _path.anchorPercX());
 	}
 
 	public HVertexNEW cy2(float f) {
@@ -246,7 +246,7 @@ public class HVertexNEW implements HLocatable {
 	}
 
 	public float cy2() {
-		return _path.v2y(_cv2);
+		return _path.v2y(_cv2 - _path.anchorPercY());
 	}
 
 	public HVertexNEW cu2(float f) {
@@ -324,15 +324,21 @@ public class HVertexNEW implements HLocatable {
 			float[] ts = new float[2];
 			int numt = HMath.bezierParam(prev._v,_cv1,_v, tv, ts);
 			for(int i=0; i<numt; ++i) {
-				//
-				// TODO
+				float t = ts[i];
+				if(t <= 0) continue;
+				float tmpU = HMath.bezierPoint(prev._u,_cu1,_u, t);
+				if(tmpU == tu) return -1;
+				if(tmpU < tu) ++numCrossings;
 			}
 		} else {
 			float[] ts = new float[3];
 			float numt = HMath.bezierParam(prev._v,_cv1,_cv2,_v, tv, ts);
 			for(int i=0; i<numt; ++i) {
-				//
-				// TODO
+				float t = ts[i];
+				if(t <= 0) continue;
+				float tmpU = HMath.bezierPoint(prev._u,_cu1,_cu2,_u, t);
+				if(tmpU == tu) return -1;
+				if(tmpU < tu) ++numCrossings;
 			}
 		}
 		return numCrossings;

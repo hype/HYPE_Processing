@@ -11,8 +11,10 @@
 
 package hype;
 
+import hype.core.util.H;
+import hype.core.util.HMath;
+import hype.extended.drawable.HPathNEW;
 import processing.core.PApplet;
-import SimpleOpenNI.SimpleOpenNI;
 
 /**
  * @mainpage
@@ -143,22 +145,52 @@ public class DummyApplet extends PApplet {
 	 * - [ ] AS3::SoundAnalyzer
 	 */
 	
-	SimpleOpenNI oni;
+	HPathNEW path;
 	
 	@Override
 	public void setup() {
-		size(800,600);
-		oni = new SimpleOpenNI(this);
-		oni.enableIR();
-	}
-	
-	@Override
-	public void draw() {
-		print("[");
-		print(frameCount);
-//		oni.update();
-		println("]");
-//		image(oni.irImage(),0,0);
+		size(300,300);
+		H.init(this);
+		H.background(H.BLUE);
+		
+		path = (HPathNEW) H.add(new HPathNEW(POLYGON))
+			.strokeWeight(1)
+			.stroke(H.WHITE)
+			.fill(H.CYAN)
+			.locAt(H.CENTER)
+			.anchorAt(H.CENTER);
+//		path
+//			.vertexUV(.5f,.5f,  -.5f,.5f, 0,0)
+//			.vertexUV(.5f,.5f, .5f,-.5f, 1,0)
+//			.vertexUV(.5f,.5f,  1.5f,.5f, 1,1)
+//			.vertexUV(.5f,.5f, .5f,1.5f, 0,1)
+		
+//			.vertexUV(-.5f,.5f, 0,0)
+//			.vertexUV(.5f,-.5f, 1,0)
+//			.vertexUV(1.5f,.5f, 1,1)
+//			.vertexUV(.5f,1.5f, 0,1)
+		;
+//		path.polygon(6);
+		
+		int maxi = HMath.randomInt(3,15);
+		for(int i=0; i<maxi; ++i) {
+			if(HMath.randomInt(2) == 0) {
+				path.vertexUV(random(-.5f,1.5f),random(-.5f,1.5f));
+			} else if(HMath.randomInt(2) == 0) {
+				path.vertexUV(random(-.5f,1.5f),random(-.5f,1.5f),random(-.5f,1.5f),random(-.5f,1.5f));
+			} else {
+				path.vertexUV(random(-.5f,1.5f),random(-.5f,1.5f),random(-.5f,1.5f),random(-.5f,1.5f),random(-.5f,1.5f),random(-.5f,1.5f));
+			}
+		}
+		
+//		H.add(new HRect()).anchorAt(H.CENTER).locAt(H.CENTER).noFill();
+		
+		H.drawStage();
+		stroke(H.RED,128);
+		for(int y=0; y<width; ++y) for(int x=0; x<height; ++x) {
+			if(path.contains(x,y)) point(x,y);
+		}
+		noLoop();
 	}
 }
 /** @endcond */

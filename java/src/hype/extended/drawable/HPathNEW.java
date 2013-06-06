@@ -227,6 +227,8 @@ public class HPathNEW extends HDrawable {
 	
 	@Override
 	public boolean containsRel(float relX, float relY) {
+		if(numVertices() <= 0) return false;
+		
 		relX /= _width;
 		relY /= _height;
 		
