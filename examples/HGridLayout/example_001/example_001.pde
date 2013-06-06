@@ -4,13 +4,14 @@ void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
 	smooth();
-	
+
 	pool = new HDrawablePool(576);
 	pool.autoAddToStage()
 		.add (
 			new HRect()
 			.rounding(4)
 		)
+
 		.layout (
 			new HGridLayout()
 			.startX(21)
@@ -18,10 +19,11 @@ void setup() {
 			.spacing(26,26)
 			.cols(24)
 		)
+
 		.onCreate (
-		    new HCallback() {
-		    	public void run(Object obj) {
-		    		HDrawable d = (HDrawable) obj;
+			 new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
 					d
 						.noStroke()
 						.fill( #ECECEC )
@@ -31,7 +33,9 @@ void setup() {
 				}
 			}
 		)
-		.requestAll();
+		
+		.requestAll()
+	;
 
 	H.drawStage();
 	noLoop();

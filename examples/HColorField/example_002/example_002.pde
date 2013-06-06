@@ -8,12 +8,12 @@ void setup() {
 	smooth();
 	
 	colorField = new HColorField(width, height)
-	    .addPoint(0, height/2, #FF0066, 0.5f)
-	    .addPoint(width, height/2, #3300FF, 0.5f)
-	    .fillOnly()
-	    // .strokeOnly()
-	    // .fillAndStroke()
-    ;
+		.addPoint(0, height/2, #FF0066, 0.5f)
+		.addPoint(width, height/2, #3300FF, 0.5f)
+		.fillOnly()
+		// .strokeOnly()
+		// .fillAndStroke()
+	;
 
 	rect = new HRect(100);
 	rect.rounding(40)
@@ -29,7 +29,7 @@ void setup() {
 		.target(rect)
 		.ease(0.05)
 		.spring(0.95)
-    ;
+	;
 }
 
 void draw() {

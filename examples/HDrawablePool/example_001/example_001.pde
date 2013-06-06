@@ -4,16 +4,17 @@ void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
 	smooth();
-	
+
 	pool = new HDrawablePool(100);
 	pool.autoAddToStage()
 		.add (
 			new HRect()
 		)
-	    .onCreate (
-		    new HCallback() {
-		    	public void run(Object obj) {
-		    		HDrawable d = (HDrawable) obj;
+
+		.onCreate (
+			new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
 					d
 						.fill(#242424)
 						.strokeWeight(1)
@@ -24,7 +25,9 @@ void setup() {
 				}
 			}
 		)
-		.requestAll();
+
+		.requestAll()
+	;
 
 	H.drawStage();
 	noLoop();

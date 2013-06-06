@@ -1,13 +1,13 @@
 HFollow mf;
-HRect rect;
+HRect d;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
 	smooth();
 	
-	rect = new HRect(100);
-	rect
+	d = new HRect(100);
+	d
 		.rounding(40)
 		.noStroke()
 		.fill(#ECECEC)
@@ -15,16 +15,16 @@ void setup() {
 		.anchorAt(H.CENTER)
 		.rotation(45)
 	;
-	H.add(rect);
+	H.add(d);
 
-// Note: for HFollow we have the following constructors:
-// - new HFollow()
-// - new HFollow(float ease)
-// - new HFollow(float ease, float spring)
-// - new HFollow(float ease, float spring, HFollowable goal)
+	// Note: for HFollow we have the following constructors:
+	// - new HFollow()
+	// - new HFollow(float ease)
+	// - new HFollow(float ease, float spring)
+	// - new HFollow(float ease, float spring, HFollowable goal)
 
-	// HMouseFollow
-	mf = new HFollow().target(rect);
+	mf = new HFollow().target(d);
+
 	// un/register this behavior from HStage 
 	// .unregister()
 	// .register()
