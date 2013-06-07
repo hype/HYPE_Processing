@@ -1,11 +1,14 @@
-final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
+HColorPool colors;
+HRandomTrigger tweenTrigger;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
 	smooth();
 
-	final HRandomTrigger tweenTrigger = new HRandomTrigger( 1f/15 );
+	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
+
+	tweenTrigger = new HRandomTrigger( 1f/15 );
 
 	tweenTrigger.callback(
 		new HCallback(){

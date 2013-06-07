@@ -1,5 +1,5 @@
-HFollow mf;
 HColorPool colors;
+HFollow mf;
 HRect d;
 
 void setup() {

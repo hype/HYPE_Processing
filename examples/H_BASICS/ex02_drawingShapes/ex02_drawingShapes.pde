@@ -3,9 +3,9 @@ void setup() {
 	H.init(this).background(#202020);
 	smooth();
 
-// same as ex01_drawingShapes but with cleaned up method chaining
-	
-// FIRST ROW OF SHAPES
+	// same as ex01_drawingShapes but with cleaned up method chaining
+
+	// FIRST ROW OF SHAPES
 
 	HRect s1 = new HRect(100);
 	s1.noStroke().fill(#ECECEC).loc(50,50);
@@ -23,7 +23,7 @@ void setup() {
 	s4.rounding(10).noStroke().fill(236).loc(500,50);
 	H.add(s4);
 
-// SECOND ROW OF SHAPES
+	// SECOND ROW OF SHAPES
 
 	HRect s5 = new HRect();
 	s5.rounding(10).noStroke().fill(#ECECEC).size(50, 100).loc(50,200);
@@ -41,7 +41,7 @@ void setup() {
 	s8.rounding(10).noStroke().fill(255, 51, 0).loc(500,200);
 	H.add(s8);
 
-// THIRD ROW OF SHAPES
+	// THIRD ROW OF SHAPES
 
 	HRect s9 = new HRect(100);
 	s9.rounding(10).fill(#ECECEC).strokeWeight(6).stroke(#000000).alpha(100).loc(50,350);
@@ -59,7 +59,7 @@ void setup() {
 	s12.rounding(10).noStroke().fill(#FF6600).loc(500,350);
 	H.add(s12);
 
-// FOURTH ROW OF SHAPES
+	// FOURTH ROW OF SHAPES
 
 	HRect s13 = new HRect(100);
 	s13.rounding(10).strokeWeight(6).stroke(#ECECEC).noFill().loc(50,500);

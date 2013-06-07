@@ -1,8 +1,8 @@
 /* @pjs preload="sintra.jpg"; */
 
-HDrawablePool pool;
-HSwarm swarm;
 HPixelColorist colors;
+HSwarm swarm;
+HDrawablePool pool;
 HTimer timer;
 
 void setup() {
@@ -10,12 +10,11 @@ void setup() {
 	H.init(this).background(#202020).autoClear(false);
 	smooth();
 
-	PImage img = loadImage("sintra.jpg");
-	colors = new HPixelColorist(img)
-	    .fillOnly()
-	    // .strokeOnly()
-	    // .fillAndStroke()
-    ;
+	colors = new HPixelColorist("sintra.jpg")
+		.fillOnly()
+		// .strokeOnly()
+		// .fillAndStroke()
+	;
 
 	swarm = new HSwarm()
 		.addGoal(H.mouse())
@@ -30,10 +29,11 @@ void setup() {
 			new HRect()
 			.rounding(4)
 		)
+
 		.onCreate (
-		    new HCallback() {
-		    	public void run(Object obj) {
-		    		HDrawable d = (HDrawable) obj;
+			new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
 					d
 						.size((int)random(10,20), (int)random(2,6) )
 						.noStroke()
@@ -41,9 +41,9 @@ void setup() {
 						.loc( width/2, height/2 )
 						.anchorAt( H.CENTER )
 					;
-					colors.applyColor( d );
 
-					// Add "d" to swarm's list of targets
+					colors.applyColor(d);
+
 					swarm.addTarget(d);
 				}
 			}
@@ -65,10 +65,10 @@ void setup() {
 
 void draw() {
 	HIterator<HDrawable> it = pool.iterator();
+
 	while(it.hasNext()) {
 		HDrawable d = it.next();
-		colors.applyColor(d);
-		d.alpha(50);
+		colors.applyColor(d.alpha(50));
 	}
 
 	H.drawStage();

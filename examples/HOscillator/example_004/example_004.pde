@@ -26,7 +26,6 @@ void setup() {
 		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
-
 					HDrawable d = (HDrawable) obj;
 
 					new HOscillator()

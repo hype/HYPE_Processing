@@ -2,8 +2,6 @@
 
 HDrawablePool pool;
 
-final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
-
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
@@ -16,27 +14,32 @@ void setup() {
 	H.add(hitObj).size(300).noStroke().fill(#237D26).anchorAt(H.CENTER).locAt(H.CENTER).visibility(false);
 
 	HShapeLayout hsl = new HShapeLayout().target(hitObj);
-	
+
 	pool = new HDrawablePool(3000);
 	pool.autoAddToStage()
 		.add (
 			new HRect(4).rounding(2)
 		)
+
+		.colorist( new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600).fillOnly() )
+
 		.layout(hsl)
+
 		.onCreate (
-		    new HCallback() {
-		    	public void run(Object obj) {
+			new HCallback() {
+				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
 					d
 						.noStroke()
-						.fill( colors.getColor() )
 						.anchorAt(H.CENTER)
 						.rotation(45)
 					;
 				}
 			}
 		)
-		.requestAll();
+
+		.requestAll()
+	;
 
 	H.drawStage();
 	noLoop();

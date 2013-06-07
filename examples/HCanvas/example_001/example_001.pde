@@ -1,18 +1,17 @@
+HColorPool colors;
 HCanvas canvas1, canvas2, canvas3;
-
 HRect r1, r2, r3;
 
 int countDown = 5;
 int count = 0;
-
 int ranX, ranY;
-
-final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
 	smooth();
+
+	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
 	canvas1 = new HCanvas().autoClear(false).fade(2);
 	canvas2 = new HCanvas().autoClear(false).fade(4);
@@ -61,7 +60,6 @@ void setup() {
 		.rotation(45)
 	;
 	canvas3.add(r3);
-
 }
 
 void draw() {

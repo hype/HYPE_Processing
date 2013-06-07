@@ -1,5 +1,5 @@
-HCanvas canvas;
 HColorPool colors;
+HCanvas canvas;
 
 void setup() {
 	size(640, 640);
@@ -8,7 +8,7 @@ void setup() {
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #ff3300, #ff3300, #242424, #333333, #666666);
 
-	canvas = H.add( new HCanvas() ).autoClear(true);
+	canvas = H.add(new HCanvas()).autoClear(true);
 
 	int starScale = 800;
 	int starOffest = 15;

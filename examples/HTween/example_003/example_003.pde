@@ -1,11 +1,12 @@
+HColorPool colors;
 HCanvas canvas;
-
-final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
 	smooth();
+
+	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
 	canvas = new HCanvas().autoClear(false).fade(1);
 	H.add(canvas);
@@ -15,8 +16,7 @@ void setup() {
 	tweenTrigger.callback(
 		new HCallback(){
 			public void run(Object obj) {
-				final HDrawable r = canvas.add( new HRect(25+((int)random(5)*25)).rounding(10) )
-					// .noStroke()
+				final HDrawable r = canvas.add(new HRect(25+((int)random(5)*25)).rounding(10) )
 					.strokeWeight(1)
 					.stroke( colors.getColor() )
 					.fill( #000000, 25 )
@@ -45,24 +45,30 @@ void setup() {
 
 				// tween has appeared / start timer
 
-				final HCallback onAppear = new HCallback(){public void run(Object obj) {
-					timer.register();
-				}};
+				final HCallback onAppear = new HCallback() {
+					public void run(Object obj) {
+						timer.register();
+					}
+				};
 
 				// on screen pause is finished lets remove
 
-				final HCallback onDisappear = new HCallback(){public void run(Object obj) {
-					canvas.remove(r);
-				}};
+				final HCallback onDisappear = new HCallback() {
+					public void run(Object obj) {
+						canvas.remove(r);
+					}
+				};
 
 				// timer starts / holds art on screen for 3 seconds / then calls onDisappear
 
-				final HCallback onPause = new HCallback(){public void run(Object obj) {
-					timer.unregister();
-					tween1.start(1).end(2).ease(0.01).spring(0.99).register();
-					tween2.start(90).end(-90).ease(0.01).spring(0.7).register();
-					tween3.start(255).end(0).ease(0.01).spring(0.95).register().callback(onDisappear);
-				}};
+				final HCallback onPause = new HCallback() {
+					public void run(Object obj) {
+						timer.unregister();
+						tween1.start(1).end(2).ease(0.01).spring(0.99).register();
+						tween2.start(90).end(-90).ease(0.01).spring(0.7).register();
+						tween3.start(255).end(0).ease(0.01).spring(0.95).register().callback(onDisappear);
+					}
+				};
 
 				tween3.callback(onAppear);
 				timer.callback(onPause);
