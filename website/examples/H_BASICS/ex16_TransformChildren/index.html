@@ -26,32 +26,32 @@
 	</head>
 
 	<body>
-      <div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
+		<div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
 
-        <a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
+		<a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
 
-        <div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
 
-        <div style="font-size: 10px; color: #666666;">
-          <a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
-        </div>
+		<div style="font-size: 10px; color: #666666;">
+			<a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
+		</div>
 
-        <div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
 
-        <div style="font-size: 10px; color: #666666;">
-          by Joshua Davis and James Cruz <br />
-          A Code and Theory project <br />
-          <a href="http://www.codeandtheory.com" target="_blank">http://www.codeandtheory.com</a> <br />
-          for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
+		<div style="font-size: 10px; color: #666666;">
+			by Joshua Davis and James Cruz <br />
+			A Code and Theory project <br />
+			<a href="http://www.codeandtheory.com" target="_blank">http://www.codeandtheory.com</a> <br />
+			for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
 
-          HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
-        </div>
+			HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
+		</div>
 
-        <div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
 
-        <a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
+		<a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
 
-      </div>
+		</div>
 
 		<div id="content">
 			<div>
@@ -63,12 +63,12 @@
 				<noscript>
 					<p>JavaScript is required to view the contents of this page.</p>
 				</noscript>
-	    	</div>
+				</div>
 
-	    	<div style="background-color: #181818; padding:10px 20px 15px 20px;">
+				<div style="background-color: #181818; padding:10px 20px 15px 20px;">
 				<b style="font-size: 15px; font-weight: 700; color: #ECECEC;">
 				ex16_TransformChildren </b><br /><br />
-	    		HYPE, HGroup, HRect, HEllipse, .transformsChildren() <br /><br />
+					HYPE, HGroup, HRect, HEllipse, .transformsChildren() <br /><br />
 				<a href="index.pde">Source code</a>
 			</div>
 		</div>
@@ -84,70 +84,70 @@ HGroup grp;
 HRect r1, r2;
 
 void setup() {
-  size(640,640);
-  H.init(this).background(#202020);
-  smooth();
-  
-  /*
-   * By default, most drawables by default won't transform
-   * their children.
-   */
+	size(640,640);
+	H.init(this).background(#202020);
+	smooth();
 
-  r1 = H.add(new HRect().rounding(5));
-  r1.noStroke().fill(#FF3300);
-  
-  /*
-   * To set it on, call transformsChildren(true).
-   * To set it off, call transformsChildren(false).
-   */
+	/*
+	 * By default, most drawables by default won't transform
+	 * their children.
+	 */
 
-  r2 = H.add(new HRect().rounding(5));
-  r2.noStroke().fill(#FF6600).x(width/3).transformsChildren(true);
-  
-  /*
-   * The exception to this is HGroup, which is by default
-   * would transform its children.
-   *
-   * You can turn this off with transformsChildren(false)
-   */
+	r1 = H.add(new HRect().rounding(5));
+	r1.noStroke().fill(#FF3300);
 
-  grp = H.add(new HGroup());
-  grp.x(width*2/3);
-  // grp.transformsChildren(false);
-  
-  r1.add(new HEllipse(5)).noStroke().fill(#0095a8);
-  r1.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.TOP_RIGHT).anchorAt(H.TOP_RIGHT);
-  r1.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.CENTER).anchorAt(H.CENTER);
-  r1.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.BOTTOM_RIGHT).anchorAt(H.BOTTOM_RIGHT);
-  r1.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.BOTTOM_LEFT).anchorAt(H.BOTTOM_LEFT);
+	/*
+	 * To set it on, call transformsChildren(true).
+	 * To set it off, call transformsChildren(false).
+	 */
 
-  r2.add(new HEllipse(5)).noStroke().fill(#0095a8);
-  r2.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.TOP_RIGHT).anchorAt(H.TOP_RIGHT);
-  r2.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.CENTER).anchorAt(H.CENTER);
-  r2.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.BOTTOM_RIGHT).anchorAt(H.BOTTOM_RIGHT);
-  r2.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.BOTTOM_LEFT).anchorAt(H.BOTTOM_LEFT);
+	r2 = H.add(new HRect().rounding(5));
+	r2.noStroke().fill(#FF6600).x(width/3).transformsChildren(true);
 
-  grp.add(new HEllipse(5)).noStroke().fill(#0095a8);
-  grp.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.TOP_RIGHT).anchorAt(H.TOP_RIGHT);
-  grp.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.CENTER).anchorAt(H.CENTER);
-  grp.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.BOTTOM_RIGHT).anchorAt(H.BOTTOM_RIGHT);
-  grp.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.BOTTOM_LEFT).anchorAt(H.BOTTOM_LEFT);
+	/*
+	 * The exception to this is HGroup, which is by default
+	 * would transform its children.
+	 *
+	 * You can turn this off with transformsChildren(false)
+	 */
 
-  H.add(new HText("transformsChildren(false)",14)).anchorAt(H.CENTER).loc(100, height-40).fill(#CCCCCC);
-  H.add(new HText("transformsChildren(true)",14)).anchorAt(H.CENTER).loc(width/2, height-40).fill(#CCCCCC);
-  H.add(new HText("HGroup default",14)).anchorAt(H.CENTER).loc(width - 108, height-40).fill(#CCCCCC);
+	grp = H.add(new HGroup());
+	grp.x(width*2/3);
+	// grp.transformsChildren(false);
+
+	r1.add(new HEllipse(5)).noStroke().fill(#0095a8);
+	r1.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.TOP_RIGHT).anchorAt(H.TOP_RIGHT);
+	r1.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.CENTER).anchorAt(H.CENTER);
+	r1.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.BOTTOM_RIGHT).anchorAt(H.BOTTOM_RIGHT);
+	r1.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.BOTTOM_LEFT).anchorAt(H.BOTTOM_LEFT);
+
+	r2.add(new HEllipse(5)).noStroke().fill(#0095a8);
+	r2.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.TOP_RIGHT).anchorAt(H.TOP_RIGHT);
+	r2.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.CENTER).anchorAt(H.CENTER);
+	r2.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.BOTTOM_RIGHT).anchorAt(H.BOTTOM_RIGHT);
+	r2.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.BOTTOM_LEFT).anchorAt(H.BOTTOM_LEFT);
+
+	grp.add(new HEllipse(5)).noStroke().fill(#0095a8);
+	grp.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.TOP_RIGHT).anchorAt(H.TOP_RIGHT);
+	grp.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.CENTER).anchorAt(H.CENTER);
+	grp.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.BOTTOM_RIGHT).anchorAt(H.BOTTOM_RIGHT);
+	grp.add(new HEllipse(5)).noStroke().fill(#0095a8).locAt(H.BOTTOM_LEFT).anchorAt(H.BOTTOM_LEFT);
+
+	H.add(new HText("transformsChildren(false)",14)).anchorAt(H.CENTER).loc(100, height-40).fill(#CCCCCC);
+	H.add(new HText("transformsChildren(true)",14)).anchorAt(H.CENTER).loc(width/2, height-40).fill(#CCCCCC);
+	H.add(new HText("HGroup default",14)).anchorAt(H.CENTER).loc(width - 108, height-40).fill(#CCCCCC);
 }
 
 void draw() {
-  if(H.mouseStarted()) {
-    float w = max(10, mouseX/3);
-    float h = max(10, mouseY);
-    r1.size(w,h);
-    r2.size(w,h);
-    grp.size(w,h);
-  }
+	if(H.mouseStarted()) {
+		float w = max(10, mouseX/3);
+		float h = max(10, mouseY);
+		r1.size(w,h);
+		r2.size(w,h);
+		grp.size(w,h);
+	}
 
-  H.drawStage();
+	H.drawStage();
 }
 			</pre></div>
 	</body>
