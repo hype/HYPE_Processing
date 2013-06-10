@@ -12,7 +12,6 @@
 package hype;
 
 import hype.core.util.H;
-import hype.core.util.HMath;
 import hype.extended.drawable.HPathNEW;
 import processing.core.PApplet;
 
@@ -28,9 +27,17 @@ public class DummyApplet extends PApplet {
 	
 	/* TODO
 	 * (HPath)
-	 * - [ ] fix HVertexNEW and HPathNEW's hitbox
-	 * - [ ] HPathNEW.line(x,y,x,y);
+	 * - [ ] remove param culling in HMath.bezierParam()
+	 * - [ ] review method parity between HPathNEW and HPath
+	 * - [ ] test each HPath equivalent method for HPathNEW
+	 * - [ ] rename HPathNEW and HVertexNEW
+	 * - [ ] retest all HPath examples
 	 * - [ ] draw handles
+	 * - [ ] test 0-width and 0-height hitboxes
+	 * - [ ] points mode hitbox checking
+	 * - [ ] apply tolerance to HVertexNEW.intersectTest()
+	 * - [ ] treat vertex(0) as straight line if in PATH mode
+	 * - [ ] point-in-line testing
 	 * 
 	 * (HDrawable)
 	 * - [ ] HDrawable.stylesChildren(bool)
@@ -138,6 +145,7 @@ public class DummyApplet extends PApplet {
 	 * - [ ] use a single line break for doc summaries if they're too long
 	 * 
 	 * (Far Future Stuff)
+	 * - [ ] Standards compliant SVG parser to convert a shape to a Path
 	 * - [ ] HContext overhaul
 	 * - [ ] FSM java to pde parser
 	 * - [ ] HYPE Coding Standards documentation for devs
@@ -145,6 +153,7 @@ public class DummyApplet extends PApplet {
 	 * - [ ] AS3::SoundAnalyzer
 	 */
 	
+	//*
 	HPathNEW path;
 	
 	@Override
@@ -158,39 +167,46 @@ public class DummyApplet extends PApplet {
 			.stroke(H.WHITE)
 			.fill(H.CYAN)
 			.locAt(H.CENTER)
-			.anchorAt(H.CENTER);
-//		path
-//			.vertexUV(.5f,.5f,  -.5f,.5f, 0,0)
-//			.vertexUV(.5f,.5f, .5f,-.5f, 1,0)
-//			.vertexUV(.5f,.5f,  1.5f,.5f, 1,1)
-//			.vertexUV(.5f,.5f, .5f,1.5f, 0,1)
-		
+			;
+		path.clear()
+			// CUBIC
+			.vertexUV(.5f,.5f,  -.5f,.5f, 0,0)
+			.vertexUV(.5f,.5f, .5f,-.5f, 1,0)
+			.vertexUV(.5f,.5f,  1.5f,.5f, 1,1)
+			.vertexUV(.5f,.5f, .5f,1.5f, 0,1)
+			
+			// QUADRATIC
+//			.clear()
+////			.vertexUV(-.5f,.5f, 0,0.1f)//
 //			.vertexUV(-.5f,.5f, 0,0)
 //			.vertexUV(.5f,-.5f, 1,0)
 //			.vertexUV(1.5f,.5f, 1,1)
 //			.vertexUV(.5f,1.5f, 0,1)
+			
+			// SIMPLE CUBIC
+//			.clear()
+//			.vertexUV(0,1)
+//			.vertexUV(0,0, 1,0, 1,1)
+			
+			// SIMPLE QUADRATIC
+//			.clear()
+//			.vertexUV(0,1)
+//			.vertexUV(.5f,0, 1,1)
+			
+			.endPath()
 		;
-//		path.polygon(6);
+		path.anchorAt(H.CENTER);
 		
-		int maxi = HMath.randomInt(3,15);
-		for(int i=0; i<maxi; ++i) {
-			if(HMath.randomInt(2) == 0) {
-				path.vertexUV(random(-.5f,1.5f),random(-.5f,1.5f));
-			} else if(HMath.randomInt(2) == 0) {
-				path.vertexUV(random(-.5f,1.5f),random(-.5f,1.5f),random(-.5f,1.5f),random(-.5f,1.5f));
-			} else {
-				path.vertexUV(random(-.5f,1.5f),random(-.5f,1.5f),random(-.5f,1.5f),random(-.5f,1.5f),random(-.5f,1.5f),random(-.5f,1.5f));
-			}
-		}
 		
-//		H.add(new HRect()).anchorAt(H.CENTER).locAt(H.CENTER).noFill();
 		
 		H.drawStage();
 		stroke(H.RED,128);
-		for(int y=0; y<width; ++y) for(int x=0; x<height; ++x) {
-			if(path.contains(x,y)) point(x,y);
-		}
+//		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
+//			if(path.contains(x,y)) point(x,y);
+//		}
+		path.contains(50,100);
 		noLoop();
 	}
+	//*/
 }
 /** @endcond */

@@ -74,7 +74,7 @@ public class HVertexNEW implements HLocatable {
 	public HVertexNEW set(float cx, float cy, float x, float y) {
 		return setUV(
 			_path.x2u(cx), _path.y2v(cy),
-			_path.x2u(x),   _path.y2v(y));
+			_path.x2u(x),  _path.y2v(y));
 	}
 	
 	public HVertexNEW set(
@@ -126,7 +126,7 @@ public class HVertexNEW implements HLocatable {
 
 	@Override
 	public float x() {
-		return _path.u2x(_u - _path.anchorPercX());
+		return _path.u2x(_u);
 	}
 
 	@Override
@@ -136,7 +136,7 @@ public class HVertexNEW implements HLocatable {
 
 	@Override
 	public float y() {
-		return _path.v2y(_v - _path.anchorPercY());
+		return _path.v2y(_v);
 	}
 
 	@Override
@@ -204,7 +204,7 @@ public class HVertexNEW implements HLocatable {
 	}
 
 	public float cx1() {
-		return _path.u2x(_cu1 - _path.anchorPercX());
+		return _path.u2x(_cu1);
 	}
 
 	public HVertexNEW cy1(float f) {
@@ -212,7 +212,7 @@ public class HVertexNEW implements HLocatable {
 	}
 
 	public float cy1() {
-		return _path.v2y(_cv1 - _path.anchorPercY());
+		return _path.v2y(_cv1);
 	}
 
 	public HVertexNEW cu1(float f) {
@@ -238,7 +238,7 @@ public class HVertexNEW implements HLocatable {
 	}
 
 	public float cx2() {
-		return _path.u2x(_cu2 - _path.anchorPercX());
+		return _path.u2x(_cu2);
 	}
 
 	public HVertexNEW cy2(float f) {
@@ -246,7 +246,7 @@ public class HVertexNEW implements HLocatable {
 	}
 
 	public float cy2() {
-		return _path.v2y(_cv2 - _path.anchorPercY());
+		return _path.v2y(_cv2);
 	}
 
 	public HVertexNEW cu2(float f) {
@@ -310,50 +310,97 @@ public class HVertexNEW implements HLocatable {
 		}
 	}
 	
-	public int getCrossings(HVertexNEW prev, float tu, float tv) {
-		int numCrossings = 0;
+	private float dv(float pv, float t) {
+		float tanv;
+		switch(_numControlPts) {
+		case 1:
+			tanv = HMath.bezierTangent(pv,_cv1,_v, t);
+			return tanv;
+		case 2:
+			tanv = HMath.bezierTangent(pv,_cv2,_cv2,_v, t);
+			return tanv;
+		default: return _v - pv;
+		}
+	}
+	
+	public boolean intersectTest(
+		HVertexNEW pprev, HVertexNEW prev,
+		float tu, float tv
+	) {
+		float u1 = prev._u;
+		float v1 = prev._v;
+		float u2 = _u;
+		float v2 = _v;
 		
 		if(isLine()) {
-			float t = (tv-prev._v) / (_v-prev._v);
-			if(0 < t && t <= 1) {
-				float tmpU = prev._u + t*(_u-prev._u);
-				if(tmpU == tu) return -1;
-				if(tmpU < tu) ++numCrossings;
-			}
+			return ((v1<=tv && tv<v2) || (v2<=tv && tv<v1)) && 
+				tu < (u1 + (u2-u1)*(tv-v1)/(v2-v1));
 		} else if(isQuadratic()) {
-			float[] ts = new float[2];
-			int numt = HMath.bezierParam(prev._v,_cv1,_v, tv, ts);
-			for(int i=0; i<numt; ++i) {
-				float t = ts[i];
-				if(t <= 0) continue;
-				float tmpU = HMath.bezierPoint(prev._u,_cu1,_u, t);
-				if(tmpU == tu) return -1;
-				if(tmpU < tu) ++numCrossings;
+			boolean b = false;
+			float[] params = new float[2];
+			int numParams = HMath.bezierParam(v1,_cv1,v2, tv, params);
+			
+			for(int i=0; i<numParams; ++i) {
+				float t = params[i];
+				if(0<t && t<1 && tu<HMath.bezierPoint(u1,_cu1,u2, t)) {
+					if(HMath.bezierTangent(v1,_cv1,v2, t) == 0) continue;
+					b = !b;
+				} else if(t==0 && tu<u1) {
+					float ptanv = prev.dv(pprev._v,1);
+					if(ptanv==0) ptanv = prev.dv(pprev._v,0.9375f);
+					float ntanv = HMath.bezierTangent(v1,_cv1,v2, 0);
+					if(ntanv==0) ntanv=HMath.bezierTangent(v1,_cv1,v2, 0.0625f);
+					if(ptanv<0 == ntanv<0) b = !b;
+				}
 			}
+			return b;
 		} else {
-			float[] ts = new float[3];
-			float numt = HMath.bezierParam(prev._v,_cv1,_cv2,_v, tv, ts);
-			for(int i=0; i<numt; ++i) {
-				float t = ts[i];
-				if(t <= 0) continue;
-				float tmpU = HMath.bezierPoint(prev._u,_cu1,_cu2,_u, t);
-				if(tmpU == tu) return -1;
-				if(tmpU < tu) ++numCrossings;
+			boolean b = false;
+			float[] params = new float[3];
+			int numParams = HMath.bezierParam(v1,_cv1,_cv2,v2, tv, params);
+			
+			for(int i=0; i<numParams; ++i) {
+				float t = params[i];
+				if(0<t && t<1 && tu<HMath.bezierPoint(u1,_cu1,_cu2,u2, t)) {
+					if(HMath.bezierTangent(v1,_cv1,_cv2,_v, t) == 0) {
+						float ptanv = HMath.bezierTangent(
+							v1,_cv1,_cv2,v2, Math.max(t-0.0625f, 0));
+						float ntanv = HMath.bezierTangent(
+							v1,_cv1,_cv2,v2, Math.min(t+.0625f, 1));
+						if(ptanv<0 != ntanv<0) continue;
+					}
+					b = !b;
+				} else if(t==0 && tu<u1) {
+					float ptanv = prev.dv(pprev._v,1);
+					if(ptanv==0) ptanv = prev.dv(pprev._v,0.9375f);
+					float ntanv = HMath.bezierTangent(v1,_cv1,_cv2, 0);
+					if(ntanv==0) ntanv = HMath.bezierTangent(
+						v1,_cv1,_cv2,v2, 0.0625f);
+					if(ptanv<0 == ntanv<0) b = !b;
+				}
 			}
+			return b;
 		}
-		return numCrossings;
 	}
 	
-	public void draw(PGraphics g, boolean isSimple, boolean drawsHandles) {
+	public void draw( PGraphics g, float drawX, float drawY, boolean isSimple) {
+		float drx = drawX + x();
+		float dry = drawY + y();
+		
 		if(isLine() || isSimple) {
-			g.vertex( x(), y() );
+			g.vertex(drx, dry);
 		} else if(isQuadratic()) {
-			// TODO draw handles
-			g.quadraticVertex( cx1(),cy1(), x(),y() );
+			float drcx = drawX + cx1();
+			float drcy = drawY + cy1();
+			
+			g.quadraticVertex(drcx,drcy, drx,dry);
 		} else {
-			// TODO draw handles
-			g.bezierVertex( cx1(),cy1(), cx2(),cy2(), x(),y() );
+			float drcx1 = drawX + cx1();
+			float drcy1 = drawY + cy1();
+			float drcx2 = drawX + cx2();
+			float drcy2 = drawY + cy2();
+			
+			g.bezierVertex(drcx1,drcy1, drcx2,drcy2, drx,dry);
 		}
 	}
-	
 }

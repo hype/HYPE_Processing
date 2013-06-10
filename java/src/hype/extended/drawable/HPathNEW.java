@@ -23,7 +23,7 @@ import processing.core.PGraphics;
 public class HPathNEW extends HDrawable {
 	private ArrayList<HVertexNEW> _vertices;
 	private int _mode;
-	private boolean _drawHandles;
+	private boolean _drawsHandles;
 	
 	public HPathNEW() {
 		this(PConstants.PATH);
@@ -39,7 +39,7 @@ public class HPathNEW extends HDrawable {
 		HPathNEW copy = new HPathNEW();
 		copy.copyPropertiesFrom(this);
 		copy._mode = _mode;
-		copy._drawHandles = _drawHandles;
+		copy._drawsHandles = _drawsHandles;
 		return copy;
 	}
 	
@@ -53,12 +53,12 @@ public class HPathNEW extends HDrawable {
 	}
 	
 	public HPathNEW drawsHandles(boolean b) {
-		_drawHandles = b;
+		_drawsHandles = b;
 		return this;
 	}
 	
 	public boolean drawsHandles() {
-		return _drawHandles;
+		return _drawsHandles;
 	}
 	
 	public int numVertices() {
@@ -114,8 +114,8 @@ public class HPathNEW extends HDrawable {
 		for(int i=0; i<numv; ++i) vertex(i).computeMinMax(minmax);
 		float scaleW = minmax[2] - minmax[0];
 		float scaleH = minmax[3] - minmax[1];
-		float offU = -minmax[0];
-		float offV = -minmax[1];
+		float offU = _anchorPercX - minmax[0];
+		float offV = _anchorPercY - minmax[1];
 		for(int i=0; i<numv; ++i) vertex(i).adjust(offU,offV, scaleW,scaleH);
 		
 		float ancU = (scaleW==0? offU : offU/scaleW);
@@ -131,6 +131,14 @@ public class HPathNEW extends HDrawable {
 	public HPathNEW clear() {
 		_vertices.clear();
 		return this;
+	}
+	
+	public HPathNEW line(float x1, float y1, float x2, float y2) {
+		return clear().vertex(x1,y1).vertex(x2,y2).endPath();
+	}
+	
+	public HPathNEW lineUV(float u1, float v1, float u2, float v2) {
+		return clear().vertexUV(u1,v1).vertexUV(u2,v2).endPath();
 	}
 
 	public HPathNEW triangle(int type, int direction) {
@@ -227,25 +235,31 @@ public class HPathNEW extends HDrawable {
 	
 	@Override
 	public boolean containsRel(float relX, float relY) {
-		if(numVertices() <= 0) return false;
-		
-		relX /= _width;
-		relY /= _height;
-		
-		// TODO if width == 0 or height == 0
-		
-		int numCrossings = 0;
 		int numv = numVertices();
-		HVertexNEW lastVtx = vertex(numv-1);
 		
-		for(int i=0; i<numv; ++i) {
-			HVertexNEW v = vertex(i);
-			int tmp = v.getCrossings(lastVtx, relX, relY);
-			if(tmp<0) return true;
-			numCrossings += tmp;
-			lastVtx = v;
+		if(numv <= 0) return false;
+		if(_width==0) return (relX==0) && (0<relY && relY<_height);
+		if(_height==0) return (relY==0) && (0<relX && relX<_width);
+		
+		float u = relX / _width;
+		float v = relY / _height;
+		if(_mode == PConstants.POINTS) {
+			// TODO
+			return false;
+		} else if(super.containsRel(relX,relY)) {
+			boolean in = false;
+			HVertexNEW prev = vertex(numv-1);
+			HVertexNEW pprev = vertex(numv>1? numv-2 : 0);
+			
+			for(int i=0; i<numv; ++i) {
+				HVertexNEW curr = vertex(i);
+				if(curr.intersectTest(pprev,prev,u,v)) in = !in;
+				pprev = prev;
+				prev = curr;
+			}
+			return in;
 		}
-		return (numCrossings&1) == 1;
+		return false;
 	}
 
 	@Override
@@ -256,17 +270,18 @@ public class HPathNEW extends HDrawable {
 		if(numv <= 0) return;
 		applyStyle(g, alphaPc);
 		
-		boolean isPoints = (_mode == PConstants.POINTS);
-		boolean isPolygon = (_mode == PConstants.POLYGON);
-		boolean isFirst = true;
+		boolean drawsLines = (_mode != PConstants.POINTS);
+		boolean isPolygon = (_mode==PConstants.POLYGON && numv>2);
+		boolean isSimple = true;
 		
-		if(isPoints) g.beginShape(PConstants.POINTS);
-		else g.beginShape();
+		if(drawsLines) g.beginShape();
+		else g.beginShape(PConstants.POINTS);
 		
 		int itrs = (isPolygon)? numv+1 : numv;
 		for(int i=0; i<itrs; ++i) {
-			vertex(i<numv? i : 0).draw(g, isFirst || isPoints, _drawHandles);
-			if(isFirst) isFirst = false;
+			HVertexNEW v = vertex(i<numv? i : 0);
+			v.draw(g, drawX, drawY, isSimple);
+			if(isSimple && drawsLines) isSimple = false;
 		}
 		
 		if(isPolygon) g.endShape(PConstants.CLOSE);
