@@ -1,3 +1,12 @@
+### build_20130610.0 (Jun 10, 2013)
+_note: the following changes are not yet put into the pde files due to their experimental nature_
+- implemented adjustments for some edge cases in `HVertexNEW.intersectTest()`
+- various debugs and refactors for `HVertexNEW` and `HPathNEW`
+- new HMath methods:
+	- bezierTangent(float,float,float,float,float)
+	- bezierTangent(float,float,float,float)
+- organized existing HMath methods (i.e. the bezier stuff are clumped together)
+
 ### build_20130605.0 (Jun 5, 2013)
 - bugfix: `HPath.createCopy()` now copies its vertices properly
 - some further code for HPathNEW and HVertexNEW
