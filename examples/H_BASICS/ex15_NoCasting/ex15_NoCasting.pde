@@ -31,7 +31,7 @@
  * weak typing.
  */
 
- void setup() {
+void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
 	smooth();
@@ -74,22 +74,22 @@
 		.fill(#FF3300)
 	;
 
-  /*
-   * Here's the list of classes that you no longer need to
-   * cast with H.add() and H.remove() as of build_21030531.0:
-   * 
-   * - HCanvas
-   * - HEllipse
-   * - HGroup
-   * - HImage
-   * - HPath
-   * - HRect
-   * - HShape
-   * - HText
-   *
-   * If you created your own HDrawable class, then you'll still
-   * need to do the old casting thing.
-   */
+	/*
+	* Here's the list of classes that you no longer need to
+	* cast with H.add() and H.remove() as of build_21030531.0:
+	* 
+	* - HCanvas
+	* - HEllipse
+	* - HGroup
+	* - HImage
+	* - HPath
+	* - HRect
+	* - HShape
+	* - HText
+	*
+	* If you created your own HDrawable class, then you'll still
+	* need to do the old casting thing.
+	*/
 
 	H.drawStage();
 	noLoop();

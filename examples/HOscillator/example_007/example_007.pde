@@ -1,5 +1,5 @@
-HDrawablePool pool;
 HColorPool colors;
+HDrawablePool pool;
 
 void setup() {
 	size(640, 640);

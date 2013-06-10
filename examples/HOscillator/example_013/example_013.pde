@@ -9,8 +9,7 @@ void setup() {
 	H.init(this).background(#000000).autoClear(true).use3D(true);
 	smooth();
 
-	PImage img = loadImage("gradient.jpg");
-	colors = new HPixelColorist(img);
+	colors = new HPixelColorist("gradient.jpg");
 
 	canvas = new HCanvas(P3D).autoClear(true);
 	H.add(canvas);
@@ -135,7 +134,7 @@ void draw() {
 		d.noStroke();
 		d.fill(colors.getColor(d.x(), d.y()));
 
-		// if the z axis hits this range, change fill to white
+		// if the z axis hits this range, change fill to light yellow
 		if (d.z() > -10 && d.z() < 10){
 			d.fill(#FFFFCC);
 		}

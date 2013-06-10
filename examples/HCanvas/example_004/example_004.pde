@@ -1,14 +1,15 @@
+HColorPool colors;
 HCanvas canvas;
 HDrawablePool pool;
 HSwarm swarm;
 HTimer timer;
 
-final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
-
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
 	smooth();
+
+	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
 	canvas = new HCanvas().autoClear(false).fade(2);
 	H.add(canvas);
@@ -25,10 +26,11 @@ void setup() {
 		.add (
 			new HRect().rounding(4)
 		)
+
 		.onCreate (
-		    new HCallback() {
-		    	public void run(Object obj) {
-		    		HDrawable d = (HDrawable) obj;
+			new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
 					d
 						.size((int)random(10,20), (int)random(2,6) )
 						.fill( colors.getColor() )
@@ -38,7 +40,6 @@ void setup() {
 						.anchorAt( H.CENTER )
 					;
 
-					// Add "d" to swarm's list of targets
 					swarm.addTarget(d);
 				}
 			}

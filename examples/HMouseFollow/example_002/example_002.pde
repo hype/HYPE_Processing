@@ -18,7 +18,7 @@ void setup() {
 	H.add(d);
 
 	// HFollow / ease
-	
+
 	mf = new HFollow()
 		.target(d)
 		.ease(0.1)
