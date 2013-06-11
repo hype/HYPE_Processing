@@ -335,7 +335,9 @@ public class HMath implements HConstants {
 	 * 
 	 * Since cubic bezier curves can have at most three parameters that could
 	 * give the same value, the `params` array is expected to have a size of at
-	 * least 3.
+	 * least 3. Note that these parameters can be less than `0` or more than
+	 * `1`, so you will need to check them before using the contents of the
+	 * `params` array.
 	 * 
 	 * The `val` argument is the value to be tested, where:
 	 * 
@@ -344,19 +346,13 @@ public class HMath implements HConstants {
 	 * If the above equation is in such a way that it could not be true, then
 	 * this method will return `0` valid parameters.
 	 * 
-	 * Note that due to optimization purposes, it's not assured that if the
-	 * number of valid parameters are less than 3, the leftover spaces of the
-	 * `params` array wouldn't change. So if for example, your `params` array is
-	 * initially `{0,0,0}`, and you received just 2 valid parameters,
-	 * `params[2]` can still contain a non-zero value.
-	 * 
 	 * @see solveCubic(float,float,float,float,float[]), bezierParam(float,float,float,float,float[])
 	 * @param p0    The first anchor point
 	 * @param p1    The first control point
 	 * @param p2    The second control point
 	 * @param p3    The second anchor point
 	 * @param val   The value to be tested with the curve
-	 * @param params    The array that will contain the valid parameters of the bezier equation
+	 * @param params    The array that will contain the parameters of the bezier equation
 	 * @return The number of valid parameters of the given bezier equation
 	 */
 	public static int bezierParam(
@@ -381,16 +377,7 @@ public class HMath implements HConstants {
 		float b = 3*(p0 - 2*p1 + p2);
 		float c = 3*(p1-p0);
 		float d = p0 - val;
-		int numRoots = solveCubic(a,b,c,d,params);
-		
-		// TODO don't cull the params that are not within (0<t<1) anymore
-		// Pack all the valid parameters (0 < t < 1) to the left
-		int numParams = 0;
-		for(int i=0; i<numRoots; ++i) {
-			if(params[i]<0 || params[i]>1) continue;
-			params[numParams++] = params[i];
-		}
-		return numParams;
+		return solveCubic(a,b,c,d,params);
 	}
 
 	public static int bezierParam(
@@ -412,16 +399,7 @@ public class HMath implements HConstants {
 		float a = p2 - 2*p1 + p0;
 		float b = 2 * (p1-p0);
 		float c = p0 - val;
-		int numRoots = solveQuadratic(a,b,c,params);
-		
-		// TODO don't cull the params that are not within (0<t<1) anymore
-		// Pack all the valid parameters (0 < t < 1) to the left
-		int numParams = 0;
-		for(int i=0; i<numRoots; ++i) {
-			if(params[i]<0 || params[i]>1) continue;
-			params[numParams++] = params[i];
-		}
-		return numParams;
+		return solveQuadratic(a,b,c,params);
 	}
 
 	public static float bezierPoint(

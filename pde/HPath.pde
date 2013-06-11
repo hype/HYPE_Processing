@@ -11,224 +11,169 @@
 public static class HPath extends HDrawable {
 	private ArrayList<HVertex> _vertices;
 	private int _mode;
+	private boolean _drawsHandles;
 	public HPath() {
 		this(PConstants.PATH);
 	}
-	public HPath(int pathMode) {
-		_vertices = new ArrayList<HPath.HVertex>();
-		_mode = pathMode;
+	public HPath(int modeId) {
+		_mode = modeId;
+		_vertices = new ArrayList<HVertex>();
 	}
 	public HPath createCopy() {
-		HPath copy = new HPath();
+		HPath copy = new HPath(_mode);
 		copy.copyPropertiesFrom(this);
-		for(int i=0; i<_vertices.size(); ++i) {
-			HVertex v = _vertices.get(i);
-			HVertex vcopy = new HVertex();
-			vcopy.x = v.x;
-			vcopy.y = v.y;
-			vcopy.hx1 = v.hx1;
-			vcopy.hy1 = v.hy1;
-			vcopy.hx2 = v.hx2;
-			vcopy.hy2 = v.hy2;
-			vcopy.isBezier = v.isBezier;
-			copy._vertices.add(vcopy);
+		copy._drawsHandles = _drawsHandles;
+		for(int i=0; i<numVertices(); ++i) {
+			copy._vertices.add(vertex(i).createCopy(copy));
 		}
 		return copy;
 	}
-	public HPath mode(int m) {
-		_mode = m;
+	public HPath mode(int modeId) {
+		_mode = modeId;
 		return this;
 	}
 	public int mode() {
 		return _mode;
 	}
-	public HVertex vertex(int index) {
-		return _vertices.get(index);
-	}
-	public HPath removeVertex(int index) {
-		_vertices.remove(index);
+	public HPath drawsHandles(boolean b) {
+		_drawsHandles = b;
 		return this;
+	}
+	public boolean drawsHandles() {
+		return _drawsHandles;
 	}
 	public int numVertices() {
 		return _vertices.size();
 	}
-	public HPath endPath() {
-		int numVertices = _vertices.size();
-		float minX, maxX, minY, maxY;
-		minX = maxX = minY = maxY = 0;
-		for(int i=0; i<numVertices; ++i) {
-			HVertex v = _vertices.get(i);
-			if(v.x < minX) minX = v.x;
-			else if(v.x > maxX) maxX = v.x;
-			if(v.y < minY) minY = v.y;
-			else if(v.y > maxY) maxY = v.y;
-		}
-		float ratioX = maxX - minX;
-		float ratioY = maxY - minY;
-		scale(ratioX, ratioY);
-		anchorPercX((ratioX==0)? 0 : -minX/ratioX);
-		anchorPercY((ratioY==0)? 0 : -minY/ratioY);
-		for(int j=0; j<numVertices; ++j) {
-			HVertex w = _vertices.get(j);
-			w.x -= minX;
-			w.hx1 -= minX;
-			w.hx2 -= minX;
-			if(ratioX != 0) {
-				w.x /= ratioX;
-				w.hx1 /= ratioX;
-				w.hx2 /= ratioX;
-			}
-			w.y -= minY;
-			w.hy1 -= minY;
-			w.hy2 -= minY;
-			if(ratioY != 0) {
-				w.y /= ratioY;
-				w.hy1 /= ratioY;
-				w.hy2 /= ratioY;
-			}
-		}
+	public HVertex vertex(int index) {
+		return _vertices.get(index);
+	}
+	public HPath vertex(float x, float y) {
+		_vertices.add(new HVertex(this).set(x,y));
 		return this;
 	}
-	public HPath vertex(float pxX, float pxY) {
-		if(_height == 0 || _width == 0) {
-			HWarnings.warn("Division by 0", "HPath.vertex()",
-					HWarnings.VERTEXPX_ERR);
-		} else {
-			vertexPerc(pxX/_width, pxY/_height);
-		}
+	public HPath vertex(float cx, float cy, float x, float y) {
+		_vertices.add(new HVertex(this).set(cx,cy, x,y));
 		return this;
 	}
 	public HPath vertex(
-		float handlePxX1, float handlePxY1,
-		float handlePxX2, float handlePxY2,
-		float pxX, float pxY
+		float cx1, float cy1,
+		float cx2, float cy2,
+		float x, float y
 	) {
-		if(_height == 0 || _width == 0) {
-			HWarnings.warn("Division by 0", "HPath.vertex()",
-					HWarnings.VERTEXPX_ERR);
-		} else {
-			vertexPerc(
-				handlePxX1/_width, handlePxY1/_height,
-				handlePxX2/_width, handlePxY2/_height,
-				pxX/_width, pxY/_height);
-		}
+		_vertices.add(new HVertex(this).set(cx1,cy1, cx2,cy2, x,y));
 		return this;
 	}
-	public HPath vertexPerc(float percX, float percY) {
-		HVertex v = new HVertex();
-		v.x = HMath.round512(percX);
-		v.y = HMath.round512(percY);
-		_vertices.add(v);
+	public HPath vertexUV(float u, float v) {
+		_vertices.add(new HVertex(this).setUV(u,v));
 		return this;
 	}
-	public HPath vertexPerc(
-		float handlePercX1, float handlePercY1,
-		float handlePercX2, float handlePercY2,
-		float percX, float percY
-	) {
-		HVertex v = new HVertex();
-		v.isBezier = true;
-		v.x = HMath.round512(percX);
-		v.y = HMath.round512(percY);
-		v.hx1 = HMath.round512(handlePercX1);
-		v.hy1 = HMath.round512(handlePercY1);
-		v.hx2 = HMath.round512(handlePercX2);
-		v.hy2 = HMath.round512(handlePercY2);
-		_vertices.add(v);
+	public HPath vertexUV(float cu, float cv, float u, float v) {
+		_vertices.add(new HVertex(this).setUV(cu,cv, u,v));
 		return this;
+	}
+	public HPath vertexUV(
+		float cu1, float cv1,
+		float cu2, float cv2,
+		float u, float v
+	) {
+		_vertices.add(new HVertex(this).setUV(cu1,cv1, cu2,cv2, u,v));
+		return this;
+	}
+	public HPath adjust() {
+		int numv = numVertices();
+		float[] minmax = new float[4];
+		for(int i=0; i<numv; ++i) vertex(i).computeMinMax(minmax);
+		float scaleW = minmax[2] - minmax[0];
+		float scaleH = minmax[3] - minmax[1];
+		float offU = _anchorPercX - minmax[0];
+		float offV = _anchorPercY - minmax[1];
+		for(int i=0; i<numv; ++i) vertex(i).adjust(offU,offV, scaleW,scaleH);
+		float ancU = (scaleW==0? offU : offU/scaleW);
+		float ancV = (scaleH==0? offV : offV/scaleH);
+		scale(scaleW,scaleH).anchorPerc(ancU,ancV);
+		return this;
+	}
+	public HPath endPath() {
+		return adjust();
+	}
+	public HPath reset() {
+		size(HConstants.DEFAULT_WIDTH, HConstants.DEFAULT_HEIGHT);
+		anchorPerc(0,0);
+		return clear();
+	}
+	public HPath startPath(int modeId) {
+		return reset().mode(modeId);
+	}
+	public HPath startPath() {
+		return reset();
+	}
+	public HPath clear() {
+		_vertices.clear();
+		return this;
+	}
+	public HPath line(float x1, float y1, float x2, float y2) {
+		return clear().vertex(x1,y1).vertex(x2,y2).endPath();
+	}
+	public HPath lineUV(float u1, float v1, float u2, float v2) {
+		return clear().vertexUV(u1,v1).vertexUV(u2,v2).endPath();
 	}
 	public HPath triangle(int type, int direction) {
-		_vertices.clear();
-		float ratio = 1;
+		clear();
+		_mode = PConstants.POLYGON;
+		float ratio = 2;
 		switch(type) {
 		case HConstants.EQUILATERAL:
-			ratio = (float)Math.sin(PConstants.TWO_PI/6);
+			ratio = (float) Math.sin(PConstants.TWO_PI/6);
 			break;
 		case HConstants.RIGHT:
-			ratio = (float)Math.sin(PConstants.TWO_PI/8) / HConstants.SQRT2;
+			ratio = (float) Math.sin(PConstants.TWO_PI/8)/HConstants.SQRT2;
 			break;
 		}
 		switch(direction) {
-		case HConstants.TOP:
-		case HConstants.CENTER_TOP:
-			vertexPerc(0.5f, 0);
-			vertexPerc(0, 1);
-			vertexPerc(1, 1);
-			height(_width*ratio);
+		case HConstants.TOP: case HConstants.CENTER_TOP:
+			vertexUV(.5f,0).vertexUV(0,1).vertexUV(1,1);
+			if(ratio < 2) height(_width*ratio).proportional(true);
 			break;
-		case HConstants.BOTTOM:
-		case HConstants.CENTER_BOTTOM:
-			vertexPerc(0.5f, 1);
-			vertexPerc(1, 0);
-			vertexPerc(0, 0);
-			height(_width*ratio);
+		case HConstants.BOTTOM: case HConstants.CENTER_BOTTOM:
+			vertexUV(.5f,1).vertexUV(1,0).vertexUV(0,0);
+			if(ratio < 2) height(_width*ratio).proportional(true);
 			break;
-		case HConstants.RIGHT:
-		case HConstants.CENTER_RIGHT:
-			vertexPerc(1, 0.5f);
-			vertexPerc(0, 0);
-			vertexPerc(0, 1);
-			width(_height*ratio);
+		case HConstants.RIGHT: case HConstants.CENTER_RIGHT:
+			vertexUV(1,.5f).vertexUV(0,0).vertexUV(0,1);
+			if(ratio < 2) width(_height*ratio).proportional(true);
 			break;
-		case HConstants.LEFT:
-		case HConstants.CENTER_LEFT:
-			vertexPerc(0, 0.5f);
-			vertexPerc(1, 1);
-			vertexPerc(1, 0);
-			width(_height*ratio);
+		case HConstants.LEFT: case HConstants.CENTER_LEFT:
+			vertexUV(0,.5f).vertexUV(1,1).vertexUV(1,0);
+			if(ratio < 2) width(_height*ratio).proportional(true);
 			break;
 		case HConstants.TOP_LEFT:
-			vertexPerc(0, 0);
-			vertexPerc(0, 1);
-			vertexPerc(1, 0);
-			break;
+			vertexUV(0,0).vertexUV(0,1).vertexUV(1,0); break;
 		case HConstants.TOP_RIGHT:
-			vertexPerc(1, 0);
-			vertexPerc(0, 0);
-			vertexPerc(1, 1);
-			break;
+			vertexUV(1,0).vertexUV(0,0).vertexUV(1,1); break;
 		case HConstants.BOTTOM_RIGHT:
-			vertexPerc(1, 1);
-			vertexPerc(0, 1);
-			vertexPerc(1, 0);
-			break;
+			vertexUV(1,1).vertexUV(0,1).vertexUV(1,0); break;
 		case HConstants.BOTTOM_LEFT:
-			vertexPerc(0, 1);
-			vertexPerc(0, 0);
-			vertexPerc(1, 1);
-			break;
-		}
-		_mode = PConstants.POLYGON;
-		if(type == HConstants.EQUILATERAL || type == HConstants.RIGHT) {
-			proportional(true);
+			vertexUV(0,1).vertexUV(0,0).vertexUV(1,1); break;
 		}
 		return this;
 	}
 	public HPath polygon(int numEdges) {
-		_vertices.clear();
-		float radInc = PConstants.TWO_PI / numEdges;
-		for(int i=0; i<numEdges; ++i) {
-			float rad = radInc * i;
-			vertexPerc(
-				0.5f + 0.5f*(float)Math.cos(rad),
-				0.5f + 0.5f*(float)Math.sin(rad));
-		}
-		_mode = PConstants.POLYGON;
-		return this;
+		return polygonRad(numEdges, 0);
 	}
 	public HPath polygon(int numEdges, float startDeg) {
-		return polygonRad(numEdges, startDeg * HConstants.D2R);
+		return polygonRad(numEdges, startDeg*HConstants.D2R);
 	}
 	public HPath polygonRad(int numEdges, float startRad) {
-		_vertices.clear();
-		float radInc = PConstants.TWO_PI / numEdges;
+		clear();
+		_mode = PConstants.POLYGON;
+		float inc = PConstants.TWO_PI / numEdges;
 		for(int i=0; i<numEdges; ++i) {
-			float rad = startRad + radInc*i;
-			vertexPerc(
+			float rad = startRad + inc*i;
+			vertexUV(
 				0.5f + 0.5f*(float)Math.cos(rad),
 				0.5f + 0.5f*(float)Math.sin(rad));
 		}
-		_mode = PConstants.POLYGON;
 		return this;
 	}
 	public HPath star(int numEdges, float depth) {
@@ -238,86 +183,63 @@ public static class HPath extends HDrawable {
 		return starRad(numEdges, depth, startDeg*HConstants.D2R);
 	}
 	public HPath starRad(int numEdges, float depth, float startRad) {
-		_vertices.clear();
-		float radInc = PConstants.TWO_PI / numEdges;
-		float idepth = 1 - depth;
+		clear();
+		_mode = PConstants.POLYGON;
+		float inc = PConstants.TWO_PI / numEdges;
+		float idepth2 = (1-depth) * 0.5f;
 		for(int i=0; i<numEdges; ++i) {
-			float rad = startRad + radInc*i;
-			vertexPerc(
+			float rad = startRad + inc*i;
+			vertexUV(
 				0.5f + 0.5f*(float)Math.cos(rad),
 				0.5f + 0.5f*(float)Math.sin(rad));
-			rad = startRad + radInc*(i + 0.5f);
-			vertexPerc(
-				0.5f + 0.5f*idepth*(float)Math.cos(rad),
-				0.5f + 0.5f*idepth*(float)Math.sin(rad));
+			rad += inc/2;
+			vertexUV(
+				0.5f + idepth2*(float)Math.cos(rad),
+				0.5f + idepth2*(float)Math.sin(rad));
 		}
-		_mode = PConstants.POLYGON;
-		return this;
-	}
-	public HPath clear() {
-		_vertices.clear();
 		return this;
 	}
 	public boolean containsRel(float relX, float relY) {
-		boolean isIn = false;
-		float xPerc = HMath.round512(relX/_width);
-		float yPerc = HMath.round512(relY/_height);
-		float currX = 0;
-		for(int i=0; i<numVertices(); ++i) {
-			HVertex v1 = _vertices.get(i);
-			HVertex v2 = _vertices.get((i>=numVertices()-1)? 0 : i+1);
-			if(v2.isBezier) {
-				float[] params = new float[3];
-				int numParams = HMath.bezierParam(
-					v1.y, v2.hy1, v2.hy2, v2.y, yPerc, params);
-				for(int j=0; j<numParams; ++j) {
-					currX = H.app().bezierPoint(
-						v1.x,v2.hx1,v2.hx2,v2.x, params[j]);
-					if(currX == xPerc) return true;
-					if(currX < xPerc) isIn = !isIn;
-				}
-			} else {
-				float t = (yPerc-v1.y) / (v2.y-v1.y);
-				if(0<=t && t<=1) {
-					currX = v1.x + (v2.x-v1.x)*t;
-					if(currX == xPerc) return true;
-					if(currX < xPerc) isIn = !isIn;
-				}
+		int numv = numVertices();
+		if(numv <= 0) return false;
+		if(_width==0) return (relX==0) && (0<relY && relY<_height);
+		if(_height==0) return (relY==0) && (0<relX && relX<_width);
+		float u = relX / _width;
+		float v = relY / _height;
+		if(_mode == PConstants.POINTS) {
+			return false;
+		} else if(super.containsRel(relX,relY)) {
+			boolean isIn = false;
+			HVertex prev = vertex(numv-1);
+			HVertex pprev = vertex(numv>1? numv-2 : 0);
+			for(int i=0; i<numv; ++i) {
+				HVertex curr = vertex(i);
+				if(curr.intersectTest(pprev,prev,u,v)) isIn = !isIn;
+				pprev = prev;
+				prev = curr;
 			}
+			return isIn;
 		}
-		return isIn;
+		return false;
 	}
 	public void draw( PGraphics g, boolean usesZ,
-		float drawX, float drawY, float currAlphaPerc
+		float drawX, float drawY, float alphaPc
 	) {
-		int numVertices = _vertices.size();
-		if(numVertices <= 0) return;
-		applyStyle(g,currAlphaPerc);
-		if(_mode == PConstants.POINTS) g.beginShape(PConstants.POINTS);
-		else g.beginShape();
-		boolean startFlag = true;
-		for(int i=0; i<numVertices; ++i) {
-			HVertex v = _vertices.get(i);
-			float x = drawX + _width*v.x;
-			float y = drawY + _height*v.y;
-			if(!v.isBezier || _mode == PConstants.POINTS || startFlag) {
-				g.vertex(x,y);
-			} else {
-				float hx1 = drawX + _width * v.hx1;
-				float hy1 = drawY + _height* v.hy1;
-				float hx2 = drawX + _width * v.hx2;
-				float hy2 = drawY + _height* v.hy2;
-				g.bezierVertex(hx1,hy1, hx2,hy2, x,y);
-			}
-			if(startFlag) startFlag = false;
-			else if(i==0) break;
-			if(_mode==PConstants.POLYGON && i>=numVertices-1) i = -1;
+		int numv = numVertices();
+		if(numv <= 0) return;
+		applyStyle(g, alphaPc);
+		boolean drawsLines = (_mode != PConstants.POINTS);
+		boolean isPolygon = (_mode==PConstants.POLYGON && numv>2);
+		boolean isSimple = true;
+		if(drawsLines) g.beginShape();
+		else g.beginShape(PConstants.POINTS);
+		int itrs = (isPolygon)? numv+1 : numv;
+		for(int i=0; i<itrs; ++i) {
+			HVertex v = vertex(i<numv? i : 0);
+			v.draw(g, drawX, drawY, isSimple);
+			if(isSimple && drawsLines) isSimple = false;
 		}
-		if(_mode == PConstants.POLYGON) g.endShape(PConstants.CLOSE);
+		if(isPolygon) g.endShape(PConstants.CLOSE);
 		else g.endShape();
-	}
-	public static class HVertex {
-		public float x, y, hx1, hy1, hx2, hy2;
-		public boolean isBezier;
 	}
 }

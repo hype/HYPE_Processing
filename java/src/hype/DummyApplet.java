@@ -12,7 +12,7 @@
 package hype;
 
 import hype.core.util.H;
-import hype.extended.drawable.HPathNEW;
+import hype.extended.drawable.HPath;
 import processing.core.PApplet;
 
 /**
@@ -27,10 +27,6 @@ public class DummyApplet extends PApplet {
 	
 	/* TODO
 	 * (HPath)
-	 * - [ ] remove param culling in HMath.bezierParam()
-	 * - [ ] review method parity between HPathNEW and HPath
-	 * - [ ] test each HPath equivalent method for HPathNEW
-	 * - [ ] rename HPathNEW and HVertexNEW
 	 * - [ ] retest all HPath examples
 	 * - [ ] draw handles
 	 * - [ ] test 0-width and 0-height hitboxes
@@ -115,6 +111,9 @@ public class DummyApplet extends PApplet {
 	 * 		- capture(1,10) -- frame sequence
 	 * 		- pdf frames (remember that individual pdf frames ignores autoClear(false))
 	 * 
+	 * (Misc)
+	 * - Nicer README.md
+	 * 
 	 * (Future Refactors)
 	 * - [ ] property setter objects
 	 * - [ ] have HColors implement HConstants
@@ -133,6 +132,7 @@ public class DummyApplet extends PApplet {
 	 * - [ ] standardize single param names
 	 * - [ ] standardize newlines
 	 * 		- newline before & after the class' closing brackets
+	 * 		- variable names must never be reserved in both JS and Java
 	 * 		- ???
 	 * 
 	 * (Optimization)
@@ -154,7 +154,7 @@ public class DummyApplet extends PApplet {
 	 */
 	
 	//*
-	HPathNEW path;
+	HPath path;
 	
 	@Override
 	public void setup() {
@@ -162,7 +162,7 @@ public class DummyApplet extends PApplet {
 		H.init(this);
 		H.background(H.BLUE);
 		
-		path = (HPathNEW) H.add(new HPathNEW(POLYGON))
+		path = (HPath) H.add(new HPath(POLYGON))
 			.strokeWeight(1)
 			.stroke(H.WHITE)
 			.fill(H.CYAN)
@@ -176,12 +176,11 @@ public class DummyApplet extends PApplet {
 			.vertexUV(.5f,.5f, .5f,1.5f, 0,1)
 			
 			// QUADRATIC
-//			.clear()
-////			.vertexUV(-.5f,.5f, 0,0.1f)//
-//			.vertexUV(-.5f,.5f, 0,0)
-//			.vertexUV(.5f,-.5f, 1,0)
-//			.vertexUV(1.5f,.5f, 1,1)
-//			.vertexUV(.5f,1.5f, 0,1)
+			.clear()
+			.vertexUV(-.5f,.5f, 0,0)
+			.vertexUV(.5f,-.5f, 1,0)
+			.vertexUV(1.5f,.5f, 1,1)
+			.vertexUV(.5f,1.5f, 0,1)
 			
 			// SIMPLE CUBIC
 //			.clear()
@@ -201,9 +200,9 @@ public class DummyApplet extends PApplet {
 		
 		H.drawStage();
 		stroke(H.RED,128);
-//		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
-//			if(path.contains(x,y)) point(x,y);
-//		}
+		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
+			if(path.contains(x,y)) point(x,y);
+		}
 		path.contains(50,100);
 		noLoop();
 	}

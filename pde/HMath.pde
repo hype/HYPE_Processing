@@ -8,6 +8,24 @@
  * 
  * All rights reserved.
  */
+/**
+ * A static class that provides some math methods.
+ * 
+ * These methods are primarily used internally by the HYPE classes, but these
+ * can also be used externally. (e.g. `randomInt()` can be very handy in some
+ * sketches.)
+ * 
+ * Most of these methods are here because any of the following:
+ * - It's only available as a static PApplet method. (We are trying to avoid it
+ *   due to Processing.jsÊnot having a static PApplet object, forcing us to call
+ *   the math methods in a non-static context.)
+ * - It's not available in _both_ `java.lang.Math` and the standard Javascript
+ *   `Math` object.
+ * - It's a modification of an existing method.
+ * - It's not available at all in any of the above classes. 
+ * 
+ * @author james
+ */
 public static class HMath implements HConstants {
 	private static boolean _usingTempSeed;
 	private static int _resetSeedValue;
@@ -141,84 +159,6 @@ public static class HMath implements HConstants {
 		return (lineSide(x1,y1, x2,y2, ptx,pty) > 0);
 	}
 	/**
-	 * Solves for the valid parameters of a given cubic bezier equation.
-	 * 
-	 * This method calls `solveCubic()` to solve for the said equation.
-	 * 
-	 * Since cubic bezier curves can have at most three parameters that could
-	 * give the same value, the `params` array is expected to have a size of at
-	 * least 3.
-	 * 
-	 * The `val` argument is the value to be tested, where:
-	 * 
-	 *     val = bezier(p0,p1,p2,p3,param)
-	 * 
-	 * If the above equation is in such a way that it could not be true, then
-	 * this method will return `0` valid parameters.
-	 * 
-	 * Note that due to optimization purposes, it's not assured that if the
-	 * number of valid parameters are less than 3, the leftover spaces of the
-	 * `params` array wouldn't change. So if for example, your `params` array is
-	 * initially `{0,0,0}`, and you received just 2 valid parameters,
-	 * `params[2]` can still contain a non-zero value.
-	 * 
-	 * @see solveCubic(float,float,float,float,float[]), bezierParam(float,float,float,float,float[])
-	 * @param p0    The first anchor point
-	 * @param p1    The first control point
-	 * @param p2    The second control point
-	 * @param p3    The second anchor point
-	 * @param val   The value to be tested with the curve
-	 * @param params    The array that will contain the valid parameters of the bezier equation
-	 * @return The number of valid parameters of the given bezier equation
-	 */
-	public static int bezierParam(
-		float p0, float p1, float p2, float p3,
-		float val, float[] params
-	) {
-		float max = p0;
-		if(max < p1) max = p1;
-		if(max < p2) max = p2;
-		if(max < p3) max = p3;
-		float min = p0;
-		if(min > p1) min = p1;
-		if(min > p2) min = p2;
-		if(min > p3) min = p3;
-		if(val<min || val>max) return 0;
-		float a = 3*(p1-p2) - p0 + p3;
-		float b = 3*(p0 - 2*p1 + p2);
-		float c = 3*(p1-p0);
-		float d = p0 - val;
-		int numRoots = solveCubic(a,b,c,d,params);
-		int numParams = 0;
-		for(int i=0; i<numRoots; ++i) {
-			if(params[i]<0 || params[i]>1) continue;
-			params[numParams++] = params[i];
-		}
-		return numParams;
-	}
-	public static int bezierParam(
-		float p0, float p1, float p2,
-		float val, float[] params
-	) {
-		float max = p0;
-		if(max < p1) max = p1;
-		if(max < p2) max = p2;
-		float min = p0;
-		if(min > p1) min = p1;
-		if(min > p2) min = p2;
-		if(val<min || val>max) return 0;
-		float a = p2 - 2*p1 + p0;
-		float b = 2 * (p1-p0);
-		float c = p0 - val;
-		int numRoots = solveQuadratic(a,b,c,params);
-		int numParams = 0;
-		for(int i=0; i<numRoots; ++i) {
-			if(params[i]<0 || params[i]>1) continue;
-			params[numParams++] = params[i];
-		}
-		return numParams;
-	}
-	/**
 	 * Solves for the real roots of a cubic equation with the given coefficients.
 	 * 
 	 * Said equation is in the standard polynomial form:
@@ -331,6 +271,68 @@ public static class HMath implements HConstants {
 		if(q > 0) roots[numRoots++] = (-b+q) / a;
 		return numRoots;
 	}
+	/**
+	 * Solves for the valid parameters of a given cubic bezier equation.
+	 * 
+	 * This method calls `solveCubic()` to solve for the said equation.
+	 * 
+	 * Since cubic bezier curves can have at most three parameters that could
+	 * give the same value, the `params` array is expected to have a size of at
+	 * least 3. Note that these parameters can be less than `0` or more than
+	 * `1`, so you will need to check them before using the contents of the
+	 * `params` array.
+	 * 
+	 * The `val` argument is the value to be tested, where:
+	 * 
+	 *     val = bezier(p0,p1,p2,p3,param)
+	 * 
+	 * If the above equation is in such a way that it could not be true, then
+	 * this method will return `0` valid parameters.
+	 * 
+	 * @see solveCubic(float,float,float,float,float[]), bezierParam(float,float,float,float,float[])
+	 * @param p0    The first anchor point
+	 * @param p1    The first control point
+	 * @param p2    The second control point
+	 * @param p3    The second anchor point
+	 * @param val   The value to be tested with the curve
+	 * @param params    The array that will contain the parameters of the bezier equation
+	 * @return The number of valid parameters of the given bezier equation
+	 */
+	public static int bezierParam(
+		float p0, float p1, float p2, float p3,
+		float val, float[] params
+	) {
+		float max = p0;
+		if(max < p1) max = p1;
+		if(max < p2) max = p2;
+		if(max < p3) max = p3;
+		float min = p0;
+		if(min > p1) min = p1;
+		if(min > p2) min = p2;
+		if(min > p3) min = p3;
+		if(val<min || val>max) return 0;
+		float a = 3*(p1-p2) - p0 + p3;
+		float b = 3*(p0 - 2*p1 + p2);
+		float c = 3*(p1-p0);
+		float d = p0 - val;
+		return solveCubic(a,b,c,d,params);
+	}
+	public static int bezierParam(
+		float p0, float p1, float p2,
+		float val, float[] params
+	) {
+		float max = p0;
+		if(max < p1) max = p1;
+		if(max < p2) max = p2;
+		float min = p0;
+		if(min > p1) min = p1;
+		if(min > p2) min = p2;
+		if(val<min || val>max) return 0;
+		float a = p2 - 2*p1 + p0;
+		float b = 2 * (p1-p0);
+		float c = p0 - val;
+		return solveQuadratic(a,b,c,params);
+	}
 	public static float bezierPoint(
 		float p0, float p1, float p2, float p3, float t
 	) {
@@ -340,12 +342,23 @@ public static class HMath implements HConstants {
 		float c = 3*(p1-p0);
 		return a*tt*t + b*tt + c*t + p0;
 	}
-	public static float bezierPoint(
-		float p0, float p1, float p2, float t
-	) {
+	public static float bezierPoint(float p0, float p1, float p2, float t) {
 		float a = p2 - 2*p1 + p0;
 		float b = 2 * (p1-p0);
 		return a*t*t + b*t + p0;
+	}
+	public static float bezierTangent(
+		float p0, float p1, float p2, float p3, float t
+	) {
+		float a = 3 * (3*(p1-p2) - p0 + p3);
+		float b = 6 * (p0 - 2*p1 + p2);
+		float c = 3 * (p1-p0);
+		return a*t*t + b*t + c;
+	}
+	public static float bezierTangent(float p0, float p1, float p2, float t) {
+		float a = 2 * (p2 - 2*p1 + p0);
+		float b = 2 * (p1-p0);
+		return a*t + b;
 	}
 	public static float random() {
 		return random(1);

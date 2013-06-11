@@ -1,6 +1,6 @@
 /*
  * HYPE_Processing
- * http://www.hypeframework.org/ & https://github.com/hype/HYPE_Processing
+ * http:
  * 
  * Copyright (c) 2013 Joshua Davis & James Cruz
  * 
@@ -8,25 +8,15 @@
  * 
  * All rights reserved.
  */
-
-package hype.extended.util;
-
-import hype.core.interfaces.HLocatable;
-import hype.core.util.HMath;
-import hype.extended.drawable.HPathNEW;
-import processing.core.PGraphics;
-
-public class HVertexNEW implements HLocatable {
-	private HPathNEW _path;
+public static class HVertex implements HLocatable {
+	private HPath _path;
 	private byte _numControlPts;
 	private float _u, _v, _cu1, _cv1, _cu2, _cv2;
-
-	public HVertexNEW(HPathNEW parentPath) {
+	public HVertex(HPath parentPath) {
 		_path = parentPath;
 	}
-	
-	public HVertexNEW createCopy(HPathNEW newParentPath) {
-		HVertexNEW copy = new HVertexNEW(newParentPath);
+	public HVertex createCopy(HPath newParentPath) {
+		HVertex copy = new HVertex(newParentPath);
 		copy._numControlPts = _numControlPts;
 		copy._u = _u;
 		copy._v = _v;
@@ -36,48 +26,38 @@ public class HVertexNEW implements HLocatable {
 		copy._cv2 = _cv2;
 		return copy;
 	}
-	
-	public HPathNEW path() {
+	public HPath path() {
 		return _path;
 	}
-	
-	public HVertexNEW numControlPts(byte b) {
+	public HVertex numControlPts(byte b) {
 		_numControlPts = b;
 		return this;
 	}
-	
 	public byte numControlPts() {
 		return _numControlPts;
 	}
-	
 	public boolean isLine() {
 		return (_numControlPts <= 0);
 	}
-	
 	public boolean isCurved() {
 		return (_numControlPts > 0);
 	}
-
 	public boolean isQuadratic() {
 		return (_numControlPts == 1);
 	}
-
 	public boolean isCubic() {
 		return (_numControlPts >= 2);
 	}
-
-	public HVertexNEW set(float x, float y) {
+	public HVertex set(float x, float y) {
 		return setUV(
 			_path.x2u(x),   _path.y2v(y));
 	}
-	
-	public HVertexNEW set(float cx, float cy, float x, float y) {
+	public HVertex set(float cx, float cy, float x, float y) {
 		return setUV(
 			_path.x2u(cx), _path.y2v(cy),
 			_path.x2u(x),  _path.y2v(y));
 	}
-	
-	public HVertexNEW set(
+	public HVertex set(
 		float cx1, float cy1,
 		float cx2, float cy2,
 		float x, float y
@@ -87,15 +67,13 @@ public class HVertexNEW implements HLocatable {
 			_path.x2u(cx2), _path.y2v(cy2),
 			_path.x2u(x),   _path.y2v(y));
 	}
-	
-	public HVertexNEW setUV(float u, float v) {
+	public HVertex setUV(float u, float v) {
 		_numControlPts = 0;
 		_u = u;
 		_v = v;
 		return this;
 	}
-
-	public HVertexNEW setUV(float cu, float cv, float u, float v) {
+	public HVertex setUV(float cu, float cv, float u, float v) {
 		_numControlPts = 1;
 		_u = u;
 		_v = v;
@@ -103,8 +81,7 @@ public class HVertexNEW implements HLocatable {
 		_cv1 = cv;
 		return this;
 	}
-
-	public HVertexNEW setUV(
+	public HVertex setUV(
 		float cu1, float cv1,
 		float cu2, float cv2,
 		float u, float v
@@ -118,179 +95,132 @@ public class HVertexNEW implements HLocatable {
 		_cv2 = cv2;
 		return this;
 	}
-	
-	@Override
-	public HVertexNEW x(float f) {
+	public HVertex x(float f) {
 		return u(_path.x2u(f));
 	}
-
-	@Override
 	public float x() {
 		return _path.u2x(_u);
 	}
-
-	@Override
-	public HVertexNEW y(float f) {
+	public HVertex y(float f) {
 		return v(_path.y2v(f));
 	}
-
-	@Override
 	public float y() {
 		return _path.v2y(_v);
 	}
-
-	@Override
-	public HVertexNEW z(float f) {
+	public HVertex z(float f) {
 		return this;
 	}
-
-	@Override
 	public float z() {
 		return 0;
 	}
-
-	public HVertexNEW u(float f) {
+	public HVertex u(float f) {
 		_u = f;
 		return this;
 	}
-
 	public float u() {
 		return _u;
 	}
-
-	public HVertexNEW v(float f) {
+	public HVertex v(float f) {
 		_v = f;
 		return this;
 	}
-
 	public float v() {
 		return _v;
 	}
-
-	public HVertexNEW cx(float f) {
+	public HVertex cx(float f) {
 		return cx1(f);
 	}
-
 	public float cx() {
 		return cx1();
 	}
-
-	public HVertexNEW cy(float f) {
+	public HVertex cy(float f) {
 		return cy1(f);
 	}
-
 	public float cy() {
 		return cy1();
 	}
-
-	public HVertexNEW cu(float f) {
+	public HVertex cu(float f) {
 		return cu1(f);
 	}
-
 	public float cu() {
 		return cu1();
 	}
-
-	public HVertexNEW cv(float f) {
+	public HVertex cv(float f) {
 		return cv1(f);
 	}
-
 	public float cv() {
 		return cv1();
 	}
-
-	public HVertexNEW cx1(float f) {
+	public HVertex cx1(float f) {
 		return cu1(_path.x2u(f));
 	}
-
 	public float cx1() {
 		return _path.u2x(_cu1);
 	}
-
-	public HVertexNEW cy1(float f) {
+	public HVertex cy1(float f) {
 		return cv1(_path.y2v(f));
 	}
-
 	public float cy1() {
 		return _path.v2y(_cv1);
 	}
-
-	public HVertexNEW cu1(float f) {
+	public HVertex cu1(float f) {
 		_cu1 = f;
 		return this;
 	}
-
 	public float cu1() {
 		return _cu1;
 	}
-
-	public HVertexNEW cv1(float f) {
+	public HVertex cv1(float f) {
 		_cv1 = f;
 		return this;
 	}
-
 	public float cv1() {
 		return _cv1;
 	}
-
-	public HVertexNEW cx2(float f) {
+	public HVertex cx2(float f) {
 		return cu2(_path.x2u(f));
 	}
-
 	public float cx2() {
 		return _path.u2x(_cu2);
 	}
-
-	public HVertexNEW cy2(float f) {
+	public HVertex cy2(float f) {
 		return cv2(_path.y2v(f));
 	}
-
 	public float cy2() {
 		return _path.v2y(_cv2);
 	}
-
-	public HVertexNEW cu2(float f) {
+	public HVertex cu2(float f) {
 		_cu2 = f;
 		return this;
 	}
-
 	public float cu2() {
 		return _cu2;
 	}
-
-	public HVertexNEW cv2(float f) {
+	public HVertex cv2(float f) {
 		_cv2 = f;
 		return this;
 	}
-
 	public float cv2() {
 		return _cv2;
 	}
-	
 	public void computeMinMax(float[] minmax) {
 		if(_u < minmax[0]) minmax[0] = _u;
 		else if(_u > minmax[2]) minmax[2] = _u;
-		
 		if(_v < minmax[1]) minmax[1] = _v;
 		else if(_v > minmax[3]) minmax[3] = _v;
-		
 		if(_numControlPts > 0) {
 			if(_cu1 < minmax[0]) minmax[0] = _cu1;
 			else if(_cu1 > minmax[2]) minmax[2] = _cu1;
-			
 			if(_cv1 < minmax[1]) minmax[1] = _cv1;
 			else if(_cv1 > minmax[3]) minmax[3] = _cv1;
-			
 			if(_numControlPts > 1) {
 				if(_cu2 < minmax[0]) minmax[0] = _cu2;
 				else if(_cu2 > minmax[2]) minmax[2] = _cu2;
-				
 				if(_cv2 < minmax[1]) minmax[1] = _cv2;
 				else if(_cv2 > minmax[3]) minmax[3] = _cv2;
 			}
 		}
 	}
-	
 	public void adjust(float offU, float offV, float scaleW, float scaleH) {
 		_u += offU;
 		_cu1 += offU;
@@ -309,7 +239,6 @@ public class HVertexNEW implements HLocatable {
 			_cv2 /= scaleH;
 		}
 	}
-	
 	private float dv(float pv, float t) {
 		float tanv;
 		switch(_numControlPts) {
@@ -322,16 +251,11 @@ public class HVertexNEW implements HLocatable {
 		default: return _v - pv;
 		}
 	}
-	
-	public boolean intersectTest(
-		HVertexNEW pprev, HVertexNEW prev,
-		float tu, float tv
-	) {
+	public boolean intersectTest(HVertex pprev,HVertex prev,float tu,float tv) {
 		float u1 = prev._u;
 		float v1 = prev._v;
 		float u2 = _u;
 		float v2 = _v;
-		
 		if(isLine()) {
 			return ((v1<=tv && tv<v2) || (v2<=tv && tv<v1)) && 
 				tu < (u1 + (u2-u1)*(tv-v1)/(v2-v1));
@@ -339,7 +263,6 @@ public class HVertexNEW implements HLocatable {
 			boolean b = false;
 			float[] params = new float[2];
 			int numParams = HMath.bezierParam(v1,_cv1,v2, tv, params);
-			
 			for(int i=0; i<numParams; ++i) {
 				float t = params[i];
 				if(0<t && t<1 && tu<HMath.bezierPoint(u1,_cu1,u2, t)) {
@@ -358,7 +281,6 @@ public class HVertexNEW implements HLocatable {
 			boolean b = false;
 			float[] params = new float[3];
 			int numParams = HMath.bezierParam(v1,_cv1,_cv2,v2, tv, params);
-			
 			for(int i=0; i<numParams; ++i) {
 				float t = params[i];
 				if(0<t && t<1 && tu<HMath.bezierPoint(u1,_cu1,_cu2,u2, t)) {
@@ -382,24 +304,20 @@ public class HVertexNEW implements HLocatable {
 			return b;
 		}
 	}
-	
 	public void draw( PGraphics g, float drawX, float drawY, boolean isSimple) {
 		float drx = drawX + x();
 		float dry = drawY + y();
-		
 		if(isLine() || isSimple) {
 			g.vertex(drx, dry);
 		} else if(isQuadratic()) {
 			float drcx = drawX + cx1();
 			float drcy = drawY + cy1();
-			
 			g.quadraticVertex(drcx,drcy, drx,dry);
 		} else {
 			float drcx1 = drawX + cx1();
 			float drcy1 = drawY + cy1();
 			float drcx2 = drawX + cx2();
 			float drcy2 = drawY + cy2();
-			
 			g.bezierVertex(drcx1,drcy1, drcx2,drcy2, drx,dry);
 		}
 	}

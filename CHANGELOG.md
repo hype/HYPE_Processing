@@ -1,3 +1,8 @@
+### build_20130611.0 (Jun 11, 2013)
+- the method `HMath.bezierParam()` (both of them) no longer removes values in the params array that are not within the range `[0,1]`
+- renamed HVertexNEW to HVertex
+- renamed and replaced HVertexNEW to HVertex
+
 ### build_20130610.0 (Jun 10, 2013)
 _note: the following changes are not yet put into the pde files due to their experimental nature_
 - implemented adjustments for some edge cases in `HVertexNEW.intersectTest()`
