@@ -17,13 +17,13 @@
  */
 public static abstract class HDrawable extends HNode<HDrawable>
 		implements HDirectable, HHittable {
-	/** TODO */
+	public static final int DEFAULT_FILL = 0xFFFFFFFF;
+	public static final int DEFAULT_STROKE = 0xFF000000;
+	public static final int DEFAULT_WIDTH = 100;
+	public static final int DEFAULT_HEIGHT = 100;
 	public static final byte BITMASK_PROPORTIONAL = 1;		
-	/** TODO */
 	public static final byte BITMASK_TRANSFORMS_CHILDREN = 2;
-	/** TODO */
 	public static final byte BITMASK_STYLES_CHILDREN = 4;	
-	/** TODO */
 	public static final byte BITMASK_ROTATES_CHILDREN = 8;	
 	/** The parent of this drawable @see parent() */
 	protected HDrawable _parent;
@@ -81,13 +81,13 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 */
 	public HDrawable() {
 		_alphaPerc = 1;
-		_fill = HConstants.DEFAULT_FILL;
-		_stroke = HConstants.DEFAULT_STROKE;
+		_fill = DEFAULT_FILL;
+		_stroke = DEFAULT_STROKE;
 		_strokeCap = PConstants.ROUND;
 		_strokeJoin = PConstants.MITER;
 		_strokeWeight = 1;
-		_width = HConstants.DEFAULT_WIDTH;
-		_height = HConstants.DEFAULT_HEIGHT;
+		_width = DEFAULT_WIDTH;
+		_height = DEFAULT_HEIGHT;
 	}
 	/**
 	 * Copies the values of `other`'s basic HDrawable fields.

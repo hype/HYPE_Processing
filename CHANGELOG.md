@@ -1,5 +1,10 @@
 ### build_20130611.1 (Jun 11, 2013)
 - hitbox detection for HPath now changes depending on mode and presence of fill color
+- moved the ff constant fields from HConstants to HDrawable:
+	- `DEFAULT_FILL`
+	- `DEFAULT_STROKE`
+	- `DEFAULT_WIDTH`
+	- `DEFAULT_HEIGHT`
 
 ### build_20130611.0 (Jun 11, 2013)
 - the method `HMath.bezierParam()` (both of them) no longer removes values in the params array that are not within the range `[0,1]`

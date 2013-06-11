@@ -132,8 +132,7 @@ public class HPath extends HDrawable {
 	}
 	
 	public HPath reset() {
-		size(HConstants.DEFAULT_WIDTH, HConstants.DEFAULT_HEIGHT);
-		anchorPerc(0,0);
+		size(DEFAULT_WIDTH,DEFAULT_HEIGHT).anchorPerc(0,0);
 		return clear();
 	}
 	

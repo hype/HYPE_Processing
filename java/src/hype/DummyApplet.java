@@ -28,11 +28,8 @@ public class DummyApplet extends PApplet {
 	/* TODO
 	 * (HPath)
 	 * - [ ] draw handles
-	 * - [ ] test 0-width and 0-height hitboxes
-	 * - [ ] points mode hitbox checking
 	 * - [ ] apply tolerance to HVertexNEW.intersectTest() and inLine()
-	 * - [ ] treat vertex(0) as straight line if in PATH mode
-	 * - [ ] point-in-line testing
+	 * - [ ] testfile for HPath
 	 * 
 	 * (HDrawable)
 	 * - [ ] HDrawable.stylesChildren(bool)

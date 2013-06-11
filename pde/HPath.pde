@@ -98,8 +98,7 @@ public static class HPath extends HDrawable {
 		return adjust();
 	}
 	public HPath reset() {
-		size(HConstants.DEFAULT_WIDTH, HConstants.DEFAULT_HEIGHT);
-		anchorPerc(0,0);
+		size(DEFAULT_WIDTH,DEFAULT_HEIGHT).anchorPerc(0,0);
 		return clear();
 	}
 	public HPath startPath(int modeId) {
