@@ -159,6 +159,7 @@ public class DummyApplet extends PApplet {
 		H.background(H.BLUE);
 		
 		path = (HPath) H.add(new HPath(POLYGON))
+			.drawsHandles(true)
 			.strokeWeight(1)
 			.stroke(H.WHITE)
 			.fill(H.CYAN)
@@ -172,11 +173,11 @@ public class DummyApplet extends PApplet {
 			.vertexUV(.5f,.5f, .5f,1.5f, 0,1)
 			
 			// QUADRATIC
-//			.clear()
-//			.vertexUV(-.5f,.5f, 0,0)
-//			.vertexUV(.5f,-.5f, 1,0)
-//			.vertexUV(1.5f,.5f, 1,1)
-//			.vertexUV(.5f,1.5f, 0,1)
+			.clear()
+			.vertexUV(-.5f,.5f, 0,0)
+			.vertexUV(.5f,-.5f, 1,0)
+			.vertexUV(1.5f,.5f, 1,1)
+			.vertexUV(.5f,1.5f, 0,1)
 			
 			// SIMPLE CUBIC
 //			.clear()
@@ -188,8 +189,6 @@ public class DummyApplet extends PApplet {
 //			.vertexUV(0,1)
 //			.vertexUV(.5f,0, 1,1)
 			
-			.polygon(6).mode(PATH)
-			
 			.endPath()
 		;
 		path.anchorAt(H.CENTER);
@@ -198,9 +197,9 @@ public class DummyApplet extends PApplet {
 		
 		H.drawStage();
 		stroke(H.RED,128);
-		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
-			if(path.contains(x,y)) point(x,y);
-		}
+//		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
+//			if(path.contains(x,y)) point(x,y);
+//		}
 		path.contains(50,100);
 		noLoop();
 	}

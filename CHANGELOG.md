@@ -5,6 +5,8 @@
 	- `DEFAULT_STROKE`
 	- `DEFAULT_WIDTH`
 	- `DEFAULT_HEIGHT`
+- renamed `HPath.startPath()` to `beginPath()` in order to be more consistent with Processing's naming standards
+- HPath can now draw its bezier handles by setting `drawsHandles(true)`
 
 ### build_20130611.0 (Jun 11, 2013)
 - the method `HMath.bezierParam()` (both of them) no longer removes values in the params array that are not within the range `[0,1]`

@@ -22,6 +22,11 @@ import processing.core.PConstants;
 import processing.core.PGraphics;
 
 public class HPath extends HDrawable {
+	public static final int HANDLE_FILL = 0xFFFF0000;
+	public static final int HANDLE_STROKE = 0xFF202020;
+	public static final float HANDLE_STROKE_WEIGHT = 1;
+	public static final float HANDLE_SIZE = 6;
+	
 	private ArrayList<HVertex> _vertices;
 	private int _mode;
 	private boolean _drawsHandles;
@@ -136,11 +141,11 @@ public class HPath extends HDrawable {
 		return clear();
 	}
 	
-	public HPath startPath(int modeId) {
+	public HPath beginPath(int modeId) {
 		return reset().mode(modeId);
 	}
 	
-	public HPath startPath() {
+	public HPath beginPath() {
 		return reset();
 	}
 	
@@ -321,5 +326,14 @@ public class HPath extends HDrawable {
 		
 		if(isPolygon) g.endShape(PConstants.CLOSE);
 		else g.endShape();
+		
+		if(_drawsHandles && drawsLines) {
+			HVertex prev = vertex(isPolygon? numv-1 : 0);
+			for(int i=(isPolygon? 0 : 1); i<numv; ++i) {
+				HVertex curr = vertex(i);
+				curr.drawHandles(g, prev, drawX, drawY);
+				prev = curr;
+			}
+		}
 	}
 }

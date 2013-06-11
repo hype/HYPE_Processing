@@ -416,23 +416,56 @@ public class HVertex implements HLocatable {
 	}
 	
 	public void draw(PGraphics g, float drawX, float drawY, boolean isSimple) {
-		float drx = drawX + x();
-		float dry = drawY + y();
+		float drX = drawX + x();
+		float drY = drawY + y();
 		
 		if(isLine() || isSimple) {
-			g.vertex(drx, dry);
+			g.vertex(drX, drY);
 		} else if(isQuadratic()) {
-			float drcx = drawX + cx1();
-			float drcy = drawY + cy1();
+			float drCX = drawX + cx1();
+			float drCY = drawY + cy1();
 			
-			g.quadraticVertex(drcx,drcy, drx,dry);
+			g.quadraticVertex(drCX,drCY, drX,drY);
 		} else {
-			float drcx1 = drawX + cx1();
-			float drcy1 = drawY + cy1();
-			float drcx2 = drawX + cx2();
-			float drcy2 = drawY + cy2();
+			float drCX1 = drawX + cx1();
+			float drCY1 = drawY + cy1();
+			float drCX2 = drawX + cx2();
+			float drCY2 = drawY + cy2();
 			
-			g.bezierVertex(drcx1,drcy1, drcx2,drcy2, drx,dry);
+			g.bezierVertex(drCX1,drCY1, drCX2,drCY2, drX,drY);
+		}
+	}
+	
+	public void drawHandles(PGraphics g, HVertex prev,float drawX,float drawY) {
+		if(isLine()) return;
+		
+		float x1 = drawX + prev.x();
+		float y1 = drawY + prev.y();
+		float x2 = drawX + x();
+		float y2 = drawY + y();
+		
+		g.fill(HPath.HANDLE_FILL);
+		g.stroke(HPath.HANDLE_STROKE);
+		g.strokeWeight(HPath.HANDLE_STROKE_WEIGHT);
+		
+		if(isQuadratic()) {
+			float drCX = drawX + cx1();
+			float drCY = drawY + cy1();
+			
+			g.line(x1,y1, drCX,drCY);
+			g.line(x2,y2, drCX,drCY);
+			g.ellipse(drCX, drCY, HPath.HANDLE_SIZE,HPath.HANDLE_SIZE);
+		} else {
+			float drCX1 = drawX + cx1();
+			float drCY1 = drawY + cy1();
+			float drCX2 = drawX + cx2();
+			float drCY2 = drawY + cy2();
+			
+			g.line(x1,y1, drCX1,drCY1);
+			g.line(x2,y2, drCX2,drCY2);
+			g.line(drCX1,drCY1, drCX2,drCY2);
+			g.ellipse(drCX1, drCY1, HPath.HANDLE_SIZE,HPath.HANDLE_SIZE);
+			g.ellipse(drCX2,drCY2, HPath.HANDLE_SIZE,HPath.HANDLE_SIZE);
 		}
 	}
 }
