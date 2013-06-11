@@ -1,8 +1,8 @@
-.TH "hype.extended.util.HVertexNEW" 3 "Wed Jun 5 2013" "HYPE_processing" \" -*- nroff -*-
+.TH "hype.extended.util.HVertex" 3 "Tue Jun 11 2013" "HYPE_processing" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-hype.extended.util.HVertexNEW \- 
+hype.extended.util.HVertex \- 
 .SH SYNOPSIS
 .br
 .PP
@@ -12,16 +12,16 @@ Inherits \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
 
 .in +1c
 .ti -1c
-.RI "\fBHVertexNEW\fP (\fBHPathNEW\fP parentPath)"
+.RI "\fBHVertex\fP (\fBHPath\fP parentPath)"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBcreateCopy\fP (\fBHPathNEW\fP newParentPath)"
+.RI "\fBHVertex\fP \fBcreateCopy\fP (\fBHPath\fP newParentPath)"
 .br
 .ti -1c
-.RI "\fBHPathNEW\fP \fBpath\fP ()"
+.RI "\fBHPath\fP \fBpath\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBnumControlPts\fP (byte b)"
+.RI "\fBHVertex\fP \fBnumControlPts\fP (byte b)"
 .br
 .ti -1c
 .RI "byte \fBnumControlPts\fP ()"
@@ -39,25 +39,25 @@ Inherits \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
 .RI "boolean \fBisCubic\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBset\fP (float \fBx\fP, float \fBy\fP)"
+.RI "\fBHVertex\fP \fBset\fP (float \fBx\fP, float \fBy\fP)"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBset\fP (float cx, float cy, float \fBx\fP, float \fBy\fP)"
+.RI "\fBHVertex\fP \fBset\fP (float cx, float cy, float \fBx\fP, float \fBy\fP)"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBset\fP (float cx1, float cy1, float cx2, float cy2, float \fBx\fP, float \fBy\fP)"
+.RI "\fBHVertex\fP \fBset\fP (float cx1, float cy1, float cx2, float cy2, float \fBx\fP, float \fBy\fP)"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBsetUV\fP (float u, float v)"
+.RI "\fBHVertex\fP \fBsetUV\fP (float u, float v)"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBsetUV\fP (float cu, float cv, float u, float v)"
+.RI "\fBHVertex\fP \fBsetUV\fP (float cu, float cv, float u, float v)"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBsetUV\fP (float cu1, float cv1, float cu2, float cv2, float u, float v)"
+.RI "\fBHVertex\fP \fBsetUV\fP (float cu1, float cv1, float cu2, float cv2, float u, float v)"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBx\fP (float f)"
+.RI "\fBHVertex\fP \fBx\fP (float f)"
 .br
 .RI "\fITODO\&. \fP"
 .ti -1c
@@ -65,7 +65,7 @@ Inherits \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
 .br
 .RI "\fITODO\&. \fP"
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBy\fP (float f)"
+.RI "\fBHVertex\fP \fBy\fP (float f)"
 .br
 .RI "\fITODO\&. \fP"
 .ti -1c
@@ -73,7 +73,7 @@ Inherits \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
 .br
 .RI "\fITODO\&. \fP"
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBz\fP (float f)"
+.RI "\fBHVertex\fP \fBz\fP (float f)"
 .br
 .RI "\fITODO\&. \fP"
 .ti -1c
@@ -81,85 +81,85 @@ Inherits \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
 .br
 .RI "\fITODO\&. \fP"
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBu\fP (float f)"
+.RI "\fBHVertex\fP \fBu\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBu\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBv\fP (float f)"
+.RI "\fBHVertex\fP \fBv\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBv\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBcx\fP (float f)"
+.RI "\fBHVertex\fP \fBcx\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBcx\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBcy\fP (float f)"
+.RI "\fBHVertex\fP \fBcy\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBcy\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBcu\fP (float f)"
+.RI "\fBHVertex\fP \fBcu\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBcu\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBcv\fP (float f)"
+.RI "\fBHVertex\fP \fBcv\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBcv\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBcx1\fP (float f)"
+.RI "\fBHVertex\fP \fBcx1\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBcx1\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBcy1\fP (float f)"
+.RI "\fBHVertex\fP \fBcy1\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBcy1\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBcu1\fP (float f)"
+.RI "\fBHVertex\fP \fBcu1\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBcu1\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBcv1\fP (float f)"
+.RI "\fBHVertex\fP \fBcv1\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBcv1\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBcx2\fP (float f)"
+.RI "\fBHVertex\fP \fBcx2\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBcx2\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBcy2\fP (float f)"
+.RI "\fBHVertex\fP \fBcy2\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBcy2\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBcu2\fP (float f)"
+.RI "\fBHVertex\fP \fBcu2\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBcu2\fP ()"
 .br
 .ti -1c
-.RI "\fBHVertexNEW\fP \fBcv2\fP (float f)"
+.RI "\fBHVertex\fP \fBcv2\fP (float f)"
 .br
 .ti -1c
 .RI "float \fBcv2\fP ()"
@@ -171,15 +171,18 @@ Inherits \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
 .RI "void \fBadjust\fP (float offU, float offV, float scaleW, float scaleH)"
 .br
 .ti -1c
-.RI "int \fBgetCrossings\fP (\fBHVertexNEW\fP prev, float tu, float tv)"
+.RI "boolean \fBintersectTest\fP (\fBHVertex\fP pprev, \fBHVertex\fP prev, float tu, float tv, boolean openPath)"
 .br
 .ti -1c
-.RI "void \fBdraw\fP (PGraphics g, boolean isSimple, boolean drawsHandles)"
+.RI "boolean \fBinLine\fP (\fBHVertex\fP prev, float tu, float tv)"
+.br
+.ti -1c
+.RI "void \fBdraw\fP (PGraphics g, float drawX, float drawY, boolean isSimple)"
 .br
 .in -1c
 .SH "Member Function Documentation"
 .PP 
-.SS "\fBHVertexNEW\fP hype\&.extended\&.util\&.HVertexNEW\&.x (floatf)"
+.SS "\fBHVertex\fP hype\&.extended\&.util\&.HVertex\&.x (floatf)"
 
 .PP
 TODO\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
@@ -196,7 +199,7 @@ TODO\&. This method returns \fCthis\fP so it could be chained with other methods
 
 .PP
 Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
-.SS "float hype\&.extended\&.util\&.HVertexNEW\&.x ()"
+.SS "float hype\&.extended\&.util\&.HVertex\&.x ()"
 
 .PP
 TODO\&. \fBReturns:\fP
@@ -206,7 +209,7 @@ TODO\&. \fBReturns:\fP
 
 .PP
 Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
-.SS "\fBHVertexNEW\fP hype\&.extended\&.util\&.HVertexNEW\&.y (floatf)"
+.SS "\fBHVertex\fP hype\&.extended\&.util\&.HVertex\&.y (floatf)"
 
 .PP
 TODO\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
@@ -223,7 +226,7 @@ TODO\&. This method returns \fCthis\fP so it could be chained with other methods
 
 .PP
 Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
-.SS "float hype\&.extended\&.util\&.HVertexNEW\&.y ()"
+.SS "float hype\&.extended\&.util\&.HVertex\&.y ()"
 
 .PP
 TODO\&. \fBReturns:\fP
@@ -233,7 +236,7 @@ TODO\&. \fBReturns:\fP
 
 .PP
 Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
-.SS "\fBHVertexNEW\fP hype\&.extended\&.util\&.HVertexNEW\&.z (floatf)"
+.SS "\fBHVertex\fP hype\&.extended\&.util\&.HVertex\&.z (floatf)"
 
 .PP
 TODO\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
@@ -250,7 +253,7 @@ TODO\&. This method returns \fCthis\fP so it could be chained with other methods
 
 .PP
 Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
-.SS "float hype\&.extended\&.util\&.HVertexNEW\&.z ()"
+.SS "float hype\&.extended\&.util\&.HVertex\&.z ()"
 
 .PP
 TODO\&. \fBReturns:\fP

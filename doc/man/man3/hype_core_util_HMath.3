@@ -1,8 +1,11 @@
-.TH "hype.core.util.HMath" 3 "Wed Jun 5 2013" "HYPE_processing" \" -*- nroff -*-
+.TH "hype.core.util.HMath" 3 "Tue Jun 11 2013" "HYPE_processing" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
 hype.core.util.HMath \- 
+.PP
+A static class that provides some math methods\&.  
+
 .SH SYNOPSIS
 .br
 .PP
@@ -93,13 +96,6 @@ Inherits \fBhype\&.core\&.util\&.HConstants\fP\&.
 .RI "static boolean \fBrightOfLine\fP (float x1, float y1, float x2, float y2, float ptx, float pty)"
 .br
 .ti -1c
-.RI "static int \fBbezierParam\fP (float p0, float p1, float p2, float p3, float val, float[] params)"
-.br
-.RI "\fISolves for the valid parameters of a given cubic bezier equation\&. \fP"
-.ti -1c
-.RI "static int \fBbezierParam\fP (float p0, float p1, float p2, float val, float[] params)"
-.br
-.ti -1c
 .RI "static int \fBsolveCubic\fP (float a, float b, float c, float d, float[] roots)"
 .br
 .RI "\fISolves for the real roots of a cubic equation with the given coefficients\&. \fP"
@@ -108,10 +104,23 @@ Inherits \fBhype\&.core\&.util\&.HConstants\fP\&.
 .br
 .RI "\fISolves for the real roots of a quadratic equation with the given coefficients\&. \fP"
 .ti -1c
+.RI "static int \fBbezierParam\fP (float p0, float p1, float p2, float p3, float val, float[] params)"
+.br
+.RI "\fISolves for the valid parameters of a given cubic bezier equation\&. \fP"
+.ti -1c
+.RI "static int \fBbezierParam\fP (float p0, float p1, float p2, float val, float[] params)"
+.br
+.ti -1c
 .RI "static float \fBbezierPoint\fP (float p0, float p1, float p2, float p3, float t)"
 .br
 .ti -1c
 .RI "static float \fBbezierPoint\fP (float p0, float p1, float p2, float t)"
+.br
+.ti -1c
+.RI "static float \fBbezierTangent\fP (float p0, float p1, float p2, float p3, float t)"
+.br
+.ti -1c
+.RI "static float \fBbezierTangent\fP (float p0, float p1, float p2, float t)"
 .br
 .ti -1c
 .RI "static float \fBrandom\fP ()"
@@ -169,6 +178,29 @@ Inherits \fBhype\&.core\&.util\&.HConstants\fP\&.
 .br
 .in -1c
 .SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+A static class that provides some math methods\&. 
+
+These methods are primarily used internally by the HYPE classes, but these can also be used externally\&. (e\&.g\&. \fCrandomInt()\fP can be very handy in some sketches\&.)
+.PP
+Most of these methods are here because any of the following:
+.IP "\(bu" 2
+It's only available as a static PApplet method\&. (We are trying to avoid it due to Processing\&.js not having a static PApplet object, forcing us to call the math methods in a non-static context\&.)
+.IP "\(bu" 2
+It's not available in \fIboth\fP \fCjava\&.lang\&.Math\fP and the standard Javascript \fCMath\fP object\&.
+.IP "\(bu" 2
+It's a modification of an existing method\&.
+.IP "\(bu" 2
+It's not available at all in any of the above classes\&.
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+james 
+.RE
+.PP
+
 .SH "Member Function Documentation"
 .PP 
 .SS "static int hype\&.core\&.util\&.HMath\&.bezierParam (floatp0, floatp1, floatp2, floatp3, floatval, float[]params)\fC [static]\fP"
@@ -176,7 +208,7 @@ Inherits \fBhype\&.core\&.util\&.HConstants\fP\&.
 .PP
 Solves for the valid parameters of a given cubic bezier equation\&. This method calls \fC\fBsolveCubic()\fP\fP to solve for the said equation\&.
 .PP
-Since cubic bezier curves can have at most three parameters that could give the same value, the \fCparams\fP array is expected to have a size of at least 3\&.
+Since cubic bezier curves can have at most three parameters that could give the same value, the \fCparams\fP array is expected to have a size of at least 3\&. Note that these parameters can be less than \fC0\fP or more than \fC1\fP, so you will need to check them before using the contents of the \fCparams\fP array\&.
 .PP
 The \fCval\fP argument is the value to be tested, where: 
 .PP
@@ -187,8 +219,6 @@ val = bezier(p0,p1,p2,p3,param)
 .PP
 .PP
 If the above equation is in such a way that it could not be true, then this method will return \fC0\fP valid parameters\&.
-.PP
-Note that due to optimization purposes, it's not assured that if the number of valid parameters are less than 3, the leftover spaces of the \fCparams\fP array wouldn't change\&. So if for example, your \fCparams\fP array is initially \fC{0,0,0}\fP, and you received just 2 valid parameters, \fCparams[2]\fP can still contain a non-zero value\&.
 .PP
 \fBSee Also:\fP
 .RS 4
@@ -207,7 +237,7 @@ Note that due to optimization purposes, it's not assured that if the number of v
 .br
 \fIval\fP The value to be tested with the curve 
 .br
-\fIparams\fP The array that will contain the valid parameters of the bezier equation 
+\fIparams\fP The array that will contain the parameters of the bezier equation 
 .RE
 .PP
 \fBReturns:\fP

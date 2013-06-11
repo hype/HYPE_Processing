@@ -7,6 +7,8 @@ var classhype_1_1core_1_1util_1_1_h_math =
     [ "bezierParam", "classhype_1_1core_1_1util_1_1_h_math.html#a8b954fdfb9af33071a0db3f956feee88", null ],
     [ "bezierPoint", "classhype_1_1core_1_1util_1_1_h_math.html#ab27b411a8dfcaeaa05f93fb6c391896f", null ],
     [ "bezierPoint", "classhype_1_1core_1_1util_1_1_h_math.html#a082b688ed12d10c34197faea1e39fff8", null ],
+    [ "bezierTangent", "classhype_1_1core_1_1util_1_1_h_math.html#a7c00bb1437f177ecc285de09d49fcf6f", null ],
+    [ "bezierTangent", "classhype_1_1core_1_1util_1_1_h_math.html#a31165e9ea568992d1127cb6b147f673d", null ],
     [ "collinear", "classhype_1_1core_1_1util_1_1_h_math.html#a4113393c372043336184866df54c648f", null ],
     [ "dist", "classhype_1_1core_1_1util_1_1_h_math.html#a54ddb77d09819a97566169e528d368fa", null ],
     [ "ellipsePoint", "classhype_1_1core_1_1util_1_1_h_math.html#ac41a82468341db7707f35842d434ca94", null ],

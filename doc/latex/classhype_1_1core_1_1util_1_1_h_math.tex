@@ -1,6 +1,11 @@
 \hypertarget{classhype_1_1core_1_1util_1_1_h_math}{\section{hype.\-core.\-util.\-H\-Math Class Reference}
 \label{classhype_1_1core_1_1util_1_1_h_math}\index{hype.\-core.\-util.\-H\-Math@{hype.\-core.\-util.\-H\-Math}}
 }
+
+
+A static class that provides some math methods.  
+
+
 Inheritance diagram for hype.\-core.\-util.\-H\-Math\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -91,19 +96,25 @@ Inheritance diagram for hype.\-core.\-util.\-H\-Math\-:\begin{figure}[H]
 \hypertarget{classhype_1_1core_1_1util_1_1_h_math_a8c20e7da6e6cc58315b86289a87fb3db}{static boolean {\bfseries right\-Of\-Line} (float x1, float y1, float x2, float y2, float ptx, float pty)}\label{classhype_1_1core_1_1util_1_1_h_math_a8c20e7da6e6cc58315b86289a87fb3db}
 
 \item 
+static int \hyperlink{classhype_1_1core_1_1util_1_1_h_math_a67854709c53bde506d4b6b25e402dd51}{solve\-Cubic} (float a, float b, float c, float d, float\mbox{[}$\,$\mbox{]} roots)
+\begin{DoxyCompactList}\small\item\em Solves for the real roots of a cubic equation with the given coefficients. \end{DoxyCompactList}\item 
+static int \hyperlink{classhype_1_1core_1_1util_1_1_h_math_a609af488b52d1819028d7564c649dadd}{solve\-Quadratic} (float a, float b, float c, float\mbox{[}$\,$\mbox{]} roots)
+\begin{DoxyCompactList}\small\item\em Solves for the real roots of a quadratic equation with the given coefficients. \end{DoxyCompactList}\item 
 static int \hyperlink{classhype_1_1core_1_1util_1_1_h_math_a8f9294fdca858a741815dce119f344d4}{bezier\-Param} (float p0, float p1, float p2, float p3, float val, float\mbox{[}$\,$\mbox{]} params)
 \begin{DoxyCompactList}\small\item\em Solves for the valid parameters of a given cubic bezier equation. \end{DoxyCompactList}\item 
 \hypertarget{classhype_1_1core_1_1util_1_1_h_math_a8b954fdfb9af33071a0db3f956feee88}{static int {\bfseries bezier\-Param} (float p0, float p1, float p2, float val, float\mbox{[}$\,$\mbox{]} params)}\label{classhype_1_1core_1_1util_1_1_h_math_a8b954fdfb9af33071a0db3f956feee88}
 
 \item 
-static int \hyperlink{classhype_1_1core_1_1util_1_1_h_math_a67854709c53bde506d4b6b25e402dd51}{solve\-Cubic} (float a, float b, float c, float d, float\mbox{[}$\,$\mbox{]} roots)
-\begin{DoxyCompactList}\small\item\em Solves for the real roots of a cubic equation with the given coefficients. \end{DoxyCompactList}\item 
-static int \hyperlink{classhype_1_1core_1_1util_1_1_h_math_a609af488b52d1819028d7564c649dadd}{solve\-Quadratic} (float a, float b, float c, float\mbox{[}$\,$\mbox{]} roots)
-\begin{DoxyCompactList}\small\item\em Solves for the real roots of a quadratic equation with the given coefficients. \end{DoxyCompactList}\item 
 \hypertarget{classhype_1_1core_1_1util_1_1_h_math_ab27b411a8dfcaeaa05f93fb6c391896f}{static float {\bfseries bezier\-Point} (float p0, float p1, float p2, float p3, float t)}\label{classhype_1_1core_1_1util_1_1_h_math_ab27b411a8dfcaeaa05f93fb6c391896f}
 
 \item 
 \hypertarget{classhype_1_1core_1_1util_1_1_h_math_a082b688ed12d10c34197faea1e39fff8}{static float {\bfseries bezier\-Point} (float p0, float p1, float p2, float t)}\label{classhype_1_1core_1_1util_1_1_h_math_a082b688ed12d10c34197faea1e39fff8}
+
+\item 
+\hypertarget{classhype_1_1core_1_1util_1_1_h_math_a7c00bb1437f177ecc285de09d49fcf6f}{static float {\bfseries bezier\-Tangent} (float p0, float p1, float p2, float p3, float t)}\label{classhype_1_1core_1_1util_1_1_h_math_a7c00bb1437f177ecc285de09d49fcf6f}
+
+\item 
+\hypertarget{classhype_1_1core_1_1util_1_1_h_math_a31165e9ea568992d1127cb6b147f673d}{static float {\bfseries bezier\-Tangent} (float p0, float p1, float p2, float t)}\label{classhype_1_1core_1_1util_1_1_h_math_a31165e9ea568992d1127cb6b147f673d}
 
 \item 
 \hypertarget{classhype_1_1core_1_1util_1_1_h_math_a1883af69d44ef3f7eb5492210ad301de}{static float {\bfseries random} ()}\label{classhype_1_1core_1_1util_1_1_h_math_a1883af69d44ef3f7eb5492210ad301de}
@@ -163,6 +174,24 @@ static int \hyperlink{classhype_1_1core_1_1util_1_1_h_math_a609af488b52d1819028d
 \subsection*{Additional Inherited Members}
 
 
+\subsection{Detailed Description}
+A static class that provides some math methods. 
+
+These methods are primarily used internally by the H\-Y\-P\-E classes, but these can also be used externally. (e.\-g. {\ttfamily random\-Int()} can be very handy in some sketches.)
+
+Most of these methods are here because any of the following\-:
+\begin{DoxyItemize}
+\item It's only available as a static P\-Applet method. (We are trying to avoid it due to Processing.\-js not having a static P\-Applet object, forcing us to call the math methods in a non-\/static context.)
+\item It's not available in {\itshape both} {\ttfamily java.\-lang.\-Math} and the standard Javascript {\ttfamily Math} object.
+\item It's a modification of an existing method.
+\item It's not available at all in any of the above classes.
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Author}
+james 
+\end{DoxyAuthor}
+
+
 \subsection{Member Function Documentation}
 \hypertarget{classhype_1_1core_1_1util_1_1_h_math_a8f9294fdca858a741815dce119f344d4}{\index{hype\-::core\-::util\-::\-H\-Math@{hype\-::core\-::util\-::\-H\-Math}!bezier\-Param@{bezier\-Param}}
 \index{bezier\-Param@{bezier\-Param}!hype::core::util::HMath@{hype\-::core\-::util\-::\-H\-Math}}
@@ -182,15 +211,13 @@ Solves for the valid parameters of a given cubic bezier equation.
 
 This method calls {\ttfamily \hyperlink{classhype_1_1core_1_1util_1_1_h_math_a67854709c53bde506d4b6b25e402dd51}{solve\-Cubic()}} to solve for the said equation.
 
-Since cubic bezier curves can have at most three parameters that could give the same value, the {\ttfamily params} array is expected to have a size of at least 3.
+Since cubic bezier curves can have at most three parameters that could give the same value, the {\ttfamily params} array is expected to have a size of at least 3. Note that these parameters can be less than {\ttfamily 0} or more than {\ttfamily 1}, so you will need to check them before using the contents of the {\ttfamily params} array.
 
 The {\ttfamily val} argument is the value to be tested, where\-: \begin{DoxyVerb}val = bezier(p0,p1,p2,p3,param)
 \end{DoxyVerb}
 
 
 If the above equation is in such a way that it could not be true, then this method will return {\ttfamily 0} valid parameters.
-
-Note that due to optimization purposes, it's not assured that if the number of valid parameters are less than 3, the leftover spaces of the {\ttfamily params} array wouldn't change. So if for example, your {\ttfamily params} array is initially {\ttfamily \{0,0,0\}}, and you received just 2 valid parameters, {\ttfamily params\mbox{[}2\mbox{]}} can still contain a non-\/zero value.
 
 \begin{DoxySeeAlso}{See Also}
 \hyperlink{classhype_1_1core_1_1util_1_1_h_math_a67854709c53bde506d4b6b25e402dd51}{solve\-Cubic(float,float,float,float,float\mbox{[}$\,$\mbox{]})}, bezier\-Param(float,float,float,float,float\mbox{[}$\,$\mbox{]}) 
@@ -207,7 +234,7 @@ Note that due to optimization purposes, it's not assured that if the number of v
 \hline
 {\em val} & The value to be tested with the curve \\
 \hline
-{\em params} & The array that will contain the valid parameters of the bezier equation \\
+{\em params} & The array that will contain the parameters of the bezier equation \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

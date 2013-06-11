@@ -24,7 +24,6 @@ var hierarchy =
         [ "hype.extended.drawable.HGroup", "classhype_1_1extended_1_1drawable_1_1_h_group.html", null ],
         [ "hype.extended.drawable.HImage", "classhype_1_1extended_1_1drawable_1_1_h_image.html", null ],
         [ "hype.extended.drawable.HPath", "classhype_1_1extended_1_1drawable_1_1_h_path.html", null ],
-        [ "hype.extended.drawable.HPathNEW", "classhype_1_1extended_1_1drawable_1_1_h_path_n_e_w.html", null ],
         [ "hype.extended.drawable.HRect", "classhype_1_1extended_1_1drawable_1_1_h_rect.html", null ],
         [ "hype.extended.drawable.HShape", "classhype_1_1extended_1_1drawable_1_1_h_shape.html", null ],
         [ "hype.extended.drawable.HText", "classhype_1_1extended_1_1drawable_1_1_h_text.html", null ]
@@ -46,7 +45,7 @@ var hierarchy =
       ] ],
       [ "hype.core.util.HMouse", "classhype_1_1core_1_1util_1_1_h_mouse.html", null ],
       [ "hype.core.util.HVector", "classhype_1_1core_1_1util_1_1_h_vector.html", null ],
-      [ "hype.extended.util.HVertexNEW", "classhype_1_1extended_1_1util_1_1_h_vertex_n_e_w.html", null ]
+      [ "hype.extended.util.HVertex", "classhype_1_1extended_1_1util_1_1_h_vertex.html", null ]
     ] ],
     [ "hype.extended.behavior.HMagneticField.HMagnet", "classhype_1_1extended_1_1behavior_1_1_h_magnetic_field_1_1_h_magnet.html", null ],
     [ "hype.core.collection.HNode< T extends HNode< T > >", "classhype_1_1core_1_1collection_1_1_h_node_3_01_t_01extends_01_h_node_3_01_t_01_4_01_4.html", null ],
@@ -56,7 +55,6 @@ var hierarchy =
     [ "hype.core.interfaces.HRotatable", "interfacehype_1_1core_1_1interfaces_1_1_h_rotatable.html", [
       [ "hype.core.interfaces.HDirectable", "interfacehype_1_1core_1_1interfaces_1_1_h_directable.html", null ]
     ] ],
-    [ "hype.extended.drawable.HPath.HVertex", "classhype_1_1extended_1_1drawable_1_1_h_path_1_1_h_vertex.html", null ],
     [ "hype.core.util.HWarnings", "classhype_1_1core_1_1util_1_1_h_warnings.html", null ],
     [ "HIterator", null, [
       [ "hype.core.drawable.HDrawable.HDrawableIterator", "classhype_1_1core_1_1drawable_1_1_h_drawable_1_1_h_drawable_iterator.html", null ]

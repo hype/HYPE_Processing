@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 288.888889
+%%BoundingBox: 0 0 500 279.069767
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 1.730769 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 1.791667 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 13 def
+/rows 12 def
 /cols 4 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -177,7 +177,7 @@ boxfont setfont
 (hype.core.interfaces.HDirectable) cw
 (hype.core.util.HMouse) cw
 (hype.core.util.HVector) cw
-(hype.extended.util.HVertexNEW) cw
+(hype.extended.util.HVertex) cw
 (hype.core.drawable.HDrawable) cw
 (hype.core.drawable.HStage) cw
 (hype.extended.drawable.HCanvas) cw
@@ -185,7 +185,6 @@ boxfont setfont
 (hype.extended.drawable.HGroup) cw
 (hype.extended.drawable.HImage) cw
 (hype.extended.drawable.HPath) cw
-(hype.extended.drawable.HPathNEW) cw
 (hype.extended.drawable.HRect) cw
 (hype.extended.drawable.HShape) cw
 (hype.extended.drawable.HText) cw
@@ -200,19 +199,18 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (hype.core.interfaces.HLocatable) 1.500000 12.000000 box
- (hype.core.interfaces.HDirectable) 0.000000 11.000000 box
- (hype.core.util.HMouse) 1.000000 11.000000 box
- (hype.core.util.HVector) 2.000000 11.000000 box
- (hype.extended.util.HVertexNEW) 3.000000 11.000000 box
- (hype.core.drawable.HDrawable) 0.000000 10.000000 box
- (hype.core.drawable.HStage) 1.000000 9.000000 box
- (hype.extended.drawable.HCanvas) 1.000000 8.000000 box
- (hype.extended.drawable.HEllipse) 1.000000 7.000000 box
- (hype.extended.drawable.HGroup) 1.000000 6.000000 box
- (hype.extended.drawable.HImage) 1.000000 5.000000 box
- (hype.extended.drawable.HPath) 1.000000 4.000000 box
- (hype.extended.drawable.HPathNEW) 1.000000 3.000000 box
+ (hype.core.interfaces.HLocatable) 1.500000 11.000000 box
+ (hype.core.interfaces.HDirectable) 0.000000 10.000000 box
+ (hype.core.util.HMouse) 1.000000 10.000000 box
+ (hype.core.util.HVector) 2.000000 10.000000 box
+ (hype.extended.util.HVertex) 3.000000 10.000000 box
+ (hype.core.drawable.HDrawable) 0.000000 9.000000 box
+ (hype.core.drawable.HStage) 1.000000 8.000000 box
+ (hype.extended.drawable.HCanvas) 1.000000 7.000000 box
+ (hype.extended.drawable.HEllipse) 1.000000 6.000000 box
+ (hype.extended.drawable.HGroup) 1.000000 5.000000 box
+ (hype.extended.drawable.HImage) 1.000000 4.000000 box
+ (hype.extended.drawable.HPath) 1.000000 3.000000 box
  (hype.extended.drawable.HRect) 1.000000 2.000000 box
  (hype.extended.drawable.HShape) 1.000000 1.000000 box
  (hype.extended.drawable.HText) 1.000000 0.000000 box
@@ -220,25 +218,23 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- relations -----
 
 solid
-1 1.500000 11.250000 out
+1 1.500000 10.250000 out
 solid
-0.000000 3.000000 12.000000 conn
-solid
-0 0.000000 11.750000 in
-solid
-1 0.000000 10.250000 out
-solid
-0 1.000000 11.750000 in
-solid
-0 2.000000 11.750000 in
-solid
-0 3.000000 11.750000 in
+0.000000 3.000000 11.000000 conn
 solid
 0 0.000000 10.750000 in
 solid
 1 0.000000 9.250000 out
 solid
-0 0.000000 9.500000 hedge
+0 1.000000 10.750000 in
+solid
+0 2.000000 10.750000 in
+solid
+0 3.000000 10.750000 in
+solid
+0 0.000000 9.750000 in
+solid
+1 0.000000 8.250000 out
 solid
 0 0.000000 8.500000 hedge
 solid
@@ -258,4 +254,4 @@ solid
 solid
 0 0.000000 0.500000 hedge
 solid
-0.000000 10.000000 0.500000 vedge
+0.000000 9.000000 0.500000 vedge

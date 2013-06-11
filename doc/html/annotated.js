@@ -65,7 +65,6 @@ var annotated =
           [ "HGroup", "classhype_1_1extended_1_1drawable_1_1_h_group.html", "classhype_1_1extended_1_1drawable_1_1_h_group" ],
           [ "HImage", "classhype_1_1extended_1_1drawable_1_1_h_image.html", "classhype_1_1extended_1_1drawable_1_1_h_image" ],
           [ "HPath", "classhype_1_1extended_1_1drawable_1_1_h_path.html", "classhype_1_1extended_1_1drawable_1_1_h_path" ],
-          [ "HPathNEW", "classhype_1_1extended_1_1drawable_1_1_h_path_n_e_w.html", "classhype_1_1extended_1_1drawable_1_1_h_path_n_e_w" ],
           [ "HRect", "classhype_1_1extended_1_1drawable_1_1_h_rect.html", "classhype_1_1extended_1_1drawable_1_1_h_rect" ],
           [ "HShape", "classhype_1_1extended_1_1drawable_1_1_h_shape.html", "classhype_1_1extended_1_1drawable_1_1_h_shape" ],
           [ "HText", "classhype_1_1extended_1_1drawable_1_1_h_text.html", "classhype_1_1extended_1_1drawable_1_1_h_text" ]
@@ -80,7 +79,7 @@ var annotated =
         ] ],
         [ "util", null, [
           [ "HDrawablePool", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html", "classhype_1_1extended_1_1util_1_1_h_drawable_pool" ],
-          [ "HVertexNEW", "classhype_1_1extended_1_1util_1_1_h_vertex_n_e_w.html", "classhype_1_1extended_1_1util_1_1_h_vertex_n_e_w" ]
+          [ "HVertex", "classhype_1_1extended_1_1util_1_1_h_vertex.html", "classhype_1_1extended_1_1util_1_1_h_vertex" ]
         ] ]
       ] ]
     ] ]

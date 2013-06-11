@@ -41,7 +41,6 @@ var searchData=
   ['hnode_3c_20t_20extends_20hnode_3c_20t_20_3e_20_3e',['HNode&lt; T extends HNode&lt; T &gt; &gt;',['../classhype_1_1core_1_1collection_1_1_h_node_3_01_t_01extends_01_h_node_3_01_t_01_4_01_4.html',1,'hype::core::collection']]],
   ['hoscillator',['HOscillator',['../classhype_1_1extended_1_1behavior_1_1_h_oscillator.html',1,'hype::extended::behavior']]],
   ['hpath',['HPath',['../classhype_1_1extended_1_1drawable_1_1_h_path.html',1,'hype::extended::drawable']]],
-  ['hpathnew',['HPathNEW',['../classhype_1_1extended_1_1drawable_1_1_h_path_n_e_w.html',1,'hype::extended::drawable']]],
   ['hpixelcolorist',['HPixelColorist',['../classhype_1_1extended_1_1colorist_1_1_h_pixel_colorist.html',1,'hype::extended::colorist']]],
   ['hpooladapter',['HPoolAdapter',['../classhype_1_1extended_1_1interfaces_1_1_h_pool_adapter.html',1,'hype::extended::interfaces']]],
   ['hpoollistener',['HPoolListener',['../interfacehype_1_1extended_1_1interfaces_1_1_h_pool_listener.html',1,'hype::extended::interfaces']]],
@@ -59,7 +58,6 @@ var searchData=
   ['htween',['HTween',['../classhype_1_1extended_1_1behavior_1_1_h_tween.html',1,'hype::extended::behavior']]],
   ['hvector',['HVector',['../classhype_1_1core_1_1util_1_1_h_vector.html',1,'hype::core::util']]],
   ['hvelocity',['HVelocity',['../classhype_1_1extended_1_1behavior_1_1_h_velocity.html',1,'hype::extended::behavior']]],
-  ['hvertex',['HVertex',['../classhype_1_1extended_1_1drawable_1_1_h_path_1_1_h_vertex.html',1,'hype::extended::drawable::HPath']]],
-  ['hvertexnew',['HVertexNEW',['../classhype_1_1extended_1_1util_1_1_h_vertex_n_e_w.html',1,'hype::extended::util']]],
+  ['hvertex',['HVertex',['../classhype_1_1extended_1_1util_1_1_h_vertex.html',1,'hype::extended::util']]],
   ['hwarnings',['HWarnings',['../classhype_1_1core_1_1util_1_1_h_warnings.html',1,'hype::core::util']]]
 ];
