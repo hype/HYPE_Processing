@@ -1,9 +1,10 @@
 ### build_20130611.2 (Jun 11, 2013)
-- new HMath methods:
+- new HMath comparator methods:
 	- `lessThan(float,float,float)` & `lessThan(float,float,float)`
 	- `greaterThan(float,float,float)` & `greaterThan(float,float,float)`
 	- `isEqual(float,float,float)` & `isEqual(float,float,float)`
 	- `isZero(float,float)` & `isZero(float)`
+- added a pixel tolerance of 1.5 for linear hitboxes in HPath
 
 ### build_20130611.1 (Jun 11, 2013)
 - hitbox detection for HPath now changes depending on mode and presence of fill color

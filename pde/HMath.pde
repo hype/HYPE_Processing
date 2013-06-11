@@ -425,6 +425,30 @@ public static class HMath implements HConstants {
 	public static int setBits(int target, int mask, boolean val) {
 		return (val)? target|mask : target&(~mask);
 	}
+	public static boolean lessThan(float a, float b, float tolerance) {
+		return a < b + tolerance;
+	}
+	public static boolean lessThan(float a, float b) {
+		return a < b + TOLERANCE;
+	}
+	public static boolean greaterThan(float a, float b, float tolerance) {
+		return b < a + tolerance;
+	}
+	public static boolean greaterThan(float a, float b) {
+		return b < a + TOLERANCE;
+	}
+	public static boolean isEqual(float a, float b, float tolerance) {
+		return Math.abs(a-b) < tolerance;
+	}
+	public static boolean isEqual(float a, float b) {
+		return Math.abs(a-b) < TOLERANCE;
+	}
+	public static boolean isZero(float a, float tolerance) {
+		return Math.abs(a) < tolerance;
+	}
+	public static boolean isZero(float a) {
+		return Math.abs(a) < TOLERANCE;
+	}
 	public static float map(float val,
 		float start1, float stop1, float start2, float stop2
 	) {

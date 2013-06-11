@@ -17,6 +17,8 @@ import hype.extended.drawable.HPath;
 import processing.core.PGraphics;
 
 public class HVertex implements HLocatable {
+	public static final float LINE_TOLERANCE = 1.5f;
+	
 	private HPath _path;
 	private byte _numControlPts;
 	private float _u, _v, _cu1, _cv1, _cu2, _cv2;
@@ -327,6 +329,7 @@ public class HVertex implements HLocatable {
 		HVertex pprev, HVertex prev,
 		float tu, float tv, boolean openPath
 	) {
+		// TODO use pixels with the tolerance
 		float u1 = prev._u;
 		float v1 = prev._v;
 		float u2 = _u;
@@ -383,33 +386,43 @@ public class HVertex implements HLocatable {
 		}
 	}
 	
-	public boolean inLine(HVertex prev, float tu, float tv) {
-		float u1 = prev._u;
-		float v1 = prev._v;
-		float u2 = _u;
-		float v2 = _v;
+	public boolean inLine(HVertex prev, float relX, float relY) {
+		float x1 = prev.x();
+		float y1 = prev.y();
+		float x2 = x();
+		float y2 = y();
 		
 		if(isLine()) {
-			return ((v1<=tv && tv<=v2) || (v2<=tv && tv<=v1)) && 
-				tu == (u1 + (u2-u1)*(tv-v1)/(v2-v1));
+			float diffv = y2-y1;
+			if(diffv == 0) {
+				return HMath.isEqual(relY, y1, LINE_TOLERANCE) &&
+					( (x1<=relX && relX<=x2)||(x2<=relX && relX<=x1) );
+			}
+			float t = (relY-y1) / diffv;
+			return (0<=t && t<=1) &&
+				HMath.isEqual(relX, x1+(x2-x1)*t, LINE_TOLERANCE);
 		} else if(isQuadratic()) {
 			float[] params = new float[2];
-			int numParams = HMath.bezierParam(v1,_cv1,v2, tv, params);
+			int numParams = HMath.bezierParam(y1,cy1(),y2, relY, params);
 			
 			for(int i=0; i<numParams; ++i) {
 				float t = params[i];
-				if(0<=t && t<=1 && tu==HMath.bezierPoint(u1,_cu1,u2, t))
-					return true;
+				if(0<=t && t<=1) {
+					float bzval = HMath.bezierPoint(x1,cx1(),x2, t);
+					if(HMath.isEqual(relX, bzval, LINE_TOLERANCE)) return true;
+				}
 			}
 			return false;
 		} else {
 			float[] params = new float[3];
-			int numParams = HMath.bezierParam(v1,_cv1,_cv2,v2, tv, params);
+			int numParams = HMath.bezierParam(y1,cy1(),cy2(),y2, relY, params);
 			
 			for(int i=0; i<numParams; ++i) {
 				float t = params[i];
-				if(0<=t && t<=1 && tu==HMath.bezierPoint(u1,_cu1,_cu2,u2, t))
-					return true;
+				if(0<=t && t<=1) {
+					float bzval = HMath.bezierPoint(x1,cx1(),cx2(),x2, t);
+					if(HMath.isEqual(relX, bzval, LINE_TOLERANCE)) return true;
+				}
 			}
 			return false;
 		}

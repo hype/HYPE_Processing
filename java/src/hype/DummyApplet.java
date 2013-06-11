@@ -27,7 +27,7 @@ public class DummyApplet extends PApplet {
 	
 	/* TODO
 	 * (HPath)
-	 * - [ ] apply tolerance to HVertexNEW.intersectTest() and inLine()
+	 * - [ ] apply tolerance to HVertexNEW.intersectTest()
 	 * - [ ] testfile for HPath
 	 * 
 	 * (HDrawable)
@@ -116,7 +116,9 @@ public class DummyApplet extends PApplet {
 	 * - [ ] rename xxxPerc -> xxxUV or xxxPc
 	 * - [ ] rearrange HDrawable's fields by category instead of type
 	 * - [ ] HMath: add z index for abs/relLoc()
-	 * - [ ] HMath: use processing's random() instead of java.lang.Math
+	 * - [ ] HMath: use processing's random() instead of java.lang.Math's
+	 * - [ ] HMath: replace round512() with the tolerance comparators
+	 * - [ ] HMath: use the comparator methods for the bezier methods
 	 * - [ ] change util methods that returns arrays to use the method(val, float[] loc) format
 	 * - [ ] privatize remaining public fields
 	 * - [ ] color mask constants
@@ -164,7 +166,7 @@ public class DummyApplet extends PApplet {
 			.fill(H.CYAN)
 			.locAt(H.CENTER)
 			;
-		path.clear()
+		path.beginPath()
 			// CUBIC
 			.vertexUV(.5f,.5f,  -.5f,.5f, 0,0)
 			.vertexUV(.5f,.5f, .5f,-.5f, 1,0)
@@ -172,11 +174,11 @@ public class DummyApplet extends PApplet {
 			.vertexUV(.5f,.5f, .5f,1.5f, 0,1)
 			
 			// QUADRATIC
-			.clear()
-			.vertexUV(-.5f,.5f, 0,0)
-			.vertexUV(.5f,-.5f, 1,0)
-			.vertexUV(1.5f,.5f, 1,1)
-			.vertexUV(.5f,1.5f, 0,1)
+//			.clear()
+//			.vertexUV(-.5f,.5f, 0,0)
+//			.vertexUV(.5f,-.5f, 1,0)
+//			.vertexUV(1.5f,.5f, 1,1)
+//			.vertexUV(.5f,1.5f, 0,1)
 			
 			// SIMPLE CUBIC
 //			.clear()
@@ -192,14 +194,19 @@ public class DummyApplet extends PApplet {
 		;
 		path.anchorAt(H.CENTER);
 		
+//		path.polygon(6).mode(PATH).noFill();
+//		path.beginPath(PATH)
+//			.vertex(-50,H.PHI)
+//			.vertex(0,H.PHI)
+//			.vertex(50,50)
+//		.endPath().noFill();
 		
 		
 		H.drawStage();
 		stroke(H.RED,128);
-//		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
-//			if(path.contains(x,y)) point(x,y);
-//		}
-		path.contains(50,100);
+		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
+			if(path.contains(x,y)) point(x,y);
+		}
 		noLoop();
 	}
 	//*/

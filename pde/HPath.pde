@@ -116,10 +116,12 @@ public static class HPath extends HDrawable {
 		return this;
 	}
 	public HPath line(float x1, float y1, float x2, float y2) {
-		return clear().vertex(x1,y1).vertex(x2,y2).endPath();
+		return beginPath(PConstants.PATH)
+				.vertex(x1,y1).vertex(x2,y2).endPath();
 	}
 	public HPath lineUV(float u1, float v1, float u2, float v2) {
-		return clear().vertexUV(u1,v1).vertexUV(u2,v2).endPath();
+		return beginPath(PConstants.PATH)
+			.vertexUV(u1,v1).vertexUV(u2,v2).endPath();
 	}
 	public HPath triangle(int type, int direction) {
 		clear();
@@ -224,7 +226,7 @@ public static class HPath extends HDrawable {
 				HVertex prev = vertex(openPath? 0 : numv-1);
 				for(int i=(openPath? 1 : 0); i<numv; ++i) {
 					HVertex curr = vertex(i);
-					if(curr.inLine(prev, u,v)) return true;
+					if(curr.inLine(prev,relX,relY)) return true;
 					prev = curr;
 					if(openPath) openPath = false;
 				}
