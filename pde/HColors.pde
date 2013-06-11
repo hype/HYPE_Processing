@@ -58,4 +58,7 @@ public static class HColors {
 	public static int getBlue(int clr) {
 		return clr & 255;
 	}
+	public static boolean isTransparent(int clr) {
+		return (clr & 0xFF000000) == 0;
+	}
 }

@@ -27,11 +27,10 @@ public class DummyApplet extends PApplet {
 	
 	/* TODO
 	 * (HPath)
-	 * - [ ] retest all HPath examples
 	 * - [ ] draw handles
 	 * - [ ] test 0-width and 0-height hitboxes
 	 * - [ ] points mode hitbox checking
-	 * - [ ] apply tolerance to HVertexNEW.intersectTest()
+	 * - [ ] apply tolerance to HVertexNEW.intersectTest() and inLine()
 	 * - [ ] treat vertex(0) as straight line if in PATH mode
 	 * - [ ] point-in-line testing
 	 * 
@@ -176,11 +175,11 @@ public class DummyApplet extends PApplet {
 			.vertexUV(.5f,.5f, .5f,1.5f, 0,1)
 			
 			// QUADRATIC
-			.clear()
-			.vertexUV(-.5f,.5f, 0,0)
-			.vertexUV(.5f,-.5f, 1,0)
-			.vertexUV(1.5f,.5f, 1,1)
-			.vertexUV(.5f,1.5f, 0,1)
+//			.clear()
+//			.vertexUV(-.5f,.5f, 0,0)
+//			.vertexUV(.5f,-.5f, 1,0)
+//			.vertexUV(1.5f,.5f, 1,1)
+//			.vertexUV(.5f,1.5f, 0,1)
 			
 			// SIMPLE CUBIC
 //			.clear()
@@ -191,6 +190,8 @@ public class DummyApplet extends PApplet {
 //			.clear()
 //			.vertexUV(0,1)
 //			.vertexUV(.5f,0, 1,1)
+			
+			.polygon(6).mode(PATH)
 			
 			.endPath()
 		;

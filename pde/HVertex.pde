@@ -251,12 +251,15 @@ public static class HVertex implements HLocatable {
 		default: return _v - pv;
 		}
 	}
-	public boolean intersectTest(HVertex pprev,HVertex prev,float tu,float tv) {
+	public boolean intersectTest(
+		HVertex pprev, HVertex prev,
+		float tu, float tv, boolean openPath
+	) {
 		float u1 = prev._u;
 		float v1 = prev._v;
 		float u2 = _u;
 		float v2 = _v;
-		if(isLine()) {
+		if(isLine() || openPath) {
 			return ((v1<=tv && tv<v2) || (v2<=tv && tv<v1)) && 
 				tu < (u1 + (u2-u1)*(tv-v1)/(v2-v1));
 		} else if(isQuadratic()) {
@@ -304,7 +307,35 @@ public static class HVertex implements HLocatable {
 			return b;
 		}
 	}
-	public void draw( PGraphics g, float drawX, float drawY, boolean isSimple) {
+	public boolean inLine(HVertex prev, float tu, float tv) {
+		float u1 = prev._u;
+		float v1 = prev._v;
+		float u2 = _u;
+		float v2 = _v;
+		if(isLine()) {
+			return ((v1<=tv && tv<=v2) || (v2<=tv && tv<=v1)) && 
+				tu == (u1 + (u2-u1)*(tv-v1)/(v2-v1));
+		} else if(isQuadratic()) {
+			float[] params = new float[2];
+			int numParams = HMath.bezierParam(v1,_cv1,v2, tv, params);
+			for(int i=0; i<numParams; ++i) {
+				float t = params[i];
+				if(0<=t && t<=1 && tu==HMath.bezierPoint(u1,_cu1,u2, t))
+					return true;
+			}
+			return false;
+		} else {
+			float[] params = new float[3];
+			int numParams = HMath.bezierParam(v1,_cv1,_cv2,v2, tv, params);
+			for(int i=0; i<numParams; ++i) {
+				float t = params[i];
+				if(0<=t && t<=1 && tu==HMath.bezierPoint(u1,_cu1,_cu2,u2, t))
+					return true;
+			}
+			return false;
+		}
+	}
+	public void draw(PGraphics g, float drawX, float drawY, boolean isSimple) {
 		float drx = drawX + x();
 		float dry = drawY + y();
 		if(isLine() || isSimple) {

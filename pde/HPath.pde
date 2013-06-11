@@ -204,23 +204,42 @@ public static class HPath extends HDrawable {
 		if(numv <= 0) return false;
 		if(_width==0) return (relX==0) && (0<relY && relY<_height);
 		if(_height==0) return (relY==0) && (0<relX && relX<_width);
+		if(!super.containsRel(relX,relY)) return false;
 		float u = relX / _width;
 		float v = relY / _height;
-		if(_mode == PConstants.POINTS) {
+		boolean openPath = false;
+		switch(_mode) {
+		case PConstants.POINTS:
+			for(int i=0; i<numv; ++i) {
+				HVertex curr = vertex(i);
+				if(curr.u()==u && curr.v()==v) return true;
+			}
 			return false;
-		} else if(super.containsRel(relX,relY)) {
+		case PConstants.PATH:
+			openPath = true;
+			if(HColors.isTransparent(_fill)) {
+				HVertex prev = vertex(openPath? 0 : numv-1);
+				for(int i=(openPath? 1 : 0); i<numv; ++i) {
+					HVertex curr = vertex(i);
+					if(curr.inLine(prev, u,v)) return true;
+					prev = curr;
+					if(openPath) openPath = false;
+				}
+				return false;
+			}
+		default:
 			boolean isIn = false;
 			HVertex prev = vertex(numv-1);
 			HVertex pprev = vertex(numv>1? numv-2 : 0);
 			for(int i=0; i<numv; ++i) {
 				HVertex curr = vertex(i);
-				if(curr.intersectTest(pprev,prev,u,v)) isIn = !isIn;
+				if(curr.intersectTest(pprev,prev, u,v, openPath)) isIn = !isIn;
 				pprev = prev;
 				prev = curr;
+				if(openPath) openPath = false;
 			}
 			return isIn;
 		}
-		return false;
 	}
 	public void draw( PGraphics g, boolean usesZ,
 		float drawX, float drawY, float alphaPc
