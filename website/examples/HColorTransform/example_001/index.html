@@ -26,32 +26,32 @@
 	</head>
 
 	<body>
-      <div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
+		<div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
 
-        <a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
+		<a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
 
-        <div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
 
-        <div style="font-size: 10px; color: #666666;">
-          <a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
-        </div>
+		<div style="font-size: 10px; color: #666666;">
+			<a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
+		</div>
 
-        <div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
 
-        <div style="font-size: 10px; color: #666666;">
-          by Joshua Davis and James Cruz <br />
-          A Code and Theory project <br />
-          <a href="http://www.codeandtheory.com" target="_blank">http://www.codeandtheory.com</a> <br />
-          for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
+		<div style="font-size: 10px; color: #666666;">
+			by Joshua Davis and James Cruz <br />
+			A Code and Theory project <br />
+			<a href="http://www.codeandtheory.com" target="_blank">http://www.codeandtheory.com</a> <br />
+			for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
 
-          HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
-        </div>
+			HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
+		</div>
 
-        <div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
 
-        <a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
+		<a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
 
-      </div>
+		</div>
 
 		<div id="content">
 			<div>
@@ -63,12 +63,12 @@
 				<noscript>
 					<p>JavaScript is required to view the contents of this page.</p>
 				</noscript>
-	    	</div>
+				</div>
 
-	    	<div style="background-color: #181818; padding:10px 20px 15px 20px;">
+				<div style="background-color: #181818; padding:10px 20px 15px 20px;">
 				<b style="font-size: 15px; font-weight: 700; color: #ECECEC;">
 				HColorTransform / 001 </b><br /><br />
-	    	HYPE, HColorTransform, HPixelColorist, percR, percG, percB <br /><br />
+				HYPE, HColorTransform, HPixelColorist, percR, percG, percB <br /><br />
 				<a href="index.pde">Source code</a>
 			</div>
 		</div>
@@ -87,69 +87,69 @@ int numCols   = 60;
 HRect[] rects = new HRect[numAssets];
 
 void setup() {
-  PImage bg = loadImage("sintra.jpg");
-  size(640,640);
-  H.init(this).backgroundImg(bg);
-  smooth();
+	PImage bg = loadImage("sintra.jpg");
+	size(640,640);
+	H.init(this).backgroundImg(bg);
+	smooth();
 
-  final HPixelColorist colors = new HPixelColorist(bg).fillOnly();
+	final HPixelColorist colors = new HPixelColorist(bg).fillOnly();
 
-  ct01 = new HColorTransform().fillOnly();
-  ct02 = new HColorTransform().fillOnly();
-  ct03 = new HColorTransform().fillOnly();
-  ct04 = new HColorTransform().fillOnly();
-  ct05 = new HColorTransform().fillOnly();
-  ct06 = new HColorTransform().fillOnly();
-  ct07 = new HColorTransform().fillOnly();
-  ct08 = new HColorTransform().fillOnly();
-  ct09 = new HColorTransform().fillOnly();
-  ct10 = new HColorTransform().fillOnly();
-  ct11 = new HColorTransform().fillOnly();
+	ct01 = new HColorTransform().fillOnly();
+	ct02 = new HColorTransform().fillOnly();
+	ct03 = new HColorTransform().fillOnly();
+	ct04 = new HColorTransform().fillOnly();
+	ct05 = new HColorTransform().fillOnly();
+	ct06 = new HColorTransform().fillOnly();
+	ct07 = new HColorTransform().fillOnly();
+	ct08 = new HColorTransform().fillOnly();
+	ct09 = new HColorTransform().fillOnly();
+	ct10 = new HColorTransform().fillOnly();
+	ct11 = new HColorTransform().fillOnly();
 
-  ct01.percR(0.1f); ct01.percG(0.1f); ct01.percB(0.1f);
-  ct02.percR(0.3f); ct02.percG(0.3f); ct02.percB(0.3f);
-  ct03.percR(0.5f); ct03.percG(0.5f); ct03.percB(0.5f);
-  ct04.percR(0.7f); ct04.percG(0.7f); ct04.percB(0.7f);
-  ct05.percR(0.9f); ct05.percG(0.9f); ct05.percB(0.9f);
- 
-  ct07.percR(1.1f); ct07.percG(1.1f); ct07.percB(1.1f);
-  ct08.percR(1.3f); ct08.percG(1.3f); ct08.percB(1.3f);
-  ct09.percR(1.5f); ct09.percG(1.5f); ct09.percB(1.5f);
-  ct10.percR(1.7f); ct10.percG(1.7f); ct10.percB(1.7f);
-  ct11.percR(1.9f); ct11.percG(1.9f); ct11.percB(1.9f);
+	ct01.percR(0.1f); ct01.percG(0.1f); ct01.percB(0.1f);
+	ct02.percR(0.3f); ct02.percG(0.3f); ct02.percB(0.3f);
+	ct03.percR(0.5f); ct03.percG(0.5f); ct03.percB(0.5f);
+	ct04.percR(0.7f); ct04.percG(0.7f); ct04.percB(0.7f);
+	ct05.percR(0.9f); ct05.percG(0.9f); ct05.percB(0.9f);
 
-  for( int i =0; i&lt;numAssets; i++ ) {
-    float x = (xSpacing*(i%numCols)) + xStart;
-    float y = (ySpcaing*((int)(i/numCols))) + yStart;
+	ct07.percR(1.1f); ct07.percG(1.1f); ct07.percB(1.1f);
+	ct08.percR(1.3f); ct08.percG(1.3f); ct08.percB(1.3f);
+	ct09.percR(1.5f); ct09.percG(1.5f); ct09.percB(1.5f);
+	ct10.percR(1.7f); ct10.percG(1.7f); ct10.percB(1.7f);
+	ct11.percR(1.9f); ct11.percG(1.9f); ct11.percB(1.9f);
 
-    rects[i] = new HRect(10, 40);
-    rects[i].noStroke().loc( x, y );
-    colors.applyColor(rects[i]);
+	for( int i =0; i&lt;numAssets; i++ ) {
+		float x = (xSpacing*(i%numCols)) + xStart;
+		float y = (ySpcaing*((int)(i/numCols))) + yStart;
 
-    H.add(rects[i]);
-  }
+		rects[i] = new HRect(10, 40);
+		rects[i].noStroke().loc( x, y );
+		colors.applyColor(rects[i]);
 
-  for( int i=0;   i&lt;60;  i++ ) ct01.applyColor(rects[i]); // row 01
-  for( int i=60;  i&lt;120; i++ ) ct02.applyColor(rects[i]); // row 02
-  for( int i=120; i&lt;180; i++ ) ct03.applyColor(rects[i]); // row 03
-  for( int i=180; i&lt;240; i++ ) ct04.applyColor(rects[i]); // row 04
-  for( int i=240; i&lt;300; i++ ) ct05.applyColor(rects[i]); // row 05
+		H.add(rects[i]);
+	}
 
-  for( int i=360; i&lt;420; i++ ) ct07.applyColor(rects[i]); // row 07
-  for( int i=420; i&lt;480; i++ ) ct08.applyColor(rects[i]); // row 08
-  for( int i=480; i&lt;540; i++ ) ct09.applyColor(rects[i]); // row 09
-  for( int i=540; i&lt;600; i++ ) ct10.applyColor(rects[i]); // row 10
-  for( int i=600; i&lt;660; i++ ) ct11.applyColor(rects[i]); // row 11
+	for( int i=0;   i&lt;60;  i++ ) ct01.applyColor(rects[i]); // row 01
+	for( int i=60;  i&lt;120; i++ ) ct02.applyColor(rects[i]); // row 02
+	for( int i=120; i&lt;180; i++ ) ct03.applyColor(rects[i]); // row 03
+	for( int i=180; i&lt;240; i++ ) ct04.applyColor(rects[i]); // row 04
+	for( int i=240; i&lt;300; i++ ) ct05.applyColor(rects[i]); // row 05
 
-  H.drawStage();
+	for( int i=360; i&lt;420; i++ ) ct07.applyColor(rects[i]); // row 07
+	for( int i=420; i&lt;480; i++ ) ct08.applyColor(rects[i]); // row 08
+	for( int i=480; i&lt;540; i++ ) ct09.applyColor(rects[i]); // row 09
+	for( int i=540; i&lt;600; i++ ) ct10.applyColor(rects[i]); // row 10
+	for( int i=600; i&lt;660; i++ ) ct11.applyColor(rects[i]); // row 11
 
-  // draw lines around original / non transformed colors from image // row 06
-  stroke(#000000, 200);
-  strokeWeight(3);
-  line(0, 295, width, 295);
-  line(0, 345, width, 345);
+	H.drawStage();
 
-  noLoop();
+	// draw lines around original / non transformed colors from image // row 06
+	stroke(#000000, 200);
+	strokeWeight(3);
+	line(0, 295, width, 295);
+	line(0, 345, width, 345);
+
+	noLoop();
 }
 
 void draw() {}

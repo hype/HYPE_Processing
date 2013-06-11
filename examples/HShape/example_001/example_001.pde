@@ -1,6 +1,5 @@
+HColorPool colors;
 HShape s1,s2,s3,s4,s5,s6;
-
-final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
 void setup() {
 	size(640,640);
@@ -8,6 +7,8 @@ void setup() {
 	smooth();
 
 	frameRate(6);
+
+	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
 	s1 = new HShape("bot1.svg");
 	H.add(s1)
