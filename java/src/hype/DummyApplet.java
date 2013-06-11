@@ -27,7 +27,6 @@ public class DummyApplet extends PApplet {
 	
 	/* TODO
 	 * (HPath)
-	 * - [ ] draw handles
 	 * - [ ] apply tolerance to HVertexNEW.intersectTest() and inLine()
 	 * - [ ] testfile for HPath
 	 * 
