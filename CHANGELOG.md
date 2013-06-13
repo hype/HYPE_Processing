@@ -1,3 +1,6 @@
+### build_20130613.0 (Jun 13, 2013)
+- fixed the buggy `HPath.adjust()` method
+
 ### build_20130611.2 (Jun 11, 2013)
 - new HMath comparator methods:
 	- `lessThan(float,float,float)` & `lessThan(float,float,float)`

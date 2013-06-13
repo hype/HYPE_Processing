@@ -12,7 +12,9 @@
 package hype;
 
 import hype.core.util.H;
+import hype.extended.drawable.HEllipse;
 import hype.extended.drawable.HPath;
+import hype.extended.drawable.HRect;
 import processing.core.PApplet;
 
 /**
@@ -174,32 +176,34 @@ public class DummyApplet extends PApplet {
 			.vertexUV(.5f,.5f, .5f,1.5f, 0,1)
 			
 			// QUADRATIC
-//			.clear()
 //			.vertexUV(-.5f,.5f, 0,0)
-//			.vertexUV(.5f,-.5f, 1,0)
+//			.vertexUV(.5f,-.5f, 1,0)//
+////			.vertexUV(1.5f,1.5f)
+////			.vertexUV(-.5f,1.5f)
 //			.vertexUV(1.5f,.5f, 1,1)
 //			.vertexUV(.5f,1.5f, 0,1)
 			
 			// SIMPLE CUBIC
-//			.clear()
 //			.vertexUV(0,1)
 //			.vertexUV(0,0, 1,0, 1,1)
 			
 			// SIMPLE QUADRATIC
-//			.clear()
 //			.vertexUV(0,1)
 //			.vertexUV(.5f,0, 1,1)
-			
+//			
 			.endPath()
 		;
-		path.anchorAt(H.CENTER);
+		//path.height(200);
+		path.rotate(1);
 		
-//		path.polygon(6).mode(PATH).noFill();
-//		path.beginPath(PATH)
-//			.vertex(-50,H.PHI)
-//			.vertex(0,H.PHI)
-//			.vertex(50,50)
-//		.endPath().noFill();
+		float px = path.x();
+		float py = path.y();
+		float w = path.width();
+		float h = path.height();
+		float au = path.anchorPercX();
+		float av = path.anchorPercY();
+		H.add(new HRect(w,h).loc(px,py).anchorPerc(au,av)).alpha(32);
+		H.add(new HEllipse(4)).loc(px,py).anchorAt(H.CENTER).add(new HRect(4)).add(new HRect(4).anchorAt(H.BOTTOM_RIGHT));
 		
 		
 		H.drawStage();
