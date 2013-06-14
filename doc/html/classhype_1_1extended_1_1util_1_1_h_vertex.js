@@ -1,7 +1,7 @@
 var classhype_1_1extended_1_1util_1_1_h_vertex =
 [
     [ "HVertex", "classhype_1_1extended_1_1util_1_1_h_vertex.html#a4d11dd5e0f26656c60d8aa2df6900a93", null ],
-    [ "adjust", "classhype_1_1extended_1_1util_1_1_h_vertex.html#aa095cff193c06f8367dd358a33c56b0a", null ],
+    [ "adjust", "classhype_1_1extended_1_1util_1_1_h_vertex.html#a42f48ccf5dee77bb918b618da5185e0f", null ],
     [ "computeMinMax", "classhype_1_1extended_1_1util_1_1_h_vertex.html#a37b5b52823a1f437b81c8d105291ce5e", null ],
     [ "createCopy", "classhype_1_1extended_1_1util_1_1_h_vertex.html#a2c46a532294da7dcbf214155dd3247c0", null ],
     [ "cu", "classhype_1_1extended_1_1util_1_1_h_vertex.html#a590e6a8f69667b976216fd6ad5f05f85", null ],
@@ -29,7 +29,8 @@ var classhype_1_1extended_1_1util_1_1_h_vertex =
     [ "cy2", "classhype_1_1extended_1_1util_1_1_h_vertex.html#a34dbabd4205ea7da945d019669f829ac", null ],
     [ "cy2", "classhype_1_1extended_1_1util_1_1_h_vertex.html#a2ba9b04fd3e76ca7190a2be0b068ae45", null ],
     [ "draw", "classhype_1_1extended_1_1util_1_1_h_vertex.html#ac1def2460d3adcf25f6da01d208b865c", null ],
-    [ "inLine", "classhype_1_1extended_1_1util_1_1_h_vertex.html#a8cbe4bba47a94dad846ddc69874a850d", null ],
+    [ "drawHandles", "classhype_1_1extended_1_1util_1_1_h_vertex.html#abe89f4ef78856a3199218b94bc0edb5d", null ],
+    [ "inLine", "classhype_1_1extended_1_1util_1_1_h_vertex.html#ad21282314770aa4083fe324f1818812b", null ],
     [ "intersectTest", "classhype_1_1extended_1_1util_1_1_h_vertex.html#ae6dc06e25a734684f601becf26d701bd", null ],
     [ "isCubic", "classhype_1_1extended_1_1util_1_1_h_vertex.html#a6ffbf892a95cd4113c68cd07f4b444db", null ],
     [ "isCurved", "classhype_1_1extended_1_1util_1_1_h_vertex.html#ac8d257161fa00714f0ecf643d0ef19f2", null ],
@@ -53,5 +54,6 @@ var classhype_1_1extended_1_1util_1_1_h_vertex =
     [ "y", "classhype_1_1extended_1_1util_1_1_h_vertex.html#a893b9dccd2aba73959ac2c14a3344ce8", null ],
     [ "y", "classhype_1_1extended_1_1util_1_1_h_vertex.html#a77d742ddbde23fa5fc4942734636cd0c", null ],
     [ "z", "classhype_1_1extended_1_1util_1_1_h_vertex.html#af5bbed3961cc694dc08c81e0ba6d2ba1", null ],
-    [ "z", "classhype_1_1extended_1_1util_1_1_h_vertex.html#ac37ce563553dcc910ab0eea94d166a38", null ]
+    [ "z", "classhype_1_1extended_1_1util_1_1_h_vertex.html#ac37ce563553dcc910ab0eea94d166a38", null ],
+    [ "LINE_TOLERANCE", "classhype_1_1extended_1_1util_1_1_h_vertex.html#afa24c968efd26686e652cb3e061b18cb", null ]
 ];

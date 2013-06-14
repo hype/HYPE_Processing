@@ -1,4 +1,4 @@
-.TH "hype.core.drawable.HDrawable" 3 "Tue Jun 11 2013" "HYPE_processing" \" -*- nroff -*-
+.TH "hype.core.drawable.HDrawable" 3 "Fri Jun 14 2013" "HYPE_processing" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -327,6 +327,12 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .br
 .RI "\fIReturns the stroke weight, or thickness of this drawable\&. \fP"
 .ti -1c
+.RI "\fBHDrawable\fP \fBstylesChildren\fP (boolean b)"
+.br
+.ti -1c
+.RI "boolean \fBstylesChildren\fP ()"
+.br
+.ti -1c
 .RI "\fBHDrawable\fP \fBrotation\fP (float deg)"
 .br
 .RI "\fISets the rotation for this drawable, in degrees\&. \fP"
@@ -465,21 +471,29 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 
 .in +1c
 .ti -1c
+.RI "static final int \fBDEFAULT_FILL\fP = 0xFFFFFFFF"
+.br
+.ti -1c
+.RI "static final int \fBDEFAULT_STROKE\fP = 0xFF000000"
+.br
+.ti -1c
+.RI "static final int \fBDEFAULT_WIDTH\fP = 100"
+.br
+.ti -1c
+.RI "static final int \fBDEFAULT_HEIGHT\fP = 100"
+.br
+.ti -1c
 .RI "static final byte \fBBITMASK_PROPORTIONAL\fP = 1"
 .br
-.RI "\fITODO\&. \fP"
 .ti -1c
 .RI "static final byte \fBBITMASK_TRANSFORMS_CHILDREN\fP = 2"
 .br
-.RI "\fITODO\&. \fP"
 .ti -1c
 .RI "static final byte \fBBITMASK_STYLES_CHILDREN\fP = 4"
 .br
-.RI "\fITODO\&. \fP"
 .ti -1c
 .RI "static final byte \fBBITMASK_ROTATES_CHILDREN\fP = 8"
 .br
-.RI "\fITODO\&. \fP"
 .in -1c
 .SS "Protected Member Functions"
 
@@ -488,6 +502,9 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .RI "void \fBonResize\fP (float oldW, float oldH, float newW, float newH)"
 .br
 .RI "\fICalled after the size of this drawable is changed\&. \fP"
+.ti -1c
+.RI "void \fBonStyleChange\fP ()"
+.br
 .ti -1c
 .RI "void \fBapplyStyle\fP (PGraphics g, float alphaPc)"
 .br
@@ -1177,7 +1194,7 @@ A copy of this drawable\&.
 .PP
 
 .PP
-Implemented in \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawable\&.HText\fP, \fBhype\&.extended\&.drawable\&.HCanvas\fP, \fBhype\&.extended\&.drawable\&.HEllipse\fP, \fBhype\&.extended\&.drawable\&.HPath\fP, \fBhype\&.extended\&.drawable\&.HRect\fP, \fBhype\&.extended\&.drawable\&.HShape\fP, \fBhype\&.extended\&.drawable\&.HImage\fP, and \fBhype\&.extended\&.drawable\&.HGroup\fP\&.
+Implemented in \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawable\&.HText\fP, \fBhype\&.extended\&.drawable\&.HCanvas\fP, \fBhype\&.extended\&.drawable\&.HPath\fP, \fBhype\&.extended\&.drawable\&.HEllipse\fP, \fBhype\&.extended\&.drawable\&.HRect\fP, \fBhype\&.extended\&.drawable\&.HShape\fP, \fBhype\&.extended\&.drawable\&.HImage\fP, and \fBhype\&.extended\&.drawable\&.HGroup\fP\&.
 .SS "abstract void hype\&.core\&.drawable\&.HDrawable\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatalphaPc)\fC [pure virtual]\fP"
 
 .PP

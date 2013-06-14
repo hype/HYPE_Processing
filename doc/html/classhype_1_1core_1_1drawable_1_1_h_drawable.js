@@ -64,6 +64,7 @@ var classhype_1_1core_1_1drawable_1_1_h_drawable =
     [ "obj", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a6cf0a0516360437ff2d404ba9f89e565", null ],
     [ "obj", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a014b66534bafbca10e5d8337c644b30a", null ],
     [ "onResize", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad83f255e2de9bb08f52c160c5bdcc1d7", null ],
+    [ "onStyleChange", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#af042f76a7f5b5fb39aa208478b95a9da", null ],
     [ "paintAll", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#ac66170a2cfce900a6ffa69696fd7c766", null ],
     [ "parent", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae3e39365ae4a4efd3c1540bd428a630c", null ],
     [ "parentOf", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae833b7b6fb4a91bca96bfc122aba3010", null ],
@@ -99,6 +100,8 @@ var classhype_1_1core_1_1drawable_1_1_h_drawable =
     [ "strokeJoin", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4fc12f2585819b1bd9ed0fc60cac74c0", null ],
     [ "strokeWeight", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a921f850d18263460a9a7117364262157", null ],
     [ "strokeWeight", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab442156bac301c3e89040cbc1d90ce84", null ],
+    [ "stylesChildren", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4cb253a232e570ffab6bd585143535ad", null ],
+    [ "stylesChildren", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#af6f37964d79fcad3c3f2d011e8f44f9d", null ],
     [ "swapLeft", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5a6bd11545bebcea7cd77bb35650f215", null ],
     [ "swapRight", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2eadd3b50e942a0d0527d79e5600acb2", null ],
     [ "transformsChildren", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad3732f860b758f7cdd3b054c6316bb63", null ],
@@ -140,5 +143,9 @@ var classhype_1_1core_1_1drawable_1_1_h_drawable =
     [ "BITMASK_PROPORTIONAL", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae0c9b686c3e84ec9e342b5a05fbf1b73", null ],
     [ "BITMASK_ROTATES_CHILDREN", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a71aeb4b266d9afd1bae3f437c9a22ea3", null ],
     [ "BITMASK_STYLES_CHILDREN", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa59ad1fa1956cbf7886ee47e546e1372", null ],
-    [ "BITMASK_TRANSFORMS_CHILDREN", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#aae6ae43c606cd7a7146f1a67afc02ec6", null ]
+    [ "BITMASK_TRANSFORMS_CHILDREN", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#aae6ae43c606cd7a7146f1a67afc02ec6", null ],
+    [ "DEFAULT_FILL", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a096c7aaa3abecaf9bd068e6306328b31", null ],
+    [ "DEFAULT_HEIGHT", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a63b3af51850c269f7ad560899337f63d", null ],
+    [ "DEFAULT_STROKE", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a317645a51a477d5a5442be1608357d9f", null ],
+    [ "DEFAULT_WIDTH", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3669839ce7656df4bf98c168131030c0", null ]
 ];

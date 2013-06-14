@@ -3,6 +3,8 @@ var classhype_1_1extended_1_1drawable_1_1_h_path =
     [ "HPath", "classhype_1_1extended_1_1drawable_1_1_h_path.html#af1f1ae348c60751e443d76ce4ae5be4c", null ],
     [ "HPath", "classhype_1_1extended_1_1drawable_1_1_h_path.html#afd5ddb1b8ab193b0bd8e9164173cca90", null ],
     [ "adjust", "classhype_1_1extended_1_1drawable_1_1_h_path.html#aee0fe262a32c23778f391489646147c7", null ],
+    [ "beginPath", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a1bf9a46e9a9ceff774210912fe440af6", null ],
+    [ "beginPath", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a1c09ec8d64673458c518929cd9d6cc2e", null ],
     [ "clear", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a8f52b87a42368d367463cbcf5a62b0f2", null ],
     [ "containsRel", "classhype_1_1extended_1_1drawable_1_1_h_path.html#ac8f128faad7c12a1a9b0878b9ce503d6", null ],
     [ "createCopy", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a4e52a72a0178da91cc6c1d85eeeea7ad", null ],
@@ -22,8 +24,6 @@ var classhype_1_1extended_1_1drawable_1_1_h_path =
     [ "star", "classhype_1_1extended_1_1drawable_1_1_h_path.html#ace3920503b9d938f880f7af1bc351d26", null ],
     [ "star", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a082778a229d3f45e693543dccfe19992", null ],
     [ "starRad", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a31b900ceb515728436ebe504ebbbeda1", null ],
-    [ "startPath", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a9544541f025c19d943cc28dbeaef8651", null ],
-    [ "startPath", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a72795000d3462394d730a5a8d3b7d3f3", null ],
     [ "triangle", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a87e7c3945efc9a04cf90659ec799e596", null ],
     [ "vertex", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a96e521e8319c06c49d44b2e4d081b9f2", null ],
     [ "vertex", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a5bec04edc0b4bb641d6e8ed37d4c2c60", null ],
@@ -31,5 +31,9 @@ var classhype_1_1extended_1_1drawable_1_1_h_path =
     [ "vertex", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a730f1b312964e5cc17c9566f91c6f74f", null ],
     [ "vertexUV", "classhype_1_1extended_1_1drawable_1_1_h_path.html#af662796bb8d06beadae50a0288ddaeef", null ],
     [ "vertexUV", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a8c61b2b8c5ea0dd9822a917aab564aaa", null ],
-    [ "vertexUV", "classhype_1_1extended_1_1drawable_1_1_h_path.html#ac5e2d37ebd41ad7ff7e455415e2c1a34", null ]
+    [ "vertexUV", "classhype_1_1extended_1_1drawable_1_1_h_path.html#ac5e2d37ebd41ad7ff7e455415e2c1a34", null ],
+    [ "HANDLE_FILL", "classhype_1_1extended_1_1drawable_1_1_h_path.html#acc639d9a868f1b2aee55fbedcb05ec71", null ],
+    [ "HANDLE_SIZE", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a40108f70fe1b4f70d2bcd98513d55f43", null ],
+    [ "HANDLE_STROKE", "classhype_1_1extended_1_1drawable_1_1_h_path.html#ac53a76846e735001afe403cacbf1b336", null ],
+    [ "HANDLE_STROKE_WEIGHT", "classhype_1_1extended_1_1drawable_1_1_h_path.html#a26d814cad78d489ee4f910bbfaa6b673", null ]
 ];

@@ -104,6 +104,7 @@ $(document).ready(function(){initNavTree('classhype_1_1extended_1_1util_1_1_h_ve
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classhype_1_1extended_1_1util_1_1_h_vertex-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">hype.extended.util.HVertex Class Reference</div>  </div>
@@ -271,18 +272,27 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>cv2</b> ()</td></tr>
 <tr class="memitem:a37b5b52823a1f437b81c8d105291ce5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37b5b52823a1f437b81c8d105291ce5e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>computeMinMax</b> (float[] minmax)</td></tr>
 <tr class="separator:a37b5b52823a1f437b81c8d105291ce5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa095cff193c06f8367dd358a33c56b0a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa095cff193c06f8367dd358a33c56b0a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>adjust</b> (float offU, float offV, float scaleW, float scaleH)</td></tr>
-<tr class="separator:aa095cff193c06f8367dd358a33c56b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42f48ccf5dee77bb918b618da5185e0f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42f48ccf5dee77bb918b618da5185e0f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>adjust</b> (float offsetU, float offsetV, float oldW, float oldH)</td></tr>
+<tr class="separator:a42f48ccf5dee77bb918b618da5185e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6dc06e25a734684f601becf26d701bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6dc06e25a734684f601becf26d701bd"></a>
 boolean&#160;</td><td class="memItemRight" valign="bottom"><b>intersectTest</b> (<a class="el" href="classhype_1_1extended_1_1util_1_1_h_vertex.html">HVertex</a> pprev, <a class="el" href="classhype_1_1extended_1_1util_1_1_h_vertex.html">HVertex</a> prev, float tu, float tv, boolean openPath)</td></tr>
 <tr class="separator:ae6dc06e25a734684f601becf26d701bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cbe4bba47a94dad846ddc69874a850d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8cbe4bba47a94dad846ddc69874a850d"></a>
-boolean&#160;</td><td class="memItemRight" valign="bottom"><b>inLine</b> (<a class="el" href="classhype_1_1extended_1_1util_1_1_h_vertex.html">HVertex</a> prev, float tu, float tv)</td></tr>
-<tr class="separator:a8cbe4bba47a94dad846ddc69874a850d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad21282314770aa4083fe324f1818812b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad21282314770aa4083fe324f1818812b"></a>
+boolean&#160;</td><td class="memItemRight" valign="bottom"><b>inLine</b> (<a class="el" href="classhype_1_1extended_1_1util_1_1_h_vertex.html">HVertex</a> prev, float relX, float relY)</td></tr>
+<tr class="separator:ad21282314770aa4083fe324f1818812b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1def2460d3adcf25f6da01d208b865c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1def2460d3adcf25f6da01d208b865c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (PGraphics g, float drawX, float drawY, boolean isSimple)</td></tr>
 <tr class="separator:ac1def2460d3adcf25f6da01d208b865c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe89f4ef78856a3199218b94bc0edb5d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe89f4ef78856a3199218b94bc0edb5d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>drawHandles</b> (PGraphics g, <a class="el" href="classhype_1_1extended_1_1util_1_1_h_vertex.html">HVertex</a> prev, float drawX, float drawY)</td></tr>
+<tr class="separator:abe89f4ef78856a3199218b94bc0edb5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:afa24c968efd26686e652cb3e061b18cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa24c968efd26686e652cb3e061b18cb"></a>
+static final float&#160;</td><td class="memItemRight" valign="bottom"><b>LINE_TOLERANCE</b> = 1.5f</td></tr>
+<tr class="separator:afa24c968efd26686e652cb3e061b18cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a90ac305d91672a6bb3c39e0cbab842cb"></a>
@@ -438,7 +448,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (PGraphics g
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>hype</b></li><li class="navelem"><b>extended</b></li><li class="navelem"><b>util</b></li><li class="navelem"><a class="el" href="classhype_1_1extended_1_1util_1_1_h_vertex.html">HVertex</a></li>
-    <li class="footer">Generated on Tue Jun 11 2013 16:00:55 for HYPE_processing by
+    <li class="footer">Generated on Fri Jun 14 2013 14:23:10 for HYPE_processing by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

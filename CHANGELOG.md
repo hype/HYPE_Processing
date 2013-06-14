@@ -1,4 +1,4 @@
-### build_20130613.0 (Jun 14, 2013)
+### build_20130614.0 (Jun 14, 2013)
 - new HDrawable methods for styling its children
 	- `stylesChildren(boolean)` & `stylesChildren()`
 	- `onStyleChange()` (protected)
