@@ -21,12 +21,12 @@ import processing.core.PVector;
 public class HStage extends HDrawable {
 	private PApplet _app;
 	private PImage _bgImg;
-	private boolean _autoClearFlag;
+	private boolean _autoClears;
 	
 	public HStage(PApplet papplet) {
 		_app = papplet;
 		
-		_autoClearFlag = true;
+		_autoClears = true;
 		background(HConstants.DEFAULT_BACKGROUND_COLOR);
 	}
 	
@@ -55,13 +55,19 @@ public class HStage extends HDrawable {
 		clear();
 	}
 	
+	/** @deprecated The method autoClears(boolean) should be used instead */
 	public HStage autoClear(boolean b) {
-		_autoClearFlag = b;
+		_autoClears = b;
+		return this;
+	}
+	
+	public HStage autoClears(boolean b) {
+		_autoClears = b;
 		return this;
 	}
 	
 	public boolean autoClears() {
-		return _autoClearFlag;
+		return _autoClears;
 	}
 	
 	public HStage clear() {
@@ -113,20 +119,20 @@ public class HStage extends HDrawable {
 	// PAINTALL //
 	
 	@Override
-	public void paintAll(PGraphics g, boolean usesZ, float alphaPc) {
+	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPc) {
 		g.pushStyle();
-			if(_autoClearFlag) clear();
+			if(_autoClears) clear();
 			
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(g, usesZ, alphaPc);
+				child.paintAll(g, usesZ, currAlphaPc);
 				child = child.next();
 			}
 		g.popStyle();
 	}
 	
 	
-	// DEACTIVATED DRAWABLE METHODS //
+	// DEACTIVATED HDRAWABLE METHODS //
 	
 	@Override
 	public void draw(PGraphics g,boolean b,float x,float y,float p) {}

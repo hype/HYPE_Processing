@@ -39,10 +39,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	protected float _y;
 	/** The z location of this drawable @see z() */
 	protected float _z;
-	/** The x anchor percentage of this drawable @see anchorPercX() */
-	protected float _anchorPercX;
-	/** The y anchor percentage of this drawable @see anchorPercY() */
-	protected float _anchorPercY;
+	/** The x anchor percentage of this drawable @see anchorU() */
+	protected float _anchorU;
+	/** The y anchor percentage of this drawable @see anchorV() */
+	protected float _anchorV;
 	/** The width of this drawable @see width() */
 	protected float _width;
 	/** The height of this drawable @see height() */
@@ -51,8 +51,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	protected float _rotationRad;
 	/** The stroke width of this drawable, in pixels @see strokeWeight() */
 	protected float _strokeWeight;
-	/** The alpha of this drawable, in percentage @see alphaPerc() */
-	protected float _alphaPerc;
+	/** The alpha of this drawable, in percentage @see alphaPc() */
+	protected float _alphaPc;
 	/** The width-to-height ratio used for proportional resizing @see proportional() */
 	/** The number of this drawable's children @see numChildren() */
 	protected int _numChildren;
@@ -80,7 +80,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * - height = 100
 	 */
 	public HDrawable() {
-		_alphaPerc = 1;
+		_alphaPc = 1;
 		_fill = DEFAULT_FILL;
 		_stroke = DEFAULT_STROKE;
 		_strokeCap = PConstants.ROUND;
@@ -107,12 +107,12 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public void copyPropertiesFrom(HDrawable other) {
 		_x = other._x;
 		_y = other._y;
-		_anchorPercX = other._anchorPercX;
-		_anchorPercY = other._anchorPercY;
+		_anchorU = other._anchorU;
+		_anchorV = other._anchorV;
 		_width = other._width;
 		_height = other._height;
 		_rotationRad = other._rotationRad;
-		_alphaPerc = other._alphaPerc;
+		_alphaPc = other._alphaPc;
 		_strokeWeight = other._strokeWeight;
 		_fill = other._fill;
 		_stroke = other._stroke;
@@ -509,7 +509,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable.
 	 */
 	public HDrawable anchorX(float pxX) {
-		_anchorPercX = pxX / (_width==0? 100 : _width);
+		_anchorU = pxX / (_width==0? 100 : _width);
 		return this;
 	}
 	/**
@@ -522,7 +522,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return The x anchor of this drawable, in pixels.
 	 */
 	public float anchorX() {
-		return _width * _anchorPercX;
+		return _width * _anchorU;
 	}
 	/**
 	 * Sets the y anchor of this drawable by pixels.
@@ -537,7 +537,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable.
 	 */
 	public HDrawable anchorY(float pxY) {
-		_anchorPercY = pxY / (_height==0? 100 : _height);
+		_anchorV = pxY / (_height==0? 100 : _height);
 		return this;
 	}
 	/**
@@ -550,73 +550,70 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return The y anchor of this drawable, in pixels.
 	 */
 	public float anchorY() {
-		return _height * _anchorPercY;
+		return _height * _anchorV;
 	}
 	/**
-	 * Sets the anchor of this drawable as percentage of its width and height.
-	 * 
-	 * 0 is equivalent to 0% and 1 is equivalent to 100%
+	 * Sets the anchor of this drawable in UV coordinates.
 	 * 
 	 * @chainable
-	 * @see anchorPercX(float), anchorPercY(float)
-	 * @param percX    The desired x anchor for this drawable, as percentage.
-	 * @param percY    The desired y anchor for this drawable, as percentage.
+	 * @see anchorU(float), anchorV(float)
+	 * @param u    The desired `u` coordinate for this drawable's anchor.
+	 * @param v    The desired `v` coordinate for this drawable's anchor.
 	 * @return This drawable.
 	 */
-	public HDrawable anchorPerc(float percX, float percY) {
-		return anchorPercX(percX).anchorPercY(percY);
+	public HDrawable anchorUV(float u, float v) {
+		return anchorU(u).anchorV(v);
 	}
 	/**
-	 * Returns the x & y anchor of this drawable, as percentage of its width and
-	 * height respectively.
+	 * Returns the UV coordinates of this drawable's anchor.
 	 * 
-	 * @see anchorPercX(), anchorPercY()
+	 * @see anchorU(), anchorV()
 	 * @return A new PVector containing this drawable's anchor as percentage
 	 */
-	public PVector anchorPerc() {
-		return new PVector(_anchorPercX, _anchorPercY);
+	public PVector anchorUV() {
+		return new PVector(_anchorU, _anchorV);
 	}
 	/**
-	 * Sets the x anchor of this drawable, as percentage of its width.
+	 * Sets the `u` coordinate for this drawable's anchor.
 	 * 
 	 * @chainable
-	 * @see anchorPerc(float,float), anchorPercY(float)
-	 * @param percX    The desired x anchor for this drawable, as percentage.
+	 * @see anchorUV(float,float), anchorV(float)
+	 * @param u    The desired `u` coordinate for this drawable's anchor.
 	 * @return This drawable.
 	 */
-	public HDrawable anchorPercX(float percX) {
-		_anchorPercX = percX;
+	public HDrawable anchorU(float u) {
+		_anchorU = u;
 		return this;
 	}
 	/**
-	 * Returns the x anchor of this drawable, as percentage of its width.
+	 * Returns the `u` coordinate of this drawable's anchor.
 	 * 
-	 * @see anchorPerc(), anchorPercY()
-	 * @return The x anchor of this drawable, as percentage.
+	 * @see anchorUV(), anchorV()
+	 * @return The `u` coordinate of this drawable's anchor.
 	 */
-	public float anchorPercX() {
-		return _anchorPercX;
+	public float anchorU() {
+		return _anchorU;
 	}
 	/**
-	 * Sets the y anchor of this drawable, as percentage of its height.
+	 * Sets the `u` coordinate for this drawable's anchor.
 	 * 
 	 * @chainable
-	 * @see anchorPerc(), anchorPercX()
-	 * @param percY    The desired y anchor for this drawable, as percentage.
+	 * @see anchorUV(), anchorU()
+	 * @param v    The desired `v` coordinate for this drawable's anchor.
 	 * @return This drawable.
 	 */
-	public HDrawable anchorPercY(float percY) {
-		_anchorPercY = percY;
+	public HDrawable anchorV(float v) {
+		_anchorV = v;
 		return this;
 	}
 	/**
-	 * Returns the y anchnor of this drawable, as percentage of its height.
+	 * Returns the `v` coordinate of this draable's anchor.
 	 * 
-	 * @see anchorPerc(), anchorPercX()
+	 * @see anchorUV(), anchorU()
 	 * @return The y anchor of this drawable.
 	 */
-	public float anchorPercY() {
-		return _anchorPercY;
+	public float anchorV() {
+		return _anchorV;
 	}
 	/**
 	 * Sets the anchor of this drawable at the defined location in relation to
@@ -650,17 +647,17 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 */
 	public HDrawable anchorAt(int where) {
 		if(HMath.hasBits(where, HConstants.CENTER_X))
-			_anchorPercX = 0.5f;
+			_anchorU = 0.5f;
 		else if(HMath.hasBits(where, HConstants.LEFT))
-			_anchorPercX = 0;
+			_anchorU = 0;
 		else if(HMath.hasBits(where, HConstants.RIGHT))
-			_anchorPercX = 1;
+			_anchorU = 1;
 		if(HMath.hasBits(where, HConstants.CENTER_Y))
-			_anchorPercY = 0.5f;
+			_anchorV = 0.5f;
 		else if(HMath.hasBits(where, HConstants.TOP))
-			_anchorPercY = 0;
+			_anchorV = 0;
 		else if(HMath.hasBits(where, HConstants.BOTTOM))
-			_anchorPercY = 1;
+			_anchorV = 1;
 		return this;
 	}
 	/**
@@ -1233,24 +1230,24 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * from 0 to 1 to keep the draw() and paintAll() methods a bit faster.
 	 * 
 	 * @chainable
-	 * @see alphaPerc(float)
+	 * @see alphaPc(float)
 	 * @param a    The new alpha for this drawable.
 	 * @return This drawable.
 	 */
 	public HDrawable alpha(int a) {
-		return alphaPerc(a/255f);
+		return alphaPc(a/255f);
 	}
 	/**
-	 * Returns the transparency for this drawable, ranging from 0 to 255.
+	 * Returns the transparency for this drawable, ranging at `[0,255]`.
 	 * 
 	 * You can be assured that the return value will only be in the
 	 * aforementioned range.
 	 * 
-	 * @see alphaPerc()
+	 * @see alphaPc()
 	 * @return The alpha for this drawable with range `(0,255)`.
 	 */
 	public int alpha() {
-		return Math.round( alphaPerc()*255 );
+		return Math.round( alphaPc()*255 );
 	}
 	/**
 	 * Sets the transparency for this drawable, as percentage.
@@ -1260,12 +1257,12 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * is greater than 1f, the alpha will be 1f. 
 	 * 
 	 * @chainable
-	 * @see alphaPerc(float)
+	 * @see alphaPc(float)
 	 * @param aPerc    The new alpha for this drawable, as percentage.
 	 * @return This drawable.
 	 */
-	public HDrawable alphaPerc(float aPerc) {
-		_alphaPerc = (aPerc<0)? 0 : (aPerc>1)? 1 : aPerc;
+	public HDrawable alphaPc(float aPerc) {
+		_alphaPc = (aPerc<0)? 0 : (aPerc>1)? 1 : aPerc;
 		return this;
 	}
 	/**
@@ -1277,8 +1274,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @see alpha()
 	 * @return The alpha for this drawable with range `(0f,1f)`.
 	 */
-	public float alphaPerc() {
-		return (_alphaPerc<0)? 0 : _alphaPerc;
+	public float alphaPc() {
+		return (_alphaPc<0)? 0 : _alphaPc;
 	}
 	/**
 	 * Sets the visibility of this drawable.
@@ -1295,10 +1292,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable.
 	 */
 	public HDrawable visibility(boolean v) {
-		if( v && (_alphaPerc==0) ) {
-			_alphaPerc = 1;
-		} else if( v == (_alphaPerc<0) ) {
-			_alphaPerc = -_alphaPerc;
+		if( v && (_alphaPc==0) ) {
+			_alphaPc = 1;
+		} else if( v == (_alphaPc<0) ) {
+			_alphaPc = -_alphaPc;
 		}
 		return this;
 	}
@@ -1308,7 +1305,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return True if this drawable is visible, otherwise false.
 	 */
 	public boolean visibility() {
-		return _alphaPerc > 0;
+		return _alphaPc > 0;
 	}
 	/**
 	 * Makes this drawable visible by calling `visibility(true)`.
@@ -1339,18 +1336,18 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable.
 	 */
 	public HDrawable alphaShift(int da) {
-		return alphaShiftPerc( da/255f );
+		return alphaShiftPc( da/255f );
 	}
 	/**
 	 * Shifts the current alpha of this drawable, by percentage.
 	 * 
 	 * @chainable.
-	 * @see alphaPerc(float)
+	 * @see alphaPc(float)
 	 * @param daPerc    The amount that alpha will be shifted, by percentage.
 	 * @return This drawable.
 	 */
-	public HDrawable alphaShiftPerc(float daPerc) {
-		return alphaPerc(_alphaPerc + daPerc);
+	public HDrawable alphaShiftPc(float daPerc) {
+		return alphaPc(_alphaPc + daPerc);
 	}
 	public float x2u(float px) {
 		return px / (_width==0? 100 : _width);
@@ -1522,13 +1519,13 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * This method is primarily used by some subclasses' `draw()` method.
 	 * 
 	 * @param g    The graphics context for this drawable.
-	 * @param alphaPc    The current alpha value in the draw cycle.
+	 * @param currAlphaPc    The current alpha value in the draw cycle.
 	 */
-	protected void applyStyle(PGraphics g, float alphaPc) {
-		float faPerc = alphaPc * (_fill >>> 24);
+	protected void applyStyle(PGraphics g, float currAlphaPc) {
+		float faPerc = currAlphaPc * (_fill >>> 24);
 		g.fill(_fill | 0xFF000000, Math.round(faPerc));
 		if(_strokeWeight > 0) {
-			float saPerc = alphaPc * (_stroke >>> 24);
+			float saPerc = currAlphaPc * (_stroke >>> 24);
 			g.stroke(_stroke | 0xFF000000, Math.round(saPerc));
 			g.strokeWeight(_strokeWeight);
 			g.strokeCap(_strokeCap);
@@ -1543,19 +1540,19 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * 
 	 * @param g    The graphics context for this drawable.
 	 * @param usesZ    Indicates if z-coordinates are used.
-	 * @param alphaPc    The current alpha value in the draw cycle.
+	 * @param currAlphaPc    The current alpha value in the draw cycle.
 	 */
-	public void paintAll(PGraphics g, boolean usesZ, float alphaPc) {
-		if(_alphaPerc<=0) return;
+	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPc) {
+		if(_alphaPc<=0) return;
 		g.pushMatrix();
 			if(usesZ) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
-			alphaPc *= _alphaPerc;
-			draw(g, usesZ,-anchorX(),-anchorY(),alphaPc);
+			currAlphaPc *= _alphaPc;
+			draw(g, usesZ,-anchorX(),-anchorY(),currAlphaPc);
 			HDrawable child = _firstChild;
 			while(child != null) {
-				child.paintAll(g, usesZ, alphaPc);
+				child.paintAll(g, usesZ, currAlphaPc);
 				child = child._next;
 			}
 		g.popMatrix();
@@ -1571,10 +1568,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @param usesZ Indicates if z-coordinates are used.
 	 * @param drawX The x coordinate where this drawable would consider as 0
 	 * @param drawY The y coordinate where this drawable would consider as 0
-	 * @param alphaPc    The current alpha value in the draw cycle.
+	 * @param currAlphaPc    The current alpha value in the draw cycle.
 	 */
 	public abstract void draw( PGraphics g, boolean usesZ,
-		float drawX, float drawY, float alphaPc);
+		float drawX, float drawY, float currAlphaPc);
 	/**
 	 * An HIterator used for iterating through HDrawable's children.
 	 * 

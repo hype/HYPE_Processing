@@ -236,7 +236,7 @@ public class HCanvas extends HDrawable {
 	
 	@Override
 	public void paintAll(PGraphics g, boolean zFlag, float alphaPc) {
-		if(_alphaPerc<=0 || _width==0 || _height==0) return;
+		if(_alphaPc<=0 || _width==0 || _height==0) return;
 		
 		g.pushMatrix();
 			// Rotate and translate
@@ -245,7 +245,7 @@ public class HCanvas extends HDrawable {
 			g.rotate(_rotationRad);
 			
 			// Compute current alpha
-			alphaPc *= _alphaPerc;
+			alphaPc *= _alphaPc;
 			
 			// Initialize the buffer
 			_graphics.beginDraw();

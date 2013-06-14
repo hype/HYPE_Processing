@@ -90,7 +90,7 @@ public static class HPath extends HDrawable {
 		for(int i=0; i<numv; ++i) vertex(i).computeMinMax(minmax);
 		float offU = -minmax[0],	offV = -minmax[1];
 		float oldW = _width,		oldH = _height;
-		anchorPerc(offU,offV).scale(minmax[2]+offU, minmax[3]+offV);
+		anchorUV(offU,offV).scale(minmax[2]+offU, minmax[3]+offV);
 		for(int i=0; i<numv; ++i) vertex(i).adjust(offU,offV, oldW,oldH);
 		return this;
 	}
@@ -98,7 +98,7 @@ public static class HPath extends HDrawable {
 		return adjust();
 	}
 	public HPath reset() {
-		size(DEFAULT_WIDTH,DEFAULT_HEIGHT).anchorPerc(0,0);
+		size(DEFAULT_WIDTH,DEFAULT_HEIGHT).anchorUV(0,0);
 		return clear();
 	}
 	public HPath beginPath(int modeId) {

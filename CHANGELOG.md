@@ -1,3 +1,21 @@
+### build_20130614.1 (Jun 14, 2013)
+- renamed the following protected HDrawable fields:
+	- `_anchorPercX` -> `_anchorU`
+	- `_anchorPercY` -> `_anchorV`
+	- `_alphaPerc` -> `_anchorPc`
+- renamed the following HDrawable methods:
+	- `anchorPerc(float,float)` -> `anchorUV(float,float)`
+	- `anchorPerc()` -> `anchorUV()`
+	- `anchorPercX(float)` -> `anchorU(float)`
+	- `anchorPercX()` -> `anchorU()`
+	- `anchorPercY(float)` -> `anchorV(float)`
+	- `anchorPercY()` -> `anchorV()`
+	- `alphaPerc(float)` -> `alphaPc(float)`
+	- `alphaPerc()` -> `alphaPc()`
+	- `alphaShiftPerc(float)` -> `alphaShiftPc(float)`
+- marked `HStage.autoClear(boolean)` for deprecation
+- new HStage method: `autoClears(boolean)` _(as replacement of autoClear(boolean).)_
+
 ### build_20130614.0 (Jun 14, 2013)
 - new HDrawable methods for styling its children
 	- `stylesChildren(boolean)` & `stylesChildren()`

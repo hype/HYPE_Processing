@@ -178,12 +178,12 @@ public static class HCanvas extends HDrawable {
 		return this;
 	}
 	public void paintAll(PGraphics g, boolean zFlag, float alphaPc) {
-		if(_alphaPerc<=0 || _width==0 || _height==0) return;
+		if(_alphaPc<=0 || _width==0 || _height==0) return;
 		g.pushMatrix();
 			if(zFlag) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
-			alphaPc *= _alphaPerc;
+			alphaPc *= _alphaPc;
 			_graphics.beginDraw();
 			if(_autoClear) {
 				_graphics.clear();

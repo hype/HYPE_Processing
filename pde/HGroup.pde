@@ -18,12 +18,12 @@ public static class HGroup extends HDrawable {
 		return copy;
 	}
 	public void paintAll(PGraphics g, boolean usesZ, float alphaPc) {
-		if(_alphaPerc<=0) return;
+		if(_alphaPc<=0) return;
 		g.pushMatrix();
 			if(usesZ) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
 			g.rotate(_rotationRad);
-			alphaPc *= _alphaPerc;
+			alphaPc *= _alphaPc;
 			HDrawable child = _firstChild;
 			while(child != null) {
 				child.paintAll(g, usesZ, alphaPc);
