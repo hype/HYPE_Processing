@@ -35,10 +35,18 @@ The Java code is converted to processing by the `j2p.pl` script.
 Why is HYPE not a JAR file?
 ---------------------------
 Putting HYPE in a pde file instead of a JAR file lets you use the library in
-Processing.js mode.
+Processing.js.
 
 In case you need HYPE in a JAR file, you could try to compile one yourself with
 the base Java code in the `java/src/` folder.
+
+
+Documentation
+-------------
+This project's documentation is generated with [Doxygen][5] is located in
+`doc/html/index.html`. Be noted that since this library is under heavy
+development, especially in the staging branch, the documentation may not be 100%
+complete.
 
 
 
@@ -48,3 +56,4 @@ the base Java code in the `java/src/` folder.
 [2]: http://processing.org/
 [3]: http://processingjs.org/
 [4]: CHANGELOG.md
+[5]: http://www.stack.nl/~dimitri/doxygen/
