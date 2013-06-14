@@ -11,6 +11,7 @@ var classhype_1_1core_1_1util_1_1_h =
     [ "add", "classhype_1_1core_1_1util_1_1_h.html#a07735142dd2e87d730041c42ea43c85e", null ],
     [ "app", "classhype_1_1core_1_1util_1_1_h.html#a138b021226b142d7735897e2103e4351", null ],
     [ "autoClear", "classhype_1_1core_1_1util_1_1_h.html#a09fd28d05c7628ed24348e63ca180095", null ],
+    [ "autoClears", "classhype_1_1core_1_1util_1_1_h.html#ad4c7bb6b2551877bfb7111a77ea04f1f", null ],
     [ "autoClears", "classhype_1_1core_1_1util_1_1_h.html#ae101b2ed0a48214ceea5586c3add33c7", null ],
     [ "background", "classhype_1_1core_1_1util_1_1_h.html#aeafaca7f3a27478632e00267edb24e61", null ],
     [ "backgroundImg", "classhype_1_1core_1_1util_1_1_h.html#a2bc748c8332cf8b85b25cbfc73f40a33", null ],

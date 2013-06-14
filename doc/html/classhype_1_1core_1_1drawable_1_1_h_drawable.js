@@ -78,6 +78,8 @@ var classhype_1_1core_1_1drawable_1_1_h_drawable =
     [ "replaceNode", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5a6980f78e250124108d545efcd34dd7", null ],
     [ "rotate", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a70b50dc6d7d6f41db1581658cb01c0e1", null ],
     [ "rotateRad", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#aea2c7f8c537f94274afe8219a8dd79bf", null ],
+    [ "rotatesChildren", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a502ebf38c8de342a7fc3fbf59ad75d55", null ],
+    [ "rotatesChildren", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#abb9954d239c0f8aec7fdaebe7c6ba02f", null ],
     [ "rotation", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a87f1d8b6e7108e5229b6b9cb5eaf45a5", null ],
     [ "rotation", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a9cfc2146ce028c14a1063ff77d88fb6e", null ],
     [ "rotationRad", "classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2a52c76cb32def1904a540e0bc25cf69", null ],

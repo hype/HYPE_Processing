@@ -30,8 +30,6 @@ public class DummyApplet extends PApplet {
 	
 	/* TODO
 	 * (HDrawable)
-	 * - [ ] HDrawable.rotatesChildren(bool)
-	 * - [ ] test file for rotatesChildren
 	 * - [ ] remove casting reqs for add() / remove()
 	 * 
 	 * (HPath)
