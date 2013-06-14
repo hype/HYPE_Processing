@@ -154,7 +154,7 @@ public class DummyApplet extends PApplet {
 		size(600,600);
 		H.init(this);
 
-		HDrawable r = new HRect(20).rounding(2).anchorAt(H.CENTER);
+		HRect r = (HRect) new HRect(20).rounding(2).anchorAt(H.CENTER);
 
 		HDrawable d1 = H.add(new HRect(50).rounding(4)).anchorAt(H.CENTER).loc(width/5,height/2);
 		d1.add(r.createCopy()).locAt(H.TOP_LEFT);
@@ -169,9 +169,12 @@ public class DummyApplet extends PApplet {
 		grp1.add(r.createCopy()).locAt(H.BOTTOM_RIGHT);
 
 		HDrawable grp2 = H.add(new HGroup()).size(50).anchorAt(H.CENTER).loc(width*4/5,height/2);
-		grp2.add(r.createCopy()).locAt(H.TOP_LEFT);
+		HRect r2 = grp2.add(r.createCopy());
+		r2.locAt(H.TOP_LEFT);
 		grp2.add(r.createCopy()).locAt(H.BOTTOM_RIGHT);
 
+		r2.rounding(10);
+		
 		d2.rotatesChildren(true);
 		grp2.rotatesChildren(true);
 

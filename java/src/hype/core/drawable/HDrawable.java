@@ -21,6 +21,14 @@ import hype.core.util.HColors;
 import hype.core.util.HConstants;
 import hype.core.util.HMath;
 import hype.core.util.HWarnings;
+import hype.extended.drawable.HCanvas;
+import hype.extended.drawable.HEllipse;
+import hype.extended.drawable.HGroup;
+import hype.extended.drawable.HImage;
+import hype.extended.drawable.HPath;
+import hype.extended.drawable.HRect;
+import hype.extended.drawable.HShape;
+import hype.extended.drawable.HText;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PGraphics;
@@ -315,6 +323,46 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return _numChildren;
 	}
 	
+	public HCanvas add(HCanvas child) {
+		add((HDrawable) child);
+		return child;
+	}
+	
+	public HEllipse add(HEllipse child) {
+		add((HDrawable) child);
+		return child;
+	}
+	
+	public HGroup add(HGroup child) {
+		add((HDrawable) child);
+		return child;
+	}
+	
+	public HImage add(HImage child) {
+		add((HDrawable) child);
+		return child;
+	}
+	
+	public HPath add(HPath child) {
+		add((HDrawable) child);
+		return child;
+	}
+	
+	public HRect add(HRect child) {
+		add((HDrawable) child);
+		return child;
+	}
+	
+	public HShape add(HShape child) {
+		add((HDrawable) child);
+		return child;
+	}
+	
+	public HText add(HText child) {
+		add((HDrawable) child);
+		return child;
+	}
+	
 	/**
 	 * Adds the passed drawable as this drawable's child.
 	 * 
@@ -341,6 +389,46 @@ public abstract class HDrawable extends HNode<HDrawable>
 				++_numChildren;
 			} else child.putAfter(_lastChild);
 		}
+		return child;
+	}
+	
+	public HCanvas remove(HCanvas child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	
+	public HEllipse remove(HEllipse child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	
+	public HGroup remove(HGroup child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	
+	public HImage remove(HImage child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	
+	public HPath remove(HPath child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	
+	public HRect remove(HRect child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	
+	public HShape remove(HShape child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	
+	public HText remove(HText child) {
+		remove((HDrawable) child);
 		return child;
 	}
 	

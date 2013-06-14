@@ -246,6 +246,38 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public int numChildren() {
 		return _numChildren;
 	}
+	public HCanvas add(HCanvas child) {
+		add((HDrawable) child);
+		return child;
+	}
+	public HEllipse add(HEllipse child) {
+		add((HDrawable) child);
+		return child;
+	}
+	public HGroup add(HGroup child) {
+		add((HDrawable) child);
+		return child;
+	}
+	public HImage add(HImage child) {
+		add((HDrawable) child);
+		return child;
+	}
+	public HPath add(HPath child) {
+		add((HDrawable) child);
+		return child;
+	}
+	public HRect add(HRect child) {
+		add((HDrawable) child);
+		return child;
+	}
+	public HShape add(HShape child) {
+		add((HDrawable) child);
+		return child;
+	}
+	public HText add(HText child) {
+		add((HDrawable) child);
+		return child;
+	}
 	/**
 	 * Adds the passed drawable as this drawable's child.
 	 * 
@@ -272,6 +304,38 @@ public static abstract class HDrawable extends HNode<HDrawable>
 				++_numChildren;
 			} else child.putAfter(_lastChild);
 		}
+		return child;
+	}
+	public HCanvas remove(HCanvas child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	public HEllipse remove(HEllipse child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	public HGroup remove(HGroup child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	public HImage remove(HImage child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	public HPath remove(HPath child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	public HRect remove(HRect child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	public HShape remove(HShape child) {
+		remove((HDrawable) child);
+		return child;
+	}
+	public HText remove(HText child) {
+		remove((HDrawable) child);
 		return child;
 	}
 	/**
