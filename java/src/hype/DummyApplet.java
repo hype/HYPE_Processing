@@ -57,7 +57,6 @@ public class DummyApplet extends PApplet {
 	 * 
 	 * 
 	 * (Experiments and New Features)
-	 * - [ ] store HDrawable coordinates as UV
 	 * - [ ] new interface: HImageHolder
 	 * 		- interface methods: image(Object imgArg), image()
 	 * 		- H.extractImage(Object imgArg)
@@ -87,7 +86,6 @@ public class DummyApplet extends PApplet {
 	 * 
 	 * (Future Refactors)
 	 * - [ ] property setter objects
-	 * - [ ] have HColors implement HConstants
 	 * - [ ] have HDrawable perc stuff use x2y()/y2v()/u2x()/v2y()
 	 * - [ ] rename xxxPerc -> xxxUV or xxxPc
 	 * - [ ] rearrange HDrawable's fields by category instead of type

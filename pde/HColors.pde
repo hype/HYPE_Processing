@@ -8,7 +8,7 @@
  * 
  * All rights reserved.
  */
-public static class HColors {
+public static class HColors implements HConstants {
 	public static int[] explode(int clr) {
 		int[] explodedColors = new int[4];
 		for(int i=0; i<4; ++i)

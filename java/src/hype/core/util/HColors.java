@@ -11,7 +11,7 @@
 
 package hype.core.util;
 
-public class HColors {
+public class HColors implements HConstants {
 	public static int[] explode(int clr) {
 		int[] explodedColors = new int[4];
 		for(int i=0; i<4; ++i)

@@ -1,18 +1,50 @@
-HYPE_processing
-==============================
+HYPE_Processing
+===============
+A [Code and Theory][1] project maintained by Joshua Davis and James Cruz.
 
-A Code and Theory project / http://www.codeandtheory.com
+A collection of classes that performs the heavy lifting for you by writing a
+minimal amount of code. This library is compatible with both [Processing][2] and
+[Processing.js][3]
 
-maintained by Joshua Davis and James Cruz, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
-
-If you want to keep track of the changes, you could read the [changelog](CHANGELOG.md) for the latest developments in the code.
-
-
-How To Import HYPE_Processing?
--------------------------------
-Simply add a copy of `HYPE.pde` to your sketch folder. That file contains the all the classes found in the `pde/` folder. This means you don't have to mess up your own sketch folder by copying 4 or so dozen files into it.
+This library is currently under heavy development. You can keep track of the
+latest changes here in the [changelog][4].
 
 
-Why is HYPE not a Library .jar?
--------------------------------
-Since the addition of ProcessingJS into Processing 2.0 Beta, and the ability to publish to HTML using canvas... but the IN-ability to use external .jar libraries, HYPE was initially created using the .PDE format so that publishing to JavaScript was still a posibility.
+Links
+-----
+- Website: http://www.hypeframework.org/
+- Source Code: https://github.com/hype/HYPE_Processing
+- Code and Theory: http://www.codeandtheory.com
+
+
+Importing HYPE to your Sketch
+-----------------------------
+Simply put a copy of `HYPE.pde` in your sketch folder, and you can now start
+using HYPE's classes in Processing. This will work for both Java and Javascript
+mode.
+
+If in case you strictly need to use one file, just copy the contents of
+`HYPE.pde` at the end of your pde file.
+
+For developers who want to study or tweak the code in Processing, you can look
+at the contents of the `pde/` folder into your sketch folder. For those who want
+to tweak with the base Java source code you can look at the `java/src/` folder.
+The Java code is converted to processing by the `j2p.pl` script.
+
+
+Why is HYPE not a JAR file?
+---------------------------
+Putting HYPE in a pde file instead of a JAR file lets you use the library in
+Processing.js mode.
+
+In case you need HYPE in a JAR file, you could try to compile one yourself with
+the base Java code in the `java/src/` folder.
+
+
+
+
+
+[1]: http://www.codeandtheory.com
+[2]: http://processing.org/
+[3]: http://processingjs.org/
+[4]: CHANGELOG.md

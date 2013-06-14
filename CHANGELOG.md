@@ -5,6 +5,7 @@
 	- `_tr`
 	- `_bl`
 	- `_br`
+- HColors now implements HConstants
 
 ### build_20130614.3 (Jun 14, 2013)
 - HTween now registers itself by default
