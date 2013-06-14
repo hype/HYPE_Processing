@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"interfacehype_1_1core_1_1interfaces_1_1_h_locatable.html#aa5d5d397f037a290069c7f09153e15b5":[1,0,0,0,4,3,3],
 "interfacehype_1_1core_1_1interfaces_1_1_h_locatable.html#aa8148a4289eb112302a621cbc3b4a3e1":[1,0,0,0,4,3,2],
 "interfacehype_1_1core_1_1interfaces_1_1_h_rotatable.html":[1,0,0,0,4,4],
 "interfacehype_1_1core_1_1interfaces_1_1_h_rotatable.html#abbe365e4c5bf9b14a69541237579b0ba":[1,0,0,0,4,4,0],

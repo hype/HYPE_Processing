@@ -2,6 +2,7 @@ var classhype_1_1core_1_1drawable_1_1_h_stage =
 [
     [ "HStage", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a6fbacb9f03087ee63656d4721db2200f", null ],
     [ "autoClear", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a1d61311d0898543a7a23866d9e696b99", null ],
+    [ "autoClears", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a85dd3e21d6978a71e70a6dc122d0ffa0", null ],
     [ "autoClears", "classhype_1_1core_1_1drawable_1_1_h_stage.html#adc2ec5107a1d702c72d2e275a77f394a", null ],
     [ "background", "classhype_1_1core_1_1drawable_1_1_h_stage.html#ab8321e76371b4d365d73e87c89e4b7b8", null ],
     [ "backgroundImg", "classhype_1_1core_1_1drawable_1_1_h_stage.html#ac7253ccb9404ff055538dba5c084c68c", null ],
@@ -19,7 +20,7 @@ var classhype_1_1core_1_1drawable_1_1_h_stage =
     [ "locAt", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a7fb9cfa38223648ff70c40961f5ef9ac", null ],
     [ "move", "classhype_1_1core_1_1drawable_1_1_h_stage.html#ae53aae5fef1912b31816edce4efcad24", null ],
     [ "onResize", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a1cb882a27bf39bde49e9c39805cff7f3", null ],
-    [ "paintAll", "classhype_1_1core_1_1drawable_1_1_h_stage.html#aa768839177687e105f78c6769bbfcb0b", null ],
+    [ "paintAll", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a5c1e8468155f581d11c6cd93108f355a", null ],
     [ "rotate", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a4b305733a2a18d6f3bc998355aa69a03", null ],
     [ "rotateRad", "classhype_1_1core_1_1drawable_1_1_h_stage.html#ac3eff74da94b587a40689503dc74bfa5", null ],
     [ "rotation", "classhype_1_1core_1_1drawable_1_1_h_stage.html#ab7f4265507844fd68bb03522f3b3defb", null ],

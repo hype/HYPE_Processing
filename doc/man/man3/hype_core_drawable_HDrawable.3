@@ -173,29 +173,29 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .br
 .RI "\fIReturns the y anchor of this drawable in pixels\&. \fP"
 .ti -1c
-.RI "\fBHDrawable\fP \fBanchorPerc\fP (float percX, float percY)"
+.RI "\fBHDrawable\fP \fBanchorUV\fP (float u, float v)"
 .br
-.RI "\fISets the anchor of this drawable as percentage of its width and height\&. \fP"
+.RI "\fISets the anchor of this drawable in UV coordinates\&. \fP"
 .ti -1c
-.RI "PVector \fBanchorPerc\fP ()"
+.RI "PVector \fBanchorUV\fP ()"
 .br
-.RI "\fIReturns the x & y anchor of this drawable, as percentage of its width and height respectively\&. \fP"
+.RI "\fIReturns the UV coordinates of this drawable's anchor\&. \fP"
 .ti -1c
-.RI "\fBHDrawable\fP \fBanchorPercX\fP (float percX)"
+.RI "\fBHDrawable\fP \fBanchorU\fP (float u)"
 .br
-.RI "\fISets the x anchor of this drawable, as percentage of its width\&. \fP"
+.RI "\fISets the \fCu\fP coordinate for this drawable's anchor\&. \fP"
 .ti -1c
-.RI "float \fBanchorPercX\fP ()"
+.RI "float \fBanchorU\fP ()"
 .br
-.RI "\fIReturns the x anchor of this drawable, as percentage of its width\&. \fP"
+.RI "\fIReturns the \fCu\fP coordinate of this drawable's anchor\&. \fP"
 .ti -1c
-.RI "\fBHDrawable\fP \fBanchorPercY\fP (float percY)"
+.RI "\fBHDrawable\fP \fBanchorV\fP (float v)"
 .br
-.RI "\fISets the y anchor of this drawable, as percentage of its height\&. \fP"
+.RI "\fISets the \fCu\fP coordinate for this drawable's anchor\&. \fP"
 .ti -1c
-.RI "float \fBanchorPercY\fP ()"
+.RI "float \fBanchorV\fP ()"
 .br
-.RI "\fIReturns the y anchnor of this drawable, as percentage of its height\&. \fP"
+.RI "\fIReturns the \fCv\fP coordinate of this draable's anchor\&. \fP"
 .ti -1c
 .RI "\fBHDrawable\fP \fBanchorAt\fP (int where)"
 .br
@@ -361,13 +361,13 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .ti -1c
 .RI "int \fBalpha\fP ()"
 .br
-.RI "\fIReturns the transparency for this drawable, ranging from 0 to 255\&. \fP"
+.RI "\fIReturns the transparency for this drawable, ranging at \fC[0,255]\fP\&. \fP"
 .ti -1c
-.RI "\fBHDrawable\fP \fBalphaPerc\fP (float aPerc)"
+.RI "\fBHDrawable\fP \fBalphaPc\fP (float aPerc)"
 .br
 .RI "\fISets the transparency for this drawable, as percentage\&. \fP"
 .ti -1c
-.RI "float \fBalphaPerc\fP ()"
+.RI "float \fBalphaPc\fP ()"
 .br
 .RI "\fIReturns the transparency for this drawable, ranging from 0 to 255\&. \fP"
 .ti -1c
@@ -391,7 +391,7 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .br
 .RI "\fIShifts the current alpha of this drawable by the given value\&. \fP"
 .ti -1c
-.RI "\fBHDrawable\fP \fBalphaShiftPerc\fP (float daPerc)"
+.RI "\fBHDrawable\fP \fBalphaShiftPc\fP (float daPerc)"
 .br
 .RI "\fIShifts the current alpha of this drawable, by percentage\&. \fP"
 .ti -1c
@@ -459,11 +459,11 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .RI "boolean \fBcontainsRel\fP (float relX, float relY)"
 .br
 .ti -1c
-.RI "void \fBpaintAll\fP (PGraphics g, boolean usesZ, float alphaPc)"
+.RI "void \fBpaintAll\fP (PGraphics g, boolean usesZ, float currAlphaPc)"
 .br
 .RI "\fIPrepares the environment for drawing this drawable and its children\&. \fP"
 .ti -1c
-.RI "abstract void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float alphaPc)"
+.RI "abstract void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float currAlphaPc)"
 .br
 .RI "\fIDraws this drawable\&. \fP"
 .in -1c
@@ -506,7 +506,7 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .RI "void \fBonStyleChange\fP ()"
 .br
 .ti -1c
-.RI "void \fBapplyStyle\fP (PGraphics g, float alphaPc)"
+.RI "void \fBapplyStyle\fP (PGraphics g, float currAlphaPc)"
 .br
 .RI "\fIApplies this drawable's styling to the given graphics context\&. \fP"
 .in -1c
@@ -542,11 +542,11 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .br
 .RI "\fIThe z location of this drawable\&. \fP"
 .ti -1c
-.RI "float \fB_anchorPercX\fP"
+.RI "float \fB_anchorU\fP"
 .br
 .RI "\fIThe x anchor percentage of this drawable\&. \fP"
 .ti -1c
-.RI "float \fB_anchorPercY\fP"
+.RI "float \fB_anchorV\fP"
 .br
 .RI "\fIThe y anchor percentage of this drawable\&. \fP"
 .ti -1c
@@ -566,7 +566,7 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .br
 .RI "\fIThe stroke width of this drawable, in pixels\&. \fP"
 .ti -1c
-.RI "float \fB_alphaPerc\fP"
+.RI "float \fB_alphaPc\fP"
 .br
 .RI "\fIThe alpha of this drawable, in percentage\&. \fP"
 .ti -1c
@@ -663,7 +663,7 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBalphaPerc(float)\fP 
+\fBalphaPc(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -680,11 +680,11 @@ This drawable\&.
 .SS "int hype\&.core\&.drawable\&.HDrawable\&.alpha ()"
 
 .PP
-Returns the transparency for this drawable, ranging from 0 to 255\&. You can be assured that the return value will only be in the aforementioned range\&.
+Returns the transparency for this drawable, ranging at \fC[0,255]\fP\&. You can be assured that the return value will only be in the aforementioned range\&.
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBalphaPerc()\fP 
+\fBalphaPc()\fP 
 .RE
 .PP
 \fBReturns:\fP
@@ -693,7 +693,7 @@ The alpha for this drawable with range \fC(0,255)\fP\&.
 .RE
 .PP
 
-.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.alphaPerc (floataPerc)"
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.alphaPc (floataPerc)"
 
 .PP
 Sets the transparency for this drawable, as percentage\&. The argument for this method can be any number from 0 to 1\&. Otherwise, if the argument is less than 0f, the alpha will be 0f; and if the argument is greater than 1f, the alpha will be 1f\&.
@@ -702,7 +702,7 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBalphaPerc(float)\fP 
+\fBalphaPc(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -716,7 +716,7 @@ This drawable\&.
 .RE
 .PP
 
-.SS "float hype\&.core\&.drawable\&.HDrawable\&.alphaPerc ()"
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.alphaPc ()"
 
 .PP
 Returns the transparency for this drawable, ranging from 0 to 255\&. You can be assured that the return value will only be in the aforementioned range\&.
@@ -753,14 +753,14 @@ This drawable\&.
 .RE
 .PP
 
-.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.alphaShiftPerc (floatdaPerc)"
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.alphaShiftPc (floatdaPerc)"
 
 .PP
 Shifts the current alpha of this drawable, by percentage\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&.\&. 
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBalphaPerc(float)\fP 
+\fBalphaPc(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -898,23 +898,19 @@ This drawable\&.
 .RE
 .PP
 
-.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchorPerc (floatpercX, floatpercY)"
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchorU (floatu)"
 
 .PP
-Sets the anchor of this drawable as percentage of its width and height\&. 0 is equivalent to 0% and 1 is equivalent to 100%
-.PP
-This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+Sets the \fCu\fP coordinate for this drawable's anchor\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBanchorPercX(float)\fP, \fBanchorPercY(float)\fP 
+\fBanchorUV(float,float)\fP, \fBanchorV(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
 .RS 4
-\fIpercX\fP The desired x anchor for this drawable, as percentage\&. 
-.br
-\fIpercY\fP The desired y anchor for this drawable, as percentage\&. 
+\fIu\fP The desired \fCu\fP coordinate for this drawable's anchor\&. 
 .RE
 .PP
 \fBReturns:\fP
@@ -923,12 +919,49 @@ This drawable\&.
 .RE
 .PP
 
-.SS "PVector hype\&.core\&.drawable\&.HDrawable\&.anchorPerc ()"
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.anchorU ()"
 
 .PP
-Returns the x & y anchor of this drawable, as percentage of its width and height respectively\&. \fBSee Also:\fP
+Returns the \fCu\fP coordinate of this drawable's anchor\&. \fBSee Also:\fP
 .RS 4
-\fBanchorPercX()\fP, \fBanchorPercY()\fP 
+\fBanchorUV()\fP, \fBanchorV()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The \fCu\fP coordinate of this drawable's anchor\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchorUV (floatu, floatv)"
+
+.PP
+Sets the anchor of this drawable in UV coordinates\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBanchorU(float)\fP, \fBanchorV(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIu\fP The desired \fCu\fP coordinate for this drawable's anchor\&. 
+.br
+\fIv\fP The desired \fCv\fP coordinate for this drawable's anchor\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "PVector hype\&.core\&.drawable\&.HDrawable\&.anchorUV ()"
+
+.PP
+Returns the UV coordinates of this drawable's anchor\&. \fBSee Also:\fP
+.RS 4
+\fBanchorU()\fP, \fBanchorV()\fP 
 .RE
 .PP
 \fBReturns:\fP
@@ -937,19 +970,19 @@ A new PVector containing this drawable's anchor as percentage
 .RE
 .PP
 
-.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchorPercX (floatpercX)"
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchorV (floatv)"
 
 .PP
-Sets the x anchor of this drawable, as percentage of its width\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+Sets the \fCu\fP coordinate for this drawable's anchor\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBanchorPerc(float,float)\fP, \fBanchorPercY(float)\fP 
+\fBanchorUV()\fP, \fBanchorU()\fP 
 .RE
 .PP
 \fBParameters:\fP
 .RS 4
-\fIpercX\fP The desired x anchor for this drawable, as percentage\&. 
+\fIv\fP The desired \fCv\fP coordinate for this drawable's anchor\&. 
 .RE
 .PP
 \fBReturns:\fP
@@ -958,47 +991,12 @@ This drawable\&.
 .RE
 .PP
 
-.SS "float hype\&.core\&.drawable\&.HDrawable\&.anchorPercX ()"
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.anchorV ()"
 
 .PP
-Returns the x anchor of this drawable, as percentage of its width\&. \fBSee Also:\fP
+Returns the \fCv\fP coordinate of this draable's anchor\&. \fBSee Also:\fP
 .RS 4
-\fBanchorPerc()\fP, \fBanchorPercY()\fP 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-The x anchor of this drawable, as percentage\&. 
-.RE
-.PP
-
-.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchorPercY (floatpercY)"
-
-.PP
-Sets the y anchor of this drawable, as percentage of its height\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
-.PP
-\fBSee Also:\fP
-.RS 4
-\fBanchorPerc()\fP, \fBanchorPercX()\fP 
-.RE
-.PP
-\fBParameters:\fP
-.RS 4
-\fIpercY\fP The desired y anchor for this drawable, as percentage\&. 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-This drawable\&. 
-.RE
-.PP
-
-.SS "float hype\&.core\&.drawable\&.HDrawable\&.anchorPercY ()"
-
-.PP
-Returns the y anchnor of this drawable, as percentage of its height\&. \fBSee Also:\fP
-.RS 4
-\fBanchorPerc()\fP, \fBanchorPercX()\fP 
+\fBanchorUV()\fP, \fBanchorU()\fP 
 .RE
 .PP
 \fBReturns:\fP
@@ -1085,7 +1083,7 @@ The y anchor of this drawable, in pixels\&.
 .RE
 .PP
 
-.SS "void hype\&.core\&.drawable\&.HDrawable\&.applyStyle (PGraphicsg, floatalphaPc)\fC [protected]\fP"
+.SS "void hype\&.core\&.drawable\&.HDrawable\&.applyStyle (PGraphicsg, floatcurrAlphaPc)\fC [protected]\fP"
 
 .PP
 Applies this drawable's styling to the given graphics context\&. This method is primarily used by some subclasses' \fC\fBdraw()\fP\fP method\&.
@@ -1094,7 +1092,7 @@ Applies this drawable's styling to the given graphics context\&. This method is 
 .RS 4
 \fIg\fP The graphics context for this drawable\&. 
 .br
-\fIalphaPc\fP The current alpha value in the draw cycle\&. 
+\fIcurrAlphaPc\fP The current alpha value in the draw cycle\&. 
 .RE
 .PP
 
@@ -1195,7 +1193,7 @@ A copy of this drawable\&.
 
 .PP
 Implemented in \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawable\&.HText\fP, \fBhype\&.extended\&.drawable\&.HCanvas\fP, \fBhype\&.extended\&.drawable\&.HPath\fP, \fBhype\&.extended\&.drawable\&.HEllipse\fP, \fBhype\&.extended\&.drawable\&.HRect\fP, \fBhype\&.extended\&.drawable\&.HShape\fP, \fBhype\&.extended\&.drawable\&.HImage\fP, and \fBhype\&.extended\&.drawable\&.HGroup\fP\&.
-.SS "abstract void hype\&.core\&.drawable\&.HDrawable\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatalphaPc)\fC [pure virtual]\fP"
+.SS "abstract void hype\&.core\&.drawable\&.HDrawable\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatcurrAlphaPc)\fC [pure virtual]\fP"
 
 .PP
 Draws this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&. Also, this method is primarily called internally during the draw cycle and probably wouldn't need to be called directly\&.
@@ -1210,7 +1208,7 @@ Draws this drawable\&. This method is abstract and is meant to be implemented by
 .br
 \fIdrawY\fP The y coordinate where this drawable would consider as 0 
 .br
-\fIalphaPc\fP The current alpha value in the draw cycle\&. 
+\fIcurrAlphaPc\fP The current alpha value in the draw cycle\&. 
 .RE
 .PP
 
@@ -1787,7 +1785,7 @@ If you subclass \fBHDrawable\fP and want to execute code whenever your custom cl
 .RE
 .PP
 
-.SS "void hype\&.core\&.drawable\&.HDrawable\&.paintAll (PGraphicsg, booleanusesZ, floatalphaPc)"
+.SS "void hype\&.core\&.drawable\&.HDrawable\&.paintAll (PGraphicsg, booleanusesZ, floatcurrAlphaPc)"
 
 .PP
 Prepares the environment for drawing this drawable and its children\&. This method is primarily called internally during the draw cycle and probably wouldn't need to be called directly\&.
@@ -1798,7 +1796,7 @@ Prepares the environment for drawing this drawable and its children\&. This meth
 .br
 \fIusesZ\fP Indicates if z-coordinates are used\&. 
 .br
-\fIalphaPc\fP The current alpha value in the draw cycle\&. 
+\fIcurrAlphaPc\fP The current alpha value in the draw cycle\&. 
 .RE
 .PP
 
@@ -2444,30 +2442,30 @@ TODO\&. \fBReturns:\fP
 Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
 .SH "Member Data Documentation"
 .PP 
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._alphaPerc\fC [protected]\fP"
+.SS "float hype\&.core\&.drawable\&.HDrawable\&._alphaPc\fC [protected]\fP"
 
 .PP
 The alpha of this drawable, in percentage\&. \fBSee Also:\fP
 .RS 4
-\fBalphaPerc()\fP 
+\fBalphaPc()\fP 
 .RE
 .PP
 
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._anchorPercX\fC [protected]\fP"
+.SS "float hype\&.core\&.drawable\&.HDrawable\&._anchorU\fC [protected]\fP"
 
 .PP
 The x anchor percentage of this drawable\&. \fBSee Also:\fP
 .RS 4
-\fBanchorPercX()\fP 
+\fBanchorU()\fP 
 .RE
 .PP
 
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._anchorPercY\fC [protected]\fP"
+.SS "float hype\&.core\&.drawable\&.HDrawable\&._anchorV\fC [protected]\fP"
 
 .PP
 The y anchor percentage of this drawable\&. \fBSee Also:\fP
 .RS 4
-\fBanchorPercY()\fP 
+\fBanchorV()\fP 
 .RE
 .PP
 

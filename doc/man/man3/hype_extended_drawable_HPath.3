@@ -103,7 +103,7 @@ Inherits \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
 .RI "boolean \fBcontainsRel\fP (float relX, float relY)"
 .br
 .ti -1c
-.RI "void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float alphaPc)"
+.RI "void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float \fBalphaPc\fP)"
 .br
 .RI "\fIDraws this drawable\&. \fP"
 .in -1c
@@ -139,7 +139,7 @@ A copy of this drawable\&.
 
 .PP
 Implements \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
-.SS "void hype\&.extended\&.drawable\&.HPath\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatalphaPc)\fC [virtual]\fP"
+.SS "void hype\&.extended\&.drawable\&.HPath\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatcurrAlphaPc)\fC [virtual]\fP"
 
 .PP
 Draws this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&. Also, this method is primarily called internally during the draw cycle and probably wouldn't need to be called directly\&.
@@ -154,7 +154,7 @@ Draws this drawable\&. This method is abstract and is meant to be implemented by
 .br
 \fIdrawY\fP The y coordinate where this drawable would consider as 0 
 .br
-\fIalphaPc\fP The current alpha value in the draw cycle\&. 
+\fIcurrAlphaPc\fP The current alpha value in the draw cycle\&. 
 .RE
 .PP
 

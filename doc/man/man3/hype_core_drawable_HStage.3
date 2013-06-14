@@ -27,6 +27,9 @@ Inherits \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
 .RI "\fBHStage\fP \fBautoClear\fP (boolean b)"
 .br
 .ti -1c
+.RI "\fBHStage\fP \fBautoClears\fP (boolean b)"
+.br
+.ti -1c
 .RI "boolean \fBautoClears\fP ()"
 .br
 .ti -1c
@@ -54,7 +57,7 @@ Inherits \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
 .RI "float \fBheight\fP ()"
 .br
 .ti -1c
-.RI "void \fBpaintAll\fP (PGraphics g, boolean usesZ, float alphaPc)"
+.RI "void \fBpaintAll\fP (PGraphics g, boolean usesZ, float currAlphaPc)"
 .br
 .ti -1c
 .RI "void \fBdraw\fP (PGraphics g, boolean b, float \fBx\fP, float \fBy\fP, float p)"
@@ -111,6 +114,13 @@ Inherits \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
 .SS "Additional Inherited Members"
 .SH "Member Function Documentation"
 .PP 
+.SS "\fBHStage\fP hype\&.core\&.drawable\&.HStage\&.autoClear (booleanb)"
+\fBDeprecated\fP
+.RS 4
+The method autoClears(boolean) should be used instead 
+.RE
+.PP
+
 .SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HStage\&.createCopy ()\fC [virtual]\fP"
 
 .PP
@@ -124,7 +134,7 @@ A copy of this drawable\&.
 
 .PP
 Implements \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
-.SS "void hype\&.core\&.drawable\&.HStage\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatalphaPc)\fC [virtual]\fP"
+.SS "void hype\&.core\&.drawable\&.HStage\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatcurrAlphaPc)\fC [virtual]\fP"
 
 .PP
 Draws this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&. Also, this method is primarily called internally during the draw cycle and probably wouldn't need to be called directly\&.
@@ -139,7 +149,7 @@ Draws this drawable\&. This method is abstract and is meant to be implemented by
 .br
 \fIdrawY\fP The y coordinate where this drawable would consider as 0 
 .br
-\fIalphaPc\fP The current alpha value in the draw cycle\&. 
+\fIcurrAlphaPc\fP The current alpha value in the draw cycle\&. 
 .RE
 .PP
 
