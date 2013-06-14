@@ -29,21 +29,18 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
+	 * - HMagneticField stuff
+	 * 
 	 * (HBehavior)
-	 * - [ ] HTween: start/end 1/2/3 getters
-	 * - [ ] HTween: delegate start() & end() methods to start(a,b,c) &
-	 *       start(a,b,c)
 	 * - [ ] new HBehavior(isRegistered) + isRegistered constructors for other
 	 *       behaviors
 	 * - [ ] HTween & HOscillator: store the scale factor when using H.SCALE
 	 *       instead of the multiplied sizes; just compute the "multiplier" in
 	 *       runBehavior() to multiply the curent values (in this case, width
 	 *       and height)
-	 * - [ ] remove `registered()`
-	 * - [ ] abstract `HBehavior.createCopy()`
 	 * 
 	 * (HPath)
-	 * - [ ] apply tolerance to HVertexNEW.intersectTest()
+	 * - [ ] apply tolerance to HVertex.intersectTest()
 	 * - [ ] testfile for HPath
 	 * 
 	 * (HShape)
@@ -80,9 +77,6 @@ public class DummyApplet extends PApplet {
 	 * 		- capture(1,10) -- frame sequence
 	 * 		- pdf frames (remember that individual pdf frames ignores autoClear(false))
 	 * - [ ] HDrawable / HLinkedList: turn them into circular linked lists
-	 * 
-	 * (Misc)
-	 * - Nicer README.md
 	 * 
 	 * (Future Refactors)
 	 * - [ ] property setter objects

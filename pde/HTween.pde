@@ -43,15 +43,10 @@ public static class HTween extends HBehavior {
 		}
 	}
 	public HTween start(float a) {
-		_s1 = _s2 = a;
-		setScaleStart();
-		return this;
+		return start(a,a);
 	}
 	public HTween start(float a, float b) {
-		_s1 = a;
-		_s2 = b;
-		setScaleStart();
-		return this;
+		return start(a,b,0);
 	}
 	public HTween start(float a, float b, float c) {
 		_s1 = a;
@@ -59,6 +54,18 @@ public static class HTween extends HBehavior {
 		_s3 = c;
 		setScaleStart();
 		return this;
+	}
+	public float start() {
+		return _s1;
+	}
+	public float start1() {
+		return _s1;
+	}
+	public float start2() {
+		return _s2;
+	}
+	public float start3() {
+		return _s3;
 	}
 	private void setScaleEnd() {
 		if(_property!=HConstants.SCALE) return;
@@ -70,15 +77,10 @@ public static class HTween extends HBehavior {
 		}
 	}
 	public HTween end(float a) {
-		_e1 = _e2 = a;
-		setScaleEnd();
-		return this;
+		return end(a,a);
 	}
 	public HTween end(float a, float b) {
-		_e1 = a;
-		_e2 = b;
-		setScaleEnd();
-		return this;
+		return end(a,b,0);
 	}
 	public HTween end(float a, float b, float c) {
 		_e1 = a;
@@ -86,6 +88,18 @@ public static class HTween extends HBehavior {
 		_e3 = c;
 		setScaleEnd();
 		return this;
+	}
+	public float end() {
+		return _e1;
+	}
+	public float end1() {
+		return _e1;
+	}
+	public float end2() {
+		return _e2;
+	}
+	public float end3() {
+		return _e3;
 	}
 	public HTween spring(float f) {
 		_spring = f;

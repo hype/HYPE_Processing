@@ -1,11 +1,19 @@
 ### build_20130614.4 (Jun 14, 2013)
-- new HRect method: `rounding()` _(returns the top left rounding)_
+- new HRect getter method: `rounding()`
 - privatized the following HRect fields:
 	- `_tl`
 	- `_tr`
 	- `_bl`
 	- `_br`
 - HColors now implements HConstants
+- new HTween getter methods:
+	- `start()`
+	- `start1()`
+	- `start2()`
+	- `start3()`
+	- `end1()`
+	- `end2()`
+	- `end3()`
 
 ### build_20130614.3 (Jun 14, 2013)
 - HTween now registers itself by default
