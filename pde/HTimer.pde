@@ -66,7 +66,7 @@ public static class HTimer extends HTrigger {
 		if(_lastInterval < 0) _lastInterval = curr;
 		if(curr-_lastInterval >= _interval) {
 			_lastInterval = curr;
-			if(_callback != null) _callback.run(_cycleCounter);
+			_callback.run(_cycleCounter);
 			if(_numCycles > 0 && ++_cycleCounter >= _numCycles) unregister();
 		}
 	}

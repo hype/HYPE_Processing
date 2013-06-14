@@ -30,10 +30,6 @@ public class DummyApplet extends PApplet {
 	
 	/* TODO
 	 * (HCallback NOP)
-	 * - HDrawablePool
-	 * 		- Replace HCallback null checks with NOP
-	 * 		- if onCreate/Request/Release(null), then assign NOP
-	 * 		- privatize _onCreate/Request/Release
 	 * - HTriggers & HTween
 	 * 		- Replace HCallback null checks with NOP
 	 * 		- if callback(null), then assign NOP

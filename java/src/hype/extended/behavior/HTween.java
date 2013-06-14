@@ -28,6 +28,7 @@ public class HTween extends HBehavior {
 	
 	public HTween() {
 		_ease = 1;
+		_callback = HConstants.NOP;
 		register();
 	}
 	
@@ -41,7 +42,7 @@ public class HTween extends HBehavior {
 	}
 	
 	public HTween callback(HCallback c) {
-		_callback = c;
+		_callback = (c==null)? HConstants.NOP : c;
 		return this;
 	}
 	
@@ -167,7 +168,7 @@ public class HTween extends HBehavior {
 		}
 		if(c==1 && HMath.round512(_dcurr)==0) {
 			unregister();
-			if(_callback != null) _callback.run(this);
+			_callback.run(this);
 		}
 	}
 	

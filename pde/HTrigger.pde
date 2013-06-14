@@ -12,9 +12,10 @@ public static abstract class HTrigger extends HBehavior {
 	public HCallback _callback;
 	public HTrigger() {
 		register();
+		_callback = HConstants.NOP;
 	}
 	public HTrigger callback(HCallback cb) {
-		_callback = cb;
+		_callback = (cb==null)? HConstants.NOP : cb;
 		return this;
 	}
 	public HCallback callback() {

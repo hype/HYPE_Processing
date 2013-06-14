@@ -1,6 +1,10 @@
 ### build_20130614.3 (Jun 14, 2013)
 - HTween now registers itself by default
 - new HCallback constant: `HConstants.NOP`
+- implemented using HConstants.NOP on the ff classes:
+	- `HDrawablePool`
+	- `HTrigger` and its subclasses
+	- `HTween`
 - privatized the following HDrawablePool fields:
 	- `_onCreate`
 	- `_onRequest`
