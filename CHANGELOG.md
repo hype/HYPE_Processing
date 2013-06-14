@@ -1,3 +1,7 @@
+### build_20130614.2 (Jun 14, 2013)
+- new HDrawable methods for rotating children:
+	- `rotatesChildren(boolean)` & `rotatesChildren()`
+
 ### build_20130614.1 (Jun 14, 2013)
 - renamed the following protected HDrawable fields:
 	- `_anchorPercX` -> `_anchorU`
@@ -17,7 +21,7 @@
 - new HStage method: `autoClears(boolean)` _(as replacement of autoClear(boolean).)_
 
 ### build_20130614.0 (Jun 14, 2013)
-- new HDrawable methods for styling its children
+- new HDrawable methods for styling children:
 	- `stylesChildren(boolean)` & `stylesChildren()`
 	- `onStyleChange()` (protected)
 - HGroup now styles its children by default

@@ -13,8 +13,9 @@ package hype;
 
 import hype.core.drawable.HDrawable;
 import hype.core.util.H;
-import hype.extended.drawable.HEllipse;
-import hype.extended.drawable.HPath;
+import hype.extended.behavior.HRotate;
+import hype.extended.drawable.HGroup;
+import hype.extended.drawable.HRect;
 import processing.core.PApplet;
 
 /**
@@ -30,9 +31,8 @@ public class DummyApplet extends PApplet {
 	/* TODO
 	 * (HDrawable)
 	 * - [ ] HDrawable.rotatesChildren(bool)
-	 * - [ ] apply the UV coordinate stuff
-	 * - [ ] remove casting reqs for add() / remove()
 	 * - [ ] test file for rotatesChildren
+	 * - [ ] remove casting reqs for add() / remove()
 	 * 
 	 * (HPath)
 	 * - [ ] apply tolerance to HVertexNEW.intersectTest()
@@ -102,6 +102,7 @@ public class DummyApplet extends PApplet {
 	 * 		- capture(1) -- single frame
 	 * 		- capture(1,10) -- frame sequence
 	 * 		- pdf frames (remember that individual pdf frames ignores autoClear(false))
+	 * - [ ] HDrawable / HLinkedList: turn them into circular linked lists
 	 * 
 	 * (Misc)
 	 * - Nicer README.md
@@ -151,25 +152,39 @@ public class DummyApplet extends PApplet {
 	 */
 	
 	//*
-	HPath path;
-	
-	@Override
 	public void setup() {
 		size(600,600);
 		H.init(this);
-		
-		HDrawable d = H.add(new HEllipse()).locAt(H.CENTER).anchorAt(H.CENTER);
-		
-		d.add(new HPath().vertexUV(0,0).vertexUV(0,1).vertexUV(1,0).vertexUV(1,1)).anchorAt(H.BOTTOM_RIGHT).locAt(H.TOP_LEFT);
-		d.add(new HPath().vertexUV(0,0).vertexUV(0,1).vertexUV(1,0).vertexUV(1,1)).anchorAt(H.BOTTOM_LEFT).locAt(H.TOP_RIGHT);
-		d.add(new HPath().vertexUV(0,0).vertexUV(0,1).vertexUV(1,0).vertexUV(1,1)).anchorAt(H.TOP_LEFT).locAt(H.BOTTOM_RIGHT);
-		d.add(new HPath().vertexUV(0,0).vertexUV(0,1).vertexUV(1,0).vertexUV(1,1)).anchorAt(H.TOP_RIGHT).locAt(H.BOTTOM_LEFT);
-		
-		d.stylesChildren(true);
-		d.noFill().stroke(H.RED,32).strokeWeight(4).strokeJoin(ROUND).strokeCap(MITER);
-		
+
+		HDrawable r = new HRect(20).rounding(2).anchorAt(H.CENTER);
+
+		HDrawable d1 = H.add(new HRect(50).rounding(4)).anchorAt(H.CENTER).loc(width/5,height/2);
+		d1.add(r.createCopy()).locAt(H.TOP_LEFT);
+		d1.add(r.createCopy()).locAt(H.BOTTOM_RIGHT);
+
+		HDrawable d2 = H.add(new HRect(50).rounding(4)).anchorAt(H.CENTER).loc(width*2/5,height/2);
+		d2.add(r.createCopy()).locAt(H.TOP_LEFT);
+		d2.add(r.createCopy()).locAt(H.BOTTOM_RIGHT);
+
+		HDrawable grp1 = H.add(new HGroup()).size(50).anchorAt(H.CENTER).loc(width*3/5,height/2);
+		grp1.add(r.createCopy()).locAt(H.TOP_LEFT);
+		grp1.add(r.createCopy()).locAt(H.BOTTOM_RIGHT);
+
+		HDrawable grp2 = H.add(new HGroup()).size(50).anchorAt(H.CENTER).loc(width*4/5,height/2);
+		grp2.add(r.createCopy()).locAt(H.TOP_LEFT);
+		grp2.add(r.createCopy()).locAt(H.BOTTOM_RIGHT);
+
+		d2.rotatesChildren(true);
+		grp2.rotatesChildren(true);
+
+		new HRotate(d1, 1);
+		new HRotate(d2, 1);
+		new HRotate(grp1, 1);
+		new HRotate(grp2, 1);
+	}
+
+	public void draw() {
 		H.drawStage();
-		noLoop();
 	}
 	//*/
 }

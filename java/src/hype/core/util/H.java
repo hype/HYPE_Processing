@@ -106,8 +106,14 @@ public class H implements HConstants {
 		return _self;
 	}
 	
+	/** @deprecated */
 	public static H autoClear(boolean b) {
 		_stage.autoClear(b);
+		return _self;
+	}
+	
+	public static H autoClears(boolean b) {
+		_stage.autoClears(b);
 		return _self;
 	}
 	

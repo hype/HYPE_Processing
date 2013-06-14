@@ -1175,8 +1175,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable.
 	 */
 	public HDrawable rotation(float deg) {
-		_rotationRad = deg * HConstants.D2R;
-		return this;
+		return rotationRad(deg * HConstants.D2R);
 	}
 	/**
 	 * Returns the rotation for this drawable, in degrees.
@@ -1184,14 +1183,24 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable's rotation in degrees.
 	 */
 	public float rotation() {
-		return _rotationRad * HConstants.R2D;
+		return rotatesChildren()? _firstChild.rotation() :
+			_rotationRad*HConstants.R2D;
 	}
 	public HDrawable rotationRad(float rad) {
-		_rotationRad = rad;
+		if(rotatesChildren()) {
+			HDrawable d = _firstChild;
+			while(d != null) {
+				d.rotationRad(rad);
+				d = d.next();
+			}
+		} else {
+			_rotationRad = rad;
+		}
 		return this;
 	}
 	public float rotationRad() {
-		return _rotationRad;
+		return (rotatesChildren() && _firstChild!=null)?
+			_firstChild.rotationRad() : _rotationRad;
 	}
 	/**
 	 * Shifts this drawable's current rotation by the passed value, in degrees.
@@ -1201,8 +1210,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable.
 	 */
 	public HDrawable rotate(float deg) {
-		_rotationRad += deg * HConstants.D2R;
-		return this;
+		return rotateRad(deg * HConstants.D2R);
 	}
 	/**
 	 * Shifts this drawable's current rotation by the passed value, in radians.
@@ -1212,8 +1220,14 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable.
 	 */
 	public HDrawable rotateRad(float rad) {
-		_rotationRad += rad;
+		return rotationRad(rotationRad() + rad);
+	}
+	public HDrawable rotatesChildren(boolean b) {
+		_flags = HMath.setBits(_flags, BITMASK_ROTATES_CHILDREN, b);
 		return this;
+	}
+	public boolean rotatesChildren() {
+		return HMath.hasBits(_flags, BITMASK_ROTATES_CHILDREN);
 	}
 	/**
 	 * Sets the transparency for this drawable.
