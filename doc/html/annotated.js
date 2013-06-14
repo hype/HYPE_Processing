@@ -69,10 +69,6 @@ var annotated =
           [ "HShape", "classhype_1_1extended_1_1drawable_1_1_h_shape.html", "classhype_1_1extended_1_1drawable_1_1_h_shape" ],
           [ "HText", "classhype_1_1extended_1_1drawable_1_1_h_text.html", "classhype_1_1extended_1_1drawable_1_1_h_text" ]
         ] ],
-        [ "interfaces", null, [
-          [ "HPoolAdapter", "classhype_1_1extended_1_1interfaces_1_1_h_pool_adapter.html", "classhype_1_1extended_1_1interfaces_1_1_h_pool_adapter" ],
-          [ "HPoolListener", "interfacehype_1_1extended_1_1interfaces_1_1_h_pool_listener.html", "interfacehype_1_1extended_1_1interfaces_1_1_h_pool_listener" ]
-        ] ],
         [ "layout", null, [
           [ "HGridLayout", "classhype_1_1extended_1_1layout_1_1_h_grid_layout.html", "classhype_1_1extended_1_1layout_1_1_h_grid_layout" ],
           [ "HShapeLayout", "classhype_1_1extended_1_1layout_1_1_h_shape_layout.html", "classhype_1_1extended_1_1layout_1_1_h_shape_layout" ]

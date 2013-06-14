@@ -5,7 +5,6 @@ var classhype_1_1core_1_1behavior_1_1_h_behavior =
     [ "putAfter", "classhype_1_1core_1_1behavior_1_1_h_behavior.html#ac453e7ffa776f04edef32a41a8ae2007", null ],
     [ "putBefore", "classhype_1_1core_1_1behavior_1_1_h_behavior.html#a7c61b5628f51d36eb27a8a34edde41cf", null ],
     [ "register", "classhype_1_1core_1_1behavior_1_1_h_behavior.html#a2ddad84a2e27ba67c2602daf240eb833", null ],
-    [ "registered", "classhype_1_1core_1_1behavior_1_1_h_behavior.html#aa1eb27e42527a92956480e32bc20a942", null ],
     [ "replaceNode", "classhype_1_1core_1_1behavior_1_1_h_behavior.html#a6c33a17493fa1b4aa3592fdbb36cb9f1", null ],
     [ "runBehavior", "classhype_1_1core_1_1behavior_1_1_h_behavior.html#ae2c4b6bdbe6422f0684247162d55782e", null ],
     [ "swapLeft", "classhype_1_1core_1_1behavior_1_1_h_behavior.html#a56a21c23ae384694ccea39a408992db5", null ],

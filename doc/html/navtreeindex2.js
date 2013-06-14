@@ -1,7 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#aa7ca3fe006360554a8f890d670910d86":[1,0,0,1,0,2,16],
-"classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#aa7e0d803f6d488746f3d148ac190a08a":[1,0,0,1,0,2,36],
 "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#aafbe426771494957890a178bdd94525e":[1,0,0,1,0,2,4],
 "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#ab02c6bcd7d5533cedc28ffc1e2495e13":[1,0,0,1,0,2,1],
 "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#ab0443584f28327a91689835038176300":[1,0,0,1,0,2,32],
@@ -249,5 +247,7 @@ var NAVTREEINDEX2 =
 "classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a3cd6745167cc6678e4625a7a7f226023":[1,0,0,1,2,1,5],
 "classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a4545e8e8c802d460ca52039a68881538":[1,0,0,1,2,1,21],
 "classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a62b8e57cf4c09926b715a349a4f0e216":[1,0,0,1,2,1,12],
-"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a7c811b90db7ab3c528a29fa457268587":[1,0,0,1,2,1,11]
+"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a7c811b90db7ab3c528a29fa457268587":[1,0,0,1,2,1,11],
+"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a828eeb09a09596e9c5682f078a8fae04":[1,0,0,1,2,1,4],
+"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a8a5b8ff30e6c85dcbfb563e93074bdfd":[1,0,0,1,2,1,6]
 };

@@ -1,7 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"classhype_1_1core_1_1drawable_1_1_h_drawable.html#aeef1c190f383562910107be8e5f80461":[1,0,0,0,3,0,111],
-"classhype_1_1core_1_1drawable_1_1_h_drawable.html#aef563dc604bba62673085b2e50764c5c":[1,0,0,0,3,0,60],
 "classhype_1_1core_1_1drawable_1_1_h_drawable.html#aefc0cf9066fe2bf147a4178b7c6bf192":[1,0,0,0,3,0,132],
 "classhype_1_1core_1_1drawable_1_1_h_drawable.html#aefc226e22c24a1a73e55d8a793e802f9":[1,0,0,0,3,0,146],
 "classhype_1_1core_1_1drawable_1_1_h_drawable.html#af042f76a7f5b5fb39aa208478b95a9da":[1,0,0,0,3,0,72],
@@ -249,5 +247,7 @@ var NAVTREEINDEX1 =
 "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#a82a6adf7aaaa8f153c0150ade0d05674":[1,0,0,1,0,2,23],
 "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#a94273b7bb9e446857b74eb41e8afc1f9":[1,0,0,1,0,2,3],
 "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#a9923361376e0e201ff5427a9e79f1585":[1,0,0,1,0,2,15],
-"classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#aa573a11fce4b015d9f0cb57dcb5b66f5":[1,0,0,1,0,2,8]
+"classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#aa573a11fce4b015d9f0cb57dcb5b66f5":[1,0,0,1,0,2,8],
+"classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#aa7ca3fe006360554a8f890d670910d86":[1,0,0,1,0,2,16],
+"classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#aa7e0d803f6d488746f3d148ac190a08a":[1,0,0,1,0,2,36]
 };

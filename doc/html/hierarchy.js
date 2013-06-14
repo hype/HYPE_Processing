@@ -49,9 +49,6 @@ var hierarchy =
     ] ],
     [ "hype.extended.behavior.HMagneticField.HMagnet", "classhype_1_1extended_1_1behavior_1_1_h_magnetic_field_1_1_h_magnet.html", null ],
     [ "hype.core.collection.HNode< T extends HNode< T > >", "classhype_1_1core_1_1collection_1_1_h_node_3_01_t_01extends_01_h_node_3_01_t_01_4_01_4.html", null ],
-    [ "hype.extended.interfaces.HPoolListener", "interfacehype_1_1extended_1_1interfaces_1_1_h_pool_listener.html", [
-      [ "hype.extended.interfaces.HPoolAdapter", "classhype_1_1extended_1_1interfaces_1_1_h_pool_adapter.html", null ]
-    ] ],
     [ "hype.core.interfaces.HRotatable", "interfacehype_1_1core_1_1interfaces_1_1_h_rotatable.html", [
       [ "hype.core.interfaces.HDirectable", "interfacehype_1_1core_1_1interfaces_1_1_h_directable.html", null ]
     ] ],

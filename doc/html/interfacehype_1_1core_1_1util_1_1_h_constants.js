@@ -34,6 +34,7 @@ var interfacehype_1_1core_1_1util_1_1_h_constants =
     [ "LOCATION", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a833361ea1b76c508183b80113c464381", null ],
     [ "MAGENTA", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a4644b11acfbb29ffa8d09bacf0675d9f", null ],
     [ "NONE", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a53eec9886ac706b6e9b6dc7b22fd5770", null ],
+    [ "NOP", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a720a057f61a4ee51f1f09afd8f947a25", null ],
     [ "ONES", "interfacehype_1_1core_1_1util_1_1_h_constants.html#ad08e46794b996211ee5f65ab03acf324", null ],
     [ "PHI", "interfacehype_1_1core_1_1util_1_1_h_constants.html#ae05e0f9228654eda8d3fcb6e5b010fd9", null ],
     [ "PHI_1", "interfacehype_1_1core_1_1util_1_1_h_constants.html#a38004c29ec77f13033b3a5993a7d4818", null ],

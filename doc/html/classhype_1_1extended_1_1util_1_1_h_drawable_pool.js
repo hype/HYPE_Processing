@@ -18,8 +18,6 @@ var classhype_1_1extended_1_1util_1_1_h_drawable_pool =
     [ "iterator", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#a723e2671867092dd79f7e1d88d9b190f", null ],
     [ "layout", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#a2b374d11eb5d5f83d78d79ffbd937b02", null ],
     [ "layout", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#ac6a0c12b06c780afded58ca9944a7eb3", null ],
-    [ "listener", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#ac72a3d03c4bd72718cb262aec69ea2d9", null ],
-    [ "listener", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#a1b76e8374f7e8059f83886c2befdc786", null ],
     [ "max", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#ab03cdf40a3f7b6f026a7be795fc7e0fe", null ],
     [ "max", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#a7ff023b3380dabf07b954406279bb46f", null ],
     [ "numActive", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#a9375a8e3baaaf4770bfc772d2c229acf", null ],
@@ -32,7 +30,5 @@ var classhype_1_1extended_1_1util_1_1_h_drawable_pool =
     [ "onRequest", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#ae412066ed3391a7118ecd91307ccb7d2", null ],
     [ "release", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#af97f53c6844fbc0ca19e8adf0f60dd5f", null ],
     [ "request", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#a47c0649aff6c5a1a560f0d0fdeb69d41", null ],
-    [ "requestAll", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#aaee9c82f1f8dc0481a059d8b3d949e0c", null ],
-    [ "_listener", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#a5c6fe30f3d7a63b0e32982b57f38e4e3", null ],
-    [ "_onCreate", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#a4d0b031a7881751795b893483b0f2c6f", null ]
+    [ "requestAll", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html#aaee9c82f1f8dc0481a059d8b3d949e0c", null ]
 ];

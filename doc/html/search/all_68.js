@@ -42,8 +42,6 @@ var searchData=
   ['hoscillator',['HOscillator',['../classhype_1_1extended_1_1behavior_1_1_h_oscillator.html',1,'hype::extended::behavior']]],
   ['hpath',['HPath',['../classhype_1_1extended_1_1drawable_1_1_h_path.html',1,'hype::extended::drawable']]],
   ['hpixelcolorist',['HPixelColorist',['../classhype_1_1extended_1_1colorist_1_1_h_pixel_colorist.html',1,'hype::extended::colorist']]],
-  ['hpooladapter',['HPoolAdapter',['../classhype_1_1extended_1_1interfaces_1_1_h_pool_adapter.html',1,'hype::extended::interfaces']]],
-  ['hpoollistener',['HPoolListener',['../interfacehype_1_1extended_1_1interfaces_1_1_h_pool_listener.html',1,'hype::extended::interfaces']]],
   ['hrandomtrigger',['HRandomTrigger',['../classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html',1,'hype::extended::behavior']]],
   ['hrect',['HRect',['../classhype_1_1extended_1_1drawable_1_1_h_rect.html',1,'hype::extended::drawable']]],
   ['hrotatable',['HRotatable',['../interfacehype_1_1core_1_1interfaces_1_1_h_rotatable.html',1,'hype::core::interfaces']]],
