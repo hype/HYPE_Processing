@@ -43,7 +43,7 @@ the base Java code in the `java/src/` folder.
 
 Documentation
 -------------
-This project's documentation is generated with [Doxygen][5] is located in
+This project's documentation is generated with [Doxygen][5] and is located in
 `doc/html/index.html`. Be noted that since this library is under heavy
 development, especially in the staging branch, the documentation may not be 100%
 complete.
