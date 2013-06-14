@@ -10,7 +10,7 @@
  */
 public static class HGroup extends HDrawable {
 	public HGroup() {
-		transformsChildren(true);
+		transformsChildren(true).stylesChildren(true);
 	}
 	public HGroup createCopy() {
 		HGroup copy = new HGroup();

@@ -88,14 +88,10 @@ public static class HPath extends HDrawable {
 		int numv = numVertices();
 		float[] minmax = new float[4];
 		for(int i=0; i<numv; ++i) vertex(i).computeMinMax(minmax);
-		float scaleW = minmax[2] - minmax[0];
-		float scaleH = minmax[3] - minmax[1];
-		float offU = _anchorPercX - minmax[0];
-		float offV = _anchorPercY - minmax[1];
-		for(int i=0; i<numv; ++i) vertex(i).adjust(offU,offV, scaleW,scaleH);
-		float ancU = (scaleW==0? offU : offU/scaleW);
-		float ancV = (scaleH==0? offV : offV/scaleH);
-		scale(scaleW,scaleH).anchorPerc(ancU,ancV);
+		float offU = -minmax[0],	offV = -minmax[1];
+		float oldW = _width,		oldH = _height;
+		anchorPerc(offU,offV).scale(minmax[2]+offU, minmax[3]+offV);
+		for(int i=0; i<numv; ++i) vertex(i).adjust(offU,offV, oldW,oldH);
 		return this;
 	}
 	public HPath endPath() {
@@ -124,8 +120,7 @@ public static class HPath extends HDrawable {
 			.vertexUV(u1,v1).vertexUV(u2,v2).endPath();
 	}
 	public HPath triangle(int type, int direction) {
-		clear();
-		_mode = PConstants.POLYGON;
+		clear().mode(PConstants.POLYGON);
 		float ratio = 2;
 		switch(type) {
 		case HConstants.EQUILATERAL:
@@ -170,8 +165,7 @@ public static class HPath extends HDrawable {
 		return polygonRad(numEdges, startDeg*HConstants.D2R);
 	}
 	public HPath polygonRad(int numEdges, float startRad) {
-		clear();
-		_mode = PConstants.POLYGON;
+		clear().mode(PConstants.POLYGON);
 		float inc = PConstants.TWO_PI / numEdges;
 		for(int i=0; i<numEdges; ++i) {
 			float rad = startRad + inc*i;
@@ -188,8 +182,7 @@ public static class HPath extends HDrawable {
 		return starRad(numEdges, depth, startDeg*HConstants.D2R);
 	}
 	public HPath starRad(int numEdges, float depth, float startRad) {
-		clear();
-		_mode = PConstants.POLYGON;
+		clear().mode(PConstants.POLYGON);
 		float inc = PConstants.TWO_PI / numEdges;
 		float idepth2 = (1-depth) * 0.5f;
 		for(int i=0; i<numEdges; ++i) {
@@ -207,17 +200,15 @@ public static class HPath extends HDrawable {
 	public boolean containsRel(float relX, float relY) {
 		int numv = numVertices();
 		if(numv <= 0) return false;
-		if(_width==0) return (relX==0) && (0<relY && relY<_height);
-		if(_height==0) return (relY==0) && (0<relX && relX<_width);
-		if(!super.containsRel(relX,relY)) return false;
-		float u = relX / _width;
-		float v = relY / _height;
+		if(_width == 0) return (relX == 0) && (0<relY && relY<_height);
+		if(_height == 0) return (relY == 0) && (0<relX && relX<_width);
+		if( !super.containsRel(relX,relY) ) return false;
 		boolean openPath = false;
 		switch(_mode) {
 		case PConstants.POINTS:
 			for(int i=0; i<numv; ++i) {
 				HVertex curr = vertex(i);
-				if(curr.u()==u && curr.v()==v) return true;
+				if(curr.u()==relX/_width && curr.v()==relY/_height) return true;
 			}
 			return false;
 		case PConstants.PATH:
@@ -233,6 +224,8 @@ public static class HPath extends HDrawable {
 				return false;
 			}
 		default:
+			float u = relX / _width; 
+			float v = relY / _height; 
 			boolean isIn = false;
 			HVertex prev = vertex(numv-1);
 			HVertex pprev = vertex(numv>1? numv-2 : 0);

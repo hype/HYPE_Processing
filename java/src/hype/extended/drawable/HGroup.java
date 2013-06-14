@@ -17,7 +17,7 @@ import processing.core.PGraphics;
 public class HGroup extends HDrawable {
 	
 	public HGroup() {
-		transformsChildren(true);
+		transformsChildren(true).stylesChildren(true);
 	}
 	
 	@Override

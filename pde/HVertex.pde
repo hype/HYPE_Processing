@@ -209,46 +209,34 @@ public static class HVertex implements HLocatable {
 		else if(_u > minmax[2]) minmax[2] = _u;
 		if(_v < minmax[1]) minmax[1] = _v;
 		else if(_v > minmax[3]) minmax[3] = _v;
-		if(_numControlPts > 0) {
+		switch(_numControlPts) {
+		case 2:
+			if(_cu2 < minmax[0]) minmax[0] = _cu2;
+			else if(_cu2 > minmax[2]) minmax[2] = _cu2;
+			if(_cv2 < minmax[1]) minmax[1] = _cv2;
+			else if(_cv2 > minmax[3]) minmax[3] = _cv2;
+		case 1:
 			if(_cu1 < minmax[0]) minmax[0] = _cu1;
 			else if(_cu1 > minmax[2]) minmax[2] = _cu1;
 			if(_cv1 < minmax[1]) minmax[1] = _cv1;
 			else if(_cv1 > minmax[3]) minmax[3] = _cv1;
-			if(_numControlPts > 1) {
-				if(_cu2 < minmax[0]) minmax[0] = _cu2;
-				else if(_cu2 > minmax[2]) minmax[2] = _cu2;
-				if(_cv2 < minmax[1]) minmax[1] = _cv2;
-				else if(_cv2 > minmax[3]) minmax[3] = _cv2;
-			}
+			break;
+		default: break;
 		}
 	}
-	public void adjust(float offU, float offV, float scaleW, float scaleH) {
-		_u += offU;
-		_cu1 += offU;
-		_cu2 += offU;
-		if(scaleW != 0) {
-			_u /= scaleW;
-			_cu1 /= scaleW;
-			_cu2 /= scaleW;
-		}
-		_v += offV;
-		_cv1 += offV;
-		_cv2 += offV;
-		if(scaleH != 0) {
-			_v /= scaleH;
-			_cv1 /= scaleH;
-			_cv2 /= scaleH;
+	public void adjust(float offsetU, float offsetV, float oldW, float oldH) {
+		x( oldW*(_u += offsetU) ).y( oldH*(_v += offsetV) );
+		switch(_numControlPts) {
+		case 2: cx2( oldW*(_cu2 += offsetU) ).cy2( oldH*(_cv2 += offsetV) );
+		case 1: cx1( oldW*(_cu1 += offsetU) ).cy1( oldH*(_cv1 += offsetV) );
+			break;
+		default: break;
 		}
 	}
 	private float dv(float pv, float t) {
-		float tanv;
 		switch(_numControlPts) {
-		case 1:
-			tanv = HMath.bezierTangent(pv,_cv1,_v, t);
-			return tanv;
-		case 2:
-			tanv = HMath.bezierTangent(pv,_cv2,_cv2,_v, t);
-			return tanv;
+		case 1: return HMath.bezierTangent(pv,_cv1,_v, t);
+		case 2: return HMath.bezierTangent(pv,_cv2,_cv2,_v, t);
 		default: return _v - pv;
 		}
 	}
@@ -378,6 +366,9 @@ public static class HVertex implements HLocatable {
 			g.line(x1,y1, drCX,drCY);
 			g.line(x2,y2, drCX,drCY);
 			g.ellipse(drCX, drCY, HPath.HANDLE_SIZE,HPath.HANDLE_SIZE);
+			g.fill(HPath.HANDLE_STROKE);
+			g.ellipse(x1,y1, HPath.HANDLE_SIZE/2,HPath.HANDLE_SIZE/2);
+			g.ellipse(x2,y2, HPath.HANDLE_SIZE/2,HPath.HANDLE_SIZE/2);
 		} else {
 			float drCX1 = drawX + cx1();
 			float drCY1 = drawY + cy1();
@@ -388,6 +379,9 @@ public static class HVertex implements HLocatable {
 			g.line(drCX1,drCY1, drCX2,drCY2);
 			g.ellipse(drCX1, drCY1, HPath.HANDLE_SIZE,HPath.HANDLE_SIZE);
 			g.ellipse(drCX2,drCY2, HPath.HANDLE_SIZE,HPath.HANDLE_SIZE);
+			g.fill(HPath.HANDLE_STROKE);
+			g.ellipse(x1,y1, HPath.HANDLE_SIZE/2,HPath.HANDLE_SIZE/2);
+			g.ellipse(x2,y2, HPath.HANDLE_SIZE/2,HPath.HANDLE_SIZE/2);
 		}
 	}
 }

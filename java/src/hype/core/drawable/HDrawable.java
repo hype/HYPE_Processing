@@ -1050,6 +1050,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable fill(int clr) {
 		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16 | 0xFF000000;
 		_fill = clr;
+		onStyleChange();
 		return this;
 	}
 	
@@ -1072,6 +1073,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable fill(int clr, int alpha) {
 		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16;
 		_fill = HColors.setAlpha(clr,alpha);
+		onStyleChange();
 		return this;
 	}
 	
@@ -1089,6 +1091,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 */
 	public HDrawable fill(int r, int g, int b) {
 		_fill = HColors.merge(255,r,g,b);
+		onStyleChange();
 		return this;
 	}
 	
@@ -1107,6 +1110,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 */
 	public HDrawable fill(int r, int g, int b, int a) {
 		_fill = HColors.merge(a,r,g,b);
+		onStyleChange();
 		return this;
 	}
 	
@@ -1149,6 +1153,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable stroke(int clr) {
 		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16 | 0xFF000000;
 		_stroke = clr;
+		onStyleChange();
 		return this;
 	}
 	
@@ -1171,6 +1176,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	public HDrawable stroke(int clr, int alpha) {
 		if(0 <= clr && clr <= 255) clr |= clr<<8 | clr<<16;
 		_stroke = HColors.setAlpha(clr,alpha);
+		onStyleChange();
 		return this;
 	}
 	
@@ -1188,6 +1194,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 */
 	public HDrawable stroke(int r, int g, int b) {
 		_stroke = HColors.merge(255,r,g,b);
+		onStyleChange();
 		return this;
 	}
 	
@@ -1206,6 +1213,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 */
 	public HDrawable stroke(int r, int g, int b, int a) {
 		_stroke = HColors.merge(a,r,g,b);
+		onStyleChange();
 		return this;
 	}
 
@@ -1249,6 +1257,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 */
 	public HDrawable strokeCap(int type) {
 		_strokeCap = type;
+		onStyleChange();
 		return this;
 	}
 
@@ -1276,6 +1285,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 */
 	public HDrawable strokeJoin(int type) {
 		_strokeJoin = type;
+		onStyleChange();
 		return this;
 	}
 
@@ -1297,6 +1307,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 */
 	public HDrawable strokeWeight(float f) {
 		_strokeWeight = f;
+		onStyleChange();
 		return this;
 	}
 	
@@ -1309,7 +1320,28 @@ public abstract class HDrawable extends HNode<HDrawable>
 		return _strokeWeight;
 	}
 	
-	// TODO stylesChildren
+	public HDrawable stylesChildren(boolean b) {
+		_flags = HMath.setBits(_flags, BITMASK_STYLES_CHILDREN, b);
+		return this;
+	}
+	
+	public boolean stylesChildren() {
+		return HMath.hasBits(_flags, BITMASK_STYLES_CHILDREN);
+	}
+	
+	protected void onStyleChange() {
+		if(stylesChildren()) {
+			HDrawable d = _firstChild;
+			while(d!=null) {
+				d._stroke = _stroke;
+				d._strokeWeight = _strokeWeight;
+				d._strokeJoin = _strokeJoin;
+				d._strokeCap = _strokeCap;
+				d._fill = _fill;
+				d = d._next;
+			}
+		}
+	}
 	
 	
 	// ROTATION //

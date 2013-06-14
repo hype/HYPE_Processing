@@ -11,10 +11,10 @@
 
 package hype;
 
+import hype.core.drawable.HDrawable;
 import hype.core.util.H;
 import hype.extended.drawable.HEllipse;
 import hype.extended.drawable.HPath;
-import hype.extended.drawable.HRect;
 import processing.core.PApplet;
 
 /**
@@ -28,20 +28,15 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * (HPath)
-	 * - [ ] apply tolerance to HVertexNEW.intersectTest()
-	 * - [ ] testfile for HPath
-	 * 
 	 * (HDrawable)
-	 * - [ ] HDrawable.stylesChildren(bool)
-	 * 		- stroke
-	 * 		- stroke weight
-	 * 		- stroke join
-	 * 		- stroke cap
-	 * 		- fill
 	 * - [ ] HDrawable.rotatesChildren(bool)
 	 * - [ ] apply the UV coordinate stuff
 	 * - [ ] remove casting reqs for add() / remove()
+	 * - [ ] test file for rotatesChildren
+	 * 
+	 * (HPath)
+	 * - [ ] apply tolerance to HVertexNEW.intersectTest()
+	 * - [ ] testfile for HPath
 	 * 
 	 * (HBehavior)
 	 * - [ ] boolean params for HBehavior constructors (default=true,
@@ -124,8 +119,8 @@ public class DummyApplet extends PApplet {
 	 * - [ ] change util methods that returns arrays to use the method(val, float[] loc) format
 	 * - [ ] privatize remaining public fields
 	 * - [ ] color mask constants
-	 * - [ ] HColors.invisible(int) -- use color masks `(clr & maskAlpha) == 0`
 	 * - [ ] more consistent boolean getter names
+	 * - [ ] HDrawable: more consistent fill and stroke color methods
 	 * 
 	 * (Code Standards)
 	 * - [ ] standardize single param names
@@ -157,60 +152,20 @@ public class DummyApplet extends PApplet {
 	
 	@Override
 	public void setup() {
-		size(300,300);
+		size(600,600);
 		H.init(this);
-		H.background(H.BLUE);
 		
-		path = (HPath) H.add(new HPath(POLYGON))
-			.drawsHandles(true)
-			.strokeWeight(1)
-			.stroke(H.WHITE)
-			.fill(H.CYAN)
-			.locAt(H.CENTER)
-			;
-		path.beginPath()
-			// CUBIC
-			.vertexUV(.5f,.5f,  -.5f,.5f, 0,0)
-			.vertexUV(.5f,.5f, .5f,-.5f, 1,0)
-			.vertexUV(.5f,.5f,  1.5f,.5f, 1,1)
-			.vertexUV(.5f,.5f, .5f,1.5f, 0,1)
-			
-			// QUADRATIC
-//			.vertexUV(-.5f,.5f, 0,0)
-//			.vertexUV(.5f,-.5f, 1,0)//
-////			.vertexUV(1.5f,1.5f)
-////			.vertexUV(-.5f,1.5f)
-//			.vertexUV(1.5f,.5f, 1,1)
-//			.vertexUV(.5f,1.5f, 0,1)
-			
-			// SIMPLE CUBIC
-//			.vertexUV(0,1)
-//			.vertexUV(0,0, 1,0, 1,1)
-			
-			// SIMPLE QUADRATIC
-//			.vertexUV(0,1)
-//			.vertexUV(.5f,0, 1,1)
-//			
-			.endPath()
-		;
-		//path.height(200);
-		path.rotate(1);
+		HDrawable d = H.add(new HEllipse()).locAt(H.CENTER).anchorAt(H.CENTER);
 		
-		float px = path.x();
-		float py = path.y();
-		float w = path.width();
-		float h = path.height();
-		float au = path.anchorPercX();
-		float av = path.anchorPercY();
-		H.add(new HRect(w,h).loc(px,py).anchorPerc(au,av)).alpha(32);
-		H.add(new HEllipse(4)).loc(px,py).anchorAt(H.CENTER).add(new HRect(4)).add(new HRect(4).anchorAt(H.BOTTOM_RIGHT));
+		d.add(new HPath().vertexUV(0,0).vertexUV(0,1).vertexUV(1,0).vertexUV(1,1)).anchorAt(H.BOTTOM_RIGHT).locAt(H.TOP_LEFT);
+		d.add(new HPath().vertexUV(0,0).vertexUV(0,1).vertexUV(1,0).vertexUV(1,1)).anchorAt(H.BOTTOM_LEFT).locAt(H.TOP_RIGHT);
+		d.add(new HPath().vertexUV(0,0).vertexUV(0,1).vertexUV(1,0).vertexUV(1,1)).anchorAt(H.TOP_LEFT).locAt(H.BOTTOM_RIGHT);
+		d.add(new HPath().vertexUV(0,0).vertexUV(0,1).vertexUV(1,0).vertexUV(1,1)).anchorAt(H.TOP_RIGHT).locAt(H.BOTTOM_LEFT);
 		
+		d.stylesChildren(true);
+		d.noFill().stroke(H.RED,32).strokeWeight(4).strokeJoin(ROUND).strokeCap(MITER);
 		
 		H.drawStage();
-		stroke(H.RED,128);
-		for(int y=0; y<height; ++y) for(int x=0; x<width; ++x) {
-			if(path.contains(x,y)) point(x,y);
-		}
 		noLoop();
 	}
 	//*/

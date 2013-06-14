@@ -1,5 +1,11 @@
+### build_20130613.0 (Jun 14, 2013)
+- new HDrawable methods for styling its children
+	- `stylesChildren(boolean)` & `stylesChildren()`
+	- `onStyleChange()` (protected)
+- HGroup now styles its children by default
+
 ### build_20130613.0 (Jun 13, 2013)
-- fixed the buggy `HPath.adjust()` method
+- refactors on the `HPath.adjust()` method
 
 ### build_20130611.2 (Jun 11, 2013)
 - new HMath comparator methods:
