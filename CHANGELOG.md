@@ -1,3 +1,11 @@
+### build_20130614.4 (Jun 14, 2013)
+- new HRect method: `rounding()` _(returns the top left rounding)_
+- privatized the following HRect fields:
+	- `_tl`
+	- `_tr`
+	- `_bl`
+	- `_br`
+
 ### build_20130614.3 (Jun 14, 2013)
 - HTween now registers itself by default
 - new HCallback constant: `HConstants.NOP`

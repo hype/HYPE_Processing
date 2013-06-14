@@ -15,7 +15,7 @@ import hype.core.drawable.HDrawable;
 import processing.core.PGraphics;
 
 public class HRect extends HDrawable {
-	public float _tl, _tr, _bl, _br;
+	private float _tl, _tr, _bl, _br;
 	
 	public HRect() {}
 	
@@ -57,6 +57,10 @@ public class HRect extends HDrawable {
 		_br = bottomright;
 		_bl = bottomleft;
 		return this;
+	}
+	
+	public float rounding() {
+		return roundingTL();
 	}
 	
 	public HRect roundingTL(float radius) {

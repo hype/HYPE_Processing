@@ -9,7 +9,7 @@
  * All rights reserved.
  */
 public static class HRect extends HDrawable {
-	public float _tl, _tr, _bl, _br;
+	private float _tl, _tr, _bl, _br;
 	public HRect() {}
 	public HRect(float s) {
 		size(s);
@@ -43,6 +43,9 @@ public static class HRect extends HDrawable {
 		_br = bottomright;
 		_bl = bottomleft;
 		return this;
+	}
+	public float rounding() {
+		return roundingTL();
 	}
 	public HRect roundingTL(float radius) {
 		_tl = radius;

@@ -29,15 +29,6 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * (HCallback NOP)
-	 * - HTriggers & HTween
-	 * 		- Replace HCallback null checks with NOP
-	 * 		- if callback(null), then assign NOP
-	 * 
-	 * (HRect)
-	 * - [ ] rounding() getter (returns _tl)
-	 * - [ ] privatize _tl/_tr/_br/_bl fields
-	 * 
 	 * (HBehavior)
 	 * - [ ] HTween: start/end 1/2/3 getters
 	 * - [ ] HTween: delegate start() & end() methods to start(a,b,c) &
