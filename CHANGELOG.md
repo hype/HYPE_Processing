@@ -1,6 +1,22 @@
+### build_20130614.3 (Jun 14, 2013)
+- HTween now registers itself by default
+- new HCallback constant: `HConstants.NOP`
+- privatized the following HDrawablePool fields:
+	- `_onCreate`
+	- `_onRequest`
+	- `_onRelease`
+- removed the ff fields / methods from HDrawablePool:
+	- `_listener`
+	- `listener()`
+	- `listener(HPoolListener)`
+- removed unused interfaces / classes:
+	- `HPoolListener`
+	- `HPoolAdapter`
+
 ### build_20130614.2 (Jun 14, 2013)
 - new HDrawable methods for rotating children:
 	- `rotatesChildren(boolean)` & `rotatesChildren()`
+- removed the casting for `HDrawable.add()` and `HDrawable.remove()`
 
 ### build_20130614.1 (Jun 14, 2013)
 - renamed the following protected HDrawable fields:

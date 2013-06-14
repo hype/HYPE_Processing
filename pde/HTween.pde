@@ -16,9 +16,9 @@ public static class HTween extends HBehavior {
 	private int _property;
 	public HTween() {
 		_ease = 1;
+		register();
 	}
 	public HTween target(HDrawable d) {
-		registered(d != null);
 		_target = d;
 		return this;
 	}

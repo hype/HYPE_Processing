@@ -70,4 +70,6 @@ public static interface HConstants {
 		PHI_1 = 0.618033988749895f,
 		TOLERANCE = (float)10e-6,
 		EPSILON = (float)10e-12;
+	public static final HCallback
+		NOP = new HCallback() {public void run(Object obj) {}};
 }

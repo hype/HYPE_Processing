@@ -11,8 +11,7 @@
 public static class HDrawablePool {
 	private HLinkedHashSet<HDrawable> _activeSet, _inactiveSet;
 	private ArrayList<HDrawable> _prototypes;
-	public HCallback _onCreate, _onRequest, _onRelease;
-	public HPoolListener _listener;
+	private HCallback _onCreate, _onRequest, _onRelease;
 	private HLayout _layout;
 	private HColorist _colorist;
 	private HDrawable _autoParent;
@@ -25,6 +24,7 @@ public static class HDrawablePool {
 		_activeSet = new HLinkedHashSet<HDrawable>();
 		_inactiveSet = new HLinkedHashSet<HDrawable>();
 		_prototypes = new ArrayList<HDrawable>();
+		_onCreate = _onRequest = _onRelease = HConstants.NOP;
 	}
 	public int max() {
 		return _max;
@@ -56,29 +56,22 @@ public static class HDrawablePool {
 		_colorist = newColorist;
 		return this;
 	}
-	public HDrawablePool listener(HPoolListener newListener) {
-		_listener = newListener;
-		return this;
-	}
 	public HDrawablePool onCreate(HCallback callback) {
-		_onCreate = callback;
+		_onCreate = (callback==null)? HConstants.NOP : callback;
 		return this;
 	}
 	public HCallback onCreate() {
 		return _onCreate;
 	}
-	public HPoolListener listener() {
-		return _listener;
-	}
 	public HDrawablePool onRequest(HCallback callback) {
-		_onRequest = callback;
+		_onRequest = (callback==null)? HConstants.NOP : callback;
 		return this;
 	}
 	public HCallback onRequest() {
 		return _onRequest;
 	}
 	public HDrawablePool onRelease(HCallback callback) {
-		_onRelease = callback;
+		_onRelease = (callback==null)? HConstants.NOP : callback;
 		return this;
 	}
 	public HCallback onRelease() {
@@ -105,7 +98,7 @@ public static class HDrawablePool {
 		_activeSet.removeAll();
 		_inactiveSet.removeAll();
 		_prototypes.clear();
-		_onCreate = _onRequest = _onRelease = null;
+		_onCreate = _onRequest = _onRelease = HConstants.NOP;
 		_layout = null;
 		_autoParent = null;
 		_max = 0;
@@ -142,13 +135,8 @@ public static class HDrawablePool {
 		if(_autoParent != null) _autoParent.add(drawable);
 		if(_layout != null) _layout.applyTo(drawable);
 		if(_colorist != null) _colorist.applyColor(drawable);
-		if(_listener != null) {
-			int index = currentIndex();
-			if(onCreateFlag) _listener.onCreate(drawable, index, this);
-			_listener.onRequest(drawable, index, this);
-		}
-		if(onCreateFlag && _onCreate != null) _onCreate.run(drawable);
-		if(_onRequest != null) _onRequest.run(drawable);
+		if(onCreateFlag) _onCreate.run(drawable);
+		_onRequest.run(drawable);
 		return drawable;
 	}
 	public HDrawablePool requestAll() {
@@ -164,8 +152,7 @@ public static class HDrawablePool {
 		if(_activeSet.remove(d)) {
 			_inactiveSet.add(d);
 			if(_autoParent != null) _autoParent.remove(d);
-			if(_listener != null) _listener.onRelease(d, currentIndex(), this);
-			if(_onRelease != null) _onRelease.run(d);
+			_onRelease.run(d);
 			return true;
 		}
 		return false;

@@ -29,16 +29,20 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * (HDrawable)
-	 * - [ ] remove casting reqs for add() / remove()
+	 * (HCallback NOP)
+	 * - HDrawablePool
+	 * 		- Replace HCallback null checks with NOP
+	 * 		- if onCreate/Request/Release(null), then assign NOP
+	 * 		- privatize _onCreate/Request/Release
+	 * - HTriggers & HTween
+	 * 		- Replace HCallback null checks with NOP
+	 * 		- if callback(null), then assign NOP
 	 * 
-	 * (HPath)
-	 * - [ ] apply tolerance to HVertexNEW.intersectTest()
-	 * - [ ] testfile for HPath
+	 * (HRect)
+	 * - [ ] rounding() getter (returns _tl)
+	 * - [ ] privatize _tl/_tr/_br/_bl fields
 	 * 
 	 * (HBehavior)
-	 * - [ ] boolean params for HBehavior constructors (default=true,
-	 *       true - register, false - don't register)
 	 * - [ ] HTween: start/end 1/2/3 getters
 	 * - [ ] HTween: delegate start() & end() methods to start(a,b,c) &
 	 *       start(a,b,c)
@@ -51,6 +55,10 @@ public class DummyApplet extends PApplet {
 	 * - [ ] remove `registered()`
 	 * - [ ] abstract `HBehavior.createCopy()`
 	 * 
+	 * (HPath)
+	 * - [ ] apply tolerance to HVertexNEW.intersectTest()
+	 * - [ ] testfile for HPath
+	 * 
 	 * (HShape)
 	 * - [ ] HShape hit detection + pgraphics buffer
 	 * - [ ] disable style for HShape in P3D
@@ -59,21 +67,6 @@ public class DummyApplet extends PApplet {
 	 * - [ ] click buffer for HText
 	 * - [ ] textbox mode for HText
 	 * - [ ] use onResize() when adjusting metrics
-	 * 
-	 * (HCallback NOP)
-	 * - HConstants.NOP (an empty HCallback that does nothing, to be used as
-	 *   sentinel; test this on JS mode)
-	 * - HDrawablePool
-	 * 		- Replace HCallback null checks with NOP
-	 * 		- if onCreate/Request/Release(null), then assign NOP
-	 * 		- privatize _onCreate/Request/Release
-	 * - HTriggers & HTween
-	 * 		- Replace HCallback null checks with NOP
-	 * 		- if callback(null), then assign NOP
-	 * 
-	 * (HRect)
-	 * - [ ] rounding() getter (returns _tl)
-	 * - [ ] privatize _tl/_tr/_br/_bl fields
 	 * 
 	 * 
 	 * (Experiments and New Features)
