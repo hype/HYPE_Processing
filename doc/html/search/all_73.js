@@ -1,6 +1,7 @@
 var searchData=
 [
   ['scale',['scale',['../classhype_1_1core_1_1drawable_1_1_h_drawable.html#a64746f11d225482739741a694b23cea5',1,'hype.core.drawable.HDrawable.scale(float s)'],['../classhype_1_1core_1_1drawable_1_1_h_drawable.html#adac661c14251dee5d5b9237fccbb5b16',1,'hype.core.drawable.HDrawable.scale(float sw, float sh)']]],
+  ['setimage',['setImage',['../classhype_1_1extended_1_1colorist_1_1_h_pixel_colorist.html#a4ea55410fdac1f685ebf346244765af9',1,'hype::extended::colorist::HPixelColorist']]],
   ['show',['show',['../classhype_1_1core_1_1drawable_1_1_h_drawable.html#acab0f90892d84b754e9cc769ba9dc177',1,'hype::core::drawable::HDrawable']]],
   ['size',['size',['../classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae046413f91234f66dde997ef02908e24',1,'hype.core.drawable.HDrawable.size(float w, float h)'],['../classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2c8b70fd46b03299178eb14ca57baaa4',1,'hype.core.drawable.HDrawable.size(float s)'],['../classhype_1_1core_1_1drawable_1_1_h_drawable.html#a91deb3e8a0b504c602670764733a744f',1,'hype.core.drawable.HDrawable.size()']]],
   ['solvecubic',['solveCubic',['../classhype_1_1core_1_1util_1_1_h_math.html#a67854709c53bde506d4b6b25e402dd51',1,'hype::core::util::HMath']]],

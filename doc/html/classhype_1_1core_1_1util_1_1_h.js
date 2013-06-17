@@ -18,6 +18,7 @@ var classhype_1_1core_1_1util_1_1_h =
     [ "behaviors", "classhype_1_1core_1_1util_1_1_h.html#a6c1d6080ee2a53c1cdb7a92a7e89a024", null ],
     [ "clearStage", "classhype_1_1core_1_1util_1_1_h.html#ac1437b6e36800248cb76f65c2ba2af47", null ],
     [ "drawStage", "classhype_1_1core_1_1util_1_1_h.html#a82706aee994e007c7343e6212f93e3b7", null ],
+    [ "getImage", "classhype_1_1core_1_1util_1_1_h.html#a36180bd64f75da8dbdb1ddb4bb7a64b2", null ],
     [ "init", "classhype_1_1core_1_1util_1_1_h.html#ac09ee2157a1086e1bebd2ba8d874e34e", null ],
     [ "mouse", "classhype_1_1core_1_1util_1_1_h.html#ab6f2778393309aaf78d805428a9d21e4", null ],
     [ "mouseStarted", "classhype_1_1core_1_1util_1_1_h.html#acb428f19e54b96814408e769557efaa2", null ],

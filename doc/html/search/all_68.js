@@ -27,6 +27,7 @@ var searchData=
   ['hhittable',['HHittable',['../interfacehype_1_1core_1_1interfaces_1_1_h_hittable.html',1,'hype::core::interfaces']]],
   ['hide',['hide',['../classhype_1_1core_1_1drawable_1_1_h_drawable.html#a39dff6aef37343a177538d61ae751fb3',1,'hype::core::drawable::HDrawable']]],
   ['himage',['HImage',['../classhype_1_1extended_1_1drawable_1_1_h_image.html',1,'hype::extended::drawable']]],
+  ['himageholder',['HImageHolder',['../interfacehype_1_1core_1_1interfaces_1_1_h_image_holder.html',1,'hype::core::interfaces']]],
   ['hiterator_3c_20u_20_3e',['HIterator&lt; U &gt;',['../interfacehype_1_1core_1_1collection_1_1_h_iterator_3_01_u_01_4.html',1,'hype::core::collection']]],
   ['hlayout',['HLayout',['../interfacehype_1_1core_1_1layout_1_1_h_layout.html',1,'hype::core::layout']]],
   ['hlinkedhashset_3c_20t_20_3e',['HLinkedHashSet&lt; T &gt;',['../classhype_1_1core_1_1collection_1_1_h_linked_hash_set_3_01_t_01_4.html',1,'hype::core::collection']]],

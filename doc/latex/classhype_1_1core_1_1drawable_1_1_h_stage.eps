@@ -175,6 +175,7 @@ boxfont setfont
 1 boundaspect scale
 (hype.core.drawable.HStage) cw
 (hype.core.drawable.HDrawable) cw
+(hype.core.interfaces.HImageHolder) cw
 (hype::core::collection::HNode< HDrawable >) cw
 (hype.core.interfaces.HDirectable) cw
 (hype.core.interfaces.HHittable) cw
@@ -191,8 +192,9 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (hype.core.drawable.HStage) 1.000000 0.000000 box
+ (hype.core.drawable.HStage) 1.500000 0.000000 box
  (hype.core.drawable.HDrawable) 1.000000 1.000000 box
+ (hype.core.interfaces.HImageHolder) 2.000000 1.000000 box
  (hype::core::collection::HNode< HDrawable >) 0.000000 2.000000 box
  (hype.core.interfaces.HDirectable) 1.000000 2.000000 box
  (hype.core.interfaces.HHittable) 2.000000 2.000000 box
@@ -202,13 +204,17 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- relations -----
 
 solid
-0 1.000000 0.000000 out
+0 1.500000 0.000000 out
+solid
+1.000000 2.000000 1.000000 conn
 solid
 1 1.000000 1.000000 in
 solid
 0 1.000000 1.000000 out
 solid
 0.000000 2.000000 2.000000 conn
+solid
+1 2.000000 1.000000 in
 solid
 1 0.000000 2.000000 in
 solid

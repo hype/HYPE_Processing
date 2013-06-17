@@ -24,6 +24,7 @@ var annotated =
           [ "HCallback", "interfacehype_1_1core_1_1interfaces_1_1_h_callback.html", "interfacehype_1_1core_1_1interfaces_1_1_h_callback" ],
           [ "HDirectable", "interfacehype_1_1core_1_1interfaces_1_1_h_directable.html", null ],
           [ "HHittable", "interfacehype_1_1core_1_1interfaces_1_1_h_hittable.html", "interfacehype_1_1core_1_1interfaces_1_1_h_hittable" ],
+          [ "HImageHolder", "interfacehype_1_1core_1_1interfaces_1_1_h_image_holder.html", "interfacehype_1_1core_1_1interfaces_1_1_h_image_holder" ],
           [ "HLocatable", "interfacehype_1_1core_1_1interfaces_1_1_h_locatable.html", "interfacehype_1_1core_1_1interfaces_1_1_h_locatable" ],
           [ "HRotatable", "interfacehype_1_1core_1_1interfaces_1_1_h_rotatable.html", "interfacehype_1_1core_1_1interfaces_1_1_h_rotatable" ]
         ] ],

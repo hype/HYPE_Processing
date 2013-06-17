@@ -9,6 +9,8 @@ var classhype_1_1extended_1_1colorist_1_1_h_pixel_colorist =
     [ "fillOnly", "classhype_1_1extended_1_1colorist_1_1_h_pixel_colorist.html#aa76cdadbf49b693bcbec8efc6e25c13a", null ],
     [ "getColor", "classhype_1_1extended_1_1colorist_1_1_h_pixel_colorist.html#aa5fc3e0f21dbe1112c11cdc232aa4636", null ],
     [ "getImage", "classhype_1_1extended_1_1colorist_1_1_h_pixel_colorist.html#ab9bead9c2578cc304c1813be563fe092", null ],
+    [ "image", "classhype_1_1extended_1_1colorist_1_1_h_pixel_colorist.html#ac91c9603903ed964b9ac2bdb5e9afc21", null ],
+    [ "image", "classhype_1_1extended_1_1colorist_1_1_h_pixel_colorist.html#adddbf6a4e4d867c07c5eb95e00b3231e", null ],
     [ "setImage", "classhype_1_1extended_1_1colorist_1_1_h_pixel_colorist.html#a4ea55410fdac1f685ebf346244765af9", null ],
     [ "strokeOnly", "classhype_1_1extended_1_1colorist_1_1_h_pixel_colorist.html#ad88ff04b8040a732005479d084ccc755", null ]
 ];

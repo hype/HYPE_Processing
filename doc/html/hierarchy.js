@@ -10,9 +10,9 @@ var hierarchy =
       [ "hype.extended.colorist.HPixelColorist", "classhype_1_1extended_1_1colorist_1_1_h_pixel_colorist.html", null ]
     ] ],
     [ "hype.extended.colorist.HColorField.HColorPoint", "classhype_1_1extended_1_1colorist_1_1_h_color_field_1_1_h_color_point.html", null ],
-    [ "hype.core.util.HColors", "classhype_1_1core_1_1util_1_1_h_colors.html", null ],
     [ "hype.core.util.HConstants", "interfacehype_1_1core_1_1util_1_1_h_constants.html", [
       [ "hype.core.util.H", "classhype_1_1core_1_1util_1_1_h.html", null ],
+      [ "hype.core.util.HColors", "classhype_1_1core_1_1util_1_1_h_colors.html", null ],
       [ "hype.core.util.HMath", "classhype_1_1core_1_1util_1_1_h_math.html", null ]
     ] ],
     [ "hype.extended.util.HDrawablePool", "classhype_1_1extended_1_1util_1_1_h_drawable_pool.html", null ],
@@ -28,6 +28,11 @@ var hierarchy =
         [ "hype.extended.drawable.HShape", "classhype_1_1extended_1_1drawable_1_1_h_shape.html", null ],
         [ "hype.extended.drawable.HText", "classhype_1_1extended_1_1drawable_1_1_h_text.html", null ]
       ] ]
+    ] ],
+    [ "hype.core.interfaces.HImageHolder", "interfacehype_1_1core_1_1interfaces_1_1_h_image_holder.html", [
+      [ "hype.core.drawable.HStage", "classhype_1_1core_1_1drawable_1_1_h_stage.html", null ],
+      [ "hype.extended.colorist.HPixelColorist", "classhype_1_1extended_1_1colorist_1_1_h_pixel_colorist.html", null ],
+      [ "hype.extended.drawable.HImage", "classhype_1_1extended_1_1drawable_1_1_h_image.html", null ]
     ] ],
     [ "hype.core.collection.HIterator< U >", "interfacehype_1_1core_1_1collection_1_1_h_iterator_3_01_u_01_4.html", [
       [ "hype.core.collection.HLinkedList< T >.HLinkedListIterator< U >", "classhype_1_1core_1_1collection_1_1_h_linked_list_3_01_t_01_4_1_1_h_linked_list_iterator_3_01_u_01_4.html", null ]

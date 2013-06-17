@@ -117,6 +117,7 @@ Inheritance diagram for hype.core.drawable.HStage:</div>
   <img src="classhype_1_1core_1_1drawable_1_1_h_stage.png" usemap="#hype.core.drawable.HStage_map" alt=""/>
   <map id="hype.core.drawable.HStage_map" name="hype.core.drawable.HStage_map">
 <area href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all HDrawables." alt="hype.core.drawable.HDrawable" shape="rect" coords="274,112,538,136"/>
+<area href="interfacehype_1_1core_1_1interfaces_1_1_h_image_holder.html" alt="hype.core.interfaces.HImageHolder" shape="rect" coords="548,112,812,136"/>
 <area href="interfacehype_1_1core_1_1interfaces_1_1_h_directable.html" alt="hype.core.interfaces.HDirectable" shape="rect" coords="274,56,538,80"/>
 <area href="interfacehype_1_1core_1_1interfaces_1_1_h_hittable.html" alt="hype.core.interfaces.HHittable" shape="rect" coords="548,56,812,80"/>
 <area href="interfacehype_1_1core_1_1interfaces_1_1_h_locatable.html" alt="hype.core.interfaces.HLocatable" shape="rect" coords="137,0,401,24"/>
@@ -132,12 +133,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a38df2c63da1eb5ce7f2b4b96ef4ccfd5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38df2c63da1eb5ce7f2b4b96ef4ccfd5"></a>
 boolean&#160;</td><td class="memItemRight" valign="bottom"><b>invalidChild</b> (<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html">HDrawable</a> destParent)</td></tr>
 <tr class="separator:a38df2c63da1eb5ce7f2b4b96ef4ccfd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8321e76371b4d365d73e87c89e4b7b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8321e76371b4d365d73e87c89e4b7b8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>background</b> (int clr)</td></tr>
-<tr class="separator:ab8321e76371b4d365d73e87c89e4b7b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7253ccb9404ff055538dba5c084c68c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7253ccb9404ff055538dba5c084c68c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>backgroundImg</b> (Object arg)</td></tr>
-<tr class="separator:ac7253ccb9404ff055538dba5c084c68c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ed4ecfb9dcb986248f5a1c349b82ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1ed4ecfb9dcb986248f5a1c349b82ef"></a>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_stage.html">HStage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>background</b> (int clr)</td></tr>
+<tr class="separator:ad1ed4ecfb9dcb986248f5a1c349b82ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f9acf31f5ed135b3fc77652806ceaf7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f9acf31f5ed135b3fc77652806ceaf7"></a>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_stage.html">HStage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>backgroundImg</b> (Object arg)</td></tr>
+<tr class="separator:a8f9acf31f5ed135b3fc77652806ceaf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a103af358d769bdb9725b6b59345cb81b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a103af358d769bdb9725b6b59345cb81b"></a>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_stage.html">HStage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>image</b> (Object imgArg)</td></tr>
+<tr class="separator:a103af358d769bdb9725b6b59345cb81b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86339ac8d36beb9c81e2757f57fb006d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86339ac8d36beb9c81e2757f57fb006d"></a>
+PImage&#160;</td><td class="memItemRight" valign="bottom"><b>image</b> ()</td></tr>
+<tr class="separator:a86339ac8d36beb9c81e2757f57fb006d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d61311d0898543a7a23866d9e696b99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_stage.html">HStage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_stage.html#a1d61311d0898543a7a23866d9e696b99">autoClear</a> (boolean b)</td></tr>
 <tr class="separator:a1d61311d0898543a7a23866d9e696b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85dd3e21d6978a71e70a6dc122d0ffa0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85dd3e21d6978a71e70a6dc122d0ffa0"></a>
@@ -923,7 +930,7 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>hype</b></li><li class="navelem"><b>core</b></li><li class="navelem"><b>drawable</b></li><li class="navelem"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_stage.html">HStage</a></li>
-    <li class="footer">Generated on Fri Jun 14 2013 18:09:34 for HYPE_processing by
+    <li class="footer">Generated on Mon Jun 17 2013 14:12:05 for HYPE_processing by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>
