@@ -15,7 +15,7 @@ import hype.core.interfaces.HCallback;
 import hype.core.util.HConstants;
 
 public abstract class HTrigger extends HBehavior {
-	public HCallback _callback;
+	protected HCallback _callback;
 	
 	public HTrigger() {
 		register();

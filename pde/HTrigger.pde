@@ -9,7 +9,7 @@
  * All rights reserved.
  */
 public static abstract class HTrigger extends HBehavior {
-	public HCallback _callback;
+	protected HCallback _callback;
 	public HTrigger() {
 		register();
 		_callback = HConstants.NOP;

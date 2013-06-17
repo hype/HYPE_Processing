@@ -1,3 +1,15 @@
+### build_20130617.1 (Jun 17, 2013)
+- made the ff. fields private / protected:
+	- `HTrigger._callback`
+	- `HVector._x`
+	- `HVector._y`
+	- `HVector._z`
+	- `HColorTransform._percA`
+	- `HColorTransform._percR`
+	- `HColorTransform._percG`
+	- `HColorTransform._percB`
+	- `HRandomTrigger._chance`
+
 ### build_20130617.0 (Jun 17, 2013)
 - new interface: `HImageHolder` _(this is a common interface for any class that can hold and return a PImage)_
 	- `HImageHolder image(Object)`

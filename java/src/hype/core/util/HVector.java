@@ -14,7 +14,7 @@ package hype.core.util;
 import hype.core.interfaces.HLocatable;
 
 public class HVector implements HLocatable {
-	public float _x, _y, _z;
+	private float _x, _y, _z;
 	
 	public HVector() {}
 	

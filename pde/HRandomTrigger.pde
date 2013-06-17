@@ -9,7 +9,7 @@
  * All rights reserved.
  */
 public static class HRandomTrigger extends HTrigger {
-	public float _chance;
+	private float _chance;
 	public HRandomTrigger() {}
 	public HRandomTrigger(float percChance) {
 		_chance = percChance;

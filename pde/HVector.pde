@@ -9,7 +9,7 @@
  * All rights reserved.
  */
 public static class HVector implements HLocatable {
-	public float _x, _y, _z;
+	private float _x, _y, _z;
 	public HVector() {}
 	public HVector(float xCoord, float yCoord) {
 		_x = xCoord;

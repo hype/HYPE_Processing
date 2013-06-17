@@ -54,15 +54,6 @@ public class DummyApplet extends PApplet {
 	 * - [ ] announce deprecation warning at github
 	 * 
 	 * (Experiments and New Features)
-	 * - [ ] new interface: HImageHolder
-	 * 		- interface methods: image(Object imgArg), image()
-	 * 		- H.extractImage(Object imgArg)
-	 * 			- if arg is PImage: use the image
-	 * 			- if arg is HImageHolder: call image()
-	 * 			- if arg is String: load file
-	 * 			- else: return null
-	 * 		- implement this to HImage and HPixelColorist and HStage (for img bg)
-	 * 		- apply when setting images
 	 * - [ ] masking
 	 * - [ ] wipfile: Proximity
 	 * - [ ] wipfile: Adjuster

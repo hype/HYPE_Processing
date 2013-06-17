@@ -9,8 +9,8 @@
  * All rights reserved.
  */
 public static class HColorTransform implements HColorist {
-	public float _percA, _percR, _percG, _percB;
-	public int _offsetA, _offsetR, _offsetG, _offsetB;
+	private float _percA, _percR, _percG, _percB;
+	private int _offsetA, _offsetR, _offsetG, _offsetB;
 	private boolean fillFlag, strokeFlag;
 	public HColorTransform() {
 		_percA = _percR = _percG = _percB = 1;

@@ -17,7 +17,7 @@ import hype.core.util.HMath;
 import processing.core.PApplet;
 
 public class HRandomTrigger extends HTrigger {
-	public float _chance;
+	private float _chance;
 	
 	public HRandomTrigger() {}
 	
