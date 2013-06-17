@@ -417,7 +417,7 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .br
 .RI "\fIReturns the transparency for this drawable, ranging at \fC[0,255]\fP\&. \fP"
 .ti -1c
-.RI "\fBHDrawable\fP \fBalphaPc\fP (float aPerc)"
+.RI "\fBHDrawable\fP \fBalphaPc\fP (float f)"
 .br
 .RI "\fISets the transparency for this drawable, as percentage\&. \fP"
 .ti -1c
@@ -445,7 +445,7 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .br
 .RI "\fIShifts the current alpha of this drawable by the given value\&. \fP"
 .ti -1c
-.RI "\fBHDrawable\fP \fBalphaShiftPc\fP (float daPerc)"
+.RI "\fBHDrawable\fP \fBalphaShiftPc\fP (float f)"
 .br
 .RI "\fIShifts the current alpha of this drawable, by percentage\&. \fP"
 .ti -1c
@@ -747,7 +747,7 @@ The alpha for this drawable with range \fC(0,255)\fP\&.
 .RE
 .PP
 
-.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.alphaPc (floataPerc)"
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.alphaPc (floatf)"
 
 .PP
 Sets the transparency for this drawable, as percentage\&. The argument for this method can be any number from 0 to 1\&. Otherwise, if the argument is less than 0f, the alpha will be 0f; and if the argument is greater than 1f, the alpha will be 1f\&.
@@ -761,7 +761,7 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBParameters:\fP
 .RS 4
-\fIaPerc\fP The new alpha for this drawable, as percentage\&. 
+\fIf\fP The new alpha for this drawable, as percentage\&. 
 .RE
 .PP
 \fBReturns:\fP
@@ -807,7 +807,7 @@ This drawable\&.
 .RE
 .PP
 
-.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.alphaShiftPc (floatdaPerc)"
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.alphaShiftPc (floatf)"
 
 .PP
 Shifts the current alpha of this drawable, by percentage\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&.\&. 
@@ -819,7 +819,7 @@ Shifts the current alpha of this drawable, by percentage\&. This method returns 
 .PP
 \fBParameters:\fP
 .RS 4
-\fIdaPerc\fP The amount that alpha will be shifted, by percentage\&. 
+\fIf\fP The amount that alpha will be shifted, by percentage\&. 
 .RE
 .PP
 \fBReturns:\fP
