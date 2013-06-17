@@ -14,6 +14,7 @@ package hype.core.util;
 import hype.core.behavior.HBehaviorRegistry;
 import hype.core.drawable.HDrawable;
 import hype.core.drawable.HStage;
+import hype.core.interfaces.HImageHolder;
 import hype.extended.drawable.HCanvas;
 import hype.extended.drawable.HEllipse;
 import hype.extended.drawable.HGroup;
@@ -24,6 +25,7 @@ import hype.extended.drawable.HShape;
 import hype.extended.drawable.HText;
 import processing.core.PApplet;
 import processing.core.PGraphics;
+import processing.core.PImage;
 
 public class H implements HConstants {
 	private static H _self;
@@ -210,6 +212,16 @@ public class H implements HConstants {
 	
 	public static boolean mouseStarted() {
 		return _mouse.started();
+	}
+	
+	public static PImage getImage(Object imgArg) {
+		if(imgArg instanceof PImage)
+			return (PImage) imgArg;
+		if(imgArg instanceof HImageHolder)
+			return ((HImageHolder)imgArg).image();
+		if(imgArg instanceof String)
+			return _app.loadImage((String) imgArg);
+		return null;
 	}
 	
 	private H() {}

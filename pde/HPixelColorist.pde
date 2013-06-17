@@ -8,7 +8,7 @@
  * 
  * All rights reserved.
  */
-public static class HPixelColorist implements HColorist {
+public static class HPixelColorist implements HColorist, HImageHolder {
 	private PImage img;
 	private boolean fillFlag, strokeFlag;
 	public HPixelColorist() {
@@ -16,8 +16,16 @@ public static class HPixelColorist implements HColorist {
 	}
 	public HPixelColorist(Object imgArg) {
 		this();
-		setImage(imgArg);
+		image(imgArg);
 	}
+	public HPixelColorist image(Object imgArg) {
+		img = H.getImage(imgArg);
+		return this;
+	}
+	public PImage image() {
+		return img;
+	}
+	/** @deprecated */
 	public HPixelColorist setImage(Object imgArg) {
 		if(imgArg instanceof PImage) {
 			img = (PImage) imgArg;
@@ -30,6 +38,7 @@ public static class HPixelColorist implements HColorist {
 		}
 		return this;
 	}
+	/** @deprecated */
 	public PImage getImage() {
 		return img;
 	}

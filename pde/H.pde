@@ -145,5 +145,14 @@ public static class H implements HConstants {
 	public static boolean mouseStarted() {
 		return _mouse.started();
 	}
+	public static PImage getImage(Object imgArg) {
+		if(imgArg instanceof PImage)
+			return (PImage) imgArg;
+		if(imgArg instanceof HImageHolder)
+			return ((HImageHolder)imgArg).image();
+		if(imgArg instanceof String)
+			return _app.loadImage((String) imgArg);
+		return null;
+	}
 	private H() {}
 }

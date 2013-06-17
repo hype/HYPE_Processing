@@ -8,7 +8,7 @@
  * 
  * All rights reserved.
  */
-public static class HImage extends HDrawable {
+public static class HImage extends HDrawable implements HImageHolder {
 	private PImage _image;
 	public HImage() {
 		this(null);
@@ -27,15 +27,7 @@ public static class HImage extends HDrawable {
 		return this;
 	}
 	public HImage image(Object imgArg) {
-		if(imgArg instanceof PImage) {
-			_image = (PImage) imgArg;
-		} else if(imgArg instanceof String) {
-			_image = H.app().loadImage((String) imgArg);
-		} else if(imgArg instanceof HImage) {
-			_image = ((HImage) imgArg)._image;
-		} else if(imgArg == null) {
-			_image = null;
-		}
+		_image = H.getImage(imgArg);
 		return resetSize();
 	}
 	public PImage image() {

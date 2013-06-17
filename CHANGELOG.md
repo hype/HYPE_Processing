@@ -1,3 +1,17 @@
+### build_20130617.0 (Jun 17, 2013)
+- new interface: `HImageHolder` _(this is a common interface for any class that can hold and return a PImage)_
+	- `HImageHolder image(Object)`
+	- `PImage image()`
+- HImage now implements HImageHolder
+- HStage now implements HImageHolder
+- `HStage.background()` & `backgroundImg()` are now chainable
+- marked the ff. HPixelColorist methods for deprecation:
+	- `setImage(Object)`
+	- `getImage()`
+- HPixelColorist now implements HImageHolder with the ff. new methods as replacement of the recently deprecated methods:
+	- `image(Object)`
+	- `image()`
+
 ### build_20130614.4 (Jun 14, 2013)
 - new HRect getter method: `rounding()`
 - privatized the following HRect fields:

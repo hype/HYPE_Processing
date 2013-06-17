@@ -11,11 +11,8 @@
 
 package hype;
 
-import hype.core.drawable.HDrawable;
 import hype.core.util.H;
-import hype.extended.behavior.HRotate;
-import hype.extended.drawable.HGroup;
-import hype.extended.drawable.HRect;
+import hype.extended.drawable.HImage;
 import processing.core.PApplet;
 
 /**
@@ -52,6 +49,9 @@ public class DummyApplet extends PApplet {
 	 * - [ ] textbox mode for HText
 	 * - [ ] use onResize() when adjusting metrics
 	 * 
+	 * 
+	 * (Github Housekeeping)
+	 * - [ ] announce deprecation warning at github
 	 * 
 	 * (Experiments and New Features)
 	 * - [ ] new interface: HImageHolder
@@ -121,39 +121,14 @@ public class DummyApplet extends PApplet {
 	 * - [ ] AS3::SoundAnalyzer
 	 */
 	
-	//*
+	//*/
 	public void setup() {
-		size(600,600);
+		size(640,640);
 		H.init(this);
-
-		HRect r = (HRect) new HRect(20).rounding(2).anchorAt(H.CENTER);
-
-		HDrawable d1 = H.add(new HRect(50).rounding(4)).anchorAt(H.CENTER).loc(width/5,height/2);
-		d1.add(r.createCopy()).locAt(H.TOP_LEFT);
-		d1.add(r.createCopy()).locAt(H.BOTTOM_RIGHT);
-
-		HDrawable d2 = H.add(new HRect(50).rounding(4)).anchorAt(H.CENTER).loc(width*2/5,height/2);
-		d2.add(r.createCopy()).locAt(H.TOP_LEFT);
-		d2.add(r.createCopy()).locAt(H.BOTTOM_RIGHT);
-
-		HDrawable grp1 = H.add(new HGroup()).size(50).anchorAt(H.CENTER).loc(width*3/5,height/2);
-		grp1.add(r.createCopy()).locAt(H.TOP_LEFT);
-		grp1.add(r.createCopy()).locAt(H.BOTTOM_RIGHT);
-
-		HDrawable grp2 = H.add(new HGroup()).size(50).anchorAt(H.CENTER).loc(width*4/5,height/2);
-		HRect r2 = grp2.add(r.createCopy());
-		r2.locAt(H.TOP_LEFT);
-		grp2.add(r.createCopy()).locAt(H.BOTTOM_RIGHT);
-
-		r2.rounding(10);
 		
-		d2.rotatesChildren(true);
-		grp2.rotatesChildren(true);
-
-		new HRotate(d1, 1);
-		new HRotate(d2, 1);
-		new HRotate(grp1, 1);
-		new HRotate(grp2, 1);
+		Object o = loadImage("sintra.jpg");
+		//H.stage().backgroundImg(new HImage(o));
+		H.add(new HImage(o));
 	}
 
 	public void draw() {

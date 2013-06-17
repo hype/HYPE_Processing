@@ -13,11 +13,12 @@ package hype.extended.colorist;
 
 import hype.core.colorist.HColorist;
 import hype.core.drawable.HDrawable;
+import hype.core.interfaces.HImageHolder;
 import hype.core.util.H;
 import hype.extended.drawable.HImage;
 import processing.core.PImage;
 
-public class HPixelColorist implements HColorist {
+public class HPixelColorist implements HColorist, HImageHolder {
 	private PImage img;
 	private boolean fillFlag, strokeFlag;
 	
@@ -27,9 +28,21 @@ public class HPixelColorist implements HColorist {
 	
 	public HPixelColorist(Object imgArg) {
 		this();
-		setImage(imgArg);
+		image(imgArg);
 	}
 	
+	@Override
+	public HPixelColorist image(Object imgArg) {
+		img = H.getImage(imgArg);
+		return this;
+	}
+
+	@Override
+	public PImage image() {
+		return img;
+	}
+
+	/** @deprecated */
 	public HPixelColorist setImage(Object imgArg) {
 		if(imgArg instanceof PImage) {
 			img = (PImage) imgArg;
@@ -43,6 +56,7 @@ public class HPixelColorist implements HColorist {
 		return this;
 	}
 	
+	/** @deprecated */
 	public PImage getImage() {
 		return img;
 	}

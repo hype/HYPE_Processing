@@ -11,6 +11,8 @@
 
 package hype.core.drawable;
 
+import hype.core.interfaces.HImageHolder;
+import hype.core.util.H;
 import hype.core.util.HColors;
 import hype.core.util.HConstants;
 import processing.core.PApplet;
@@ -18,7 +20,7 @@ import processing.core.PGraphics;
 import processing.core.PImage;
 import processing.core.PVector;
 
-public class HStage extends HDrawable {
+public class HStage extends HDrawable implements HImageHolder {
 	private PApplet _app;
 	private PImage _bgImg;
 	private boolean _autoClears;
@@ -41,20 +43,28 @@ public class HStage extends HDrawable {
 	
 	// BACKGROUND //
 	
-	public void background(int clr) {
+	public HStage background(int clr) {
 		_fill = clr;
-		clear();
+		return clear();
 	}
 	
-	public void backgroundImg(Object arg) {
-		if(arg instanceof String) {
-			_bgImg = _app.loadImage((String) arg);
-		} else if(arg instanceof PImage) {
-			_bgImg = (PImage) arg;
-		}
-		clear();
+	public HStage backgroundImg(Object arg) {
+		return image(arg);
 	}
 	
+	@Override
+	public HStage image(Object imgArg) {
+		_bgImg = H.getImage(imgArg);
+		return clear();
+	}
+
+
+	@Override
+	public PImage image() {
+		return _bgImg;
+	}
+
+
 	/** @deprecated The method autoClears(boolean) should be used instead */
 	public HStage autoClear(boolean b) {
 		_autoClears = b;

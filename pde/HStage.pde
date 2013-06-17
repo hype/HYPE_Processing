@@ -8,7 +8,7 @@
  * 
  * All rights reserved.
  */
-public static class HStage extends HDrawable {
+public static class HStage extends HDrawable implements HImageHolder {
 	private PApplet _app;
 	private PImage _bgImg;
 	private boolean _autoClears;
@@ -20,17 +20,19 @@ public static class HStage extends HDrawable {
 	public boolean invalidChild(HDrawable destParent) {
 		return true;
 	}
-	public void background(int clr) {
+	public HStage background(int clr) {
 		_fill = clr;
-		clear();
+		return clear();
 	}
-	public void backgroundImg(Object arg) {
-		if(arg instanceof String) {
-			_bgImg = _app.loadImage((String) arg);
-		} else if(arg instanceof PImage) {
-			_bgImg = (PImage) arg;
-		}
-		clear();
+	public HStage backgroundImg(Object arg) {
+		return image(arg);
+	}
+	public HStage image(Object imgArg) {
+		_bgImg = H.getImage(imgArg);
+		return clear();
+	}
+	public PImage image() {
+		return _bgImg;
 	}
 	/** @deprecated The method autoClears(boolean) should be used instead */
 	public HStage autoClear(boolean b) {

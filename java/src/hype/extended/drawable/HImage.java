@@ -12,11 +12,12 @@
 package hype.extended.drawable;
 
 import hype.core.drawable.HDrawable;
+import hype.core.interfaces.HImageHolder;
 import hype.core.util.H;
 import processing.core.PGraphics;
 import processing.core.PImage;
 
-public class HImage extends HDrawable {
+public class HImage extends HDrawable implements HImageHolder {
 	private PImage _image;
 
 	public HImage() {
@@ -41,15 +42,7 @@ public class HImage extends HDrawable {
 	}
 	
 	public HImage image(Object imgArg) {
-		if(imgArg instanceof PImage) {
-			_image = (PImage) imgArg;
-		} else if(imgArg instanceof String) {
-			_image = H.app().loadImage((String) imgArg);
-		} else if(imgArg instanceof HImage) {
-			_image = ((HImage) imgArg)._image;
-		} else if(imgArg == null) {
-			_image = null;
-		}
+		_image = H.getImage(imgArg);
 		return resetSize();
 	}
 	
