@@ -1,9 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"interfacehype_1_1core_1_1collection_1_1_h_iterator_3_01_u_01_4.html#a9e6ffafb6e6bd3b5f57414df67569be9":[1,0,0,0,1,0,0],
-"interfacehype_1_1core_1_1collection_1_1_h_iterator_3_01_u_01_4.html#af0710645b265b61dc9b3f29f5ace4704":[1,0,0,0,1,0,1],
-"interfacehype_1_1core_1_1colorist_1_1_h_colorist.html":[1,0,0,0,2,0],
-"interfacehype_1_1core_1_1colorist_1_1_h_colorist.html#a1d46be9eae6e5b1284e2f2ce235ecbe8":[1,0,0,0,2,0,4],
 "interfacehype_1_1core_1_1colorist_1_1_h_colorist.html#a4b4d31d2e5d8476088d25307b640f6aa":[1,0,0,0,2,0,3],
 "interfacehype_1_1core_1_1colorist_1_1_h_colorist.html#a80ee6723be22065ceea6a8f6ae1fe58c":[1,0,0,0,2,0,0],
 "interfacehype_1_1core_1_1colorist_1_1_h_colorist.html#a81c290b73d5f6a86694c00118c523723":[1,0,0,0,2,0,5],

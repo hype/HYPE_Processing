@@ -1,9 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a076db5d5826e7e28f95cb3a77f07fb1a":[1,0,0,1,2,1,18],
-"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a07ac294be42ea5318fe9a61aef32c274":[1,0,0,1,2,1,3],
-"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a083b63932a37aa552d824fe6703d9b8f":[1,0,0,1,2,1,14],
-"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a091f43be1c14502912457a911c72d132":[1,0,0,1,2,1,7],
 "classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a0c793a1889a7dd8f74b2288aaf9dc34e":[1,0,0,1,2,1,8],
 "classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a2a589026a547fc388eca96a9ae72eb94":[1,0,0,1,2,1,10],
 "classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a2f6ebf6b6688ce031cea2a267183bddf":[1,0,0,1,2,1,17],
@@ -249,5 +245,9 @@ var NAVTREEINDEX3 =
 "hierarchy.html":[1,2],
 "index.html":[],
 "interfacehype_1_1core_1_1collection_1_1_h_iterator_3_01_u_01_4.html":[1,0,0,0,1,0],
-"interfacehype_1_1core_1_1collection_1_1_h_iterator_3_01_u_01_4.html#a9d7efba8a8f7421083292bea6c834e5c":[1,0,0,0,1,0,2]
+"interfacehype_1_1core_1_1collection_1_1_h_iterator_3_01_u_01_4.html#a9d7efba8a8f7421083292bea6c834e5c":[1,0,0,0,1,0,2],
+"interfacehype_1_1core_1_1collection_1_1_h_iterator_3_01_u_01_4.html#a9e6ffafb6e6bd3b5f57414df67569be9":[1,0,0,0,1,0,0],
+"interfacehype_1_1core_1_1collection_1_1_h_iterator_3_01_u_01_4.html#af0710645b265b61dc9b3f29f5ace4704":[1,0,0,0,1,0,1],
+"interfacehype_1_1core_1_1colorist_1_1_h_colorist.html":[1,0,0,0,2,0],
+"interfacehype_1_1core_1_1colorist_1_1_h_colorist.html#a1d46be9eae6e5b1284e2f2ce235ecbe8":[1,0,0,0,2,0,4]
 };

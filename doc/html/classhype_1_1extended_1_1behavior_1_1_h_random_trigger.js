@@ -5,6 +5,5 @@ var classhype_1_1extended_1_1behavior_1_1_h_random_trigger =
     [ "callback", "classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html#aff77e0d939b9471517428e56a84f3b24", null ],
     [ "chance", "classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html#aee186903e7b68d3737de314e3faddeac", null ],
     [ "chance", "classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html#a9e509fab96e9f0a209975ece715ac38f", null ],
-    [ "runBehavior", "classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html#a16eb82e839caef4d885dbf5aca84c0fa", null ],
-    [ "_chance", "classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html#ab856d948362f6d128146168a55581720", null ]
+    [ "runBehavior", "classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html#a16eb82e839caef4d885dbf5aca84c0fa", null ]
 ];

@@ -8,6 +8,5 @@ var classhype_1_1core_1_1util_1_1_h_vector =
     [ "y", "classhype_1_1core_1_1util_1_1_h_vector.html#aaaec18773bf1359f02ecedc356fe04b0", null ],
     [ "y", "classhype_1_1core_1_1util_1_1_h_vector.html#ab8fda7055b1c13c32c99a44ab9371920", null ],
     [ "z", "classhype_1_1core_1_1util_1_1_h_vector.html#ae47c1f00e85ed14bda11e6e064ddcb61", null ],
-    [ "z", "classhype_1_1core_1_1util_1_1_h_vector.html#a556652c94fd7570e60c69a733bb518d9", null ],
-    [ "_x", "classhype_1_1core_1_1util_1_1_h_vector.html#a48bbe1ab7e93daa7d521056aeffdd868", null ]
+    [ "z", "classhype_1_1core_1_1util_1_1_h_vector.html#a556652c94fd7570e60c69a733bb518d9", null ]
 ];

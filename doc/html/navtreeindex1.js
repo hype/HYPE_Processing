@@ -179,7 +179,6 @@ var NAVTREEINDEX1 =
 "classhype_1_1core_1_1util_1_1_h_mouse.html#aea3ef217e88f63777754715ab476d260":[1,0,0,0,6,5,5],
 "classhype_1_1core_1_1util_1_1_h_mouse.html#aec9dac357942173cab93b58956212681":[1,0,0,0,6,5,4],
 "classhype_1_1core_1_1util_1_1_h_vector.html":[1,0,0,0,6,6],
-"classhype_1_1core_1_1util_1_1_h_vector.html#a48bbe1ab7e93daa7d521056aeffdd868":[1,0,0,0,6,6,9],
 "classhype_1_1core_1_1util_1_1_h_vector.html#a556652c94fd7570e60c69a733bb518d9":[1,0,0,0,6,6,8],
 "classhype_1_1core_1_1util_1_1_h_vector.html#a55e5caf3408b2fbdae8abea34586d602":[1,0,0,0,6,6,2],
 "classhype_1_1core_1_1util_1_1_h_vector.html#a750d6b2c0cd432443fd024a2f324df88":[1,0,0,0,6,6,3],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1 =
 "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#a7f118a9a3107fdca90f8a16e0b0fe989":[1,0,0,1,0,2,12],
 "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#a82a6adf7aaaa8f153c0150ade0d05674":[1,0,0,1,0,2,23],
 "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#a94273b7bb9e446857b74eb41e8afc1f9":[1,0,0,1,0,2,3],
-"classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#a9923361376e0e201ff5427a9e79f1585":[1,0,0,1,0,2,15]
+"classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#a9923361376e0e201ff5427a9e79f1585":[1,0,0,1,0,2,15],
+"classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#aa573a11fce4b015d9f0cb57dcb5b66f5":[1,0,0,1,0,2,8]
 };

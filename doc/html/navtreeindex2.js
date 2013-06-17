@@ -1,6 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#aa573a11fce4b015d9f0cb57dcb5b66f5":[1,0,0,1,0,2,8],
 "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#aa7ca3fe006360554a8f890d670910d86":[1,0,0,1,0,2,16],
 "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#aa7e0d803f6d488746f3d148ac190a08a":[1,0,0,1,0,2,36],
 "classhype_1_1extended_1_1behavior_1_1_h_oscillator.html#aafbe426771494957890a178bdd94525e":[1,0,0,1,0,2,4],
@@ -18,7 +17,6 @@ var NAVTREEINDEX2 =
 "classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html#a16eb82e839caef4d885dbf5aca84c0fa":[1,0,0,1,0,3,5],
 "classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html#a46372f5839b0bbf5a733b4274f3297de":[1,0,0,1,0,3,1],
 "classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html#a9e509fab96e9f0a209975ece715ac38f":[1,0,0,1,0,3,4],
-"classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html#ab856d948362f6d128146168a55581720":[1,0,0,1,0,3,6],
 "classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html#aee186903e7b68d3737de314e3faddeac":[1,0,0,1,0,3,3],
 "classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html#afcecc9817652ce1c99547a43f133a64a":[1,0,0,1,0,3,0],
 "classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html#aff77e0d939b9471517428e56a84f3b24":[1,0,0,1,0,3,2],
@@ -161,7 +159,6 @@ var NAVTREEINDEX2 =
 "classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#a062456e4cf0f50d9147602409664ef20":[1,0,0,1,1,2,9],
 "classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#a135b41740723ee778d927ef1b8a3e82e":[1,0,0,1,1,2,18],
 "classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#a165d3e32d76db84358f2d636fa76aeb4":[1,0,0,1,1,2,2],
-"classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#a1af58b6a8e76703e42adf54975b236fa":[1,0,0,1,1,2,32],
 "classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#a1d589ef85b3cfeaa8f13b4ae033fe1bf":[1,0,0,1,1,2,29],
 "classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#a21a895dfb789153ae54c6246052a2cfa":[1,0,0,1,1,2,5],
 "classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#a25991d6a86a5844c94bfc176e6746c1e":[1,0,0,1,1,2,0],
@@ -182,7 +179,6 @@ var NAVTREEINDEX2 =
 "classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#a9691d5daaa0a579e589004cb4cb30cad":[1,0,0,1,1,2,8],
 "classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#a9d5ff0c3bc3b8d41a0fc10b8ec716433":[1,0,0,1,1,2,4],
 "classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#ab2e95711fc1549e337ab91e472300ff0":[1,0,0,1,1,2,7],
-"classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#acb2f3bf3bf1a2d82a545f5f22dc9a0f4":[1,0,0,1,1,2,31],
 "classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#ad2035984cdbf4309bbea988610fffadf":[1,0,0,1,1,2,3],
 "classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#ad571e113d3f644c447051ddbb39c9f23":[1,0,0,1,1,2,23],
 "classhype_1_1extended_1_1colorist_1_1_h_color_transform.html#ad58a1d50666681591782871dc542f956":[1,0,0,1,1,2,30],
@@ -249,5 +245,9 @@ var NAVTREEINDEX2 =
 "classhype_1_1extended_1_1drawable_1_1_h_canvas.html#af15935934d30de3dfdace024458d3743":[1,0,0,1,2,0,40],
 "classhype_1_1extended_1_1drawable_1_1_h_canvas.html#af6ec1887008d28d0637284b0f820aae1":[1,0,0,1,2,0,27],
 "classhype_1_1extended_1_1drawable_1_1_h_ellipse.html":[1,0,0,1,2,1],
-"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a04ea92042958091ad02e43ac84307cb4":[1,0,0,1,2,1,15]
+"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a04ea92042958091ad02e43ac84307cb4":[1,0,0,1,2,1,15],
+"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a076db5d5826e7e28f95cb3a77f07fb1a":[1,0,0,1,2,1,18],
+"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a07ac294be42ea5318fe9a61aef32c274":[1,0,0,1,2,1,3],
+"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a083b63932a37aa552d824fe6703d9b8f":[1,0,0,1,2,1,14],
+"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#a091f43be1c14502912457a911c72d132":[1,0,0,1,2,1,7]
 };
