@@ -9,6 +9,7 @@
 	- `HColorTransform._percG`
 	- `HColorTransform._percB`
 	- `HRandomTrigger._chance`
+- removed unused HWarnings field `VERTEXPX_ERR`
 
 ### build_20130617.0 (Jun 17, 2013)
 - new interface: `HImageHolder` _(this is a common interface for any class that can hold and return a PImage)_

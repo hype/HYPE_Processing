@@ -96,8 +96,9 @@ public class DummyApplet extends PApplet {
 	 * - [ ] use byte for small ints
 	 * 
 	 * (Docs)
+	 * - [ ] migrate to standard javadoc
 	 * - [ ] use full sentence format with @param and @return statements
-	 * - [ ] use multiple @see tags
+	 * - [ ] one @see tag per link
 	 * - [ ] use a single line break for doc summaries if they're too long
 	 * - [ ] use the `[`,`]`,`(`,`)` brackets to depict a range of values
 	 *       (parentheses means that the lower or upper bounds are exclusive,

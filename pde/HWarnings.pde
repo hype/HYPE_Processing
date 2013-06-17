@@ -23,10 +23,8 @@ public static class HWarnings {
 		CHILDCEPTION =
 		"Can't add this parent as its own child.",
 		INVALID_CHILD =
-		"The child you're trying to add is cannot be added to this drawable.",
-		VERTEXPX_ERR =
-		"Set a non-zero size first for this path before setting the\n\t" +
-		"vertex by pixels, or use the vertexPerc() methods instead.";
+		"The child you're trying to add is cannot be added to this drawable."
+		;
 	public static void warn(String type, String loc, String msg) {
 		PApplet app = H.app();
 		app.println("[Warning: "+type+" @ "+loc+"]");

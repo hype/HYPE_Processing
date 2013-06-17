@@ -25,8 +25,8 @@ public class HRandomTrigger extends HTrigger {
 		_chance = percChance;
 	}
 	
-	public HRandomTrigger chance(float perc) {
-		_chance = perc;
+	public HRandomTrigger chance(float chancePercentage) {
+		_chance = chancePercentage;
 		return this;
 	}
 	

@@ -1551,11 +1551,11 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 * 
 	 * @chainable
 	 * @see alphaPc(float)
-	 * @param aPerc    The new alpha for this drawable, as percentage.
+	 * @param f    The new alpha for this drawable, as percentage.
 	 * @return This drawable.
 	 */
-	public HDrawable alphaPc(float aPerc) {
-		_alphaPc = (aPerc<0)? 0 : (aPerc>1)? 1 : aPerc;
+	public HDrawable alphaPc(float f) {
+		_alphaPc = (f<0)? 0 : (f>1)? 1 : f;
 		return this;
 	}
 	
@@ -1643,11 +1643,11 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 * 
 	 * @chainable.
 	 * @see alphaPc(float)
-	 * @param daPerc    The amount that alpha will be shifted, by percentage.
+	 * @param f    The amount that alpha will be shifted, by percentage.
 	 * @return This drawable.
 	 */
-	public HDrawable alphaShiftPc(float daPerc) {
-		return alphaPc(_alphaPc + daPerc);
+	public HDrawable alphaShiftPc(float f) {
+		return alphaPc(_alphaPc + f);
 	}
 	
 	
@@ -1851,12 +1851,12 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 * @param currAlphaPc    The current alpha value in the draw cycle.
 	 */
 	protected void applyStyle(PGraphics g, float currAlphaPc) {
-		float faPerc = currAlphaPc * (_fill >>> 24);
-		g.fill(_fill | 0xFF000000, Math.round(faPerc));
+		float faPc = currAlphaPc * (_fill >>> 24);
+		g.fill(_fill | 0xFF000000, Math.round(faPc));
 		
 		if(_strokeWeight > 0) {
-			float saPerc = currAlphaPc * (_stroke >>> 24);
-			g.stroke(_stroke | 0xFF000000, Math.round(saPerc));
+			float saPc = currAlphaPc * (_stroke >>> 24);
+			g.stroke(_stroke | 0xFF000000, Math.round(saPc));
 			g.strokeWeight(_strokeWeight);
 			g.strokeCap(_strokeCap);
 			g.strokeJoin(_strokeJoin);
