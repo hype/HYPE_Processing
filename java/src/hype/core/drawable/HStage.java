@@ -147,29 +147,5 @@ public class HStage extends HDrawable implements HImageHolder {
 	@Override
 	public void draw(PGraphics g,boolean b,float x,float y,float p) {}
 	@Override
-	public void copyPropertiesFrom(HDrawable other) {}
-	@Override
 	public HDrawable createCopy() { return null; }
-	@Override
-	public HDrawable loc(float newX, float newY) { return this; }
-	@Override
-	public HDrawable x(float newX) { return this; }
-	@Override
-	public HDrawable y(float newY) { return this; }
-	@Override
-	public HDrawable z(float newY) { return this; }
-	@Override
-	public HDrawable move(float dx, float dy) { return this; }
-	@Override
-	public HDrawable locAt(int where) { return this; }
-	@Override
-	protected void onResize(float oldW, float oldH, float newW, float newH) {}
-	@Override
-	public HDrawable rotation(float deg) { return this; }
-	@Override
-	public HDrawable rotationRad(float rad) { return this; }
-	@Override
-	public HDrawable rotate(float deg) { return this; }
-	@Override
-	public HDrawable rotateRad(float rad) { return this; }
 }
