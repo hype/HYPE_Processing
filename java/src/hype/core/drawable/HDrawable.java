@@ -1097,52 +1097,28 @@ public abstract class HDrawable extends HNode<HDrawable>
 	}
 	
 	public void bounds(float[] boundsValues) {
-		float cosval = (float) Math.cos(_rotationRad);
-		float sinval = (float) Math.sin(_rotationRad);
+		float x1 = -anchorX(), y1 = -anchorY();
+		float x2 = x1+_width,  y2 = y1+_height;
+		float minx, miny, maxx, maxy;
 		
-		float x1=-anchorX(), y1=-anchorY();
-		float x2=_width+x1,  y2=_height+y1;
-		float minx=0, miny=0, maxx=0, maxy=0;
+		float[] tl = HMath.absLocArr(this, x1, y1);
+		minx = maxx = tl[0];
+		miny = maxy = tl[1];
 		
-		// Top Left Edge
-		float tlX = x1*cosval + y1*sinval;
-		if(tlX < minx) minx = tlX;
-		else if(tlX > maxx) maxx = tlX;
+		float[] tr = HMath.absLocArr(this, x2, y1);
+		if(tr[0]<minx) minx=tr[0]; else if(tr[0]>maxx) maxx=tr[0];
+		if(tr[1]<miny) miny=tr[1]; else if(tr[1]>maxy) maxy=tr[1];
 		
-		float tlY = x1*sinval + y1*cosval;
-		if(tlY < miny) miny = tlY;
-		else if(tlY > maxy) maxy = tlY;
+		float[] bl = HMath.absLocArr(this, x1, y2);
+		if(bl[0]<minx) minx=bl[0]; else if(bl[0]>maxx) maxx=bl[0];
+		if(bl[1]<miny) miny=bl[1]; else if(bl[1]>maxy) maxy=bl[1];
 		
-		// Top Right Edge
-		float trX = x2*cosval + y1*sinval;
-		if(trX < minx) minx = trX;
-		else if(trX > maxx) maxx = trX;
+		float[] br = HMath.absLocArr(this, x2, y2);
+		if(br[0]<minx) minx=br[0]; else if(br[0]>maxx) maxx=br[0];
+		if(br[1]<miny) miny=br[1]; else if(br[1]>maxy) maxy=br[1];
 		
-		float trY = x2*sinval + y1*cosval;
-		if(trY < miny) miny = trY;
-		else if(trY > maxy) maxy = trY;
-		
-		// Bottom Left Edge
-		float blX = x1*cosval + y2*sinval;
-		if(blX < minx) minx = blX;
-		else if(blX > maxx) maxx = blX;
-		
-		float blY = x1*sinval + y2*cosval;
-		if(blY < miny) miny = blY;
-		else if(blY > maxy) maxy = blY;
-		
-		// Bottom Right Edge
-		float brX = x2*cosval + y2*sinval;
-		if(brX < minx) minx = brX;
-		else if(brX > maxx) maxx = brX;
-		
-		float brY = x2*sinval + y2*cosval;
-		if(brY < miny) miny = brY;
-		else if(brY > maxy) maxy = brY;
-		
-		float[] loc = HMath.absLocArr(this, 0, 0);
-		boundsValues[0] = loc[0] + minx;
-		boundsValues[1] = loc[1] + miny;
+		boundsValues[0] = minx;
+		boundsValues[1] = miny;
 		boundsValues[2] = maxx - minx;
 		boundsValues[3] = maxy - miny;
 	}
@@ -1155,9 +1131,6 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 * @return The bounding size of this drawable.
 	 */
 	public PVector boundingSize() {
-		// TODO boundingBox()
-		// this code probably needs some *actual* optimization too.
-		
 		// !!CAUTION!! Maths ahead! 
 		float cosVal = (float)Math.cos(_rotationRad);
 		float sinVal = (float)Math.sin(_rotationRad);

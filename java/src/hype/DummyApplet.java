@@ -29,7 +29,12 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - HMagneticField stuff
+	 * (Bounding Box)
+	 * - custom bounds for HPath
+	 * - test file
+	 * 
+	 * (HMagneticField)
+	 * - BLAHRG
 	 * 
 	 * (HBehavior)
 	 * - [ ] new HBehavior(isRegistered) + isRegistered constructors for other
@@ -124,7 +129,8 @@ public class DummyApplet extends PApplet {
 		H.init(this);
 		
 		H.add(r2 = new HRect()).fill(H.GREEN);
-		H.add(r1 = new HRect()).anchorAt(H.CENTER).locAt(H.CENTER);
+//		H.add(r1 = new HRect()).anchorUV(.25f,.75f).locAt(H.CENTER).alpha(128);
+		H.add(r1 = new HRect(50,100)).anchorUV(.25f,.75f).locAt(H.CENTER).alpha(128);
 		
 		new HRotate().target(r1).speed(1);
 		new HFollow().target(r1);
