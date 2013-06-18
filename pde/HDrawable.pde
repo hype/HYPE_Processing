@@ -9,9 +9,12 @@
  * All rights reserved.
  */
 /**
- * The superclass of all HDrawables.
+ * The superclass of all drawables.
  * 
- * TODO
+ * Drawables represent objects that are displayable to the stage. TODO
+ * 
+ * (The stage itself is also technically a drawable, but its usage is different
+ * from the other classes.)
  * 
  * @author james
  */
@@ -25,44 +28,44 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public static final byte BITMASK_TRANSFORMS_CHILDREN = 2;
 	public static final byte BITMASK_STYLES_CHILDREN = 4;	
 	public static final byte BITMASK_ROTATES_CHILDREN = 8;	
-	/** The parent of this drawable @see parent() */
+	/** The parent of this drawable */
 	protected HDrawable _parent;
-	/** The first child of this drawable @see firstChild() */
+	/** The first child of this drawable */
 	protected HDrawable _firstChild;
-	/** The last child of this drawable @see lastChild() */
+	/** The last child of this drawable */
 	protected HDrawable _lastChild;
-	/** The extras bundle of this drawable @see extras() */
+	/** The extras bundle of this drawable */
 	protected HBundle _extras;
-	/** The x location of this drawable @see x() */
+	/** The x location of this drawable */
 	protected float _x;
-	/** The y location of this drawable @see y() */
+	/** The y location of this drawable */
 	protected float _y;
-	/** The z location of this drawable @see z() */
+	/** The z location of this drawable */
 	protected float _z;
-	/** The x anchor percentage of this drawable @see anchorU() */
+	/** The x anchor percentage of this drawable */
 	protected float _anchorU;
-	/** The y anchor percentage of this drawable @see anchorV() */
+	/** The y anchor percentage of this drawable */
 	protected float _anchorV;
-	/** The width of this drawable @see width() */
+	/** The width of this drawable */
 	protected float _width;
-	/** The height of this drawable @see height() */
+	/** The height of this drawable */
 	protected float _height;
-	/** The rotation of this drawable, in radians @see rotationRad() */
+	/** The rotation of this drawable, in radians */
 	protected float _rotationRad;
-	/** The stroke width of this drawable, in pixels @see strokeWeight() */
+	/** The stroke width of this drawable, in pixels */
 	protected float _strokeWeight;
-	/** The alpha of this drawable, in percentage @see alphaPc() */
+	/** The alpha of this drawable, in percentage */
 	protected float _alphaPc;
-	/** The width-to-height ratio used for proportional resizing @see proportional() */
-	/** The number of this drawable's children @see numChildren() */
+	/** The width-to-height ratio used for proportional resizing */
+	/** The number of this drawable's children */
 	protected int _numChildren;
-	/** The fill color of this drawable @see fill() */
+	/** The fill color of this drawable */
 	protected int _fill;
-	/** The stroke color of this drawable @see stroke() */
+	/** The stroke color of this drawable */
 	protected int _stroke;
-	/** The stroke cap of this drawable @see strokeCap() */
+	/** The stroke cap of this drawable */
 	protected int _strokeCap;
-	/** The stroke join of this drawable @see strokeJoin() */
+	/** The stroke join of this drawable */
 	protected int _strokeJoin;
 	/** The bitset that determines proportional resizing, and child transforms */
 	protected byte _flags;
@@ -359,7 +362,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * java.util.Iterator, the former does _not_ extend the latter. This is due
 	 * to js mode compatibility issues.
 	 * 
-	 * @see HDrawableIterator, HIterator
+	 * @see HDrawableIterator
+	 * @see HIterator
 	 * @return A new HIterator for this drawable
 	 */
 	public HDrawableIterator iterator() {
@@ -523,7 +527,9 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * is assumed to be 100 when computing the anchor in this method.
 	 * 
 	 * @chainable
-	 * @see anchor(PVector), anchorX(float), anchorY(float)
+	 * @see anchor(PVector)
+	 * @see anchorX(float)
+	 * @see anchorY(float)
 	 * @param pxX    The desired x anchor for this drawable, in pixels.
 	 * @param pxY    The desired y anchor for this drawable, in pixels.
 	 * @return This drawable.
@@ -554,7 +560,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * `(100,100)`, `(30,30)` when the size is `(60,60)` and `(0,0)` when size
 	 * is `(0,0)`.
 	 * 
-	 * @see anchorX(), anchorY()
+	 * @see anchorX()
+	 * @see anchorY()
 	 * @return A new PVector containing the anchor of this drawable, in pixels.
 	 */
 	public PVector anchor() {
@@ -568,7 +575,9 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * computing the x anchor in this method.
 	 * 
 	 * @chainable
-	 * @see anchor(float,float), anchor(PVector), anchorY(float)
+	 * @see anchor(float,float)
+	 * @see anchor(PVector)
+	 * @see anchorY(float)
 	 * @param pxX    The desired x anchor for this drawable, in pixels.
 	 * @return This drawable.
 	 */
@@ -582,7 +591,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * The result of this method is the product of its width and x anchor
 	 * percentage.
 	 * 
-	 * @see anchor(), anchorY()
+	 * @see anchor()
+	 * @see anchorY()
 	 * @return The x anchor of this drawable, in pixels.
 	 */
 	public float anchorX() {
@@ -596,7 +606,9 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * when computing the y anchor in this method
 	 * 
 	 * @chainable
-	 * @see anchor(float,float), anchor(PVector), anchorX(float)
+	 * @see anchor(float,float)
+	 * @see anchor(PVector)
+	 * @see anchorX(float)
 	 * @param pxY    The desired y anchor for this drawable, in pixels.
 	 * @return This drawable.
 	 */
@@ -610,7 +622,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * The result of this method is the product of its height and y anchor
 	 * percentage.
 	 * 
-	 * @see anchor(), anchorX()
+	 * @see anchor()
+	 * @see anchorX()
 	 * @return The y anchor of this drawable, in pixels.
 	 */
 	public float anchorY() {
@@ -620,7 +633,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * Sets the anchor of this drawable in UV coordinates.
 	 * 
 	 * @chainable
-	 * @see anchorU(float), anchorV(float)
+	 * @see anchorU(float)
+	 * @see anchorV(float)
 	 * @param u    The desired `u` coordinate for this drawable's anchor.
 	 * @param v    The desired `v` coordinate for this drawable's anchor.
 	 * @return This drawable.
@@ -631,7 +645,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	/**
 	 * Returns the UV coordinates of this drawable's anchor.
 	 * 
-	 * @see anchorU(), anchorV()
+	 * @see anchorU()
+	 * @see anchorV()
 	 * @return A new PVector containing this drawable's anchor as percentage
 	 */
 	public PVector anchorUV() {
@@ -641,7 +656,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * Sets the `u` coordinate for this drawable's anchor.
 	 * 
 	 * @chainable
-	 * @see anchorUV(float,float), anchorV(float)
+	 * @see anchorUV(float,float)
+	 * @see anchorV(float)
 	 * @param u    The desired `u` coordinate for this drawable's anchor.
 	 * @return This drawable.
 	 */
@@ -662,7 +678,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * Sets the `u` coordinate for this drawable's anchor.
 	 * 
 	 * @chainable
-	 * @see anchorUV(), anchorU()
+	 * @see anchorUV()
+	 * @see anchorU()
 	 * @param v    The desired `v` coordinate for this drawable's anchor.
 	 * @return This drawable.
 	 */
@@ -673,7 +690,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	/**
 	 * Returns the `v` coordinate of this draable's anchor.
 	 * 
-	 * @see anchorUV(), anchorU()
+	 * @see anchorUV()
+	 * @see anchorU()
 	 * @return The y anchor of this drawable.
 	 */
 	public float anchorV() {
@@ -733,7 +751,9 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * will be adjusted according to the new width instead.)
 	 * 
 	 * @chainable
-	 * @see size(float), width(float), height(float)
+	 * @see size(float)
+	 * @see width(float)
+	 * @see height(float)
 	 * @param w    The new width for this drawable.
 	 * @param h    The new height for this drawable.
 	 * @return This drawable.
@@ -748,7 +768,9 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * This method delegates size(float,float).
 	 * 
 	 * @chainable
-	 * @see size(float,float), width(float), height(float)
+	 * @see size(float,float)
+	 * @see width(float)
+	 * @see height(float)
 	 * @param s    The new width and height for this drawable.
 	 * @return This drawable.
 	 */
@@ -758,7 +780,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	/**
 	 * Returns the size of this drawable.
 	 * 
-	 * @see width(), height()
+	 * @see width()
+	 * @see height()
 	 * @return A new PVector containing the width and height of this drawable.
 	 */
 	public PVector size() {
@@ -771,7 +794,9 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * change accordingly via onResize(float,float,float,float).
 	 * 
 	 * @chainable
-	 * @see size(float,float), size(float), height(float)
+	 * @see size(float,float)
+	 * @see size(float)
+	 * @see height(float)
 	 * @param w    The new width for this drawable
 	 * @return This drawable.
 	 */
@@ -782,7 +807,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	/**
 	 * Returns the width of this drawable.
 	 * 
-	 * @see size(), height()
+	 * @see size()
+	 * @see height()
 	 * @return This drawable's width.
 	 */
 	public float width() {
@@ -795,7 +821,9 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * change accordingly.
 	 * 
 	 * @chainable
-	 * @see size(float,float), size(float), width(float)
+	 * @see size(float,float)
+	 * @see size(float)
+	 * @see width(float)
 	 * @param h    The new height for this drawable
 	 * @return This drawable.
 	 */
@@ -806,7 +834,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	/**
 	 * Returns the height of this drawable.
 	 * 
-	 * @see size(), width()
+	 * @see size()
+	 * @see width()
 	 * @return This drawable's height
 	 */
 	public float height() {
@@ -952,7 +981,9 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * commonly represented as `0xAARRGGBB` or `#RRGGBB`.
 	 * 
 	 * @chainable
-	 * @see fill(int,int), fill(int,int,int), fill(int,int,int,int)
+	 * @see fill(int,int)
+	 * @see fill(int,int,int)
+	 * @see fill(int,int,int,int)
 	 * @param clr    The new fill for this drawable.
 	 * @return This drawable.
 	 */
@@ -973,7 +1004,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * `0x40FFFFFF`.
 	 * 
 	 * @chainable
-	 * @see fill(int), fill(int,int,int), fill(int,int,int,int), noFill()
+	 * @see fill(int)
+	 * @see fill(int,int,int)
+	 * @see fill(int,int,int,int)
+	 * @see noFill()
 	 * @param clr    The new fill for this drawable, excluding its alpha value.
 	 * @param alpha  The alpha for the new fill for this drawable.
 	 * @return This drawable.
@@ -990,7 +1024,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * The parameters `r`, `g` and `b` can be any number from 0 to 255.
 	 * 
 	 * @chainable
-	 * @see fill(int), fill(int,int), fill(int,int,int,int), noFill()
+	 * @see fill(int)
+	 * @see fill(int,int)
+	 * @see fill(int,int,int,int)
+	 * @see noFill()
 	 * @param r    The red component for the new fill for this drawable
 	 * @param g    The green component for the new fill for this drawable
 	 * @param b    The blue component for the new fill for this drawable
@@ -1007,7 +1044,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * The parameters `r`, `g`, `b` and `a` can be any number from 0 to 255.
 	 * 
 	 * @chainable
-	 * @see fill(int), fill(int,int), fill(int,int,int), noFill()
+	 * @see fill(int)
+	 * @see fill(int,int)
+	 * @see fill(int,int,int)
+	 * @see noFill()
 	 * @param r    The red component for the new fill for this drawable
 	 * @param g    The green component for the new fill for this drawable
 	 * @param b    The blue component for the new fill for this drawable
@@ -1036,7 +1076,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * `0x00FFFFFF` or fully transparent white.
 	 * 
 	 * @chainable
-	 * @see fill(int), fill(int,int), fill(int,int,int), fill(int,int,int,int)
+	 * @see fill(int)
+	 * @see fill(int,int)
+	 * @see fill(int,int,int)
+	 * @see fill(int,int,int,int)
 	 * @return This drawable.
 	 */
 	public HDrawable noFill() {
@@ -1049,7 +1092,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * commonly represented as `0xAARRGGBB` or `#RRGGBB`.
 	 * 
 	 * @chainable
-	 * @see stroke(int,int), stroke(int,int,int), stroke(int,int,int,int), noStroke()
+	 * @see stroke(int,int)
+	 * @see stroke(int,int,int)
+	 * @see stroke(int,int,int,int)
+	 * @see noStroke()
 	 * @param clr    The new stroke color for this drawable.
 	 * @return This drawable
 	 */
@@ -1070,7 +1116,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * `0x40FFFFFF`.
 	 * 
 	 * @chainable
-	 * @see stroke(int), stroke(int,int,int), stroke(int,int,int,int), noStroke()
+	 * @see stroke(int)
+	 * @see stroke(int,int,int)
+	 * @see stroke(int,int,int,int)
+	 * @see noStroke()
 	 * @param clr    The new stroke color for this drawable, excluding its alpha value.
 	 * @param alpha  The alpha for the new stroke color for this drawable.
 	 * @return This drawable.
@@ -1087,7 +1136,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * The parameters `r`, `g` and `b` can be any number from 0 to 255.
 	 * 
 	 * @chainable
-	 * @see stroke(int), stroke(int,int), stroke(int,int,int,int), noStroke()
+	 * @see stroke(int)
+	 * @see stroke(int,int)
+	 * @see stroke(int,int,int,int)
+	 * @see noStroke()
 	 * @param r    The red component for the new stroke color for this drawable
 	 * @param g    The green component for the new stroke color for this drawable
 	 * @param b    The blue component for the new stroke color for this drawable
@@ -1104,7 +1156,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * The parameters `r`, `g` `b` and `a` can be any number from 0 to 255.
 	 * 
 	 * @chainable
-	 * @see stroke(int), stroke(int,int), stroke(int,int,int), noStroke()
+	 * @see stroke(int)
+	 * @see stroke(int,int)
+	 * @see stroke(int,int,int)
+	 * @see noStroke()
 	 * @param r    The red component for the new stroke color for this drawable
 	 * @param g    The green component for the new stroke color for this drawable
 	 * @param b    The blue component for the new stroke color for this drawable
@@ -1133,7 +1188,10 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * is equalt to `0x00FFFFFF` or fully transparent white.
 	 * 
 	 * @chainable
-	 * @see stroke(int), stroke(int,int), stroke(int,int,int), stroke(int,int,int,int)
+	 * @see stroke(int)
+	 * @see stroke(int,int)
+	 * @see stroke(int,int,int)
+	 * @see stroke(int,int,int,int)
 	 * @return This drawable.
 	 */
 	public HDrawable noStroke() {

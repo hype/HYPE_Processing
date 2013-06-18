@@ -114,7 +114,7 @@ $(document).ready(function(){initNavTree('classhype_1_1core_1_1drawable_1_1_h_dr
 </div><!--header-->
 <div class="contents">
 
-<p>The superclass of all HDrawables.  
+<p>The superclass of all drawables.  
  <a href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for hype.core.drawable.HDrawable:</div>
@@ -141,16 +141,16 @@ Inheritance diagram for hype.core.drawable.HDrawable:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable_1_1_h_drawable_iterator.html">HDrawableIterator</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An HIterator used for iterating through <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all HDrawables.">HDrawable</a>'s children.  <a href="classhype_1_1core_1_1drawable_1_1_h_drawable_1_1_h_drawable_iterator.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An HIterator used for iterating through <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all drawables.">HDrawable</a>'s children.  <a href="classhype_1_1core_1_1drawable_1_1_h_drawable_1_1_h_drawable_iterator.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad92f7d4141143ac12489529b431a72e2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad92f7d4141143ac12489529b431a72e2">HDrawable</a> ()</td></tr>
-<tr class="memdesc:ad92f7d4141143ac12489529b431a72e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default constructor for <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all HDrawables.">HDrawable</a>.  <a href="#ad92f7d4141143ac12489529b431a72e2">More...</a><br/></td></tr>
+<tr class="memdesc:ad92f7d4141143ac12489529b431a72e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default constructor for <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all drawables.">HDrawable</a>.  <a href="#ad92f7d4141143ac12489529b431a72e2">More...</a><br/></td></tr>
 <tr class="separator:ad92f7d4141143ac12489529b431a72e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a24d647e0e8b14177218807e84ecde5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5a24d647e0e8b14177218807e84ecde5">copyPropertiesFrom</a> (<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html">HDrawable</a> other)</td></tr>
-<tr class="memdesc:a5a24d647e0e8b14177218807e84ecde5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the values of <code>other</code>'s basic <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all HDrawables.">HDrawable</a> fields.  <a href="#a5a24d647e0e8b14177218807e84ecde5">More...</a><br/></td></tr>
+<tr class="memdesc:a5a24d647e0e8b14177218807e84ecde5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the values of <code>other</code>'s basic <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all drawables.">HDrawable</a> fields.  <a href="#a5a24d647e0e8b14177218807e84ecde5">More...</a><br/></td></tr>
 <tr class="separator:a5a24d647e0e8b14177218807e84ecde5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaee2df6588cdeebe4399e3e56af76410"><td class="memItemLeft" align="right" valign="top">abstract <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html">HDrawable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aaee2df6588cdeebe4399e3e56af76410">createCopy</a> ()</td></tr>
 <tr class="memdesc:aaee2df6588cdeebe4399e3e56af76410"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a copy of this drawable.  <a href="#aaee2df6588cdeebe4399e3e56af76410">More...</a><br/></td></tr>
@@ -590,62 +590,80 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>onStyleChange</b> ()<
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ad612d5e1d96467275eeb8163b9da4b8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html">HDrawable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad612d5e1d96467275eeb8163b9da4b8f">_parent</a></td></tr>
-<tr class="memdesc:ad612d5e1d96467275eeb8163b9da4b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The parent of this drawable.  <a href="#ad612d5e1d96467275eeb8163b9da4b8f">More...</a><br/></td></tr>
+<tr class="memitem:ad612d5e1d96467275eeb8163b9da4b8f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad612d5e1d96467275eeb8163b9da4b8f"></a>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html">HDrawable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad612d5e1d96467275eeb8163b9da4b8f">_parent</a></td></tr>
+<tr class="memdesc:ad612d5e1d96467275eeb8163b9da4b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The parent of this drawable. <br/></td></tr>
 <tr class="separator:ad612d5e1d96467275eeb8163b9da4b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae09b30df6ce561c6e7d5dd4ca43ebd41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html">HDrawable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae09b30df6ce561c6e7d5dd4ca43ebd41">_firstChild</a></td></tr>
-<tr class="memdesc:ae09b30df6ce561c6e7d5dd4ca43ebd41"><td class="mdescLeft">&#160;</td><td class="mdescRight">The first child of this drawable.  <a href="#ae09b30df6ce561c6e7d5dd4ca43ebd41">More...</a><br/></td></tr>
+<tr class="memitem:ae09b30df6ce561c6e7d5dd4ca43ebd41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae09b30df6ce561c6e7d5dd4ca43ebd41"></a>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html">HDrawable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae09b30df6ce561c6e7d5dd4ca43ebd41">_firstChild</a></td></tr>
+<tr class="memdesc:ae09b30df6ce561c6e7d5dd4ca43ebd41"><td class="mdescLeft">&#160;</td><td class="mdescRight">The first child of this drawable. <br/></td></tr>
 <tr class="separator:ae09b30df6ce561c6e7d5dd4ca43ebd41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefc226e22c24a1a73e55d8a793e802f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html">HDrawable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aefc226e22c24a1a73e55d8a793e802f9">_lastChild</a></td></tr>
-<tr class="memdesc:aefc226e22c24a1a73e55d8a793e802f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The last child of this drawable.  <a href="#aefc226e22c24a1a73e55d8a793e802f9">More...</a><br/></td></tr>
+<tr class="memitem:aefc226e22c24a1a73e55d8a793e802f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aefc226e22c24a1a73e55d8a793e802f9"></a>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html">HDrawable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aefc226e22c24a1a73e55d8a793e802f9">_lastChild</a></td></tr>
+<tr class="memdesc:aefc226e22c24a1a73e55d8a793e802f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The last child of this drawable. <br/></td></tr>
 <tr class="separator:aefc226e22c24a1a73e55d8a793e802f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a8ae31b67c5adc319cd8108b16171fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhype_1_1core_1_1util_1_1_h_bundle.html">HBundle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a1a8ae31b67c5adc319cd8108b16171fe">_extras</a></td></tr>
-<tr class="memdesc:a1a8ae31b67c5adc319cd8108b16171fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The extras bundle of this drawable.  <a href="#a1a8ae31b67c5adc319cd8108b16171fe">More...</a><br/></td></tr>
+<tr class="memitem:a1a8ae31b67c5adc319cd8108b16171fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a8ae31b67c5adc319cd8108b16171fe"></a>
+<a class="el" href="classhype_1_1core_1_1util_1_1_h_bundle.html">HBundle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a1a8ae31b67c5adc319cd8108b16171fe">_extras</a></td></tr>
+<tr class="memdesc:a1a8ae31b67c5adc319cd8108b16171fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The extras bundle of this drawable. <br/></td></tr>
 <tr class="separator:a1a8ae31b67c5adc319cd8108b16171fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29a7e29632bdd992ca49c5542ba3cc88"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a29a7e29632bdd992ca49c5542ba3cc88">_x</a></td></tr>
-<tr class="memdesc:a29a7e29632bdd992ca49c5542ba3cc88"><td class="mdescLeft">&#160;</td><td class="mdescRight">The x location of this drawable.  <a href="#a29a7e29632bdd992ca49c5542ba3cc88">More...</a><br/></td></tr>
+<tr class="memitem:a29a7e29632bdd992ca49c5542ba3cc88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29a7e29632bdd992ca49c5542ba3cc88"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a29a7e29632bdd992ca49c5542ba3cc88">_x</a></td></tr>
+<tr class="memdesc:a29a7e29632bdd992ca49c5542ba3cc88"><td class="mdescLeft">&#160;</td><td class="mdescRight">The x location of this drawable. <br/></td></tr>
 <tr class="separator:a29a7e29632bdd992ca49c5542ba3cc88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a449159180f9b00f522d9f70226c31302"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a449159180f9b00f522d9f70226c31302">_y</a></td></tr>
-<tr class="memdesc:a449159180f9b00f522d9f70226c31302"><td class="mdescLeft">&#160;</td><td class="mdescRight">The y location of this drawable.  <a href="#a449159180f9b00f522d9f70226c31302">More...</a><br/></td></tr>
+<tr class="memitem:a449159180f9b00f522d9f70226c31302"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a449159180f9b00f522d9f70226c31302"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a449159180f9b00f522d9f70226c31302">_y</a></td></tr>
+<tr class="memdesc:a449159180f9b00f522d9f70226c31302"><td class="mdescLeft">&#160;</td><td class="mdescRight">The y location of this drawable. <br/></td></tr>
 <tr class="separator:a449159180f9b00f522d9f70226c31302"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad66aec98221c2988eda1ffb4310ca72a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad66aec98221c2988eda1ffb4310ca72a">_z</a></td></tr>
-<tr class="memdesc:ad66aec98221c2988eda1ffb4310ca72a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The z location of this drawable.  <a href="#ad66aec98221c2988eda1ffb4310ca72a">More...</a><br/></td></tr>
+<tr class="memitem:ad66aec98221c2988eda1ffb4310ca72a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad66aec98221c2988eda1ffb4310ca72a"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad66aec98221c2988eda1ffb4310ca72a">_z</a></td></tr>
+<tr class="memdesc:ad66aec98221c2988eda1ffb4310ca72a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The z location of this drawable. <br/></td></tr>
 <tr class="separator:ad66aec98221c2988eda1ffb4310ca72a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57c2089cf2b6d7621844cbc9814c3e51"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a57c2089cf2b6d7621844cbc9814c3e51">_anchorU</a></td></tr>
-<tr class="memdesc:a57c2089cf2b6d7621844cbc9814c3e51"><td class="mdescLeft">&#160;</td><td class="mdescRight">The x anchor percentage of this drawable.  <a href="#a57c2089cf2b6d7621844cbc9814c3e51">More...</a><br/></td></tr>
+<tr class="memitem:a57c2089cf2b6d7621844cbc9814c3e51"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57c2089cf2b6d7621844cbc9814c3e51"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a57c2089cf2b6d7621844cbc9814c3e51">_anchorU</a></td></tr>
+<tr class="memdesc:a57c2089cf2b6d7621844cbc9814c3e51"><td class="mdescLeft">&#160;</td><td class="mdescRight">The x anchor percentage of this drawable. <br/></td></tr>
 <tr class="separator:a57c2089cf2b6d7621844cbc9814c3e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb7e6b74ab55ac95fd49d86a4fce5d48"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aeb7e6b74ab55ac95fd49d86a4fce5d48">_anchorV</a></td></tr>
-<tr class="memdesc:aeb7e6b74ab55ac95fd49d86a4fce5d48"><td class="mdescLeft">&#160;</td><td class="mdescRight">The y anchor percentage of this drawable.  <a href="#aeb7e6b74ab55ac95fd49d86a4fce5d48">More...</a><br/></td></tr>
+<tr class="memitem:aeb7e6b74ab55ac95fd49d86a4fce5d48"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb7e6b74ab55ac95fd49d86a4fce5d48"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aeb7e6b74ab55ac95fd49d86a4fce5d48">_anchorV</a></td></tr>
+<tr class="memdesc:aeb7e6b74ab55ac95fd49d86a4fce5d48"><td class="mdescLeft">&#160;</td><td class="mdescRight">The y anchor percentage of this drawable. <br/></td></tr>
 <tr class="separator:aeb7e6b74ab55ac95fd49d86a4fce5d48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a040597d04986d5378b477453d987e4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a1a040597d04986d5378b477453d987e4">_width</a></td></tr>
-<tr class="memdesc:a1a040597d04986d5378b477453d987e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width of this drawable.  <a href="#a1a040597d04986d5378b477453d987e4">More...</a><br/></td></tr>
+<tr class="memitem:a1a040597d04986d5378b477453d987e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a040597d04986d5378b477453d987e4"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a1a040597d04986d5378b477453d987e4">_width</a></td></tr>
+<tr class="memdesc:a1a040597d04986d5378b477453d987e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width of this drawable. <br/></td></tr>
 <tr class="separator:a1a040597d04986d5378b477453d987e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4171079b3f6831d4f982ad2ae6363ce"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ac4171079b3f6831d4f982ad2ae6363ce">_height</a></td></tr>
-<tr class="memdesc:ac4171079b3f6831d4f982ad2ae6363ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">The height of this drawable.  <a href="#ac4171079b3f6831d4f982ad2ae6363ce">More...</a><br/></td></tr>
+<tr class="memitem:ac4171079b3f6831d4f982ad2ae6363ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4171079b3f6831d4f982ad2ae6363ce"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ac4171079b3f6831d4f982ad2ae6363ce">_height</a></td></tr>
+<tr class="memdesc:ac4171079b3f6831d4f982ad2ae6363ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">The height of this drawable. <br/></td></tr>
 <tr class="separator:ac4171079b3f6831d4f982ad2ae6363ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5489140987809e738b74139cfa0e7583"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5489140987809e738b74139cfa0e7583">_rotationRad</a></td></tr>
-<tr class="memdesc:a5489140987809e738b74139cfa0e7583"><td class="mdescLeft">&#160;</td><td class="mdescRight">The rotation of this drawable, in radians.  <a href="#a5489140987809e738b74139cfa0e7583">More...</a><br/></td></tr>
+<tr class="memitem:a5489140987809e738b74139cfa0e7583"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5489140987809e738b74139cfa0e7583"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5489140987809e738b74139cfa0e7583">_rotationRad</a></td></tr>
+<tr class="memdesc:a5489140987809e738b74139cfa0e7583"><td class="mdescLeft">&#160;</td><td class="mdescRight">The rotation of this drawable, in radians. <br/></td></tr>
 <tr class="separator:a5489140987809e738b74139cfa0e7583"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae27cfc0ffd6a6c5e8d44a1b7f017f157"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae27cfc0ffd6a6c5e8d44a1b7f017f157">_strokeWeight</a></td></tr>
-<tr class="memdesc:ae27cfc0ffd6a6c5e8d44a1b7f017f157"><td class="mdescLeft">&#160;</td><td class="mdescRight">The stroke width of this drawable, in pixels.  <a href="#ae27cfc0ffd6a6c5e8d44a1b7f017f157">More...</a><br/></td></tr>
+<tr class="memitem:ae27cfc0ffd6a6c5e8d44a1b7f017f157"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae27cfc0ffd6a6c5e8d44a1b7f017f157"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae27cfc0ffd6a6c5e8d44a1b7f017f157">_strokeWeight</a></td></tr>
+<tr class="memdesc:ae27cfc0ffd6a6c5e8d44a1b7f017f157"><td class="mdescLeft">&#160;</td><td class="mdescRight">The stroke width of this drawable, in pixels. <br/></td></tr>
 <tr class="separator:ae27cfc0ffd6a6c5e8d44a1b7f017f157"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7aafa34986a8a27053d5298608b53a94"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a7aafa34986a8a27053d5298608b53a94">_alphaPc</a></td></tr>
-<tr class="memdesc:a7aafa34986a8a27053d5298608b53a94"><td class="mdescLeft">&#160;</td><td class="mdescRight">The alpha of this drawable, in percentage.  <a href="#a7aafa34986a8a27053d5298608b53a94">More...</a><br/></td></tr>
+<tr class="memitem:a7aafa34986a8a27053d5298608b53a94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7aafa34986a8a27053d5298608b53a94"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a7aafa34986a8a27053d5298608b53a94">_alphaPc</a></td></tr>
+<tr class="memdesc:a7aafa34986a8a27053d5298608b53a94"><td class="mdescLeft">&#160;</td><td class="mdescRight">The alpha of this drawable, in percentage. <br/></td></tr>
 <tr class="separator:a7aafa34986a8a27053d5298608b53a94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d2ec798d880968b25a5c81a8dd31357"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3d2ec798d880968b25a5c81a8dd31357">_numChildren</a></td></tr>
 <tr class="memdesc:a3d2ec798d880968b25a5c81a8dd31357"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width-to-height ratio used for proportional resizing.  <a href="#a3d2ec798d880968b25a5c81a8dd31357">More...</a><br/></td></tr>
 <tr class="separator:a3d2ec798d880968b25a5c81a8dd31357"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f07bd6382bd895ca51c51a2285a31dc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5f07bd6382bd895ca51c51a2285a31dc">_fill</a></td></tr>
-<tr class="memdesc:a5f07bd6382bd895ca51c51a2285a31dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The fill color of this drawable.  <a href="#a5f07bd6382bd895ca51c51a2285a31dc">More...</a><br/></td></tr>
+<tr class="memitem:a5f07bd6382bd895ca51c51a2285a31dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f07bd6382bd895ca51c51a2285a31dc"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5f07bd6382bd895ca51c51a2285a31dc">_fill</a></td></tr>
+<tr class="memdesc:a5f07bd6382bd895ca51c51a2285a31dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The fill color of this drawable. <br/></td></tr>
 <tr class="separator:a5f07bd6382bd895ca51c51a2285a31dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa773c8e474774a4f4b6437f77abdc85b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa773c8e474774a4f4b6437f77abdc85b">_stroke</a></td></tr>
-<tr class="memdesc:aa773c8e474774a4f4b6437f77abdc85b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The stroke color of this drawable.  <a href="#aa773c8e474774a4f4b6437f77abdc85b">More...</a><br/></td></tr>
+<tr class="memitem:aa773c8e474774a4f4b6437f77abdc85b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa773c8e474774a4f4b6437f77abdc85b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa773c8e474774a4f4b6437f77abdc85b">_stroke</a></td></tr>
+<tr class="memdesc:aa773c8e474774a4f4b6437f77abdc85b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The stroke color of this drawable. <br/></td></tr>
 <tr class="separator:aa773c8e474774a4f4b6437f77abdc85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35be29f7a889fada5549c5dfcaa98d7d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a35be29f7a889fada5549c5dfcaa98d7d">_strokeCap</a></td></tr>
-<tr class="memdesc:a35be29f7a889fada5549c5dfcaa98d7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The stroke cap of this drawable.  <a href="#a35be29f7a889fada5549c5dfcaa98d7d">More...</a><br/></td></tr>
+<tr class="memitem:a35be29f7a889fada5549c5dfcaa98d7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35be29f7a889fada5549c5dfcaa98d7d"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a35be29f7a889fada5549c5dfcaa98d7d">_strokeCap</a></td></tr>
+<tr class="memdesc:a35be29f7a889fada5549c5dfcaa98d7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The stroke cap of this drawable. <br/></td></tr>
 <tr class="separator:a35be29f7a889fada5549c5dfcaa98d7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b021f60cc0552c6d1c5d4e298419dec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3b021f60cc0552c6d1c5d4e298419dec">_strokeJoin</a></td></tr>
-<tr class="memdesc:a3b021f60cc0552c6d1c5d4e298419dec"><td class="mdescLeft">&#160;</td><td class="mdescRight">The stroke join of this drawable.  <a href="#a3b021f60cc0552c6d1c5d4e298419dec">More...</a><br/></td></tr>
+<tr class="memitem:a3b021f60cc0552c6d1c5d4e298419dec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b021f60cc0552c6d1c5d4e298419dec"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3b021f60cc0552c6d1c5d4e298419dec">_strokeJoin</a></td></tr>
+<tr class="memdesc:a3b021f60cc0552c6d1c5d4e298419dec"><td class="mdescLeft">&#160;</td><td class="mdescRight">The stroke join of this drawable. <br/></td></tr>
 <tr class="separator:a3b021f60cc0552c6d1c5d4e298419dec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43f24a50f5146c4f474e94551f8ad8f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43f24a50f5146c4f474e94551f8ad8f1"></a>
 byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a43f24a50f5146c4f474e94551f8ad8f1">_flags</a></td></tr>
@@ -653,8 +671,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a43f24a50f5146c4f474e94551f8ad8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The superclass of all HDrawables. </p>
-<p>TODO</p>
+<div class="textblock"><p>The superclass of all drawables. </p>
+<p>Drawables represent objects that are displayable to the stage. TODO</p>
+<p>(The stage itself is also technically a drawable, but its usage is different from the other classes.)</p>
 <dl class="section author"><dt>Author</dt><dd>james </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ad92f7d4141143ac12489529b431a72e2"></a>
@@ -670,7 +689,7 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
       </table>
 </div><div class="memdoc">
 
-<p>The default constructor for <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all HDrawables.">HDrawable</a>. </p>
+<p>The default constructor for <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all drawables.">HDrawable</a>. </p>
 <p>It sets several fields into their proper default values:</p>
 <ul>
 <li>alpha percentage = 1 (100%)</li>
@@ -730,7 +749,7 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the transparency for this drawable. </p>
 <p>The argument for this method can be any number from 0 to 255. Otherwise, if the argument is less than 0, the alpha will be 0; and if the argument is greater than 255, the alpha will be 255.</p>
 <p>Note that transparency <em>is independent from fill and stroke color</em>, even if the fill and stroke can also have alpha values. And unlike fill and stroke, this transparency can be passed down to this drawable's children.</p>
-<p>Also note that <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all HDrawables.">HDrawable</a> actually stores <code>alpha</code> as a percentage ranging from 0 to 1 to keep the <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae06fef8620c103f6656b9c57a1f0dacd" title="Draws this drawable.">draw()</a> and <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a700c4d4a347c13048ccfb92ea4f6f50b" title="Prepares the environment for drawing this drawable and its children.">paintAll()</a> methods a bit faster.</p>
+<p>Also note that <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all drawables.">HDrawable</a> actually stores <code>alpha</code> as a percentage ranging from 0 to 1 to keep the <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae06fef8620c103f6656b9c57a1f0dacd" title="Draws this drawable.">draw()</a> and <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a700c4d4a347c13048ccfb92ea4f6f50b" title="Prepares the environment for drawing this drawable and its children.">paintAll()</a> methods a bit faster.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad4f0e4c9f93d810c66b39f1715625719" title="Sets the transparency for this drawable, as percentage.">alphaPc(float)</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -890,10 +909,14 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Sets the anchor of this drawable by pixels. </p>
-<p>Note that <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all HDrawables.">HDrawable</a> stores its anchor coordinates as a percentage of its width and height. So if the current size of this drawable is <code>(100,100)</code>, setting the anchor to <code>(75,75)</code> will be stored as <code>(0.75,0.75)</code>.</p>
+<p>Note that <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all drawables.">HDrawable</a> stores its anchor coordinates as a percentage of its width and height. So if the current size of this drawable is <code>(100,100)</code>, setting the anchor to <code>(75,75)</code> will be stored as <code>(0.75,0.75)</code>.</p>
 <p>In case that the current width or height is 0, then the width or height is assumed to be 100 when computing the anchor in this method.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#afedf363205416ae3a7fe1ff9b8e38394" title="Sets the anchor of this drawable by pixels via a PVector.">anchor(PVector)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa0e5156663b032cb4d4b5fe446d4a39d" title="Sets the x anchor of this drawable by pixels.">anchorX(float)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2e8e72269b9adbd51937bbc8a9dfb3ff" title="Sets the y anchor of this drawable by pixels.">anchorY(float)</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#afedf363205416ae3a7fe1ff9b8e38394" title="Sets the anchor of this drawable by pixels via a PVector.">anchor(PVector)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa0e5156663b032cb4d4b5fe446d4a39d" title="Sets the x anchor of this drawable by pixels.">anchorX(float)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2e8e72269b9adbd51937bbc8a9dfb3ff" title="Sets the y anchor of this drawable by pixels.">anchorY(float)</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pxX</td><td>The desired x anchor for this drawable, in pixels. </td></tr>
@@ -948,7 +971,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Returns the anchor of this drawable in pixels. </p>
 <p>The result of this method is the product of its width &amp; height and its x &amp; y anchor percentages respectively. So if this drawable is anchored at the center, this method will return <code>(50,50)</code> when the size is <code>(100,100)</code>, <code>(30,30)</code> when the size is <code>(60,60)</code> and <code>(0,0)</code> when size is <code>(0,0)</code>.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a9bb0273629e7f72853ef8f304bc7f231" title="Returns the x anchor of this drawable in pixels.">anchorX()</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3fc39833727f9bd6f1c886619fe977f2" title="Returns the y anchor of this drawable in pixels.">anchorY()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a9bb0273629e7f72853ef8f304bc7f231" title="Returns the x anchor of this drawable in pixels.">anchorX()</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3fc39833727f9bd6f1c886619fe977f2" title="Returns the y anchor of this drawable in pixels.">anchorY()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>A new PVector containing the anchor of this drawable, in pixels. </dd></dl>
 
 </div>
@@ -1016,7 +1041,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Sets the <code>u</code> coordinate for this drawable's anchor. </p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a1c0b97d90da4d7ee5c396e23f98f6017" title="Sets the anchor of this drawable in UV coordinates.">anchorUV(float,float)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a8044b153765d032c5441a7842ada1afc" title="Sets the u coordinate for this drawable&#39;s anchor.">anchorV(float)</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a1c0b97d90da4d7ee5c396e23f98f6017" title="Sets the anchor of this drawable in UV coordinates.">anchorUV(float,float)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a8044b153765d032c5441a7842ada1afc" title="Sets the u coordinate for this drawable&#39;s anchor.">anchorV(float)</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">u</td><td>The desired <code>u</code> coordinate for this drawable's anchor. </td></tr>
@@ -1072,7 +1099,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Sets the anchor of this drawable in UV coordinates. </p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a612e31b0edd321c75dc48506481cb700" title="Sets the u coordinate for this drawable&#39;s anchor.">anchorU(float)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a8044b153765d032c5441a7842ada1afc" title="Sets the u coordinate for this drawable&#39;s anchor.">anchorV(float)</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a612e31b0edd321c75dc48506481cb700" title="Sets the u coordinate for this drawable&#39;s anchor.">anchorU(float)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a8044b153765d032c5441a7842ada1afc" title="Sets the u coordinate for this drawable&#39;s anchor.">anchorV(float)</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">u</td><td>The desired <code>u</code> coordinate for this drawable's anchor. </td></tr>
@@ -1098,7 +1127,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Returns the UV coordinates of this drawable's anchor. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#add9181ba6883afc4a2a4a02a09c7b03f" title="Returns the u coordinate of this drawable&#39;s anchor.">anchorU()</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a55098c318cbf8952341267c84451e513" title="Returns the v coordinate of this draable&#39;s anchor.">anchorV()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#add9181ba6883afc4a2a4a02a09c7b03f" title="Returns the u coordinate of this drawable&#39;s anchor.">anchorU()</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a55098c318cbf8952341267c84451e513" title="Returns the v coordinate of this draable&#39;s anchor.">anchorV()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>A new PVector containing this drawable's anchor as percentage </dd></dl>
 
 </div>
@@ -1119,7 +1150,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Sets the <code>u</code> coordinate for this drawable's anchor. </p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab19047f4bb1181ccd155741ebe6e501f" title="Returns the UV coordinates of this drawable&#39;s anchor.">anchorUV()</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#add9181ba6883afc4a2a4a02a09c7b03f" title="Returns the u coordinate of this drawable&#39;s anchor.">anchorU()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab19047f4bb1181ccd155741ebe6e501f" title="Returns the UV coordinates of this drawable&#39;s anchor.">anchorUV()</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#add9181ba6883afc4a2a4a02a09c7b03f" title="Returns the u coordinate of this drawable&#39;s anchor.">anchorU()</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>The desired <code>v</code> coordinate for this drawable's anchor. </td></tr>
@@ -1144,7 +1177,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Returns the <code>v</code> coordinate of this draable's anchor. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab19047f4bb1181ccd155741ebe6e501f" title="Returns the UV coordinates of this drawable&#39;s anchor.">anchorUV()</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#add9181ba6883afc4a2a4a02a09c7b03f" title="Returns the u coordinate of this drawable&#39;s anchor.">anchorU()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab19047f4bb1181ccd155741ebe6e501f" title="Returns the UV coordinates of this drawable&#39;s anchor.">anchorUV()</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#add9181ba6883afc4a2a4a02a09c7b03f" title="Returns the u coordinate of this drawable&#39;s anchor.">anchorU()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The y anchor of this drawable. </dd></dl>
 
 </div>
@@ -1164,9 +1199,13 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Sets the x anchor of this drawable by pixels. </p>
-<p>Note that <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all HDrawables.">HDrawable</a> stores its x anchor coordinates as a percentage of its width. If the width of this drawable is 0, it is assumed as 100 when computing the x anchor in this method.</p>
+<p>Note that <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all drawables.">HDrawable</a> stores its x anchor coordinates as a percentage of its width. If the width of this drawable is 0, it is assumed as 100 when computing the x anchor in this method.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4b76d63f6e548518b3d5fe8a5b145dd9" title="Sets the anchor of this drawable by pixels.">anchor(float,float)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#afedf363205416ae3a7fe1ff9b8e38394" title="Sets the anchor of this drawable by pixels via a PVector.">anchor(PVector)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2e8e72269b9adbd51937bbc8a9dfb3ff" title="Sets the y anchor of this drawable by pixels.">anchorY(float)</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4b76d63f6e548518b3d5fe8a5b145dd9" title="Sets the anchor of this drawable by pixels.">anchor(float,float)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#afedf363205416ae3a7fe1ff9b8e38394" title="Sets the anchor of this drawable by pixels via a PVector.">anchor(PVector)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2e8e72269b9adbd51937bbc8a9dfb3ff" title="Sets the y anchor of this drawable by pixels.">anchorY(float)</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pxX</td><td>The desired x anchor for this drawable, in pixels. </td></tr>
@@ -1192,7 +1231,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Returns the x anchor of this drawable in pixels. </p>
 <p>The result of this method is the product of its width and x anchor percentage.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#af89cf8769d4086618f8d07f515e200b6" title="Returns the anchor of this drawable in pixels.">anchor()</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3fc39833727f9bd6f1c886619fe977f2" title="Returns the y anchor of this drawable in pixels.">anchorY()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#af89cf8769d4086618f8d07f515e200b6" title="Returns the anchor of this drawable in pixels.">anchor()</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3fc39833727f9bd6f1c886619fe977f2" title="Returns the y anchor of this drawable in pixels.">anchorY()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The x anchor of this drawable, in pixels. </dd></dl>
 
 </div>
@@ -1212,9 +1253,13 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Sets the y anchor of this drawable by pixels. </p>
-<p>Note that <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all HDrawables.">HDrawable</a> stores its y anchor coordinates as a percentage of its height. If the height of this drawable is 0, it is assumed as 100 when computing the y anchor in this method</p>
+<p>Note that <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all drawables.">HDrawable</a> stores its y anchor coordinates as a percentage of its height. If the height of this drawable is 0, it is assumed as 100 when computing the y anchor in this method</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4b76d63f6e548518b3d5fe8a5b145dd9" title="Sets the anchor of this drawable by pixels.">anchor(float,float)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#afedf363205416ae3a7fe1ff9b8e38394" title="Sets the anchor of this drawable by pixels via a PVector.">anchor(PVector)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa0e5156663b032cb4d4b5fe446d4a39d" title="Sets the x anchor of this drawable by pixels.">anchorX(float)</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4b76d63f6e548518b3d5fe8a5b145dd9" title="Sets the anchor of this drawable by pixels.">anchor(float,float)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#afedf363205416ae3a7fe1ff9b8e38394" title="Sets the anchor of this drawable by pixels via a PVector.">anchor(PVector)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa0e5156663b032cb4d4b5fe446d4a39d" title="Sets the x anchor of this drawable by pixels.">anchorX(float)</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pxY</td><td>The desired y anchor for this drawable, in pixels. </td></tr>
@@ -1240,7 +1285,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Returns the y anchor of this drawable in pixels. </p>
 <p>The result of this method is the product of its height and y anchor percentage.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#af89cf8769d4086618f8d07f515e200b6" title="Returns the anchor of this drawable in pixels.">anchor()</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a9bb0273629e7f72853ef8f304bc7f231" title="Returns the x anchor of this drawable in pixels.">anchorX()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#af89cf8769d4086618f8d07f515e200b6" title="Returns the anchor of this drawable in pixels.">anchor()</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a9bb0273629e7f72853ef8f304bc7f231" title="Returns the x anchor of this drawable in pixels.">anchorX()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The y anchor of this drawable, in pixels. </dd></dl>
 
 </div>
@@ -1386,7 +1433,7 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
       </table>
 </div><div class="memdoc">
 
-<p>Copies the values of <code>other</code>'s basic <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all HDrawables.">HDrawable</a> fields. </p>
+<p>Copies the values of <code>other</code>'s basic <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all drawables.">HDrawable</a> fields. </p>
 <p>This method is primarily used for implementing <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aaee2df6588cdeebe4399e3e56af76410" title="Creates a copy of this drawable.">createCopy()</a>. It copies the following fields from <code>other</code>:</p>
 <ul>
 <li>x &amp; y coordinates</li>
@@ -1565,7 +1612,11 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the fill for this drawable. </p>
 <p>This method takes in a standard Processing color integer, which are commonly represented as <code>0xAARRGGBB</code> or <code>#RRGGBB</code>.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a6ab630962896a064bb7001972c1b9c03" title="Sets the fill for this drawable.">fill(int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a869e813cfe373cd52b3eb79a27a0f6b7" title="Sets the fill for this drawable.">fill(int,int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5b76e82c424bffa2f7d37d8551d44bec" title="Sets the fill for this drawable.">fill(int,int,int,int)</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a6ab630962896a064bb7001972c1b9c03" title="Sets the fill for this drawable.">fill(int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a869e813cfe373cd52b3eb79a27a0f6b7" title="Sets the fill for this drawable.">fill(int,int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5b76e82c424bffa2f7d37d8551d44bec" title="Sets the fill for this drawable.">fill(int,int,int,int)</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">clr</td><td>The new fill for this drawable. </td></tr>
@@ -1604,7 +1655,13 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>The <code>clr</code> parameter is a standard Processing color integer and alpha is any number from 0 to 255.</p>
 <p>Note that <code>alpha</code> would override the existing alpha value of <code>clr</code>. So if <code>clr</code> is <code>0x80FFFFFF</code> and <code>alpha</code> is <code>0x40</code>, the fill will become <code>0x40FFFFFF</code>.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aeaea8f98b9ff946de11810a6bf43b052" title="Sets the fill for this drawable.">fill(int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a869e813cfe373cd52b3eb79a27a0f6b7" title="Sets the fill for this drawable.">fill(int,int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5b76e82c424bffa2f7d37d8551d44bec" title="Sets the fill for this drawable.">fill(int,int,int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad38c45d894aa73c847c64779cdb5d0c2" title="Removes the fill of this drawable.">noFill()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aeaea8f98b9ff946de11810a6bf43b052" title="Sets the fill for this drawable.">fill(int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a869e813cfe373cd52b3eb79a27a0f6b7" title="Sets the fill for this drawable.">fill(int,int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5b76e82c424bffa2f7d37d8551d44bec" title="Sets the fill for this drawable.">fill(int,int,int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad38c45d894aa73c847c64779cdb5d0c2" title="Removes the fill of this drawable.">noFill()</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">clr</td><td>The new fill for this drawable, excluding its alpha value. </td></tr>
@@ -1649,7 +1706,13 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the fill for this drawable. </p>
 <p>The parameters <code>r</code>, <code>g</code> and <code>b</code> can be any number from 0 to 255.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aeaea8f98b9ff946de11810a6bf43b052" title="Sets the fill for this drawable.">fill(int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a6ab630962896a064bb7001972c1b9c03" title="Sets the fill for this drawable.">fill(int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5b76e82c424bffa2f7d37d8551d44bec" title="Sets the fill for this drawable.">fill(int,int,int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad38c45d894aa73c847c64779cdb5d0c2" title="Removes the fill of this drawable.">noFill()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aeaea8f98b9ff946de11810a6bf43b052" title="Sets the fill for this drawable.">fill(int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a6ab630962896a064bb7001972c1b9c03" title="Sets the fill for this drawable.">fill(int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5b76e82c424bffa2f7d37d8551d44bec" title="Sets the fill for this drawable.">fill(int,int,int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad38c45d894aa73c847c64779cdb5d0c2" title="Removes the fill of this drawable.">noFill()</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">r</td><td>The red component for the new fill for this drawable </td></tr>
@@ -1701,7 +1764,13 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the fill for this drawable. </p>
 <p>The parameters <code>r</code>, <code>g</code>, <code>b</code> and <code>a</code> can be any number from 0 to 255.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aeaea8f98b9ff946de11810a6bf43b052" title="Sets the fill for this drawable.">fill(int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a6ab630962896a064bb7001972c1b9c03" title="Sets the fill for this drawable.">fill(int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a869e813cfe373cd52b3eb79a27a0f6b7" title="Sets the fill for this drawable.">fill(int,int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad38c45d894aa73c847c64779cdb5d0c2" title="Removes the fill of this drawable.">noFill()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aeaea8f98b9ff946de11810a6bf43b052" title="Sets the fill for this drawable.">fill(int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a6ab630962896a064bb7001972c1b9c03" title="Sets the fill for this drawable.">fill(int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a869e813cfe373cd52b3eb79a27a0f6b7" title="Sets the fill for this drawable.">fill(int,int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad38c45d894aa73c847c64779cdb5d0c2" title="Removes the fill of this drawable.">noFill()</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">r</td><td>The red component for the new fill for this drawable </td></tr>
@@ -1770,7 +1839,11 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the height of this drawable. </p>
 <p>If this drawable is set to resize proportionally, the width will also change accordingly.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae046413f91234f66dde997ef02908e24" title="Sets the size of this drawable.">size(float,float)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2c8b70fd46b03299178eb14ca57baaa4" title="Sets the size of this drawable.">size(float)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab77fd9fd384525f3d882a66cb7f006a5" title="Sets the width of this drawable.">width(float)</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae046413f91234f66dde997ef02908e24" title="Sets the size of this drawable.">size(float,float)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2c8b70fd46b03299178eb14ca57baaa4" title="Sets the size of this drawable.">size(float)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab77fd9fd384525f3d882a66cb7f006a5" title="Sets the width of this drawable.">width(float)</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">h</td><td>The new height for this drawable </td></tr>
@@ -1795,7 +1868,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Returns the height of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a91deb3e8a0b504c602670764733a744f" title="Returns the size of this drawable.">size()</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3c12eb4fa138e5a198ea1634cd2932ca" title="Returns the width of this drawable.">width()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a91deb3e8a0b504c602670764733a744f" title="Returns the size of this drawable.">size()</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3c12eb4fa138e5a198ea1634cd2932ca" title="Returns the width of this drawable.">width()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>This drawable's height </dd></dl>
 
 </div>
@@ -1835,7 +1910,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Creates a new iterator for this drawable to iterate through its children. </p>
 <p>Note that while HIterator has similar functionalities with java.util.Iterator, the former does <em>not</em> extend the latter. This is due to js mode compatibility issues.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable_1_1_h_drawable_iterator.html" title="An HIterator used for iterating through HDrawable&#39;s children.">HDrawableIterator</a>, HIterator </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable_1_1_h_drawable_iterator.html" title="An HIterator used for iterating through HDrawable&#39;s children.">HDrawableIterator</a> </dd>
+<dd>
+HIterator </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>A new HIterator for this drawable </dd></dl>
 
 </div>
@@ -2128,7 +2205,13 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Removes the fill of this drawable. </p>
 <p>Technically, this method sets the fill to HConstants.CLEAR, which is <code>0x00FFFFFF</code> or fully transparent white.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aeaea8f98b9ff946de11810a6bf43b052" title="Sets the fill for this drawable.">fill(int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a6ab630962896a064bb7001972c1b9c03" title="Sets the fill for this drawable.">fill(int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a869e813cfe373cd52b3eb79a27a0f6b7" title="Sets the fill for this drawable.">fill(int,int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5b76e82c424bffa2f7d37d8551d44bec" title="Sets the fill for this drawable.">fill(int,int,int,int)</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aeaea8f98b9ff946de11810a6bf43b052" title="Sets the fill for this drawable.">fill(int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a6ab630962896a064bb7001972c1b9c03" title="Sets the fill for this drawable.">fill(int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a869e813cfe373cd52b3eb79a27a0f6b7" title="Sets the fill for this drawable.">fill(int,int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a5b76e82c424bffa2f7d37d8551d44bec" title="Sets the fill for this drawable.">fill(int,int,int,int)</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>This drawable. </dd></dl>
 
 </div>
@@ -2149,7 +2232,13 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Removes the stroke color of this drawable. </p>
 <p>Technically, this method sets the stroke color to HConstants.CLEAR, which is equalt to <code>0x00FFFFFF</code> or fully transparent white.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ac83d29512fdfb12149aad03b9974edc0" title="Sets the stroke color for this drawable.">stroke(int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab454a46a31c17a7d3642e2a19d372c4a" title="Sets the stroke color for this drawable.">stroke(int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa5fea77777a386870ab92da94f502892" title="Sets the stroke color for this drawable.">stroke(int,int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4d8f5cf55e296491fee31d41ee191896" title="Sets the stroke color for this drawable.">stroke(int,int,int,int)</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ac83d29512fdfb12149aad03b9974edc0" title="Sets the stroke color for this drawable.">stroke(int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab454a46a31c17a7d3642e2a19d372c4a" title="Sets the stroke color for this drawable.">stroke(int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa5fea77777a386870ab92da94f502892" title="Sets the stroke color for this drawable.">stroke(int,int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4d8f5cf55e296491fee31d41ee191896" title="Sets the stroke color for this drawable.">stroke(int,int,int,int)</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>This drawable. </dd></dl>
 
 </div>
@@ -2376,7 +2465,7 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Called after the size of this drawable is changed. </p>
 <p>By default, this method handles proportional resizing, child transformations.</p>
-<p>If you subclass <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all HDrawables.">HDrawable</a> and want to execute code whenever your custom class changes size, override this method. But remember to call <code>super.onResize()</code> at the start of your override when you want to keep proportional resizing and child transforms.</p>
+<p>If you subclass <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html" title="The superclass of all drawables.">HDrawable</a> and want to execute code whenever your custom class changes size, override this method. But remember to call <code>super.onResize()</code> at the start of your override when you want to keep proportional resizing and child transforms.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">oldW</td><td>The old width before being resize. </td></tr>
@@ -2756,7 +2845,11 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the size of this drawable. </p>
 <p>If this drawable is set to resize proportionally, the new width will be adjusted according to the new height by default. (The exception to this is if the new height is the same as the old height, then the new height will be adjusted according to the new width instead.)</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2c8b70fd46b03299178eb14ca57baaa4" title="Sets the size of this drawable.">size(float)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab77fd9fd384525f3d882a66cb7f006a5" title="Sets the width of this drawable.">width(float)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad361b8eaa72b4d79b0b62de0e2a2776d" title="Sets the height of this drawable.">height(float)</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2c8b70fd46b03299178eb14ca57baaa4" title="Sets the size of this drawable.">size(float)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab77fd9fd384525f3d882a66cb7f006a5" title="Sets the width of this drawable.">width(float)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad361b8eaa72b4d79b0b62de0e2a2776d" title="Sets the height of this drawable.">height(float)</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">w</td><td>The new width for this drawable. </td></tr>
@@ -2785,7 +2878,11 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the size of this drawable. </p>
 <p>This method delegates <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae046413f91234f66dde997ef02908e24" title="Sets the size of this drawable.">size(float,float)</a>.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae046413f91234f66dde997ef02908e24" title="Sets the size of this drawable.">size(float,float)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab77fd9fd384525f3d882a66cb7f006a5" title="Sets the width of this drawable.">width(float)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad361b8eaa72b4d79b0b62de0e2a2776d" title="Sets the height of this drawable.">height(float)</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae046413f91234f66dde997ef02908e24" title="Sets the size of this drawable.">size(float,float)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab77fd9fd384525f3d882a66cb7f006a5" title="Sets the width of this drawable.">width(float)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad361b8eaa72b4d79b0b62de0e2a2776d" title="Sets the height of this drawable.">height(float)</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The new width and height for this drawable. </td></tr>
@@ -2810,7 +2907,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Returns the size of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3c12eb4fa138e5a198ea1634cd2932ca" title="Returns the width of this drawable.">width()</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a60c5ca2c8e2fc75fda7221cf4f74010b" title="Returns the height of this drawable.">height()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3c12eb4fa138e5a198ea1634cd2932ca" title="Returns the width of this drawable.">width()</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a60c5ca2c8e2fc75fda7221cf4f74010b" title="Returns the height of this drawable.">height()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>A new PVector containing the width and height of this drawable. </dd></dl>
 
 </div>
@@ -2859,7 +2958,13 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the stroke color for this drawable. </p>
 <p>This method takes in a standard Processing color integer, which are commonly represented as <code>0xAARRGGBB</code> or <code>#RRGGBB</code>.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab454a46a31c17a7d3642e2a19d372c4a" title="Sets the stroke color for this drawable.">stroke(int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa5fea77777a386870ab92da94f502892" title="Sets the stroke color for this drawable.">stroke(int,int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4d8f5cf55e296491fee31d41ee191896" title="Sets the stroke color for this drawable.">stroke(int,int,int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a356b4f191fa67f5d1a8071bf21cb9f4c" title="Removes the stroke color of this drawable.">noStroke()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab454a46a31c17a7d3642e2a19d372c4a" title="Sets the stroke color for this drawable.">stroke(int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa5fea77777a386870ab92da94f502892" title="Sets the stroke color for this drawable.">stroke(int,int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4d8f5cf55e296491fee31d41ee191896" title="Sets the stroke color for this drawable.">stroke(int,int,int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a356b4f191fa67f5d1a8071bf21cb9f4c" title="Removes the stroke color of this drawable.">noStroke()</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">clr</td><td>The new stroke color for this drawable. </td></tr>
@@ -2898,7 +3003,13 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>The <code>clr</code> parameter is a standard Processing color integer and alpha is any number from 0 to 255.</p>
 <p>Note that <code>alpha</code> would override the existing alpha value of <code>clr</code>. So if <code>clr</code> is <code>0x80FFFFFF</code> and <code>alpha</code> is <code>0x40</code>, the fill will become <code>0x40FFFFFF</code>.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ac83d29512fdfb12149aad03b9974edc0" title="Sets the stroke color for this drawable.">stroke(int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa5fea77777a386870ab92da94f502892" title="Sets the stroke color for this drawable.">stroke(int,int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4d8f5cf55e296491fee31d41ee191896" title="Sets the stroke color for this drawable.">stroke(int,int,int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a356b4f191fa67f5d1a8071bf21cb9f4c" title="Removes the stroke color of this drawable.">noStroke()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ac83d29512fdfb12149aad03b9974edc0" title="Sets the stroke color for this drawable.">stroke(int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa5fea77777a386870ab92da94f502892" title="Sets the stroke color for this drawable.">stroke(int,int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4d8f5cf55e296491fee31d41ee191896" title="Sets the stroke color for this drawable.">stroke(int,int,int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a356b4f191fa67f5d1a8071bf21cb9f4c" title="Removes the stroke color of this drawable.">noStroke()</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">clr</td><td>The new stroke color for this drawable, excluding its alpha value. </td></tr>
@@ -2943,7 +3054,13 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the stroke color for this drawable. </p>
 <p>The parameters <code>r</code>, <code>g</code> and <code>b</code> can be any number from 0 to 255.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ac83d29512fdfb12149aad03b9974edc0" title="Sets the stroke color for this drawable.">stroke(int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab454a46a31c17a7d3642e2a19d372c4a" title="Sets the stroke color for this drawable.">stroke(int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4d8f5cf55e296491fee31d41ee191896" title="Sets the stroke color for this drawable.">stroke(int,int,int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a356b4f191fa67f5d1a8071bf21cb9f4c" title="Removes the stroke color of this drawable.">noStroke()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ac83d29512fdfb12149aad03b9974edc0" title="Sets the stroke color for this drawable.">stroke(int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab454a46a31c17a7d3642e2a19d372c4a" title="Sets the stroke color for this drawable.">stroke(int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4d8f5cf55e296491fee31d41ee191896" title="Sets the stroke color for this drawable.">stroke(int,int,int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a356b4f191fa67f5d1a8071bf21cb9f4c" title="Removes the stroke color of this drawable.">noStroke()</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">r</td><td>The red component for the new stroke color for this drawable </td></tr>
@@ -2995,7 +3112,13 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the stroke color for this drawable. </p>
 <p>The parameters <code>r</code>, <code>g</code> <code>b</code> and <code>a</code> can be any number from 0 to 255.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ac83d29512fdfb12149aad03b9974edc0" title="Sets the stroke color for this drawable.">stroke(int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab454a46a31c17a7d3642e2a19d372c4a" title="Sets the stroke color for this drawable.">stroke(int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa5fea77777a386870ab92da94f502892" title="Sets the stroke color for this drawable.">stroke(int,int,int)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a356b4f191fa67f5d1a8071bf21cb9f4c" title="Removes the stroke color of this drawable.">noStroke()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ac83d29512fdfb12149aad03b9974edc0" title="Sets the stroke color for this drawable.">stroke(int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab454a46a31c17a7d3642e2a19d372c4a" title="Sets the stroke color for this drawable.">stroke(int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aa5fea77777a386870ab92da94f502892" title="Sets the stroke color for this drawable.">stroke(int,int,int)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a356b4f191fa67f5d1a8071bf21cb9f4c" title="Removes the stroke color of this drawable.">noStroke()</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">r</td><td>The red component for the new stroke color for this drawable </td></tr>
@@ -3237,7 +3360,11 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the width of this drawable. </p>
 <p>If this drawable is set to resize proportionally, the height will also change accordingly via <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad83f255e2de9bb08f52c160c5bdcc1d7" title="Called after the size of this drawable is changed.">onResize(float,float,float,float)</a>.</p>
 <p>This method returns <code>this</code> so it could be chained with other methods of this class. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae046413f91234f66dde997ef02908e24" title="Sets the size of this drawable.">size(float,float)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2c8b70fd46b03299178eb14ca57baaa4" title="Sets the size of this drawable.">size(float)</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad361b8eaa72b4d79b0b62de0e2a2776d" title="Sets the height of this drawable.">height(float)</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae046413f91234f66dde997ef02908e24" title="Sets the size of this drawable.">size(float,float)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2c8b70fd46b03299178eb14ca57baaa4" title="Sets the size of this drawable.">size(float)</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ad361b8eaa72b4d79b0b62de0e2a2776d" title="Sets the height of this drawable.">height(float)</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">w</td><td>The new width for this drawable </td></tr>
@@ -3262,7 +3389,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Returns the width of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a91deb3e8a0b504c602670764733a744f" title="Returns the size of this drawable.">size()</a>, <a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a60c5ca2c8e2fc75fda7221cf4f74010b" title="Returns the height of this drawable.">height()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a91deb3e8a0b504c602670764733a744f" title="Returns the size of this drawable.">size()</a> </dd>
+<dd>
+<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a60c5ca2c8e2fc75fda7221cf4f74010b" title="Returns the height of this drawable.">height()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>This drawable's width. </dd></dl>
 
 </div>
@@ -3412,190 +3541,6 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a7aafa34986a8a27053d5298608b53a94"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float hype.core.drawable.HDrawable._alphaPc</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The alpha of this drawable, in percentage. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3be1ca0802560e21622875604b0da0ff" title="Returns the transparency for this drawable, ranging from 0 to 255.">alphaPc()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a57c2089cf2b6d7621844cbc9814c3e51"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float hype.core.drawable.HDrawable._anchorU</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The x anchor percentage of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#add9181ba6883afc4a2a4a02a09c7b03f" title="Returns the u coordinate of this drawable&#39;s anchor.">anchorU()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aeb7e6b74ab55ac95fd49d86a4fce5d48"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float hype.core.drawable.HDrawable._anchorV</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The y anchor percentage of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a55098c318cbf8952341267c84451e513" title="Returns the v coordinate of this draable&#39;s anchor.">anchorV()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a1a8ae31b67c5adc319cd8108b16171fe"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classhype_1_1core_1_1util_1_1_h_bundle.html">HBundle</a> hype.core.drawable.HDrawable._extras</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The extras bundle of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3111c7ead30122880433c3244be5680a" title="Returns this drawable&#39;s extras bundle.">extras()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a5f07bd6382bd895ca51c51a2285a31dc"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int hype.core.drawable.HDrawable._fill</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The fill color of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3ea1f5a07f50a01c5210a059056758a7" title="Returns the fill for this drawable.">fill()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ae09b30df6ce561c6e7d5dd4ca43ebd41"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html">HDrawable</a> hype.core.drawable.HDrawable._firstChild</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The first child of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a30494a50fd2a78b74994c93bef961d8c" title="Returns the first child of this drawable.">firstChild()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ac4171079b3f6831d4f982ad2ae6363ce"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float hype.core.drawable.HDrawable._height</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The height of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a60c5ca2c8e2fc75fda7221cf4f74010b" title="Returns the height of this drawable.">height()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aefc226e22c24a1a73e55d8a793e802f9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html">HDrawable</a> hype.core.drawable.HDrawable._lastChild</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The last child of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a2fcc779fd97b24ef039c92cbc606717f" title="Returns the last child of this drawable.">lastChild()</a> </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a3d2ec798d880968b25a5c81a8dd31357"></a>
 <div class="memitem">
 <div class="memproto">
@@ -3615,239 +3560,7 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>The width-to-height ratio used for proportional resizing. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a220999f7d54e04a47ad0509d349a2bdd" title="Returns whether or not this drawable is in proportional mode.">proportional()</a> The number of this drawable's children</dd>
-<dd>
-<a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a85a4ab0860a8c22e7f66d3da99f06940" title="Returns the number of children of this drawable.">numChildren()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ad612d5e1d96467275eeb8163b9da4b8f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html">HDrawable</a> hype.core.drawable.HDrawable._parent</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The parent of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ae3e39365ae4a4efd3c1540bd428a630c" title="Returns the parent of this drawable.">parent()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a5489140987809e738b74139cfa0e7583"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float hype.core.drawable.HDrawable._rotationRad</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The rotation of this drawable, in radians. </p>
-<dl class="section see"><dt>See Also</dt><dd>rotationRad() </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aa773c8e474774a4f4b6437f77abdc85b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int hype.core.drawable.HDrawable._stroke</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The stroke color of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#aeef1c190f383562910107be8e5f80461" title="Returns the stroke color for this drawable.">stroke()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a35be29f7a889fada5549c5dfcaa98d7d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int hype.core.drawable.HDrawable._strokeCap</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The stroke cap of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab9838a263f6daf6cc85f4fc7f7e038e2" title="Returns the stroke cap for this drawable.">strokeCap()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a3b021f60cc0552c6d1c5d4e298419dec"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int hype.core.drawable.HDrawable._strokeJoin</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The stroke join of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a4fc12f2585819b1bd9ed0fc60cac74c0" title="Returns the stroke join for this drawable.">strokeJoin()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ae27cfc0ffd6a6c5e8d44a1b7f017f157"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float hype.core.drawable.HDrawable._strokeWeight</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The stroke width of this drawable, in pixels. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#ab442156bac301c3e89040cbc1d90ce84" title="Returns the stroke weight, or thickness of this drawable.">strokeWeight()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a1a040597d04986d5378b477453d987e4"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float hype.core.drawable.HDrawable._width</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The width of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a3c12eb4fa138e5a198ea1634cd2932ca" title="Returns the width of this drawable.">width()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a29a7e29632bdd992ca49c5542ba3cc88"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float hype.core.drawable.HDrawable._x</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The x location of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a16a4a0d69a27ed1604739b9bfa9aac10" title="TODO.">x()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a449159180f9b00f522d9f70226c31302"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float hype.core.drawable.HDrawable._y</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The y location of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#a098090f981054ce26bbd4c9e23b0c47f" title="TODO.">y()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ad66aec98221c2988eda1ffb4310ca72a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float hype.core.drawable.HDrawable._z</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The z location of this drawable. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html#abfe7cfead38fee117b343971def82916" title="TODO.">z()</a> </dd></dl>
+<p>The number of this drawable's children </p>
 
 </div>
 </div>
@@ -3860,7 +3573,7 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>hype</b></li><li class="navelem"><b>core</b></li><li class="navelem"><b>drawable</b></li><li class="navelem"><a class="el" href="classhype_1_1core_1_1drawable_1_1_h_drawable.html">HDrawable</a></li>
-    <li class="footer">Generated on Mon Jun 17 2013 18:10:33 for HYPE_processing by
+    <li class="footer">Generated on Tue Jun 18 2013 13:29:54 for HYPE_processing by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

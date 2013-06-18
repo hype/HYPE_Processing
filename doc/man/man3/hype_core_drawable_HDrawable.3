@@ -1,10 +1,10 @@
-.TH "hype.core.drawable.HDrawable" 3 "Mon Jun 17 2013" "HYPE_processing" \" -*- nroff -*-
+.TH "hype.core.drawable.HDrawable" 3 "Tue Jun 18 2013" "HYPE_processing" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
 hype.core.drawable.HDrawable \- 
 .PP
-The superclass of all HDrawables\&.  
+The superclass of all drawables\&.  
 
 .SH SYNOPSIS
 .br
@@ -650,9 +650,11 @@ Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawabl
 .in -1c
 .SH "Detailed Description"
 .PP 
-The superclass of all HDrawables\&. 
+The superclass of all drawables\&. 
 
-TODO
+Drawables represent objects that are displayable to the stage\&. TODO
+.PP
+(The stage itself is also technically a drawable, but its usage is different from the other classes\&.)
 .PP
 \fBAuthor:\fP
 .RS 4
@@ -839,7 +841,11 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBanchor(PVector)\fP, \fBanchorX(float)\fP, \fBanchorY(float)\fP 
+\fBanchor(PVector)\fP 
+.PP
+\fBanchorX(float)\fP 
+.PP
+\fBanchorY(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -885,7 +891,9 @@ Returns the anchor of this drawable in pixels\&. The result of this method is th
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBanchorX()\fP, \fBanchorY()\fP 
+\fBanchorX()\fP 
+.PP
+\fBanchorY()\fP 
 .RE
 .PP
 \fBReturns:\fP
@@ -959,7 +967,9 @@ Sets the \fCu\fP coordinate for this drawable's anchor\&. This method returns \f
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBanchorUV(float,float)\fP, \fBanchorV(float)\fP 
+\fBanchorUV(float,float)\fP 
+.PP
+\fBanchorV(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -994,7 +1004,9 @@ Sets the anchor of this drawable in UV coordinates\&. This method returns \fCthi
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBanchorU(float)\fP, \fBanchorV(float)\fP 
+\fBanchorU(float)\fP 
+.PP
+\fBanchorV(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -1015,7 +1027,9 @@ This drawable\&.
 .PP
 Returns the UV coordinates of this drawable's anchor\&. \fBSee Also:\fP
 .RS 4
-\fBanchorU()\fP, \fBanchorV()\fP 
+\fBanchorU()\fP 
+.PP
+\fBanchorV()\fP 
 .RE
 .PP
 \fBReturns:\fP
@@ -1031,7 +1045,9 @@ Sets the \fCu\fP coordinate for this drawable's anchor\&. This method returns \f
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBanchorUV()\fP, \fBanchorU()\fP 
+\fBanchorUV()\fP 
+.PP
+\fBanchorU()\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -1050,7 +1066,9 @@ This drawable\&.
 .PP
 Returns the \fCv\fP coordinate of this draable's anchor\&. \fBSee Also:\fP
 .RS 4
-\fBanchorUV()\fP, \fBanchorU()\fP 
+\fBanchorUV()\fP 
+.PP
+\fBanchorU()\fP 
 .RE
 .PP
 \fBReturns:\fP
@@ -1068,7 +1086,11 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBanchor(float,float)\fP, \fBanchor(PVector)\fP, \fBanchorY(float)\fP 
+\fBanchor(float,float)\fP 
+.PP
+\fBanchor(PVector)\fP 
+.PP
+\fBanchorY(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -1089,7 +1111,9 @@ Returns the x anchor of this drawable in pixels\&. The result of this method is 
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBanchor()\fP, \fBanchorY()\fP 
+\fBanchor()\fP 
+.PP
+\fBanchorY()\fP 
 .RE
 .PP
 \fBReturns:\fP
@@ -1107,7 +1131,11 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBanchor(float,float)\fP, \fBanchor(PVector)\fP, \fBanchorX(float)\fP 
+\fBanchor(float,float)\fP 
+.PP
+\fBanchor(PVector)\fP 
+.PP
+\fBanchorX(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -1128,7 +1156,9 @@ Returns the y anchor of this drawable in pixels\&. The result of this method is 
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBanchor()\fP, \fBanchorX()\fP 
+\fBanchor()\fP 
+.PP
+\fBanchorX()\fP 
 .RE
 .PP
 \fBReturns:\fP
@@ -1309,7 +1339,11 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBfill(int,int)\fP, \fBfill(int,int,int)\fP, \fBfill(int,int,int,int)\fP 
+\fBfill(int,int)\fP 
+.PP
+\fBfill(int,int,int)\fP 
+.PP
+\fBfill(int,int,int,int)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -1334,7 +1368,13 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBfill(int)\fP, \fBfill(int,int,int)\fP, \fBfill(int,int,int,int)\fP, \fBnoFill()\fP 
+\fBfill(int)\fP 
+.PP
+\fBfill(int,int,int)\fP 
+.PP
+\fBfill(int,int,int,int)\fP 
+.PP
+\fBnoFill()\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -1359,7 +1399,13 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBfill(int)\fP, \fBfill(int,int)\fP, \fBfill(int,int,int,int)\fP, \fBnoFill()\fP 
+\fBfill(int)\fP 
+.PP
+\fBfill(int,int)\fP 
+.PP
+\fBfill(int,int,int,int)\fP 
+.PP
+\fBnoFill()\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -1386,7 +1432,13 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBfill(int)\fP, \fBfill(int,int)\fP, \fBfill(int,int,int)\fP, \fBnoFill()\fP 
+\fBfill(int)\fP 
+.PP
+\fBfill(int,int)\fP 
+.PP
+\fBfill(int,int,int)\fP 
+.PP
+\fBnoFill()\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -1437,7 +1489,11 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBsize(float,float)\fP, \fBsize(float)\fP, \fBwidth(float)\fP 
+\fBsize(float,float)\fP 
+.PP
+\fBsize(float)\fP 
+.PP
+\fBwidth(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -1456,7 +1512,9 @@ This drawable\&.
 .PP
 Returns the height of this drawable\&. \fBSee Also:\fP
 .RS 4
-\fBsize()\fP, \fBwidth()\fP 
+\fBsize()\fP 
+.PP
+\fBwidth()\fP 
 .RE
 .PP
 \fBReturns:\fP
@@ -1488,7 +1546,9 @@ Creates a new iterator for this drawable to iterate through its children\&. Note
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBHDrawableIterator\fP, HIterator 
+\fBHDrawableIterator\fP 
+.PP
+HIterator 
 .RE
 .PP
 \fBReturns:\fP
@@ -1676,7 +1736,13 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBfill(int)\fP, \fBfill(int,int)\fP, \fBfill(int,int,int)\fP, \fBfill(int,int,int,int)\fP 
+\fBfill(int)\fP 
+.PP
+\fBfill(int,int)\fP 
+.PP
+\fBfill(int,int,int)\fP 
+.PP
+\fBfill(int,int,int,int)\fP 
 .RE
 .PP
 \fBReturns:\fP
@@ -1694,7 +1760,13 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBstroke(int)\fP, \fBstroke(int,int)\fP, \fBstroke(int,int,int)\fP, \fBstroke(int,int,int,int)\fP 
+\fBstroke(int)\fP 
+.PP
+\fBstroke(int,int)\fP 
+.PP
+\fBstroke(int,int,int)\fP 
+.PP
+\fBstroke(int,int,int,int)\fP 
 .RE
 .PP
 \fBReturns:\fP
@@ -2050,7 +2122,11 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBsize(float)\fP, \fBwidth(float)\fP, \fBheight(float)\fP 
+\fBsize(float)\fP 
+.PP
+\fBwidth(float)\fP 
+.PP
+\fBheight(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -2075,7 +2151,11 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBsize(float,float)\fP, \fBwidth(float)\fP, \fBheight(float)\fP 
+\fBsize(float,float)\fP 
+.PP
+\fBwidth(float)\fP 
+.PP
+\fBheight(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -2094,7 +2174,9 @@ This drawable\&.
 .PP
 Returns the size of this drawable\&. \fBSee Also:\fP
 .RS 4
-\fBwidth()\fP, \fBheight()\fP 
+\fBwidth()\fP 
+.PP
+\fBheight()\fP 
 .RE
 .PP
 \fBReturns:\fP
@@ -2133,7 +2215,13 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBstroke(int,int)\fP, \fBstroke(int,int,int)\fP, \fBstroke(int,int,int,int)\fP, \fBnoStroke()\fP 
+\fBstroke(int,int)\fP 
+.PP
+\fBstroke(int,int,int)\fP 
+.PP
+\fBstroke(int,int,int,int)\fP 
+.PP
+\fBnoStroke()\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -2158,7 +2246,13 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBstroke(int)\fP, \fBstroke(int,int,int)\fP, \fBstroke(int,int,int,int)\fP, \fBnoStroke()\fP 
+\fBstroke(int)\fP 
+.PP
+\fBstroke(int,int,int)\fP 
+.PP
+\fBstroke(int,int,int,int)\fP 
+.PP
+\fBnoStroke()\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -2183,7 +2277,13 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBstroke(int)\fP, \fBstroke(int,int)\fP, \fBstroke(int,int,int,int)\fP, \fBnoStroke()\fP 
+\fBstroke(int)\fP 
+.PP
+\fBstroke(int,int)\fP 
+.PP
+\fBstroke(int,int,int,int)\fP 
+.PP
+\fBnoStroke()\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -2210,7 +2310,13 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBstroke(int)\fP, \fBstroke(int,int)\fP, \fBstroke(int,int,int)\fP, \fBnoStroke()\fP 
+\fBstroke(int)\fP 
+.PP
+\fBstroke(int,int)\fP 
+.PP
+\fBstroke(int,int,int)\fP 
+.PP
+\fBnoStroke()\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -2385,7 +2491,11 @@ This method returns \fCthis\fP so it could be chained with other methods of this
 .PP
 \fBSee Also:\fP
 .RS 4
-\fBsize(float,float)\fP, \fBsize(float)\fP, \fBheight(float)\fP 
+\fBsize(float,float)\fP 
+.PP
+\fBsize(float)\fP 
+.PP
+\fBheight(float)\fP 
 .RE
 .PP
 \fBParameters:\fP
@@ -2404,7 +2514,9 @@ This drawable\&.
 .PP
 Returns the width of this drawable\&. \fBSee Also:\fP
 .RS 4
-\fBsize()\fP, \fBheight()\fP 
+\fBsize()\fP 
+.PP
+\fBheight()\fP 
 .RE
 .PP
 \fBReturns:\fP
@@ -2496,179 +2608,10 @@ TODO\&. \fBReturns:\fP
 Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
 .SH "Member Data Documentation"
 .PP 
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._alphaPc\fC [protected]\fP"
-
-.PP
-The alpha of this drawable, in percentage\&. \fBSee Also:\fP
-.RS 4
-\fBalphaPc()\fP 
-.RE
-.PP
-
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._anchorU\fC [protected]\fP"
-
-.PP
-The x anchor percentage of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBanchorU()\fP 
-.RE
-.PP
-
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._anchorV\fC [protected]\fP"
-
-.PP
-The y anchor percentage of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBanchorV()\fP 
-.RE
-.PP
-
-.SS "\fBHBundle\fP hype\&.core\&.drawable\&.HDrawable\&._extras\fC [protected]\fP"
-
-.PP
-The extras bundle of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBextras()\fP 
-.RE
-.PP
-
-.SS "int hype\&.core\&.drawable\&.HDrawable\&._fill\fC [protected]\fP"
-
-.PP
-The fill color of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBfill()\fP 
-.RE
-.PP
-
-.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&._firstChild\fC [protected]\fP"
-
-.PP
-The first child of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBfirstChild()\fP 
-.RE
-.PP
-
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._height\fC [protected]\fP"
-
-.PP
-The height of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBheight()\fP 
-.RE
-.PP
-
-.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&._lastChild\fC [protected]\fP"
-
-.PP
-The last child of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBlastChild()\fP 
-.RE
-.PP
-
 .SS "int hype\&.core\&.drawable\&.HDrawable\&._numChildren\fC [protected]\fP"
 
 .PP
-The width-to-height ratio used for proportional resizing\&. \fBSee Also:\fP
-.RS 4
-\fBproportional()\fP The number of this drawable's children
-.PP
-\fBnumChildren()\fP 
-.RE
-.PP
-
-.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&._parent\fC [protected]\fP"
-
-.PP
-The parent of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBparent()\fP 
-.RE
-.PP
-
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._rotationRad\fC [protected]\fP"
-
-.PP
-The rotation of this drawable, in radians\&. \fBSee Also:\fP
-.RS 4
-rotationRad() 
-.RE
-.PP
-
-.SS "int hype\&.core\&.drawable\&.HDrawable\&._stroke\fC [protected]\fP"
-
-.PP
-The stroke color of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBstroke()\fP 
-.RE
-.PP
-
-.SS "int hype\&.core\&.drawable\&.HDrawable\&._strokeCap\fC [protected]\fP"
-
-.PP
-The stroke cap of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBstrokeCap()\fP 
-.RE
-.PP
-
-.SS "int hype\&.core\&.drawable\&.HDrawable\&._strokeJoin\fC [protected]\fP"
-
-.PP
-The stroke join of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBstrokeJoin()\fP 
-.RE
-.PP
-
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._strokeWeight\fC [protected]\fP"
-
-.PP
-The stroke width of this drawable, in pixels\&. \fBSee Also:\fP
-.RS 4
-\fBstrokeWeight()\fP 
-.RE
-.PP
-
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._width\fC [protected]\fP"
-
-.PP
-The width of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBwidth()\fP 
-.RE
-.PP
-
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._x\fC [protected]\fP"
-
-.PP
-The x location of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBx()\fP 
-.RE
-.PP
-
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._y\fC [protected]\fP"
-
-.PP
-The y location of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBy()\fP 
-.RE
-.PP
-
-.SS "float hype\&.core\&.drawable\&.HDrawable\&._z\fC [protected]\fP"
-
-.PP
-The z location of this drawable\&. \fBSee Also:\fP
-.RS 4
-\fBz()\fP 
-.RE
-.PP
-
+The width-to-height ratio used for proportional resizing\&. The number of this drawable's children 
 
 .SH "Author"
 .PP 
