@@ -1087,6 +1087,66 @@ public abstract class HDrawable extends HNode<HDrawable>
 		}
 	}
 	
+	public void bounds(PVector boundsLoc, PVector boundsSize) {
+		float[] vals = new float[4];
+		bounds(vals);
+		boundsLoc.x = vals[0];
+		boundsLoc.y = vals[1];
+		boundsSize.x = vals[2];
+		boundsSize.y = vals[3];
+	}
+	
+	public void bounds(float[] boundsValues) {
+		float cosval = (float) Math.cos(_rotationRad);
+		float sinval = (float) Math.sin(_rotationRad);
+		
+		float x1=-anchorX(), y1=-anchorY();
+		float x2=_width+x1,  y2=_height+y1;
+		float minx=0, miny=0, maxx=0, maxy=0;
+		
+		// Top Left Edge
+		float tlX = x1*cosval + y1*sinval;
+		if(tlX < minx) minx = tlX;
+		else if(tlX > maxx) maxx = tlX;
+		
+		float tlY = x1*sinval + y1*cosval;
+		if(tlY < miny) miny = tlY;
+		else if(tlY > maxy) maxy = tlY;
+		
+		// Top Right Edge
+		float trX = x2*cosval + y1*sinval;
+		if(trX < minx) minx = trX;
+		else if(trX > maxx) maxx = trX;
+		
+		float trY = x2*sinval + y1*cosval;
+		if(trY < miny) miny = trY;
+		else if(trY > maxy) maxy = trY;
+		
+		// Bottom Left Edge
+		float blX = x1*cosval + y2*sinval;
+		if(blX < minx) minx = blX;
+		else if(blX > maxx) maxx = blX;
+		
+		float blY = x1*sinval + y2*cosval;
+		if(blY < miny) miny = blY;
+		else if(blY > maxy) maxy = blY;
+		
+		// Bottom Right Edge
+		float brX = x2*cosval + y2*sinval;
+		if(brX < minx) minx = brX;
+		else if(brX > maxx) maxx = brX;
+		
+		float brY = x2*sinval + y2*cosval;
+		if(brY < miny) miny = brY;
+		else if(brY > maxy) maxy = brY;
+		
+		float[] loc = HMath.absLocArr(this, 0, 0);
+		boundsValues[0] = loc[0] + minx;
+		boundsValues[1] = loc[1] + miny;
+		boundsValues[2] = maxx - minx;
+		boundsValues[3] = maxy - miny;
+	}
+	
 	/**
 	 * Returns the bounding size of this drawable based on this drawble's
 	 * rotation.

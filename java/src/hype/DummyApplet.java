@@ -12,8 +12,11 @@
 package hype;
 
 import hype.core.util.H;
-import hype.extended.drawable.HImage;
+import hype.extended.behavior.HFollow;
+import hype.extended.behavior.HRotate;
+import hype.extended.drawable.HRect;
 import processing.core.PApplet;
+import processing.core.PVector;
 
 /**
  * @mainpage
@@ -114,17 +117,27 @@ public class DummyApplet extends PApplet {
 	 */
 	
 	//*/
+	HRect r1, r2;
+	
 	public void setup() {
 		size(640,640);
 		H.init(this);
 		
-		Object o = loadImage("sintra.jpg");
-		//H.stage().backgroundImg(new HImage(o));
-		H.add(new HImage(o));
+		H.add(r2 = new HRect()).fill(H.GREEN);
+		H.add(r1 = new HRect()).anchorAt(H.CENTER).locAt(H.CENTER);
+		
+		new HRotate().target(r1).speed(1);
+		new HFollow().target(r1);
 	}
 
 	public void draw() {
+		PVector loc = new PVector();
+		PVector size = new PVector();
+		r1.bounds(loc, size);
+		r2.loc(loc).size(size.x,size.y);
+		fill(0);
 		H.drawStage();
+		text(frameRate, 0, 16);
 	}
 	//*/
 }
