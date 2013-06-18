@@ -1621,9 +1621,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return
 	 */
 	public boolean bool(String key) {
-		if(_extras == null)
-			return false;
-		return _extras.bool(key);
+		return (_extras==null)? false : _extras.bool(key);
 	}
 	public boolean contains(float absX, float absY, float absZ) {
 		PApplet app = H.app();
@@ -1646,8 +1644,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 			app.screenY(relX,relY,relZ));
 	}
 	public boolean containsRel(float relX, float relY) {
-		return (0 <= relX) && (relX <= width()) &&
-			(0 <= relY) && (relY <= height());
+		return (0 <= relX) && (relX <= _width) &&
+			(0 <= relY) && (relY <= _height);
 	}
 	/**
 	 * Applies this drawable's styling to the given graphics context.
