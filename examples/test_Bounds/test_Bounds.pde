@@ -18,6 +18,7 @@ void setup() {
 }
 
 void draw() {
+  // `rect.bounds()` will set the x & y fields of `loc` and `size`
   PVector loc = new PVector(), size = new PVector();
   rect.bounds(loc,size);
   boundingBox.loc(loc.x,loc.y).size(size.x,size.y);
