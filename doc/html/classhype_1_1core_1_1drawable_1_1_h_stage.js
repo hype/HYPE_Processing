@@ -7,7 +7,6 @@ var classhype_1_1core_1_1drawable_1_1_h_stage =
     [ "background", "classhype_1_1core_1_1drawable_1_1_h_stage.html#ad1ed4ecfb9dcb986248f5a1c349b82ef", null ],
     [ "backgroundImg", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a8f9acf31f5ed135b3fc77652806ceaf7", null ],
     [ "clear", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a8f90273b4be24ba0c89ce13b6c14b3ab", null ],
-    [ "copyPropertiesFrom", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a9e01df5af2c8466f370a3681c384f757", null ],
     [ "createCopy", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a1133314946b11f9ff2008a4fa4dfd49e", null ],
     [ "draw", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a94a4f90ed568346075c188979ed7b257", null ],
     [ "fill", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a8e908b77e2825a964932a7dde63ce50b", null ],
@@ -18,18 +17,7 @@ var classhype_1_1core_1_1drawable_1_1_h_stage =
     [ "image", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a103af358d769bdb9725b6b59345cb81b", null ],
     [ "image", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a86339ac8d36beb9c81e2757f57fb006d", null ],
     [ "invalidChild", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a38df2c63da1eb5ce7f2b4b96ef4ccfd5", null ],
-    [ "loc", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a935031858d09241c5d5102402fea2ed3", null ],
-    [ "locAt", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a7fb9cfa38223648ff70c40961f5ef9ac", null ],
-    [ "move", "classhype_1_1core_1_1drawable_1_1_h_stage.html#ae53aae5fef1912b31816edce4efcad24", null ],
-    [ "onResize", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a1cb882a27bf39bde49e9c39805cff7f3", null ],
     [ "paintAll", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a5c1e8468155f581d11c6cd93108f355a", null ],
-    [ "rotate", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a4b305733a2a18d6f3bc998355aa69a03", null ],
-    [ "rotateRad", "classhype_1_1core_1_1drawable_1_1_h_stage.html#ac3eff74da94b587a40689503dc74bfa5", null ],
-    [ "rotation", "classhype_1_1core_1_1drawable_1_1_h_stage.html#ab7f4265507844fd68bb03522f3b3defb", null ],
-    [ "rotationRad", "classhype_1_1core_1_1drawable_1_1_h_stage.html#acb95a4612b3754fba61ae9ba099ee610", null ],
     [ "size", "classhype_1_1core_1_1drawable_1_1_h_stage.html#aa3a96b32e17b98ccb175dbcc391f6e23", null ],
-    [ "width", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a5e5e4b4181e3e680d9abed0cae38080c", null ],
-    [ "x", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a40c96e01d80934ec54a3d816155af657", null ],
-    [ "y", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a7d42de97ce129b1a563a04f993f3b4de", null ],
-    [ "z", "classhype_1_1core_1_1drawable_1_1_h_stage.html#adb901ada9c13a79bfb69621f39f2b8ec", null ]
+    [ "width", "classhype_1_1core_1_1drawable_1_1_h_stage.html#a5e5e4b4181e3e680d9abed0cae38080c", null ]
 ];
