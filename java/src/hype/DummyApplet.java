@@ -29,7 +29,7 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - [ ] HMath: use processing's random() instead of java.lang.Math's
+	 * - Make `H` as HStage container
 	 * 
 	 * (HMagneticField)
 	 * - BLAHRG
@@ -59,8 +59,9 @@ public class DummyApplet extends PApplet {
 	 * - [ ] use onResize() when adjusting metrics
 	 * 
 	 * 
-	 * (Github Housekeeping)
+	 * (Housekeeping)
 	 * - [ ] announce deprecation warning at github
+	 * - [ ] remove
 	 * 
 	 * (Experiments and New Features)
 	 * - [ ] masking
