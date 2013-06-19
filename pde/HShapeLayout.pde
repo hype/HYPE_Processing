@@ -40,8 +40,8 @@ public static class HShapeLayout implements HLayout {
 		float x2 = x1 + _target.width();
 		float y2 = y1 + _target.height();
 		for(int i=0; i<_iterationLimit; ++i) {
-			float x = HMath.random(x1,x2);
-			float y = HMath.random(y1,y2);
+			float x = H.app().random(x1,x2);
+			float y = H.app().random(y1,y2);
 			if(_target.contains(x,y))
 				return new PVector(x,y);
 		}

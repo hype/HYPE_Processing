@@ -436,29 +436,12 @@ public class HMath implements HConstants {
 	
 	// RNG //
 	
-	public static float random() {
-		return random(1);
-	}
-	
-	public static float random(float high) {
-		float val;
-		do { // this loop is for a rare rounding bug (see PApplet.java)
-			val = (float)Math.random() * high;
-		} while(val == high);
-		return val;
-	}
-	
-	public static float random(float low, float high) {
-		if(low >= high) return low;
-		return random(high-low) + low;
-	}
-	
 	public static int randomInt(float high) {
-		return (int) Math.floor( random(high) );
+		return (int) Math.floor( H.app().random(high) );
 	}
 	
 	public static int randomInt(float low, float high) {
-		return (int) Math.floor( random(low,high) );
+		return (int) Math.floor( H.app().random(low,high) );
 	}
 	
 	public static int randomInt32() {

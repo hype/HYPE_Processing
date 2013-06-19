@@ -22,7 +22,7 @@ public static class HRandomTrigger extends HTrigger {
 		return _chance;
 	}
 	public void runBehavior(PApplet app) {
-		if(HMath.random() <= _chance) _callback.run(null);
+		if(app.random(1) <= _chance) _callback.run(null);
 	}
 	public HRandomTrigger callback(HCallback cb) {
 		return (HRandomTrigger) super.callback(cb);

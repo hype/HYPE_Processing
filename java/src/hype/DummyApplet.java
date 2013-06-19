@@ -29,9 +29,7 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * (Bounding Box)
-	 * - custom bounds for HPath
-	 * - test file
+	 * - [ ] HMath: use processing's random() instead of java.lang.Math's
 	 * 
 	 * (HMagneticField)
 	 * - BLAHRG
@@ -43,6 +41,9 @@ public class DummyApplet extends PApplet {
 	 *       instead of the multiplied sizes; just compute the "multiplier" in
 	 *       runBehavior() to multiply the curent values (in this case, width
 	 *       and height)
+	 * 
+	 * (Bounding Box)
+	 * - custom bounds for HPath
 	 * 
 	 * (HPath)
 	 * - [ ] apply tolerance to HVertex.intersectTest()
@@ -83,7 +84,6 @@ public class DummyApplet extends PApplet {
 	 * - [ ] rename xxxPerc -> xxxUV or xxxPc
 	 * - [ ] rearrange HDrawable's fields by category instead of type
 	 * - [ ] HMath: add z index for abs/relLoc()
-	 * - [ ] HMath: use processing's random() instead of java.lang.Math's
 	 * - [ ] HMath: replace round512() with the tolerance comparators
 	 * - [ ] HMath: use the comparator methods for the bezier methods
 	 * - [ ] change util methods that returns arrays to use the method(val, float[] loc) format

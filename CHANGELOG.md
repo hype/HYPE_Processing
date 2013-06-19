@@ -1,3 +1,13 @@
+### build_20130619.0 (Jun 19,2013)
+- removed the ff. HMath methods (these are redundant to PApplet's `random()` methods):
+	- `random()`
+	- `random(float)`
+	- `random(float,float)`
+- the following methods now use PApplet's `random()` method (this means that these methods are now affected by `PApplet::seed()` and `HMath.tempSeed()`):
+	- `HMath.randomInt(float)` and `HMath.randomInt(float,float)`
+	- `HShapeLayout.getNextPoint()`
+	- `HRandomTrigger.runBehavior()`
+
 ### build_20130617.1 (Jun 17, 2013)
 - made the ff. fields private / protected:
 	- `HTrigger._callback`

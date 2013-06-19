@@ -360,25 +360,11 @@ public static class HMath implements HConstants {
 		float b = 2 * (p1-p0);
 		return a*t + b;
 	}
-	public static float random() {
-		return random(1);
-	}
-	public static float random(float high) {
-		float val;
-		do { 
-			val = (float)Math.random() * high;
-		} while(val == high);
-		return val;
-	}
-	public static float random(float low, float high) {
-		if(low >= high) return low;
-		return random(high-low) + low;
-	}
 	public static int randomInt(float high) {
-		return (int) Math.floor( random(high) );
+		return (int) Math.floor( H.app().random(high) );
 	}
 	public static int randomInt(float low, float high) {
-		return (int) Math.floor( random(low,high) );
+		return (int) Math.floor( H.app().random(low,high) );
 	}
 	public static int randomInt32() {
 		return randomInt(-2147483648,2147483647);

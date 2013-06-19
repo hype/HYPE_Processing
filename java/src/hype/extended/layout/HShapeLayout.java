@@ -13,6 +13,7 @@ package hype.extended.layout;
 
 import hype.core.drawable.HDrawable;
 import hype.core.layout.HLayout;
+import hype.core.util.H;
 import hype.core.util.HMath;
 import processing.core.PVector;
 
@@ -59,8 +60,8 @@ public class HShapeLayout implements HLayout {
 		float y2 = y1 + _target.height();
 		
 		for(int i=0; i<_iterationLimit; ++i) {
-			float x = HMath.random(x1,x2);
-			float y = HMath.random(y1,y2);
+			float x = H.app().random(x1,x2);
+			float y = H.app().random(y1,y2);
 			if(_target.contains(x,y))
 				return new PVector(x,y);
 		}
