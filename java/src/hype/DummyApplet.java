@@ -27,9 +27,6 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - show frameRate
-	 * - raw value getter for HTween
-	 * - raw value getter for HOscillator
 	 * - test file for raw / current values
 	 * 
 	 * (HMagneticField)
