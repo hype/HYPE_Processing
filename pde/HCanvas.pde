@@ -182,7 +182,7 @@ public static class HCanvas extends HDrawable {
 		g.pushMatrix();
 			if(zFlag) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
-			g.rotate(_rotationRad);
+			g.rotate(_rotationZRad);
 			alphaPc *= _alphaPc;
 			_graphics.beginDraw();
 			if(_autoClear) {

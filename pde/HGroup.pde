@@ -22,7 +22,7 @@ public static class HGroup extends HDrawable {
 		g.pushMatrix();
 			if(usesZ) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
-			g.rotate(_rotationRad);
+			g.rotate(_rotationZRad);
 			alphaPc *= _alphaPc;
 			HDrawable child = _firstChild;
 			while(child != null) {

@@ -12,8 +12,7 @@
 package hype;
 
 import hype.core.util.H;
-import hype.extended.behavior.HTween;
-import hype.extended.drawable.HRect;
+import hype.extended.drawable.HBox;
 import processing.core.PApplet;
 
 /**
@@ -27,7 +26,10 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - test file for raw / current values
+	 * - z anchor
+	 * - test file for 3d rotation
+	 * - test file for box
+	 * - 3D anchorAt()
 	 * 
 	 * (HMagneticField)
 	 * - BLAHRG
@@ -90,6 +92,7 @@ public class DummyApplet extends PApplet {
 	 * - [ ] color mask constants
 	 * - [ ] more consistent boolean getter names
 	 * - [ ] HDrawable: more consistent fill and stroke color methods
+	 * - [ ] separate styling for HDrawable
 	 * 
 	 * (Code Standards)
 	 * - [ ] standardize single param names
@@ -122,18 +125,24 @@ public class DummyApplet extends PApplet {
 	
 	//*/
 	public void setup() {
-		size(640,640);
+		size(640,640,P3D);
 		H.init(this);
 		H.background(255);
+		H.use3D(true);
 		H.stage().showsFPS(true);
 		
-		HRect rect = (HRect) H.add(new HRect().rounding(20)).locAt(H.CENTER).anchorAt(H.CENTER);
-		new HTween().target(rect)
-			.property(H.X)
-			.start(50).end(200)
-			.ease(.01f)
-			.spring(.95f);
-		//
+		HBox box = (HBox) H.add(new HBox()).locAt(H.CENTER).anchorAt(H.CENTER);
+		//box.size(10,10,10);
+		box.fill(H.RED);
+		System.out.println(box.size());
+		box.rotationX(45);
+		box.rotationY(45);
+		box.rotationZ(45);
+//		new HTween().target(rect)
+//			.property(H.ROTATION)
+//			.start(50).end(200)
+//			.ease(.01f)
+//			.spring(.95f);
 	}
 
 	public void draw() {

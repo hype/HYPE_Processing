@@ -242,7 +242,7 @@ public class HCanvas extends HDrawable {
 			// Rotate and translate
 			if(zFlag) g.translate(_x,_y,_z);
 			else g.translate(_x,_y);
-			g.rotate(_rotationRad);
+			g.rotate(_rotationZRad);
 			
 			// Compute current alpha
 			alphaPc *= _alphaPc;

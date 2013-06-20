@@ -50,8 +50,12 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	protected float _width;
 	/** The height of this drawable */
 	protected float _height;
-	/** The rotation of this drawable, in radians */
-	protected float _rotationRad;
+	/** The rotation along the x axis of this drawable, in radians */
+	protected float _rotationXRad;
+	/** The rotation along the y axis of this drawable, in radians */
+	protected float _rotationYRad;
+	/** The rotation along the z axis of this drawable, in radians */
+	protected float _rotationZRad;
 	/** The stroke width of this drawable, in pixels */
 	protected float _strokeWeight;
 	/** The alpha of this drawable, in percentage */
@@ -114,7 +118,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 		_anchorV = other._anchorV;
 		_width = other._width;
 		_height = other._height;
-		_rotationRad = other._rotationRad;
+		_rotationZRad = other._rotationZRad;
 		_alphaPc = other._alphaPc;
 		_strokeWeight = other._strokeWeight;
 		_fill = other._fill;
@@ -971,8 +975,8 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return The bounding size of this drawable.
 	 */
 	public PVector boundingSize() {
-		float cosVal = (float)Math.cos(_rotationRad);
-		float sinVal = (float)Math.sin(_rotationRad);
+		float cosVal = (float)Math.cos(_rotationZRad);
+		float sinVal = (float)Math.sin(_rotationZRad);
 		float drawX = -anchorX();
 		float drawY = -anchorY();
 		float x1 = drawX;			
@@ -1326,7 +1330,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable.
 	 */
 	public HDrawable rotation(float deg) {
-		return rotationRad(deg * HConstants.D2R);
+		return rotationZ(deg);
 	}
 	/**
 	 * Returns the rotation for this drawable, in degrees.
@@ -1334,24 +1338,13 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable's rotation in degrees.
 	 */
 	public float rotation() {
-		return rotatesChildren()? _firstChild.rotation() :
-			_rotationRad*HConstants.R2D;
+		return rotationZ();
 	}
 	public HDrawable rotationRad(float rad) {
-		if(rotatesChildren()) {
-			HDrawable d = _firstChild;
-			while(d != null) {
-				d.rotationRad(rad);
-				d = d.next();
-			}
-		} else {
-			_rotationRad = rad;
-		}
-		return this;
+		return rotationZRad(rad);
 	}
 	public float rotationRad() {
-		return (rotatesChildren() && _firstChild!=null)?
-			_firstChild.rotationRad() : _rotationRad;
+		return rotationZRad();
 	}
 	/**
 	 * Shifts this drawable's current rotation by the passed value, in degrees.
@@ -1361,7 +1354,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable.
 	 */
 	public HDrawable rotate(float deg) {
-		return rotateRad(deg * HConstants.D2R);
+		return rotateZ(deg);
 	}
 	/**
 	 * Shifts this drawable's current rotation by the passed value, in radians.
@@ -1371,7 +1364,73 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * @return This drawable.
 	 */
 	public HDrawable rotateRad(float rad) {
-		return rotationRad(rotationRad() + rad);
+		return rotateZRad(rad);
+	}
+	public HDrawable rotationX(float deg) {
+		return rotationXRad(deg * HConstants.D2R);
+	}
+	public float rotationX() {
+		return rotationXRad() * HConstants.R2D;
+	}
+	public HDrawable rotationXRad(float rad) {
+		if(rotatesChildren()) {
+			for(HDrawable d=_firstChild;d!=null;) d=d.rotationXRad(rad).next();
+		} else _rotationXRad = rad;
+		return this;
+	}
+	public float rotationXRad() {
+		return (rotatesChildren() && _firstChild!=null)?
+			_firstChild.rotationXRad() : _rotationXRad;
+	}
+	public HDrawable rotateX(float deg) {
+		return rotationXRad(_rotationXRad + deg*HConstants.D2R);
+	}
+	public HDrawable rotateXRad(float rad) {
+		return rotationXRad(_rotationXRad + rad);
+	}
+	public HDrawable rotationY(float deg) {
+		return rotationYRad(deg * HConstants.D2R);
+	}
+	public float rotationY() {
+		return rotationYRad() * HConstants.R2D;
+	}
+	public HDrawable rotationYRad(float rad) {
+		if(rotatesChildren()) {
+			for(HDrawable d=_firstChild;d!=null;) d=d.rotationYRad(rad).next();
+		} else _rotationYRad = rad;
+		return this;
+	}
+	public float rotationYRad() {
+		return (rotatesChildren() && _firstChild!=null)?
+				_firstChild.rotationYRad() : _rotationYRad;
+	}
+	public HDrawable rotateY(float deg) {
+		return rotationYRad(_rotationYRad + deg*HConstants.D2R);
+	}
+	public HDrawable rotateYRad(float rad) {
+		return rotationYRad(_rotationYRad + rad);
+	}
+	public HDrawable rotationZ(float deg) {
+		return rotationZRad(deg * HConstants.D2R);
+	}
+	public float rotationZ() {
+		return rotationZRad() * HConstants.R2D;
+	}
+	public HDrawable rotationZRad(float rad) {
+		if(rotatesChildren()) {
+			for(HDrawable d=_firstChild;d!=null;) d=d.rotationZRad(rad).next();
+		} else _rotationZRad = rad;
+		return this;
+	}
+	public float rotationZRad() {
+		return (rotatesChildren() && _firstChild!=null)?
+				_firstChild.rotationZRad() : _rotationZRad;
+	}
+	public HDrawable rotateZ(float deg) {
+		return rotationZRad(_rotationZRad + deg*HConstants.D2R);
+	}
+	public HDrawable rotateZRad(float rad) {
+		return rotationZRad(_rotationZRad + rad);
 	}
 	public HDrawable rotatesChildren(boolean b) {
 		_flags = HMath.setBits(_flags, BITMASK_ROTATES_CHILDREN, b);
@@ -1708,9 +1767,15 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPc) {
 		if(_alphaPc<=0) return;
 		g.pushMatrix();
-			if(usesZ) g.translate(_x,_y,_z);
-			else g.translate(_x,_y);
-			g.rotate(_rotationRad);
+			if(usesZ) {
+				g.translate(_x,_y,_z);
+				g.rotateX(_rotationXRad);
+				g.rotateY(_rotationYRad);
+				g.rotateZ(_rotationZRad);
+			} else {
+				g.translate(_x,_y);
+				g.rotate(_rotationZRad);
+			}
 			currAlphaPc *= _alphaPc;
 			draw(g, usesZ,-anchorX(),-anchorY(),currAlphaPc);
 			HDrawable child = _firstChild;
