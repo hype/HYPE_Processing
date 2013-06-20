@@ -1,3 +1,15 @@
+### build_20130620.0 (Jun 20, 2013)
+- new HStage methods:
+	- `showsFPS(boolean)`
+	- `showsFPS()`
+- new HOscillator methods:
+	- `nextRaw()` _returns and increments the raw oscillator value, depending on the current waveform (range: [-1.0, 1.0]); it also updates the "current" values_
+	- `curr()`, `curr1()`, `curr2()` & `curr3()` _returns the current values_
+- restructured HTween, so it stores only the scale factor rather than the size when using `HConstants.SCALE`
+- new HTween methods:
+	- `nextRaw()` _returns and increments the raw tween value (range: [0,1] plus spring); it also updates the "current" values_
+	- `curr()`, `curr1()`, `curr2()` & `curr3()` _returns the current values_
+
 ### build_20130619.0 (Jun 19,2013)
 - removed the ff. HMath methods (these are redundant to PApplet's `random()` methods):
 	- `random()`

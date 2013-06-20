@@ -24,6 +24,7 @@ public class HStage extends HDrawable implements HImageHolder {
 	private PApplet _app;
 	private PImage _bgImg;
 	private boolean _autoClears;
+	private boolean _showsFPS;
 	
 	public HStage(PApplet papplet) {
 		_app = papplet;
@@ -63,7 +64,6 @@ public class HStage extends HDrawable implements HImageHolder {
 	public PImage image() {
 		return _bgImg;
 	}
-
 
 	/** @deprecated The method autoClears(boolean) should be used instead */
 	public HStage autoClear(boolean b) {
@@ -126,7 +126,16 @@ public class HStage extends HDrawable implements HImageHolder {
 	}
 	
 	
-	// PAINTALL //
+	// MISC //
+	
+	public HStage showsFPS(boolean b) {
+		_showsFPS = b;
+		return this;
+	}
+	
+	public boolean showsFPS() {
+		return _showsFPS;
+	}
 	
 	@Override
 	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPc) {
@@ -139,6 +148,15 @@ public class HStage extends HDrawable implements HImageHolder {
 				child = child.next();
 			}
 		g.popStyle();
+		
+		if(_showsFPS) {
+			g.pushStyle();
+				g.fill(H.BLACK);
+				g.text(_app.frameRate,1,17);
+				g.fill(H.WHITE);
+				g.text(_app.frameRate,0,16);
+			g.popStyle();
+		}
 	}
 	
 	

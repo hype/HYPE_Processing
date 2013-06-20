@@ -12,11 +12,9 @@
 package hype;
 
 import hype.core.util.H;
-import hype.extended.behavior.HFollow;
-import hype.extended.behavior.HRotate;
+import hype.extended.behavior.HTween;
 import hype.extended.drawable.HRect;
 import processing.core.PApplet;
-import processing.core.PVector;
 
 /**
  * @mainpage
@@ -29,7 +27,10 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - Make `H` as HStage container
+	 * - show frameRate
+	 * - raw value getter for HTween
+	 * - raw value getter for HOscillator
+	 * - test file for raw / current values
 	 * 
 	 * (HMagneticField)
 	 * - BLAHRG
@@ -123,28 +124,23 @@ public class DummyApplet extends PApplet {
 	 */
 	
 	//*/
-	HRect r1, r2;
-	
 	public void setup() {
 		size(640,640);
 		H.init(this);
+		H.background(255);
+		H.stage().showsFPS(true);
 		
-		H.add(r2 = new HRect()).fill(H.GREEN);
-//		H.add(r1 = new HRect()).anchorUV(.25f,.75f).locAt(H.CENTER).alpha(128);
-		H.add(r1 = new HRect(50,100)).anchorUV(.25f,.75f).locAt(H.CENTER).alpha(128);
-		
-		new HRotate().target(r1).speed(1);
-		new HFollow().target(r1);
+		HRect rect = (HRect) H.add(new HRect().rounding(20)).locAt(H.CENTER).anchorAt(H.CENTER);
+		new HTween().target(rect)
+			.property(H.X)
+			.start(50).end(200)
+			.ease(.01f)
+			.spring(.95f);
+		//
 	}
 
 	public void draw() {
-		PVector loc = new PVector();
-		PVector size = new PVector();
-		r1.bounds(loc, size);
-		r2.loc(loc).size(size.x,size.y);
-		fill(0);
 		H.drawStage();
-		text(frameRate, 0, 16);
 	}
 	//*/
 }

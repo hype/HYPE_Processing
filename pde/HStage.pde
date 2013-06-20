@@ -12,6 +12,7 @@ public static class HStage extends HDrawable implements HImageHolder {
 	private PApplet _app;
 	private PImage _bgImg;
 	private boolean _autoClears;
+	private boolean _showsFPS;
 	public HStage(PApplet papplet) {
 		_app = papplet;
 		_autoClears = true;
@@ -73,6 +74,13 @@ public static class HStage extends HDrawable implements HImageHolder {
 	public float height() {
 		return _app.height;
 	}
+	public HStage showsFPS(boolean b) {
+		_showsFPS = b;
+		return this;
+	}
+	public boolean showsFPS() {
+		return _showsFPS;
+	}
 	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPc) {
 		g.pushStyle();
 			if(_autoClears) clear();
@@ -82,6 +90,14 @@ public static class HStage extends HDrawable implements HImageHolder {
 				child = child.next();
 			}
 		g.popStyle();
+		if(_showsFPS) {
+			g.pushStyle();
+				g.fill(H.BLACK);
+				g.text(_app.frameRate,1,17);
+				g.fill(H.WHITE);
+				g.text(_app.frameRate,0,16);
+			g.popStyle();
+		}
 	}
 	public void draw(PGraphics g,boolean b,float x,float y,float p) {}
 	public HDrawable createCopy() { return null; }

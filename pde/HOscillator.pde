@@ -10,10 +10,11 @@
  */
 public static class HOscillator extends HBehavior {
 	private HDrawable _target;
-	private float _min1,_min2,_min3;
-	private float _rel1,_rel2,_rel3;
-	private float _max1,_max2,_max3;
-	private float _mul1,_mul2,_mul3;
+	private float _min1, _min2, _min3;
+	private float _rel1, _rel2, _rel3;
+	private float _max1, _max2, _max3;
+	private float _curr1, _curr2, _curr3;
+	private float _origw, _origh;
 	private float _step, _speed, _freq;
 	private int _property, _waveform;
 	public HOscillator() {
@@ -34,9 +35,8 @@ public static class HOscillator extends HBehavior {
 		copy._rel1 = _rel1;
 		copy._rel2 = _rel2;
 		copy._rel3 = _rel3;
-		copy._mul1 = _mul1;
-		copy._mul2 = _mul2;
-		copy._mul3 = _mul3;
+		copy._origw = _origw;
+		copy._origh = _origh;
 		copy._step = _step;
 		copy._speed = _speed;
 		copy._freq = _freq;
@@ -47,8 +47,8 @@ public static class HOscillator extends HBehavior {
 	public HOscillator target(HDrawable d) {
 		_target = d;
 		if(d != null) {
-			_mul1 = d.width();
-			_mul2 = d.height();
+			_origw = d.width();
+			_origh = d.height();
 		}
 		return this;
 	}
@@ -177,42 +177,58 @@ public static class HOscillator extends HBehavior {
 	public int waveform() {
 		return _waveform;
 	}
-	public void runBehavior(PApplet app) {
-		if(_target==null) return;
+	public float nextRaw() {
 		float deg = (_step*_freq) % 360;
-		float curr;
+		float rawVal;
 		switch(_waveform) {
-		case HConstants.SINE:		curr = HMath.sineWave(deg); break;
-		case HConstants.TRIANGLE:	curr = HMath.triangleWave(deg); break;
-		case HConstants.SAW:		curr = HMath.sawWave(deg); break;
-		case HConstants.SQUARE:		curr = HMath.squareWave(deg); break;
-		default: curr = 0; break;
+		case HConstants.SINE:		rawVal = HMath.sineWave(deg); break;
+		case HConstants.TRIANGLE:	rawVal = HMath.triangleWave(deg); break;
+		case HConstants.SAW:		rawVal = HMath.sawWave(deg); break;
+		case HConstants.SQUARE:		rawVal = HMath.squareWave(deg); break;
+		default: rawVal = 0; break;
 		}
 		_step += _speed;
-		if(_property == HConstants.SCALE) { 
-			_target.size(
-				HMath.map(curr, -1,1, _min1*_mul1,_max1*_mul1) + _rel1*_mul1,
-				HMath.map(curr, -1,1, _min2*_mul2,_max2*_mul2) + _rel2*_mul2);
-		} else {
-			float v1 = HMath.map(curr, -1,1, _min1,_max1) + _rel1;
-			float v2 = HMath.map(curr, -1,1, _min2,_max2) + _rel2;
-			float v3 = HMath.map(curr, -1,1, _min3,_max3) + _rel3;
-			switch(_property) {
-			case HConstants.WIDTH:		_target.width(v1); break;
-			case HConstants.HEIGHT:		_target.height(v1); break;
-			case HConstants.SIZE:		_target.size(v1,v2); break;
-			case HConstants.ALPHA:		_target.alpha(Math.round(v1)); break;
-			case HConstants.X:			_target.x(v1); break;
-			case HConstants.Y:			_target.y(v1); break;
-			case HConstants.Z:			_target.z(v1); break;
-			case HConstants.LOCATION:	_target.loc(v1,v2,v3); break;
-			case HConstants.ROTATION:	_target.rotation(v1); break;
-			case HConstants.DROTATION:	_target.rotate(v1); break;
-			case HConstants.DX:			_target.move(v1,0); break;
-			case HConstants.DY:			_target.move(0,v1); break;
-			case HConstants.DLOC:		_target.move(v1,v1); break;
-			default: break;
-			}
+		_curr1 = HMath.map(rawVal, -1,1, _min1,_max1) + _rel1;
+		_curr2 = HMath.map(rawVal, -1,1, _min2,_max2) + _rel2;
+		_curr3 = HMath.map(rawVal, -1,1, _min3,_max3) + _rel3;
+		return rawVal;
+	}
+	public float curr() {
+		return _curr1;
+	}
+	public float curr1() {
+		return _curr1;
+	}
+	public float curr2() {
+		return _curr2;
+	}
+	public float curr3() {
+		return _curr3;
+	}
+	public void runBehavior(PApplet app) {
+		if(_target==null) return;
+		nextRaw();
+		float v1 = _curr1;
+		float v2 = _curr2;
+		float v3 = _curr3;
+		switch(_property) {
+		case HConstants.WIDTH:		_target.width(v1); break;
+		case HConstants.HEIGHT:		_target.height(v1); break;
+		case HConstants.SCALE:
+			v1 *= _origw;
+			v2 *= _origh;
+		case HConstants.SIZE:		_target.size(v1,v2); break;
+		case HConstants.ALPHA:		_target.alpha(Math.round(v1)); break;
+		case HConstants.X:			_target.x(v1); break;
+		case HConstants.Y:			_target.y(v1); break;
+		case HConstants.Z:			_target.z(v1); break;
+		case HConstants.LOCATION:	_target.loc(v1,v2,v3); break;
+		case HConstants.ROTATION:	_target.rotation(v1); break;
+		case HConstants.DROTATION:	_target.rotate(v1); break;
+		case HConstants.DX:			_target.move(v1,0); break;
+		case HConstants.DY:			_target.move(0,v1); break;
+		case HConstants.DLOC:		_target.move(v1,v1); break;
+		default: break;
 		}
 	}
 	public HOscillator register() {
