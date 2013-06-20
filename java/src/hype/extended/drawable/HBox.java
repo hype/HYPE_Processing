@@ -22,7 +22,7 @@ public class HBox extends HDrawable3D {
 		copy.copyPropertiesFrom(this);
 		copy._depth = _depth;
 		copy._anchorW = _anchorW;
-		return this;
+		return copy;
 	}
 
 	@Override

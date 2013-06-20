@@ -14,12 +14,12 @@ public static class HSphere extends HDrawable3D {
 	 * fix w/h/d
 	 * FIXME
 	 */
-	public HDrawable createCopy() {
+	public HSphere createCopy() {
 		HSphere copy = new HSphere();
 		copy.copyPropertiesFrom(this);
 		copy._depth = _depth;
 		copy._anchorW = _anchorW;
-		return this;
+		return copy;
 	}
 	public void draw( PGraphics g, boolean usesZ,
 		float drawX, float drawY, float currAlphaPc
@@ -27,6 +27,7 @@ public static class HSphere extends HDrawable3D {
 		applyStyle(g, currAlphaPc);
 		g.pushMatrix();
 			g.translate(drawX, drawY, -anchorZ());
+			g.sphere(_width);
 		g.popMatrix();
 	}
 }

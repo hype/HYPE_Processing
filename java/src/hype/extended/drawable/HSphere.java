@@ -11,7 +11,6 @@
 
 package hype.extended.drawable;
 
-import hype.core.drawable.HDrawable;
 import hype.core.drawable.HDrawable3D;
 import processing.core.PGraphics;
 
@@ -23,12 +22,12 @@ public class HSphere extends HDrawable3D {
 	 */
 	
 	@Override
-	public HDrawable createCopy() {
+	public HSphere createCopy() {
 		HSphere copy = new HSphere();
 		copy.copyPropertiesFrom(this);
 		copy._depth = _depth;
 		copy._anchorW = _anchorW;
-		return this;
+		return copy;
 	}
 
 	@Override
@@ -38,7 +37,7 @@ public class HSphere extends HDrawable3D {
 		applyStyle(g, currAlphaPc);
 		g.pushMatrix();
 			g.translate(drawX, drawY, -anchorZ());
-			//g.sphere(_width,_height,_depth);
+			g.sphere(_width);
 		g.popMatrix();
 	}
 
