@@ -28,8 +28,11 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - test file for 3d rotation
-	 * - test file for box
+	 * (Capture)
+	 * - HCapture
+	 * - post hooks
+	 * 
+	 * (3D Stuff)
 	 * - 3D anchorAt()
 	 * 
 	 * (HMagneticField)
@@ -38,10 +41,6 @@ public class DummyApplet extends PApplet {
 	 * (HBehavior)
 	 * - [ ] new HBehavior(isRegistered) + isRegistered constructors for other
 	 *       behaviors
-	 * - [ ] HTween & HOscillator: store the scale factor when using H.SCALE
-	 *       instead of the multiplied sizes; just compute the "multiplier" in
-	 *       runBehavior() to multiply the curent values (in this case, width
-	 *       and height)
 	 * 
 	 * (Bounding Box)
 	 * - custom bounds for HPath
@@ -62,7 +61,6 @@ public class DummyApplet extends PApplet {
 	 * 
 	 * (Housekeeping)
 	 * - [ ] announce deprecation warning at github
-	 * - [ ] remove
 	 * 
 	 * (Experiments and New Features)
 	 * - [ ] masking
@@ -89,7 +87,6 @@ public class DummyApplet extends PApplet {
 	 * - [ ] rename xxxPerc -> xxxUV or xxxPc
 	 * - [ ] rearrange HDrawable's fields by category instead of type
 	 * - [ ] HMath: add z index for abs/relLoc()
-	 * - [ ] HMath: replace round512() with the tolerance comparators
 	 * - [ ] HMath: use the comparator methods for the bezier methods
 	 * - [ ] change util methods that returns arrays to use the method(val, float[] loc) format
 	 * - [ ] privatize remaining public fields
@@ -106,7 +103,6 @@ public class DummyApplet extends PApplet {
 	 * 		- ???
 	 * 
 	 * (Optimization)
-	 * - [ ] use bitflags for multiple bools
 	 * - [ ] use byte for small ints
 	 * 
 	 * (Docs)
