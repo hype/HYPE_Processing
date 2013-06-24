@@ -12,7 +12,9 @@
 package hype;
 
 import hype.core.util.H;
-import hype.extended.drawable.HBox;
+import hype.extended.drawable.HEllipse;
+import hype.extended.drawable.HRect;
+import hype.extended.layout.HShapeLayout;
 import processing.core.PApplet;
 
 /**
@@ -26,7 +28,6 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * - z anchor
 	 * - test file for 3d rotation
 	 * - test file for box
 	 * - 3D anchorAt()
@@ -78,6 +79,9 @@ public class DummyApplet extends PApplet {
 	 * 		- capture(1,10) -- frame sequence
 	 * 		- pdf frames (remember that individual pdf frames ignores autoClear(false))
 	 * - [ ] HDrawable / HLinkedList: turn them into circular linked lists
+	 * - [ ] Processing.js P3D compatibility
+	 * 		- remove push/popStyle()
+	 * 		- ???
 	 * 
 	 * (Future Refactors)
 	 * - [ ] property setter objects
@@ -125,24 +129,15 @@ public class DummyApplet extends PApplet {
 	
 	//*/
 	public void setup() {
-		size(640,640,P3D);
+		size(640,640);
 		H.init(this);
-		H.background(255);
-		H.use3D(true);
 		H.stage().showsFPS(true);
 		
-		HBox box = (HBox) H.add(new HBox()).locAt(H.CENTER).anchorAt(H.CENTER);
-		//box.size(10,10,10);
-		box.fill(H.RED);
-		System.out.println(box.size());
-		box.rotationX(45);
-		box.rotationY(45);
-		box.rotationZ(45);
-//		new HTween().target(rect)
-//			.property(H.ROTATION)
-//			.start(50).end(200)
-//			.ease(.01f)
-//			.spring(.95f);
+		HShapeLayout layout = new HShapeLayout();
+		layout.target(new HRect().loc(320,320).anchorAt(H.CENTER).rotate(45));
+		for(int i=0; i<100; ++i) {
+			layout.applyTo(H.add(new HEllipse(10)));
+		}
 	}
 
 	public void draw() {

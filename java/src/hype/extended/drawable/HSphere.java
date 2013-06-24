@@ -15,11 +15,20 @@ import hype.core.drawable.HDrawable3D;
 import processing.core.PGraphics;
 
 public class HSphere extends HDrawable3D {
-	/*
-	 * radius(float)
-	 * fix w/h/d
-	 * FIXME
-	 */
+	
+	public HSphere() {
+		proportional(true);
+	}
+	
+	public HSphere radius(float f) {
+		return (HSphere) width(f);
+	}
+	
+	@Override
+	protected void onResize(float oldW, float oldH, float newW, float newH) {
+		super.onResize(oldW, oldH, newW, newH);
+		// TODO
+	}
 	
 	@Override
 	public HSphere createCopy() {

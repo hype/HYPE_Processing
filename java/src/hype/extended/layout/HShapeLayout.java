@@ -14,15 +14,16 @@ package hype.extended.layout;
 import hype.core.drawable.HDrawable;
 import hype.core.layout.HLayout;
 import hype.core.util.H;
-import hype.core.util.HMath;
 import processing.core.PVector;
 
 public class HShapeLayout implements HLayout {
 	private HDrawable _target;
+	private float[] _bounds;
 	private int _iterationLimit;
 	
 	public HShapeLayout() {
 		_iterationLimit = 1024;
+		_bounds = new float[4];
 	}
 	
 	public HShapeLayout iterationLimit(int i) {
@@ -34,8 +35,9 @@ public class HShapeLayout implements HLayout {
 		return _iterationLimit;
 	}
 	
-	public HShapeLayout target(HDrawable h) {
-		_target = h;
+	public HShapeLayout target(HDrawable d) {
+		_target = d;
+		if(_target != null) _target.bounds(_bounds);
 		return this;
 	}
 	
@@ -53,11 +55,15 @@ public class HShapeLayout implements HLayout {
 	public PVector getNextPoint() {
 		if(_target == null) return null;
 		
-		float[] loc = HMath.absLocArr(_target,0,0);
-		float x1 = loc[0] - _target.anchorX();
-		float y1 = loc[1] - _target.anchorY();
-		float x2 = x1 + _target.width();
-		float y2 = y1 + _target.height();
+//		float[] loc = HMath.absLocArr(_target,0,0);
+//		float x1 = loc[0] - _target.anchorX();
+//		float y1 = loc[1] - _target.anchorY();
+//		float x2 = x1 + _target.width();
+//		float y2 = y1 + _target.height();
+		float x1 = _bounds[0];
+		float y1 = _bounds[1];
+		float x2 = _bounds[0] + _bounds[2];
+		float y2 = _bounds[1] + _bounds[3];
 		
 		for(int i=0; i<_iterationLimit; ++i) {
 			float x = H.app().random(x1,x2);

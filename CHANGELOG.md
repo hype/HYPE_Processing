@@ -1,3 +1,6 @@
+### build_20130624.0 (Jun 24, 2013)
+- the bounds limit for picking a random position for HShapeLayout is now more accurate, when the layout's target is rotated.
+
 ### build_20130620.0 (Jun 20, 2013)
 - new HStage methods:
 	- `showsFPS(boolean)`

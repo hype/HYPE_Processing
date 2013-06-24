@@ -40,6 +40,9 @@ public static abstract class HDrawable3D extends HDrawable {
 	public HDrawable3D anchor(float ancx, float ancy, float ancz) {
 		return (HDrawable3D) anchorZ(ancz).anchorX(ancx).anchorY(ancy);
 	}
+	protected void onResize(float oldW, float oldH, float newW, float newH) {
+		super.onResize(oldW, oldH, newW, newH);
+	}
 	public PVector anchor() {
 		return new PVector(anchorX(), anchorY(), anchorZ());
 	}

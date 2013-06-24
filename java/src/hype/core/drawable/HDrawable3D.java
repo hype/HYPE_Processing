@@ -58,6 +58,12 @@ public abstract class HDrawable3D extends HDrawable {
 	}
 	
 	@Override
+	protected void onResize(float oldW, float oldH, float newW, float newH) {
+		// TODO proportional stuff
+		super.onResize(oldW, oldH, newW, newH);
+	}
+	
+	@Override
 	public PVector anchor() {
 		return new PVector(anchorX(), anchorY(), anchorZ());
 	}

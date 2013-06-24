@@ -9,11 +9,15 @@
  * All rights reserved.
  */
 public static class HSphere extends HDrawable3D {
-	/*
-	 * radius(float)
-	 * fix w/h/d
-	 * FIXME
-	 */
+	public HSphere() {
+		proportional(true);
+	}
+	public HSphere radius(float f) {
+		return (HSphere) width(f);
+	}
+	protected void onResize(float oldW, float oldH, float newW, float newH) {
+		super.onResize(oldW, oldH, newW, newH);
+	}
 	public HSphere createCopy() {
 		HSphere copy = new HSphere();
 		copy.copyPropertiesFrom(this);
