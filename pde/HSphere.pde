@@ -16,6 +16,7 @@ public static class HSphere extends HDrawable3D {
 		return (HSphere) width(f);
 	}
 	protected void onResize(float oldW, float oldH, float newW, float newH) {
+		_height = _depth = _width;
 		super.onResize(oldW, oldH, newW, newH);
 	}
 	public HSphere createCopy() {

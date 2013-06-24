@@ -26,8 +26,8 @@ public class HSphere extends HDrawable3D {
 	
 	@Override
 	protected void onResize(float oldW, float oldH, float newW, float newH) {
+		_height = _depth = _width;
 		super.onResize(oldW, oldH, newW, newH);
-		// TODO
 	}
 	
 	@Override
