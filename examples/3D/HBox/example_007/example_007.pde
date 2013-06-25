@@ -1,5 +1,6 @@
 HDrawablePool pool;
 HOscillator rX,rY,rZ;
+float rotation = 0;
 
 void setup() {
 	size(640,640,P3D);
@@ -50,7 +51,6 @@ void setup() {
 						.height(ranSize)
 						.noStroke()
 						.z( (int)random(-400, 0) )
-						.rotationZ(random(360))
 					;
 
 					new HOscillator()
@@ -79,7 +79,6 @@ void draw() {
 
 	while(bit.hasNext()) {
 		HDrawable d = bit.next();
-		// d.fill(255, 255, 255, (int)map(d.z(), -300, 300, 255, 0)) ;
 		d.rotationX( rX.curr() );
 		d.rotationY( rY.curr() );
 		d.rotationZ( rZ.curr() );
@@ -88,6 +87,18 @@ void draw() {
 	pointLight(255, 51, 0,  0, height/2, -300);        // orange
 	pointLight(0, 149, 168,  width, height/2, -300);   // teal
 	pointLight(255, 204, 0,  width/2, height/2, -400); // yellow
+
+	float orbitRadius= 1000;
+	float xpos= cos(radians(rotation))*orbitRadius;
+	float zpos= sin(radians(rotation))*orbitRadius;
+	
+	camera(
+		xpos, 0, zpos,
+		width/2, height/2, 0,
+		0, -1, 0
+	);
+
+	rotation++;
 
 	H.drawStage();
 }
