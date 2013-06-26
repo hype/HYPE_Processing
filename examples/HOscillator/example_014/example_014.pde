@@ -1,5 +1,5 @@
 HDrawablePool pool;
-int boxSixe = 150~;
+int boxSixe = 150;
 
 void setup() {
 	size(640,640,P3D);
