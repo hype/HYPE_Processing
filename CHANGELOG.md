@@ -1,3 +1,13 @@
+### build_20130626.0 (Jun 26, 2013)
+- new fields for HConstants:
+	- `ROTATIONX`
+	- `ROTATIONY`
+	- `ROTATIONZ`
+	- `DROTATIONX`
+	- `DROTATIONY`
+	- `DROTATIONZ`
+- HTween and HOscillator can now have 3D rotation
+
 ### build_20130624.0 (Jun 24, 2013)
 - the bounds limit for picking a random position for HShapeLayout is now more accurate, when the layout's target is rotated.
 

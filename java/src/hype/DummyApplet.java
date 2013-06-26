@@ -12,9 +12,9 @@
 package hype;
 
 import hype.core.util.H;
-import hype.extended.drawable.HEllipse;
+import hype.extended.behavior.HOscillator;
+import hype.extended.behavior.HTween;
 import hype.extended.drawable.HRect;
-import hype.extended.layout.HShapeLayout;
 import processing.core.PApplet;
 
 /**
@@ -28,6 +28,10 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
+	 * (HConstants: 3D Rotate)
+	 * - HTween
+	 * - HOscillator
+	 * 
 	 * (Capture)
 	 * - HCapture
 	 * - post hooks
@@ -41,6 +45,7 @@ public class DummyApplet extends PApplet {
 	 * (HBehavior)
 	 * - [ ] new HBehavior(isRegistered) + isRegistered constructors for other
 	 *       behaviors
+	 * - [ ] property setter objects
 	 * 
 	 * (Bounding Box)
 	 * - custom bounds for HPath
@@ -82,7 +87,6 @@ public class DummyApplet extends PApplet {
 	 * 		- ???
 	 * 
 	 * (Future Refactors)
-	 * - [ ] property setter objects
 	 * - [ ] have HDrawable perc stuff use x2y()/y2v()/u2x()/v2y()
 	 * - [ ] rename xxxPerc -> xxxUV or xxxPc
 	 * - [ ] rearrange HDrawable's fields by category instead of type
@@ -125,15 +129,20 @@ public class DummyApplet extends PApplet {
 	
 	//*/
 	public void setup() {
-		size(640,640);
+		size(640,640,P3D);
 		H.init(this);
+		H.use3D(true);
 		H.stage().showsFPS(true);
 		
-		HShapeLayout layout = new HShapeLayout();
-		layout.target(new HRect().loc(320,320).anchorAt(H.CENTER).rotate(45));
-		for(int i=0; i<100; ++i) {
-			layout.applyTo(H.add(new HEllipse(10)));
-		}
+//		new HTween()
+//			.target(H.add(new HRect()).locAt(H.CENTER).anchorAt(H.CENTER))
+//			.property(H.ROTATIONY)
+//			.start(0).end(45)
+//			.ease(.05f).spring(0.9f);
+		new HOscillator()
+			.target(H.add(new HRect()).locAt(H.CENTER).anchorAt(H.CENTER))
+			.property(H.ROTATIONZ)
+			.range(-45, 45);
 	}
 
 	public void draw() {

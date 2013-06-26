@@ -223,8 +223,12 @@ public static class HOscillator extends HBehavior {
 		case HConstants.Y:			_target.y(v1); break;
 		case HConstants.Z:			_target.z(v1); break;
 		case HConstants.LOCATION:	_target.loc(v1,v2,v3); break;
-		case HConstants.ROTATION:	_target.rotation(v1); break;
-		case HConstants.DROTATION:	_target.rotate(v1); break;
+		case HConstants.ROTATIONX:	_target.rotationX(v1); break;
+		case HConstants.ROTATIONY:	_target.rotationY(v1); break;
+		case HConstants.ROTATIONZ:	_target.rotationZ(v1); break;
+		case HConstants.DROTATIONX:	_target.rotateX(v1); break;
+		case HConstants.DROTATIONY:	_target.rotateY(v1); break;
+		case HConstants.DROTATIONZ:	_target.rotateZ(v1); break;
 		case HConstants.DX:			_target.move(v1,0); break;
 		case HConstants.DY:			_target.move(0,v1); break;
 		case HConstants.DLOC:		_target.move(v1,v1); break;

@@ -79,6 +79,12 @@ public interface HConstants {
 		DZ = 12,
 		DLOC = 13,
 		SCALE = 14,
+		ROTATIONX = 15,
+		ROTATIONY = 16,
+		ROTATIONZ = 8,
+		DROTATIONX = 17,
+		DROTATIONY = 18,
+		DROTATIONZ = 9,
 		
 		// HTriangle types
 		ISOCELES = 0,
