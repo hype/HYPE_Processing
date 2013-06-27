@@ -12,8 +12,6 @@
 package hype;
 
 import hype.core.util.H;
-import hype.extended.behavior.HOscillator;
-import hype.extended.behavior.HTween;
 import hype.extended.drawable.HRect;
 import processing.core.PApplet;
 
@@ -28,9 +26,11 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * (HConstants: 3D Rotate)
-	 * - HTween
-	 * - HOscillator
+	 * (HSphere)
+	 * - variable sizes for HEllipse
+	 * 
+	 * (*)
+	 * - [ ] property setter objects
 	 * 
 	 * (Capture)
 	 * - HCapture
@@ -45,7 +45,6 @@ public class DummyApplet extends PApplet {
 	 * (HBehavior)
 	 * - [ ] new HBehavior(isRegistered) + isRegistered constructors for other
 	 *       behaviors
-	 * - [ ] property setter objects
 	 * 
 	 * (Bounding Box)
 	 * - custom bounds for HPath
@@ -134,15 +133,19 @@ public class DummyApplet extends PApplet {
 		H.use3D(true);
 		H.stage().showsFPS(true);
 		
+//		HSphere s;
+//		H.add(s = new HSphere());
+//		s.locAt(H.CENTER).anchorAt(H.CENTER);
+		H.add(new HRect()).locAt(H.CENTER).anchorAt(H.CENTER);
 //		new HTween()
 //			.target(H.add(new HRect()).locAt(H.CENTER).anchorAt(H.CENTER))
 //			.property(H.ROTATIONY)
 //			.start(0).end(45)
 //			.ease(.05f).spring(0.9f);
-		new HOscillator()
-			.target(H.add(new HRect()).locAt(H.CENTER).anchorAt(H.CENTER))
-			.property(H.ROTATIONZ)
-			.range(-45, 45);
+//		new HOscillator()
+//			.target(H.add(new HRect()).locAt(H.CENTER).anchorAt(H.CENTER))
+//			.property(H.ROTATIONZ)
+//			.range(-45, 45);
 	}
 
 	public void draw() {

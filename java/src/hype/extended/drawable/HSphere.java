@@ -15,13 +15,22 @@ import hype.core.drawable.HDrawable3D;
 import processing.core.PGraphics;
 
 public class HSphere extends HDrawable3D {
+	public HSphere() {}
 	
-	public HSphere() {
-		proportional(true);
+	public HSphere(float radius) {
+		radius(radius);
+	}
+	
+	public HSphere(float radiusw, float radiush, float radiusd) {
+		radius(radiusw, radiush, radiusd);
 	}
 	
 	public HSphere radius(float f) {
-		return (HSphere) width(f);
+		return (HSphere) size(f*2);
+	}
+	
+	public HSphere radius(float radiusw, float radiush, float radiusd) {
+		return (HSphere) size(radiusw*2, radiush*2, radiusd*2);
 	}
 	
 	@Override
@@ -45,8 +54,9 @@ public class HSphere extends HDrawable3D {
 	) {
 		applyStyle(g, currAlphaPc);
 		g.pushMatrix();
-			g.translate(drawX, drawY, -anchorZ());
-			g.sphere(_width);
+			g.translate(drawX+_width/2, drawY+_height/2, -anchorZ()+_depth/2);
+			g.scale(_width, _height, _depth);
+			g.sphere(1);
 		g.popMatrix();
 	}
 

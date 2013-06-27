@@ -15,6 +15,9 @@ public static abstract class HDrawable3D extends HDrawable {
 	public HDrawable3D() {
 		_depth = DEFAULT_DEPTH;
 	}
+	public HDrawable3D size(float s) {
+		return size(s,s,s);
+	}
 	public HDrawable3D size(float w, float h, float d) {
 		_width = w;
 		_height = h;
@@ -39,6 +42,30 @@ public static abstract class HDrawable3D extends HDrawable {
 	}
 	public HDrawable3D anchor(float ancx, float ancy, float ancz) {
 		return (HDrawable3D) anchorZ(ancz).anchorX(ancx).anchorY(ancy);
+	}
+	public HDrawable3D anchorAt(int where) {
+		if( (where & HConstants.CENTER_X) != 0 ) {
+			anchorU(0.5f);
+		} else if( (where & HConstants.LEFT) != 0 ) {
+			anchorU(0);
+		} else if( (where & HConstants.RIGHT) !=  0 ) {
+			anchorU(1);
+		}
+		if( (where & HConstants.CENTER_Y) != 0 ) {
+			anchorV(0.5f);
+		} else if( (where & HConstants.TOP) != 0 ) {
+			anchorV(0);
+		} else if( (where & HConstants.BOTTOM) !=  0 ) {
+			anchorV(1);
+		}
+		if( (where & HConstants.CENTER_Z) != 0 ) {
+			anchorW(0.5f);
+		} else if( (where & HConstants.BACK) != 0 ) {
+			anchorW(0);
+		} else if( (where & HConstants.FRONT) !=  0 ) {
+			anchorW(1);
+		}
+		return this;
 	}
 	protected void onResize(float oldW, float oldH, float newW, float newH) {
 		super.onResize(oldW, oldH, newW, newH);

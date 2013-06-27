@@ -28,7 +28,11 @@ public interface HConstants {
 		BOTTOM = 8,		// 0b1000
 		CENTER_Y = 12,	// 0b1100
 		
-		CENTER = 15, // 0b1111
+		BACK = 16,		// 0001 0000
+		FRONT = 32,		// 0010 0000
+		CENTER_Z = 48,	// 0011 0000
+		
+		CENTER = 63,	// 0011 1111
 		
 		TOP_LEFT = 5,	// 0b0101
 		TOP_RIGHT = 6,	// 0b0110
