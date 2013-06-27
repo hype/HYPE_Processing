@@ -53,10 +53,7 @@ public static class HMagneticField extends HBehavior {
 		return (northRot + southRot) / numMagnets;
 	}
 	public void runBehavior(PApplet app) {
-		for(HIterator<HDrawable> it=_targets.iterator(); it.hasNext();) {
-			HDrawable d = it.next();
-			d.rotationRad( getRotation(d.x(), d.y()) );
-		}
+		for(HDrawable d : _targets) d.rotationRad( getRotation(d.x(), d.y()) );
 	}
 	public HMagneticField register() {
 		return (HMagneticField) super.register();

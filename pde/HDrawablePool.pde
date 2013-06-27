@@ -8,7 +8,7 @@
  * 
  * All rights reserved.
  */
-public static class HDrawablePool {
+public static class HDrawablePool implements Iterable<HDrawable> {
 	private HLinkedHashSet<HDrawable> _activeSet, _inactiveSet;
 	private ArrayList<HDrawable> _prototypes;
 	private HCallback _onCreate, _onRequest, _onRelease;
@@ -167,7 +167,7 @@ public static class HDrawablePool {
 		int index = HMath.randomInt(_prototypes.size());
 		return _prototypes.get(index).createCopy();
 	}
-	public HIterator<HDrawable> iterator() {
+	public Iterator<HDrawable> iterator() {
 		return _activeSet.iterator();
 	}
 }

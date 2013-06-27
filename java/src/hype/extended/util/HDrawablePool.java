@@ -11,7 +11,6 @@
 
 package hype.extended.util;
 
-import hype.core.collection.HIterator;
 import hype.core.collection.HLinkedHashSet;
 import hype.core.colorist.HColorist;
 import hype.core.drawable.HDrawable;
@@ -23,8 +22,9 @@ import hype.core.util.HMath;
 import hype.core.util.HWarnings;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class HDrawablePool {
+public class HDrawablePool implements Iterable<HDrawable> {
 	private HLinkedHashSet<HDrawable> _activeSet, _inactiveSet;
 	private ArrayList<HDrawable> _prototypes;
 	private HCallback _onCreate, _onRequest, _onRelease;
@@ -227,7 +227,8 @@ public class HDrawablePool {
 		return _prototypes.get(index).createCopy();
 	}
 
-	public HIterator<HDrawable> iterator() {
+	@Override
+	public Iterator<HDrawable> iterator() {
 		return _activeSet.iterator();
 	}
 }

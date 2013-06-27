@@ -18,8 +18,11 @@
  * 
  * @author james
  */
-public static abstract class HDrawable extends HNode<HDrawable>
-		implements HDirectable, HHittable {
+public static abstract class HDrawable extends HNode<HDrawable> implements
+	HDirectable,
+	HHittable,
+	Iterable<HDrawable>
+{
 	public static final int DEFAULT_FILL = 0xFFFFFFFF;
 	public static final int DEFAULT_STROKE = 0xFF000000;
 	public static final int DEFAULT_WIDTH = 100;
@@ -1805,7 +1808,7 @@ public static abstract class HDrawable extends HNode<HDrawable>
 	 * 
 	 * @author james
 	 */
-	public static class HDrawableIterator implements HIterator<HDrawable> {
+	public static class HDrawableIterator implements Iterator<HDrawable> {
 		private HDrawable parent, d1, d2;
 		public HDrawableIterator(HDrawable parentDrawable) {
 			parent = parentDrawable;

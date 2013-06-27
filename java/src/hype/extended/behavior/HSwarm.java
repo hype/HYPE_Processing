@@ -12,13 +12,15 @@
 package hype.extended.behavior;
 
 import hype.core.behavior.HBehavior;
-import hype.core.collection.HIterator;
 import hype.core.collection.HLinkedHashSet;
-import hype.core.interfaces.HLocatable;
 import hype.core.interfaces.HDirectable;
+import hype.core.interfaces.HLocatable;
 import hype.core.util.HConstants;
 import hype.core.util.HMath;
 import hype.core.util.HVector;
+
+import java.util.Iterator;
+
 import processing.core.PApplet;
 
 public class HSwarm extends HBehavior {
@@ -126,8 +128,7 @@ public class HSwarm extends HBehavior {
 		HLocatable goal = null;
 		float nearestDist = -1;
 		
-		for(HIterator<HLocatable> it=_goals.iterator(); it.hasNext();) {
-			HLocatable h = it.next();
+		for(HLocatable h : _goals) {
 			float dist = HMath.dist(target.x(),target.y(), h.x(),h.y());
 			if(nearestDist<0 || dist<nearestDist) {
 				nearestDist = dist;
@@ -140,7 +141,7 @@ public class HSwarm extends HBehavior {
 	@Override
 	public void runBehavior(PApplet app) {
 		int numTargets = _targets.size();
-		HIterator<HDirectable> it = _targets.iterator();
+		Iterator<HDirectable> it = _targets.iterator();
 		for(int i=0; i<numTargets; ++i) {
 			HDirectable target = it.next();
 			

@@ -8,7 +8,7 @@
  * 
  * All rights reserved.
  */
-public static class HLinkedList<T> {
+public static class HLinkedList<T> implements Iterable<T> {
 	protected HLinkedListNode<T> _firstSentinel, _lastSentinel;
 	protected int _size;
 	public HLinkedList() {
@@ -116,7 +116,7 @@ public static class HLinkedList<T> {
 			return _content;
 		}
 	}
-	public static class HLinkedListIterator<U> implements HIterator<U> {
+	public static class HLinkedListIterator<U> implements Iterator<U> {
 		private HLinkedList<U> list;
 		private HLinkedListNode<U> n1, n2;
 		public HLinkedListIterator(HLinkedList<U> parent) {

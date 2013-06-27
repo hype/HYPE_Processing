@@ -12,7 +12,6 @@
 package hype.extended.behavior;
 
 import hype.core.behavior.HBehavior;
-import hype.core.collection.HIterator;
 import hype.core.collection.HLinkedHashSet;
 import hype.core.drawable.HDrawable;
 import hype.core.util.HMath;
@@ -76,10 +75,7 @@ public class HMagneticField extends HBehavior {
 	
 	@Override
 	public void runBehavior(PApplet app) {
-		for(HIterator<HDrawable> it=_targets.iterator(); it.hasNext();) {
-			HDrawable d = it.next();
-			d.rotationRad( getRotation(d.x(), d.y()) );
-		}
+		for(HDrawable d : _targets) d.rotationRad( getRotation(d.x(), d.y()) );
 	}
 	
 	@Override

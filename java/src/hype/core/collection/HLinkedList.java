@@ -13,7 +13,9 @@ package hype.core.collection;
 
 import hype.core.util.HWarnings;
 
-public class HLinkedList<T> {
+import java.util.Iterator;
+
+public class HLinkedList<T> implements Iterable<T> {
 	protected HLinkedListNode<T> _firstSentinel, _lastSentinel;
 	protected int _size;
 	
@@ -109,6 +111,7 @@ public class HLinkedList<T> {
 		return (0 <= index) && (index < _size);
 	}
 	
+	@Override
 	public HLinkedListIterator<T> iterator() {
 		return new HLinkedListIterator<T>(this);
 	}
@@ -156,7 +159,7 @@ public class HLinkedList<T> {
 		}
 	}
 	
-	public static class HLinkedListIterator<U> implements HIterator<U> {
+	public static class HLinkedListIterator<U> implements Iterator<U> {
 		private HLinkedList<U> list;
 		private HLinkedListNode<U> n1, n2;
 		

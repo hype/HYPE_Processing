@@ -91,8 +91,7 @@ public static class HSwarm extends HBehavior {
 	private HLocatable getGoal(HDirectable target, PApplet app) {
 		HLocatable goal = null;
 		float nearestDist = -1;
-		for(HIterator<HLocatable> it=_goals.iterator(); it.hasNext();) {
-			HLocatable h = it.next();
+		for(HLocatable h : _goals) {
 			float dist = HMath.dist(target.x(),target.y(), h.x(),h.y());
 			if(nearestDist<0 || dist<nearestDist) {
 				nearestDist = dist;
@@ -103,7 +102,7 @@ public static class HSwarm extends HBehavior {
 	}
 	public void runBehavior(PApplet app) {
 		int numTargets = _targets.size();
-		HIterator<HDirectable> it = _targets.iterator();
+		Iterator<HDirectable> it = _targets.iterator();
 		for(int i=0; i<numTargets; ++i) {
 			HDirectable target = it.next();
 			float rot = target.rotationRad();

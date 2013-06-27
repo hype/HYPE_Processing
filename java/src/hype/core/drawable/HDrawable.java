@@ -11,7 +11,6 @@
 
 package hype.core.drawable;
 
-import hype.core.collection.HIterator;
 import hype.core.collection.HNode;
 import hype.core.interfaces.HDirectable;
 import hype.core.interfaces.HHittable;
@@ -29,6 +28,9 @@ import hype.extended.drawable.HPath;
 import hype.extended.drawable.HRect;
 import hype.extended.drawable.HShape;
 import hype.extended.drawable.HText;
+
+import java.util.Iterator;
+
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PGraphics;
@@ -44,8 +46,11 @@ import processing.core.PVector;
  * 
  * @author james
  */
-public abstract class HDrawable extends HNode<HDrawable>
-		implements HDirectable, HHittable {
+public abstract class HDrawable extends HNode<HDrawable> implements
+	HDirectable,
+	HHittable,
+	Iterable<HDrawable>
+{
 	
 	public static final int DEFAULT_FILL = 0xFFFFFFFF;
 	public static final int DEFAULT_STROKE = 0xFF000000;
@@ -465,6 +470,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 * @see HIterator
 	 * @return A new HIterator for this drawable
 	 */
+	@Override
 	public HDrawableIterator iterator() {
 		return new HDrawableIterator(this);
 	}
@@ -2091,7 +2097,7 @@ public abstract class HDrawable extends HNode<HDrawable>
 	 * 
 	 * @author james
 	 */
-	public static class HDrawableIterator implements HIterator<HDrawable> {
+	public static class HDrawableIterator implements Iterator<HDrawable> {
 		private HDrawable parent, d1, d2;
 		
 		public HDrawableIterator(HDrawable parentDrawable) {

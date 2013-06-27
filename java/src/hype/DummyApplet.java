@@ -11,8 +11,11 @@
 
 package hype;
 
+import hype.core.drawable.HDrawable;
 import hype.core.util.H;
+import hype.extended.behavior.HSwarm;
 import hype.extended.drawable.HRect;
+import hype.extended.util.HDrawablePool;
 import processing.core.PApplet;
 
 /**
@@ -26,10 +29,8 @@ public class DummyApplet extends PApplet {
 	private static final long serialVersionUID = 1L;
 	
 	/* TODO
-	 * (HSphere)
-	 * - variable sizes for HEllipse
-	 * 
 	 * (*)
+	 * - [] Iterator testfile
 	 * - [ ] property setter objects
 	 * 
 	 * (Capture)
@@ -136,7 +137,18 @@ public class DummyApplet extends PApplet {
 //		HSphere s;
 //		H.add(s = new HSphere());
 //		s.locAt(H.CENTER).anchorAt(H.CENTER);
-		H.add(new HRect()).locAt(H.CENTER).anchorAt(H.CENTER);
+		HDrawablePool pool = new HDrawablePool(50)
+			.autoAddToStage()
+			.add(new HRect())
+			.requestAll();
+		HSwarm swarm = new HSwarm().addGoal(H.mouse())
+				.speed(5)
+				.twitch(15)
+				.turnEase(.05f);
+		for(HDrawable d : pool) {
+			d.loc(random(width), random(height)).size(5);
+			swarm.addTarget(d);
+		}
 //		new HTween()
 //			.target(H.add(new HRect()).locAt(H.CENTER).anchorAt(H.CENTER))
 //			.property(H.ROTATIONY)
