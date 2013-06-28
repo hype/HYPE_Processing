@@ -45,12 +45,21 @@ public class HVelocity extends HBehavior {
 	public HVelocity velocity(float velocity, float deg) {
 		return velocityRad(velocity, deg*HConstants.D2R);
 	}
+
+	public HVelocity velocity(PVector velocity) {
+		_velocity = velocity;
+		return this;
+	}
 	
 	public HVelocity velocityRad(float velocity, float rad) {
 		float velX = velocity * (float)Math.cos(rad);
 		float velY = velocity * (float)Math.sin(rad);
 		_velocity = new PVector(velX, velY);
 		return this;
+	}
+
+	public PVector velocity() {
+		return _velocity;
 	}
 	
 	public HVelocity velocityX(float dx) {
@@ -88,6 +97,11 @@ public class HVelocity extends HBehavior {
 		return accelRad(acceleration, deg*HConstants.D2R);
 	}
 
+	public HVelocity accel(PVector accel) {
+		_accel = accel;
+		return this;
+	}
+
 	public HVelocity accelRad(float acceleration, float rad) {
 		float accelX = acceleration * (float)Math.cos(rad);
 		float accelY = acceleration * (float)Math.sin(rad);
@@ -98,6 +112,10 @@ public class HVelocity extends HBehavior {
 	public HVelocity accelX(float ddx) {
 		_accel.x = ddx;
 		return this;
+	}
+
+	public PVector accel() {
+		return _accel;
 	}
 	
 	public float accelX() {
