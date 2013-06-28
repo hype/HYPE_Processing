@@ -11,10 +11,14 @@
 public static class HVelocity extends HBehavior {
 	private PVector _velocity;
 	private PVector _accel;
+	private float _limit;
+	private boolean _hasLimit;
 	private HLocatable _target;
 	public HVelocity() {
 		_velocity = new PVector();
 		_accel = new PVector();
+		_limit = 0.0f;
+		_hasLimit = false;
 	}
 	public HVelocity target(HLocatable t) {
 		if(t == null) unregister();
@@ -83,11 +87,29 @@ public static class HVelocity extends HBehavior {
 	public float accelY() {
 		return _accel.y;
 	}
+	public HVelocity limit(float limit) {
+		_limit = limit;
+		_hasLimit = true;
+		return this;
+	}
+	public float limit() {
+		return _limit;
+	}
+	public HVelocity hasLimit(boolean hasLimit) {
+		_hasLimit = hasLimit;
+		return this;
+	}
+	public boolean hasLimit() {
+		return _hasLimit;
+	}
 	public void runBehavior(PApplet app) {
 		PVector newLoc = PVector.add( new PVector( _target.x(), _target.y() ) , _velocity );
 		_target.x(newLoc.x);
 		_target.y(newLoc.y);
 		_velocity.add(_accel);
+		if (_hasLimit) {
+			_velocity.limit(_limit);
+		}
 	}
 	public HVelocity register() {
 		return (HVelocity) super.register();

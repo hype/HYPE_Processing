@@ -20,11 +20,15 @@ import processing.core.PApplet;
 public class HVelocity extends HBehavior {
 	private PVector _velocity;
 	private PVector _accel;
+	private float _limit;
+	private boolean _hasLimit;
 	private HLocatable _target;
 
 	public HVelocity() {
 		_velocity = new PVector();
 		_accel = new PVector();
+		_limit = 0.0f;
+		_hasLimit = false;
 	}
 	
 	public HVelocity target(HLocatable t) {
@@ -108,6 +112,25 @@ public class HVelocity extends HBehavior {
 	public float accelY() {
 		return _accel.y;
 	}
+
+	public HVelocity limit(float limit) {
+		_limit = limit;
+		_hasLimit = true;
+		return this;
+	}
+
+	public float limit() {
+		return _limit;
+	}
+
+	public HVelocity hasLimit(boolean hasLimit) {
+		_hasLimit = hasLimit;
+		return this;
+	}
+
+	public boolean hasLimit() {
+		return _hasLimit;
+	}
 	
 	@Override
 	public void runBehavior(PApplet app) {
@@ -117,6 +140,10 @@ public class HVelocity extends HBehavior {
 		_target.y(newLoc.y);
 		
 		_velocity.add(_accel);
+
+		if (_hasLimit) {
+			_velocity.limit(_limit);
+		}
 	}
 	
 	@Override
