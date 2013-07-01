@@ -73,22 +73,20 @@ void setup() {
 }
 
 void draw() {
-	HIterator<HDrawable> it = swarmPool.iterator();
+	int i = 0;
 
-	for (int i = 0; i<=swarmPool.currentIndex(); i++){
+	for(HDrawable d : swarmPool) {
 		if (i == 0) {
-			HDrawable d = it.next();
 			d.stroke(255, 51, 0);
 			pointLight(255, 51, 0,  d.x(), d.y(), -300 ); // orange
 		} else if (i == 1) {
-			HDrawable d = it.next();
 			d.stroke(0, 149, 168);
 			pointLight(0, 149, 168, d.x(), d.y(), -300 ); // teal
 		} else {
-			HDrawable d = it.next();
 			d.stroke(255, 204, 0);
 			pointLight(255, 204, 0, d.x(), d.y(), -400 ); // yellow
 		}
+		++i;
 	}
 
 	H.drawStage();

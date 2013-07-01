@@ -119,10 +119,7 @@ void setup() {
 }
 
 void draw() {
-	HIterator<HDrawable> it = pool.iterator();
-
-	while(it.hasNext()) {
-		HDrawable d = it.next();
+  for(HDrawable d : pool) {
 		d.loc( d.x(), d.y() - random(0.25,1) );
 
 		if (d.y() < -40) {

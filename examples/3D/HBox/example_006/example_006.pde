@@ -75,10 +75,7 @@ void draw() {
 	rY.nextRaw();
 	rZ.nextRaw();
 
-	HIterator<HDrawable> bit = pool.iterator();
-
-	while(bit.hasNext()) {
-		HDrawable d = bit.next();
+	for(HDrawable d : pool) {
 		// d.fill(255, 255, 255, (int)map(d.z(), -300, 300, 255, 0)) ;
 		d.rotationX( rX.curr() );
 		d.rotationY( rY.curr() );

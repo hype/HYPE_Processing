@@ -50,10 +50,7 @@ void setup() {
 }
 
 void draw() {
-	HIterator<HDrawable> it = pool.iterator();
-
-	while(it.hasNext()) {
-		HDrawable d = it.next();
+  for(HDrawable d : pool) {
 
 		d.rotation( d.z() / 1.5 );
 		d.loc(d.x(), d.y(), d.z() + 4 );

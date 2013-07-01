@@ -84,14 +84,12 @@ void draw() {
 
 	H.drawStage();
 
-	for(HIterator<HLocatable> it=swarm.goals().iterator();it.hasNext();) {
+	for(Iterator<HLocatable> it=swarm.goals().iterator();it.hasNext();) {
 		it.remove();
 		it.next();
 	}
 
-	HIterator<HDrawable> it = pool.iterator();
-	while(it.hasNext()) {
-		HDrawable d = it.next();
+	for(HDrawable d : pool) {
 		swarm.addGoal(d.x(),d.y());
 	}
 }

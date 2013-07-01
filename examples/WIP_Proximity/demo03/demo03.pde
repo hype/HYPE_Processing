@@ -58,10 +58,9 @@ void setup() {
 }
 
 void draw() {
-  HIterator<HDrawable> it = pool.iterator();
   int i = 0;
-  while(it.hasNext()) {
-    HDrawable d = it.next();
+
+  for(HDrawable d : pool) {
     d.size( int(aProx.run(i)) );
     d.anchorAt(H.CENTER);
     d.fill( #000000 );
