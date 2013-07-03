@@ -18,8 +18,18 @@ import hype.core.util.HWarnings;
 import processing.core.PApplet;
 
 public class HVelocity extends HBehavior {
-	private float _velocityX, _velocityY, _accelX, _accelY;
+	private PVector _velocity;
+	private PVector _accel;
+	private float _limit;
+	private boolean _hasLimit;
 	private HLocatable _target;
+
+	public HVelocity() {
+		_velocity = new PVector();
+		_accel = new PVector();
+		_limit = 0.0f;
+		_hasLimit = false;
+	}
 	
 	public HVelocity target(HLocatable t) {
 		if(t == null) unregister();
@@ -35,29 +45,39 @@ public class HVelocity extends HBehavior {
 	public HVelocity velocity(float velocity, float deg) {
 		return velocityRad(velocity, deg*HConstants.D2R);
 	}
-	
-	public HVelocity velocityRad(float velocity, float rad) {
-		_velocityX = velocity * (float)Math.cos(rad);
-		_velocityY = velocity * (float)Math.sin(rad);
+
+	public HVelocity velocity(PVector velocity) {
+		_velocity = velocity;
 		return this;
 	}
 	
+	public HVelocity velocityRad(float velocity, float rad) {
+		float velX = velocity * (float)Math.cos(rad);
+		float velY = velocity * (float)Math.sin(rad);
+		_velocity = new PVector(velX, velY);
+		return this;
+	}
+
+	public PVector velocity() {
+		return _velocity;
+	}
+	
 	public HVelocity velocityX(float dx) {
-		_velocityX = dx;
+		_velocity.x = dx;
 		return this;
 	}
 	
 	public float velocityX() {
-		return _velocityX;
+		return _velocity.x;
 	}
 	
 	public HVelocity velocityY(float dy) {
-		_velocityY = dy;
+		_velocity.y = dy;
 		return this;
 	}
 	
 	public float velocityY() {
-		return _velocityY;
+		return _velocity.y;
 	}
 	
 	public HVelocity launchTo(float goalX, float goalY, int numFrames) {
@@ -66,8 +86,9 @@ public class HVelocity extends HBehavior {
 					HWarnings.NULL_TARGET);
 		} else {
 			float nfsq = numFrames*numFrames;
-			_velocityX = (goalX - _target.x() - _accelX*nfsq/2) / numFrames;
-			_velocityY = (goalY - _target.y() - _accelY*nfsq/2) / numFrames;
+			float velX = (goalX - _target.x() - _accel.x*nfsq/2) / numFrames;
+			float velY = (goalY - _target.y() - _accel.y*nfsq/2) / numFrames;
+			_velocity = new PVector(velX, velY);
 		}
 		return this;
 	}
@@ -76,36 +97,71 @@ public class HVelocity extends HBehavior {
 		return accelRad(acceleration, deg*HConstants.D2R);
 	}
 
+	public HVelocity accel(PVector accel) {
+		_accel = accel;
+		return this;
+	}
+
 	public HVelocity accelRad(float acceleration, float rad) {
-		_accelX = acceleration * (float)Math.cos(rad);
-		_accelY = acceleration * (float)Math.sin(rad);
+		float accelX = acceleration * (float)Math.cos(rad);
+		float accelY = acceleration * (float)Math.sin(rad);
+		_accel = new PVector(accelX, accelY);
 		return this;
 	}
 	
 	public HVelocity accelX(float ddx) {
-		_accelX = ddx;
+		_accel.x = ddx;
 		return this;
+	}
+
+	public PVector accel() {
+		return _accel;
 	}
 	
 	public float accelX() {
-		return _accelX;
+		return _accel.x;
 	}
 	
 	public HVelocity accelY(float ddy) {
-		_accelY = ddy;
+		_accel.y = ddy;
 		return this;
 	}
 	
 	public float accelY() {
-		return _accelY;
+		return _accel.y;
+	}
+
+	public HVelocity limit(float limit) {
+		_limit = limit;
+		_hasLimit = true;
+		return this;
+	}
+
+	public float limit() {
+		return _limit;
+	}
+
+	public HVelocity hasLimit(boolean hasLimit) {
+		_hasLimit = hasLimit;
+		return this;
+	}
+
+	public boolean hasLimit() {
+		return _hasLimit;
 	}
 	
 	@Override
 	public void runBehavior(PApplet app) {
-		_target.x(_target.x() + _velocityX);
-		_target.y(_target.y() + _velocityY);
-		_velocityX += _accelX;
-		_velocityY += _accelY;
+		PVector newLoc = PVector.add( new PVector( _target.x(), _target.y() ) , _velocity );
+
+		_target.x(newLoc.x);
+		_target.y(newLoc.y);
+		
+		_velocity.add(_accel);
+
+		if (_hasLimit) {
+			_velocity.limit(_limit);
+		}
 	}
 	
 	@Override
