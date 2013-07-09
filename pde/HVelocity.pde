@@ -1,11 +1,11 @@
 /*
  * HYPE_Processing
  * http:
- * 
+ *
  * Copyright (c) 2013 Joshua Davis & James Cruz
- * 
+ *
  * Distributed under the BSD License. See LICENSE.txt for details.
- * 
+ *
  * All rights reserved.
  */
 public static class HVelocity extends HBehavior {
@@ -27,6 +27,14 @@ public static class HVelocity extends HBehavior {
 		_velocityX = velocity * (float)Math.cos(rad);
 		_velocityY = velocity * (float)Math.sin(rad);
 		return this;
+	}
+	public HVelocity velocity(HVector velocity) {
+		_velocityX = velocity.x();
+		_velocityY = velocity.y();
+		return this;
+	}
+	public HVector velocity() {
+		return new HVector(_velocityX, _velocityY);
 	}
 	public HVelocity velocityX(float dx) {
 		_velocityX = dx;
@@ -60,6 +68,14 @@ public static class HVelocity extends HBehavior {
 		_accelX = acceleration * (float)Math.cos(rad);
 		_accelY = acceleration * (float)Math.sin(rad);
 		return this;
+	}
+	public HVelocity accel(HVector accel) {
+		_accelX = accel.x();
+		_accelY = accel.y();
+		return this;
+	}
+	public HVector accel() {
+		return new HVector(_accelX, _accelY);
 	}
 	public HVelocity accelX(float ddx) {
 		_accelX = ddx;
