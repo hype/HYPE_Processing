@@ -1,16 +1,18 @@
 /*
  * HYPE_Processing
  * http:
- * 
+ *
  * Copyright (c) 2013 Joshua Davis & James Cruz
- * 
+ *
  * Distributed under the BSD License. See LICENSE.txt for details.
- * 
+ *
  * All rights reserved.
  */
 public static class HVelocity extends HBehavior {
 	private float _velocityX, _velocityY, _accelX, _accelY;
 	private HLocatable _target;
+	private float _limit;
+	private boolean _hasLimit;
 	public HVelocity target(HLocatable t) {
 		if(t == null) unregister();
 		else register();
@@ -75,11 +77,39 @@ public static class HVelocity extends HBehavior {
 	public float accelY() {
 		return _accelY;
 	}
+	public HVelocity limit(float limit) {
+		_limit = limit;
+		_hasLimit = true;
+		return this;
+	}
+	public float limit() {
+		return _limit;
+	}
+	public HVelocity hasLimit(boolean hasLimit) {
+		_hasLimit = hasLimit;
+		return this;
+	}
+	public boolean hasLimit() {
+		return _hasLimit;
+	}
+	public HVelocity noLimit() {
+		_hasLimit = false;
+		return this;
+	}
+	private void enforceLimit() {
+		HVector vel = new HVector(_velocityX, _velocityY);
+		vel.limit(_limit);
+		_velocityX = vel.x();
+		_velocityY = vel.y();
+	}
 	public void runBehavior(PApplet app) {
 		_target.x(_target.x() + _velocityX);
 		_target.y(_target.y() + _velocityY);
 		_velocityX += _accelX;
 		_velocityY += _accelY;
+		if (_hasLimit) {
+			enforceLimit();
+		}
 	}
 	public HVelocity register() {
 		return (HVelocity) super.register();

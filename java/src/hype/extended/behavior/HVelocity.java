@@ -1,11 +1,11 @@
 /*
  * HYPE_Processing
  * http://www.hypeframework.org/ & https://github.com/hype/HYPE_Processing
- * 
+ *
  * Copyright (c) 2013 Joshua Davis & James Cruz
- * 
+ *
  * Distributed under the BSD License. See LICENSE.txt for details.
- * 
+ *
  * All rights reserved.
  */
 
@@ -20,46 +20,48 @@ import processing.core.PApplet;
 public class HVelocity extends HBehavior {
 	private float _velocityX, _velocityY, _accelX, _accelY;
 	private HLocatable _target;
-	
+	private float _limit;
+	private boolean _hasLimit;
+
 	public HVelocity target(HLocatable t) {
 		if(t == null) unregister();
 		else register();
 		_target = t;
 		return this;
 	}
-	
+
 	public HLocatable target() {
 		return _target;
 	}
-	
+
 	public HVelocity velocity(float velocity, float deg) {
 		return velocityRad(velocity, deg*HConstants.D2R);
 	}
-	
+
 	public HVelocity velocityRad(float velocity, float rad) {
 		_velocityX = velocity * (float)Math.cos(rad);
 		_velocityY = velocity * (float)Math.sin(rad);
 		return this;
 	}
-	
+
 	public HVelocity velocityX(float dx) {
 		_velocityX = dx;
 		return this;
 	}
-	
+
 	public float velocityX() {
 		return _velocityX;
 	}
-	
+
 	public HVelocity velocityY(float dy) {
 		_velocityY = dy;
 		return this;
 	}
-	
+
 	public float velocityY() {
 		return _velocityY;
 	}
-	
+
 	public HVelocity launchTo(float goalX, float goalY, int numFrames) {
 		if(_target == null) {
 			HWarnings.warn("Null Target", "HVelocity.launchTo()",
@@ -71,7 +73,7 @@ public class HVelocity extends HBehavior {
 		}
 		return this;
 	}
-	
+
 	public HVelocity accel(float acceleration, float deg) {
 		return accelRad(acceleration, deg*HConstants.D2R);
 	}
@@ -81,38 +83,72 @@ public class HVelocity extends HBehavior {
 		_accelY = acceleration * (float)Math.sin(rad);
 		return this;
 	}
-	
+
 	public HVelocity accelX(float ddx) {
 		_accelX = ddx;
 		return this;
 	}
-	
+
 	public float accelX() {
 		return _accelX;
 	}
-	
+
 	public HVelocity accelY(float ddy) {
 		_accelY = ddy;
 		return this;
 	}
-	
+
 	public float accelY() {
 		return _accelY;
 	}
-	
+
+	public HVelocity limit(float limit) {
+		_limit = limit;
+		_hasLimit = true;
+		return this;
+	}
+
+	public float limit() {
+		return _limit;
+	}
+
+	public HVelocity hasLimit(boolean hasLimit) {
+		_hasLimit = hasLimit;
+		return this;
+	}
+
+	public boolean hasLimit() {
+		return _hasLimit;
+	}
+
+	public HVelocity noLimit() {
+		_hasLimit = false;
+		return this;
+	}
+
+	private void enforceLimit() {
+		HVector vel = new HVector(_velocityX, _velocityY);
+		vel.limit(_limit);
+		_velocityX = vel.x();
+		_velocityY = vel.y();
+	}
+
 	@Override
 	public void runBehavior(PApplet app) {
 		_target.x(_target.x() + _velocityX);
 		_target.y(_target.y() + _velocityY);
 		_velocityX += _accelX;
 		_velocityY += _accelY;
+		if (_hasLimit) {
+			enforceLimit();
+		}
 	}
-	
+
 	@Override
 	public HVelocity register() {
 		return (HVelocity) super.register();
 	}
-	
+
 	@Override
 	public HVelocity unregister() {
 		return (HVelocity) super.unregister();

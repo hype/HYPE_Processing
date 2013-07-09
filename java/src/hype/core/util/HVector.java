@@ -28,6 +28,40 @@ public class HVector implements HLocatable {
 		_y = yCoord;
 		_z = zCoord;
 	}
+
+	public float mag() {
+	   return (float) Math.sqrt(_x * _x + _y * _y + _z * _z);
+	}
+
+	public float magSq() {
+	   return (_x * _x + _y * _y + _z * _z);
+	}
+
+	public void mult(float n) {
+	  _x *= n;
+	  _y *= n;
+	  _z *= n;
+	}
+
+	public void div(float n) {
+	  _x /= n;
+	  _y /= n;
+	  _z /= n;
+	}
+
+	public void normalize() {
+	  float m = mag();
+	  if (m != 0 && m != 1) {
+	    div(m);
+	  }
+	}
+
+	public void limit(float max) {
+	  if (magSq() > max * max) {
+	    normalize();
+	    mult(max);
+	  }
+	}
 	
 	@Override
 	public float x() {
