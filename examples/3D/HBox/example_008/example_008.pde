@@ -1,12 +1,11 @@
-import processing.opengl.*;
-PImage texImg;
+PImage tex;
 PVector[] pickedPos;
 int[]     pickedScale;
 int numAssets = 25;
 
 void setup() {
-	size(640, 640, OPENGL);
-	texImg = loadImage("lines.jpg");
+	size(640, 640, P3D);
+	tex = loadImage("lines.jpg");
 	textureMode(NORMAL);
 
 	pickedPos = new PVector[numAssets];
@@ -29,22 +28,19 @@ void draw() {
 	for (int i = 0; i<numAssets; i++){
 		PVector pt = pickedPos[i];
 		pushMatrix();
-			// translate(pt.x, pt.y, pt.z);
-			translate(pt.x, pt.y, 0);
+			translate(pt.x, pt.y, pt.z);
 			rotateX( radians(-(frameCount)) );
 			rotateY( radians(frameCount) );
 			scale( pickedScale[i] );
 
-			TexturedCube(texImg);
+			TexturedCube();
 		popMatrix();
 	}
-
-
 }
 
-void TexturedCube(PImage texImg) {
+void TexturedCube() {
 	beginShape(QUADS);
-		texture(texImg);
+		texture(tex);
 
 		// +Z "front" face
 		vertex(-1, -1,  1, 0, 0);
