@@ -1,35 +1,52 @@
-HColorPool colors;
-HRandomTrigger tweenTrigger;
+HRect  r1, r2, r3;
+HTween t1a;
+HTween t2a, t2b;
+HTween t3a, t3b, t3c, t3d;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#202020).autoClear(false);
 	smooth();
 
-	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
+	// Rect 1 and tween
 
-	tweenTrigger = new HRandomTrigger( 1f/15 );
+	r1 = new HRect(100).rounding(10);
+	r1
+		.stroke(#000000, 100)
+		.fill(#FF9900)
+		.anchorAt(H.CENTER)
+		.loc(125,125)
+		.rotation(45)
+	;
+	H.add(r1);
 
-	tweenTrigger.callback(
-		new HCallback(){
-			public void run(Object obj) {
-				final HDrawable r = H.add( new HRect(25+((int)random(5)*25)).rounding(10) )
-					.noStroke()
-					.fill( colors.getColor() )
-					.loc( width/2, height/2 )
-					.anchorAt( H.CENTER )
-				;
+	t1a = new HTween()
+		.target(r1).property(H.LOCATION)
+		.start( r1.x(), r1.y() )
+		.end( r1.x(), height - 125 )
+		.ease(0.005)
+		.spring(0.95)
+	;
 
-				final HTween tween = new HTween()
-					.target(r).property(H.LOCATION)
-					.start( width/2, height/2 )
-					.end( (int)random(width), (int)random(height) )
-					.ease(0.01)
-					.spring(0.9)
-				;
-			}
-		}
-	);
+	// Rect 2 and tweens
+
+	r2 = new HRect(100).rounding(10);
+	r2.stroke(#000000, 100).fill(#FF6600).anchorAt(H.CENTER).loc(width/2,125).rotation(45);
+	H.add(r2);
+
+	t2a = new HTween().target(r2).property(H.LOCATION).start( r2.x(), r2.y() ).end( r2.x(), height - 125 ).ease(0.005).spring(0.95);
+	t2b = new HTween().target(r2).property(H.SCALE).start(0).end(1).ease(0.005).spring(0.95);
+
+	// Rect 3 and tweens
+
+	r3 = new HRect(100).rounding(10);
+	r3.stroke(#000000, 100).fill(#FF3300).anchorAt(H.CENTER).loc(width-125,125).rotation(45);
+	H.add(r3);
+
+	t3a = new HTween().target(r3).property(H.LOCATION).start( r3.x(), r3.y() ).end( r3.x(), height - 125 ).ease(0.005).spring(0.95);
+	t3b = new HTween().target(r3).property(H.SCALE).start(0).end(1).ease(0.005).spring(0.95);
+	t3c = new HTween().target(r3).property(H.ALPHA).start(0).end(255).ease(0.005).spring(0.95);
+	t3d = new HTween().target(r3).property(H.ROTATION).start(-45).end(405).ease(0.005).spring(0.95);
 }
 
 void draw() {

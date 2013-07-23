@@ -1,83 +1,102 @@
-HColorPool colors;
-HCanvas canvas;
+/* @pjs preload="color.jpg"; */
+
+HPixelColorist colors;
+HRect  r1;
+HTween tween;
+HCallback tr, br, bl, tl;
+int marginOffset = 150;
+float tweenEase = 0.01;
+float tweenSpeed = 0.9;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#000000);
+	H.init(this).background(#202020).autoClear(false);
 	smooth();
 
-	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
+	colors = new HPixelColorist("color.jpg").fillOnly();
 
-	canvas = new HCanvas().autoClear(false).fade(1);
-	H.add(canvas);
+	r1 = new HRect(100).rounding(10);
+	r1
+		.stroke(#000000, 100)
+		.fill(#FF3300)
+		.anchor(50,-50)
+		// .anchorAt(H.CENTER)
+		.loc(marginOffset,marginOffset)
+		.rotation(45)
+	;
+	H.add(r1);
 
-	final HRandomTrigger tweenTrigger = new HRandomTrigger( 5f/10 );
+	new HOscillator()
+		.target(r1)
+		.property(H.ROTATION)
+		.range(-180, 180)
+		.speed(1)
+		.freq(2)
+	;
 
-	tweenTrigger.callback(
-		new HCallback(){
-			public void run(Object obj) {
-				final HDrawable r = canvas.add(new HRect(25+((int)random(5)*25)).rounding(10) )
-					.strokeWeight(1)
-					.stroke( colors.getColor() )
-					.fill( #000000, 25 )
-					.loc( (int)random(width), (int)random(height) )
-					.anchorAt( H.CENTER )
-				;
+	new HOscillator()
+		.target(r1)
+		.property(H.SCALE)
+		.range(0.2, 1)
+		.speed(0.5)
+		.freq(15)
+	;
 
-				final HTween tween1 = new HTween()
-					.target(r).property(H.SCALE)
-					.start(0).end(1).ease(0.03).spring(0.95)
-				;
 
-				final HTween tween2 = new HTween()
-					.target(r).property(H.ROTATION)
-					.start(-90).end(90).ease(0.01).spring(0.7)
-				;
+	// tween from center to TL corner
 
-				final HTween tween3 = new HTween()
-					.target(r).property(H.ALPHA)
-					.start(0).end(255).ease(0.1).spring(0.95)
-				;
+	tween = new HTween()
+		.target(r1).property(H.LOCATION)
+		.start(r1.x(), r1.y())
+		.end(marginOffset, marginOffset)
+		.ease(1).spring(0)
+	;
 
-				r.scale(0).rotation(-90).alpha(0);
+	// tween from TL to TR corner
 
-				final HTimer timer = new HTimer().interval(500).unregister();
-
-				// tween has appeared / start timer
-
-				final HCallback onAppear = new HCallback() {
-					public void run(Object obj) {
-						timer.register();
-					}
-				};
-
-				// on screen pause is finished lets remove
-
-				final HCallback onDisappear = new HCallback() {
-					public void run(Object obj) {
-						canvas.remove(r);
-					}
-				};
-
-				// timer starts / holds art on screen for 3 seconds / then calls onDisappear
-
-				final HCallback onPause = new HCallback() {
-					public void run(Object obj) {
-						timer.unregister();
-						tween1.start(1).end(2).ease(0.01).spring(0.99).register();
-						tween2.start(90).end(-90).ease(0.01).spring(0.7).register();
-						tween3.start(255).end(0).ease(0.01).spring(0.95).register().callback(onDisappear);
-					}
-				};
-
-				tween3.callback(onAppear);
-				timer.callback(onPause);
-			}
+	tr = new HCallback() {
+		public void run(Object obj) {
+			tween.start( r1.x(), r1.y() ).end( width-marginOffset, marginOffset )
+			.ease(tweenEase).spring(tweenSpeed)
+			.register().callback(br);
 		}
-	);
+	};
+
+	// tween from TR to BR corner
+
+	br = new HCallback() {
+		public void run(Object obj) {
+			tween.start( r1.x(), r1.y() ).end( width-marginOffset, height-marginOffset )
+			.ease(tweenEase).spring(tweenSpeed)
+			.register().callback(bl);
+		}
+	};
+
+	// tween from BR to BL corner
+
+	bl = new HCallback() {
+		public void run(Object obj) {
+			tween.start( r1.x(), r1.y() ).end( marginOffset, height-marginOffset )
+			.ease(tweenEase).spring(tweenSpeed)
+			.register().callback(tl);
+		}
+	};
+
+	// tween from BL to TL corner
+
+	tl = new HCallback() {
+		public void run(Object obj) {
+			tween.start( r1.x(), r1.y() ).end( marginOffset, marginOffset )
+			.ease(tweenEase).spring(tweenSpeed)
+			.register().callback(tr);
+		}
+	};
+
+	tween.register().callback(tr);
 }
 
 void draw() {
+	colors.applyColor(r1);
 	H.drawStage();
 }
 
