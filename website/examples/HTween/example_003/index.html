@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>the Hype Framework / Processing / ProcessingJS / github.com/hype/HYPE_Processing</title>
+
+		<link rel="stylesheet" href="../../../css/page.css" />
+
+		<link type="text/css" rel="stylesheet" href="../../../syntax/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../syntax/shThemeHype.css"/>
+		<script src="../../../syntax/XRegExp.js" type="text/javascript"></script>
+		<script src="../../../syntax/shCore.js" type="text/javascript"></script>
+		<script src="../../../syntax/shBrushProcessing.js" type="text/javascript"></script>
+
+		<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700,400,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<meta name="Generator" content="Processing" />
+
+		<!--[if lt IE 9]>
+			<script type="text/javascript">alert("Your browser does not support the canvas tag.");</script>
+		<![endif]-->
+
+		<script src="../../processing.js" type="text/javascript"></script>
+
+	</head>
+
+	<body>
+		<div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
+
+		<a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<div style="font-size: 10px; color: #666666;">
+			<a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
+		</div>
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<div style="font-size: 10px; color: #666666;">
+			by Joshua Davis and James Cruz <br />
+			for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
+
+			HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
+		</div>
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
+
+		</div>
+
+		<div id="content">
+			<div>
+				<canvas id="index" data-processing-sources="index.pde" 
+						width="640" height="640">
+					<p>Your browser does not support the canvas tag.</p>
+					<!-- Note: you can put any alternative content here. -->
+				</canvas>
+				<noscript>
+					<p>JavaScript is required to view the contents of this page.</p>
+				</noscript>
+			</div>
+
+			<div style="background-color: #181818; padding:10px 20px 15px 20px;">
+				<b style="font-size: 15px; font-weight: 700; color: #ECECEC;">
+				HTween / 003</b><br /><br />
+				HYPE, HRect, HTween, HOscillator, HCallback, HPixelColorist <br /><br />
+				<a href="index.pde">Source code</a>
+			</div>
+		</div>
+
+			<div id="code"><pre class="brush: processing; tab-size: 3; auto-links: false;">
+/* @pjs preload="color.jpg"; */
+
+HPixelColorist colors;
+HRect  r1;
+HTween tween;
+HCallback tr, br, bl, tl;
+int marginOffset = 150;
+float tweenEase = 0.01;
+float tweenSpeed = 0.9;
+
+void setup() {
+	size(640,640);
+	H.init(this).background(#202020).autoClear(false);
+	smooth();
+
+	colors = new HPixelColorist("color.jpg").fillOnly();
+
+	r1 = new HRect(100).rounding(10);
+	r1
+		.stroke(#000000, 100)
+		.fill(#FF3300)
+		.anchor(50,-50)
+		// .anchorAt(H.CENTER)
+		.loc(marginOffset,marginOffset)
+		.rotation(45)
+	;
+	H.add(r1);
+
+	new HOscillator()
+		.target(r1)
+		.property(H.ROTATION)
+		.range(-180, 180)
+		.speed(1)
+		.freq(2)
+	;
+
+	new HOscillator()
+		.target(r1)
+		.property(H.SCALE)
+		.range(0.2, 1)
+		.speed(0.5)
+		.freq(15)
+	;
+
+	// tween from center to TL corner
+
+	tween = new HTween()
+		.target(r1).property(H.LOCATION)
+		.start(r1.x(), r1.y())
+		.end(marginOffset, marginOffset)
+		.ease(1).spring(0)
+	;
+
+	// tween from TL to TR corner
+
+	tr = new HCallback() {
+		public void run(Object obj) {
+			tween.start( r1.x(), r1.y() ).end( width-marginOffset, marginOffset )
+			.ease(tweenEase).spring(tweenSpeed)
+			.register().callback(br);
+		}
+	};
+
+	// tween from TR to BR corner
+
+	br = new HCallback() {
+		public void run(Object obj) {
+			tween.start( r1.x(), r1.y() ).end( width-marginOffset, height-marginOffset )
+			.ease(tweenEase).spring(tweenSpeed)
+			.register().callback(bl);
+		}
+	};
+
+	// tween from BR to BL corner
+
+	bl = new HCallback() {
+		public void run(Object obj) {
+			tween.start( r1.x(), r1.y() ).end( marginOffset, height-marginOffset )
+			.ease(tweenEase).spring(tweenSpeed)
+			.register().callback(tl);
+		}
+	};
+
+	// tween from BL to TL corner
+
+	tl = new HCallback() {
+		public void run(Object obj) {
+			tween.start( r1.x(), r1.y() ).end( marginOffset, marginOffset )
+			.ease(tweenEase).spring(tweenSpeed)
+			.register().callback(tr);
+		}
+	};
+
+	tween.register().callback(tr);
+}
+
+void draw() {
+	colors.applyColor(r1);
+	H.drawStage();
+}
+			</pre></div>
+	</body>
+</html>

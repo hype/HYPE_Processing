@@ -26,32 +26,30 @@
 	</head>
 
 	<body>
-      <div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
+		<div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
 
-        <a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
+		<a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
 
-        <div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
 
-        <div style="font-size: 10px; color: #666666;">
-          <a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
-        </div>
+		<div style="font-size: 10px; color: #666666;">
+			<a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
+		</div>
 
-        <div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
 
-        <div style="font-size: 10px; color: #666666;">
-          by Joshua Davis and James Cruz <br />
-          A Code and Theory project <br />
-          <a href="http://www.codeandtheory.com" target="_blank">http://www.codeandtheory.com</a> <br />
-          for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
+		<div style="font-size: 10px; color: #666666;">
+			by Joshua Davis and James Cruz <br />
+			for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
 
-          HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
-        </div>
+			HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
+		</div>
 
-        <div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
 
-        <a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
+		<a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
 
-      </div>
+		</div>
 
 		<div id="content">
 			<div>
@@ -63,12 +61,12 @@
 				<noscript>
 					<p>JavaScript is required to view the contents of this page.</p>
 				</noscript>
-	    	</div>
+			</div>
 
-	    	<div style="background-color: #181818; padding:10px 20px 15px 20px;">
+			<div style="background-color: #181818; padding:10px 20px 15px 20px;">
 				<b style="font-size: 15px; font-weight: 700; color: #ECECEC;">
 				ex01_drawingShapes </b><br /><br />
-	    		HYPE, Drawing Shapes, HRect, HEllipse<br /><br />
+				HYPE, Drawing Shapes, HRect, HEllipse<br /><br />
 				<a href="index.pde">Source code</a>
 			</div>
 		</div>
@@ -87,6 +85,7 @@ void setup() {
 
 	HRect s1 = new HRect(100); // set proportional width and height of 100
 	s1
+		.noStroke()
 		.fill(#ECECEC) // set fill color
 		.loc(50,50) // set x and y location
 	;
@@ -95,6 +94,7 @@ void setup() {
 	HRect s2 = new HRect(100);
 	s2
 		.rounding(10) // round the edges of the rect
+		.noStroke()
 		.fill(#ECECEC)
 		.loc(200,50)
 	;
@@ -103,6 +103,7 @@ void setup() {
 	HRect s3 = new HRect(100);
 	s3
 		.rounding(10)
+		.noStroke()
 		.fill(#ECECEC)
 		.anchorAt(H.CENTER) // setting where the objects registration point, important for animation
 		.loc(400,100)
@@ -113,6 +114,7 @@ void setup() {
 	HRect s4 = new HRect(100);
 	s4
 		.rounding(10)
+		.noStroke()
 		.fill(236) // so many different ways to set color / 236, grayscale applied to RGB
 		.loc(500,50)
 	;
@@ -127,6 +129,7 @@ void setup() {
 	HRect s5 = new HRect(); // proportional size removed from here
 	s5
 		.rounding(10)
+		.noStroke()
 		.fill(#ECECEC)
 		.size(50, 100) // seperate width and height sizes set here
 		.loc(50,200)
@@ -147,6 +150,7 @@ void setup() {
 	HRect s7 = new HRect(100);
 	s7
 		.rounding(10)
+		.noStroke()
 		.fill(#ECECEC)
 		.loc(350,200)
 		.visibility(false) // rect is hidden from stage
@@ -156,6 +160,7 @@ void setup() {
 	HRect s8 = new HRect(100);
 	s8
 		.rounding(10)
+		.noStroke()
 		.fill(255, 51, 0) // so many different ways to set color / 255 red, 51 green, 0 blue
 		.loc(500,200)
 	;
@@ -201,6 +206,7 @@ void setup() {
 	HRect s12 = new HRect(100);
 	s12
 		.rounding(10)
+		.noStroke()
 		.fill(#FF6600) // so many different ways to set color / #FF6600 hex value or #FF6600, 50 hex value and alpha
 		.loc(500,350)
 	;
@@ -217,12 +223,14 @@ void setup() {
 		.rounding(10)
 		.strokeWeight(6)
 		.stroke(#ECECEC)
+		.noFill()
 		.loc(50,500)
 	;
 	H.add(s13);
 
 	HEllipse s14 = new HEllipse(50);
 	s14
+		.noStroke()
 		.fill(#ECECEC)
 		.loc(200,500)
 	;
@@ -231,6 +239,7 @@ void setup() {
 	HEllipse s15 = new HEllipse(50);
 	s15
 		.stroke(#ECECEC)
+		.noFill()
 		.loc(350,500)
 	;
 	H.add(s15);
@@ -238,6 +247,7 @@ void setup() {
 	HRect s16 = new HRect(100);
 	s16
 		.rounding(10)
+		.noStroke()
 		.fill(0xFFFF9900) // so many different ways to set color / 0xFFFF9900 hex value 0xAARRGGBB or 0xFFFF9900, 100 (crazy but true)
 		.loc(500,500)
 	;

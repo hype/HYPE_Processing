@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>the Hype Framework / Processing / ProcessingJS / github.com/hype/HYPE_Processing</title>
+
+		<link rel="stylesheet" href="../../../css/page.css" />
+
+		<link type="text/css" rel="stylesheet" href="../../../syntax/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../syntax/shThemeHype.css"/>
+		<script src="../../../syntax/XRegExp.js" type="text/javascript"></script>
+		<script src="../../../syntax/shCore.js" type="text/javascript"></script>
+		<script src="../../../syntax/shBrushProcessing.js" type="text/javascript"></script>
+
+		<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700,400,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<meta name="Generator" content="Processing" />
+
+		<!--[if lt IE 9]>
+			<script type="text/javascript">alert("Your browser does not support the canvas tag.");</script>
+		<![endif]-->
+
+		<script src="../../processing.js" type="text/javascript"></script>
+
+	</head>
+
+	<body>
+		<div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
+
+		<a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<div style="font-size: 10px; color: #666666;">
+			<a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
+		</div>
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<div style="font-size: 10px; color: #666666;">
+			by Joshua Davis and James Cruz <br />
+			for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
+
+			HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
+		</div>
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
+
+		</div>
+
+		<div id="content">
+			<div>
+				<canvas id="index" data-processing-sources="index.pde" 
+						width="640" height="640">
+					<p>Your browser does not support the canvas tag.</p>
+					<!-- Note: you can put any alternative content here. -->
+				</canvas>
+				<noscript>
+					<p>JavaScript is required to view the contents of this page.</p>
+				</noscript>
+				</div>
+
+				<div style="background-color: #181818; padding:10px 20px 15px 20px;">
+				<b style="font-size: 15px; font-weight: 700; color: #ECECEC;">
+				HRotate / 001</b><br /><br />
+				HYPE, HShape, HRotate <br /><br />
+				<a href="index.pde">Source code</a>
+			</div>
+		</div>
+
+			<div id="code"><pre class="brush: processing; tab-size: 3; auto-links: false;">
+void setup() {
+	size(640,640);
+	H.init(this).background(#202020);
+	smooth();
+
+	HRect rect1 = new HRect(100).rounding(10);
+	H.add(rect1)
+		.anchorAt(H.CENTER)
+		.x(125)
+		.locAt(H.CENTER_Y)
+		.noStroke()
+		.fill(#FF9900)
+	;
+
+	HRect rect2 = new HRect(100).rounding(10);
+	H.add(rect2)
+		.anchorAt(H.CENTER)
+		.x(width/2)
+		.locAt(H.CENTER_Y)
+		.noStroke()
+		.fill(#FF6600)
+	;
+
+	HRect rect3 = new HRect(100).rounding(10);
+	H.add(rect3)
+		.anchorAt(H.CENTER)
+		.x(width-125)
+		.locAt(H.CENTER_Y)
+		.noStroke()
+		.fill(#FF3300)
+	;
+
+	/*
+	 * This sets rect1 to rotate 2 degrees
+	 * every time H.drawStage() is called
+	 */
+
+	HRotate rot1 = new HRotate();
+	rot1.target(rect1).speed( 2 );
+
+	/*
+	 * There is also a radians version
+	 * of the speed() method:
+	 */
+
+	HRotate rot2 = new HRotate();
+	rot2.target(rect2).speedRad( TWO_PI/90 );
+
+	/*
+	 * Alternatively, you can use HRotate
+	 * this way:
+	 * (target, speed)
+	 */
+
+	new HRotate(rect3, -0.5);
+}
+
+void draw() {
+	H.drawStage();
+}
+			</pre></div>
+	</body>
+</html>

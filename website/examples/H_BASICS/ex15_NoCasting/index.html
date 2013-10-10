@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>the Hype Framework / Processing / ProcessingJS / github.com/hype/HYPE_Processing</title>
+
+		<link rel="stylesheet" href="../../../css/page.css" />
+
+		<link type="text/css" rel="stylesheet" href="../../../syntax/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../syntax/shThemeHype.css"/>
+		<script src="../../../syntax/XRegExp.js" type="text/javascript"></script>
+		<script src="../../../syntax/shCore.js" type="text/javascript"></script>
+		<script src="../../../syntax/shBrushProcessing.js" type="text/javascript"></script>
+
+		<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700,400,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<meta name="Generator" content="Processing" />
+
+		<!--[if lt IE 9]>
+			<script type="text/javascript">alert("Your browser does not support the canvas tag.");</script>
+		<![endif]-->
+
+		<script src="../../processing.js" type="text/javascript"></script>
+
+	</head>
+
+	<body>
+		<div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
+
+		<a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<div style="font-size: 10px; color: #666666;">
+			<a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
+		</div>
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<div style="font-size: 10px; color: #666666;">
+			by Joshua Davis and James Cruz <br />
+			for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
+
+			HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
+		</div>
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
+
+		</div>
+
+		<div id="content">
+			<div>
+				<canvas id="index" data-processing-sources="index.pde" 
+						width="640" height="640">
+					<p>Your browser does not support the canvas tag.</p>
+					<!-- Note: you can put any alternative content here. -->
+				</canvas>
+				<noscript>
+					<p>JavaScript is required to view the contents of this page.</p>
+				</noscript>
+				</div>
+
+				<div style="background-color: #181818; padding:10px 20px 15px 20px;">
+				<b style="font-size: 15px; font-weight: 700; color: #ECECEC;">
+				ex15_NoCasting </b><br /><br />
+				HYPE, HEllipse, HRect, HPath <br /><br />
+				<a href="index.pde">Source code</a>
+			</div>
+		</div>
+
+			<div id="code"><pre class="brush: processing; tab-size: 3; auto-links: false;">
+/* 
+ * This testfile demonstrates the recently added
+ * feature that lets you call H.add() and remove()
+ * to assign variables without needing to cast them.
+ *
+ * Be noted that the problems presented in this test
+ * file were only relevant in *Java Mode*, due to the
+ * language's strict typing.
+ *
+ * --------------
+ * Instead of:
+ *
+ *     HRect r = (HRect) H.add(new HRect());
+ * 
+ * You can now do this:
+ * 
+ *     HRect r = H.add(new HRect());
+ * 
+ * 
+ *
+ * Technical:
+ * ----------
+ * I simply made multiple add() and remove() methods
+ * for each drawable class in class H.
+ * 
+ * Even though I have more than one of each of the
+ * aforementioned methods, this wouldn't cause an
+ * issue with JS Mode. All those functions would have
+ * just merged into the original H.add() and H.remove()
+ * functions, which would work just fine due to its
+ * weak typing.
+ */
+
+void setup() {
+	size(640,640);
+	H.init(this).background(#202020);
+	smooth();
+
+	H.add( new HEllipse() )
+		.size(100)
+		.strokeWeight(6)
+		.stroke(#000000, 100)
+		.fill(#FFCC00)
+		.anchorAt(H.CENTER)
+		.loc(100, height/2)
+	;
+
+	H.add( new HRect() )
+		.size(100)
+		.strokeWeight(6)
+		.stroke(#000000, 100)
+		.fill(#FF9900)
+		.anchorAt(H.CENTER)
+		.loc(250, height/2)
+	;
+
+	H.add( new HPath() )
+		.star(5, 0.5, 90)
+		.size(110)
+		.strokeWeight(6)
+		.stroke(#000000, 100)
+		.fill(#FF6600)
+		.anchorAt(H.CENTER)
+		.loc(400, height/2)
+	;
+
+	H.add( new HPath(POLYGON) )
+		.vertex(490,270)
+		.vertex(590,370)
+		.vertex(490,370)
+		.vertex(590,270)
+		.strokeWeight(6)
+		.stroke(#000000, 100)
+		.fill(#FF3300)
+	;
+
+	/*
+	* Here's the list of classes that you no longer need to
+	* cast with H.add() and H.remove() as of build_21030531.0:
+	* 
+	* - HCanvas
+	* - HEllipse
+	* - HGroup
+	* - HImage
+	* - HPath
+	* - HRect
+	* - HShape
+	* - HText
+	*
+	* If you created your own HDrawable class, then you'll still
+	* need to do the old casting thing.
+	*/
+
+	H.drawStage();
+	noLoop();
+}
+
+void draw() {}
+			</pre></div>
+	</body>
+</html>

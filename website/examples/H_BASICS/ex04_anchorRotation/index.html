@@ -26,32 +26,30 @@
 	</head>
 
 	<body>
-      <div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
+		<div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
 
-        <a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
+		<a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
 
-        <div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
 
-        <div style="font-size: 10px; color: #666666;">
-          <a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
-        </div>
+		<div style="font-size: 10px; color: #666666;">
+			<a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
+		</div>
 
-        <div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
 
-        <div style="font-size: 10px; color: #666666;">
-          by Joshua Davis and James Cruz <br />
-          A Code and Theory project <br />
-          <a href="http://www.codeandtheory.com" target="_blank">http://www.codeandtheory.com</a> <br />
-          for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
+		<div style="font-size: 10px; color: #666666;">
+			by Joshua Davis and James Cruz <br />
+			for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
 
-          HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
-        </div>
+			HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
+		</div>
 
-        <div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
 
-        <a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
+		<a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
 
-      </div>
+		</div>
 
 		<div id="content">
 			<div>
@@ -63,12 +61,12 @@
 				<noscript>
 					<p>JavaScript is required to view the contents of this page.</p>
 				</noscript>
-	    	</div>
+			</div>
 
-	    	<div style="background-color: #181818; padding:10px 20px 15px 20px;">
+			<div style="background-color: #181818; padding:10px 20px 15px 20px;">
 				<b style="font-size: 15px; font-weight: 700; color: #ECECEC;">
 				ex04_anchorRotation </b><br /><br />
-	    		HYPE, Anchor Rotation, anchor(), anchorAt(), extras(HBundle)<br /><br />
+				HYPE, Anchor Rotation, anchor(), anchorAt(), extras(HBundle)<br /><br />
 				<a href="index.pde">Source code</a>
 			</div>
 		</div>
@@ -85,60 +83,52 @@ void setup() {
 	s1 = new HRect(90);
 	s1
 		.rounding(5)
+		.noStroke()
 		.fill(#FF3300)
 		.anchorAt(H.CENTER)
 		.loc(100,180)
-		.extras(
-			new HBundle()
-			.num( "letsRotate", 1f )
-		);
+	;
 	H.add(s1);
+	HRotate r1 = new HRotate(); r1.target(s1).speed(1);
 
 	s2 = new HRect(90);
 	s2
 		.rounding(5)
+		.noStroke()
 		.fill(#FF6600)
 		.loc(320,180)
-		.extras(
-			new HBundle()
-			.num( "letsRotate", 1f )
-		);
+	;
 	H.add(s2);
+	HRotate r2 = new HRotate(); r2.target(s2).speed(1);
 
 	s3 = new HRect(90);
 	s3
 		.rounding(5)
+		.noStroke()
 		.fill(#FF9900)
-		.anchor( new PVector(50,25) )
+		.anchor(50,25)
 		.loc(width - 100,180)
-		.extras(
-			new HBundle()
-			.num( "letsRotate", 1f )
-		);
+	;
 	H.add(s3);
+	HRotate r3 = new HRotate(); r3.target(s3).speed(1);
 
 	s4 = new HEllipse(25);
-	s4.fill(#CCCCCC).anchor( new PVector(12.5,75) ).loc(100,height-180).extras(new HBundle().num( "letsRotate", random(-2,-1) ));
+	s4.noStroke().fill(#CCCCCC).anchor(12.5,75).loc(100,height-180);
 	H.add(s4);
+	HRotate r4 = new HRotate(); r4.target(s4).speed(random(-2,-1));
 
 	s5 = new HEllipse(25);
-	s5.fill(#CCCCCC).anchor( new PVector(12.5,75) ).loc(width/2,height-180).extras(new HBundle().num( "letsRotate", random(-4,-2) ));
+	s5.noStroke().fill(#CCCCCC).anchor(12.5,75).loc(width/2,height-180);
 	H.add(s5);
+	HRotate r5 = new HRotate(); r5.target(s5).speed(random(-4,-2));
 
 	s6 = new HEllipse(25);
-	s6.fill(#CCCCCC).anchor( new PVector(12.5,75) ).loc(width-100,height-180).extras(new HBundle().num( "letsRotate", random(-8,-4) ));
+	s6.noStroke().fill(#CCCCCC).anchor(12.5,75).loc(width-100,height-180);
 	H.add(s6);
+	HRotate r6 = new HRotate(); r6.target(s6).speed(random(-8,-4));
 }
 
 void draw() {
-	HBundle e1 = s1.extras(); s1.rotate(e1.num("letsRotate"));
-	HBundle e2 = s2.extras(); s2.rotate(e2.num("letsRotate"));
-	HBundle e3 = s3.extras(); s3.rotate(e3.num("letsRotate"));
-
-	HBundle e4 = s4.extras(); s4.rotate(e4.num("letsRotate"));
-	HBundle e5 = s5.extras(); s5.rotate(e5.num("letsRotate"));
-	HBundle e6 = s6.extras(); s6.rotate(e6.num("letsRotate"));
-
 	H.drawStage();
 
 	// using ellipse to mark the moved registration points

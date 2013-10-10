@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>the Hype Framework / Processing / ProcessingJS / github.com/hype/HYPE_Processing</title>
+
+		<link rel="stylesheet" href="../../../css/page.css" />
+
+		<link type="text/css" rel="stylesheet" href="../../../syntax/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../syntax/shThemeHype.css"/>
+		<script src="../../../syntax/XRegExp.js" type="text/javascript"></script>
+		<script src="../../../syntax/shCore.js" type="text/javascript"></script>
+		<script src="../../../syntax/shBrushProcessing.js" type="text/javascript"></script>
+
+		<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700,400,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<meta name="Generator" content="Processing" />
+
+		<!--[if lt IE 9]>
+			<script type="text/javascript">alert("Your browser does not support the canvas tag.");</script>
+		<![endif]-->
+
+		<script src="../../processing.js" type="text/javascript"></script>
+
+	</head>
+
+	<body>
+		<div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
+
+		<a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<div style="font-size: 10px; color: #666666;">
+			<a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
+		</div>
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<div style="font-size: 10px; color: #666666;">
+			by Joshua Davis and James Cruz <br />
+			for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
+
+			HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
+		</div>
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
+
+		</div>
+
+		<div id="content">
+			<div>
+				<canvas id="index" data-processing-sources="index.pde" 
+						width="640" height="640">
+					<p>Your browser does not support the canvas tag.</p>
+					<!-- Note: you can put any alternative content here. -->
+				</canvas>
+				<noscript>
+					<p>JavaScript is required to view the contents of this page.</p>
+				</noscript>
+				</div>
+
+				<div style="background-color: #181818; padding:10px 20px 15px 20px;">
+				<b style="font-size: 15px; font-weight: 700; color: #ECECEC;">
+				HShape / 001</b><br /><br />
+				HYPE, HShape, HColorPool <br /><br />
+				<a href="index.pde">Source code</a>
+			</div>
+		</div>
+
+			<div id="code"><pre class="brush: processing; tab-size: 3; auto-links: false;">
+HColorPool colors;
+HShape s1,s2,s3,s4,s5,s6;
+
+void setup() {
+	size(640,640);
+	H.init(this).background(#202020);
+	smooth();
+
+	frameRate(6);
+
+	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
+
+	s1 = new HShape("bot1.svg");
+	H.add(s1)
+		.scale(0.65f)
+		.strokeWeight(3)
+		.fill(#111111)
+		.anchorAt(H.CENTER)
+		.loc(120, height/2 - 100)
+	;
+
+	s2 = new HShape("bot1.svg");
+	H.add(s2)
+		.scale(0.65f)
+		.strokeWeight(3)
+		.stroke(#000000)
+		.noFill()
+		.anchorAt(H.CENTER)
+		.loc(width/2, height/2 - 100)
+	;
+
+	s3 = new HShape("bot1.svg");
+	H.add(s3)
+		.scale(0.65f)
+		.strokeWeight(3)
+		.anchorAt(H.CENTER)
+		.loc(width - 120, height/2 - 100)
+	;
+
+	s4 = new HShape("bot1.svg");
+	H.add(s4)
+		.scale(0.65f)
+		.strokeWeight(3)
+		.fill(#111111)
+		.anchorAt(H.CENTER)
+		.loc(120, height/2 + 100)
+	;
+
+	s5 = new HShape("bot1.svg");
+	H.add(s5)
+		.scale(0.65f)
+		.strokeWeight(3)
+		.stroke(#000000)
+		.noFill()
+		.anchorAt(H.CENTER)
+		.loc(width/2, height/2 + 100)
+	;
+
+	s6= new HShape("bot1.svg");
+	H.add(s6)
+		.scale(0.65f)
+		.strokeWeight(3)
+		.anchorAt(H.CENTER)
+		.loc(width - 120, height/2 + 100)
+	;
+
+	s1.randomColors(colors.strokeOnly());
+	s2.randomColors(colors.fillOnly());
+	s3.randomColors(colors.fillAndStroke());
+
+	s4.randomColors(colors.strokeOnly());
+	s5.randomColors(colors.fillOnly());
+	s6.randomColors(colors.fillAndStroke());
+
+}
+
+void draw() {
+	H.drawStage();
+
+	s4.randomColors(colors.strokeOnly());
+	s5.randomColors(colors.fillOnly());
+	s6.randomColors(colors.fillAndStroke());
+}
+			</pre></div>
+	</body>
+</html>
