@@ -130,7 +130,7 @@ public static class HHexLayout implements HLayout {
 		x = y = 0;
 
 		x = _spacing * 3.0/2.0 * _lastPoint.x;
-		y = _spacing * p.sqrt(3.0) * (_lastPoint.y + _lastPoint.x/2.0);
+		y = _spacing * H.app().sqrt(3.0) * (_lastPoint.y + _lastPoint.x/2.0);
 
 		PVector point = new PVector(
 			x + _offsetX - _adjustX ,
