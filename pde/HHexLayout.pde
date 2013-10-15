@@ -20,7 +20,7 @@ public static class HHexLayout implements HLayout {
 		_offsetX = H.app().width / 2.0;
 		_offsetY = H.app().height / 2.0;
 		_adjustX = _spacing * 1.25;
-		_adjustY = _spacing / 4.0;
+		_adjustY = _spacing * 0.25;
 		_lastPoint = null;
 	}
 
@@ -76,6 +76,7 @@ public static class HHexLayout implements HLayout {
 	}
 
 	protected void updateLastPoint() {
+
 		// We've reached the end of the current direction, switch directions
 		if (_currentIndex > _currentDistanceFromCenter-1) {
 			_currentIndex = 0;
@@ -86,31 +87,37 @@ public static class HHexLayout implements HLayout {
 		if (_direction > 5) {
 			_direction = 0;
 			_currentDistanceFromCenter++;
-			_currentIndex = -1;
+			_currentIndex = 0;
 			_lastPoint = north(new PVector(0,0), _currentDistanceFromCenter);
-			PApplet.println("----->" + _lastPoint);
-			return;
+			// return;
 		}
+
 
 		if (_lastPoint != null) {
 			switch(_direction) {
 				case 0:
 					_lastPoint = southeast(_lastPoint);
+					PApplet.println(Integer.toString(_currentIndex) + ": SE : " + _lastPoint);
 					break;
 				case 1:
 					_lastPoint = south(_lastPoint);
+					PApplet.println(Integer.toString(_currentIndex) + ": S  : " + _lastPoint);
 					break;
 				case 2:
 					_lastPoint = southwest(_lastPoint);
+					PApplet.println(Integer.toString(_currentIndex) + ": SW : " + _lastPoint);
 					break;
 				case 3:
 					_lastPoint = northwest(_lastPoint);
+					PApplet.println(Integer.toString(_currentIndex) + ": NW : " + _lastPoint);
 					break;
 				case 4:
 					_lastPoint = north(_lastPoint);
+					PApplet.println(Integer.toString(_currentIndex) + ": N : " + _lastPoint);
 					break;
 				case 5:
 					_lastPoint = northeast(_lastPoint);
+					PApplet.println(Integer.toString(_currentIndex) + ": NE : " + _lastPoint);
 					break;
 			}
 
