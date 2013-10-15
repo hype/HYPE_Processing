@@ -9,7 +9,8 @@ void setup() {
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600).fillOnly();
 	
-	field = new HMagneticField().addMagnet(width/4,height/4, width*3/4, height*3/4);
+	//add Magnet requires a north and south set of poles, nx, ny, sx, sy
+	field = new HMagneticField().addMagnet(width/4,height/2, width*3/4, height*3/4);
 
 	pool = new HDrawablePool(930);
 	pool.autoAddToStage()
@@ -45,9 +46,10 @@ void setup() {
 }
 
 void draw() {
-	HMagneticField.HMagnet m = field.magnet(0);
-	m.northx = mouseX;
-	m.northy = mouseY;
+	//getting second pole, which is the south pole of the magent we added above
+	HMagneticField.HPole p = field.pole(1);
+	p._x = mouseX;
+	p._y = mouseY;
 	H.drawStage();
 }
 
