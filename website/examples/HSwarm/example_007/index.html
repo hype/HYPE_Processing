@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>the Hype Framework / Processing / ProcessingJS / github.com/hype/HYPE_Processing</title>
+
+		<link rel="stylesheet" href="../../../css/page.css" />
+
+		<link type="text/css" rel="stylesheet" href="../../../syntax/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../syntax/shThemeHype.css"/>
+		<script src="../../../syntax/XRegExp.js" type="text/javascript"></script>
+		<script src="../../../syntax/shCore.js" type="text/javascript"></script>
+		<script src="../../../syntax/shBrushProcessing.js" type="text/javascript"></script>
+
+		<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700,400,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<meta name="Generator" content="Processing" />
+
+		<!--[if lt IE 9]>
+			<script type="text/javascript">alert("Your browser does not support the canvas tag.");</script>
+		<![endif]-->
+
+		<script src="../../processing.js" type="text/javascript"></script>
+
+	</head>
+
+	<body>
+		<div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
+
+		<a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<div style="font-size: 10px; color: #666666;">
+			<a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
+		</div>
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<div style="font-size: 10px; color: #666666;">
+			by Joshua Davis and James Cruz <br />
+			for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
+
+			HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
+		</div>
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
+
+		</div>
+
+		<div id="content">
+			<div>
+				<canvas id="index" data-processing-sources="index.pde" 
+						width="640" height="640">
+					<p>Your browser does not support the canvas tag.</p>
+					<!-- Note: you can put any alternative content here. -->
+				</canvas>
+				<noscript>
+					<p>JavaScript is required to view the contents of this page.</p>
+				</noscript>
+			</div>
+
+			<div style="background-color: #181818; padding:10px 20px 15px 20px;">
+				<b style="font-size: 15px; font-weight: 700; color: #ECECEC;">
+				HSwarm / 007</b><br /><br />
+				HYPE, HCanvas, HDrawablePool, HTimer, HColorPool, HSwarm, HRect, swarm.goals() <br /><br />
+				<font style="color: #FF3300;">! not currently rendering properly in JavaScript Mode / suggested in Java Mode ONLY</font><br /><br />
+				<a href="index.pde">Source code</a>
+			</div>
+		</div>
+
+			<div id="code"><pre class="brush: processing; tab-size: 3; auto-links: false;">
+HColorPool colors;
+HDrawablePool pool;
+HTimer timer;
+HSwarm swarm;
+int i=0;
+HCanvas canvas;
+
+void setup() {
+	size(640,640);
+	H.init(this).background(#000000);
+	smooth();
+
+	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
+
+	canvas = new HCanvas().autoClear(false).fade(40);
+	H.add(canvas);
+
+	swarm = new HSwarm()
+		.speed(4)
+		.turnEase(0.1f)
+		.twitch(15)
+		.idleGoal(width/2,height/2)
+	;
+
+	pool = new HDrawablePool(10);
+	pool.autoAddToStage()
+		.add (
+			new HRect(10).rounding(5)
+		)
+
+		.onCreate (
+			new HCallback() {
+				public void run(Object obj) {
+					final HDrawable d = (HDrawable) obj;
+					d
+						.strokeWeight(2)
+						.stroke(#ECECEC)
+						.fill( #111111 )
+						.loc( (int)random(100,540), (int)random(100,540) )
+						.anchorAt( H.CENTER )
+						.rotation(45)
+					;
+
+					final HTween tween = new HTween()
+						.target(d).property(H.LOCATION)
+						.start(d.x(), d.y())
+						.end((int)random(width), (int)random(height))
+						.ease(0.01).spring(0.9)
+					;
+
+					final HCallback onAnim = new HCallback() {
+						public void run(Object obj) {
+							tween
+								.start(d.x(), d.y())
+								.end( (int)random(100,540), (int)random(100,540) )
+								.ease(0.01)
+								.spring(0.9)
+								.register()
+							;
+						}
+					};
+
+					timer = new HTimer().interval(2000).callback(onAnim);
+				}
+			}
+		)
+
+		.requestAll()
+	;
+}
+
+void draw() {
+	if(i++&lt;100) { 
+		swarm.addTarget(
+			canvas.add(
+				new HRect(8,2)
+				.rounding(4)
+				.anchorAt( H.CENTER )
+				.noStroke()
+				.fill(colors.getColor())
+			)
+		);
+	}
+
+	H.drawStage();
+
+	for(Iterator&lt;HLocatable&gt; it=swarm.goals().iterator();it.hasNext();) {
+		it.remove();
+		it.next();
+	}
+
+	for(HDrawable d : pool) {
+		swarm.addGoal(d.x(),d.y());
+	}
+}
+			</pre></div>
+	</body>
+</html>
