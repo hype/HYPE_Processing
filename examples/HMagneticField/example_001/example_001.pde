@@ -4,20 +4,25 @@ HColorPool colors;
 
 void setup() {
 	size(640,640);
+
 	H.init(this).background(#202020);
 	smooth();
 
-	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600).fillOnly();
+	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #CCCCCC).fillOnly();
 	
-	//add Magnet requires a north and south set of poles, nx, ny, sx, sy
-	field = new HMagneticField().addMagnet(width/4,height/2, width*3/4, height*3/4);
+	field = new HMagneticField()
+		.addPole(150, 175,  1) // x, y, north polarity / repel
+		.addPole(490, 175,  1) // x, y, north polarity / repel
+
+		.addPole(150, 490, -1) // x, y, south polarity / attract
+		.addPole(490, 490, -1) // x, y, south polarity / attract
+	;
 
 	pool = new HDrawablePool(930);
 	pool.autoAddToStage()
 		.add(
-			new HRect()
-			.rounding(2)
-			.size(5,15)
+			new HShape("arrow.svg")
+			.enableStyle(false)
 			.anchorAt(H.CENTER)
 		)
 
@@ -46,10 +51,6 @@ void setup() {
 }
 
 void draw() {
-	//getting second pole, which is the south pole of the magent we added above
-	HMagneticField.HPole p = field.pole(1);
-	p._x = mouseX;
-	p._y = mouseY;
 	H.drawStage();
 }
 

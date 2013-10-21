@@ -1,8 +1,11 @@
 /*
  * HYPE_Processing
- * http:
  * 
  * Copyright (c) 2013 Joshua Davis & James Cruz
+ *
+ * HMagneticField
+ * by Benjamin Fox / twitter.com/tracerstar
+ * https://github.com/tracerstar
  * 
  * Distributed under the BSD License. See LICENSE.txt for details.
  * 

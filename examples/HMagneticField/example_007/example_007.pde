@@ -3,23 +3,24 @@ HDrawablePool pool, swarmPool;
 HMagneticField field;
 HColorPool colors;
 
+int numMagnets = 10;
+
 void setup() {
 	size(640,640);
 
-	H.init(this).background(#202020);
+	H.init(this).background(#000000);
 	smooth();
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #CCCCCC).fillOnly();
+	
+	field = new HMagneticField();
 
-	field = new HMagneticField()
-		.addPole(width/2, height/2,  2) // x, y, north polarity / repel
-		.addPole(width/2, height/2,  2) // x, y, north polarity / repel
+	for (int i = 0; i<numMagnets; i++){
+		if ( (int)random(2) == 0 ) field.addPole( (int)random(width), (int)random(height),   3); // x, y, north polarity / strength =  3 / repel
+		else                       field.addPole( (int)random(width), (int)random(height),  -3); // x, y, south polarity / strength = -3 / attract
+	}
 
-		.addPole(width/2, height/2, -2) // x, y, south polarity / attract
-		.addPole(width/2, height/2, -2) // x, y, south polarity / attract
-	;
-
-	pool = new HDrawablePool(930);
+	pool = new HDrawablePool(2500);
 	pool.autoAddToStage()
 		.add(
 			new HShape("arrow.svg")
@@ -31,17 +32,18 @@ void setup() {
 
 		.layout(
 			new HGridLayout()
-			.startX(5)
-			.startY(15)
-			.spacing(21,21)
-			.cols(31)
+			.startX(-60)
+			.startY(-60)
+			.spacing(16,16)
+			.cols(50)
 		)
 
 		.onCreate (
 			new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
-					d.noStroke();
+					d.noStroke().anchor(-20,-20);
+
 					field.addTarget(d);
 				}
 			}
@@ -53,23 +55,22 @@ void setup() {
 	swarm = new HSwarm()
 		.addGoal(width/2,height/2)
 		.speed(7)
-		.turnEase(0.04)
+		.turnEase(0.03)
 		.twitch(20)
 	;
 
-	swarmPool = new HDrawablePool(4);
+	swarmPool = new HDrawablePool(numMagnets);
 	swarmPool.autoAddToStage()
-		.add (new HRect(10).rounding(5))
+		.add (new HRect(5))
 		.onCreate (
 			 new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
 					d
-						.strokeWeight(2)
-						.stroke(#FFFFFF)
-						.fill( #000000 )
-						.loc( (int)random(100,540), (int)random(100,540) )
-						.anchorAt( H.CENTER )
+						.noStroke()
+						.noFill()
+						.loc( (int)random(width), (int)random(height) )
+						.visibility(false)
 					;
 
 					swarm.addTarget(d);
@@ -82,19 +83,13 @@ void setup() {
 
 void draw() {
 	int i = 0;
+
 	for (HDrawable d : swarmPool) {
-
-		if(i<2) d.fill(#FF3300); // repel   = red
-		else    d.fill(#237D26); // attract = green
-
 		HMagneticField.HPole p = field.pole(i);
 		p._x = d.x();
 		p._y = d.y();
-
 		++i;
-
 	}
-
 
 	H.drawStage();
 }
