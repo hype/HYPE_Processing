@@ -5,7 +5,7 @@
  *
  * HHexLayout
  * by Russell Hay / http://cordandruss.com
- * https://github.com/tracerstar
+ * https://github.com/RussTheAerialist
  *
  * Creates a grid layout that is hex based spiraling out from the center of the sketch
  *
