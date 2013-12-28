@@ -1,20 +1,19 @@
 HYPE_Processing
 ===============
-A [Code and Theory][1] project maintained by Joshua Davis and James Cruz.
+A project maintained by Joshua Davis and James Cruz.
 
 A collection of classes that performs the heavy lifting for you by writing a
-minimal amount of code. This library is compatible with both [Processing][2] and
-[Processing.js][3]
+minimal amount of code. This library is compatible with both [Processing][1] and
+[Processing.js][2]
 
 This library is currently under heavy development. You can keep track of the
-latest changes here in the [changelog][4].
+latest changes here in the [changelog][3].
 
 
 Links
 -----
 - Website: http://www.hypeframework.org/
 - Source Code: https://github.com/hype/HYPE_Processing
-- Code and Theory: http://www.codeandtheory.com
 
 
 Importing HYPE to your Sketch
@@ -43,7 +42,7 @@ the base Java code in the `java/src/` folder.
 
 Documentation
 -------------
-This project's documentation is generated with [Doxygen][5] and is located in
+This project's documentation is generated with [Doxygen][4] and is located in
 `doc/html/index.html`. Be noted that since this library is under heavy
 development, especially in the staging branch, the documentation may not be 100%
 complete.
@@ -52,8 +51,7 @@ complete.
 
 
 
-[1]: http://www.codeandtheory.com
-[2]: http://processing.org/
-[3]: http://processingjs.org/
-[4]: CHANGELOG.md
-[5]: http://www.stack.nl/~dimitri/doxygen/
+[1]: http://processing.org/
+[2]: http://processingjs.org/
+[3]: CHANGELOG.md
+[4]: http://www.stack.nl/~dimitri/doxygen/

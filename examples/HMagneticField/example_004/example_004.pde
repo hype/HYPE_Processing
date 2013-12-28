@@ -8,22 +8,17 @@ void setup() {
 	H.init(this).background(#202020);
 	smooth();
 
-	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600).fillOnly();
-	
-	//the Magnetic field supports multiple poles
-	//with different strength polarities
+	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #CCCCCC).fillOnly();
+
 	field = new HMagneticField()
-	.addPole(width/4,height/3, 1)
-	.addPole(width/4*3,height/3, 3)
-	.addPole(width/2,height/4*3, -1)
+		.addPole(width/2, height/2,  -1) // x, y, south polarity / strength = -1 / attract
 	;
 
 	pool = new HDrawablePool(930);
 	pool.autoAddToStage()
 		.add(
-			new HRect()
-			.rounding(2)
-			.size(5,15)
+			new HShape("arrow.svg")
+			.enableStyle(false)
 			.anchorAt(H.CENTER)
 		)
 
@@ -52,6 +47,10 @@ void setup() {
 }
 
 void draw() {
+	HMagneticField.HPole p = field.pole(0);
+	p._x = mouseX;
+	p._y = mouseY;
+
 	H.drawStage();
 }
 
