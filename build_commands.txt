@@ -1,0 +1,2 @@
+javac -cp lib\core.jar -d bin @C:\Users\IBM_ADMIN\Dropbox\stuff\code\HYPE_Processing\sources.txt
+jar cvf hype.jar -C bin hype
