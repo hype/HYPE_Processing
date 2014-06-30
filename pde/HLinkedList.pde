@@ -73,6 +73,20 @@ public static class HLinkedList<T> implements Iterable<T> {
 		_lastSentinel.putAfter(_firstSentinel);
 		_size = 0;
 	}
+	/*
+		Shuffle list items
+		approximate replication of Java's shuffle method
+	*/
+	public void shuffle() {
+		Random rnd = new Random();
+		for (int i=_size; i>1; i--) {
+			HLinkedListNode<T> i_node = nodeAt(i-1);
+			HLinkedListNode<T> rnd_node = nodeAt(rnd.nextInt(i));
+			i_node.putAfter(rnd_node);
+			i_node = nodeAt(i-1);
+			rnd_node.putAfter(i_node);
+		}
+	}
 	public int size() {
 		return _size;
 	}
