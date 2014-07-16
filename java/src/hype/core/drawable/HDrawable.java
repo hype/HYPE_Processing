@@ -927,6 +927,10 @@ public abstract class HDrawable extends HNode<HDrawable> implements
 	public HDrawable size(float s) {
 		return size(s,s);
 	}
+
+	public HDrawable size(PVector s) {
+		return size(s.x,s.y);
+	}
 	
 	/**
 	 * Returns the size of this drawable.
