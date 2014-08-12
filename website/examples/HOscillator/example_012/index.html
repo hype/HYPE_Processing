@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>the Hype Framework / Processing / ProcessingJS / github.com/hype/HYPE_Processing</title>
+
+		<link rel="stylesheet" href="../../../css/page.css" />
+
+		<link type="text/css" rel="stylesheet" href="../../../syntax/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../syntax/shThemeHype.css"/>
+		<script src="../../../syntax/XRegExp.js" type="text/javascript"></script>
+		<script src="../../../syntax/shCore.js" type="text/javascript"></script>
+		<script src="../../../syntax/shBrushProcessing.js" type="text/javascript"></script>
+
+		<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700,400,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<meta name="Generator" content="Processing" />
+
+		<!--[if lt IE 9]>
+			<script type="text/javascript">alert("Your browser does not support the canvas tag.");</script>
+		<![endif]-->
+
+		<script src="../../processing.js" type="text/javascript"></script>
+
+	</head>
+
+	<body>
+		<div class="photo" style="color:#CCCCCC; letter-spacing: 0.5px; line-height: 18px; margin:3px 0px 0px 4px; padding:30px 30px 0px 30px; width:180px; height:987px; float: left;">
+
+		<a href="http://www.hypeframework.org"><b style="font-size: 40px; font-weight: 400; color: #FF3300;">Hype</b></a> <br /><br />
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<div style="font-size: 10px; color: #666666;">
+			<a href="https://github.com/hype/HYPE_Processing" target="_blank">github.com / HYPE_Processing</a> <br />
+		</div>
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<div style="font-size: 10px; color: #666666;">
+			by Joshua Davis and James Cruz <br />
+			for <a href="http://processing.org" target="_blank">Processing</a> and <a href="http://processingjs.org" target="_blank">ProcessingJS</a><br /><br />
+
+			HYPE_processing, is a collection of classes that performs heavy lifting tasks while using a minimal amount of code writing.
+		</div>
+
+		<div class="lineDark" style="margin: 15px 0px 15px 0px;"></div>
+
+		<a href="http://www.hypeframework.org"><b style="font-size: 20px; font-weight: 400; color: #FF6600;">&lt;&lt; back</b></a> <br /><br />
+
+		</div>
+
+		<div id="content">
+			<div>
+				<canvas id="index" data-processing-sources="index.pde" 
+						width="640" height="640">
+					<p>Your browser does not support the canvas tag.</p>
+					<!-- Note: you can put any alternative content here. -->
+				</canvas>
+				<noscript>
+					<p>JavaScript is required to view the contents of this page.</p>
+				</noscript>
+			</div>
+
+			<div style="background-color: #181818; padding:10px 20px 15px 20px;">
+				<b style="font-size: 15px; font-weight: 700; color: #ECECEC;">
+				HOscillator / 012</b><br /><br />
+				HYPE, HDrawablePool, HText, HRect, HTimer, HColorPool, HOscillator / X, ALPHA, WIDTH, ROTATION <br /><br />
+				<a href="index.pde">Source code</a>
+			</div>
+		</div>
+
+			<div id="code"><pre class="brush: processing; tab-size: 3; auto-links: false;">
+/* @pjs font="DroidSerifBoldItalic.ttf"; */
+
+HDrawablePool pool;
+
+final HColorPool colors = new HColorPool(#111111, #202020, #242424, #333333, #4D4D4D, #CCCCCC);
+
+void setup() {
+	size(640,640);
+	H.init(this).background(#000000);
+	smooth();
+
+	PFont type = createFont("DroidSerifBoldItalic.ttf", 24);
+
+	pool = new HDrawablePool(1000);
+	pool.autoAddToStage()
+		.add(
+			new HRect()
+			.rounding(5)
+		)
+
+		.onCreate(
+			new HCallback() {
+				public void run(Object obj) {
+					int i = pool.currentIndex();
+
+					HDrawable d = (HDrawable) obj;
+					d
+						.strokeWeight(8)
+						.stroke(#FFFFFF, 10)
+						.strokeCap(ROUND)
+						.strokeJoin(ROUND)
+						.fill(colors.getColor())
+						.size( (int)random(4,10)  , (int)random(8,12) )
+						.loc(  (int)random(width) , (int)random(height) )
+						.anchorAt(H.CENTER)
+
+						.obj("xo", new HOscillator()
+							.target(d)
+							.property(H.X)
+							.relativeVal(d.x())
+							.range(-(int)random(5,10), (int)random(5,10))
+							.speed( random(.005,.2) )
+							.freq(10)
+							.currentStep(i)
+						)
+
+						.obj("ao", new HOscillator()
+							.target(d)
+							.property(H.ALPHA)
+							.range(0,255)
+							.speed( random(.3,.9) )
+							.freq(5)
+							.currentStep(i)
+						)
+
+						.obj("wo", new HOscillator()
+							.target(d)
+							.property(H.WIDTH)
+							.range(-d.width(),d.width())
+							.speed( random(.05,.2) )
+							.freq(10)
+							.currentStep(i)
+						)
+
+						.obj("ro", new HOscillator()
+							.target(d)
+							.property(H.ROTATION)
+							.range(-180,180)
+							.speed( random(.005,.05) )
+							.freq(10)
+							.currentStep(i)
+						)
+					;
+				}
+			}
+		)
+
+		.onRequest(
+			new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
+					d.scale(1).alpha(0).loc((int)random(width),(int)random(height));
+
+					HOscillator xo = (HOscillator) d.obj("xo"); xo.register();
+					HOscillator ao = (HOscillator) d.obj("ao"); ao.register();
+					HOscillator wo = (HOscillator) d.obj("wo"); wo.register();
+					HOscillator ro = (HOscillator) d.obj("ro"); ro.register();
+				}
+			}
+		)
+
+		.onRelease(
+			new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
+
+					HOscillator xo = (HOscillator) d.obj("xo"); xo.unregister();
+					HOscillator ao = (HOscillator) d.obj("ao"); ao.unregister();
+					HOscillator wo = (HOscillator) d.obj("wo"); wo.unregister();
+					HOscillator ro = (HOscillator) d.obj("ro"); ro.unregister();
+				}
+			}
+		)
+	;
+
+	new HTimer(50)
+		.callback(
+			new HCallback() {
+				public void run(Object obj) {
+					pool.request();
+				}
+			}
+		)
+	;
+
+	HText f1 = new HText("dust",200,type);
+	f1.fill(#ECECEC).anchorAt(H.CENTER).loc(width/2,height/2);
+	H.add(f1);
+}
+
+void draw() {
+  for(HDrawable d : pool) {
+		d.loc( d.x(), d.y() - random(0.25,1) );
+
+		if (d.y() &lt; -40) {
+			pool.release(d);
+		}
+	}
+
+	H.drawStage();
+}
+			</pre></div>
+	</body>
+</html>

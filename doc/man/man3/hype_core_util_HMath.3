@@ -1,0 +1,353 @@
+.TH "hype.core.util.HMath" 3 "Wed Jun 19 2013" "HYPE_processing" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+hype.core.util.HMath \- 
+.PP
+A static class that provides some math methods\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBhype\&.core\&.util\&.HConstants\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static float \fBdist\fP (float x1, float y1, float x2, float y2)"
+.br
+.ti -1c
+.RI "static float[] \fBrotatePointArr\fP (float x, float y, float rad)"
+.br
+.ti -1c
+.RI "static PVector \fBrotatePoint\fP (float x, float y, float rad)"
+.br
+.ti -1c
+.RI "static float \fByAxisAngle\fP (float x1, float y1, float x2, float y2)"
+.br
+.ti -1c
+.RI "static float \fBxAxisAngle\fP (float x1, float y1, float x2, float y2)"
+.br
+.ti -1c
+.RI "static float[] \fBabsLocArr\fP (\fBHDrawable\fP ref, float relX, float relY)"
+.br
+.ti -1c
+.RI "static PVector \fBabsLoc\fP (\fBHDrawable\fP ref, float relX, float relY)"
+.br
+.ti -1c
+.RI "static PVector \fBabsLoc\fP (\fBHDrawable\fP d)"
+.br
+.ti -1c
+.RI "static float[] \fBrelLocArr\fP (\fBHDrawable\fP ref, float absX, float absY)"
+.br
+.ti -1c
+.RI "static PVector \fBrelLoc\fP (\fBHDrawable\fP ref, float absX, float absY)"
+.br
+.ti -1c
+.RI "static int \fBquadrant\fP (float cx, float cy, float x, float y)"
+.br
+.ti -1c
+.RI "static int \fBquadrant\fP (float dcx, float dcy)"
+.br
+.ti -1c
+.RI "static float \fBellipseRadius\fP (float a, float b, float deg)"
+.br
+.ti -1c
+.RI "static float \fBellipseRadiusRad\fP (float a, float b, float rad)"
+.br
+.ti -1c
+.RI "static PVector \fBellipsePoint\fP (float cx, float cy, float a, float b, float deg)"
+.br
+.ti -1c
+.RI "static PVector \fBellipsePointRad\fP (float cx, float cy, float a, float b, float rad)"
+.br
+.ti -1c
+.RI "static float[] \fBellipsePointRadArr\fP (float cx, float cy, float a, float b, float rad)"
+.br
+.ti -1c
+.RI "static float \fBnormalizeAngle\fP (float deg)"
+.br
+.ti -1c
+.RI "static float \fBnormalizeAngleRad\fP (float rad)"
+.br
+.ti -1c
+.RI "static float \fBnormalizeAngle2\fP (float deg)"
+.br
+.ti -1c
+.RI "static float \fBnormalizeAngleRad2\fP (float rad)"
+.br
+.ti -1c
+.RI "static float \fBsquishAngle\fP (float w, float h, float deg)"
+.br
+.ti -1c
+.RI "static float \fBsquishAngleRad\fP (float w, float h, float rad)"
+.br
+.ti -1c
+.RI "static float \fBlineSide\fP (float x1, float y1, float x2, float y2, float ptx, float pty)"
+.br
+.ti -1c
+.RI "static boolean \fBcollinear\fP (float x1, float y1, float x2, float y2, float ptx, float pty)"
+.br
+.ti -1c
+.RI "static boolean \fBleftOfLine\fP (float x1, float y1, float x2, float y2, float ptx, float pty)"
+.br
+.ti -1c
+.RI "static boolean \fBrightOfLine\fP (float x1, float y1, float x2, float y2, float ptx, float pty)"
+.br
+.ti -1c
+.RI "static int \fBsolveCubic\fP (float a, float b, float c, float d, float[] roots)"
+.br
+.RI "\fISolves for the real roots of a cubic equation with the given coefficients\&. \fP"
+.ti -1c
+.RI "static int \fBsolveQuadratic\fP (float a, float b, float c, float[] roots)"
+.br
+.RI "\fISolves for the real roots of a quadratic equation with the given coefficients\&. \fP"
+.ti -1c
+.RI "static int \fBbezierParam\fP (float p0, float p1, float p2, float p3, float val, float[] params)"
+.br
+.RI "\fISolves for the valid parameters of a given cubic bezier equation\&. \fP"
+.ti -1c
+.RI "static int \fBbezierParam\fP (float p0, float p1, float p2, float val, float[] params)"
+.br
+.ti -1c
+.RI "static float \fBbezierPoint\fP (float p0, float p1, float p2, float p3, float t)"
+.br
+.ti -1c
+.RI "static float \fBbezierPoint\fP (float p0, float p1, float p2, float t)"
+.br
+.ti -1c
+.RI "static float \fBbezierTangent\fP (float p0, float p1, float p2, float p3, float t)"
+.br
+.ti -1c
+.RI "static float \fBbezierTangent\fP (float p0, float p1, float p2, float t)"
+.br
+.ti -1c
+.RI "static int \fBrandomInt\fP (float high)"
+.br
+.ti -1c
+.RI "static int \fBrandomInt\fP (float low, float high)"
+.br
+.ti -1c
+.RI "static int \fBrandomInt32\fP ()"
+.br
+.ti -1c
+.RI "static void \fBtempSeed\fP (long seed)"
+.br
+.ti -1c
+.RI "static void \fBremoveTempSeed\fP ()"
+.br
+.ti -1c
+.RI "static float \fBsineWave\fP (float stepDegrees)"
+.br
+.ti -1c
+.RI "static float \fBtriangleWave\fP (float stepDegrees)"
+.br
+.ti -1c
+.RI "static float \fBsawWave\fP (float stepDegrees)"
+.br
+.ti -1c
+.RI "static float \fBsquareWave\fP (float stepDegrees)"
+.br
+.ti -1c
+.RI "static boolean \fBhasBits\fP (byte target, byte mask)"
+.br
+.ti -1c
+.RI "static boolean \fBhasBits\fP (int target, int mask)"
+.br
+.ti -1c
+.RI "static byte \fBsetBits\fP (byte target, byte mask, boolean val)"
+.br
+.ti -1c
+.RI "static int \fBsetBits\fP (int target, int mask, boolean val)"
+.br
+.ti -1c
+.RI "static boolean \fBlessThan\fP (float a, float b, float tolerance)"
+.br
+.ti -1c
+.RI "static boolean \fBlessThan\fP (float a, float b)"
+.br
+.ti -1c
+.RI "static boolean \fBgreaterThan\fP (float a, float b, float tolerance)"
+.br
+.ti -1c
+.RI "static boolean \fBgreaterThan\fP (float a, float b)"
+.br
+.ti -1c
+.RI "static boolean \fBisEqual\fP (float a, float b, float tolerance)"
+.br
+.ti -1c
+.RI "static boolean \fBisEqual\fP (float a, float b)"
+.br
+.ti -1c
+.RI "static boolean \fBisZero\fP (float a, float tolerance)"
+.br
+.ti -1c
+.RI "static boolean \fBisZero\fP (float a)"
+.br
+.ti -1c
+.RI "static float \fBmap\fP (float val, float start1, float stop1, float start2, float stop2)"
+.br
+.ti -1c
+.RI "static float \fBround512\fP (float val)"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+A static class that provides some math methods\&. 
+
+These methods are primarily used internally by the HYPE classes, but these can also be used externally\&. (e\&.g\&. \fCrandomInt()\fP can be very handy in some sketches\&.)
+.PP
+Most of these methods are here because any of the following:
+.IP "\(bu" 2
+It's only available as a static PApplet method\&. (We are trying to avoid it due to Processing\&.js not having a static PApplet object, forcing us to call the math methods in a non-static context\&.)
+.IP "\(bu" 2
+It's not available in \fIboth\fP \fCjava\&.lang\&.Math\fP and the standard Javascript \fCMath\fP object\&.
+.IP "\(bu" 2
+It's a modification of an existing method\&.
+.IP "\(bu" 2
+It's not available at all in any of the above classes\&.
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+james 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "static int hype\&.core\&.util\&.HMath\&.bezierParam (floatp0, floatp1, floatp2, floatp3, floatval, float[]params)\fC [static]\fP"
+
+.PP
+Solves for the valid parameters of a given cubic bezier equation\&. This method calls \fC\fBsolveCubic()\fP\fP to solve for the said equation\&.
+.PP
+Since cubic bezier curves can have at most three parameters that could give the same value, the \fCparams\fP array is expected to have a size of at least 3\&. Note that these parameters can be less than \fC0\fP or more than \fC1\fP, so you will need to check them before using the contents of the \fCparams\fP array\&.
+.PP
+The \fCval\fP argument is the value to be tested, where: 
+.PP
+.nf
+val = bezier(p0,p1,p2,p3,param)
+
+.fi
+.PP
+.PP
+If the above equation is in such a way that it could not be true, then this method will return \fC0\fP valid parameters\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBsolveCubic(float,float,float,float,float[])\fP, bezierParam(float,float,float,float,float[]) 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp0\fP The first anchor point 
+.br
+\fIp1\fP The first control point 
+.br
+\fIp2\fP The second control point 
+.br
+\fIp3\fP The second anchor point 
+.br
+\fIval\fP The value to be tested with the curve 
+.br
+\fIparams\fP The array that will contain the parameters of the bezier equation 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of valid parameters of the given bezier equation 
+.RE
+.PP
+
+.SS "static int hype\&.core\&.util\&.HMath\&.solveCubic (floata, floatb, floatc, floatd, float[]roots)\fC [static]\fP"
+
+.PP
+Solves for the real roots of a cubic equation with the given coefficients\&. Said equation is in the standard polynomial form: 
+.PP
+.nf
+ax^3 + bx^2 + cx + d = 0
+
+.fi
+.PP
+.PP
+where \fCa\fP, \fCb\fP, \fCc\fP & \fCd\fP are the coefficients of said equation\&.
+.PP
+Since the maximum amount of real roots that a cubic equation can have is three, the \fCroots\fP array is expected to have a size of at least 3\&.
+.PP
+If this equation happens to be a straight line lying on the x-axis, then this method will return \fC-1\fP, meaning that there are infinite number of roots for this equation\&.
+.PP
+This method may delegate itself to \fC\fBsolveQuadratic()\fP\fP if \fCa\fP equals 0 (in other words, the equation is quadratic\&.)
+.PP
+The code for this method is heavily based from paper\&.js (MIT License) which in turn is based from the Uintah Library (also MIT License)\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBsolveQuadratic(float,float,float,float[])\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The coefficient for the first term (ax^3) 
+.br
+\fIb\fP The coefficient for the second term (bx^2) 
+.br
+\fIc\fP The coefficient for the third term (cx) 
+.br
+\fId\fP The coefficient for the fourth term (d) 
+.br
+\fIroots\fP The array that will contain the roots of the equation 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of roots of the given equation 
+.RE
+.PP
+
+.SS "static int hype\&.core\&.util\&.HMath\&.solveQuadratic (floata, floatb, floatc, float[]roots)\fC [static]\fP"
+
+.PP
+Solves for the real roots of a quadratic equation with the given coefficients\&. Said equation is in the standard polynomial form: 
+.PP
+.nf
+ax^2 + bx + c = 0
+
+.fi
+.PP
+.PP
+where \fCa\fP, \fCb\fP & \fCc\fP are the coefficients of said equation\&.
+.PP
+Since the maximum amount of roots that a quadratic equation can have is two, the \fCroots\fP array is expected to have a size of at least 2\&.
+.PP
+If this equation happens to be a straight line lying on the x-axis, then this method will return \fC-1\fP, meaning that there are infinite number of roots for this equation\&.
+.PP
+The code for this method is heavily based from paper\&.js (MIT License) which in turn is based from the Uintah Library (also MIT License)\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBsolveCubic(float,float,float,float,float[])\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The coefficient for the first term (\fCax^2\fP) 
+.br
+\fIb\fP The coefficient for the second term (\fCbx\fP) 
+.br
+\fIc\fP The coefficient for the third term (\fCc\fP) 
+.br
+\fIroots\fP The array that will contain the roots of the equation 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of roots of the given equation 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for HYPE_processing from the source code\&.

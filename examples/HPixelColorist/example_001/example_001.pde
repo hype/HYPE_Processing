@@ -1,9 +1,3 @@
-// As seen here, we need to preload Images and Fonts.
-//
-// See http://processingjs.org/reference/preload/
-// and http://processingjs.org/reference/font/
-// for more information.
-
 /* @pjs preload="sintra.jpg"; */
 
 HDrawablePool pool;
@@ -15,44 +9,48 @@ void setup() {
 	H.init(this).background(#202020);
 	smooth();
 
-	PImage img = loadImage("sintra.jpg");
-	final HPixelColorist colors = new HPixelColorist(img)
-	    .fillOnly()
-	    // .strokeOnly()
-	    // .fillAndStroke()
-    ;
-    
+	final HPixelColorist colors = new HPixelColorist("sintra.jpg")
+		.fillOnly()
+		// .strokeOnly()
+		// .fillAndStroke()
+	;
+
 	pool = new HDrawablePool(576);
 	pool.autoAddToStage()
 		.add (
 			new HRect()
 			.rounding(4)
 		)
+
 		.layout (
 			new HGridLayout()
-			.startX(16)
-			.startY(16)
+			.startX(21)
+			.startY(21)
 			.spacing(cellSize+1,cellSize+1)
 			.cols(24)
 		)
-	    .onCreate (
-		    new HCallback(){
-		    	public void run(Object obj) {
-		    		HDrawable d = (HDrawable) obj;
+
+		.onCreate (
+			new HCallback(){
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
 					d
 						.noStroke()
-				        .anchorAt(H.CENTER)
-				        .size(cellSize)
-				    ;
+						.anchorAt(H.CENTER)
+						.size(cellSize)
+					;
 
-			        colors.applyColor(d);
-		    	}
+					colors.applyColor(d);
+				}
 			}
-	    )
-		.requestAll();
+		)
+
+		.requestAll()
+	;
 
 	H.drawStage();
 	noLoop();
 }
 
 void draw() {}
+

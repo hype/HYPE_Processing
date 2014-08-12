@@ -1,6 +1,16 @@
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static class HEllipse extends HDrawable {
-	protected int _mode;
-	protected float _startRad, _endRad;
+	private int _mode;
+	private float _startRad, _endRad;
 	public HEllipse() {
 		_mode = PConstants.PIE;
 	}
@@ -9,6 +19,7 @@ public static class HEllipse extends HDrawable {
 		radius(ellipseRadius);
 	}
 	public HEllipse(float radiusX, float radiusY) {
+		this();
 		radius(radiusX,radiusY);
 	}
 	public HEllipse createCopy() {
@@ -55,7 +66,8 @@ public static class HEllipse extends HDrawable {
 		return _startRad * H.R2D;
 	}
 	public HEllipse startRad(float rad) {
-		_startRad = rad;
+		_startRad = HMath.normalizeAngleRad(rad);
+		if(_startRad > _endRad) _endRad += PConstants.TWO_PI;
 		return this;
 	}
 	public float startRad() {
@@ -68,7 +80,8 @@ public static class HEllipse extends HDrawable {
 		return _endRad * H.R2D;
 	}
 	public HEllipse endRad(float rad) {
-		_endRad = rad;
+		_endRad = HMath.normalizeAngleRad(rad);
+		if(_startRad > _endRad) _endRad += PConstants.TWO_PI;
 		return this;
 	}
 	public float endRad() {
@@ -79,27 +92,31 @@ public static class HEllipse extends HDrawable {
 		float cy = _height/2;
 		float dcx = relX - cx;
 		float dcy = relY - cy;
-		boolean b = ((dcx*dcx)/(cx*cx) + (dcy*dcy)/(cy*cy) <= 1);
-		if(_startRad == _endRad) {
-			return b;
-		}
-		float f = H.app().atan2(dcy, dcx);
-		switch(_mode) {
-		case PConstants.CHORD:
-		case PConstants.OPEN:
-			return b;
-		default:
-			return b && _startRad <= f && f <= _endRad;
+		boolean inEllipse = ((dcx*dcx)/(cx*cx) + (dcy*dcy)/(cy*cy) <= 1);
+		if(_startRad == _endRad) return inEllipse;
+		else if(!inEllipse) return false;
+		if(_mode == PConstants.PIE) {
+			float ptAngle = (float) Math.atan2(dcy*cx, dcx*cy);
+			if(_startRad > ptAngle) ptAngle += PConstants.TWO_PI;
+			return (_startRad<=ptAngle && ptAngle<=_endRad);
+		} else {
+			float end = HMath.squishAngleRad(cx, cy, _endRad);
+			float start = HMath.squishAngleRad(cx, cy, _startRad);
+			float[] pt1 = HMath.ellipsePointRadArr(cx,cy, cx,cy, end);
+			float[] pt2 = HMath.ellipsePointRadArr(cx,cy, cx,cy, start);
+			return HMath.rightOfLine(pt1[0],pt1[1], pt2[0],pt2[1], relX,relY);
 		}
 	}
-	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
-		applyStyle(app,currAlphaPerc);
+	public void draw( PGraphics g, boolean usesZ,
+		float drawX,float drawY,float alphaPc
+	) {
+		applyStyle(g,alphaPc);
 		drawX += _width/2;
 		drawY += _height/2;
 		if(_startRad == _endRad) {
-			app.ellipse(drawX, drawY, _width, _height);
+			g.ellipse(drawX, drawY, _width, _height);
 		} else {
-			app.arc(drawX,drawY,_width,_height,_startRad,_endRad,_mode);
+			g.arc(drawX,drawY,_width,_height,_startRad,_endRad,_mode);
 		}
 	}
 }

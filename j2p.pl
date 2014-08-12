@@ -46,6 +46,7 @@ $mintxt =~ s/\/\*.*?\*\// /g;
 $mintxt =~ s/\s+/ /g;
 $mintxt =~ s/\s+$//g;
 $mintxt =~ s/^\s+//g;
+$mintxt .= 'import java.util.*;';
 print MINFILE $mintxt;
 
 close (MINFILE);

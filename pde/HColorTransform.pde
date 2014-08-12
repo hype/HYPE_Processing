@@ -1,7 +1,17 @@
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static class HColorTransform implements HColorist {
-	public float _percA, _percR, _percG, _percB;
-	public int _offsetA, _offsetR, _offsetG, _offsetB;
-	protected boolean fillFlag, strokeFlag;
+	private float _percA, _percR, _percG, _percB;
+	private int _offsetA, _offsetR, _offsetG, _offsetB;
+	private boolean fillFlag, strokeFlag;
 	public HColorTransform() {
 		_percA = _percR = _percG = _percB = 1;
 		fillAndStroke();
@@ -113,13 +123,12 @@ public static class HColorTransform implements HColorist {
 		return createCopy().mergeWith(other);
 	}
 	public int getColor(int origColor) {
-		PApplet app = H.app();
-		int[] clrs = HColorUtil.explode(origColor);
-		clrs[0] = app.round(clrs[0] * _percA) + _offsetA;
-		clrs[1] = app.round(clrs[1] * _percR) + _offsetR;
-		clrs[2] = app.round(clrs[2] * _percG) + _offsetG;
-		clrs[3] = app.round(clrs[3] * _percB) + _offsetB;
-		return HColorUtil.merge(clrs[0],clrs[1],clrs[2],clrs[3]);
+		int[] clrs = HColors.explode(origColor);
+		clrs[0] = Math.round(clrs[0] * _percA) + _offsetA;
+		clrs[1] = Math.round(clrs[1] * _percR) + _offsetR;
+		clrs[2] = Math.round(clrs[2] * _percG) + _offsetG;
+		clrs[3] = Math.round(clrs[3] * _percB) + _offsetB;
+		return HColors.merge(clrs[0],clrs[1],clrs[2],clrs[3]);
 	}
 	public HColorTransform fillOnly() {
 		fillFlag = true;

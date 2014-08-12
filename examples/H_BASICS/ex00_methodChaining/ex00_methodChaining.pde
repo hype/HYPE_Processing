@@ -3,7 +3,6 @@ void setup() {
 	H.init(this).background(#242424);
 	smooth();
 
-
 	HRect rect1 = new HRect(100);
 	rect1.rounding(10); // set corner rounding
 	rect1.fill(#FF6600); // set fill color
@@ -14,9 +13,7 @@ void setup() {
 	rect1.loc(100,height / 2); // set x and y location
 	H.add(rect1); 
 
-
 	// here's the same code / with method chaining
-
 
 	HRect rect2 = new HRect(100);
 	rect2
@@ -30,17 +27,13 @@ void setup() {
 	;
 	H.add(rect2);
 
-
 	// here's the same code / minus the hard returns and tabbing
-
 
 	HRect rect3 = new HRect(100);
 	rect3.rounding(10).fill(#FFCC00).stroke(#000000, 150).strokeWeight(6).anchorAt(H.CENTER).rotation(45).loc(394,height / 2);
 	H.add(rect3);
 
-
 	H.drawStage(); // paint the stage
-
 
 	// here is the non HYPE version / basic processing syntax
 
@@ -52,7 +45,6 @@ void setup() {
 		rotate( radians(45) );
 		rect(0, 0, 100, 100, 10, 10, 10, 10);
 	popMatrix();
-
 
 	/*
 
@@ -72,7 +64,6 @@ void setup() {
 
 	*/
 
-
 	// draw where the horiz line is
 
 	stroke(#0095a8);
@@ -83,3 +74,4 @@ void setup() {
 }
 
 void draw() {}
+

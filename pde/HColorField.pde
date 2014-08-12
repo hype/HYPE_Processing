@@ -1,12 +1,22 @@
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static class HColorField implements HColorist {
-	protected ArrayList<HColorPoint> _colorPoints;
-	protected float _maxDist;
-	protected boolean _appliesFill, _appliesStroke, _appliesAlpha;
+	private ArrayList<HColorPoint> _colorPoints;
+	private float _maxDist;
+	private boolean _appliesFill, _appliesStroke, _appliesAlpha;
 	public HColorField() {
 		this(H.app().width, H.app().height);
 	}
 	public HColorField(float xBound, float yBound) {
-		this(H.app().sqrt(xBound*xBound + yBound*yBound));
+		this( (float) Math.sqrt(xBound*xBound + yBound*yBound) );
 	}
 	public HColorField(float maximumDistance) {
 		_colorPoints = new ArrayList<HColorField.HColorPoint>();
@@ -26,8 +36,7 @@ public static class HColorField implements HColorist {
 		return this;
 	}
 	public int getColor(float x, float y, int baseColor) {
-		PApplet app = H.app();
-		int[] baseClrs = HColorUtil.explode(baseColor);
+		int[] baseClrs = HColors.explode(baseColor);
 		int[] maxClrs = new int[4];
 		int initJ;
 		if(_appliesAlpha) {
@@ -38,19 +47,19 @@ public static class HColorField implements HColorist {
 		}
 		for(int i=0; i<_colorPoints.size(); ++i) {
 			HColorPoint pt = _colorPoints.get(i);
-			int[] ptClrs = HColorUtil.explode(pt.clr);
+			int[] ptClrs = HColors.explode(pt.clr);
 			float distLimit = _maxDist * pt.radius;
-			float dist = app.dist(x,y, pt.x,pt.y);
+			float dist = HMath.dist(x,y, pt.x,pt.y);
 			if(dist > distLimit)
 				dist = distLimit;
 			for(int j=initJ; j<4; ++j) {
-				int newClrVal = app.round(
-					app.map(dist, 0,distLimit, ptClrs[j], baseClrs[j]));
+				int newClrVal = Math.round(
+					HMath.map(dist, 0,distLimit, ptClrs[j], baseClrs[j]));
 				if(newClrVal > maxClrs[j]) 
 					maxClrs[j] = newClrVal;
 			}
 		}
-		return HColorUtil.merge(maxClrs[0],maxClrs[1],maxClrs[2],maxClrs[3]);
+		return HColors.merge(maxClrs[0],maxClrs[1],maxClrs[2],maxClrs[3]);
 	}
 	public HColorField appliesAlpha(boolean b) {
 		_appliesAlpha = b;

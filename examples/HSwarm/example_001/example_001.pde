@@ -1,16 +1,14 @@
-HDrawablePool pool;
 HSwarm swarm;
+HDrawablePool pool;
 HTimer timer;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020).autoClear(true);
+	H.init(this).background(#202020);
 	smooth();
 
-	final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
-
 	swarm = new HSwarm()
-		.goal(width/2,height/2)
+		.addGoal(width/2,height/2)
 		.speed(4)
 		.turnEase(0.025f)
 		.twitch(0)
@@ -23,18 +21,19 @@ void setup() {
 			.rounding(4)
 			.size(18,6)
 		)
+
+		.colorist(new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600).fillOnly())
+
 		.onCreate (
-		    new HCallback() {
-		    	public void run(Object obj) {
-		    		HDrawable d = (HDrawable) obj;
+			new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
 					d
 						.noStroke()
-						.fill( colors.getColor() )
 						.loc( 500, 100 )
 						.anchorAt( H.CENTER )
 					;
 
-					// Add "d" to swarm's list of targets
 					swarm.addTarget(d);
 				}
 			}
@@ -65,3 +64,4 @@ void draw() {
 	noFill(); strokeWeight(2); stroke(#FF3300);
 	ellipse(500, 100, 4, 4);
 }
+

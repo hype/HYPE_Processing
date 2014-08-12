@@ -1,5 +1,15 @@
-public static class HImage extends HDrawable {
-	protected PImage _image;
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
+public static class HImage extends HDrawable implements HImageHolder {
+	private PImage _image;
 	public HImage() {
 		this(null);
 	}
@@ -17,15 +27,7 @@ public static class HImage extends HDrawable {
 		return this;
 	}
 	public HImage image(Object imgArg) {
-		if(imgArg instanceof PImage) {
-			_image = (PImage) imgArg;
-		} else if(imgArg instanceof String) {
-			_image = H.app().loadImage((String) imgArg);
-		} else if(imgArg instanceof HImage) {
-			_image = ((HImage) imgArg)._image;
-		} else if(imgArg == null) {
-			_image = null;
-		}
+		_image = H.getImage(imgArg);
 		return resetSize();
 	}
 	public PImage image() {
@@ -55,19 +57,33 @@ public static class HImage extends HDrawable {
 				_image.width <= 0 || _image.height <= 0 ||
 				_width <= 0 || _height <= 0)
 			return false;
-		int ix = H.app().round(relX * _image.width/_width);
-		int iy = H.app().round(relY * _image.height/_height);
+		int ix = Math.round(relX * _image.width/_width);
+		int iy = Math.round(relY * _image.height/_height);
 		return (0 < _image.get(ix,iy)>>>24);
 	}
-	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
+	public void draw( PGraphics g, boolean usesZ,
+		float drawX, float drawY, float alphaPc
+	) {
 		if(_image==null) return;
-		/*
-		 * The awkward alpha separation from the tint color is a workaround for
-		 * a quirk in js mode where the alpha in the first param doesn't apply
-		 * on jpg images.
-		 */
-		currAlphaPerc *= (_fill>>>24);
-		app.tint( _fill | 0xFF000000, app.round(currAlphaPerc) );
-		app.image(_image,drawX,drawY,_width,_height);
+		alphaPc *= (_fill>>>24);
+		g.tint( _fill | 0xFF000000, Math.round(alphaPc) );
+		int wscale = 1;
+		int hscale = 1;
+		float w = _width;
+		float h = _height;
+		if(_width < 0) {
+			w = -_width;
+			wscale = -1;
+			drawX = -drawX;
+		}
+		if(_height < 0) {
+			h = -_height;
+			hscale = -1;
+			drawY = -drawY;
+		}
+		g.pushMatrix();
+			g.scale(wscale, hscale);
+			g.image(_image, drawX,drawY, w,h);
+		g.popMatrix();
 	}
 }

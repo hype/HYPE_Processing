@@ -1,13 +1,31 @@
-public static class HPixelColorist implements HColorist {
-	protected PImage img;
-	protected boolean fillFlag, strokeFlag;
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
+public static class HPixelColorist implements HColorist, HImageHolder {
+	private PImage img;
+	private boolean fillFlag, strokeFlag;
 	public HPixelColorist() {
 		fillAndStroke();
 	}
 	public HPixelColorist(Object imgArg) {
 		this();
-		setImage(imgArg);
+		image(imgArg);
 	}
+	public HPixelColorist image(Object imgArg) {
+		img = H.getImage(imgArg);
+		return this;
+	}
+	public PImage image() {
+		return img;
+	}
+	/** @deprecated */
 	public HPixelColorist setImage(Object imgArg) {
 		if(imgArg instanceof PImage) {
 			img = (PImage) imgArg;
@@ -20,14 +38,12 @@ public static class HPixelColorist implements HColorist {
 		}
 		return this;
 	}
+	/** @deprecated */
 	public PImage getImage() {
 		return img;
 	}
 	public int getColor(float x, float y) {
-		if(img == null)
-			return 0;
-		PApplet app = H.app();
-		return img.get(app.round(x), app.round(y));
+		return (img==null)? 0 : img.get(Math.round(x), Math.round(y));
 	}
 	public HPixelColorist fillOnly() {
 		fillFlag = true;

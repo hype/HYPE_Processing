@@ -1,0 +1,184 @@
+.TH "hype.extended.drawable.HCanvas" 3 "Wed Jun 19 2013" "HYPE_processing" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+hype.extended.drawable.HCanvas \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHCanvas\fP (String bufferRenderer)"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP (float w, float h)"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP (float w, float h, String bufferRenderer)"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBcreateCopy\fP ()"
+.br
+.RI "\fICreates a copy of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHCanvas\fP \fBrenderer\fP (String s)"
+.br
+.ti -1c
+.RI "String \fBrenderer\fP ()"
+.br
+.ti -1c
+.RI "boolean \fBusesZ\fP ()"
+.br
+.ti -1c
+.RI "PGraphics \fBgraphics\fP ()"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBfilter\fP (int kind)"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBfilter\fP (int kind, float param)"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBnoFilter\fP ()"
+.br
+.ti -1c
+.RI "boolean \fBhasFilter\fP ()"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBfilterKind\fP (int i)"
+.br
+.ti -1c
+.RI "int \fBfilterKind\fP ()"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBfilterParam\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBfilterParam\fP ()"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBblend\fP ()"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBblend\fP (int mode)"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBnoBlend\fP ()"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBhasBlend\fP (boolean b)"
+.br
+.ti -1c
+.RI "boolean \fBhasBlend\fP ()"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBblendMode\fP (int i)"
+.br
+.ti -1c
+.RI "int \fBblendMode\fP ()"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBfade\fP (int fadeAmt)"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBnoFade\fP ()"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBhasFade\fP (boolean b)"
+.br
+.ti -1c
+.RI "boolean \fBhasFade\fP ()"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBautoClear\fP (boolean b)"
+.br
+.ti -1c
+.RI "boolean \fBautoClear\fP ()"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBbackground\fP (int clr)"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBbackground\fP (int clr, int \fBalpha\fP)"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBbackground\fP (int r, int g, int b)"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBbackground\fP (int r, int g, int b, int a)"
+.br
+.ti -1c
+.RI "int \fBbackground\fP ()"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBnoBackground\fP ()"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBsize\fP (float w, float h)"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBwidth\fP (float w)"
+.br
+.ti -1c
+.RI "\fBHCanvas\fP \fBheight\fP (float h)"
+.br
+.ti -1c
+.RI "void \fBpaintAll\fP (PGraphics g, boolean zFlag, float \fBalphaPc\fP)"
+.br
+.ti -1c
+.RI "void \fBdraw\fP (PGraphics g, boolean b, float \fBx\fP, float \fBy\fP, float f)"
+.br
+.RI "\fIDraws this drawable\&. \fP"
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBupdateBuffer\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBHCanvas\fP hype\&.extended\&.drawable\&.HCanvas\&.createCopy ()\fC [virtual]\fP"
+
+.PP
+Creates a copy of this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&.
+.PP
+\fBReturns:\fP
+.RS 4
+A copy of this drawable\&. 
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+.SS "void hype\&.extended\&.drawable\&.HCanvas\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatcurrAlphaPc)\fC [virtual]\fP"
+
+.PP
+Draws this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&. Also, this method is primarily called internally during the draw cycle and probably wouldn't need to be called directly\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIg\fP The graphics context for this drawable\&. 
+.br
+\fIusesZ\fP Indicates if z-coordinates are used\&. 
+.br
+\fIdrawX\fP The x coordinate where this drawable would consider as 0 
+.br
+\fIdrawY\fP The y coordinate where this drawable would consider as 0 
+.br
+\fIcurrAlphaPc\fP The current alpha value in the draw cycle\&. 
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for HYPE_processing from the source code\&.

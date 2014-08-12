@@ -1,6 +1,16 @@
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static class HRotate extends HBehavior {
-	protected HRotatable _target;
-	protected float _speedRad;
+	private HRotatable _target;
+	private float _speedRad;
 	public HRotate() {}
 	public HRotate(HRotatable newTarget, float dDeg) {
 		target(newTarget);

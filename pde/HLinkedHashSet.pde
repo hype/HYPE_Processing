@@ -1,5 +1,15 @@
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static class HLinkedHashSet<T> extends HLinkedList<T> {
-	protected HashMap<T,HLinkedListNode<T>> nodeMap;
+	private HashMap<T,HLinkedListNode<T>> nodeMap;
 	public HLinkedHashSet() {
 		nodeMap = new HashMap<T, HLinkedListNode<T>>();
 	}

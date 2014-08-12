@@ -1,0 +1,166 @@
+.TH "hype.extended.drawable.HPath" 3 "Wed Jun 19 2013" "HYPE_processing" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+hype.extended.drawable.HPath \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHPath\fP (int modeId)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBcreateCopy\fP ()"
+.br
+.RI "\fICreates a copy of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHPath\fP \fBmode\fP (int modeId)"
+.br
+.ti -1c
+.RI "int \fBmode\fP ()"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBdrawsHandles\fP (boolean b)"
+.br
+.ti -1c
+.RI "boolean \fBdrawsHandles\fP ()"
+.br
+.ti -1c
+.RI "int \fBnumVertices\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBvertex\fP (int index)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBvertex\fP (float \fBx\fP, float \fBy\fP)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBvertex\fP (float cx, float cy, float \fBx\fP, float \fBy\fP)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBvertex\fP (float cx1, float cy1, float cx2, float cy2, float \fBx\fP, float \fBy\fP)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBvertexUV\fP (float u, float v)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBvertexUV\fP (float cu, float cv, float u, float v)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBvertexUV\fP (float cu1, float cv1, float cu2, float cv2, float u, float v)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBadjust\fP ()"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBendPath\fP ()"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBreset\fP ()"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBbeginPath\fP (int modeId)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBbeginPath\fP ()"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBclear\fP ()"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBline\fP (float x1, float y1, float x2, float y2)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBlineUV\fP (float u1, float v1, float u2, float v2)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBtriangle\fP (int type, int direction)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBpolygon\fP (int numEdges)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBpolygon\fP (int numEdges, float startDeg)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBpolygonRad\fP (int numEdges, float startRad)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBstar\fP (int numEdges, float depth)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBstar\fP (int numEdges, float depth, float startDeg)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBstarRad\fP (int numEdges, float depth, float startRad)"
+.br
+.ti -1c
+.RI "boolean \fBcontainsRel\fP (float relX, float relY)"
+.br
+.ti -1c
+.RI "void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float \fBalphaPc\fP)"
+.br
+.RI "\fIDraws this drawable\&. \fP"
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static final int \fBHANDLE_FILL\fP = 0xFFFF0000"
+.br
+.ti -1c
+.RI "static final int \fBHANDLE_STROKE\fP = 0xFF202020"
+.br
+.ti -1c
+.RI "static final float \fBHANDLE_STROKE_WEIGHT\fP = 1"
+.br
+.ti -1c
+.RI "static final float \fBHANDLE_SIZE\fP = 6"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBHPath\fP hype\&.extended\&.drawable\&.HPath\&.createCopy ()\fC [virtual]\fP"
+
+.PP
+Creates a copy of this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&.
+.PP
+\fBReturns:\fP
+.RS 4
+A copy of this drawable\&. 
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+.SS "void hype\&.extended\&.drawable\&.HPath\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatcurrAlphaPc)\fC [virtual]\fP"
+
+.PP
+Draws this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&. Also, this method is primarily called internally during the draw cycle and probably wouldn't need to be called directly\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIg\fP The graphics context for this drawable\&. 
+.br
+\fIusesZ\fP Indicates if z-coordinates are used\&. 
+.br
+\fIdrawX\fP The x coordinate where this drawable would consider as 0 
+.br
+\fIdrawY\fP The y coordinate where this drawable would consider as 0 
+.br
+\fIcurrAlphaPc\fP The current alpha value in the draw cycle\&. 
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for HYPE_processing from the source code\&.

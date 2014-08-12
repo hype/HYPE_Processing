@@ -52,3 +52,4 @@ void keyReleased() {
 		H.remove(selectedRect);
 	}
 }
+

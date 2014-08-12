@@ -1,7 +1,17 @@
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static class HText extends HDrawable {
-	protected PFont _font;
-	protected String _text;
-	protected float _descent;
+	private PFont _font;
+	private String _text;
+	private float _descent;
 	public HText() {
 		this(null,16);
 	}
@@ -16,6 +26,8 @@ public static class HText extends HDrawable {
 		_height = size;
 		font(fontArg);
 		height(size);
+		_fill = HConstants.BLACK;
+		_stroke = HConstants.CLEAR;
 	}
 	public HText createCopy() {
 		HText copy = new HText(_text,_height,_font);
@@ -38,11 +50,11 @@ public static class HText extends HDrawable {
 		} else if(arg instanceof String) {
 			String str = (String) arg;
 			_font = (str.indexOf(".vlw",str.length()-4) > 0)?
-				app.loadFont(str) : app.createFont(str,_height);
+				app.loadFont(str) : app.createFont(str,64);
 		} else if(arg instanceof HText) {
 			_font = ((HText) arg)._font;
 		} else if(arg == null) {
-			_font = app.createFont("SansSerif",_height);
+			_font = app.createFont("SansSerif",64);
 		}
 		adjustMetrics();
 		return this;
@@ -56,41 +68,28 @@ public static class HText extends HDrawable {
 	public float fontSize() {
 		return _height;
 	}
-	protected void adjustMetrics() {
+	private void adjustMetrics() {
 		PApplet app = H.app();
 		app.pushStyle();
-		app.textFont(_font,_height);
+		app.textFont(_font,(_height < 0)? -_height : _height);
 		_descent = app.textDescent();
-		super.width( (_text==null)? 0 : app.textWidth(_text) );
+		_width = (_text==null)? 0 :
+			(_width<0)? -app.textWidth(_text) : app.textWidth(_text);
 		app.popStyle();
 	}
 	public HText width(float w) {
+		if(w<0 == _width>0) _width = -_width;
 		return this;
 	}
 	public HText height(float h) {
-		super.height(h);
+		_height = h;
 		adjustMetrics();
 		return this;
-	}
-	public HText size(float w, float h) {
-		return height(h);
-	}
-	public HText size(float s) {
-		return height(s);
-	}
-	public HText scale(float s) {
-		super.scale(s);
-		adjustMetrics();
-		return this;
-	}
-	public HText scale(float sw, float sh) {
-		return scale(sh);
 	}
 	public boolean containsRel(float relX, float relY) {
 		if(_text == null || _height == 0) return false;
-		PApplet app = H.app();
 		int numChars = _text.length();
-		float ratio = _font.getSize() / _height;
+		float ratio = 64 / _height;
 		float xoff = 0;
 		float yoff = (_height - _descent) * ratio;
 		relX *= ratio;
@@ -98,17 +97,34 @@ public static class HText extends HDrawable {
 		for(int i=0; i<numChars; ++i) {
 			char c = _text.charAt(i);
 			PFont.Glyph g = _font.getGlyph(c);
-			int pxx = app.round(relX - xoff);
-			int pxy = app.round(relY - yoff) + g.topExtent;
+			int pxx = Math.round(relX - xoff);
+			int pxy = Math.round(relY - yoff) + g.topExtent;
 			if(g.image.get(pxx, pxy)>>>24 > 0) return true;
 			xoff += g.setWidth;
 		}
 		return false;
 	} 
-	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
+	public void draw( PGraphics g, boolean usesZ,
+		float drawX, float drawY, float alphaPc
+	) {
 		if(_text == null) return;
-		applyStyle(app,currAlphaPerc);
-		app.textFont(_font,_height);
-		app.text(_text,drawX,drawY+_height-_descent);
+		applyStyle(g,alphaPc);
+		int wscale = 1;
+		int hscale = 1;
+		float h = _height;
+		if(_width < 0) {
+			wscale = -1;
+			drawX = -drawX;
+		}
+		if(_height < 0) {
+			h = -_height;
+			hscale = -1;
+			drawY = -drawY;
+		}
+		g.pushMatrix();
+			g.scale(wscale, hscale);
+			g.textFont(_font,h);
+			g.text(_text,drawX,drawY+h-_descent);
+		g.popMatrix();
 	}
 }

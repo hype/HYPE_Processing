@@ -1,0 +1,123 @@
+.TH "hype.extended.drawable.HEllipse" 3 "Wed Jun 19 2013" "HYPE_processing" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+hype.extended.drawable.HEllipse \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHEllipse\fP (float ellipseRadius)"
+.br
+.ti -1c
+.RI "\fBHEllipse\fP (float radiusX, float radiusY)"
+.br
+.ti -1c
+.RI "\fBHEllipse\fP \fBcreateCopy\fP ()"
+.br
+.RI "\fICreates a copy of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHEllipse\fP \fBradius\fP (float r)"
+.br
+.ti -1c
+.RI "\fBHEllipse\fP \fBradius\fP (float radiusX, float radiusY)"
+.br
+.ti -1c
+.RI "\fBHEllipse\fP \fBradiusX\fP (float radiusX)"
+.br
+.ti -1c
+.RI "float \fBradiusX\fP ()"
+.br
+.ti -1c
+.RI "\fBHEllipse\fP \fBradiusY\fP (float radiusY)"
+.br
+.ti -1c
+.RI "float \fBradiusY\fP ()"
+.br
+.ti -1c
+.RI "boolean \fBisCircle\fP ()"
+.br
+.ti -1c
+.RI "\fBHEllipse\fP \fBmode\fP (int t)"
+.br
+.ti -1c
+.RI "float \fBmode\fP ()"
+.br
+.ti -1c
+.RI "\fBHEllipse\fP \fBstart\fP (float deg)"
+.br
+.ti -1c
+.RI "float \fBstart\fP ()"
+.br
+.ti -1c
+.RI "\fBHEllipse\fP \fBstartRad\fP (float rad)"
+.br
+.ti -1c
+.RI "float \fBstartRad\fP ()"
+.br
+.ti -1c
+.RI "\fBHEllipse\fP \fBend\fP (float deg)"
+.br
+.ti -1c
+.RI "float \fBend\fP ()"
+.br
+.ti -1c
+.RI "\fBHEllipse\fP \fBendRad\fP (float rad)"
+.br
+.ti -1c
+.RI "float \fBendRad\fP ()"
+.br
+.ti -1c
+.RI "boolean \fBcontainsRel\fP (float relX, float relY)"
+.br
+.ti -1c
+.RI "void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float \fBalphaPc\fP)"
+.br
+.RI "\fIDraws this drawable\&. \fP"
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBHEllipse\fP hype\&.extended\&.drawable\&.HEllipse\&.createCopy ()\fC [virtual]\fP"
+
+.PP
+Creates a copy of this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&.
+.PP
+\fBReturns:\fP
+.RS 4
+A copy of this drawable\&. 
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+.SS "void hype\&.extended\&.drawable\&.HEllipse\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatcurrAlphaPc)\fC [virtual]\fP"
+
+.PP
+Draws this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&. Also, this method is primarily called internally during the draw cycle and probably wouldn't need to be called directly\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIg\fP The graphics context for this drawable\&. 
+.br
+\fIusesZ\fP Indicates if z-coordinates are used\&. 
+.br
+\fIdrawX\fP The x coordinate where this drawable would consider as 0 
+.br
+\fIdrawY\fP The y coordinate where this drawable would consider as 0 
+.br
+\fIcurrAlphaPc\fP The current alpha value in the draw cycle\&. 
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for HYPE_processing from the source code\&.

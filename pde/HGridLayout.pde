@@ -1,6 +1,16 @@
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static class HGridLayout implements HLayout {
-	protected int _currentIndex, _numCols;
-	protected float _startX, _startY, _xSpace, _ySpace;
+	private int _currentIndex, _numCols;
+	private float _startX, _startY, _xSpace, _ySpace;
 	public HGridLayout() {
 		_xSpace = _ySpace = _numCols = 16;
 	}
@@ -71,13 +81,10 @@ public static class HGridLayout implements HLayout {
 		return this;
 	}
 	public PVector getNextPoint() {
-		int currentRow = H.app().floor(_currentIndex / _numCols);
-		int currentCol = _currentIndex % _numCols;
+		int row = (int) Math.floor(_currentIndex / _numCols);
+		int col = _currentIndex % _numCols;
 		++_currentIndex;
-		return new PVector(
-			currentCol*_xSpace + _startX,
-			currentRow*_ySpace + _startY
-		);
+		return new PVector(col*_xSpace + _startX, row*_ySpace + _startY);
 	}
 	public void applyTo(HDrawable target) {
 		target.loc(getNextPoint());

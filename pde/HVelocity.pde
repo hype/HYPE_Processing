@@ -1,38 +1,31 @@
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static class HVelocity extends HBehavior {
-	protected boolean _autoRegisters;
-	protected float _velocityX, _velocityY, _accelX, _accelY;
-	protected HMovable _target;
-	public HVelocity() {
-		_autoRegisters = true;
-	}
-	public HVelocity(boolean isAutoRegister) {
-		_autoRegisters = isAutoRegister;
-	}
-	public HVelocity autoRegisters(boolean b) {
-		_autoRegisters = b;
-		return this;
-	}
-	public boolean autoRegisters() {
-		return _autoRegisters;
-	}
-	public HVelocity target(HMovable t) {
-		if(_autoRegisters) {
-			if(t == null) unregister();
-			else register();
-		}
+	private float _velocityX, _velocityY, _accelX, _accelY;
+	private HLocatable _target;
+	public HVelocity target(HLocatable t) {
+		if(t == null) unregister();
+		else register();
 		_target = t;
 		return this;
 	}
-	public HMovable target() {
+	public HLocatable target() {
 		return _target;
 	}
 	public HVelocity velocity(float velocity, float deg) {
 		return velocityRad(velocity, deg*HConstants.D2R);
 	}
 	public HVelocity velocityRad(float velocity, float rad) {
-		PApplet app = H.app();
-		_velocityX = velocity * app.cos(rad);
-		_velocityY = velocity * app.sin(rad);
+		_velocityX = velocity * (float)Math.cos(rad);
+		_velocityY = velocity * (float)Math.sin(rad);
 		return this;
 	}
 	public HVelocity velocityX(float dx) {
@@ -49,12 +42,11 @@ public static class HVelocity extends HBehavior {
 	public float velocityY() {
 		return _velocityY;
 	}
-	public HVelocity launchTo(float goalX, float goalY, float time) {
+	public HVelocity launchTo(float goalX, float goalY, int numFrames) {
 		if(_target == null) {
 			HWarnings.warn("Null Target", "HVelocity.launchTo()",
 					HWarnings.NULL_TARGET);
 		} else {
-			float numFrames = time*60/1000;
 			float nfsq = numFrames*numFrames;
 			_velocityX = (goalX - _target.x() - _accelX*nfsq/2) / numFrames;
 			_velocityY = (goalY - _target.y() - _accelY*nfsq/2) / numFrames;
@@ -65,9 +57,8 @@ public static class HVelocity extends HBehavior {
 		return accelRad(acceleration, deg*HConstants.D2R);
 	}
 	public HVelocity accelRad(float acceleration, float rad) {
-		PApplet app = H.app();
-		_accelX = acceleration * app.cos(rad);
-		_accelY = acceleration * app.sin(rad);
+		_accelX = acceleration * (float)Math.cos(rad);
+		_accelY = acceleration * (float)Math.sin(rad);
 		return this;
 	}
 	public HVelocity accelX(float ddx) {
@@ -85,7 +76,8 @@ public static class HVelocity extends HBehavior {
 		return _accelY;
 	}
 	public void runBehavior(PApplet app) {
-		_target.move(_velocityX, _velocityY);
+		_target.x(_target.x() + _velocityX);
+		_target.y(_target.y() + _velocityY);
 		_velocityX += _accelX;
 		_velocityY += _accelY;
 	}

@@ -1,5 +1,15 @@
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static class HRect extends HDrawable {
-	public float _tl, _tr, _bl, _br;
+	private float _tl, _tr, _bl, _br;
 	public HRect() {}
 	public HRect(float s) {
 		size(s);
@@ -34,6 +44,9 @@ public static class HRect extends HDrawable {
 		_bl = bottomleft;
 		return this;
 	}
+	public float rounding() {
+		return roundingTL();
+	}
 	public HRect roundingTL(float radius) {
 		_tl = radius;
 		return this;
@@ -62,8 +75,10 @@ public static class HRect extends HDrawable {
 	public float roundingBL() {
 		return _bl;
 	}
-	public void draw(PApplet app,float drawX,float drawY,float currAlphaPerc) {
-		applyStyle(app,currAlphaPerc);
-		app.rect(drawX,drawY, _width,_height, _tl,_tr,_br,_bl);
+	public void draw( PGraphics g, boolean usesZ,
+		float drawX, float drawY, float alphaPc
+	) {
+		applyStyle(g,alphaPc);
+		g.rect(drawX,drawY, _width,_height, _tl,_tr,_br,_bl);
 	}
 }

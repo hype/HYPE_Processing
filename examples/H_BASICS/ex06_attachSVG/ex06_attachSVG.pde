@@ -3,7 +3,7 @@ void setup() {
 	H.init(this).background(#202020);
 	smooth();
 
-// disableStyle = false / keep SVG base styling / DEFAULT
+	// disableStyle = false / keep SVG base styling / DEFAULT
 
 	HShape svg1 = new HShape("bot1.svg");
 	svg1
@@ -12,7 +12,7 @@ void setup() {
 	;
 	H.add(svg1);
 
-// disableStyle = true / destroy SVG base styling and override
+	// disableStyle = true / destroy SVG base styling and override
 
 	HShape svg2 = new HShape("bot1.svg");
 	svg2
@@ -25,9 +25,9 @@ void setup() {
 	;
 	H.add(svg2);
 
-
 	H.drawStage();
 	noLoop();
 }
 
 void draw() {}
+

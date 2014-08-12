@@ -1,0 +1,2624 @@
+.TH "hype.core.drawable.HDrawable" 3 "Wed Jun 19 2013" "HYPE_processing" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+hype.core.drawable.HDrawable \- 
+.PP
+The superclass of all drawables\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits HNode< HDrawable >, \fBhype\&.core\&.interfaces\&.HDirectable\fP, and \fBhype\&.core\&.interfaces\&.HHittable\fP\&.
+.PP
+Inherited by \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawable\&.HCanvas\fP, \fBhype\&.extended\&.drawable\&.HEllipse\fP, \fBhype\&.extended\&.drawable\&.HGroup\fP, \fBhype\&.extended\&.drawable\&.HImage\fP, \fBhype\&.extended\&.drawable\&.HPath\fP, \fBhype\&.extended\&.drawable\&.HRect\fP, \fBhype\&.extended\&.drawable\&.HShape\fP, and \fBhype\&.extended\&.drawable\&.HText\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBHDrawableIterator\fP"
+.br
+.RI "\fIAn HIterator used for iterating through \fBHDrawable\fP's children\&. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHDrawable\fP ()"
+.br
+.RI "\fIThe default constructor for \fBHDrawable\fP\&. \fP"
+.ti -1c
+.RI "void \fBcopyPropertiesFrom\fP (\fBHDrawable\fP other)"
+.br
+.RI "\fICopies the values of \fCother\fP's basic \fBHDrawable\fP fields\&. \fP"
+.ti -1c
+.RI "abstract \fBHDrawable\fP \fBcreateCopy\fP ()"
+.br
+.RI "\fICreates a copy of this drawable\&. \fP"
+.ti -1c
+.RI "boolean \fBinvalidChild\fP (\fBHDrawable\fP destParent)"
+.br
+.ti -1c
+.RI "boolean \fBpoppedOut\fP ()"
+.br
+.ti -1c
+.RI "void \fBpopOut\fP ()"
+.br
+.ti -1c
+.RI "void \fBputBefore\fP (\fBHDrawable\fP dest)"
+.br
+.ti -1c
+.RI "void \fBputAfter\fP (\fBHDrawable\fP dest)"
+.br
+.ti -1c
+.RI "void \fBswapLeft\fP ()"
+.br
+.ti -1c
+.RI "void \fBswapRight\fP ()"
+.br
+.ti -1c
+.RI "void \fBreplaceNode\fP (\fBHDrawable\fP dest)"
+.br
+.ti -1c
+.RI "\fBHDrawable\fP \fBparent\fP ()"
+.br
+.RI "\fIReturns the parent of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBfirstChild\fP ()"
+.br
+.RI "\fIReturns the first child of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBlastChild\fP ()"
+.br
+.RI "\fIReturns the last child of this drawable\&. \fP"
+.ti -1c
+.RI "boolean \fBparentOf\fP (\fBHDrawable\fP d)"
+.br
+.RI "\fIChecks if the given drawable is the parent of this drawable\&. \fP"
+.ti -1c
+.RI "int \fBnumChildren\fP ()"
+.br
+.RI "\fIReturns the number of children of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHCanvas\fP \fBadd\fP (\fBHCanvas\fP child)"
+.br
+.ti -1c
+.RI "\fBHEllipse\fP \fBadd\fP (\fBHEllipse\fP child)"
+.br
+.ti -1c
+.RI "\fBHGroup\fP \fBadd\fP (\fBHGroup\fP child)"
+.br
+.ti -1c
+.RI "\fBHImage\fP \fBadd\fP (\fBHImage\fP child)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBadd\fP (\fBHPath\fP child)"
+.br
+.ti -1c
+.RI "\fBHRect\fP \fBadd\fP (\fBHRect\fP child)"
+.br
+.ti -1c
+.RI "\fBHShape\fP \fBadd\fP (\fBHShape\fP child)"
+.br
+.ti -1c
+.RI "\fBHText\fP \fBadd\fP (\fBHText\fP child)"
+.br
+.ti -1c
+.RI "\fBHDrawable\fP \fBadd\fP (\fBHDrawable\fP child)"
+.br
+.RI "\fIAdds the passed drawable as this drawable's child\&. \fP"
+.ti -1c
+.RI "\fBHCanvas\fP \fBremove\fP (\fBHCanvas\fP child)"
+.br
+.ti -1c
+.RI "\fBHEllipse\fP \fBremove\fP (\fBHEllipse\fP child)"
+.br
+.ti -1c
+.RI "\fBHGroup\fP \fBremove\fP (\fBHGroup\fP child)"
+.br
+.ti -1c
+.RI "\fBHImage\fP \fBremove\fP (\fBHImage\fP child)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBremove\fP (\fBHPath\fP child)"
+.br
+.ti -1c
+.RI "\fBHRect\fP \fBremove\fP (\fBHRect\fP child)"
+.br
+.ti -1c
+.RI "\fBHShape\fP \fBremove\fP (\fBHShape\fP child)"
+.br
+.ti -1c
+.RI "\fBHText\fP \fBremove\fP (\fBHText\fP child)"
+.br
+.ti -1c
+.RI "\fBHDrawable\fP \fBremove\fP (\fBHDrawable\fP child)"
+.br
+.RI "\fIRemoves a child from this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawableIterator\fP \fBiterator\fP ()"
+.br
+.RI "\fICreates a new iterator for this drawable to iterate through its children\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBloc\fP (float newX, float newY)"
+.br
+.RI "\fISets the x and y position of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBloc\fP (float newX, float newY, float newZ)"
+.br
+.RI "\fISets the x, y and z position of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBloc\fP (PVector pt)"
+.br
+.RI "\fISets the position of this drawable via PVector\&. \fP"
+.ti -1c
+.RI "PVector \fBloc\fP ()"
+.br
+.RI "\fIReturns the position of this drawable as a PVector\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBx\fP (float newX)"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "float \fBx\fP ()"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBy\fP (float newY)"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "float \fBy\fP ()"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBz\fP (float newZ)"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "float \fBz\fP ()"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBmove\fP (float dx, float dy)"
+.br
+.RI "\fIMoves this drawable from its original x & y position\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBmove\fP (float dx, float dy, float dz)"
+.br
+.RI "\fIMoves this drawable from its original x, y & z position\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBlocAt\fP (int where)"
+.br
+.RI "\fIPositions this drawable at the defined location in relation to its parent, or (0,0) if the parent is null\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBanchor\fP (float pxX, float pxY)"
+.br
+.RI "\fISets the anchor of this drawable by pixels\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBanchor\fP (PVector pt)"
+.br
+.RI "\fISets the anchor of this drawable by pixels via a PVector\&. \fP"
+.ti -1c
+.RI "PVector \fBanchor\fP ()"
+.br
+.RI "\fIReturns the anchor of this drawable in pixels\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBanchorX\fP (float pxX)"
+.br
+.RI "\fISets the x anchor of this drawable by pixels\&. \fP"
+.ti -1c
+.RI "float \fBanchorX\fP ()"
+.br
+.RI "\fIReturns the x anchor of this drawable in pixels\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBanchorY\fP (float pxY)"
+.br
+.RI "\fISets the y anchor of this drawable by pixels\&. \fP"
+.ti -1c
+.RI "float \fBanchorY\fP ()"
+.br
+.RI "\fIReturns the y anchor of this drawable in pixels\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBanchorUV\fP (float u, float v)"
+.br
+.RI "\fISets the anchor of this drawable in UV coordinates\&. \fP"
+.ti -1c
+.RI "PVector \fBanchorUV\fP ()"
+.br
+.RI "\fIReturns the UV coordinates of this drawable's anchor\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBanchorU\fP (float u)"
+.br
+.RI "\fISets the \fCu\fP coordinate for this drawable's anchor\&. \fP"
+.ti -1c
+.RI "float \fBanchorU\fP ()"
+.br
+.RI "\fIReturns the \fCu\fP coordinate of this drawable's anchor\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBanchorV\fP (float v)"
+.br
+.RI "\fISets the \fCu\fP coordinate for this drawable's anchor\&. \fP"
+.ti -1c
+.RI "float \fBanchorV\fP ()"
+.br
+.RI "\fIReturns the \fCv\fP coordinate of this draable's anchor\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBanchorAt\fP (int where)"
+.br
+.RI "\fISets the anchor of this drawable at the defined location in relation to itself\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBsize\fP (float w, float h)"
+.br
+.RI "\fISets the size of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBsize\fP (float s)"
+.br
+.RI "\fISets the size of this drawable\&. \fP"
+.ti -1c
+.RI "PVector \fBsize\fP ()"
+.br
+.RI "\fIReturns the size of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBwidth\fP (float w)"
+.br
+.RI "\fISets the width of this drawable\&. \fP"
+.ti -1c
+.RI "float \fBwidth\fP ()"
+.br
+.RI "\fIReturns the width of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBheight\fP (float h)"
+.br
+.RI "\fISets the height of this drawable\&. \fP"
+.ti -1c
+.RI "float \fBheight\fP ()"
+.br
+.RI "\fIReturns the height of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBscale\fP (float s)"
+.br
+.RI "\fIMultiplies the width and height of this drawable by the given scale factor\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBscale\fP (float sw, float sh)"
+.br
+.RI "\fIMultiplies the width and height of this drawable by the given scale factors\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBproportional\fP (boolean b)"
+.br
+.RI "\fISets whether or not this drawable will be resized proportionally\&. \fP"
+.ti -1c
+.RI "boolean \fBproportional\fP ()"
+.br
+.RI "\fIReturns whether or not this drawable is in proportional mode\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBtransformsChildren\fP (boolean b)"
+.br
+.ti -1c
+.RI "boolean \fBtransformsChildren\fP ()"
+.br
+.ti -1c
+.RI "void \fBbounds\fP (PVector boundsLoc, PVector boundsSize)"
+.br
+.ti -1c
+.RI "void \fBbounds\fP (float[] boundsValues)"
+.br
+.ti -1c
+.RI "PVector \fBboundingSize\fP ()"
+.br
+.RI "\fIReturns the bounding size of this drawable based on this drawble's rotation\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBfill\fP (int clr)"
+.br
+.RI "\fISets the fill for this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBfill\fP (int clr, int \fBalpha\fP)"
+.br
+.RI "\fISets the fill for this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBfill\fP (int r, int g, int b)"
+.br
+.RI "\fISets the fill for this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBfill\fP (int r, int g, int b, int a)"
+.br
+.RI "\fISets the fill for this drawable\&. \fP"
+.ti -1c
+.RI "int \fBfill\fP ()"
+.br
+.RI "\fIReturns the fill for this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBnoFill\fP ()"
+.br
+.RI "\fIRemoves the fill of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBstroke\fP (int clr)"
+.br
+.RI "\fISets the stroke color for this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBstroke\fP (int clr, int \fBalpha\fP)"
+.br
+.RI "\fISets the stroke color for this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBstroke\fP (int r, int g, int b)"
+.br
+.RI "\fISets the stroke color for this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBstroke\fP (int r, int g, int b, int a)"
+.br
+.RI "\fISets the stroke color for this drawable\&. \fP"
+.ti -1c
+.RI "int \fBstroke\fP ()"
+.br
+.RI "\fIReturns the stroke color for this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBnoStroke\fP ()"
+.br
+.RI "\fIRemoves the stroke color of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBstrokeCap\fP (int type)"
+.br
+.RI "\fISets the stroke cap for this drawable\&. \fP"
+.ti -1c
+.RI "int \fBstrokeCap\fP ()"
+.br
+.RI "\fIReturns the stroke cap for this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBstrokeJoin\fP (int type)"
+.br
+.RI "\fISets the stroke join for this drawable\&. \fP"
+.ti -1c
+.RI "int \fBstrokeJoin\fP ()"
+.br
+.RI "\fIReturns the stroke join for this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBstrokeWeight\fP (float f)"
+.br
+.RI "\fISets the stroke weight, or thickness of this drawable\&. \fP"
+.ti -1c
+.RI "float \fBstrokeWeight\fP ()"
+.br
+.RI "\fIReturns the stroke weight, or thickness of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBstylesChildren\fP (boolean b)"
+.br
+.ti -1c
+.RI "boolean \fBstylesChildren\fP ()"
+.br
+.ti -1c
+.RI "\fBHDrawable\fP \fBrotation\fP (float deg)"
+.br
+.RI "\fISets the rotation for this drawable, in degrees\&. \fP"
+.ti -1c
+.RI "float \fBrotation\fP ()"
+.br
+.RI "\fIReturns the rotation for this drawable, in degrees\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBrotationRad\fP (float rad)"
+.br
+.ti -1c
+.RI "float \fBrotationRad\fP ()"
+.br
+.ti -1c
+.RI "\fBHDrawable\fP \fBrotate\fP (float deg)"
+.br
+.RI "\fIShifts this drawable's current rotation by the passed value, in degrees\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBrotateRad\fP (float rad)"
+.br
+.RI "\fIShifts this drawable's current rotation by the passed value, in radians\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBrotatesChildren\fP (boolean b)"
+.br
+.ti -1c
+.RI "boolean \fBrotatesChildren\fP ()"
+.br
+.ti -1c
+.RI "\fBHDrawable\fP \fBalpha\fP (int a)"
+.br
+.RI "\fISets the transparency for this drawable\&. \fP"
+.ti -1c
+.RI "int \fBalpha\fP ()"
+.br
+.RI "\fIReturns the transparency for this drawable, ranging at \fC[0,255]\fP\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBalphaPc\fP (float f)"
+.br
+.RI "\fISets the transparency for this drawable, as percentage\&. \fP"
+.ti -1c
+.RI "float \fBalphaPc\fP ()"
+.br
+.RI "\fIReturns the transparency for this drawable, ranging from 0 to 255\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBvisibility\fP (boolean v)"
+.br
+.RI "\fISets the visibility of this drawable\&. \fP"
+.ti -1c
+.RI "boolean \fBvisibility\fP ()"
+.br
+.RI "\fIReturns the visibility of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBshow\fP ()"
+.br
+.RI "\fIMakes this drawable visible by calling \fCvisibility(true)\fP\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBhide\fP ()"
+.br
+.RI "\fIMakes this drawable invisible by calling \fCvisibility(false)\fP\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBalphaShift\fP (int da)"
+.br
+.RI "\fIShifts the current alpha of this drawable by the given value\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBalphaShiftPc\fP (float f)"
+.br
+.RI "\fIShifts the current alpha of this drawable, by percentage\&. \fP"
+.ti -1c
+.RI "float \fBx2u\fP (float px)"
+.br
+.ti -1c
+.RI "float \fBy2v\fP (float px)"
+.br
+.ti -1c
+.RI "float \fBu2x\fP (float pc)"
+.br
+.ti -1c
+.RI "float \fBv2y\fP (float pc)"
+.br
+.ti -1c
+.RI "\fBHDrawable\fP \fBextras\fP (\fBHBundle\fP b)"
+.br
+.RI "\fIAssigns an \fIextras bundle\fP for this drawable to hold arbitrary data\&. \fP"
+.ti -1c
+.RI "\fBHBundle\fP \fBextras\fP ()"
+.br
+.RI "\fIReturns this drawable's \fIextras bundle\fP\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBobj\fP (String key, Object value)"
+.br
+.RI "\fIPuts any arbitrary object into this drawable's \fIextras bundle\fP\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBnum\fP (String key, float value)"
+.br
+.RI "\fIPuts any arbitrary native value into this drawable's \fIextras bundle\fP\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fBbool\fP (String key, boolean value)"
+.br
+.RI "\fIPuts any arbitrary boolean value into this drawable's \fIextras bundle\fP\&. \fP"
+.ti -1c
+.RI "Object \fBobj\fP (String key)"
+.br
+.RI "\fIReturns the object from the \fIextras bundle\fP with the corresponding key\&. \fP"
+.ti -1c
+.RI "String \fBstr\fP (String key)"
+.br
+.RI "\fIReturns the string from the \fIextras bundle\fP with the corresponding key\&. \fP"
+.ti -1c
+.RI "float \fBnum\fP (String key)"
+.br
+.RI "\fIReturns the number from the \fIextras bundle\fP with the corresponding key\&. \fP"
+.ti -1c
+.RI "int \fBnumI\fP (String key)"
+.br
+.RI "\fIReturns the rounded number from the \fIextras bundle\fP with the corresponding key\&. \fP"
+.ti -1c
+.RI "boolean \fBbool\fP (String key)"
+.br
+.RI "\fIReturns the equivalent boolean value from the \fIextras bundle\fP with the corresponding key\&. \fP"
+.ti -1c
+.RI "boolean \fBcontains\fP (float absX, float absY, float absZ)"
+.br
+.ti -1c
+.RI "boolean \fBcontains\fP (float absX, float absY)"
+.br
+.ti -1c
+.RI "boolean \fBcontainsRel\fP (float relX, float relY, float relZ)"
+.br
+.ti -1c
+.RI "boolean \fBcontainsRel\fP (float relX, float relY)"
+.br
+.ti -1c
+.RI "void \fBpaintAll\fP (PGraphics g, boolean usesZ, float currAlphaPc)"
+.br
+.RI "\fIPrepares the environment for drawing this drawable and its children\&. \fP"
+.ti -1c
+.RI "abstract void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float currAlphaPc)"
+.br
+.RI "\fIDraws this drawable\&. \fP"
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static final int \fBDEFAULT_FILL\fP = 0xFFFFFFFF"
+.br
+.ti -1c
+.RI "static final int \fBDEFAULT_STROKE\fP = 0xFF000000"
+.br
+.ti -1c
+.RI "static final int \fBDEFAULT_WIDTH\fP = 100"
+.br
+.ti -1c
+.RI "static final int \fBDEFAULT_HEIGHT\fP = 100"
+.br
+.ti -1c
+.RI "static final byte \fBBITMASK_PROPORTIONAL\fP = 1"
+.br
+.ti -1c
+.RI "static final byte \fBBITMASK_TRANSFORMS_CHILDREN\fP = 2"
+.br
+.ti -1c
+.RI "static final byte \fBBITMASK_STYLES_CHILDREN\fP = 4"
+.br
+.ti -1c
+.RI "static final byte \fBBITMASK_ROTATES_CHILDREN\fP = 8"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBonResize\fP (float oldW, float oldH, float newW, float newH)"
+.br
+.RI "\fICalled after the size of this drawable is changed\&. \fP"
+.ti -1c
+.RI "void \fBonStyleChange\fP ()"
+.br
+.ti -1c
+.RI "void \fBapplyStyle\fP (PGraphics g, float currAlphaPc)"
+.br
+.RI "\fIApplies this drawable's styling to the given graphics context\&. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBHDrawable\fP \fB_parent\fP"
+.br
+.RI "\fIThe parent of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fB_firstChild\fP"
+.br
+.RI "\fIThe first child of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHDrawable\fP \fB_lastChild\fP"
+.br
+.RI "\fIThe last child of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHBundle\fP \fB_extras\fP"
+.br
+.RI "\fIThe extras bundle of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_x\fP"
+.br
+.RI "\fIThe x location of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_y\fP"
+.br
+.RI "\fIThe y location of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_z\fP"
+.br
+.RI "\fIThe z location of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_anchorU\fP"
+.br
+.RI "\fIThe x anchor percentage of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_anchorV\fP"
+.br
+.RI "\fIThe y anchor percentage of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_width\fP"
+.br
+.RI "\fIThe width of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_height\fP"
+.br
+.RI "\fIThe height of this drawable\&. \fP"
+.ti -1c
+.RI "float \fB_rotationRad\fP"
+.br
+.RI "\fIThe rotation of this drawable, in radians\&. \fP"
+.ti -1c
+.RI "float \fB_strokeWeight\fP"
+.br
+.RI "\fIThe stroke width of this drawable, in pixels\&. \fP"
+.ti -1c
+.RI "float \fB_alphaPc\fP"
+.br
+.RI "\fIThe alpha of this drawable, in percentage\&. \fP"
+.ti -1c
+.RI "int \fB_numChildren\fP"
+.br
+.RI "\fIThe width-to-height ratio used for proportional resizing\&. \fP"
+.ti -1c
+.RI "int \fB_fill\fP"
+.br
+.RI "\fIThe fill color of this drawable\&. \fP"
+.ti -1c
+.RI "int \fB_stroke\fP"
+.br
+.RI "\fIThe stroke color of this drawable\&. \fP"
+.ti -1c
+.RI "int \fB_strokeCap\fP"
+.br
+.RI "\fIThe stroke cap of this drawable\&. \fP"
+.ti -1c
+.RI "int \fB_strokeJoin\fP"
+.br
+.RI "\fIThe stroke join of this drawable\&. \fP"
+.ti -1c
+.RI "byte \fB_flags\fP"
+.br
+.RI "\fIThe bitset that determines proportional resizing, and child transforms\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+The superclass of all drawables\&. 
+
+Drawables represent objects that are displayable to the stage\&. TODO
+.PP
+(The stage itself is also technically a drawable, but its usage is different from the other classes\&.)
+.PP
+\fBAuthor:\fP
+.RS 4
+james 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "hype\&.core\&.drawable\&.HDrawable\&.HDrawable ()"
+
+.PP
+The default constructor for \fBHDrawable\fP\&. It sets several fields into their proper default values:
+.IP "\(bu" 2
+alpha percentage = 1 (100%)
+.IP "\(bu" 2
+fill = white
+.IP "\(bu" 2
+stroke = black
+.IP "\(bu" 2
+stroke cap = round
+.IP "\(bu" 2
+stroke join = miter
+.IP "\(bu" 2
+stroke weight = 1
+.IP "\(bu" 2
+width = 100
+.IP "\(bu" 2
+height = 100 
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.add (\fBHDrawable\fPchild)"
+
+.PP
+Adds the passed drawable as this drawable's child\&. If \fCchild\fP is already a child of another drawable, it removes itself from its current parent and gets added to this drawable\&.
+.PP
+If \fCchild\fP is already a child of this drawable, then it does nothing\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIchild\fP The child to be added to this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The drawable passed through this method\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.alpha (inta)"
+
+.PP
+Sets the transparency for this drawable\&. The argument for this method can be any number from 0 to 255\&. Otherwise, if the argument is less than 0, the alpha will be 0; and if the argument is greater than 255, the alpha will be 255\&.
+.PP
+Note that transparency \fIis independent from fill and stroke color\fP, even if the fill and stroke can also have alpha values\&. And unlike fill and stroke, this transparency can be passed down to this drawable's children\&.
+.PP
+Also note that \fBHDrawable\fP actually stores \fCalpha\fP as a percentage ranging from 0 to 1 to keep the \fBdraw()\fP and \fBpaintAll()\fP methods a bit faster\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBalphaPc(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The new alpha for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "int hype\&.core\&.drawable\&.HDrawable\&.alpha ()"
+
+.PP
+Returns the transparency for this drawable, ranging at \fC[0,255]\fP\&. You can be assured that the return value will only be in the aforementioned range\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBalphaPc()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The alpha for this drawable with range \fC(0,255)\fP\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.alphaPc (floatf)"
+
+.PP
+Sets the transparency for this drawable, as percentage\&. The argument for this method can be any number from 0 to 1\&. Otherwise, if the argument is less than 0f, the alpha will be 0f; and if the argument is greater than 1f, the alpha will be 1f\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBalphaPc(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIf\fP The new alpha for this drawable, as percentage\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.alphaPc ()"
+
+.PP
+Returns the transparency for this drawable, ranging from 0 to 255\&. You can be assured that the return value will only be in the aforementioned range\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBalpha()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The alpha for this drawable with range \fC(0f,1f)\fP\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.alphaShift (intda)"
+
+.PP
+Shifts the current alpha of this drawable by the given value\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBalpha(int)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIda\fP The amount that the alpha will be shifted\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.alphaShiftPc (floatf)"
+
+.PP
+Shifts the current alpha of this drawable, by percentage\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&.\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBalphaPc(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIf\fP The amount that alpha will be shifted, by percentage\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchor (floatpxX, floatpxY)"
+
+.PP
+Sets the anchor of this drawable by pixels\&. Note that \fBHDrawable\fP stores its anchor coordinates as a percentage of its width and height\&. So if the current size of this drawable is \fC(100,100)\fP, setting the anchor to \fC(75,75)\fP will be stored as \fC(0\&.75,0\&.75)\fP\&.
+.PP
+In case that the current width or height is 0, then the width or height is assumed to be 100 when computing the anchor in this method\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBanchor(PVector)\fP 
+.PP
+\fBanchorX(float)\fP 
+.PP
+\fBanchorY(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpxX\fP The desired x anchor for this drawable, in pixels\&. 
+.br
+\fIpxY\fP The desired y anchor for this drawable, in pixels\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchor (PVectorpt)"
+
+.PP
+Sets the anchor of this drawable by pixels via a PVector\&. This method calls \fBanchor(float,float)\fP with \fCpt\fP's x and y fields as the arguments\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBanchor(float,float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpt\fP The PVector containing the desired x and y anchor for this drawable, in pixels 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "PVector hype\&.core\&.drawable\&.HDrawable\&.anchor ()"
+
+.PP
+Returns the anchor of this drawable in pixels\&. The result of this method is the product of its width & height and its x & y anchor percentages respectively\&. So if this drawable is anchored at the center, this method will return \fC(50,50)\fP when the size is \fC(100,100)\fP, \fC(30,30)\fP when the size is \fC(60,60)\fP and \fC(0,0)\fP when size is \fC(0,0)\fP\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBanchorX()\fP 
+.PP
+\fBanchorY()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A new PVector containing the anchor of this drawable, in pixels\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchorAt (intwhere)"
+
+.PP
+Sets the anchor of this drawable at the defined location in relation to itself\&. The \fCwhere\fP parameter can be any of the following HConstants values:
+.IP "\(bu" 2
+\fCHConstants\&.NONE\fP (does nothing)
+.IP "\(bu" 2
+\fCHConstants\&.LEFT\fP
+.IP "\(bu" 2
+\fCHConstants\&.RIGHT\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER_X\fP
+.IP "\(bu" 2
+\fCHConstants\&.TOP\fP
+.IP "\(bu" 2
+\fCHConstants\&.BOTTOM\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER_Y\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER\fP
+.IP "\(bu" 2
+\fCHConstants\&.TOP_LEFT\fP
+.IP "\(bu" 2
+\fCHConstants\&.TOP_RIGHT\fP
+.IP "\(bu" 2
+\fCHConstants\&.BOTTOM_LEFT\fP
+.IP "\(bu" 2
+\fCHConstants\&.BOTTOM_RIGHT\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER_LEFT\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER_RIGHT\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER_TOP\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER_BOTTOM\fP
+.PP
+.PP
+These values can be combined via bitwise OR, so \fCH\&.TOP | H\&.LEFT\fP would be equal to \fCH\&.TOP_LEFT\fP\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBlocAt(int)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwhere\fP The value that represents the anchor for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchorU (floatu)"
+
+.PP
+Sets the \fCu\fP coordinate for this drawable's anchor\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBanchorUV(float,float)\fP 
+.PP
+\fBanchorV(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIu\fP The desired \fCu\fP coordinate for this drawable's anchor\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.anchorU ()"
+
+.PP
+Returns the \fCu\fP coordinate of this drawable's anchor\&. \fBSee Also:\fP
+.RS 4
+\fBanchorUV()\fP, \fBanchorV()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The \fCu\fP coordinate of this drawable's anchor\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchorUV (floatu, floatv)"
+
+.PP
+Sets the anchor of this drawable in UV coordinates\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBanchorU(float)\fP 
+.PP
+\fBanchorV(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIu\fP The desired \fCu\fP coordinate for this drawable's anchor\&. 
+.br
+\fIv\fP The desired \fCv\fP coordinate for this drawable's anchor\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "PVector hype\&.core\&.drawable\&.HDrawable\&.anchorUV ()"
+
+.PP
+Returns the UV coordinates of this drawable's anchor\&. \fBSee Also:\fP
+.RS 4
+\fBanchorU()\fP 
+.PP
+\fBanchorV()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A new PVector containing this drawable's anchor as percentage 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchorV (floatv)"
+
+.PP
+Sets the \fCu\fP coordinate for this drawable's anchor\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBanchorUV()\fP 
+.PP
+\fBanchorU()\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP The desired \fCv\fP coordinate for this drawable's anchor\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.anchorV ()"
+
+.PP
+Returns the \fCv\fP coordinate of this draable's anchor\&. \fBSee Also:\fP
+.RS 4
+\fBanchorUV()\fP 
+.PP
+\fBanchorU()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The y anchor of this drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchorX (floatpxX)"
+
+.PP
+Sets the x anchor of this drawable by pixels\&. Note that \fBHDrawable\fP stores its x anchor coordinates as a percentage of its width\&. If the width of this drawable is 0, it is assumed as 100 when computing the x anchor in this method\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBanchor(float,float)\fP 
+.PP
+\fBanchor(PVector)\fP 
+.PP
+\fBanchorY(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpxX\fP The desired x anchor for this drawable, in pixels\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.anchorX ()"
+
+.PP
+Returns the x anchor of this drawable in pixels\&. The result of this method is the product of its width and x anchor percentage\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBanchor()\fP 
+.PP
+\fBanchorY()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The x anchor of this drawable, in pixels\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.anchorY (floatpxY)"
+
+.PP
+Sets the y anchor of this drawable by pixels\&. Note that \fBHDrawable\fP stores its y anchor coordinates as a percentage of its height\&. If the height of this drawable is 0, it is assumed as 100 when computing the y anchor in this method
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBanchor(float,float)\fP 
+.PP
+\fBanchor(PVector)\fP 
+.PP
+\fBanchorX(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpxY\fP The desired y anchor for this drawable, in pixels\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.anchorY ()"
+
+.PP
+Returns the y anchor of this drawable in pixels\&. The result of this method is the product of its height and y anchor percentage\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBanchor()\fP 
+.PP
+\fBanchorX()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The y anchor of this drawable, in pixels\&. 
+.RE
+.PP
+
+.SS "void hype\&.core\&.drawable\&.HDrawable\&.applyStyle (PGraphicsg, floatcurrAlphaPc)\fC [protected]\fP"
+
+.PP
+Applies this drawable's styling to the given graphics context\&. This method is primarily used by some subclasses' \fC\fBdraw()\fP\fP method\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIg\fP The graphics context for this drawable\&. 
+.br
+\fIcurrAlphaPc\fP The current alpha value in the draw cycle\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.bool (Stringkey, booleanvalue)"
+
+.PP
+Puts any arbitrary boolean value into this drawable's \fIextras bundle\fP\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+HBundle\&.bool(String,boolean) 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkey\fP The string the will be the key for \fCvalue\fP\&. 
+.br
+\fIvalue\fP The boolean to be stored 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "boolean hype\&.core\&.drawable\&.HDrawable\&.bool (Stringkey)"
+
+.PP
+Returns the equivalent boolean value from the \fIextras bundle\fP with the corresponding key\&. \fBSee Also:\fP
+.RS 4
+HBundle\&.bool(String) 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkey\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "PVector hype\&.core\&.drawable\&.HDrawable\&.boundingSize ()"
+
+.PP
+Returns the bounding size of this drawable based on this drawble's rotation\&. \fBDeprecated\fP
+.RS 4
+This will be replaced with boundingBox() in the future\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The bounding size of this drawable\&. 
+.RE
+.PP
+
+.SS "void hype\&.core\&.drawable\&.HDrawable\&.copyPropertiesFrom (\fBHDrawable\fPother)"
+
+.PP
+Copies the values of \fCother\fP's basic \fBHDrawable\fP fields\&. This method is primarily used for implementing \fBcreateCopy()\fP\&. It copies the following fields from \fCother\fP:
+.IP "\(bu" 2
+x & y coordinates
+.IP "\(bu" 2
+x & y anchors
+.IP "\(bu" 2
+width & height
+.IP "\(bu" 2
+rotation
+.IP "\(bu" 2
+alpha
+.IP "\(bu" 2
+stroke & fill properties
+.PP
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBcreateCopy()\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIother\fP The drawable to copy its properties from\&. 
+.RE
+.PP
+
+.SS "abstract \fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.createCopy ()\fC [pure virtual]\fP"
+
+.PP
+Creates a copy of this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&.
+.PP
+\fBReturns:\fP
+.RS 4
+A copy of this drawable\&. 
+.RE
+.PP
+
+.PP
+Implemented in \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawable\&.HText\fP, \fBhype\&.extended\&.drawable\&.HCanvas\fP, \fBhype\&.extended\&.drawable\&.HPath\fP, \fBhype\&.extended\&.drawable\&.HEllipse\fP, \fBhype\&.extended\&.drawable\&.HRect\fP, \fBhype\&.extended\&.drawable\&.HShape\fP, \fBhype\&.extended\&.drawable\&.HImage\fP, and \fBhype\&.extended\&.drawable\&.HGroup\fP\&.
+.SS "abstract void hype\&.core\&.drawable\&.HDrawable\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatcurrAlphaPc)\fC [pure virtual]\fP"
+
+.PP
+Draws this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&. Also, this method is primarily called internally during the draw cycle and probably wouldn't need to be called directly\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIg\fP The graphics context for this drawable\&. 
+.br
+\fIusesZ\fP Indicates if z-coordinates are used\&. 
+.br
+\fIdrawX\fP The x coordinate where this drawable would consider as 0 
+.br
+\fIdrawY\fP The y coordinate where this drawable would consider as 0 
+.br
+\fIcurrAlphaPc\fP The current alpha value in the draw cycle\&. 
+.RE
+.PP
+
+.PP
+Implemented in \fBhype\&.extended\&.drawable\&.HPath\fP, \fBhype\&.extended\&.drawable\&.HCanvas\fP, \fBhype\&.extended\&.drawable\&.HEllipse\fP, \fBhype\&.extended\&.drawable\&.HText\fP, \fBhype\&.core\&.drawable\&.HStage\fP, \fBhype\&.extended\&.drawable\&.HRect\fP, \fBhype\&.extended\&.drawable\&.HShape\fP, \fBhype\&.extended\&.drawable\&.HImage\fP, and \fBhype\&.extended\&.drawable\&.HGroup\fP\&.
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.extras (\fBHBundle\fPb)"
+
+.PP
+Assigns an \fIextras bundle\fP for this drawable to hold arbitrary data\&. This follows the same idea as with Android's Bundles\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+Android::Bundle 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIb\fP The new extras bundle for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHBundle\fP hype\&.core\&.drawable\&.HDrawable\&.extras ()"
+
+.PP
+Returns this drawable's \fIextras bundle\fP\&. \fBReturns:\fP
+.RS 4
+The extras bundle for this drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.fill (intclr)"
+
+.PP
+Sets the fill for this drawable\&. This method takes in a standard Processing color integer, which are commonly represented as \fC0xAARRGGBB\fP or \fC#RRGGBB\fP\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBfill(int,int)\fP 
+.PP
+\fBfill(int,int,int)\fP 
+.PP
+\fBfill(int,int,int,int)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIclr\fP The new fill for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.fill (intclr, intalpha)"
+
+.PP
+Sets the fill for this drawable\&. The \fCclr\fP parameter is a standard Processing color integer and alpha is any number from 0 to 255\&.
+.PP
+Note that \fCalpha\fP would override the existing alpha value of \fCclr\fP\&. So if \fCclr\fP is \fC0x80FFFFFF\fP and \fCalpha\fP is \fC0x40\fP, the fill will become \fC0x40FFFFFF\fP\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBfill(int)\fP 
+.PP
+\fBfill(int,int,int)\fP 
+.PP
+\fBfill(int,int,int,int)\fP 
+.PP
+\fBnoFill()\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIclr\fP The new fill for this drawable, excluding its alpha value\&. 
+.br
+\fIalpha\fP The alpha for the new fill for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.fill (intr, intg, intb)"
+
+.PP
+Sets the fill for this drawable\&. The parameters \fCr\fP, \fCg\fP and \fCb\fP can be any number from 0 to 255\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBfill(int)\fP 
+.PP
+\fBfill(int,int)\fP 
+.PP
+\fBfill(int,int,int,int)\fP 
+.PP
+\fBnoFill()\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The red component for the new fill for this drawable 
+.br
+\fIg\fP The green component for the new fill for this drawable 
+.br
+\fIb\fP The blue component for the new fill for this drawable 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.fill (intr, intg, intb, inta)"
+
+.PP
+Sets the fill for this drawable\&. The parameters \fCr\fP, \fCg\fP, \fCb\fP and \fCa\fP can be any number from 0 to 255\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBfill(int)\fP 
+.PP
+\fBfill(int,int)\fP 
+.PP
+\fBfill(int,int,int)\fP 
+.PP
+\fBnoFill()\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The red component for the new fill for this drawable 
+.br
+\fIg\fP The green component for the new fill for this drawable 
+.br
+\fIb\fP The blue component for the new fill for this drawable 
+.br
+\fIa\fP The alpha component for the new fill for this drawable 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "int hype\&.core\&.drawable\&.HDrawable\&.fill ()"
+
+.PP
+Returns the fill for this drawable\&. The color returned by this method is a standard Processing color integer\&.
+.PP
+\fBReturns:\fP
+.RS 4
+The fill of this drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.firstChild ()"
+
+.PP
+Returns the first child of this drawable\&. If this drawable has only one child, then the first child is also considered as the last child\&.
+.PP
+\fBReturns:\fP
+.RS 4
+The first child of this drawable, or null if there's none\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.height (floath)"
+
+.PP
+Sets the height of this drawable\&. If this drawable is set to resize proportionally, the width will also change accordingly\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBsize(float,float)\fP 
+.PP
+\fBsize(float)\fP 
+.PP
+\fBwidth(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIh\fP The new height for this drawable 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.height ()"
+
+.PP
+Returns the height of this drawable\&. \fBSee Also:\fP
+.RS 4
+\fBsize()\fP 
+.PP
+\fBwidth()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable's height 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.hide ()"
+
+.PP
+Makes this drawable invisible by calling \fCvisibility(false)\fP\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBvisibility(boolean)\fP, \fBshow()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawableIterator\fP hype\&.core\&.drawable\&.HDrawable\&.iterator ()"
+
+.PP
+Creates a new iterator for this drawable to iterate through its children\&. Note that while HIterator has similar functionalities with java\&.util\&.Iterator, the former does \fInot\fP extend the latter\&. This is due to js mode compatibility issues\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBHDrawableIterator\fP 
+.PP
+HIterator 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A new HIterator for this drawable 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.lastChild ()"
+
+.PP
+Returns the last child of this drawable\&. If this drawable has only one child, then the last child is also considered as the first child\&.
+.PP
+\fBReturns:\fP
+.RS 4
+The last child of this drawable, or null if there's none\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.loc (floatnewX, floatnewY)"
+
+.PP
+Sets the x and y position of this drawable\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInewX\fP The new x coordinate for this drawable\&. 
+.br
+\fInewY\fP The new y coordinate for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.loc (floatnewX, floatnewY, floatnewZ)"
+
+.PP
+Sets the x, y and z position of this drawable\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInewX\fP The new x coordinate for this drawable\&. 
+.br
+\fInewY\fP The new y coordinate for this drawable\&. 
+.br
+\fInewZ\fP The new z coordinate for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.loc (PVectorpt)"
+
+.PP
+Sets the position of this drawable via PVector\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpt\fP A PVector containing the new coordinates for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "PVector hype\&.core\&.drawable\&.HDrawable\&.loc ()"
+
+.PP
+Returns the position of this drawable as a PVector\&. \fBReturns:\fP
+.RS 4
+A new PVector containing the coordinates of this drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.locAt (intwhere)"
+
+.PP
+Positions this drawable at the defined location in relation to its parent, or (0,0) if the parent is null\&. The \fCwhere\fP parameter can be any of the following HConstants values:
+.IP "\(bu" 2
+\fCHConstants\&.NONE\fP (does nothing)
+.IP "\(bu" 2
+\fCHConstants\&.LEFT\fP
+.IP "\(bu" 2
+\fCHConstants\&.RIGHT\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER_X\fP
+.IP "\(bu" 2
+\fCHConstants\&.TOP\fP
+.IP "\(bu" 2
+\fCHConstants\&.BOTTOM\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER_Y\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER\fP
+.IP "\(bu" 2
+\fCHConstants\&.TOP_LEFT\fP
+.IP "\(bu" 2
+\fCHConstants\&.TOP_RIGHT\fP
+.IP "\(bu" 2
+\fCHConstants\&.BOTTOM_LEFT\fP
+.IP "\(bu" 2
+\fCHConstants\&.BOTTOM_RIGHT\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER_LEFT\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER_RIGHT\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER_TOP\fP
+.IP "\(bu" 2
+\fCHConstants\&.CENTER_BOTTOM\fP
+.PP
+.PP
+These values can be combined via bitwise OR, so \fCH\&.TOP | H\&.LEFT\fP would be equal to \fCH\&.TOP_LEFT\fP\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBanchorAt(int)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwhere\fP The value that represents the location for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.move (floatdx, floatdy)"
+
+.PP
+Moves this drawable from its original x & y position\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdx\fP The amount this drawable will be moved on the x-axis\&. 
+.br
+\fIdy\fP The amount this drawable will be moved on the y-axis\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.move (floatdx, floatdy, floatdz)"
+
+.PP
+Moves this drawable from its original x, y & z position\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdx\fP The amount this drawable will be moved on the x-axis\&. 
+.br
+\fIdy\fP The amount this drawable will be moved on the y-axis\&. 
+.br
+\fIdz\fP The amount this drawable will be moved on the z-axis\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.noFill ()"
+
+.PP
+Removes the fill of this drawable\&. Technically, this method sets the fill to HConstants\&.CLEAR, which is \fC0x00FFFFFF\fP or fully transparent white\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBfill(int)\fP 
+.PP
+\fBfill(int,int)\fP 
+.PP
+\fBfill(int,int,int)\fP 
+.PP
+\fBfill(int,int,int,int)\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.noStroke ()"
+
+.PP
+Removes the stroke color of this drawable\&. Technically, this method sets the stroke color to HConstants\&.CLEAR, which is equalt to \fC0x00FFFFFF\fP or fully transparent white\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBstroke(int)\fP 
+.PP
+\fBstroke(int,int)\fP 
+.PP
+\fBstroke(int,int,int)\fP 
+.PP
+\fBstroke(int,int,int,int)\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.num (Stringkey, floatvalue)"
+
+.PP
+Puts any arbitrary native value into this drawable's \fIextras bundle\fP\&. If the extras bundle is null, this method will create a new one\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+HBundle\&.num(String,float) 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkey\fP The string that will be the key for \fCvalue\fP\&. 
+.br
+\fIvalue\fP The native value to be stored\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.num (Stringkey)"
+
+.PP
+Returns the number from the \fIextras bundle\fP with the corresponding key\&. If the extras bundle is null, this method will return 0\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+HBundle\&.num(String) 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkey\fP The key that will be used to fetch the float value\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The float value with the corresponding key\&. 
+.RE
+.PP
+
+.SS "int hype\&.core\&.drawable\&.HDrawable\&.numChildren ()"
+
+.PP
+Returns the number of children of this drawable\&. \fBReturns:\fP
+.RS 4
+The number of children of this drawable\&. 
+.RE
+.PP
+
+.SS "int hype\&.core\&.drawable\&.HDrawable\&.numI (Stringkey)"
+
+.PP
+Returns the rounded number from the \fIextras bundle\fP with the corresponding key\&. If the extras bundle is null, this method will return 0\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkey\fP The key that will be used to fetch the integer value\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The integer value with the corresponding key\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.obj (Stringkey, Objectvalue)"
+
+.PP
+Puts any arbitrary object into this drawable's \fIextras bundle\fP\&. If the extras bundle is null, this method will create a new one\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+HBundle\&.obj(String,Object) 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkey\fP The string that will be the key for \fCvalue\fP\&. 
+.br
+\fIvalue\fP The object to be stored\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "Object hype\&.core\&.drawable\&.HDrawable\&.obj (Stringkey)"
+
+.PP
+Returns the object from the \fIextras bundle\fP with the corresponding key\&. If the extras bundle is null, this method will return null\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+HBundle\&.num(String) 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkey\fP The key that will be used to fetch the object\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The object with the corresponding key\&. 
+.RE
+.PP
+
+.SS "void hype\&.core\&.drawable\&.HDrawable\&.onResize (floatoldW, floatoldH, floatnewW, floatnewH)\fC [protected]\fP"
+
+.PP
+Called after the size of this drawable is changed\&. By default, this method handles proportional resizing, child transformations\&.
+.PP
+If you subclass \fBHDrawable\fP and want to execute code whenever your custom class changes size, override this method\&. But remember to call \fCsuper\&.onResize()\fP at the start of your override when you want to keep proportional resizing and child transforms\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIoldW\fP The old width before being resize\&. 
+.br
+\fIoldH\fP The old height before being resize\&. 
+.br
+\fInewW\fP The new width after being resized\&. 
+.br
+\fInewH\fP The new height after being resized\&. 
+.RE
+.PP
+
+.SS "void hype\&.core\&.drawable\&.HDrawable\&.paintAll (PGraphicsg, booleanusesZ, floatcurrAlphaPc)"
+
+.PP
+Prepares the environment for drawing this drawable and its children\&. This method is primarily called internally during the draw cycle and probably wouldn't need to be called directly\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIg\fP The graphics context for this drawable\&. 
+.br
+\fIusesZ\fP Indicates if z-coordinates are used\&. 
+.br
+\fIcurrAlphaPc\fP The current alpha value in the draw cycle\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.parent ()"
+
+.PP
+Returns the parent of this drawable\&. \fBReturns:\fP
+.RS 4
+The parent of this drawable, or null if there's none\&. 
+.RE
+.PP
+
+.SS "boolean hype\&.core\&.drawable\&.HDrawable\&.parentOf (\fBHDrawable\fPd)"
+
+.PP
+Checks if the given drawable is the parent of this drawable\&. \fBParameters:\fP
+.RS 4
+\fId\fP The drawable to be checked 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+True if this drawable is the parent of \fCd\fP 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.proportional (booleanb)"
+
+.PP
+Sets whether or not this drawable will be resized proportionally\&. If set to true, then this drawable will try to keep the width and height at the same ratio when you try to change either the width or height\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIb\fP True, if this drawable will keep its size proportionally\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "boolean hype\&.core\&.drawable\&.HDrawable\&.proportional ()"
+
+.PP
+Returns whether or not this drawable is in proportional mode\&. \fBReturns:\fP
+.RS 4
+True if this drawable is in proportional mode, else false\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.remove (\fBHDrawable\fPchild)"
+
+.PP
+Removes a child from this drawable\&. If \fCchild\fP isn't a child of this drawable, this method will do nothing\&. Regardless, it will still return \fCchild\fP\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIchild\fP The child to be removed from this drawable 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The drawable passed through this method\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.rotate (floatdeg)"
+
+.PP
+Shifts this drawable's current rotation by the passed value, in degrees\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdeg\fP The amount of degrees for the current rotation to be shifted\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.rotateRad (floatrad)"
+
+.PP
+Shifts this drawable's current rotation by the passed value, in radians\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIrad\fP The amount of radians for the current rotation to be shifted\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.rotation (floatdeg)"
+
+.PP
+Sets the rotation for this drawable, in degrees\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdeg\fP The new rotation for this drawable, in degrees\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.rotation ()"
+
+.PP
+Returns the rotation for this drawable, in degrees\&. \fBReturns:\fP
+.RS 4
+This drawable's rotation in degrees\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.scale (floats)"
+
+.PP
+Multiplies the width and height of this drawable by the given scale factor\&. This method delegates \fBsize(float,float)\fP\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBscale(float,float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The scale factor for the width and height\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.scale (floatsw, floatsh)"
+
+.PP
+Multiplies the width and height of this drawable by the given scale factors\&. This method delegates \fBsize(float,float)\fP\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBscale(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsw\fP The scale factor for the width\&. 
+.br
+\fIsh\fP The scale factor for the height\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.show ()"
+
+.PP
+Makes this drawable visible by calling \fCvisibility(true)\fP\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBvisibility(boolean)\fP, \fBhide()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.size (floatw, floath)"
+
+.PP
+Sets the size of this drawable\&. If this drawable is set to resize proportionally, the new width will be adjusted according to the new height by default\&. (The exception to this is if the new height is the same as the old height, then the new height will be adjusted according to the new width instead\&.)
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBsize(float)\fP 
+.PP
+\fBwidth(float)\fP 
+.PP
+\fBheight(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIw\fP The new width for this drawable\&. 
+.br
+\fIh\fP The new height for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.size (floats)"
+
+.PP
+Sets the size of this drawable\&. This method delegates \fBsize(float,float)\fP\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBsize(float,float)\fP 
+.PP
+\fBwidth(float)\fP 
+.PP
+\fBheight(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP The new width and height for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "PVector hype\&.core\&.drawable\&.HDrawable\&.size ()"
+
+.PP
+Returns the size of this drawable\&. \fBSee Also:\fP
+.RS 4
+\fBwidth()\fP 
+.PP
+\fBheight()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A new PVector containing the width and height of this drawable\&. 
+.RE
+.PP
+
+.SS "String hype\&.core\&.drawable\&.HDrawable\&.str (Stringkey)"
+
+.PP
+Returns the string from the \fIextras bundle\fP with the corresponding key\&. This is a shorthand for \fC(String) obj(key)\fP\&. If the extras bundle is null, this method will return null\&.
+.PP
+\fBSee Also:\fP
+.RS 4
+HBundle\&.str(String) 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkey\fP The key that will be used to fetch the string\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The string with the corresponding key\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.stroke (intclr)"
+
+.PP
+Sets the stroke color for this drawable\&. This method takes in a standard Processing color integer, which are commonly represented as \fC0xAARRGGBB\fP or \fC#RRGGBB\fP\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBstroke(int,int)\fP 
+.PP
+\fBstroke(int,int,int)\fP 
+.PP
+\fBstroke(int,int,int,int)\fP 
+.PP
+\fBnoStroke()\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIclr\fP The new stroke color for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.stroke (intclr, intalpha)"
+
+.PP
+Sets the stroke color for this drawable\&. The \fCclr\fP parameter is a standard Processing color integer and alpha is any number from 0 to 255\&.
+.PP
+Note that \fCalpha\fP would override the existing alpha value of \fCclr\fP\&. So if \fCclr\fP is \fC0x80FFFFFF\fP and \fCalpha\fP is \fC0x40\fP, the fill will become \fC0x40FFFFFF\fP\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBstroke(int)\fP 
+.PP
+\fBstroke(int,int,int)\fP 
+.PP
+\fBstroke(int,int,int,int)\fP 
+.PP
+\fBnoStroke()\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIclr\fP The new stroke color for this drawable, excluding its alpha value\&. 
+.br
+\fIalpha\fP The alpha for the new stroke color for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.stroke (intr, intg, intb)"
+
+.PP
+Sets the stroke color for this drawable\&. The parameters \fCr\fP, \fCg\fP and \fCb\fP can be any number from 0 to 255\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBstroke(int)\fP 
+.PP
+\fBstroke(int,int)\fP 
+.PP
+\fBstroke(int,int,int,int)\fP 
+.PP
+\fBnoStroke()\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The red component for the new stroke color for this drawable 
+.br
+\fIg\fP The green component for the new stroke color for this drawable 
+.br
+\fIb\fP The blue component for the new stroke color for this drawable 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.stroke (intr, intg, intb, inta)"
+
+.PP
+Sets the stroke color for this drawable\&. The parameters \fCr\fP, \fCg\fP \fCb\fP and \fCa\fP can be any number from 0 to 255\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBstroke(int)\fP 
+.PP
+\fBstroke(int,int)\fP 
+.PP
+\fBstroke(int,int,int)\fP 
+.PP
+\fBnoStroke()\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIr\fP The red component for the new stroke color for this drawable 
+.br
+\fIg\fP The green component for the new stroke color for this drawable 
+.br
+\fIb\fP The blue component for the new stroke color for this drawable 
+.br
+\fIa\fP The alpha component for the new stroke color for this drawable 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "int hype\&.core\&.drawable\&.HDrawable\&.stroke ()"
+
+.PP
+Returns the stroke color for this drawable\&. The color returned by this method is a standard Processing color integer\&.
+.PP
+\fBReturns:\fP
+.RS 4
+The stroke color of this drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.strokeCap (inttype)"
+
+.PP
+Sets the stroke cap for this drawable\&. The stroke cap can be any of the following values:
+.IP "\(bu" 2
+\fCPConstants\&.SQUARE\fP
+.IP "\(bu" 2
+\fCPConstants\&.PROJECT\fP
+.IP "\(bu" 2
+\fCPConstants\&.ROUND\fP
+.PP
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+Processing::strokeCap() 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fItype\fP The stroke cap type for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "int hype\&.core\&.drawable\&.HDrawable\&.strokeCap ()"
+
+.PP
+Returns the stroke cap for this drawable\&. \fBReturns:\fP
+.RS 4
+The integer representing the stroke cap of this drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.strokeJoin (inttype)"
+
+.PP
+Sets the stroke join for this drawable\&. The stroke join can be any of the following values:
+.IP "\(bu" 2
+\fCPConstants\&.MITER\fP
+.IP "\(bu" 2
+\fCPConstants\&.BEVEL\fP
+.IP "\(bu" 2
+\fCPConstants\&.ROUND\fP
+.PP
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+Processing::strokeJoin() 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fItype\fP The stroke join type for this drawable\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "int hype\&.core\&.drawable\&.HDrawable\&.strokeJoin ()"
+
+.PP
+Returns the stroke join for this drawable\&. \fBReturns:\fP
+.RS 4
+The integer representing the stroke join of this drawable\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.strokeWeight (floatf)"
+
+.PP
+Sets the stroke weight, or thickness of this drawable\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIf\fP The thickness for this drawable's stroke in pixels\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable 
+.RE
+.PP
+
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.strokeWeight ()"
+
+.PP
+Returns the stroke weight, or thickness of this drawable\&. \fBReturns:\fP
+.RS 4
+The stroke weight for this drawable, in pixels\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.visibility (booleanv)"
+
+.PP
+Sets the visibility of this drawable\&. Technically this method manipulates the alpha of this drawable\&. If \fCv\fP is false, the alpha will become the negative of the current alpha, making this drawable invisible\&. Otherwise, if \fCv\fP is true, the alpha will become the positive of the current alpha (or 1f if the current alpha is 0), making this drawable visible\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBshow()\fP, \fBhide()\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP True if this drawable will be visible, false if invisible\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "boolean hype\&.core\&.drawable\&.HDrawable\&.visibility ()"
+
+.PP
+Returns the visibility of this drawable\&. \fBReturns:\fP
+.RS 4
+True if this drawable is visible, otherwise false\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.width (floatw)"
+
+.PP
+Sets the width of this drawable\&. If this drawable is set to resize proportionally, the height will also change accordingly via \fBonResize(float,float,float,float)\fP\&.
+.PP
+This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBsize(float,float)\fP 
+.PP
+\fBsize(float)\fP 
+.PP
+\fBheight(float)\fP 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIw\fP The new width for this drawable 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable\&. 
+.RE
+.PP
+
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.width ()"
+
+.PP
+Returns the width of this drawable\&. \fBSee Also:\fP
+.RS 4
+\fBsize()\fP 
+.PP
+\fBheight()\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+This drawable's width\&. 
+.RE
+.PP
+
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.x (floatf)"
+
+.PP
+TODO\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIf\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.x ()"
+
+.PP
+TODO\&. \fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.y (floatf)"
+
+.PP
+TODO\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIf\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.y ()"
+
+.PP
+TODO\&. \fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
+.SS "\fBHDrawable\fP hype\&.core\&.drawable\&.HDrawable\&.z (floatf)"
+
+.PP
+TODO\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIf\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
+.SS "float hype\&.core\&.drawable\&.HDrawable\&.z ()"
+
+.PP
+TODO\&. \fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "int hype\&.core\&.drawable\&.HDrawable\&._numChildren\fC [protected]\fP"
+
+.PP
+The width-to-height ratio used for proportional resizing\&. The number of this drawable's children 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for HYPE_processing from the source code\&.

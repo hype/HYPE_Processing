@@ -3,14 +3,14 @@ void setup() {
 	H.init(this).background(#202020);
 	smooth();
 
-// anchorAt() will take any combination of the ff:
-// - H.LEFT
-// - H.CENTER_X -- equals to (H.LEFT | H.RIGHT)
-// - H.RIGHT
-// - H.TOP
-// - H.CENTER_Y -- equals to (H.TOP | H.BOTTOM)
-// - H.BOTTOM
-// - H.CENTER -- equals to (H.CENTER_X | H.CENTER_Y)
+	// anchorAt() will take any combination of the ff:
+	// - H.LEFT
+	// - H.CENTER_X -- equals to (H.LEFT | H.RIGHT)
+	// - H.RIGHT
+	// - H.TOP
+	// - H.CENTER_Y -- equals to (H.TOP | H.BOTTOM)
+	// - H.BOTTOM
+	// - H.CENTER -- equals to (H.CENTER_X | H.CENTER_Y)
 	
 	HRect s1 = new HRect(100);
 	s1
@@ -77,3 +77,4 @@ void setup() {
 }
 
 void draw() {}
+

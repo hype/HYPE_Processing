@@ -1,0 +1,105 @@
+.TH "hype.extended.drawable.HRect" 3 "Wed Jun 19 2013" "HYPE_processing" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+hype.extended.drawable.HRect \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHRect\fP (float s)"
+.br
+.ti -1c
+.RI "\fBHRect\fP (float w, float h)"
+.br
+.ti -1c
+.RI "\fBHRect\fP (float w, float h, float roundingRadius)"
+.br
+.ti -1c
+.RI "\fBHRect\fP \fBcreateCopy\fP ()"
+.br
+.RI "\fICreates a copy of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHRect\fP \fBrounding\fP (float radius)"
+.br
+.ti -1c
+.RI "\fBHRect\fP \fBrounding\fP (float topleft, float topright, float bottomright, float bottomleft)"
+.br
+.ti -1c
+.RI "float \fBrounding\fP ()"
+.br
+.ti -1c
+.RI "\fBHRect\fP \fBroundingTL\fP (float radius)"
+.br
+.ti -1c
+.RI "float \fBroundingTL\fP ()"
+.br
+.ti -1c
+.RI "\fBHRect\fP \fBroundingTR\fP (float radius)"
+.br
+.ti -1c
+.RI "float \fBroundingTR\fP ()"
+.br
+.ti -1c
+.RI "\fBHRect\fP \fBroundingBR\fP (float radius)"
+.br
+.ti -1c
+.RI "float \fBroundingBR\fP ()"
+.br
+.ti -1c
+.RI "\fBHRect\fP \fBroundingBL\fP (float radius)"
+.br
+.ti -1c
+.RI "float \fBroundingBL\fP ()"
+.br
+.ti -1c
+.RI "void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float \fBalphaPc\fP)"
+.br
+.RI "\fIDraws this drawable\&. \fP"
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBHRect\fP hype\&.extended\&.drawable\&.HRect\&.createCopy ()\fC [virtual]\fP"
+
+.PP
+Creates a copy of this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&.
+.PP
+\fBReturns:\fP
+.RS 4
+A copy of this drawable\&. 
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+.SS "void hype\&.extended\&.drawable\&.HRect\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatcurrAlphaPc)\fC [virtual]\fP"
+
+.PP
+Draws this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&. Also, this method is primarily called internally during the draw cycle and probably wouldn't need to be called directly\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIg\fP The graphics context for this drawable\&. 
+.br
+\fIusesZ\fP Indicates if z-coordinates are used\&. 
+.br
+\fIdrawX\fP The x coordinate where this drawable would consider as 0 
+.br
+\fIdrawY\fP The y coordinate where this drawable would consider as 0 
+.br
+\fIcurrAlphaPc\fP The current alpha value in the draw cycle\&. 
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for HYPE_processing from the source code\&.

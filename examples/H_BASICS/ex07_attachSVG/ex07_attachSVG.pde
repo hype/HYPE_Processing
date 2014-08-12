@@ -1,11 +1,13 @@
+HColorPool colors;
+
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
 	smooth();
 
-	final HColorPool colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
+	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
-// all Fills = 1 color / all Strokes = 1 color
+	// all Fills = 1 color / all Strokes = 1 color
 
 	HShape svg1 = new HShape("bot1.svg");
 	svg1
@@ -18,7 +20,7 @@ void setup() {
 	;
 	H.add(svg1);
 
-// random Fills AND Strokes being pulled from HColorPool colors
+	// random Fills AND Strokes being pulled from HColorPool colors
 
 	HShape svg2 = new HShape("bot1.svg");
 	svg2
@@ -26,10 +28,10 @@ void setup() {
 		.anchorAt(H.TOP|H.RIGHT)
 		.strokeWeight(2)
 	;
-	svg2.randomColors(colors).fillAndStroke();
+	svg2.randomColors(colors.fillAndStroke());
 	H.add(svg2);
 
-// random Fills being pulled from HColorPool colors / all Strokes = 1 color
+	// random Fills being pulled from HColorPool colors / all Strokes = 1 color
 
 	HShape svg3 = new HShape("bot1.svg");
 	svg3
@@ -38,10 +40,10 @@ void setup() {
 		.stroke(#000000)
 		.strokeWeight(2)
 	;
-	svg3.randomColors(colors).fillOnly();
+	svg3.randomColors(colors.fillOnly());
 	H.add(svg3);
 
-// random Strokes being pulled from HColorPool colors / all Fills = 1 color
+	// random Strokes being pulled from HColorPool colors / all Fills = 1 color
 
 	HShape svg4 = new HShape("bot1.svg");
 	svg4
@@ -50,12 +52,12 @@ void setup() {
 		.fill(#181818)
 		.strokeWeight(2)
 	;
-	svg4.randomColors(colors).strokeOnly();
+	svg4.randomColors(colors.strokeOnly());
 	H.add(svg4);
-
 
 	H.drawStage();
 	noLoop();
 }
 
 void draw() {}
+

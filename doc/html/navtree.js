@@ -1,10 +1,16 @@
 var NAVTREE =
 [
   [ "HYPE_processing", "index.html", [
+    [ "Deprecated List", "deprecated.html", null ],
     [ "Classes", null, [
       [ "Class List", "annotated.html", "annotated" ],
       [ "Class Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ]
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
     ] ]
   ] ]
 ];
@@ -12,9 +18,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"classhype_1_1colorist_1_1_h_color_pool.html#ac114c69e5ac822af673061d677e6529e",
-"classhype_1_1drawable_1_1_h_shape.html#a3c87e6bdac6bbfeced9d25bfac8527b3",
-"classhype_1_1util_1_1_h_math.html#aeba1842b15edd56fa8cc628098cfb592"
+"classhype_1_1core_1_1drawable_1_1_h_drawable.html#aeef1c190f383562910107be8e5f80461",
+"classhype_1_1extended_1_1behavior_1_1_h_random_trigger.html",
+"classhype_1_1extended_1_1drawable_1_1_h_ellipse.html#aeca93ce2f1d70f9370bb21fab8175d2f",
+"interfacehype_1_1core_1_1interfaces_1_1_h_image_holder.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

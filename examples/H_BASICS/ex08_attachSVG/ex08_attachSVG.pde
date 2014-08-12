@@ -5,17 +5,16 @@ void setup() {
 	H.init(this).background(#202020);
 	smooth();
 
-	PShape svg6 = loadShape("art_06.svg");
-	
 	pool = new HDrawablePool(121);
 	pool.autoAddToStage()
 		.add (
-			new HShape(svg6)
+			new HShape("art_06.svg")
 			.enableStyle(false)
 			.strokeJoin(CENTER)
 			.strokeCap(CENTER)
 			.anchorAt(H.CENTER)
 		)
+
 		.layout (
 			new HGridLayout()
 			.startX(70)
@@ -23,10 +22,11 @@ void setup() {
 			.spacing(50,50)
 			.cols(11)
 		)
+
 		.onCreate (
-		    new HCallback() {
-		    	public void run(Object obj) {
-		    		HDrawable d = (HDrawable) obj;
+			new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
 					d
 						.fill( #242424 )
 						.strokeWeight(1)
@@ -36,10 +36,13 @@ void setup() {
 				}
 			}
 		)
-		.requestAll();
+
+		.requestAll()
+	;
 
 	H.drawStage();
 	noLoop();
 }
 
 void draw() {}
+

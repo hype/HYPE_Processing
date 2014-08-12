@@ -1,0 +1,279 @@
+.TH "hype.extended.util.HVertex" 3 "Wed Jun 19 2013" "HYPE_processing" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+hype.extended.util.HVertex \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHVertex\fP (\fBHPath\fP parentPath)"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBcreateCopy\fP (\fBHPath\fP newParentPath)"
+.br
+.ti -1c
+.RI "\fBHPath\fP \fBpath\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBnumControlPts\fP (byte b)"
+.br
+.ti -1c
+.RI "byte \fBnumControlPts\fP ()"
+.br
+.ti -1c
+.RI "boolean \fBisLine\fP ()"
+.br
+.ti -1c
+.RI "boolean \fBisCurved\fP ()"
+.br
+.ti -1c
+.RI "boolean \fBisQuadratic\fP ()"
+.br
+.ti -1c
+.RI "boolean \fBisCubic\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBset\fP (float \fBx\fP, float \fBy\fP)"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBset\fP (float cx, float cy, float \fBx\fP, float \fBy\fP)"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBset\fP (float cx1, float cy1, float cx2, float cy2, float \fBx\fP, float \fBy\fP)"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBsetUV\fP (float u, float v)"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBsetUV\fP (float cu, float cv, float u, float v)"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBsetUV\fP (float cu1, float cv1, float cu2, float cv2, float u, float v)"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBx\fP (float f)"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "float \fBx\fP ()"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "\fBHVertex\fP \fBy\fP (float f)"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "float \fBy\fP ()"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "\fBHVertex\fP \fBz\fP (float f)"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "float \fBz\fP ()"
+.br
+.RI "\fITODO\&. \fP"
+.ti -1c
+.RI "\fBHVertex\fP \fBu\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBu\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBv\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBv\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBcx\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBcx\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBcy\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBcy\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBcu\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBcu\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBcv\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBcv\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBcx1\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBcx1\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBcy1\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBcy1\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBcu1\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBcu1\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBcv1\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBcv1\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBcx2\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBcx2\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBcy2\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBcy2\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBcu2\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBcu2\fP ()"
+.br
+.ti -1c
+.RI "\fBHVertex\fP \fBcv2\fP (float f)"
+.br
+.ti -1c
+.RI "float \fBcv2\fP ()"
+.br
+.ti -1c
+.RI "void \fBcomputeMinMax\fP (float[] minmax)"
+.br
+.ti -1c
+.RI "void \fBadjust\fP (float offsetU, float offsetV, float oldW, float oldH)"
+.br
+.ti -1c
+.RI "boolean \fBintersectTest\fP (\fBHVertex\fP pprev, \fBHVertex\fP prev, float tu, float tv, boolean openPath)"
+.br
+.ti -1c
+.RI "boolean \fBinLine\fP (\fBHVertex\fP prev, float relX, float relY)"
+.br
+.ti -1c
+.RI "void \fBdraw\fP (PGraphics g, float drawX, float drawY, boolean isSimple)"
+.br
+.ti -1c
+.RI "void \fBdrawHandles\fP (PGraphics g, \fBHVertex\fP prev, float drawX, float drawY)"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static final float \fBLINE_TOLERANCE\fP = 1\&.5f"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBHVertex\fP hype\&.extended\&.util\&.HVertex\&.x (floatf)"
+
+.PP
+TODO\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIf\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
+.SS "float hype\&.extended\&.util\&.HVertex\&.x ()"
+
+.PP
+TODO\&. \fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
+.SS "\fBHVertex\fP hype\&.extended\&.util\&.HVertex\&.y (floatf)"
+
+.PP
+TODO\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIf\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
+.SS "float hype\&.extended\&.util\&.HVertex\&.y ()"
+
+.PP
+TODO\&. \fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
+.SS "\fBHVertex\fP hype\&.extended\&.util\&.HVertex\&.z (floatf)"
+
+.PP
+TODO\&. This method returns \fCthis\fP so it could be chained with other methods of this class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIf\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
+.SS "float hype\&.extended\&.util\&.HVertex\&.z ()"
+
+.PP
+TODO\&. \fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.interfaces\&.HLocatable\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for HYPE_processing from the source code\&.

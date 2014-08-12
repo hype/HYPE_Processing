@@ -1,12 +1,21 @@
-public static class HDrawablePool {
-	protected HLinkedHashSet<HDrawable> _activeSet, _inactiveSet;
-	protected ArrayList<HDrawable> _prototypes;
-	public HCallback _onCreate, _onRequest, _onRelease;
-	public HPoolListener _listener;
-	protected HLayout _layout;
-	protected HColorist _colorist;
-	protected HDrawable _autoParent;
-	protected int _max;
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
+public static class HDrawablePool implements Iterable<HDrawable> {
+	private HLinkedHashSet<HDrawable> _activeSet, _inactiveSet;
+	private ArrayList<HDrawable> _prototypes;
+	private HCallback _onCreate, _onRequest, _onRelease;
+	private HLayout _layout;
+	private HColorist _colorist;
+	private HDrawable _autoParent;
+	private int _max;
 	public HDrawablePool() {
 		this(64);
 	}
@@ -15,6 +24,7 @@ public static class HDrawablePool {
 		_activeSet = new HLinkedHashSet<HDrawable>();
 		_inactiveSet = new HLinkedHashSet<HDrawable>();
 		_prototypes = new ArrayList<HDrawable>();
+		_onCreate = _onRequest = _onRelease = HConstants.NOP;
 	}
 	public int max() {
 		return _max;
@@ -46,29 +56,22 @@ public static class HDrawablePool {
 		_colorist = newColorist;
 		return this;
 	}
-	public HDrawablePool listener(HPoolListener newListener) {
-		_listener = newListener;
-		return this;
-	}
 	public HDrawablePool onCreate(HCallback callback) {
-		_onCreate = callback;
+		_onCreate = (callback==null)? HConstants.NOP : callback;
 		return this;
 	}
 	public HCallback onCreate() {
 		return _onCreate;
 	}
-	public HPoolListener listener() {
-		return _listener;
-	}
 	public HDrawablePool onRequest(HCallback callback) {
-		_onRequest = callback;
+		_onRequest = (callback==null)? HConstants.NOP : callback;
 		return this;
 	}
 	public HCallback onRequest() {
 		return _onRequest;
 	}
 	public HDrawablePool onRelease(HCallback callback) {
-		_onRelease = callback;
+		_onRelease = (callback==null)? HConstants.NOP : callback;
 		return this;
 	}
 	public HCallback onRelease() {
@@ -95,7 +98,7 @@ public static class HDrawablePool {
 		_activeSet.removeAll();
 		_inactiveSet.removeAll();
 		_prototypes.clear();
-		_onCreate = _onRequest = _onRelease = null;
+		_onCreate = _onRequest = _onRelease = HConstants.NOP;
 		_layout = null;
 		_autoParent = null;
 		_max = 0;
@@ -132,13 +135,8 @@ public static class HDrawablePool {
 		if(_autoParent != null) _autoParent.add(drawable);
 		if(_layout != null) _layout.applyTo(drawable);
 		if(_colorist != null) _colorist.applyColor(drawable);
-		if(_listener != null) {
-			int index = currentIndex();
-			if(onCreateFlag) _listener.onCreate(drawable, index, this);
-			_listener.onRequest(drawable, index, this);
-		}
-		if(onCreateFlag && _onCreate != null) _onCreate.run(drawable);
-		if(_onRequest != null) _onRequest.run(drawable);
+		if(onCreateFlag) _onCreate.run(drawable);
+		_onRequest.run(drawable);
 		return drawable;
 	}
 	public HDrawablePool requestAll() {
@@ -154,8 +152,7 @@ public static class HDrawablePool {
 		if(_activeSet.remove(d)) {
 			_inactiveSet.add(d);
 			if(_autoParent != null) _autoParent.remove(d);
-			if(_listener != null) _listener.onRelease(d, currentIndex(), this);
-			if(_onRelease != null) _onRelease.run(d);
+			_onRelease.run(d);
 			return true;
 		}
 		return false;
@@ -166,13 +163,11 @@ public static class HDrawablePool {
 	public HLinkedHashSet<HDrawable> inactiveSet() {
 		return _inactiveSet;
 	}
-	protected HDrawable createRandomDrawable() {
-		PApplet app = H.app();
-		int numPrototypes = _prototypes.size();
-		int index = app.round( app.random(numPrototypes-1) );
+	private HDrawable createRandomDrawable() {
+		int index = HMath.randomInt(_prototypes.size());
 		return _prototypes.get(index).createCopy();
 	}
-	public HIterator<HDrawable> iterator() {
+	public Iterator<HDrawable> iterator() {
 		return _activeSet.iterator();
 	}
 }

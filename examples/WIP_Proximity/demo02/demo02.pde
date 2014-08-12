@@ -29,8 +29,8 @@ void setup() {
     .add ( new HRect(cellSize) )
     .layout (
       new HGridLayout()
-      .startX(20)
-      .startY(20)
+      .startX(21)
+      .startY(21)
       .spacing(cellSize+1,cellSize+1)
       .cols(24)
     )
@@ -58,10 +58,9 @@ void setup() {
 }
 
 void draw() {
-  HIterator<HDrawable> it = pool.iterator();
   int i = 0;
-  while(it.hasNext()) {
-    HDrawable d = it.next();
+
+  for(HDrawable d : pool) {
     d.fill( #000000, int(aProx.run(i)) );
     colorField.applyColor(d);
     i++;

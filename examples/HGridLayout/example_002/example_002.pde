@@ -1,13 +1,12 @@
 HDrawablePool pool;
-
-int cellSize = 36;
+HColorPool colors;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
 	smooth();
 
-	final HColorPool colors = new HColorPool()
+	colors = new HColorPool()
 		.add(#FFFFFF, 9)
 		.add(#ECECEC, 9)
 		.add(#CCCCCC, 9)
@@ -24,31 +23,36 @@ void setup() {
 			new HRect()
 			.rounding(4)
 		)
+
 		.layout (
 			new HGridLayout()
 			.startX(21)
-			.startY(7)
+			.startY(21)
 			.spacing(26,26)
 			.cols(24)
 		)
+
 		.onCreate (
-		    new HCallback() {
-		    	public void run(Object obj) {
-		    		HDrawable d = (HDrawable) obj;
+			 new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
 					d
 						.noStroke()
 						.fill( colors.getColor() )
 						.anchorAt(H.CENTER)
 						.rotation( 45 )
-						.size( cellSize )
+						.size(36)
 					;
 				}
 			}
 		)
-		.requestAll();
+
+		.requestAll()
+	;
 
 	H.drawStage();
 	noLoop();
 }
 
 void draw() {}
+

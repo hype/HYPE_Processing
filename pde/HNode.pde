@@ -1,3 +1,13 @@
+/*
+ * HYPE_Processing
+ * http:
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static abstract class HNode<T extends HNode<T>> {
 	protected T _prev, _next;
 	public T prev() {

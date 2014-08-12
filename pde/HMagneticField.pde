@@ -1,24 +1,38 @@
+/*
+ * HYPE_Processing
+ * 
+ * Copyright (c) 2013 Joshua Davis & James Cruz
+ *
+ * HMagneticField
+ * by Benjamin Fox / twitter.com/tracerstar
+ * https://github.com/tracerstar
+ * 
+ * Distributed under the BSD License. See LICENSE.txt for details.
+ * 
+ * All rights reserved.
+ */
 public static class HMagneticField extends HBehavior {
-	protected ArrayList<HMagnet> _magnets;
-	protected HLinkedHashSet<HDrawable> _targets;
+	private ArrayList<HPole> _poles;
+	private HLinkedHashSet<HDrawable> _targets;
 	public HMagneticField() {
-		_magnets = new ArrayList<HMagneticField.HMagnet>();
+		_poles = new ArrayList<HMagneticField.HPole>();
 		_targets = new HLinkedHashSet<HDrawable>();
 	}
-	public HMagneticField addMagnet(float sx, float sy, float nx, float ny) {
-		HMagnet m = new HMagnet();
-		m.southx = sx;
-		m.southy = sy;
-		m.northx = nx;
-		m.northy = ny;
-		_magnets.add(m);
+	public HMagneticField addMagnet(float nx, float ny, float sx, float sy) {
+		addPole(nx, ny, 1);
+		addPole(sx, sy, -1);
 		return this;
 	}
-	public HMagnet magnet(int index) {
-		return _magnets.get(index);
+	public HMagneticField addPole(float x, float y, float polarity) {
+		HPole p = new HPole(x, y, polarity);
+		_poles.add(p);
+		return this;	
 	}
-	public HMagneticField removeMagnet(int index) {
-		_magnets.remove(index);
+	public HPole pole(int index) {
+		return _poles.get(index);
+	}
+	public HMagneticField removePole(int index) {
+		_poles.remove(index);
 		return this;
 	}
 	public HMagneticField addTarget(HDrawable d) {
@@ -32,21 +46,31 @@ public static class HMagneticField extends HBehavior {
 		return this;
 	}
 	public float getRotation(float x, float y) {
-		float northRot = 0;
-		float southRot = 0;
-		int numMagnets = _magnets.size();
-		for(int i=0; i<numMagnets; i++) {
-			HMagnet m = _magnets.get(i);
-			northRot += HMath.xAxisAngle(x,y, m.northx,m.northy);
-			southRot += HMath.xAxisAngle(x,y, m.southx,m.southy);
+		int poleCount = _poles.size();
+		PVector v1 = new PVector(0, 0);
+		PVector v2 = new PVector(x, y); 
+		PVector distance = new PVector(0, 0);
+		PVector force = new PVector(0, 0);
+		float d = 0;
+		for(int i=0; i<poleCount; i++) {
+			HPole p = _poles.get(i);
+			v1.x = p._x;
+			v1.y = p._y;
+			if (p._polarity < 0) {
+				distance = PVector.sub(v1, v2);
+			} else {
+				distance = PVector.sub(v2, v1);	
+			}
+			d = distance.mag() / 5;
+			distance.normalize();
+			distance.mult(abs(p._polarity));
+			distance.div(d);
+			force.add(distance);
 		}
-		return (northRot + southRot) / numMagnets;
+    	return atan2(force.y, force.x);
 	}
 	public void runBehavior(PApplet app) {
-		for(HIterator<HDrawable> it=_targets.iterator(); it.hasNext();) {
-			HDrawable d = it.next();
-			d.rotationRad( getRotation(d.x(), d.y()) );
-		}
+		for(HDrawable d : _targets) d.rotationRad( getRotation(d.x(), d.y()) );
 	}
 	public HMagneticField register() {
 		return (HMagneticField) super.register();
@@ -54,7 +78,12 @@ public static class HMagneticField extends HBehavior {
 	public HMagneticField unregister() {
 		return (HMagneticField) super.unregister();
 	}
-	public static class HMagnet {
-		public float southx, southy, northx, northy;
+	public static class HPole {
+		public float _x, _y, _polarity;
+		public HPole(float x, float y, float polarity) {
+			_x = x;
+			_y = y;
+			_polarity = polarity;
+		}
 	}
 }

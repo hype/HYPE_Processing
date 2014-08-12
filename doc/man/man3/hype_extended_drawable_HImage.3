@@ -1,0 +1,93 @@
+.TH "hype.extended.drawable.HImage" 3 "Wed Jun 19 2013" "HYPE_processing" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+hype.extended.drawable.HImage \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBhype\&.core\&.drawable\&.HDrawable\fP, and \fBhype\&.core\&.interfaces\&.HImageHolder\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHImage\fP (Object imgArg)"
+.br
+.ti -1c
+.RI "\fBHImage\fP \fBcreateCopy\fP ()"
+.br
+.RI "\fICreates a copy of this drawable\&. \fP"
+.ti -1c
+.RI "\fBHImage\fP \fBresetSize\fP ()"
+.br
+.ti -1c
+.RI "\fBHImage\fP \fBimage\fP (Object imgArg)"
+.br
+.ti -1c
+.RI "PImage \fBimage\fP ()"
+.br
+.ti -1c
+.RI "\fBHImage\fP \fBtint\fP (int clr)"
+.br
+.ti -1c
+.RI "\fBHImage\fP \fBtint\fP (int clr, int \fBalpha\fP)"
+.br
+.ti -1c
+.RI "\fBHImage\fP \fBtint\fP (int r, int g, int b)"
+.br
+.ti -1c
+.RI "\fBHImage\fP \fBtint\fP (int r, int g, int b, int a)"
+.br
+.ti -1c
+.RI "int \fBtint\fP ()"
+.br
+.ti -1c
+.RI "boolean \fBcontainsRel\fP (float relX, float relY)"
+.br
+.ti -1c
+.RI "void \fBdraw\fP (PGraphics g, boolean usesZ, float drawX, float drawY, float \fBalphaPc\fP)"
+.br
+.RI "\fIDraws this drawable\&. \fP"
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBHImage\fP hype\&.extended\&.drawable\&.HImage\&.createCopy ()\fC [virtual]\fP"
+
+.PP
+Creates a copy of this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&.
+.PP
+\fBReturns:\fP
+.RS 4
+A copy of this drawable\&. 
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+.SS "void hype\&.extended\&.drawable\&.HImage\&.draw (PGraphicsg, booleanusesZ, floatdrawX, floatdrawY, floatcurrAlphaPc)\fC [virtual]\fP"
+
+.PP
+Draws this drawable\&. This method is abstract and is meant to be implemented by the children of this class\&. Also, this method is primarily called internally during the draw cycle and probably wouldn't need to be called directly\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIg\fP The graphics context for this drawable\&. 
+.br
+\fIusesZ\fP Indicates if z-coordinates are used\&. 
+.br
+\fIdrawX\fP The x coordinate where this drawable would consider as 0 
+.br
+\fIdrawY\fP The y coordinate where this drawable would consider as 0 
+.br
+\fIcurrAlphaPc\fP The current alpha value in the draw cycle\&. 
+.RE
+.PP
+
+.PP
+Implements \fBhype\&.core\&.drawable\&.HDrawable\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for HYPE_processing from the source code\&.
