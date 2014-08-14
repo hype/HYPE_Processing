@@ -34,6 +34,14 @@ public class HImage extends HDrawable implements HImageHolder {
 		copy.copyPropertiesFrom(this);
 		return copy;
 	}
+
+	public HImage size(float w, float h) {
+		super.size(w, h);
+		if (_image.width != w || _image.height != h) {
+			_image.resize((int)w, (int)h);
+		}
+		return this;
+	}
 	
 	public HImage resetSize() {
 		if(_image == null) size(0f,0f);
