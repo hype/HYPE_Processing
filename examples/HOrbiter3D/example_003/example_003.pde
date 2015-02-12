@@ -6,12 +6,14 @@ void setup() {
 	HCanvas c = new HCanvas(P3D).autoClear(false).fade(1);
 	H.add(c);
 
-	HShape s = new HShape("mon.svg").enableStyle(false);
-	s.scale(0.15)
-		.strokeWeight(1/.15)
-		.fill(#FF4400)
-		.rotation(45);
-	c.add(s);
+	HRect r = new HRect().rounding(4);
+	r
+		.fill( #FF4400 )
+		.anchorAt(H.CENTER)
+		.rotation( 45 )
+		.size(45)
+	;
+	c.add(r);
 
 	HOrbiter3D o = new HOrbiter3D(width/2, height/2, 0)
 		.zSpeed(1)
@@ -20,7 +22,7 @@ void setup() {
 	;
 
 	HOrbiter3D o2 = new HOrbiter3D()
-		.target(s)
+		.target(r)
 		.zSpeed(5)
 		.ySpeed(1)
 		.radius(75)

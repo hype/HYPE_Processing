@@ -6,7 +6,7 @@ void setup() {
 	H.init(this).background(#202020);
 	smooth();
 
-	HCanvas c = new HCanvas(P3D).autoClear(false).fade(50);
+	HCanvas c = new HCanvas(P3D).autoClear(false).fade(5);
 	H.add(c);
 
 	colors = new HColorPool(#ECECEC, #333333, #0095A8, #00616F, #FF3300, #FF6600);
@@ -15,10 +15,8 @@ void setup() {
 	pool.autoParent(c)
 
 		.add(
-			new HShape("mon.svg").enableStyle(false)
-				.scale(0.1)
-				.strokeWeight(1/.1)
-				.rotation(45)
+			new HRect()
+			.rounding(4)
 		)
 
 		.onCreate(
@@ -26,7 +24,13 @@ void setup() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
 
-					d.fill(colors.getColor());
+					d
+						.noStroke()
+						.fill( colors.getColor() )
+						.anchorAt(H.CENTER)
+						.rotation( 45 )
+						.size(45)
+					;
 
 					HOrbiter3D o = new HOrbiter3D(width/2, height/2, 0)
 						.zSpeed(1)

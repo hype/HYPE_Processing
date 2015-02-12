@@ -4,12 +4,14 @@ void setup() {
 	smooth();
 	lights();
 
-	HRect r = new HRect(30);
+	HRect r = new HRect();
 	r
-		.rounding(10)
+		.rounding(4)
 		.anchorAt(H.CENTER)
 		.fill(#FF4400)
 		.noStroke()
+		.rotation(45)
+		.size(45)
 	;
 	H.add(r);
 

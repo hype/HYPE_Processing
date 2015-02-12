@@ -14,11 +14,8 @@ void setup() {
 	pool.autoParent(c)
 
 		.add(
-			new HShape("mon.svg").enableStyle(false)
-				.scale(0.1)
-				.strokeWeight(1/.1)
-				.fill(#FF4400)
-				.rotation(45)
+			new HRect()
+			.rounding(4)
 		)
 
 		.onCreate(
@@ -26,7 +23,13 @@ void setup() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
 
-					d.fill(colors.getColor());
+					d
+						.noStroke()
+						.fill( colors.getColor() )
+						.anchorAt(H.CENTER)
+						.rotation( 45 )
+						.size(45)
+					;
 
 					float r = floor(random(10, 40)) * 10;
 

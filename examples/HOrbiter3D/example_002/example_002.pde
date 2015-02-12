@@ -4,12 +4,19 @@ void setup() {
 	smooth();
 	lights();
 
-	HBox b = new HBox();
-	b.depth(40).height(40).width(40).fill(#FF4400);
-	H.add(b);
+	HRect r = new HRect();
+	r
+		.rounding(4)
+		.anchorAt(H.CENTER)
+		.fill(#FF4400)
+		.noStroke()
+		.rotation(45)
+		.size(45)
+	;
+	H.add(r);
 
 	HOrbiter3D o = new HOrbiter3D(width/2, height/2, 0)
-		.target(b)
+		.target(r)
 		.zSpeed(1.5)
 		.ySpeed(0.2)
 		.radius(250)
