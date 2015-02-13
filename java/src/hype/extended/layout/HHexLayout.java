@@ -1,23 +1,30 @@
 /*
  * HYPE_Processing
+ * http://www.hypeframework.org/ & https://github.com/hype/HYPE_Processing
  * 
  * Copyright (c) 2013 Joshua Davis & James Cruz
- *
+ * 
  * HHexLayout
- * by Russell Hay / http://cordandruss.com
- * https://github.com/RussTheAerialist
+ * by Russell Hay / cordandruss.com / github.com/RussTheAerialist
  *
  * Creates a grid layout that is hex based spiraling out from the center of the sketch
  *
  * References:
- *    http://www.redblobgames.com/grids/hexagons/
- *    http://gamedev.stackexchange.com/questions/51264/get-ring-of-tiles-in-hexagon-grid
+ *    www.redblobgames.com/grids/hexagons/
+ *    gamedev.stackexchange.com/questions/51264/get-ring-of-tiles-in-hexagon-grid
  * 
  * Distributed under the BSD License. See LICENSE.txt for details.
  * 
  * All rights reserved.
  */
-public static class HHexLayout implements HLayout {
+
+package hype.extended.layout;
+
+import hype.core.drawable.HDrawable;
+import hype.core.layout.HLayout;
+import processing.core.PVector;
+
+public class HHexLayout implements HLayout {
 	protected int _currentDistanceFromCenter, _currentIndex, _direction;
 	protected float _spacing, _offsetX, _offsetY, _adjustX, _adjustY;
 	protected PVector _lastPoint;
@@ -139,6 +146,7 @@ public static class HHexLayout implements HLayout {
 		}
 	}
 
+	@Override
 	public PVector getNextPoint() {
 		++_currentIndex;
 		updateLastPoint();
@@ -149,15 +157,13 @@ public static class HHexLayout implements HLayout {
 		x = _spacing * 3.0/2.0 * _lastPoint.x;
 		y = _spacing * H.app().sqrt(3.0) * (_lastPoint.y + _lastPoint.x/2.0);
 
-		PVector point = new PVector(
+		return new PVector(
 			x + _offsetX - _adjustX ,
 			y + _offsetY - _adjustY
 		);
-
-		return point;
-
 	}
 
+	@Override
 	public void applyTo(HDrawable target) {
 		target.loc(getNextPoint());
 	}
