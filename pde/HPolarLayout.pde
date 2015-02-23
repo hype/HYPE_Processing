@@ -41,9 +41,29 @@ public static class HPolarLayout implements HLayout {
 		_offsetX = f;
 		return this;
 	}
+	public float offsetX() {
+		return _offsetX;
+	}
 	public HPolarLayout offsetY(float f) {
 		_offsetY = f;
 		return this;
+	}
+	public float offsetY() {
+		return _offsetY;
+	}
+	public HPolarLayout length(float f) {
+		_length = f;
+		return this;
+	}
+	public float length() {
+		return _length;
+	}
+	public HPolarLayout angleStep(float f) {
+		_angleStep = f;
+		return this;
+	}
+	public float angleStep() {
+		return _angleStep;
 	}
 	public HPolarLayout scale(float f) {
 		_scaleByDistance = true;

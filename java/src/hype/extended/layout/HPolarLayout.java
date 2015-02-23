@@ -44,7 +44,7 @@ public class HPolarLayout implements HLayout {
 		_scaleMultiplier = 0;
 	}
 
-	//set the offSet coords
+	//set the offset coords
 	public HPolarLayout offset(float x, float y) {
 		_offsetX = x;
 		_offsetY = y;
@@ -56,9 +56,35 @@ public class HPolarLayout implements HLayout {
 		return this;
 	}
 
+	public float offsetX() {
+		return _offsetX;
+	}
+
 	public HPolarLayout offsetY(float f) {
 		_offsetY = f;
 		return this;
+	}
+
+	public float offsetY() {
+		return _offsetY;
+	}
+
+	public HPolarLayout length(float f) {
+		_length = f;
+		return this;
+	}
+
+	public float length() {
+		return _length;
+	}
+
+	public HPolarLayout angleStep(float f) {
+		_angleStep = f;
+		return this;
+	}
+
+	public float angleStep() {
+		return _angleStep;
 	}
 
 	//turn on distance scaling by multiplier f
