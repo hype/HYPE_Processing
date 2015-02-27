@@ -18,6 +18,9 @@ public static abstract class HDrawable3D extends HDrawable {
 	public HDrawable3D size(float s) {
 		return size(s,s,s);
 	}
+	public HDrawable3D size(PVector s) {
+		return size(s.x,s.y,s.z);
+	}
 	public HDrawable3D size(float w, float h, float d) {
 		_width = w;
 		_height = h;

@@ -39,8 +39,11 @@ public static class HSphere extends HDrawable3D {
 		applyStyle(g, currAlphaPc);
 		g.pushMatrix();
 			g.translate(drawX+_width/2, drawY+_height/2, -anchorZ()+_depth/2);
-			g.scale(_width, _height, _depth);
-			g.sphere(1);
+			/*
+				Hot fix for weird stroke on sphere when scaling
+				TODO: need to look at this again to make it better
+			*/
+			g.sphere(_width);
 		g.popMatrix();
 	}
 }
