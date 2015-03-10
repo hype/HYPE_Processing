@@ -1,26 +1,23 @@
 void setup() {
-	size(640, 640, P3D);
+	size(640,640,P3D);
 	H.init(this).background(#202020).use3D(true);
 	smooth();
 	lights();
 
-	HRect r = new HRect();
-	r
-		.rounding(4)
-		.anchorAt(H.CENTER)
-		.fill(#FF4400)
+	HRect d = new HRect(50).rounding(4);
+	d
 		.noStroke()
+		.fill(#FF3300)
+		.anchorAt(H.CENTER)		
 		.rotation(45)
-		.size(45)
 	;
-	H.add(r);
+	H.add(d);
 
-	HOrbiter3D o = new HOrbiter3D(width/2, height/2, 0)
-		.target(r)
+	HOrbiter3D orb = new HOrbiter3D(width/2, height/2, 0)
+		.target(d)
 		.zSpeed(1)
 		.radius(250)
 	;
-
 }
 
 void draw() {
@@ -29,10 +26,9 @@ void draw() {
 	//simple sphere mesh to show orbit range
 	pushMatrix();
 		translate(width/2, height/2, 0);
+		stroke(#666666);
 		noFill();
-		stroke(255);
 		sphereDetail(20);
 		sphere(200);
 	popMatrix();
-	
 }

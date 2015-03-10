@@ -1,53 +1,72 @@
-HColorPool colors;
+HDrawablePool pool;
+HTimer timerPool;
+int boxSixe = 50;
 
 void setup() {
-	size(640, 640, P3D);
-	H.init(this).background(#202020);
+	size(750,750,P3D);
+	H.init(this).background(#202020).use3D(true);
 	smooth();
+	
 
-	HCanvas c = new HCanvas(P3D).autoClear(false).fade(2);
-	H.add(c);
-
-	colors = new HColorPool(#ECECEC, #333333, #0095A8, #00616F, #FF3300, #FF6600);
-
-	HDrawablePool pool = new HDrawablePool(42);
-	pool.autoParent(c)
-
-		.add(
-			new HRect()
-			.rounding(4)
-		)
+	pool = new HDrawablePool(42);
+	pool.autoAddToStage()
+		.add (new HBox())
 
 		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
-					HDrawable d = (HDrawable) obj;
-
+					HBox d = (HBox) obj;
 					d
-						.noStroke()
-						.fill( colors.getColor() )
-						.anchorAt(H.CENTER)
-						.rotation( 45 )
-						.size(45)
+						.depth(boxSixe)
+						.width(boxSixe)
+						.height(boxSixe)
+						.strokeWeight(2)
+						.stroke(#000000,50)
+						.fill(#FF3300)
+						.loc(width/2,height/2)
 					;
 
-					float r = floor(random(10, 40)) * 10;
-
-					HOrbiter3D o = new HOrbiter3D(width/2, height/2, 0)
+					HOrbiter3D orb = new HOrbiter3D(width/2, height/2, 0)
 						.target(d)
-						.zSpeed(random(-1.5, 1.5))
-						.ySpeed(random(-0.5, 0.5))
-						.radius(r)
+						.zSpeed(1.5)
+						.ySpeed(0.2)
+						.radius(250)
 					;
+
+					int i = pool.currentIndex();
+
+					// new HOscillator().target(d).property(H.ROTATIONX).range(-360, 360).speed(0.4).freq(1).currentStep(i);
+					// new HOscillator().target(d).property(H.ROTATIONY).range(-360, 360).speed(0.4).freq(1).currentStep(i);
+					new HOscillator().target(d).property(H.ROTATIONZ).range(-360, 360).speed(0.4).freq(1).currentStep(i);
 				}
 			}
 		)
-
-		.requestAll()
 	;
 
+	timerPool = new HTimer()
+		.numCycles( pool.numActive() )
+		.interval(70)
+		.callback(
+			new HCallback() { 
+				public void run(Object obj) {
+					pool.request();
+				}
+			}
+		)
+	;
 }
 
 void draw() {
+	pointLight(255, 255, 255,  width/2, height/2, 280);
+
 	H.drawStage();
+
+	//simple sphere mesh to show orbit range
+	pushMatrix();
+		translate(width/2, height/2, 0);
+		stroke(#333333);
+		noFill();
+		sphereDetail(20);
+		sphere(200);
+	popMatrix();
 }

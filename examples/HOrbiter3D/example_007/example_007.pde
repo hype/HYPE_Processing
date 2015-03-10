@@ -1,71 +1,57 @@
-HDrawablePool pool;
-HColorPool colors;
-HOrbiter3D parent_orbit;
+HOrbiter3D orb1, orb2;
+HCanvas canvas;
 
 void setup() {
-	size(640, 640, P3D);
-	H.init(this).background(#202020);
+	size(640,640,P3D);
+	H.init(this).background(#202020).autoClear(true).use3D(true);
 	smooth();
+	lights();
+	hint(DISABLE_DEPTH_TEST);
 
-	parent_orbit = new HOrbiter3D(width/2, height/2, 0)
-						.zSpeed(0.05)
-						.ySpeed(0.015)
-						.radius(100)
-						.zAngle(180)//start the orbit from the back of the sphere
-					;
+	canvas = new HCanvas(P3D).autoClear(false).fade(1);
+	H.add(canvas);
 
-	HCanvas c = new HCanvas(P3D).autoClear(false).fade(15);
-	H.add(c);
+	HRect d = new HRect(50).rounding(4);
+	d
+		.noStroke()
+		.fill(#FF3300)
+		.anchorAt(H.CENTER)		
+		.rotation(45)
+	;
+	canvas.add(d);
 
-	colors = new HColorPool( #ECECEC, #333333, #0095A8, #00616F, #FF3300, #FF6600);
-
-	pool = new HDrawablePool(42);
-	pool.autoParent(c)
-
-		.add(
-			new HRect()
-			.rounding(4)
-		)
-
-		.onCreate(
-			new HCallback() {
-				public void run(Object obj) {
-					HDrawable d = (HDrawable) obj;
-
-					d
-						.noStroke()
-						.fill( colors.getColor() )
-						.anchorAt(H.CENTER)
-						.rotation( 45 )
-						.size(45)
-					;
-
-					HOrbiter3D o = new HOrbiter3D()
-						.zSpeed(1)
-						.ySpeed(0.3)
-						.radius(300)
-						.yAngle(360.0 / 42 * pool.currentIndex())
-						.parent(parent_orbit)
-					;
-
-					HOrbiter3D o2 = new HOrbiter3D()
-						.target(d)
-						.zSpeed(5)
-						.ySpeed(1)
-						.radius(75)
-						.yAngle(360.0 / 42 * pool.currentIndex())
-						.parent(o)
-					;
-
-				}
-			}
-		)
-
-		.requestAll()
+	orb1 = new HOrbiter3D(width/2, height/2, 0)
+		.zSpeed(-1.5)
+		.ySpeed(-0.2)
+		.radius(200)
 	;
 
+	orb2 = new HOrbiter3D(width/2, height/2, 0)
+		.target(d)
+		.zSpeed(5)
+		.ySpeed(2)
+		.radius(75)
+		.parent(orb1)
+	;
 }
 
 void draw() {
 	H.drawStage();
+
+	//simple sphere mesh to show orbit range
+	pushMatrix();
+		translate(width/2, height/2, 0);
+		stroke(#333333);
+		noFill();
+		sphereDetail(20);
+		sphere(200);
+	popMatrix();
+
+	pushMatrix();
+		translate(orb1.x(), orb1.y(), orb1.z());
+		stroke(#666666);
+		noFill();
+		sphereDetail(20);
+		sphere(75);
+	popMatrix();
 }

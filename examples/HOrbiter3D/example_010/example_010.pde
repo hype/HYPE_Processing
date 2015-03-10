@@ -58,6 +58,14 @@ void draw() {
 	pointLight(204, 204, 204,  width/2, (height/2) - 50, 500); // mid light gray light
 
 	H.drawStage();
+
+	for(HDrawable d : pool) {
+		float r = floor(random(190, 220));
+
+		HBundle obj1 = d.extras();
+		HOrbiter3D o = (HOrbiter3D) obj1.obj("o");
+		o.radius(r);
+	}
 }
 
 

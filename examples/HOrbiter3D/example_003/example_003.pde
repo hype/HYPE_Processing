@@ -1,36 +1,62 @@
+HDrawablePool pool;
+HTimer timerPool;
+
 void setup() {
-	size(640, 640, P3D);
-	H.init(this).background(#202020);
+	size(640,640,P3D);
+	H.init(this).background(#202020).use3D(true);
 	smooth();
+	lights();
 
-	HCanvas c = new HCanvas(P3D).autoClear(false).fade(1);
-	H.add(c);
+	pool = new HDrawablePool(42);
+	pool.autoAddToStage()
+		.add(new HRect(50).rounding(10))
 
-	HRect r = new HRect().rounding(4);
-	r
-		.fill( #FF4400 )
-		.anchorAt(H.CENTER)
-		.rotation( 45 )
-		.size(45)
+		.onCreate(
+			new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
+
+					d
+						.stroke(#000000, 50)
+						.fill(#FF3300)
+						.anchorAt(H.CENTER)
+						.rotation(45)
+						.loc(width/2,height/2)
+					;
+
+					HOrbiter3D orb = new HOrbiter3D(width/2, height/2, 0)
+						.target(d)
+						.zSpeed(1.5)
+						.ySpeed(0.2)
+						.radius(250)
+					;
+				}
+			}
+		)
 	;
-	c.add(r);
 
-	HOrbiter3D o = new HOrbiter3D(width/2, height/2, 0)
-		.zSpeed(1)
-		.ySpeed(0.1)
-		.radius(250)
+	timerPool = new HTimer()
+		.numCycles( pool.numActive() )
+		.interval(75)
+		.callback(
+			new HCallback() { 
+				public void run(Object obj) {
+					pool.request();
+				}
+			}
+		)
 	;
-
-	HOrbiter3D o2 = new HOrbiter3D()
-		.target(r)
-		.zSpeed(5)
-		.ySpeed(1)
-		.radius(75)
-		.parent(o)
-	;
-
 }
 
 void draw() {
 	H.drawStage();
+
+	//simple sphere mesh to show orbit range
+	pushMatrix();
+		translate(width/2, height/2, 0);
+		stroke(#666666);
+		noFill();
+		sphereDetail(20);
+		sphere(200);
+	popMatrix();
 }
