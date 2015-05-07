@@ -204,12 +204,10 @@ public class HDrawablePool implements Iterable<HDrawable> {
 
 	public HDrawablePool shuffleRequestAll() {
 
+		HDrawable tempParent = null;
 		if(_autoParent != null) {
-			//TO DO: throw a better exception that the HWarning and null return
-			//throw exception
-			HWarnings.warn("_autoParent set", "HDrawablePool.shuffleRequestAll()",
-					"shuffleRequestAll() cannot be use while autoAddToStage is in use on the pool");
-			return null;
+			tempParent = _autoParent;
+			_autoParent = null;
 		}
 
 		if(_prototypes.size() <= 0) {
@@ -222,8 +220,13 @@ public class HDrawablePool implements Iterable<HDrawable> {
 		//shuffle active set and add to stage
 		_activeSet.shuffle();
 
-		for (HDrawable d : _activeSet) {
-			H.stage().add(d);
+		if(tempParent != null) {
+			_autoParent = tempParent;
+			tempParent = null;
+
+			for (HDrawable d : _activeSet) {
+				_autoParent.add(d);
+			}
 		}
 
 		return this;

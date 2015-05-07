@@ -6,7 +6,8 @@ void setup() {
 	smooth();
 
 	pool = new HDrawablePool(100);
-	pool.add (
+	pool.autoAddToStage()
+		.add (
 			new HRect()
 			.rounding(5)
 			.stroke(0)
