@@ -13,7 +13,8 @@ public static class HCanvas extends HDrawable {
 	private String _renderer;
 	private float _filterParam;
 	private int _filterKind, _blendMode, _fadeAmt;
-	private boolean _autoClear,_hasFade,_hasFilter,_hasFilterParam,_hasBlend;
+	private boolean _autoClear,_hasFade,_hasFilter,_hasFilterParam,_hasBlend, _hasShader;
+	private ArrayList<PShader> _shader;
 	public HCanvas() {
 		this(H.app().width, H.app().height);
 	}
@@ -60,6 +61,14 @@ public static class HCanvas extends HDrawable {
 	}
 	public PGraphics graphics() {
 		return _graphics;
+	}
+	public HCanvas shader(PShader s) {
+		if (!_hasShader) {
+			_hasShader = true;
+			_shader = new ArrayList<PShader>();
+		}
+		_shader.add(s);
+		return this;
 	}
 	public HCanvas filter(int kind) {
 		_hasFilter = true;
@@ -216,6 +225,11 @@ public static class HCanvas extends HDrawable {
 			while(child != null) {
 				child.paintAll(_graphics, usesZ(), alphaPc);
 				child = child.next();
+			}
+			if (_hasShader) {
+				for(PShader s : _shader) {
+					_graphics.filter(s);
+				}
 			}
 			_graphics.endDraw();
 			g.image(_graphics,0,0);
