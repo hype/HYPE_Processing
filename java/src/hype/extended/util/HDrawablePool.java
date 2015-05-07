@@ -145,6 +145,26 @@ public class HDrawablePool implements Iterable<HDrawable> {
 		
 		return this;
 	}
+
+	public HDrawablePool drain() {
+		return drain(true);
+	}
+
+	public HDrawablePool drain(boolean resetLayout) {
+
+		for (HDrawable d : _activeSet) {
+			if(_autoParent != null) _autoParent.remove(d);
+			_onRelease.run(d);//do we need this?
+		}
+
+		_activeSet.removeAll();
+		_inactiveSet.removeAll();
+		//Need to add this in when we've updated the HLayout interface
+		// if (_layout != null && resetLayout == true) {
+		// 	_layout.resetIndex();
+		// }
+		return this;
+	}
 	
 	public HDrawablePool add(HDrawable prototype, int frequency) {
 		if(prototype == null) {

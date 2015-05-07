@@ -104,6 +104,18 @@ public static class HDrawablePool implements Iterable<HDrawable> {
 		_max = 0;
 		return this;
 	}
+	public HDrawablePool drain() {
+		return drain(true);
+	}
+	public HDrawablePool drain(boolean resetLayout) {
+		for (HDrawable d : _activeSet) {
+			if(_autoParent != null) _autoParent.remove(d);
+			_onRelease.run(d);
+		}
+		_activeSet.removeAll();
+		_inactiveSet.removeAll();
+		return this;
+	}
 	public HDrawablePool add(HDrawable prototype, int frequency) {
 		if(prototype == null) {
 			HWarnings.warn("Null Prototype", "HDrawablePool.add()",
