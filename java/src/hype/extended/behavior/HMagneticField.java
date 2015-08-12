@@ -19,6 +19,7 @@ import hype.core.util.HMath;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class HMagneticField extends HBehavior {
 	private ArrayList<HPole> _poles;
@@ -89,14 +90,14 @@ public class HMagneticField extends HBehavior {
 			d = distance.mag() / 5;
 
 			distance.normalize();
-			distance.mult(abs(p._polarity));
+			distance.mult(Math.abs(p._polarity));
 			distance.div(d);
 
 			force.add(distance);
 
 		}
 
-    	return atan2(force.y, force.x);
+    	return processing.core.PApplet.atan2(force.y, force.x);
 
 		
 	}

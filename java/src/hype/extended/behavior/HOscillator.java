@@ -13,9 +13,11 @@ package hype.extended.behavior;
 
 import hype.core.behavior.HBehavior;
 import hype.core.drawable.HDrawable;
+import hype.core.drawable.HDrawable3D;
 import hype.core.util.HConstants;
 import hype.core.util.HMath;
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class HOscillator extends HBehavior {
 	private HDrawable _target;
