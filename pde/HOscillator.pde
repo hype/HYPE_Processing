@@ -14,14 +14,40 @@ public static class HOscillator extends HBehavior {
 	private float _rel1, _rel2, _rel3;
 	private float _max1, _max2, _max3;
 	private float _curr1, _curr2, _curr3;
+	private float _map1, _map2, _map3;
 	private float _origw, _origh, _origd;
 	private float _step, _speed, _freq;
-	private int _property, _waveform;
+	private float _clip_min, _clip_max;
+	private float _offset;
+	private boolean _clip;
+	private int _property, _waveform, _tick;
+	private float _startStep;
+	private ArrayList<HOscillator> _amplifiers, _reducers;
 	public HOscillator() {
+		_clip = false;
 		_speed = _freq = 1;
 		_waveform = HConstants.SINE;
 		_property = HConstants.Y;
+		_amplifiers = new ArrayList<HOscillator>();
+		_reducers = new ArrayList<HOscillator>();
+		_offset = 0;
+		_tick = 0;
+		_startStep = 0;
 		register();
+	}
+	public HOscillator addAmplifier(HOscillator wave) {
+		_amplifiers.add(wave);
+		return this;
+	}
+	public HOscillator addReducer(HOscillator wave) {
+		_reducers.add(wave);
+		return this;
+	}
+	public HOscillator clipping(float clipMin, float clipMax) {
+		_clip = true;
+		_clip_min = clipMin;
+		_clip_max = clipMax;
+		return this;
 	}
 	/** @deprecated */
 	public HOscillator createCopy() {
@@ -68,10 +94,19 @@ public static class HOscillator extends HBehavior {
 	}
 	public HOscillator currentStep(float stepDegrees) {
 		_step = stepDegrees;
+		_startStep = stepDegrees;
 		return this;
 	}
 	public float currentStep() {
 		return _step;
+	}
+	public HOscillator synchStep(float stepDegrees, float tick) {
+		currentStep(stepDegrees + tick * _speed);
+		return this;
+	}
+	public HOscillator offset(float offset) {
+		_offset = offset;
+		return this;
 	}
 	public HOscillator speed(float f) {
 		_speed = f;
@@ -206,10 +241,57 @@ public static class HOscillator extends HBehavior {
 		case HConstants.SQUARE:		rawVal = HMath.squareWave(deg); break;
 		default: rawVal = 0; break;
 		}
+		_map1 = HMath.map(rawVal, -1,1, _min1,_max1);
+		_map2 = HMath.map(rawVal, -1,1, _min2,_max2);
+		_map3 = HMath.map(rawVal, -1,1, _min3,_max3);
+		if (_amplifiers.size() > 0) {
+			for (int i = _amplifiers.size()-1; i >= 0; i--) {
+				HOscillator amplifier = _amplifiers.get(i);
+				amplifier.synchStep(_startStep, _tick);
+				amplifier.nextRaw();
+				_map1 += amplifier.map1();
+				_map2 += amplifier.map2();
+				_map3 += amplifier.map3();
+			}
+		}
+		if (_reducers.size() > 0) {
+			for (int i = _reducers.size()-1; i >= 0; i--) {
+				HOscillator reducer = _reducers.get(i);
+				reducer.synchStep(_startStep, _tick);
+				reducer.nextRaw();
+				_map1 -= reducer.map1();
+				_map2 -= reducer.map2();
+				_map3 -= reducer.map3();
+			}
+		}
+		if (_clip) {
+			if (_map1 > _clip_max) {
+				_map1 = _clip_max;
+			}
+			if (_map2 > _clip_max) {
+				_map2 = _clip_max;
+			}
+			if (_map3 > _clip_max) {
+				_map3 = _clip_max;
+			}
+			if (_map1 < _clip_min) {
+				_map1 = _clip_min;
+			}
+			if (_map2 < _clip_min) {
+				_map2 = _clip_min;
+			}
+			if (_map3 < _clip_min) {
+				_map3 = _clip_min;
+			}
+		}
+		_map1 += _offset;
+		_map2 += _offset;
+		_map3 += _offset;
+		_curr1 = _map1 + _rel1;
+		_curr2 = _map2 + _rel2;
+		_curr3 = _map3 + _rel3;
 		_step += _speed;
-		_curr1 = HMath.map(rawVal, -1,1, _min1,_max1) + _rel1;
-		_curr2 = HMath.map(rawVal, -1,1, _min2,_max2) + _rel2;
-		_curr3 = HMath.map(rawVal, -1,1, _min3,_max3) + _rel3;
+		_tick++;
 		return rawVal;
 	}
 	public float curr() {
@@ -223,6 +305,15 @@ public static class HOscillator extends HBehavior {
 	}
 	public float curr3() {
 		return _curr3;
+	}
+	public float map1() {
+		return _map1;
+	}
+	public float map2() {
+		return _map2;
+	}
+	public float map3() {
+		return _map3;
 	}
 	public void runBehavior(PApplet app) {
 		if(_target==null) return;

@@ -104,6 +104,18 @@ public static class HDrawablePool implements Iterable<HDrawable> {
 		_max = 0;
 		return this;
 	}
+	public HDrawablePool drain() {
+		return drain(true);
+	}
+	public HDrawablePool drain(boolean resetLayout) {
+		for (HDrawable d : _activeSet) {
+			if(_autoParent != null) _autoParent.remove(d);
+			_onRelease.run(d);
+		}
+		_activeSet.removeAll();
+		_inactiveSet.removeAll();
+		return this;
+	}
 	public HDrawablePool add(HDrawable prototype, int frequency) {
 		if(prototype == null) {
 			HWarnings.warn("Null Prototype", "HDrawablePool.add()",
@@ -145,6 +157,28 @@ public static class HDrawablePool implements Iterable<HDrawable> {
 					HWarnings.NO_PROTOTYPE);
 		} else {
 			while(count() < _max) request();
+		}
+		return this;
+	}
+	public HDrawablePool shuffleRequestAll() {
+		HDrawable tempParent = null;
+		if(_autoParent != null) {
+			tempParent = _autoParent;
+			_autoParent = null;
+		}
+		if(_prototypes.size() <= 0) {
+			HWarnings.warn("No Prototype", "HDrawablePool.shuffleRequestAll()",
+					HWarnings.NO_PROTOTYPE);
+		} else {
+			while(count() < _max) request();
+		}
+		_activeSet.shuffle();
+		if(tempParent != null) {
+			_autoParent = tempParent;
+			tempParent = null;
+			for (HDrawable d : _activeSet) {
+				_autoParent.add(d);
+			}
 		}
 		return this;
 	}

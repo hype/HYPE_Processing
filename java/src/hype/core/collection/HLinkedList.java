@@ -14,6 +14,7 @@ package hype.core.collection;
 import hype.core.util.HWarnings;
 
 import java.util.Iterator;
+import java.util.Random;
 
 public class HLinkedList<T> implements Iterable<T> {
 	protected HLinkedListNode<T> _firstSentinel, _lastSentinel;
@@ -99,6 +100,28 @@ public class HLinkedList<T> implements Iterable<T> {
 	public void removeAll() {
 		_lastSentinel.putAfter(_firstSentinel);
 		_size = 0;
+	}
+
+	/*
+		Shuffle list items
+		approximate replication of Java's shuffle method
+	*/
+	public void shuffle() {
+
+		Random rnd = new Random();
+
+		for (int i=_size; i>1; i--) {
+
+			HLinkedListNode<T> i_node = nodeAt(i-1);
+			HLinkedListNode<T> rnd_node = nodeAt(rnd.nextInt(i));
+
+			//move node at i-1 to after the random node
+			i_node.putAfter(rnd_node);
+
+			//move the random node to the position of node at i-1
+			i_node = nodeAt(i-1);
+			rnd_node.putAfter(i_node);
+		}
 	}
 	
 	// Misc //
