@@ -1,3 +1,8 @@
+### build_20150811.0 (August 11, 2015)
+- refactor file/directory structure to meet Processing Library Guidelines.
+- Incorporate Ant build support
+- Debug against Java 8
+
 ### build_20130626.0 (Jun 26, 2013)
 - new fields for HConstants:
 	- `ROTATIONX`
