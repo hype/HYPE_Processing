@@ -215,6 +215,7 @@
 
 	<!-- generate library.properties file -->
 	<target name="generate.libprops" if="is.normal">
+		<delete file="${libprops.destination}" />
 		<copy file="${libprops.source}" tofile="${libprops.destination}" />
 		<antcall target="parse.file"><param name="file" value="${libprops.destination}"/></antcall>
 		<copy file="${libprops.destination}" tofile="${project.tmp}/${project.name}/library.properties" />
@@ -222,6 +223,7 @@
 
 	<!-- generate readme file from template -->
 	<target name="generate.readme" if="is.normal">
+		<delete file="${readme.destination}" />
 		<copy file="${readme.source}" tofile="${readme.destination}" />
 		<antcall target="parse.file"><param name="file" value="${readme.destination}"/></antcall>
 		<copy file="${readme.destination}" tofile="${project.tmp}/${project.name}/README.md" />
@@ -250,7 +252,7 @@
 	<!-- create zip of plugin and in distribution folder -->
 	<target name="generate.zip" if="is.normal">
 		<!-- zip the distribution of the library -->
-		<zip destfile="${project.dist}/${project.name}-${library.prettyVersion}.zip"
+		<zip destfile="${project.dist}/${project.name}.zip"
 		     basedir="${project.tmp}/${project.name}"
 		     excludes="**/.DS_Store" />
 	</target>
