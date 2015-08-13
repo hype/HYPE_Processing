@@ -1,15 +1,16 @@
-### Java template
+## Java template
 *.class
 bin/
 
-### Processing template
+## Processing template
 #library/
+!resources/code/ExampleTaglet.class
 
-### JetBrains template
+## JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion
 *.iml
 
-## Directory-based project format:
+### Directory-based project format:
 .idea/
 # if you remove the above rule, at least ignore the following:
 
@@ -27,7 +28,7 @@ bin/
 
 ## Plugin-specific files:
 
-# IntelliJ
+### IntelliJ
 /out/
 
 ### Gradle template
@@ -42,7 +43,6 @@ gradle-app.setting
 
 ### Ant template
 tmp/
-distribution/
 
 ### Eclipse template
 .project
@@ -51,8 +51,8 @@ distribution/
 ### OSX
 .DS_Store
 
-# Mobile Tools for Java (J2ME)
+### Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+### Virtual Machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
