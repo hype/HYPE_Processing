@@ -1,10 +1,11 @@
+import hype.*;
+
 HOrbiter3D orb1, orb2;
 HCanvas canvas;
 
 void setup() {
 	size(640,640,P3D);
 	H.init(this).background(#202020).autoClear(true).use3D(true);
-	smooth();
 	lights();
 	hint(DISABLE_DEPTH_TEST);
 

@@ -1,4 +1,4 @@
-/* @pjs preload="theAmericas.png"; */
+import hype.*;
 
 HColorPool colors;
 HShapeLayout hsl;
@@ -7,7 +7,6 @@ HDrawablePool pool;
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	colors = new HColorPool(#CCE70B, #80C41C, #40A629, #237D26, #FF3300, #FF6600);
 

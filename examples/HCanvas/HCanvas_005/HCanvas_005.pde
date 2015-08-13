@@ -1,3 +1,5 @@
+import hype.*;
+
 /*
 	Using a simplified scanline shader, this example demonstrates how to apply
 	a PShader to an HCanvas object.
@@ -19,7 +21,6 @@ PShader myShader;
 void setup() {
 	size(640,640,P3D);
 	H.init(this).background(#000000);
-	smooth();
 
 	myShader = loadShader("scanlines.glsl");
 	myShader.set("resolution", 1.0, 1.0 );

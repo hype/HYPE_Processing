@@ -1,3 +1,5 @@
+import hype.*;
+
 PImage tex;
 PVector[] pickedPos;
 int[]     pickedScale;

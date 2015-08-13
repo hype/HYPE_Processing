@@ -1,4 +1,4 @@
-/* @pjs preload="sintra.jpg"; */
+import hype.*;
 
 HFollow mf;
 HRect d;
@@ -7,7 +7,6 @@ HPixelColorist colors;
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020).autoClear(false);
-	smooth();
 
 	PImage img = loadImage("sintra.jpg");
 	colors = new HPixelColorist(img)

@@ -1,4 +1,4 @@
-/* @pjs preload="sintra.jpg"; */
+import hype.*;
 
 HPixelColorist colors;
 HSwarm swarm;
@@ -8,7 +8,6 @@ HTimer timer;
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020).autoClear(false);
-	smooth();
 
 	colors = new HPixelColorist("sintra.jpg")
 		.fillOnly()

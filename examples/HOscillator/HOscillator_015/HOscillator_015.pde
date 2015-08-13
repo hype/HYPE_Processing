@@ -1,10 +1,11 @@
+import hype.*;
+
 HDrawablePool pool;
 HOscillator amplifier_wave;
 
 void setup() {
 	size(640, 640);
 	H.init(this).background(#202020);
-	smooth();
 
 	amplifier_wave = new HOscillator()
 						.property(H.Y)

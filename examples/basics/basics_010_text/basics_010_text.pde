@@ -1,17 +1,10 @@
-// As seen here, we need to preload Images and Fonts.
-//
-// See http://processingjs.org/reference/preload/
-// and http://processingjs.org/reference/font/
-// for more information.
-
-/* @pjs font="DroidSerifRegular.ttf, DroidSerifItalic.ttf, DroidSerifBold.ttf, DroidSerifBoldItalic.ttf"; */
+import hype.*;
 
 PFont font1, font2, font3, font4;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	font1 = createFont("DroidSerifRegular.ttf", 18);
 	font2 = createFont("DroidSerifItalic.ttf", 48);

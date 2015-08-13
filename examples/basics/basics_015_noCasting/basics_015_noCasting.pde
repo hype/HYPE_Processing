@@ -1,3 +1,5 @@
+import hype.*;
+
 /* 
  * This testfile demonstrates the recently added
  * feature that lets you call H.add() and remove()
@@ -34,7 +36,6 @@
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	H.add( new HEllipse() )
 		.size(100)

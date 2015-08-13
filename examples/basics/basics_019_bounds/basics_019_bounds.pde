@@ -1,9 +1,10 @@
+import hype.*;
+
 HRect boundingBox, r;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	H.add(r = new HRect(100).rounding(10))
 		.noStroke()

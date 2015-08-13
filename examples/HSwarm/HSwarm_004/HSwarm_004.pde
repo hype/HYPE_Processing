@@ -1,3 +1,5 @@
+import hype.*;
+
 HSwarm swarm;
 HDrawablePool pool;
 HTimer timer;
@@ -5,7 +7,6 @@ HTimer timer;
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020).autoClear(false);
-	smooth();
 
 	swarm = new HSwarm()
 		.addGoal(H.mouse())

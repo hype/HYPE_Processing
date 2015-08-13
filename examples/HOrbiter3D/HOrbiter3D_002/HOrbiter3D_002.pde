@@ -1,7 +1,8 @@
+import hype.*;
+
 void setup() {
 	size(640,640,P3D);
 	H.init(this).background(#202020).use3D(true);
-	smooth();
 	lights();
 
 	HRect d = new HRect(50).rounding(4);

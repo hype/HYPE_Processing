@@ -1,4 +1,4 @@
-/* @pjs preload="sintra.jpg" */
+import hype.*;
 
 HColorTransform ct01, ct02, ct03, ct04, ct05, ct06, ct07, ct08, ct09, ct10, ct11;
 
@@ -14,7 +14,6 @@ void setup() {
 	PImage bg = loadImage("sintra.jpg");
 	size(640,640);
 	H.init(this).backgroundImg(bg);
-	smooth();
 
 	final HPixelColorist colors = new HPixelColorist(bg).fillOnly();
 

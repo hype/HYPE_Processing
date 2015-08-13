@@ -1,9 +1,10 @@
+import hype.*;
+
 HDrawablePool pool;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	pool = new HDrawablePool(121);
 	pool.autoAddToStage()

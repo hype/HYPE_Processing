@@ -1,3 +1,5 @@
+import hype.*;
+
 HRect  r1, r2, r3;
 HTween t1a;
 HTween t2a, t2b;
@@ -6,7 +8,6 @@ HTween t3a, t3b, t3c, t3d;
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020).autoClear(false);
-	smooth();
 
 	// Rect 1 and tween
 

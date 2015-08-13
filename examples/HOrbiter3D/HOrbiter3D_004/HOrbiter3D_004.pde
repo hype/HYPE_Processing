@@ -1,3 +1,5 @@
+import hype.*;
+
 HDrawablePool pool;
 HTimer timerPool;
 int boxSixe = 50;
@@ -5,7 +7,6 @@ int boxSixe = 50;
 void setup() {
 	size(750,750,P3D);
 	H.init(this).background(#202020).use3D(true);
-	smooth();
 	
 
 	pool = new HDrawablePool(42);

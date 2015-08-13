@@ -1,10 +1,11 @@
+import hype.*;
+
 HDrawablePool pool;
 HColorPool colors;
 
 void setup(){
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #CCCCCC, #999999, #666666, #4D4D4D, #333333);
 

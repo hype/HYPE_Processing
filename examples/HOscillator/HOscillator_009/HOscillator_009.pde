@@ -1,10 +1,11 @@
+import hype.*;
+
 HColorPool colors;
 HCanvas canvas;
 
 void setup() {
 	size(640, 640);
 	H.init(this).background(#111111);
-	smooth();
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #ff3300, #ff3300, #242424, #333333, #666666);
 

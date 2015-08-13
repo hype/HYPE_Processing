@@ -1,7 +1,8 @@
+import hype.*;
+
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	HRect rect1 = new HRect(100).rounding(10);
 	H.add(rect1)

@@ -1,4 +1,4 @@
-/* @pjs preload="sintra.jpg"; */
+import hype.*;
 
 HDrawablePool pool;
 
@@ -7,7 +7,6 @@ int cellSize = 25;
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	final HPixelColorist colors = new HPixelColorist("sintra.jpg")
 		.fillOnly()

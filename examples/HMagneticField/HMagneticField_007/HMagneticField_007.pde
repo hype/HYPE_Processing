@@ -1,3 +1,5 @@
+import hype.*;
+
 HSwarm swarm;
 HDrawablePool pool, swarmPool;
 HMagneticField field;
@@ -9,7 +11,6 @@ void setup() {
 	size(640,640);
 
 	H.init(this).background(#000000);
-	smooth();
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #CCCCCC).fillOnly();
 	

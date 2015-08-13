@@ -1,7 +1,8 @@
+import hype.*;
+
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	HDrawable r = new HRect(20).rounding(2).noStroke().anchorAt(H.CENTER);
 

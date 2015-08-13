@@ -1,10 +1,11 @@
+import hype.*;
+
 HDrawablePool pool;
 int colshifter = 0;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	HPolarLayout layout = new HPolarLayout(0.25, 10)
 				.offset(width/2, height/2)

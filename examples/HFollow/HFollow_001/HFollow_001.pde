@@ -1,10 +1,11 @@
+import hype.*;
+
 HFollow mf;
 HRect d;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 	
 	d = new HRect(100);
 	d

@@ -1,4 +1,4 @@
-/* @pjs preload="gradient.jpg"; */
+import hype.*;
 
 HCanvas canvas;
 HDrawablePool pool;
@@ -7,7 +7,6 @@ HPixelColorist colors;
 void setup() {
 	size(640,640,P3D);
 	H.init(this).background(#000000).autoClear(true).use3D(true);
-	smooth();
 
 	colors = new HPixelColorist("gradient.jpg");
 

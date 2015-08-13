@@ -1,10 +1,11 @@
+import hype.*;
+
 HCanvas canvas;
 color[] palette = { #333333, #666666, #999999, #CCCCCC, #F7F7F7 };
 
 void setup() {
 	size(640, 640);
 	H.init(this).background(#202020);
-	smooth();
 
 	canvas = H.add(new HCanvas()).autoClear(true);
 

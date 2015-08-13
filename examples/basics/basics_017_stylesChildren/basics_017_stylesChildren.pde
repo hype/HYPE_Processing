@@ -1,7 +1,8 @@
+import hype.*;
+
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	HDrawable p = new HPath().vertexUV(0,0).vertexUV(0,1).vertexUV(1,0).vertexUV(1,1).size(50);
 

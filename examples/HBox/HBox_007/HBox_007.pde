@@ -1,10 +1,11 @@
+import hype.*;
+
 HDrawablePool pool;
 float rotation = 0;
 
 void setup() {
 	size(640,640,P3D);
 	H.init(this).background(#202020).autoClear(true).use3D(true);
-	smooth();
 
 	pool = new HDrawablePool(100);
 	pool.autoAddToStage()

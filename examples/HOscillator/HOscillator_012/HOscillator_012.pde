@@ -1,4 +1,4 @@
-/* @pjs font="DroidSerifBoldItalic.ttf"; */
+import hype.*;
 
 HDrawablePool pool;
 
@@ -7,7 +7,6 @@ final HColorPool colors = new HColorPool(#111111, #202020, #242424, #333333, #4D
 void setup() {
 	size(640,640);
 	H.init(this).background(#000000);
-	smooth();
 
 	PFont type = createFont("DroidSerifBoldItalic.ttf", 24);
 

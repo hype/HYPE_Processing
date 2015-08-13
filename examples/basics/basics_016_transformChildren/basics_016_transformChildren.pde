@@ -1,3 +1,5 @@
+import hype.*;
+
 /*
  * This test file demonstrates the new feature
  * for transforming children whenever the parent
@@ -10,7 +12,6 @@ HRect r1, r2;
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	/*
 	 * By default, most drawables by default won't transform

@@ -1,3 +1,5 @@
+import hype.*;
+
 /*
 	Visually the same as example_007, this demonstrates that shuffleRequestAll
 	now supports autoParent and not just the stage as it did previously
@@ -8,7 +10,6 @@ HCanvas canvas;
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	canvas = new HCanvas();
 	H.add(canvas);

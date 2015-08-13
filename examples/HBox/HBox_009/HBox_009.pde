@@ -1,3 +1,5 @@
+import hype.*;
+
 import processing.video.*;
 
 Movie tex;

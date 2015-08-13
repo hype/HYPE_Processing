@@ -1,4 +1,4 @@
-/* @pjs preload="color.jpg"; */
+import hype.*;
 
 HPixelColorist colors;
 HRect  r1;
@@ -11,7 +11,6 @@ float tweenSpeed = 0.9;
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020).autoClear(false);
-	smooth();
 
 	colors = new HPixelColorist("color.jpg").fillOnly();
 

@@ -1,3 +1,5 @@
+import hype.*;
+
 HGroup rects;
 HRect r1, r2, r3, r4;
 HRect r5, r6, r7, r8;
@@ -7,7 +9,6 @@ HShape arrow;
 void setup(){
 	size(640,640);
 	H.init(this).background(#202020).autoClear(true);
-	smooth();
 
 	rects = H.add(new HGroup());
 

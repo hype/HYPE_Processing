@@ -1,7 +1,8 @@
+import hype.*;
+
 void setup() {
 	size(640,640);
 	H.init(this).background(#242424);
-	smooth();
 
 	HRect rect1 = new HRect(100);
 	rect1.rounding(10); // set corner rounding

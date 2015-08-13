@@ -1,3 +1,5 @@
+import hype.*;
+
 HOrbiter3D orb1, orb2;
 HCanvas canvas;
 
@@ -16,7 +18,6 @@ HRect d, colorRun;
 void setup() {
 	size(640,640,P3D);
 	H.init(this).background(#202020).autoClear(true).use3D(true);
-	smooth();
 
 	hpc = new HPixelColorist("color.png");
 	H.add( colorSRC = new HImage("color.png") ).loc(10, 10);

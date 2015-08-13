@@ -1,10 +1,11 @@
+import hype.*;
+
 HRect s1, s2, s3;
 HEllipse s4, s5, s6;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 	
 	s1 = new HRect(90);
 	s1

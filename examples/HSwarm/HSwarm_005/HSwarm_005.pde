@@ -1,3 +1,5 @@
+import hype.*;
+
 HColorField colors;
 HSwarm swarm;
 HDrawablePool pool;
@@ -6,7 +8,6 @@ HTimer timer;
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020).autoClear(false);
-	smooth();
 
 	colors = new HColorField(width, height)
 		.addPoint(0, height/2, #FF0066, 0.5f)

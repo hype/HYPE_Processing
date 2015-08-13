@@ -1,10 +1,11 @@
+import hype.*;
+
 HRandomTrigger rand;
 HDrawable d;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	/*
 	* Create a new randomTrigger with a 1 in 15 chance

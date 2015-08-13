@@ -1,3 +1,5 @@
+import hype.*;
+
 HDrawablePool pool;
 HOscillator amplifier_wave, reducer_wave;
 HColorField colors;
@@ -5,7 +7,6 @@ HColorField colors;
 void setup() {
 	size(640, 640);
 	H.init(this).background(#202020);
-	smooth();
 
 	colors = new HColorField(width, height)
 		.addPoint(0, height/2, #FF0033, 1.0f)

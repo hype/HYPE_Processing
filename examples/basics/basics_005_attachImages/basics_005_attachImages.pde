@@ -1,17 +1,10 @@
-// As seen here, we need to preload Images and Fonts.
-//
-// See http://processingjs.org/reference/preload/
-// and http://processingjs.org/reference/font/
-// for more information.
-
-/* @pjs preload=" img01.jpg, img02.jpg, img03.jpg "; */
+import hype.*;
 
 PImage pi01, pi02, pi03;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#00616f);
-	smooth();
 
 	pi01 = loadImage("img01.jpg");
 	pi02 = loadImage("img02.jpg");

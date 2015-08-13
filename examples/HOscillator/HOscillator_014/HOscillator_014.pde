@@ -1,10 +1,11 @@
+import hype.*;
+
 HDrawablePool pool;
 int boxSixe = 150;
 
 void setup() {
 	size(640,640,P3D);
 	H.init(this).background(#202020).use3D(true);
-	smooth();
 
 	pool = new HDrawablePool(100);
 	pool.autoAddToStage()

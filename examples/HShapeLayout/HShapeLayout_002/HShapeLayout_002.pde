@@ -1,9 +1,10 @@
+import hype.*;
+
 HDrawablePool pool;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	HEllipse hitObj = new HEllipse(200);
 	H.add(hitObj).noStroke().fill(#237D26).anchorAt(H.CENTER).locAt(H.CENTER);

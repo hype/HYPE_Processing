@@ -1,11 +1,10 @@
-/* @pjs font="DroidSerifBold.ttf"; */
+import hype.*;
 
 HDrawablePool pool;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	// type size of "60" and .size(300) acting odd / will chat on wednesday
 

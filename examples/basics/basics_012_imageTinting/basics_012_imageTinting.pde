@@ -1,15 +1,8 @@
-// As seen here, we need to preload Images and Fonts.
-//
-// See http://processingjs.org/reference/preload/
-// and http://processingjs.org/reference/font/
-// for more information.
-
-/* @pjs preload=" bg.jpg, sintra.jpg "; */
+import hype.*;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#000000).backgroundImg("bg.jpg");
-	smooth();
 
 	HImage img0 = (HImage) H.add(new HImage("sintra.jpg")).size(320);
 	HImage img1 = (HImage) H.add(img0.createCopy()).x(320);

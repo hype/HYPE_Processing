@@ -1,3 +1,5 @@
+import hype.*;
+
 HColorPool colors;
 HRandomTrigger tweenTrigger;
 

@@ -1,10 +1,11 @@
+import hype.*;
+
 HColorPool colors;
 HShape s1,s2,s3,s4,s5,s6;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	frameRate(6);
 

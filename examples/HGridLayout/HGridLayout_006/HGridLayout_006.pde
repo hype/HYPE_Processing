@@ -1,3 +1,5 @@
+import hype.*;
+
 HDrawablePool pool;
 HOscillator h;
 int tick = 0;
@@ -7,7 +9,6 @@ float r = 0;
 void setup() {
 	size(640,640, P3D);
 	H.init(this).background(#202020).use3D(true);
-	smooth();
 	lights();
 
 	h = new HOscillator()

@@ -1,7 +1,8 @@
+import hype.*;
+
 void setup() {
 	size(640,640);
 	H.init(this).background(#242424);
-	smooth();
 
 	/*
 	 * The color presets are just

@@ -1,9 +1,10 @@
+import hype.*;
+
 HDrawablePool pool;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#202020);
-	smooth();
 
 	HPath hitObj = new HPath().star( 5, 0.5, -90 );
 	H.add(hitObj).size(400).noStroke().fill(#237D26).anchorAt(H.CENTER).locAt(H.CENTER);
