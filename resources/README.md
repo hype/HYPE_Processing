@@ -10,13 +10,7 @@ This library is currently under heavy development. You can keep track of the lat
 
 ## Getting Started ##
 
-### Install with the Contribution Manager
-
-Unzip the ##project.name## archive under the distribution folder. From Processing, add a new library by selecting the menu item _Sketch_ → _Import Library..._ → _Add Library..._ This will open the Contribution Manager, where you can browse for ##project.name##, or any other library you want to install.
-
-Not all available libraries have been converted to show up in this menu. If a library isn't there, it will need to be installed manually by following the instructions below.
-
-### Manual Install
+### Install to Processing Sketchbook
 
 The ##project.name## library may be uzipped from the distribution folder and manually placed within the `libraries` folder of your Processing sketchbook. To find (and change) the Processing sketchbook location on your computer, open the Preferences window from the Processing application (PDE) and look for the "Sketchbook location" item at the top.
 
@@ -47,7 +41,7 @@ After ##project.name## has been successfully installed, restart the Processing a
 
 Run build.xml in the Resources folder. If you're running Windows, you'll need to update 'sketchbook.location' and 'classpath.local.location' in build.properties.
 
-The HYPE library will be added to your sketchbook folder.
+The HYPE library will be added to your sketchbook folder automatically.
 
 ### Documentation
 TODO: Add link to Java docs here
