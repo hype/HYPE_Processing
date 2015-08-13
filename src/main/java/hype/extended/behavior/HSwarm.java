@@ -1,12 +1,12 @@
 package hype.extended.behavior;
 
-import hype.core.behavior.HBehavior;
-import hype.core.util.HMath;
-import hype.core.util.HVector;
-import hype.core.collection.HLinkedHashSet;
-import hype.core.interfaces.HDirectable;
-import hype.core.interfaces.HLocatable;
-import hype.core.util.HConstants;
+import hype.HBehavior;
+import hype.HMath;
+import hype.HVector;
+import hype.HLinkedHashSet;
+import hype.interfaces.HDirectable;
+import hype.interfaces.HLocatable;
+import hype.interfaces.HConstants;
 
 import java.util.Iterator;
 

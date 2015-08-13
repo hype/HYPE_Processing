@@ -21,8 +21,8 @@
 package hype.extended.layout;
 
 import hype.H;
-import hype.core.drawable.HDrawable;
-import hype.core.layout.HLayout;
+import hype.HDrawable;
+import hype.interfaces.HLayout;
 import processing.core.PApplet;
 import processing.core.PVector;
 

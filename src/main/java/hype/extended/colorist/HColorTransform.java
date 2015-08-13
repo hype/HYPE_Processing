@@ -1,8 +1,8 @@
 package hype.extended.colorist;
 
-import hype.core.util.HColors;
-import hype.core.colorist.HColorist;
-import hype.core.drawable.HDrawable;
+import hype.HColors;
+import hype.interfaces.HColorist;
+import hype.HDrawable;
 
 public class HColorTransform implements HColorist {
 	private float _percA, _percR, _percG, _percB;

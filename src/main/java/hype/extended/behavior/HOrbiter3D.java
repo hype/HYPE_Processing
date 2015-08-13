@@ -14,8 +14,8 @@
 
 package hype.extended.behavior;
 
-import hype.core.behavior.HBehavior;
-import hype.core.drawable.HDrawable;
+import hype.HBehavior;
+import hype.HDrawable;
 import processing.core.PApplet;
 import static processing.core.PApplet.cos;
 import static processing.core.PApplet.radians;

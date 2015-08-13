@@ -1,9 +1,9 @@
 package hype.extended.behavior;
 
-import hype.core.drawable.HDrawable3D;
-import hype.core.behavior.HBehavior;
-import hype.core.drawable.HDrawable;
-import hype.core.util.HConstants;
+import hype.HDrawable3D;
+import hype.HBehavior;
+import hype.HDrawable;
+import hype.interfaces.HConstants;
 import processing.core.PApplet;
 import processing.core.PVector;
 

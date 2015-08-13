@@ -102,6 +102,7 @@
 	<target name="library.run" depends="library.init"> 
 		<echo message="building library ..." />
 		<antcall target="generate.structure"><param name="folder" value="library"/></antcall>
+		<antcall target="generate.distribution" />
 		<antcall target="generate.source" />
 		<antcall target="compile" />
 	  	<antcall target="generate.jar"><param name="folder" value="library"/></antcall>
@@ -109,7 +110,6 @@
 		<antcall target="generate.libprops" />
 		<antcall target="generate.readme" />
 		<antcall target="copyToSketchbook"><param name="folder" value="libraries"/></antcall>
-		<antcall target="generate.distribution" />
 		<antcall target="copy.refs" />
 	  	<antcall target="generate.zip" />	
 	  	<delete dir="${project.tmp}"/>
@@ -146,6 +146,12 @@
 		<copy todir="${project.tmp}/${project.name}/${folder}">
 			<fileset dir="${project.lib}" excludes="README" />
 		</copy>
+	</target>
+
+	<!-- make /distribution folder -->
+	<target name="generate.distribution" if="is.normal">
+		<delete dir="${project.dist}" />
+		<mkdir dir="${project.dist}"/>
 	</target>
 
 	<target name="generate.source" if="is.normal">
@@ -232,13 +238,9 @@
   		</copy> 
 	</target>
 
-	<!-- make /distribution folder -->
-	<target name="generate.distribution" if="is.normal">
-		<mkdir dir="${project.dist}"/>
-	</target>
-
 	<!-- move docs into /reference folder -->
 	<target name="copy.refs" if="is.normal">
+		<delete dir="${project.ref}" />
 		<mkdir dir="${project.ref}" />
 		<copy todir="${project.ref}">
 			<fileset dir="${project.tmp}/${project.name}/reference" />
@@ -264,7 +266,7 @@
     	<replaceregexp file="${file}" match="##author.name##" replace="${author.name}" flags="g" />
     	<replaceregexp file="${file}" match="##author.url##" replace="${author.url}" flags="g" />
     	        
-    	<replaceregexp file="${file}" match="##library.name##" replace="${project.prettyName}" flags="g" />
+    	<replaceregexp file="${file}" match="##library.name##" replace="${project.name}" flags="g" />
     	<replaceregexp file="${file}" match="##project.name##" replace="${project.name}" flags="g" />
     	        
         <replaceregexp file="${file}" match="##library.version##" replace="${library.version}" flags="g" />

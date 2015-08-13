@@ -1,9 +1,9 @@
 package hype.extended.behavior;
 
-import hype.core.behavior.HBehavior;
-import hype.core.interfaces.HLocatable;
-import hype.core.util.HConstants;
-import hype.core.util.HWarnings;
+import hype.HBehavior;
+import hype.interfaces.HLocatable;
+import hype.interfaces.HConstants;
+import hype.HWarnings;
 import processing.core.PApplet;
 
 public class HVelocity extends HBehavior {

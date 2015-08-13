@@ -1,7 +1,7 @@
 package hype.extended.behavior;
 
-import hype.core.behavior.HTrigger;
-import hype.core.interfaces.HCallback;
+import hype.HTrigger;
+import hype.interfaces.HCallback;
 import processing.core.PApplet;
 
 

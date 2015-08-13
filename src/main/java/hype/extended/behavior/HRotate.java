@@ -1,8 +1,8 @@
 package hype.extended.behavior;
 
-import hype.core.behavior.HBehavior;
-import hype.core.interfaces.HRotatable;
-import hype.core.util.HConstants;
+import hype.HBehavior;
+import hype.interfaces.HRotatable;
+import hype.interfaces.HConstants;
 import processing.core.PApplet;
 
 public class HRotate extends HBehavior {
