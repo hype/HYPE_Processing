@@ -1,13 +1,5 @@
 hype
-hype.core.behavior
-hype.core.collection
-hype.core.colorist
-hype.core.drawable
-hype.core.interfaces
-hype.core.layout
-hype.core.util
 hype.extended.behavior
 hype.extended.colorist
-hype.extended.drawable
 hype.extended.layout
-hype.extended.util
+hype.interfaces

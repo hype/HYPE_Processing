@@ -1,8 +1,8 @@
 package hype.extended.behavior;
 
-import hype.core.behavior.HBehavior;
-import hype.core.collection.HLinkedHashSet;
-import hype.core.drawable.HDrawable;
+import hype.HBehavior;
+import hype.HLinkedHashSet;
+import hype.HDrawable;
 import processing.core.PApplet;
 import processing.core.PVector;
 import java.util.ArrayList;

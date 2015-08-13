@@ -1,10 +1,10 @@
 package hype.extended.colorist;
 
 import hype.H;
-import hype.core.drawable.HDrawable;
-import hype.core.interfaces.HImageHolder;
-import hype.core.colorist.HColorist;
-import hype.extended.drawable.HImage;
+import hype.HDrawable;
+import hype.interfaces.HImageHolder;
+import hype.interfaces.HColorist;
+import hype.HImage;
 import processing.core.PImage;
 
 public class HPixelColorist implements HColorist, HImageHolder {

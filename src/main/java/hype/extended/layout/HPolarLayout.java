@@ -13,9 +13,9 @@
 
 package hype.extended.layout;
 
-import hype.core.layout.HLayout;
-import hype.core.util.HMath;
-import hype.core.drawable.HDrawable;
+import hype.interfaces.HLayout;
+import hype.HMath;
+import hype.HDrawable;
 import processing.core.PVector;
 import static processing.core.PApplet.cos;
 import static processing.core.PApplet.sin;

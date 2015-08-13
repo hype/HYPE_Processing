@@ -12,7 +12,7 @@ This library is currently under heavy development. You can keep track of the lat
 
 ### Install with the Contribution Manager
 
-Unzip the HYPE archive under the distribution folder. From Processing, add a new library by selecting the menu item _Sketch_ → _Import Library..._ → _Add Library..._ This will open the Contribution Manager, where you can browse for HYPE Processing Library, or any other library you want to install.
+Unzip the HYPE archive under the distribution folder. From Processing, add a new library by selecting the menu item _Sketch_ → _Import Library..._ → _Add Library..._ This will open the Contribution Manager, where you can browse for HYPE, or any other library you want to install.
 
 Not all available libraries have been converted to show up in this menu. If a library isn't there, it will need to be installed manually by following the instructions below.
 
@@ -24,11 +24,11 @@ By default the following locations are used for your sketchbook folder:
   * For Mac users, the sketchbook folder is located inside `~/Documents/Processing`
   * For Windows users, the sketchbook folder is located inside `My Documents/Processing`
 
-Download HYPE Processing Library from https://github.com/hype/HYPE_Processing
+Download HYPE from https://github.com/hype/HYPE_Processing
 
 Unzip and copy the HYPE folder into the `libraries` folder in the Processing sketchbook. You will need to create this `libraries` folder if it does not exist.
 
-The folder structure for library HYPE Processing Library should be as follows:
+The folder structure for HYPE should be as follows:
 
 ```
 Processing
@@ -41,7 +41,7 @@ Processing
       src
 ```
 
-After library HYPE Processing Library has been successfully installed, restart the Processing application.
+After HYPE has been successfully installed, restart the Processing application.
 
 #### Build Sources with ANT
 
@@ -56,7 +56,7 @@ TODO: Add link to Java docs here
 James Cruz, [Benjamin Fox](https://github.com/tracerstar), [Christopher Tino](https://github.com/christophertino)
 
 ### License
-HYPE Processing Library is available under the BSD license. See [LICENSE][2] for full details.
+HYPE is available under the BSD license. See [LICENSE][2] for full details.
 
 [1]: CHANGELOG.md
 [2]: LICENSE.txt

@@ -1,10 +1,10 @@
 package hype.extended.colorist;
 
 import hype.H;
-import hype.core.colorist.HColorist;
-import hype.core.drawable.HDrawable;
-import hype.core.util.HColors;
-import hype.core.util.HMath;
+import hype.interfaces.HColorist;
+import hype.HDrawable;
+import hype.HColors;
+import hype.HMath;
 import processing.core.PVector;
 
 import java.util.ArrayList;

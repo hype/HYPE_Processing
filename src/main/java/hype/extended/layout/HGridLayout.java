@@ -1,7 +1,7 @@
 package hype.extended.layout;
 
-import hype.core.drawable.HDrawable;
-import hype.core.layout.HLayout;
+import hype.HDrawable;
+import hype.interfaces.HLayout;
 import processing.core.PVector;
 
 public class HGridLayout implements HLayout {

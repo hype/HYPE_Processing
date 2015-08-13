@@ -11,13 +11,8 @@
 
 package hype;
 
-import hype.core.interfaces.HImageHolder;
-import hype.core.util.HMouse;
-import hype.core.behavior.HBehaviorRegistry;
-import hype.core.drawable.HDrawable;
-import hype.core.drawable.HStage;
-import hype.core.util.HConstants;
-import hype.extended.drawable.*;
+import hype.interfaces.HImageHolder;
+import hype.interfaces.HConstants;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.core.PImage;

@@ -1,8 +1,8 @@
 package hype.extended.behavior;
 
 import hype.H;
-import hype.core.behavior.HBehavior;
-import hype.core.interfaces.HLocatable;
+import hype.HBehavior;
+import hype.interfaces.HLocatable;
 import processing.core.PApplet;
 
 public class HFollow extends HBehavior {

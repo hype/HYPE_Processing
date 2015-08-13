@@ -1,9 +1,9 @@
 package hype.extended.colorist;
 
 import hype.H;
-import hype.core.drawable.HDrawable;
-import hype.core.util.HMath;
-import hype.core.colorist.HColorist;
+import hype.HDrawable;
+import hype.HMath;
+import hype.interfaces.HColorist;
 
 import java.util.ArrayList;
 

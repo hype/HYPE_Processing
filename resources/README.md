@@ -12,7 +12,7 @@ This library is currently under heavy development. You can keep track of the lat
 
 ### Install with the Contribution Manager
 
-Unzip the ##project.name## archive under the distribution folder. From Processing, add a new library by selecting the menu item _Sketch_ → _Import Library..._ → _Add Library..._ This will open the Contribution Manager, where you can browse for ##library.name##, or any other library you want to install.
+Unzip the ##project.name## archive under the distribution folder. From Processing, add a new library by selecting the menu item _Sketch_ → _Import Library..._ → _Add Library..._ This will open the Contribution Manager, where you can browse for ##project.name##, or any other library you want to install.
 
 Not all available libraries have been converted to show up in this menu. If a library isn't there, it will need to be installed manually by following the instructions below.
 
@@ -24,11 +24,11 @@ By default the following locations are used for your sketchbook folder:
   * For Mac users, the sketchbook folder is located inside `~/Documents/Processing`
   * For Windows users, the sketchbook folder is located inside `My Documents/Processing`
 
-Download ##library.name## from ##library.url##
+Download ##project.name## from ##library.url##
 
 Unzip and copy the ##project.name## folder into the `libraries` folder in the Processing sketchbook. You will need to create this `libraries` folder if it does not exist.
 
-The folder structure for library ##library.name## should be as follows:
+The folder structure for ##project.name## should be as follows:
 
 ```
 Processing
@@ -41,7 +41,7 @@ Processing
       src
 ```
 
-After library ##library.name## has been successfully installed, restart the Processing application.
+After ##project.name## has been successfully installed, restart the Processing application.
 
 #### Build Sources with ANT
 
@@ -56,7 +56,7 @@ TODO: Add link to Java docs here
 James Cruz, [Benjamin Fox](https://github.com/tracerstar), [Christopher Tino](https://github.com/christophertino)
 
 ### License
-##library.name## is available under the BSD license. See [LICENSE][2] for full details.
+##project.name## is available under the BSD license. See [LICENSE][2] for full details.
 
 [1]: CHANGELOG.md
 [2]: LICENSE.txt
