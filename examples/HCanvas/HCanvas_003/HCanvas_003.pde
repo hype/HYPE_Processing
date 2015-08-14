@@ -7,7 +7,7 @@ HCallback onTweenEnd;
 
 void setup() {
 	size(640,640,P3D);
-	H.init(this).background(#202020).use3D(true);
+	H.init(this).background(#242424).use3D(true);
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333,#0095A8, #00616F, #FF3300, #FF6600);
 

@@ -4,7 +4,7 @@ HDrawablePool pool;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	HImage hitObj = new HImage("theAmericas.png");
 	H.add(hitObj);

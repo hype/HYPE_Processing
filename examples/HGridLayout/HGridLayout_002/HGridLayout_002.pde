@@ -5,7 +5,7 @@ HColorPool colors;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	colors = new HColorPool()
 		.add(#FFFFFF, 9)

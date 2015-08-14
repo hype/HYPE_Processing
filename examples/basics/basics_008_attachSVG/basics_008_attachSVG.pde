@@ -1,15 +1,17 @@
 import hype.*;
+import hype.extended.layout.HGridLayout;
+import hype.interfaces.HCallback; // this needs to move into core/HYPE, it's used too much
 
 HDrawablePool pool;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	pool = new HDrawablePool(121);
 	pool.autoAddToStage()
 		.add (
-			new HShape("art_06.svg")
+			new HShape("art6.svg")
 			.enableStyle(false)
 			.strokeJoin(CENTER)
 			.strokeCap(CENTER)
@@ -29,15 +31,13 @@ void setup() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
 					d
-						.fill( #242424 )
-						.strokeWeight(1)
-						.stroke( #999999 )
+						.stroke(#999999)
+						.fill(#242424)
 						.rotation( ((int)random(4)) * 90 )
 					;
 				}
 			}
 		)
-
 		.requestAll()
 	;
 
@@ -45,5 +45,6 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
 
+}

@@ -7,7 +7,7 @@ HTimer timer;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020).autoClear(false);
+	H.init(this).background(#242424).autoClear(false);
 
 	colors = new HPixelColorist("sintra.jpg")
 		.fillOnly()

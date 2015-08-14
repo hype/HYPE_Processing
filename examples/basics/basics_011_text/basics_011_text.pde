@@ -1,11 +1,13 @@
 import hype.*;
+import hype.extended.colorist.HColorPool;
+import hype.interfaces.HCallback; // this needs to move into core/HYPE, it's used too much
 
-HColorPool colors;
+HColorPool    colors;
 HDrawablePool pool;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
@@ -31,7 +33,6 @@ void setup() {
 				}
 			}
 		)
-
 		.requestAll()
 	;
 
@@ -39,5 +40,6 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
 
+}

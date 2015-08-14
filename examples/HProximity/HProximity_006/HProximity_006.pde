@@ -2,7 +2,7 @@ import hype.*;
 
 void setup() {
 	size(640, 640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	HCanvas c = new HCanvas().autoClear(false).fade(5);
 	H.add(c);

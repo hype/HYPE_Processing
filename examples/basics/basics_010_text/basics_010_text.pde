@@ -4,7 +4,7 @@ PFont font1, font2, font3, font4;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	font1 = createFont("DroidSerifRegular.ttf", 18);
 	font2 = createFont("DroidSerifItalic.ttf", 48);
@@ -71,5 +71,6 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
 
+}

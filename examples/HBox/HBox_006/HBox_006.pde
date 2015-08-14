@@ -5,7 +5,7 @@ HOscillator rX,rY,rZ;
 
 void setup() {
 	size(640,640,P3D);
-	H.init(this).background(#202020).autoClear(true).use3D(true);
+	H.init(this).background(#242424).autoClear(true).use3D(true);
 
 	rX = new HOscillator()
 		.range(-180,180)

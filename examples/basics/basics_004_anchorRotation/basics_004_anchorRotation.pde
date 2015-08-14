@@ -1,13 +1,14 @@
 import hype.*;
+import hype.extended.behavior.HRotate;
 
-HRect s1, s2, s3;
+HRect    s1, s2, s3;
 HEllipse s4, s5, s6;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 	
-	s1 = new HRect(90);
+	s1 = new HRect(100);
 	s1
 		.rounding(5)
 		.noStroke()
@@ -18,7 +19,7 @@ void setup() {
 	H.add(s1);
 	HRotate r1 = new HRotate(); r1.target(s1).speed(1);
 
-	s2 = new HRect(90);
+	s2 = new HRect(100);
 	s2
 		.rounding(5)
 		.noStroke()
@@ -28,7 +29,7 @@ void setup() {
 	H.add(s2);
 	HRotate r2 = new HRotate(); r2.target(s2).speed(1);
 
-	s3 = new HRect(90);
+	s3 = new HRect(100);
 	s3
 		.rounding(5)
 		.noStroke()
@@ -38,6 +39,8 @@ void setup() {
 	;
 	H.add(s3);
 	HRotate r3 = new HRotate(); r3.target(s3).speed(1);
+
+// ************************************************************************************
 
 	s4 = new HEllipse(25);
 	s4.noStroke().fill(#CCCCCC).anchor(12.5,75).loc(100,height-180);
@@ -60,13 +63,14 @@ void draw() {
 
 	// using ellipse to mark the moved registration points
 
-	noFill(); strokeWeight(2); stroke(#0095a8);
-	ellipse(100, 180, 4, 4);
-	ellipse(width/2, 180, 4, 4);
-	ellipse(width-100, 180, 4, 4);
+	strokeWeight(2); stroke(#0095a8); fill(#333333); 
 
-	ellipse(100, height - 180, 4, 4);
-	ellipse(width/2, height - 180, 4, 4);
-	ellipse(width-100, height - 180, 4, 4);
+	ellipse(s1.x(), s1.y(), 6, 6);
+	ellipse(s2.x(), s2.y(), 6, 6);
+	ellipse(s3.x(), s3.y(), 6, 6);
+
+	ellipse(s4.x(), s4.y(), 6, 6);
+	ellipse(s5.x(), s5.y(), 6, 6);
+	ellipse(s6.x(), s6.y(), 6, 6);
 }
 

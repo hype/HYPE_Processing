@@ -5,7 +5,7 @@ int colshifter = 0;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	HPolarLayout layout = new HPolarLayout(0.25, 10)
 				.offset(width/2, height/2)

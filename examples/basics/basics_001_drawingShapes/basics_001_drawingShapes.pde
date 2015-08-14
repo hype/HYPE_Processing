@@ -2,13 +2,9 @@ import hype.*;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
-	
-/*
+	H.init(this).background(#242424);
 
-  FIRST ROW OF SHAPES
-
-*/
+// ************************************************************************************ ROW 1
 
 	HRect s1 = new HRect(100); // set proportional width and height of 100
 	s1
@@ -33,8 +29,8 @@ void setup() {
 		.noStroke()
 		.fill(#ECECEC)
 		.anchorAt(H.CENTER) // setting where the objects registration point, important for animation
-		.loc(400,100)
 		.rotation(45) // rotating the rect 45 degrees
+		.loc(400,100)
 	;
 	H.add(s3);
 
@@ -47,11 +43,7 @@ void setup() {
 	;
 	H.add(s4);
 
-/*
-
-  SECOND ROW OF SHAPES
-
-*/
+// ************************************************************************************ ROW 2
 
 	HRect s5 = new HRect(); // proportional size removed from here
 	s5
@@ -66,9 +58,9 @@ void setup() {
 	HRect s6 = new HRect();
 	s6
 		.rounding(10)
-		.fill(#ECECEC)
 		.strokeWeight(3) // set stroke weight to 3
 		.stroke(#666666) // set color to #666666
+		.fill(#ECECEC)
 		.size(150, 100)
 		.loc(150,200)
 	;
@@ -93,18 +85,14 @@ void setup() {
 	;
 	H.add(s8);
 
-/*
-
-  THIRD ROW OF SHAPES
-
-*/
+// ************************************************************************************ ROW 3
 
 	HRect s9 = new HRect(100);
 	s9
 		.rounding(10)
-		.fill(#ECECEC)
 		.strokeWeight(6)
 		.stroke(#000000)
+		.fill(#ECECEC)
 		.alpha(100) // alpha 100 is applied globally to both fill and stroke
 		.loc(50,350)
 	;
@@ -113,9 +101,9 @@ void setup() {
 	HRect s10 = new HRect(100);
 	s10
 		.rounding(10)
-		.fill(#ECECEC, 50) // fill with alpha 50
 		.strokeWeight(6)
 		.stroke(#000000, 150) // stroke with alpha 200
+		.fill(#ECECEC, 50) // fill with alpha 50
 		.loc(200,350)
 	;
 	H.add(s10);
@@ -123,9 +111,9 @@ void setup() {
 	HRect s11 = new HRect(100);
 	s11
 		.rounding(10)
-		.fill(#ECECEC) // no fill color alpha
 		.strokeWeight(6)
 		.stroke(#000000, 100)
+		.fill(#ECECEC) // no fill color alpha
 		.loc(350,350)
 	;
 	H.add(s11);
@@ -139,11 +127,7 @@ void setup() {
 	;
 	H.add(s12);
 
-/*
-
-  FOURTH ROW OF SHAPES
-
-*/
+// ************************************************************************************ ROW 4
 
 	HRect s13 = new HRect(100);
 	s13
@@ -184,5 +168,7 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
+
+}
 

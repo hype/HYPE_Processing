@@ -1,17 +1,16 @@
 import hype.*;
+import hype.extended.behavior.HRotate;
+import hype.extended.behavior.HFollow;
 
 HGroup rects;
-HRect r1, r2, r3, r4;
-HRect r5, r6, r7, r8;
-HRect rBorder;
-HRect progressBorder, progressBar;
+HRect  rBorder, progressBorder, progressBar, r1, r2, r3, r4, r5, r6, r7, r8;
 HShape arrow;
 
-float progressMax;
+float  progressMax;
 
 void setup(){
 	size(640,640);
-	H.init(this).background(#202020).autoClear(true);
+	H.init(this).background(#242424);
 
 	rects = H.add(new HGroup());
 
@@ -58,8 +57,14 @@ void setup(){
 	H.add(rBorder);
 
 	arrow = new HShape("arrow.svg").enableStyle(false);
-	arrow.noStroke().fill(#FF3300).anchorAt(H.CENTER).rotation(90).scale(2).visibility(true)
+	arrow
+		.noStroke()
+		.fill(#FF3300)
+		.anchorAt(H.CENTER)
+		.rotation(90)
+		.scale(2)
 		.loc( r1.x() + (r1.width() / 2), r1.y() - 30 )
+		.visibility(true)
 	;
 	H.add(arrow);
 
@@ -122,4 +127,3 @@ void progressAnim(HDrawable d) {
 		progressBar.width( progressBar.width() + 1 );
 	}
 }
-

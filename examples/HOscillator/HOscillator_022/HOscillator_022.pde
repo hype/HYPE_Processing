@@ -7,7 +7,7 @@ HCanvas canvas;
 
 void setup() {
 	size(640, 640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	colors = new HColorField(width, height)
 		.addPoint(0, height/2, #00BBFF, 0.5f)

@@ -4,7 +4,7 @@ HOrbiter3D orb1, orb2;
 
 void setup() {
 	size(640,640,P3D);
-	H.init(this).background(#202020).use3D(true);
+	H.init(this).background(#242424).use3D(true);
 	lights();
 
 	HRect d = new HRect(50).rounding(4);

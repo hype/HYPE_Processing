@@ -5,7 +5,7 @@ HOscillator amplifier_wave;
 
 void setup() {
 	size(640, 640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	amplifier_wave = new HOscillator()
 						.property(H.Y)

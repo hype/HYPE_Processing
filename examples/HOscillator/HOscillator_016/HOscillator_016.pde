@@ -5,7 +5,7 @@ HOscillator reducer_wave;
 
 void setup() {
 	size(640, 640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	reducer_wave = new HOscillator()
 						.range(-100, 100)

@@ -2,7 +2,7 @@ import hype.*;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	HDrawablePool pool = new HDrawablePool(1100);
 	pool.autoAddToStage()

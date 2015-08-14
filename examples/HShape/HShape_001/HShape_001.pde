@@ -5,7 +5,7 @@ HShape s1,s2,s3,s4,s5,s6;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	frameRate(6);
 

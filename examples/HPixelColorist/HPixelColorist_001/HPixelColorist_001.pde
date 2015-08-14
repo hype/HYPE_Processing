@@ -6,7 +6,7 @@ int cellSize = 25;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	final HPixelColorist colors = new HPixelColorist("sintra.jpg")
 		.fillOnly()

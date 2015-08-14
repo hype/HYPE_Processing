@@ -1,8 +1,9 @@
 import hype.*;
+import hype.extended.behavior.HRotate;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	HDrawable r = new HRect(20).rounding(2).noStroke().anchorAt(H.CENTER);
 
@@ -23,20 +24,20 @@ void setup() {
 	grp2.add(r.createCopy()).fill(#FFCC00).locAt(H.BOTTOM_RIGHT);
 
 	/*
-	 * Setting rotatesChildren to true will
-	 * make the children of the drawable rotate
-	 * but not the drawable itself.
-	 *
-	 * Unlike stylesChildren() and transformsChildren(),
-	 * rotatesChildren is *not* set to true in HGroups
-	 * by default. 
+	   Setting rotatesChildren to true will
+	   make the children of the drawable rotate
+	   but not the drawable itself.
+	  
+	   Unlike stylesChildren() and transformsChildren(),
+	   rotatesChildren is *not* set to true in HGroups
+	   by default. 
 	 */
 
 	d2.rotatesChildren(true);
 	grp2.rotatesChildren(true);
 
-	new HRotate(d1, 1);
-	new HRotate(d2, 1);
+	new HRotate(d1,   1);
+	new HRotate(d2,   1);
 	new HRotate(grp1, 1);
 	new HRotate(grp2, 1);
 }
@@ -44,4 +45,3 @@ void setup() {
 void draw() {
 	H.drawStage();
 }
-

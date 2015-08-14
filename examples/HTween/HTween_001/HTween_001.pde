@@ -7,7 +7,7 @@ HTween t3a, t3b, t3c, t3d;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020).autoClear(false);
+	H.init(this).background(#242424).autoClear(false);
 
 	// Rect 1 and tween
 

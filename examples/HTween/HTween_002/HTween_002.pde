@@ -9,7 +9,7 @@ float tweenSpeed = 0.9;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020).autoClear(true);
+	H.init(this).background(#242424).autoClear(true);
 
 	r1 = new HRect(100).rounding(10);
 	r1

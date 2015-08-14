@@ -5,7 +5,7 @@ HColorField colorField;
 
 void setup() {
 	size(640, 640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	colorField = new HColorField(width, height)
       .addPoint(0, height/2, #FF0066, 0.5f)

@@ -2,7 +2,7 @@ import hype.*;
 
 void setup() {
 	size(640, 640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	HRect r1 = new HRect().rounding(4);
 	r1.fill(#FF0000).size(10).loc(width/2, height/2);

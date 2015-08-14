@@ -2,27 +2,27 @@ import hype.*;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
-	// disableStyle = false / keep SVG base styling / DEFAULT
+	// enableStyle = true / keep SVG base styling / DEFAULT
 
 	HShape svg1 = new HShape("bot1.svg");
 	svg1
-		.loc(25,height/2)
 		.anchorAt(H.LEFT | H.CENTER_Y)
+		.loc(25,height/2)
 	;
 	H.add(svg1);
 
-	// disableStyle = true / destroy SVG base styling and override
+	// enableStyle = false / destroy SVG base styling and override
 
 	HShape svg2 = new HShape("bot1.svg");
 	svg2
 		.enableStyle(false)
-		.loc(width-25,height/2)
-		.anchorAt(H.RIGHT | H.CENTER_Y)
-		.fill(#181818)
-		.stroke(#ED1B6A)
 		.strokeWeight(2)
+		.stroke(#ED1B6A)
+		.fill(#181818)
+		.anchorAt(H.RIGHT | H.CENTER_Y)
+		.loc(width-25,height/2)
 	;
 	H.add(svg2);
 
@@ -30,5 +30,6 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
 
+}

@@ -1,10 +1,12 @@
 import hype.*;
+import hype.extended.behavior.HRotate;
+import hype.extended.behavior.HFollow;
 
 HRect boundingBox, r;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	H.add(r = new HRect(100).rounding(10))
 		.noStroke()
@@ -24,11 +26,10 @@ void setup() {
 }
 
 void draw() {
-	// `r.bounds()` will set the x & y fields of `loc` and `size`
+	// r.bounds() will set the x & y fields of loc and size
 	PVector loc = new PVector(), size = new PVector();
 	r.bounds(loc,size);
-	boundingBox.loc(loc.x,loc.y).size(size.x,size.y);
+	boundingBox.size(size.x,size.y).loc(loc.x,loc.y);
 
 	H.drawStage();
 }
-

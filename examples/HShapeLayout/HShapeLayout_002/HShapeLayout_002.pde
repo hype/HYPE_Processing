@@ -4,7 +4,7 @@ HDrawablePool pool;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	HEllipse hitObj = new HEllipse(200);
 	H.add(hitObj).noStroke().fill(#237D26).anchorAt(H.CENTER).locAt(H.CENTER);

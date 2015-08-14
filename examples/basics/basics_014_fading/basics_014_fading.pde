@@ -1,14 +1,14 @@
 import hype.*;
+import hype.extended.colorist.HColorPool;
 
 HColorPool colors;
-PGraphics canvas1;
-HCanvas   canvas2;
-HRect r;
+PGraphics  canvas1;
+HCanvas    canvas2;
+HRect      r;
 
-int countDown = 5;
-int count = 0;
-int ranScale;
-
+int        countDown = 5;
+int        count     = 0;
+int        ranScale;
 
 void setup() {
 	size(640,640);
@@ -18,7 +18,7 @@ void setup() {
 
 	canvas1 = createGraphics(320,640);
 
-	canvas2 = new HCanvas().autoClear(false).fade(2);
+	canvas2 = new HCanvas().autoClear(false).fade(2); // basics_014_fading.pde:21:0:21:0: NullPointerException
 	H.add(canvas2);
 
 	ranScale = 25+((int)random(5)*25);
@@ -62,4 +62,3 @@ void draw() {
 	textSize(18); text("HCanvas fading", 420, 30);
 	stroke(#FFFFFF); line(320, 0, 320, 640);
 }
-

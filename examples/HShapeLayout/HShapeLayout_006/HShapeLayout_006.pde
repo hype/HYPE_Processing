@@ -6,7 +6,7 @@ HDrawablePool pool;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	colors = new HColorPool(#CCE70B, #80C41C, #40A629, #237D26, #FF3300, #FF6600);
 

@@ -6,7 +6,7 @@ HTimer timer;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020).autoClear(true);
+	H.init(this).background(#242424).autoClear(true);
 
 	swarm = new HSwarm()
 		.addGoal(width/2,height-200)

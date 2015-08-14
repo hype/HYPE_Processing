@@ -6,7 +6,7 @@ int boxSixe = 50;
 
 void setup() {
 	size(750,750,P3D);
-	H.init(this).background(#202020).use3D(true);
+	H.init(this).background(#242424).use3D(true);
 	
 
 	pool = new HDrawablePool(42);

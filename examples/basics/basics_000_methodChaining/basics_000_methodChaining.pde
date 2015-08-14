@@ -5,13 +5,13 @@ void setup() {
 	H.init(this).background(#242424);
 
 	HRect rect1 = new HRect(100);
-	rect1.rounding(10); // set corner rounding
-	rect1.fill(#FF6600); // set fill color
+	rect1.rounding(10);         // set corner rounding
+	rect1.strokeWeight(6);      // set stroke weight
 	rect1.stroke(#000000, 150); // set stroke color and alpha
-	rect1.strokeWeight(6); // set stroke weight
-	rect1.anchorAt(H.CENTER); // set where anchor point is / key point for rotation and positioning
-	rect1.rotation(45); // set rotation of the rect
-	rect1.loc(100,height / 2); // set x and y location
+	rect1.fill(#FF6600);        // set fill color
+	rect1.anchorAt(H.CENTER);   // set where anchor point is / key point for rotation and positioning
+	rect1.rotation(45);         // set rotation of the rect
+	rect1.loc(100,height / 2);  // set x and y location
 	H.add(rect1); 
 
 	// here's the same code / with method chaining
@@ -19,9 +19,9 @@ void setup() {
 	HRect rect2 = new HRect(100);
 	rect2
 		.rounding(10)
-		.fill(#FF9900)
-		.stroke(#000000, 150)
 		.strokeWeight(6)
+		.stroke(#000000, 150)
+		.fill(#FF9900)
 		.anchorAt(H.CENTER)
 		.rotation(45)
 		.loc(247,height / 2)
@@ -31,7 +31,7 @@ void setup() {
 	// here's the same code / minus the hard returns and tabbing
 
 	HRect rect3 = new HRect(100);
-	rect3.rounding(10).fill(#FFCC00).stroke(#000000, 150).strokeWeight(6).anchorAt(H.CENTER).rotation(45).loc(394,height / 2);
+	rect3.rounding(10).strokeWeight(6).stroke(#000000, 150).fill(#FFCC00).anchorAt(H.CENTER).rotation(45).loc(394,height / 2);
 	H.add(rect3);
 
 	H.drawStage(); // paint the stage
@@ -39,9 +39,9 @@ void setup() {
 	// here is the non HYPE version / basic processing syntax
 
 	pushMatrix();
-		fill(#FF3300);
-		stroke(#000000, 150);
 		strokeWeight(6);
+		stroke(#000000, 150);
+		fill(#FF3300);
 		translate(width - 100, (height / 2));
 		rotate( radians(45) );
 		rect(0, 0, 100, 100, 10, 10, 10, 10);
@@ -67,12 +67,13 @@ void setup() {
 
 	// draw where the horiz line is
 
-	stroke(#0095a8);
 	strokeWeight(1);
+	stroke(#0095a8);
 	line(0, height/2, width, height/2);
 
 	noLoop();
 }
 
-void draw() {}
+void draw() {
 
+}

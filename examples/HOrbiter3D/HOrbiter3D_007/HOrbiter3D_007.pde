@@ -5,7 +5,7 @@ HCanvas canvas;
 
 void setup() {
 	size(640,640,P3D);
-	H.init(this).background(#202020).autoClear(true).use3D(true);
+	H.init(this).background(#242424).autoClear(true).use3D(true);
 	lights();
 	hint(DISABLE_DEPTH_TEST);
 

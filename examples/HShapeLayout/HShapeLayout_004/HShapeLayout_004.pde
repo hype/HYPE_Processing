@@ -4,7 +4,7 @@ HDrawablePool pool;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020);
+	H.init(this).background(#242424);
 
 	// type size of "60" and .size(300) acting odd / will chat on wednesday
 

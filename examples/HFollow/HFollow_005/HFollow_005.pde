@@ -6,7 +6,7 @@ HPixelColorist colors;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#202020).autoClear(false);
+	H.init(this).background(#242424).autoClear(false);
 
 	PImage img = loadImage("sintra.jpg");
 	colors = new HPixelColorist(img)

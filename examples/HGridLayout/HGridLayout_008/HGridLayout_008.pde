@@ -12,7 +12,7 @@ void setup() {
 	background(0);
 	fill(0);
 	rect(0, 0, width, height);
-	H.init(this).background(#202020).use3D(true);
+	H.init(this).background(#242424).use3D(true);
 	lights();
 
 	h = new HOscillator()

@@ -1,14 +1,12 @@
 import hype.*;
 
 HGroup rects;
-HRect r1, r2, r3, r4;
-HRect r5, r6, r7, r8;
-HRect rBorder;
+HRect  rBorder, r1, r2, r3, r4, r5, r6, r7, r8;
 HShape arrow;
 
 void setup(){
 	size(640,640);
-	H.init(this).background(#202020).autoClear(true);
+	H.init(this).background(#242424);
 
 	rects = H.add(new HGroup());
 
@@ -55,11 +53,15 @@ void setup(){
 	H.add(rBorder);
 
 	arrow = new HShape("arrow.svg").enableStyle(false);
-	arrow.noStroke().fill(#FF3300).anchorAt(H.CENTER).rotation(90).scale(2)
+	arrow
+		.noStroke()
+		.fill(#FF3300)
+		.anchorAt(H.CENTER)
+		.rotation(90)
+		.scale(2)
 		.loc( r1.x() + (r1.width() / 2), r1.y() - 30 )
 	;
 	H.add(arrow);
-
 }
 
 void draw(){
@@ -75,4 +77,3 @@ void draw(){
 
 	fill(#666666); textSize(18); text("MouseMove to update hit areas", r1.x(), height - 55);
 }
-
