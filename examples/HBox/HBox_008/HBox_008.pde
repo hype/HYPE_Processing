@@ -1,84 +1,51 @@
 import hype.*;
+import hype.extended.layout.HGridLayout;
+import hype.extended.behavior.HRotate;
+import hype.extended.behavior.HOscillator;
+import hype.interfaces.HCallback; // this needs to move into core/HYPE, it's used too much
 
-PImage tex;
-PVector[] pickedPos;
-int[]     pickedScale;
-int numAssets = 25;
+HDrawablePool pool;
+int           boxSize = 64;
 
 void setup() {
-	size(640, 640, P3D);
-	tex = loadImage("lines.jpg");
-	textureMode(NORMAL);
+	size(640,640,P3D);
+	H.init(this).background(#242424).use3D(true);
 
-	pickedPos = new PVector[numAssets];
-	pickedScale = new int[numAssets];
+	pool = new HDrawablePool(100);
+	pool.autoAddToStage()
+		.add      (new HBox())
+		.layout   (new HGridLayout().startX(-125).startY(-125).spacing(100,100).cols(10))
+		.onCreate (
+			 new HCallback() {
+				public void run(Object obj) {
+					int i = pool.currentIndex();
+					HBox d = (HBox) obj;
+					d.depth(boxSize).width(boxSize).height(boxSize).noStroke().z(-500).rotationX(45).rotationY(45);
 
-	for (int i = 0; i<numAssets; i++){
-	    PVector pt = new PVector();
-	    pt.x = (int)random(width);
-	    pt.y = (int)random(height);
-	    pt.z = (int)random(-100,100);
-	    pickedPos[i] = pt;
-
-	    pickedScale[i] = (int)random(50,125);
-	}
+					new HOscillator()
+						.target(d)
+						.property(H.SCALE)
+						.range(0.5, 1.5)
+						.speed(1)
+						.freq(2)
+						.currentStep(i*3)
+					;
+				}
+			}
+		)
+		.requestAll()
+	;
 }
 
 void draw() {
-	background(0); noStroke(); noFill();
+	pointLight(255,  51,   0,        0, height/2, -300); // orange
+	pointLight(0,   149, 168,    width, height/2, -300); // teal
+	pointLight(255, 204,   0,  width/2, height/2, -400); // yellow
 
-	for (int i = 0; i<numAssets; i++){
-		PVector pt = pickedPos[i];
-		pushMatrix();
-			translate(pt.x, pt.y, pt.z);
-			rotateX( radians(-(frameCount)) );
-			rotateY( radians(frameCount) );
-			scale( pickedScale[i] );
+	translate(width/2, height/2, -500);
+	rotateX(map(mouseY, 0, height, -(TWO_PI / 2), TWO_PI/2));
+	rotateY(map(mouseX, 0, width,  -(TWO_PI / 2), TWO_PI/2));
+	translate(-width/2, -height/2, 500);
 
-			TexturedCube();
-		popMatrix();
-	}
-}
-
-void TexturedCube() {
-	beginShape(QUADS);
-		texture(tex);
-
-		// +Z "front" face
-		vertex(-1, -1,  1, 0, 0);
-		vertex( 1, -1,  1, 1, 0);
-		vertex( 1,  1,  1, 1, 1);
-		vertex(-1,  1,  1, 0, 1);
-
-		// -Z "back" face
-		vertex( 1, -1, -1, 0, 0);
-		vertex(-1, -1, -1, 1, 0);
-		vertex(-1,  1, -1, 1, 1);
-		vertex( 1,  1, -1, 0, 1);
-
-		// +Y "bottom" face
-		vertex(-1,  1,  1, 0, 0);
-		vertex( 1,  1,  1, 1, 0);
-		vertex( 1,  1, -1, 1, 1);
-		vertex(-1,  1, -1, 0, 1);
-
-		// -Y "top" face
-		vertex(-1, -1, -1, 0, 0);
-		vertex( 1, -1, -1, 1, 0);
-		vertex( 1, -1,  1, 1, 1);
-		vertex(-1, -1,  1, 0, 1);
-
-		// +X "right" face
-		vertex( 1, -1,  1, 0, 0);
-		vertex( 1, -1, -1, 1, 0);
-		vertex( 1,  1, -1, 1, 1);
-		vertex( 1,  1,  1, 0, 1);
-
-		// -X "left" face
-		vertex(-1, -1, -1, 0, 0);
-		vertex(-1, -1,  1, 1, 0);
-		vertex(-1,  1,  1, 1, 1);
-		vertex(-1,  1, -1, 0, 1);
-
-	endShape();
+	H.drawStage();
 }

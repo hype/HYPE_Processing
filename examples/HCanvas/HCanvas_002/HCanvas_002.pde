@@ -1,65 +1,55 @@
 import hype.*;
+import hype.extended.colorist.HColorPool;
 
 HColorPool colors;
-HCanvas canvas;
-HDrawablePool pool;
-HTimer timer;
+HCanvas    canvas1, canvas2, canvas3;
+HRect      rect1, rect2, rect3;
 
 void setup() {
-	size(640,640,P3D);
-	H.init(this).background(#242424).use3D(true);
+	size(640,640);
+	H.init(this).background(#242424);
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
-	canvas = new HCanvas(P3D).autoClear(false).fade(2);
-	H.add(canvas);
+	canvas3 = new HCanvas().autoClear(false).fade(6);
+	canvas2 = new HCanvas().autoClear(false).fade(4);
+	canvas1 = new HCanvas().autoClear(false).fade(2);
 
-	pool = new HDrawablePool(300);
-	pool.autoParent(canvas)
-		.add (
-			new HRect().rounding(5)
-		)
+	H.add(canvas3);
+	H.add(canvas2);
+	H.add(canvas1);
 
-		 .onRequest (
-			 new HCallback() {
-				public void run(Object obj) {
-					HDrawable d = (HDrawable) obj;
-					d
-						.strokeWeight(1)
-						.stroke(#000000, 50)
-						.fill( colors.getColor() )
-						.loc( (int)random(width), (int)random(height), -(int)random(2000) )
-						.anchorAt(H.CENTER)
-						.size( 5+((int)random(10)*5) )
-					;
-				}
-			}
-		)
-	;
+	int ranX = (int)random(width);
+	int ranY = (int)random(height);
 
-	timer = new HTimer()
-		.numCycles( pool.numActive() )
-		.interval(25)
-		.callback(
-			new HCallback() { 
-				public void run(Object obj) {
-					pool.request();
-				}
-			}
-		)
-	;
+	int scale1 = 5+((int)random(5)*5);
+	int scale2 = (scale1+10)+((int)random(10)*5);
+	int scale3 = (scale2+20)+((int)random(5)*10);
+
+	rect1 = new HRect().rounding(5);
+	rect1.noStroke().fill(colors.getColor()).size(scale1,scale1).loc(ranX,ranY).anchorAt(H.CENTER).rotation(45);
+	canvas1.add(rect1);
+
+	rect2 = new HRect().rounding(5);
+	rect2.noStroke().fill(colors.getColor()).size(scale2,scale2).loc(ranX,ranY).anchorAt(H.CENTER).rotation(45);
+	canvas2.add(rect2);
+
+	rect3 = new HRect().rounding(5);
+	rect3.noStroke().fill(colors.getColor()).size(scale3,scale3).loc(ranX,ranY).anchorAt(H.CENTER).rotation(45);
+	canvas3.add(rect3);
 }
 
 void draw() {
-  for(HDrawable d : pool) {
+	int ranX = (int)random(width);
+	int ranY = (int)random(height);
 
-		d.rotation( d.z() / 1.5 );
-		d.loc(d.x(), d.y(), d.z() + 4 );
+	int scale1 = 5+((int)random(5)*5);
+	int scale2 = (scale1+10)+((int)random(10)*5);
+	int scale3 = (scale2+20)+((int)random(5)*10);
 
-		if(d.z() > 4000) {
-			pool.release(d);
-		}
-	}
+	rect1.fill(colors.getColor()).size(scale1,scale1).loc(ranX,ranY);
+	rect2.fill(colors.getColor()).size(scale2,scale2).loc(ranX,ranY);
+	rect3.fill(colors.getColor()).size(scale3,scale3).loc(ranX,ranY);
 
 	H.drawStage();
 }

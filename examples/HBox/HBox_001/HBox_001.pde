@@ -1,4 +1,6 @@
 import hype.*;
+import hype.extended.layout.HGridLayout;
+import hype.interfaces.HCallback; // this needs to move into core/HYPE, it's used too much
 
 HDrawablePool pool;
 
@@ -9,24 +11,14 @@ void setup() {
 
 	pool = new HDrawablePool(100);
 	pool.autoAddToStage()
-		.add (
-			new HBox()
-		)
-
-		.layout (
-			new HGridLayout()
-			.startX(-125)
-			.startY(-125)
-			.spacing(100,100)
-			.cols(10)
-		)
-
+		.add      (new HBox())
+		.layout   (new HGridLayout().startX(-125).startY(-125).spacing(100,100).cols(10))
 		.onCreate (
 			 new HCallback() {
 				public void run(Object obj) {
 					HBox d = (HBox) obj;
 					d
-						.depth(64) // depth is a 3D specific method, so put this first
+						.depth(64) // depth is a 3D/HBox specific method, so put this first
 						.width(64)
 						.height(64)
 						.z(-500)
@@ -35,7 +27,6 @@ void setup() {
 				}
 			}
 		)
-
 		.requestAll()
 	;
 
@@ -43,5 +34,7 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
+
+}
 

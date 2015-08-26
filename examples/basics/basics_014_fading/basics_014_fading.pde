@@ -18,7 +18,7 @@ void setup() {
 
 	canvas1 = createGraphics(320,640);
 
-	canvas2 = new HCanvas().autoClear(false).fade(2); // basics_014_fading.pde:21:0:21:0: NullPointerException
+	canvas2 = new HCanvas().autoClear(false).fade(2);
 	H.add(canvas2);
 
 	ranScale = 25+((int)random(5)*25);
