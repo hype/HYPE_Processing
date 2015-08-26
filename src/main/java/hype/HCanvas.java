@@ -48,8 +48,8 @@ public class HCanvas extends HDrawable {
 		int h = Math.round(_height);
 
 		_graphics = H.app().createGraphics(w, h, _renderer);
-		_graphics.loadPixels();
 		_graphics.beginDraw();
+		_graphics.loadPixels();
 			_graphics.background(H.CLEAR);
 		_graphics.endDraw();
 
