@@ -4,11 +4,11 @@ import processing.core.PConstants;
 import processing.core.PGraphics;
 
 public class HEllipse extends HDrawable {
-	private int _mode;
-	private float _startRad, _endRad;
+	private int mode;
+	private float startRad, endRad;
 
 	public HEllipse() {
-		_mode = PConstants.PIE;
+		mode = PConstants.PIE;
 	}
 
 	public HEllipse(float ellipseRadius) {
@@ -44,7 +44,7 @@ public class HEllipse extends HDrawable {
 	}
 
 	public float radiusX() {
-		return _width/2;
+		return width /2;
 	}
 
 	public HEllipse radiusY(float radiusY) {
@@ -53,20 +53,20 @@ public class HEllipse extends HDrawable {
 	}
 
 	public float radiusY() {
-		return _height/2;
+		return height /2;
 	}
 
 	public boolean isCircle() {
-		return _width == _height;
+		return width == height;
 	}
 
 	public HEllipse mode(int t) {
-		_mode = t;
+		mode = t;
 		return this;
 	}
 
 	public float mode() {
-		return _mode;
+		return mode;
 	}
 
 	public HEllipse start(float deg) {
@@ -74,17 +74,17 @@ public class HEllipse extends HDrawable {
 	}
 
 	public float start() {
-		return _startRad * H.R2D;
+		return startRad * H.R2D;
 	}
 
 	public HEllipse startRad(float rad) {
-		_startRad = HMath.normalizeAngleRad(rad);
-		if(_startRad > _endRad) _endRad += PConstants.TWO_PI;
+		startRad = HMath.normalizeAngleRad(rad);
+		if(startRad > endRad) endRad += PConstants.TWO_PI;
 		return this;
 	}
 
 	public float startRad() {
-		return _startRad;
+		return startRad;
 	}
 
 	public HEllipse end(float deg) {
@@ -92,41 +92,41 @@ public class HEllipse extends HDrawable {
 	}
 
 	public float end() {
-		return _endRad * H.R2D;
+		return endRad * H.R2D;
 	}
 
 	public HEllipse endRad(float rad) {
-		_endRad = HMath.normalizeAngleRad(rad);
-		if(_startRad > _endRad) _endRad += PConstants.TWO_PI;
+		endRad = HMath.normalizeAngleRad(rad);
+		if(startRad > endRad) endRad += PConstants.TWO_PI;
 		return this;
 	}
 
 	public float endRad() {
-		return _endRad;
+		return endRad;
 	}
 
 	@Override
 	public boolean containsRel(float relX, float relY) {
-		float cx = _width/2;
-		float cy = _height/2;
+		float cx = width /2;
+		float cy = height /2;
 		float dcx = relX - cx;
 		float dcy = relY - cy;
 
 		boolean inEllipse = ((dcx*dcx)/(cx*cx) + (dcy*dcy)/(cy*cy) <= 1);
 
 		// If mode is closed, just check if it's in the ellipse
-		if(_startRad == _endRad) return inEllipse;
+		if(startRad == endRad) return inEllipse;
 
 		// Return false regardless of mode if it's not inside the ellipse
 		else if(!inEllipse) return false;
 
-		if(_mode == PConstants.PIE) {
+		if(mode == PConstants.PIE) {
 			float ptAngle = (float) Math.atan2(dcy*cx, dcx*cy);
-			if(_startRad > ptAngle) ptAngle += PConstants.TWO_PI;
-			return (_startRad<=ptAngle && ptAngle<=_endRad);
+			if(startRad > ptAngle) ptAngle += PConstants.TWO_PI;
+			return (startRad <=ptAngle && ptAngle<= endRad);
 		} else {
-			float end = HMath.squishAngleRad(cx, cy, _endRad);
-			float start = HMath.squishAngleRad(cx, cy, _startRad);
+			float end = HMath.squishAngleRad(cx, cy, endRad);
+			float start = HMath.squishAngleRad(cx, cy, startRad);
 			float[] pt1 = HMath.ellipsePointRadArr(cx,cy, cx,cy, end);
 			float[] pt2 = HMath.ellipsePointRadArr(cx,cy, cx,cy, start);
 			return HMath.rightOfLine(pt1[0],pt1[1], pt2[0],pt2[1], relX,relY);
@@ -139,13 +139,13 @@ public class HEllipse extends HDrawable {
 	) {
 		applyStyle(g,alphaPc);
 
-		drawX += _width/2;
-		drawY += _height/2;
+		drawX += width /2;
+		drawY += height /2;
 
-		if(_startRad == _endRad) {
-			g.ellipse(drawX, drawY, _width, _height);
+		if(startRad == endRad) {
+			g.ellipse(drawX, drawY, width, height);
 		} else {
-			g.arc(drawX,drawY,_width,_height,_startRad,_endRad,_mode);
+			g.arc(drawX,drawY, width, height, startRad, endRad, mode);
 		}
 	}
 }

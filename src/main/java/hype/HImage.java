@@ -5,7 +5,7 @@ import processing.core.PGraphics;
 import processing.core.PImage;
 
 public class HImage extends HDrawable implements HImageHolder {
-	private PImage _image;
+	private PImage image;
 
 	public HImage() {
 		this(null);
@@ -17,24 +17,24 @@ public class HImage extends HDrawable implements HImageHolder {
 
 	@Override
 	public HImage createCopy() {
-		HImage copy = new HImage(_image);
+		HImage copy = new HImage(image);
 		copy.copyPropertiesFrom(this);
 		return copy;
 	}
 
 	public HImage resetSize() {
-		if(_image == null) size(0f,0f);
-		else size(_image.width, _image.height);
+		if(image == null) size(0f,0f);
+		else size(image.width, image.height);
 		return this;
 	}
 
 	public HImage image(Object imgArg) {
-		_image = H.getImage(imgArg);
+		image = H.getImage(imgArg);
 		return resetSize();
 	}
 
 	public PImage image() {
-		return _image;
+		return image;
 	}
 
 	public HImage tint(int clr) {
@@ -64,37 +64,37 @@ public class HImage extends HDrawable implements HImageHolder {
 
 	@Override
 	public boolean containsRel(float relX, float relY) {
-		if(_image == null ||
-				_image.width <= 0 || _image.height <= 0 ||
-				_width <= 0 || _height <= 0)
+		if(image == null ||
+				image.width <= 0 || image.height <= 0 ||
+				width <= 0 || height <= 0)
 			return false;
-		int ix = Math.round(relX * _image.width/_width);
-		int iy = Math.round(relY * _image.height/_height);
-		return (0 < _image.get(ix,iy)>>>24);
+		int ix = Math.round(relX * image.width/ width);
+		int iy = Math.round(relY * image.height/ height);
+		return (0 < image.get(ix,iy)>>>24);
 	}
 
 	@Override
 	public void draw( PGraphics g, boolean usesZ,
 		float drawX, float drawY, float alphaPc
 	) {
-		if(_image==null) return;
+		if(image ==null) return;
 
 		// This awkward alpha separation is due to pjs compatibility issues
-		alphaPc *= (_fill>>>24);
-		g.tint( _fill | 0xFF000000, Math.round(alphaPc) );
+		alphaPc *= (fill >>>24);
+		g.tint( fill | 0xFF000000, Math.round(alphaPc) );
 
 		// Determine if the image will be flipped
 		int wscale = 1;
 		int hscale = 1;
-		float w = _width;
-		float h = _height;
-		if(_width < 0) {
-			w = -_width;
+		float w = width;
+		float h = height;
+		if(width < 0) {
+			w = -width;
 			wscale = -1;
 			drawX = -drawX;
 		}
-		if(_height < 0) {
-			h = -_height;
+		if(height < 0) {
+			h = -height;
 			hscale = -1;
 			drawY = -drawY;
 		}
@@ -102,7 +102,7 @@ public class HImage extends HDrawable implements HImageHolder {
 		// Flip and draw the image
 		g.pushMatrix();
 			g.scale(wscale, hscale);
-			g.image(_image, drawX,drawY, w,h);
+			g.image(image, drawX,drawY, w,h);
 		g.popMatrix();
 	}
 }

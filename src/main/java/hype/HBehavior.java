@@ -28,7 +28,7 @@ public abstract class HBehavior extends HNode<HBehavior> {
 
 	@Override
 	public void swapLeft() {
-		if(_prev._prev == null) return;
+		if(prev.prev == null) return;
 		super.swapLeft();
 	}
 

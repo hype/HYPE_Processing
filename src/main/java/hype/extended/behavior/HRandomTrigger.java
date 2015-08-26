@@ -24,7 +24,7 @@ public class HRandomTrigger extends HTrigger {
 
 	@Override
 	public void runBehavior(PApplet app) {
-		if(app.random(1) <= _chance) _callback.run(null);
+		if(app.random(1) <= _chance) callback.run(null);
 	}
 
 	@Override

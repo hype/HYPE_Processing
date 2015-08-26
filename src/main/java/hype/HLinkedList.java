@@ -4,28 +4,28 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class HLinkedList<T> implements Iterable<T> {
-	protected HLinkedListNode<T> _firstSentinel, _lastSentinel;
-	protected int _size;
+	protected HLinkedListNode<T> firstSentinel, lastSentinel;
+	protected int size;
 
 	public HLinkedList() {
-		_firstSentinel = new HLinkedListNode<T>(null);
-		_lastSentinel = new HLinkedListNode<T>(null);
-		_lastSentinel.putAfter(_firstSentinel);
+		firstSentinel = new HLinkedListNode<T>(null);
+		lastSentinel = new HLinkedListNode<T>(null);
+		lastSentinel.putAfter(firstSentinel);
 	}
 
 	// Peek //
 
 	public T first() {
-		return _firstSentinel._next._content;
+		return firstSentinel.next.content;
 	}
 
 	public T last() {
-		return _lastSentinel._prev._content;
+		return lastSentinel.prev.content;
 	}
 
 	public T get(int index) {
 		HLinkedListNode<T> n = nodeAt(index);
-		return (n==null)? null : n._content;
+		return (n==null)? null : n.content;
 	}
 
 
@@ -33,25 +33,25 @@ public class HLinkedList<T> implements Iterable<T> {
 
 	public boolean push(T content) {
 		if(content==null) return false;
-		register(content).putAfter(_firstSentinel);
-		++_size;
+		register(content).putAfter(firstSentinel);
+		++size;
 		return true;
 	}
 
 	public boolean add(T content) {
 		if(content==null) return false;
-		register(content).putBefore(_lastSentinel);
-		++_size;
+		register(content).putBefore(lastSentinel);
+		++size;
 		return true;
 	}
 
 	public boolean insert(T content, int index) {
 		if(content==null) return false;
-		HLinkedListNode<T> n = (index==_size)? _lastSentinel : nodeAt(index);
+		HLinkedListNode<T> n = (index== size)? lastSentinel : nodeAt(index);
 		if(n==null) return false;
 
 		register(content).putBefore(n);
-		++_size;
+		++size;
 		return true;
 	}
 
@@ -59,34 +59,34 @@ public class HLinkedList<T> implements Iterable<T> {
 	// Remove //
 
 	public T pop() {
-		HLinkedListNode<T> firstNode = _firstSentinel._next;
-		if(firstNode._content != null) {
+		HLinkedListNode<T> firstNode = firstSentinel.next;
+		if(firstNode.content != null) {
 			firstNode.popOut();
-			--_size;
+			--size;
 		}
-		return firstNode._content;
+		return firstNode.content;
 	}
 
 	public T pull() {
-		HLinkedListNode<T> lastNode = _lastSentinel._prev;
-		if(lastNode._content != null) {
+		HLinkedListNode<T> lastNode = lastSentinel.prev;
+		if(lastNode.content != null) {
 			lastNode.popOut();
-			--_size;
+			--size;
 		}
-		return lastNode._content;
+		return lastNode.content;
 	}
 
 	public T removeAt(int index) {
 		HLinkedListNode<T> n = nodeAt(index);
 		if(n==null) return null;
 		n.popOut();
-		--_size;
-		return n._content;
+		--size;
+		return n.content;
 	}
 
 	public void removeAll() {
-		_lastSentinel.putAfter(_firstSentinel);
-		_size = 0;
+		lastSentinel.putAfter(firstSentinel);
+		size = 0;
 	}
 
 	/*
@@ -97,7 +97,7 @@ public class HLinkedList<T> implements Iterable<T> {
 
 		Random rnd = new Random();
 
-		for (int i=_size; i>1; i--) {
+		for (int i= size; i>1; i--) {
 
 			HLinkedListNode<T> i_node = nodeAt(i-1);
 			HLinkedListNode<T> rnd_node = nodeAt(rnd.nextInt(i));
@@ -114,11 +114,11 @@ public class HLinkedList<T> implements Iterable<T> {
 	// Misc //
 
 	public int size() {
-		return _size;
+		return size;
 	}
 
 	public boolean inRange(int index) {
-		return (0 <= index) && (index < _size);
+		return (0 <= index) && (index < size);
 	}
 
 	@Override
@@ -130,9 +130,9 @@ public class HLinkedList<T> implements Iterable<T> {
 		int ri; // reverse index
 		if(i<0) {
 			ri = -i;
-			i += _size;
+			i += size;
 		} else {
-			ri = _size-i;
+			ri = size -i;
 		}
 
 		if(!inRange(i)) {
@@ -142,11 +142,11 @@ public class HLinkedList<T> implements Iterable<T> {
 
 		HLinkedListNode<T> node;
 		if(ri < i) { // iterate backwards
-			node = _lastSentinel._prev;
-			while(--ri > 0) node = node._prev;
+			node = lastSentinel.prev;
+			while(--ri > 0) node = node.prev;
 		} else { // iterate forwards
-			node = _firstSentinel._next;
-			while(i-- > 0) node = node._next;
+			node = firstSentinel.next;
+			while(i-- > 0) node = node.next;
 		}
 		return node;
 	}
@@ -158,14 +158,14 @@ public class HLinkedList<T> implements Iterable<T> {
 
 
 	public static class HLinkedListNode<U> extends HNode<HLinkedListNode<U>> {
-		private U _content;
+		private U content;
 
 		public HLinkedListNode(U nodeContent) {
-			_content = nodeContent;
+			content = nodeContent;
 		}
 
 		public U content() {
-			return _content;
+			return content;
 		}
 	}
 
@@ -175,28 +175,28 @@ public class HLinkedList<T> implements Iterable<T> {
 
 		public HLinkedListIterator(HLinkedList<U> parent) {
 			list = parent;
-			n1 = list._firstSentinel._next;
-			if(n1 != null) n2 = n1._next;
+			n1 = list.firstSentinel.next;
+			if(n1 != null) n2 = n1.next;
 		}
 
 		@Override
 		public boolean hasNext() {
-			return (n1._content != null);
+			return (n1.content != null);
 		}
 
 		@Override
 		public U next() {
-			U content = n1._content;
+			U content = n1.content;
 			n1 = n2;
-			if(n2 != null) n2 = n2._next;
+			if(n2 != null) n2 = n2.next;
 			return content;
 		}
 
 		@Override
 		public void remove() {
-			if(n1._content != null) {
+			if(n1.content != null) {
 				n1.popOut();
-				--list._size;
+				--list.size;
 			}
 		}
 	}

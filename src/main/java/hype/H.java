@@ -24,34 +24,38 @@ import processing.core.PImage;
  */
 public class H implements HConstants {
 	public final static String VERSION = "##library.prettyVersion##";
-	public PApplet app;
-	private  PGraphics graphicsContext;
-	private  HStage stage;
-	private  HBehaviorRegistry behaviors;
-	private  HMouse mouse;
-	private  boolean uses3D;
+	private static PApplet app;
+	private PGraphics graphicsContext;
+	private HStage stage;
+	private HBehaviorRegistry behaviors;
+	private HMouse mouse;
+	private boolean uses3D;
 
 	public H(PApplet applet) {
-		this.app = applet;
+		app = applet;
 
 		// Initialize this class' objects
 		if(this.stage == null)
-			this.stage = new HStage(this.app);
+			this.stage = new HStage(app);
 		if(this.behaviors == null)
 			this.behaviors = new HBehaviorRegistry();
 		if(this.mouse == null)
-			this.mouse = new HMouse(this.app);
+			this.mouse = new HMouse(app);
 
 		//set the PGraphics renderer associated with this PApplet
-		this.graphicsContext = this.app.g;
+		this.graphicsContext = app.g;
+	}
+
+	/**
+	 * Get static instance of the PApplet
+	 * @return  app
+	 */
+	public static PApplet app() {
+		return app;
 	}
 
 	public HStage stage() {
 		return stage;
-	}
-	
-	public PApplet app() {
-		return app;
 	}
 	
 	public HBehaviorRegistry behaviors() {
@@ -104,35 +108,35 @@ public class H implements HConstants {
 	}
 	
 	public HCanvas add(HCanvas stageChild) {
-		return (HCanvas) stage.add(stageChild);
+		return stage.add(stageChild);
 	}
 	
 	public HEllipse add(HEllipse stageChild) {
-		return (HEllipse) stage.add(stageChild);
+		return stage.add(stageChild);
 	}
 	
 	public HGroup add(HGroup stageChild) {
-		return (HGroup) stage.add(stageChild);
+		return stage.add(stageChild);
 	}
 	
 	public HImage add(HImage stageChild) {
-		return (HImage) stage.add(stageChild);
+		return stage.add(stageChild);
 	}
 	
 	public HPath add(HPath stageChild) {
-		return (HPath) stage.add(stageChild);
+		return stage.add(stageChild);
 	}
 	
 	public HRect add(HRect stageChild) {
-		return (HRect) stage.add(stageChild);
+		return stage.add(stageChild);
 	}
 	
 	public HShape add(HShape stageChild) {
-		return (HShape) stage.add(stageChild);
+		return stage.add(stageChild);
 	}
 	
 	public HText add(HText stageChild) {
-		return (HText) stage.add(stageChild);
+		return stage.add(stageChild);
 	}
 	
 	public HDrawable add(HDrawable stageChild) {
@@ -140,35 +144,35 @@ public class H implements HConstants {
 	}
 	
 	public HCanvas remove(HCanvas stageChild) {
-		return (HCanvas) stage.remove(stageChild);
+		return stage.remove(stageChild);
 	}
 	
 	public HEllipse remove(HEllipse stageChild) {
-		return (HEllipse) stage.remove(stageChild);
+		return stage.remove(stageChild);
 	}
 	
 	public HGroup remove(HGroup stageChild) {
-		return (HGroup) stage.remove(stageChild);
+		return stage.remove(stageChild);
 	}
 	
 	public HImage remove(HImage stageChild) {
-		return (HImage) stage.remove(stageChild);
+		return stage.remove(stageChild);
 	}
 	
 	public HPath remove(HPath stageChild) {
-		return (HPath) stage.remove(stageChild);
+		return stage.remove(stageChild);
 	}
 	
 	public HRect remove(HRect stageChild) {
-		return (HRect) stage.remove(stageChild);
+		return stage.remove(stageChild);
 	}
 	
 	public HShape remove(HShape stageChild) {
-		return (HShape) stage.remove(stageChild);
+		return stage.remove(stageChild);
 	}
 	
 	public HText remove(HText stageChild) {
-		return (HText) stage.remove(stageChild);
+		return stage.remove(stageChild);
 	}
 	
 	public HDrawable remove(HDrawable stageChild) {

@@ -6,32 +6,32 @@ import hype.HDrawable;
 import processing.core.PVector;
 
 public class HShapeLayout implements HLayout {
-	private HDrawable _target;
-	private float[] _bounds;
-	private int _iterationLimit;
+	private HDrawable target;
+	private float[] bounds;
+	private int iterationLimit;
 
 	public HShapeLayout() {
-		_iterationLimit = 1024;
-		_bounds = new float[4];
+		iterationLimit = 1024;
+		bounds = new float[4];
 	}
 
 	public HShapeLayout iterationLimit(int i) {
-		_iterationLimit = i;
+		iterationLimit = i;
 		return this;
 	}
 
 	public int iterationLimit() {
-		return _iterationLimit;
+		return iterationLimit;
 	}
 
 	public HShapeLayout target(HDrawable d) {
-		_target = d;
-		if(_target != null) _target.bounds(_bounds);
+		target = d;
+		if(target != null) target.bounds(bounds);
 		return this;
 	}
 
 	public HDrawable target() {
-		return _target;
+		return target;
 	}
 
 	@Override
@@ -42,22 +42,22 @@ public class HShapeLayout implements HLayout {
 
 	@Override
 	public PVector getNextPoint() {
-		if(_target == null) return null;
+		if(target == null) return null;
 
-//		float[] loc = HMath.absLocArr(_target,0,0);
-//		float x1 = loc[0] - _target.anchorX();
-//		float y1 = loc[1] - _target.anchorY();
-//		float x2 = x1 + _target.width();
-//		float y2 = y1 + _target.height();
-		float x1 = _bounds[0];
-		float y1 = _bounds[1];
-		float x2 = _bounds[0] + _bounds[2];
-		float y2 = _bounds[1] + _bounds[3];
+//		float[] loc = HMath.absLocArr(target,0,0);
+//		float x1 = loc[0] - target.anchorX();
+//		float y1 = loc[1] - target.anchorY();
+//		float x2 = x1 + target.width();
+//		float y2 = y1 + target.height();
+		float x1 = bounds[0];
+		float y1 = bounds[1];
+		float x2 = bounds[0] + bounds[2];
+		float y2 = bounds[1] + bounds[3];
 
-		for(int i=0; i<_iterationLimit; ++i) {
+		for(int i=0; i< iterationLimit; ++i) {
 			float x = H.app().random(x1,x2);
 			float y = H.app().random(y1,y2);
-			if(_target.contains(x,y))
+			if(target.contains(x,y))
 				return new PVector(x,y);
 		}
 		return null;

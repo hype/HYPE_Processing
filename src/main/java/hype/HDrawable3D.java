@@ -6,11 +6,11 @@ import processing.core.PVector;
 public abstract class HDrawable3D extends HDrawable {
 	public static final float DEFAULT_DEPTH = 100;
 
-	protected float _depth;
-	protected float _anchorW;
+	protected float depth;
+	protected float anchorW;
 
 	public HDrawable3D() {
-		_depth = DEFAULT_DEPTH;
+		depth = DEFAULT_DEPTH;
 	}
 
 	@Override
@@ -24,24 +24,24 @@ public abstract class HDrawable3D extends HDrawable {
 	}
 
 	public HDrawable3D size(float w, float h, float d) {
-		_width = w;
-		_height = h;
-		_depth = d;
+		width = w;
+		height = h;
+		depth = d;
 		return this;
 	}
 
 	@Override
 	public PVector size() {
-		return new PVector(_width,_height,_depth);
+		return new PVector(width, height, depth);
 	}
 
 	public HDrawable3D depth(float f) {
-		_depth = f;
+		depth = f;
 		return this;
 	}
 
 	public float depth() {
-		return _depth;
+		return depth;
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public abstract class HDrawable3D extends HDrawable {
 
 	@Override
 	public PVector anchorUV() {
-		return new PVector(_anchorU, _anchorV, _anchorW);
+		return new PVector(anchorU, anchorV, anchorW);
 	}
 
 	public HDrawable3D anchorZ(float f) {
@@ -104,23 +104,23 @@ public abstract class HDrawable3D extends HDrawable {
 	}
 
 	public float anchorZ() {
-		return w2z(_anchorW);
+		return w2z(anchorW);
 	}
 
 	public HDrawable3D anchorW(float f) {
-		_anchorW = f;
+		anchorW = f;
 		return this;
 	}
 
 	public float anchorW() {
-		return _anchorW;
+		return anchorW;
 	}
 
 	public float z2w(float px) {
-		return px / (_depth==0? DEFAULT_DEPTH : _depth);
+		return px / (depth ==0? DEFAULT_DEPTH : depth);
 	}
 
 	public float w2z(float pc) {
-		return pc * _depth;
+		return pc * depth;
 	}
 }

@@ -5,143 +5,143 @@ import hype.interfaces.HLayout;
 import processing.core.PVector;
 
 public class HGridLayout implements HLayout {
-	private int _currentIndex, _numCols, _numRows;
-	private float _startX, _startY, _startZ, _xSpace, _ySpace, _zSpace;
+	private int currentIndex, numCols, numRows;
+	private float startX, startY, startZ, xSpace, ySpace, zSpace;
 
 	public HGridLayout() {
-		_xSpace = _ySpace = _zSpace = _numCols = 16;
-		_numRows = 0;
+		xSpace = ySpace = zSpace = numCols = 16;
+		numRows = 0;
 	}
 
 	public HGridLayout(int numOfColumns) {
 		this();
-		_numCols = numOfColumns;
+		numCols = numOfColumns;
 	}
 
 	public HGridLayout(int numOfColumns, int numOfRows) {
 		this();
-		_numCols = numOfColumns;
-		_numRows = numOfRows;
+		numCols = numOfColumns;
+		numRows = numOfRows;
 	}
 
 	public HGridLayout currentIndex(int i) {
-		_currentIndex = i;
+		currentIndex = i;
 		return this;
 	}
 
 	public int currentIndex() {
-		return _currentIndex;
+		return currentIndex;
 	}
 
 	public HGridLayout resetIndex() {
-		_currentIndex = 0;
+		currentIndex = 0;
 		return this;
 	}
 
 	public HGridLayout cols(int numOfColumns) {
-		_numCols = numOfColumns;
+		numCols = numOfColumns;
 		return this;
 	}
 
 	public int cols() {
-		return _numCols;
+		return numCols;
 	}
 
 	public HGridLayout rows(int numOfRows) {
-		_numRows = numOfRows;
+		numRows = numOfRows;
 		return this;
 	}
 
 	public int rows() {
-		return _numRows;
+		return numRows;
 	}
 
 	public PVector startLoc() {
-		return new PVector(_startX, _startY, _startZ);
+		return new PVector(startX, startY, startZ);
 	}
 
 	public HGridLayout startLoc(float x, float y) {
-		_startX = x;
-		_startY = y;
-		_startZ = 0;
+		startX = x;
+		startY = y;
+		startZ = 0;
 		return this;
 	}
 
 	public HGridLayout startLoc(float x, float y, float z) {
-		_startX = x;
-		_startY = y;
-		_startZ = z;
+		startX = x;
+		startY = y;
+		startZ = z;
 		return this;
 	}
 
 	public float startX() {
-		return _startX;
+		return startX;
 	}
 
 	public HGridLayout startX(float x) {
-		_startX = x;
+		startX = x;
 		return this;
 	}
 
 	public float startY() {
-		return _startY;
+		return startY;
 	}
 
 	public HGridLayout startY(float y) {
-		_startY = y;
+		startY = y;
 		return this;
 	}
 
 	public float startZ() {
-		return _startZ;
+		return startZ;
 	}
 
 	public HGridLayout startZ(float z) {
-		_startZ = z;
+		startZ = z;
 		return this;
 	}
 
 	public PVector spacing() {
-		return new PVector(_xSpace, _ySpace, _zSpace);
+		return new PVector(xSpace, ySpace, zSpace);
 	}
 
 	public HGridLayout spacing(float xSpacing, float ySpacing) {
-		_xSpace = xSpacing;
-		_ySpace = ySpacing;
+		xSpace = xSpacing;
+		ySpace = ySpacing;
 		return this;
 	}
 
 	public HGridLayout spacing(float xSpacing, float ySpacing, float zSpacing) {
-		_xSpace = xSpacing;
-		_ySpace = ySpacing;
-		_zSpace = zSpacing;
+		xSpace = xSpacing;
+		ySpace = ySpacing;
+		zSpace = zSpacing;
 		return this;
 	}
 
 	public float spacingX() {
-		return _xSpace;
+		return xSpace;
 	}
 
 	public HGridLayout spacingX(float xSpacing) {
-		_xSpace = xSpacing;
+		xSpace = xSpacing;
 		return this;
 	}
 
 	public float spacingY() {
-		return _ySpace;
+		return ySpace;
 	}
 
 	public HGridLayout spacingY(float ySpacing) {
-		_ySpace = ySpacing;
+		ySpace = ySpacing;
 		return this;
 	}
 
 	public float spacingZ() {
-		return _zSpace;
+		return zSpace;
 	}
 
 	public HGridLayout spacingZ(float zSpacing) {
-		_zSpace = zSpacing;
+		zSpace = zSpacing;
 		return this;
 	}
 
@@ -150,21 +150,21 @@ public class HGridLayout implements HLayout {
 
 		int layer = 0;
 		int row = 0;
-		int col = _currentIndex % _numCols;
+		int col = currentIndex % numCols;
 
-		if (_numRows > 0) {
-			layer = (int) Math.floor( _currentIndex / (_numCols * _numRows) );
-			row = (int) Math.floor(_currentIndex / _numCols) - (layer * _numRows);
+		if (numRows > 0) {
+			layer = (int) Math.floor( currentIndex / (numCols * numRows) );
+			row = (int) Math.floor(currentIndex / numCols) - (layer * numRows);
 		} else {
-			row = (int) Math.floor(_currentIndex / _numCols);
+			row = (int) Math.floor(currentIndex / numCols);
 		}
 
-		++_currentIndex;
+		++currentIndex;
 
-		if (_numRows > 0) {
-			return new PVector(col*_xSpace + _startX, row*_ySpace + _startY, layer*_zSpace + _startZ);
+		if (numRows > 0) {
+			return new PVector(col* xSpace + startX, row* ySpace + startY, layer* zSpace + startZ);
 		} else {
-			return new PVector(col*_xSpace + _startX, row*_ySpace + _startY);
+			return new PVector(col* xSpace + startX, row* ySpace + startY);
 		}
 	}
 

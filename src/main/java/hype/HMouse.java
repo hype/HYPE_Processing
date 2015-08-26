@@ -4,36 +4,36 @@ import hype.interfaces.HLocatable;
 import processing.core.PApplet;
 
 public class HMouse implements HLocatable {
-	private PApplet _app;
-	private int _button;
-	private boolean _started, _moved;
+	private PApplet app;
+	private int button;
+	private boolean started, moved;
 
 	public HMouse(PApplet app) {
-		_app = app;
+		this.app = app;
 	}
 
 	public boolean started() {
-		return _started;
+		return started;
 	}
 
 	public boolean moved() {
-		return _moved;
+		return moved;
 	}
 
 	public int button() {
-		return _button;
+		return button;
 	}
 
 	public void handleEvents() {
-		_button = _app.mouseButton;
+		button = app.mouseButton;
 
-		if(!_moved) _moved = (_app.pmouseX != 0) || (_app.pmouseY != 0);
-		else if(!_started) _started = true;
+		if(!moved) moved = (app.pmouseX != 0) || (app.pmouseY != 0);
+		else if(!started) started = true;
 	}
 
 	@Override
 	public float x() {
-		return _app.mouseX;
+		return app.mouseX;
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class HMouse implements HLocatable {
 
 	@Override
 	public float y() {
-		return _app.mouseY;
+		return app.mouseY;
 	}
 
 	@Override

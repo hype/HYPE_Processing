@@ -27,44 +27,44 @@ import processing.core.PApplet;
 import processing.core.PVector;
 
 public class HHexLayout implements HLayout {
-	protected int _currentDistanceFromCenter, _currentIndex, _direction;
-	protected float _spacing, _offsetX, _offsetY, _adjustX, _adjustY;
-	protected PVector _lastPoint;
+	protected int currentDistanceFromCenter, currentIndex, direction;
+	protected float spacing, offsetX, offsetY, adjustX, adjustY;
+	protected PVector lastPoint;
 
 	public HHexLayout() {
-		_spacing = 16;
-		_currentIndex = 0;
-		_direction = 0;
-		_currentDistanceFromCenter = 0;
-		_offsetX = (float) (H.app().width / 2.0);
-		_offsetY = (float) (H.app().height / 2.0);
-		_adjustX = (float) (_spacing * 1.25);
-		_adjustY = (float) (_spacing * 0.25);
-		_lastPoint = null;
+		spacing = 16;
+		currentIndex = 0;
+		direction = 0;
+		currentDistanceFromCenter = 0;
+		offsetX = (float) (H.app().width / 2.0);
+		offsetY = (float) (H.app().height / 2.0);
+		adjustX = (float) (spacing * 1.25);
+		adjustY = (float) (spacing * 0.25);
+		lastPoint = null;
 	}
 
 	public HHexLayout spacing(float size) {
-		_spacing = size;
+		spacing = size;
 
 		return this;
 	}
 
 	public float spacing() {
-		return _spacing;
+		return spacing;
 	}
 
 	public HHexLayout offsetX(float value) {
-		_adjustX = value;
+		adjustX = value;
 		return this;
 	}
 
 	public HHexLayout offsetY(float value) {
-		_adjustY = value;
+		adjustY = value;
 		return this;
 	}
 
-	public float offsetX() { return _adjustX; }
-	public float offsetY() { return _adjustY; }
+	public float offsetX() { return adjustX; }
+	public float offsetY() { return adjustY; }
 
 	protected PVector north(PVector in) {
 		return north(in, 1);
@@ -97,71 +97,71 @@ public class HHexLayout implements HLayout {
 	protected void updateLastPoint() {
 
 		// We've reached the end of the current direction, switch directions
-		if (_currentIndex > _currentDistanceFromCenter-1) {
-			_currentIndex = 0;
-			_direction++;
+		if (currentIndex > currentDistanceFromCenter -1) {
+			currentIndex = 0;
+			direction++;
 		}
 
 		// We've reached the end of the current ring, increase distance
-		if (_direction > 5) {
-			_direction = 0;
-			_currentDistanceFromCenter++;
-			_currentIndex = 0;
-			_lastPoint = north(new PVector(0,0), _currentDistanceFromCenter);
+		if (direction > 5) {
+			direction = 0;
+			currentDistanceFromCenter++;
+			currentIndex = 0;
+			lastPoint = north(new PVector(0,0), currentDistanceFromCenter);
 			// return;
 		}
 
 
-		if (_lastPoint != null) {
-			switch(_direction) {
+		if (lastPoint != null) {
+			switch(direction) {
 				case 0:
-					_lastPoint = southeast(_lastPoint);
-					// PApplet.println(Integer.toString(_currentIndex) + ": SE : " + _lastPoint);
+					lastPoint = southeast(lastPoint);
+					// PApplet.println(Integer.toString(currentIndex) + ": SE : " + lastPoint);
 					break;
 				case 1:
-					_lastPoint = south(_lastPoint);
-					// PApplet.println(Integer.toString(_currentIndex) + ": S  : " + _lastPoint);
+					lastPoint = south(lastPoint);
+					// PApplet.println(Integer.toString(currentIndex) + ": S  : " + lastPoint);
 					break;
 				case 2:
-					_lastPoint = southwest(_lastPoint);
-					// PApplet.println(Integer.toString(_currentIndex) + ": SW : " + _lastPoint);
+					lastPoint = southwest(lastPoint);
+					// PApplet.println(Integer.toString(currentIndex) + ": SW : " + lastPoint);
 					break;
 				case 3:
-					_lastPoint = northwest(_lastPoint);
-					// PApplet.println(Integer.toString(_currentIndex) + ": NW : " + _lastPoint);
+					lastPoint = northwest(lastPoint);
+					// PApplet.println(Integer.toString(currentIndex) + ": NW : " + lastPoint);
 					break;
 				case 4:
-					_lastPoint = north(_lastPoint);
-					// PApplet.println(Integer.toString(_currentIndex) + ": N : " + _lastPoint);
+					lastPoint = north(lastPoint);
+					// PApplet.println(Integer.toString(currentIndex) + ": N : " + lastPoint);
 					break;
 				case 5:
-					_lastPoint = northeast(_lastPoint);
-					// PApplet.println(Integer.toString(_currentIndex) + ": NE : " + _lastPoint);
+					lastPoint = northeast(lastPoint);
+					// PApplet.println(Integer.toString(currentIndex) + ": NE : " + lastPoint);
 					break;
 			}
 
 		} else {
 			// First point
-			_lastPoint = new PVector(0,0);
-			_currentIndex = _currentDistanceFromCenter+1;
-			_direction = 7;
+			lastPoint = new PVector(0,0);
+			currentIndex = currentDistanceFromCenter +1;
+			direction = 7;
 		}
 	}
 
 	@Override
 	public PVector getNextPoint() {
-		++_currentIndex;
+		++currentIndex;
 		updateLastPoint();
 
 		float x, y;
 		x = y = 0;
 
-		x = (float) (_spacing * 3.0/2.0 * _lastPoint.x);
-		y = (float) (_spacing * PApplet.sqrt((float) 3.0) * (_lastPoint.y + _lastPoint.x/2.0));
+		x = (float) (spacing * 3.0/2.0 * lastPoint.x);
+		y = (float) (spacing * PApplet.sqrt((float) 3.0) * (lastPoint.y + lastPoint.x/2.0));
 
 		return new PVector(
-			x + _offsetX - _adjustX ,
-			y + _offsetY - _adjustY
+			x + offsetX - adjustX,
+			y + offsetY - adjustY
 		);
 	}
 
