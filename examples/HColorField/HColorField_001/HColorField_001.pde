@@ -1,14 +1,17 @@
 import hype.*;
+import hype.extended.colorist.HColorField;
+import hype.extended.layout.HGridLayout;
+import hype.interfaces.HCallback; // this needs to move into core/HYPE, it's used too much
 
 HDrawablePool pool;
-HColorField colorField;
+HColorField   colorField;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#000000);
+	H.init(this).background(#242424);
 
 	colorField = new HColorField(width, height)
-		.addPoint(0, height/2, #FF0066, 0.5f)
+		.addPoint(0,     height/2, #FF0066, 0.5f)
 		.addPoint(width, height/2, #3300FF, 0.5f)
 		.fillOnly()
 		// .strokeOnly()
@@ -17,32 +20,18 @@ void setup() {
 
 	pool = new HDrawablePool(10000);
 	pool.autoAddToStage()
-		.add (
-			new HRect()
-		)
-
-		.layout (
-			new HGridLayout()
-			.startX(20)
-			.startY(20)
-			.spacing(6,6)
-			.cols(100)
-		)
-
+		.add      (new HRect())
+		.layout   (new HGridLayout().startX(20).startY(20).spacing(6,6).cols(100))
 		.onCreate (
 			new HCallback(){
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
-					d
-						.noStroke()
-						.fill(#000000)
-						.size(5)
-					;
+					d.noStroke().fill(#000000).size(5);
+					
 					colorField.applyColor(d);
 				}
 			}
 		)
-
 		.requestAll()
 	;
 
@@ -50,5 +39,6 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
 
+}

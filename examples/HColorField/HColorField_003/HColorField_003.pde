@@ -1,7 +1,10 @@
 import hype.*;
+import hype.extended.colorist.HColorField;
+import hype.extended.behavior.HFollow;
+import hype.extended.behavior.HOscillator;
 
-HFollow mf;
-HRect d;
+HFollow     mf;
+HRect       rect;
 HColorField colorField;
 
 void setup() {
@@ -16,37 +19,17 @@ void setup() {
 		// .fillAndStroke()
 	;
 
-	d = new HRect(100);
-	d
-		.rounding(40)
-		.fill(#000000)
-		.strokeWeight(2)
-		.stroke(#000000, 150)
-		.loc(width/2,height/2)
-		.anchorAt(H.CENTER)
-		.rotation(45)
-	;
-	H.add(d);
+	rect = new HRect(100);
+	rect.rounding(40).strokeWeight(2).stroke(0, 150).fill(0).loc(width/2,height/2).anchorAt(H.CENTER).rotation(45);
+	H.add(rect);
 
-	mf = new HFollow()
-		.target(d)
-		.ease(0.05)
-		.spring(0.95)
-	;
-
-	new HOscillator()
-		.target(d)
-		.property(H.SIZE)
-		.range(10, 100)
-		.speed(1)
-		.freq(4)
-	;
+	mf = new HFollow().target(rect).ease(0.05).spring(0.95);
+	new HOscillator().target(rect).property(H.SIZE).range(10, 100).speed(1).freq(4);
 }
 
 void draw() {
-	d.anchorAt(H.CENTER);
-	d.fill(#000000);
-	colorField.applyColor(d);
+	rect.fill(0).anchorAt(H.CENTER);
+	colorField.applyColor(rect);
 
 	H.drawStage();
 }
