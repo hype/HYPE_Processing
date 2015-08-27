@@ -25,25 +25,36 @@ import processing.core.PImage;
 public class H implements HConstants {
 	public final static String VERSION = "##library.prettyVersion##";
 	private static PApplet app;
-	private PGraphics graphicsContext;
-	private HStage stage;
-	private HBehaviorRegistry behaviors;
-	private HMouse mouse;
-	private boolean uses3D;
+	private static H hype = null;
+	private static HStage stage = null;
+	private static HBehaviorRegistry behaviors = null;
+	private static HMouse mouse = null;
+	private static PGraphics graphicsContext;
+	private static boolean uses3D;
 
-	public H(PApplet applet) {
+	private H() {
+		//singleton pattern, prevents instantiation
+	}
+
+	public static H init(PApplet applet) {
 		app = applet;
 
+		// Create singleton
+		if (hype == null)
+			hype = new H();
+
 		// Initialize this class' objects
-		if(this.stage == null)
-			this.stage = new HStage(app);
-		if(this.behaviors == null)
-			this.behaviors = new HBehaviorRegistry();
-		if(this.mouse == null)
-			this.mouse = new HMouse(app);
+		if(stage == null)
+			stage = new HStage(app);
+		if(behaviors == null)
+			behaviors = new HBehaviorRegistry();
+		if(mouse == null)
+			mouse = new HMouse(app);
 
 		//set the PGraphics renderer associated with this PApplet
-		this.graphicsContext = app.g;
+		graphicsContext = app.g;
+
+		return hype;
 	}
 
 	/**
@@ -54,145 +65,150 @@ public class H implements HConstants {
 		return app;
 	}
 
-	public HStage stage() {
+	public static HStage stage() {
 		return stage;
 	}
 	
-	public HBehaviorRegistry behaviors() {
+	public static HBehaviorRegistry behaviors() {
 		return behaviors;
 	}
 
-	public HMouse mouse() {
+	public static HMouse mouse() {
 		return mouse;
 	}
 	
-	public H use3D(boolean b) {
+	public static H use3D(boolean b) {
 		uses3D = b;
-		return this;
+		return hype;
 	}
 	
-	public boolean uses3D() {
+	public static boolean uses3D() {
 		return uses3D;
 	}
 	
 	
 	// STAGE METHODS //
-	public H background(int clr) {
+	public static H background(int clr) {
 		stage.background(clr);
-		return this;
+		return hype;
 	}
 	
-	public H backgroundImg(Object arg) {
+	public static H backgroundImg(Object arg) {
 		stage.backgroundImg(arg);
-		return this;
+		return hype;
 	}
 	
 	/** @deprecated */
-	public H autoClear(boolean b) {
+	public static H autoClear(boolean b) {
 		stage.autoClear(b);
-		return this;
+		return hype;
 	}
 	
-	public H autoClears(boolean b) {
+	public static H autoClears(boolean b) {
 		stage.autoClears(b);
-		return this;
+		return hype;
 	}
 	
-	public boolean autoClears() {
+	public static boolean autoClears() {
 		return stage.autoClears();
 	}
 	
-	public H clearStage() {
+	public static H clearStage() {
 		stage.clear();
-		return this;
+		return hype;
 	}
 	
-	public HCanvas add(HCanvas stageChild) {
+	public static HCanvas add(HCanvas stageChild) {
 		return stage.add(stageChild);
 	}
 	
-	public HEllipse add(HEllipse stageChild) {
+	public static HEllipse add(HEllipse stageChild) {
 		return stage.add(stageChild);
 	}
 	
-	public HGroup add(HGroup stageChild) {
+	public static HGroup add(HGroup stageChild) {
 		return stage.add(stageChild);
 	}
 	
-	public HImage add(HImage stageChild) {
+	public static HImage add(HImage stageChild) {
 		return stage.add(stageChild);
 	}
 	
-	public HPath add(HPath stageChild) {
+	public static HPath add(HPath stageChild) {
 		return stage.add(stageChild);
 	}
 	
-	public HRect add(HRect stageChild) {
+	public static HRect add(HRect stageChild) {
 		return stage.add(stageChild);
 	}
 	
-	public HShape add(HShape stageChild) {
+	public static HShape add(HShape stageChild) {
 		return stage.add(stageChild);
 	}
 	
-	public HText add(HText stageChild) {
+	public static HText add(HText stageChild) {
 		return stage.add(stageChild);
 	}
 	
-	public HDrawable add(HDrawable stageChild) {
+	public static HDrawable add(HDrawable stageChild) {
 		return stage.add(stageChild);
 	}
 	
-	public HCanvas remove(HCanvas stageChild) {
+	public static HCanvas remove(HCanvas stageChild) {
 		return stage.remove(stageChild);
 	}
 	
-	public HEllipse remove(HEllipse stageChild) {
+	public static HEllipse remove(HEllipse stageChild) {
 		return stage.remove(stageChild);
 	}
 	
-	public HGroup remove(HGroup stageChild) {
+	public static HGroup remove(HGroup stageChild) {
 		return stage.remove(stageChild);
 	}
 	
-	public HImage remove(HImage stageChild) {
+	public static HImage remove(HImage stageChild) {
 		return stage.remove(stageChild);
 	}
 	
-	public HPath remove(HPath stageChild) {
+	public static HPath remove(HPath stageChild) {
 		return stage.remove(stageChild);
 	}
 	
-	public HRect remove(HRect stageChild) {
+	public static HRect remove(HRect stageChild) {
 		return stage.remove(stageChild);
 	}
 	
-	public HShape remove(HShape stageChild) {
+	public static HShape remove(HShape stageChild) {
 		return stage.remove(stageChild);
 	}
 	
-	public HText remove(HText stageChild) {
+	public static HText remove(HText stageChild) {
 		return stage.remove(stageChild);
 	}
 	
-	public HDrawable remove(HDrawable stageChild) {
+	public static HDrawable remove(HDrawable stageChild) {
 		return stage.remove(stageChild);
 	}
 	
 	
 	// MISC UTILS //
-	public H drawStage() {
+	public static H drawStage() {
 		behaviors.runAll(app);
 		mouse.handleEvents();
 		stage.paintAll(graphicsContext, uses3D, 1);
-		return this;
+		return hype;
 	}
 	
-	public boolean mouseStarted() {
+	public static boolean mouseStarted() {
 		return mouse.started();
 	}
-	
-	public PImage getImage(Object imgArg) {
+
+	/**
+	 * Cast an image to PImage
+	 * @param   imgArg    Type: PImage, HImageHolder, String
+	 * @return  PImage
+	 */
+	public static PImage getImage(Object imgArg) {
 		if(imgArg instanceof PImage)
 			return (PImage) imgArg;
 		if(imgArg instanceof HImageHolder)

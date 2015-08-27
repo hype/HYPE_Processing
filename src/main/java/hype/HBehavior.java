@@ -5,13 +5,18 @@ import processing.core.PApplet;
 public abstract class HBehavior extends HNode<HBehavior> {
 	protected HBehaviorRegistry registry;
 
-	public HBehavior register(H hype) {
-		hype.behaviors().register(this);
+	/**
+	 * Registers behavior with HBehaviorRegistry
+	 * @param hype
+	 * @return
+	 */
+	public HBehavior register() {
+		H.behaviors().register(this);
 		return this;
 	}
 
-	public HBehavior unregister(H hype) {
-		hype.behaviors().unregister(this);
+	public HBehavior unregister() {
+		H.behaviors().unregister(this);
 		return this;
 	}
 
