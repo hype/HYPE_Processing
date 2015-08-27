@@ -13,36 +13,36 @@ import java.util.Iterator;
 import processing.core.PApplet;
 
 public class HSwarm extends HBehavior {
-	private HLinkedHashSet<HLocatable> _goals;
-	private HLinkedHashSet<HDirectable> _targets;
-	private float _speed, _turnEase, _twitchRad, _idleGoalX, _idleGoalY;
+	private HLinkedHashSet<HLocatable> goals;
+	private HLinkedHashSet<HDirectable> targets;
+	private float speed, turnEase, twitchRad, idleGoalX, idleGoalY;
 
 	public HSwarm() {
-		_speed = 1;
-		_turnEase = 1;
-		_twitchRad = 0;
-		_goals = new HLinkedHashSet<HLocatable>();
-		_targets = new HLinkedHashSet<HDirectable>();
+		speed = 1;
+		turnEase = 1;
+		twitchRad = 0;
+		goals = new HLinkedHashSet<HLocatable>();
+		targets = new HLinkedHashSet<HDirectable>();
 	}
 
 	public HSwarm addTarget(HDirectable t) {
-		if(_targets.size() <= 0) register();
-		_targets.add(t);
+		if(targets.size() <= 0) register();
+		targets.add(t);
 		return this;
 	}
 
 	public HSwarm removeTarget(HDirectable t) {
-		_targets.remove(t);
-		if(_targets.size() <= 0) unregister();
+		targets.remove(t);
+		if(targets.size() <= 0) unregister();
 		return this;
 	}
 
 	public HLinkedHashSet<HDirectable> targets() {
-		return _targets;
+		return targets;
 	}
 
 	public HSwarm addGoal(HLocatable g) {
-		_goals.add(g);
+		goals.add(g);
 		return this;
 	}
 
@@ -55,69 +55,69 @@ public class HSwarm extends HBehavior {
 	}
 
 	public HSwarm removeGoal(HLocatable g) {
-		_goals.remove(g);
+		goals.remove(g);
 		return this;
 	}
 
 	public HLinkedHashSet<HLocatable> goals() {
-		return _goals;
+		return goals;
 	}
 
 	public HSwarm idleGoal(float x, float y) {
-		_idleGoalX = x;
-		_idleGoalY = y;
+		idleGoalX = x;
+		idleGoalY = y;
 		return this;
 	}
 
 	public float idleGoalX() {
-		return _idleGoalX;
+		return idleGoalX;
 	}
 
 	public float idleGoalY() {
-		return _idleGoalY;
+		return idleGoalY;
 	}
 
 	public HSwarm speed(float s) {
-		_speed = s;
+		speed = s;
 		return this;
 	}
 
 	public float speed() {
-		return _speed;
+		return speed;
 	}
 
 	public HSwarm turnEase(float e) {
-		_turnEase = e;
+		turnEase = e;
 		return this;
 	}
 
 	public float turnEase() {
-		return _turnEase;
+		return turnEase;
 	}
 
 	public HSwarm twitch(float deg) {
-		_twitchRad = deg * HConstants.D2R;
+		twitchRad = deg * HConstants.D2R;
 		return this;
 	}
 
 	public HSwarm twitchRad(float rad) {
-		_twitchRad = rad;
+		twitchRad = rad;
 		return this;
 	}
 
 	public float twitch() {
-		return _twitchRad * HConstants.R2D;
+		return twitchRad * HConstants.R2D;
 	}
 
 	public float twitchRad() {
-		return _twitchRad;
+		return twitchRad;
 	}
 
 	private HLocatable getGoal(HDirectable target, PApplet app) {
 		HLocatable goal = null;
 		float nearestDist = -1;
 
-		for(HLocatable h : _goals) {
+		for(HLocatable h : goals) {
 			float dist = HMath.dist(target.x(), target.y(), h.x(), h.y());
 			if(nearestDist<0 || dist<nearestDist) {
 				nearestDist = dist;
@@ -129,8 +129,8 @@ public class HSwarm extends HBehavior {
 
 	@Override
 	public void runBehavior(PApplet app) {
-		int numTargets = _targets.size();
-		Iterator<HDirectable> it = _targets.iterator();
+		int numTargets = targets.size();
+		Iterator<HDirectable> it = targets.iterator();
 		for(int i=0; i<numTargets; ++i) {
 			HDirectable target = it.next();
 
@@ -138,8 +138,8 @@ public class HSwarm extends HBehavior {
 			float tx = target.x();
 			float ty = target.y();
 
-			float goalx = _idleGoalX;
-			float goaly = _idleGoalY;
+			float goalx = idleGoalX;
+			float goaly = idleGoalY;
 			float goalz = 0;
 			HLocatable goal = getGoal(target, app);
 			if(goal != null) {
@@ -150,18 +150,18 @@ public class HSwarm extends HBehavior {
 
 			// Get rotation that points towards the goal, plus easing
 			float tmp = HMath.xAxisAngle(tx,ty, goalx,goaly) - rot;
-			float dRot = _turnEase * (float)
+			float dRot = turnEase * (float)
 				Math.atan2( Math.sin(tmp), Math.cos(tmp) );
 			rot += dRot;
 
 			// Add some random twitching to the rotation via perlin noise
 			float noise = app.noise(i*numTargets + app.frameCount/8f);
-			rot += HMath.map(noise, 0,1, -_twitchRad,_twitchRad);
+			rot += HMath.map(noise, 0,1, -twitchRad, twitchRad);
 
 			// Apply the rotation and move to the direction of its rotation
 			target.rotationRad(rot);
-			target.x(target.x() + (float)Math.cos(rot)*_speed);
-			target.y(target.y() + (float)Math.sin(rot)*_speed);
+			target.x(target.x() + (float)Math.cos(rot)* speed);
+			target.y(target.y() + (float)Math.sin(rot)* speed);
 			target.z(goalz);
 		}
 	}

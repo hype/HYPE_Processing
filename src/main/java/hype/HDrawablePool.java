@@ -9,123 +9,123 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class HDrawablePool implements Iterable<HDrawable> {
-	private HLinkedHashSet<HDrawable> _activeSet, _inactiveSet;
-	private ArrayList<HDrawable> _prototypes;
-	private HCallback _onCreate, _onRequest, _onRelease;
-	private HLayout _layout;
-	private HColorist _colorist;
-	private HDrawable _autoParent;
-	private int _max;
+	private HLinkedHashSet<HDrawable> activeSet, inactiveSet;
+	private ArrayList<HDrawable> prototypes;
+	private HCallback onCreate, onRequest, onRelease;
+	private HLayout layout;
+	private HColorist colorist;
+	private HDrawable autoParent;
+	private int max;
 
 	public HDrawablePool() {
 		this(64);
 	}
 
 	public HDrawablePool(int maximumDrawables) {
-		_max = maximumDrawables;
-		_activeSet = new HLinkedHashSet<HDrawable>();
-		_inactiveSet = new HLinkedHashSet<HDrawable>();
-		_prototypes = new ArrayList<HDrawable>();
-		_onCreate = _onRequest = _onRelease = HConstants.NOP;
+		max = maximumDrawables;
+		activeSet = new HLinkedHashSet<HDrawable>();
+		inactiveSet = new HLinkedHashSet<HDrawable>();
+		prototypes = new ArrayList<HDrawable>();
+		onCreate = onRequest = onRelease = HConstants.NOP;
 	}
 
 	public int max() {
-		return _max;
+		return max;
 	}
 
 	public HDrawablePool max(int m) {
-		_max = m;
+		max = m;
 		return this;
 	}
 
 	public int numActive() {
-		return _activeSet.size();
+		return activeSet.size();
 	}
 
 	public int numInactive() {
-		return _inactiveSet.size();
+		return inactiveSet.size();
 	}
 
 	public int currentIndex() {
-		return _activeSet.size() - 1;
+		return activeSet.size() - 1;
 	}
 
 	public HLayout layout() {
-		return _layout;
+		return layout;
 	}
 
 	public HDrawablePool layout(HLayout newLayout) {
-		_layout = newLayout;
+		layout = newLayout;
 		return this;
 	}
 
 	public HColorist colorist() {
-		return _colorist;
+		return colorist;
 	}
 
 	public HDrawablePool colorist(HColorist newColorist) {
-		_colorist = newColorist;
+		colorist = newColorist;
 		return this;
 	}
 
 	public HDrawablePool onCreate(HCallback callback) {
-		_onCreate = (callback==null)? HConstants.NOP : callback;
+		onCreate = (callback==null)? HConstants.NOP : callback;
 		return this;
 	}
 
 	public HCallback onCreate() {
-		return _onCreate;
+		return onCreate;
 	}
 
 	public HDrawablePool onRequest(HCallback callback) {
-		_onRequest = (callback==null)? HConstants.NOP : callback;
+		onRequest = (callback==null)? HConstants.NOP : callback;
 		return this;
 	}
 
 	public HCallback onRequest() {
-		return _onRequest;
+		return onRequest;
 	}
 
 	public HDrawablePool onRelease(HCallback callback) {
-		_onRelease = (callback==null)? HConstants.NOP : callback;
+		onRelease = (callback==null)? HConstants.NOP : callback;
 		return this;
 	}
 
 	public HCallback onRelease() {
-		return _onRelease;
+		return onRelease;
 	}
 
 	public HDrawablePool autoParent(HDrawable parent) {
-		_autoParent = parent;
+		autoParent = parent;
 		return this;
 	}
 
 	public HDrawablePool autoAddToStage() {
-		_autoParent = H.stage();
+		autoParent = H.stage();
 		return this;
 	}
 
 	public HDrawable autoParent() {
-		return _autoParent;
+		return autoParent;
 	}
 
 	public boolean isFull() {
-		return count() >= _max;
+		return count() >= max;
 	}
 
 	public int count() {
-		return _activeSet.size() + _inactiveSet.size();
+		return activeSet.size() + inactiveSet.size();
 	}
 
 	public HDrawablePool destroy() {
-		_activeSet.removeAll();
-		_inactiveSet.removeAll();
-		_prototypes.clear();
+		activeSet.removeAll();
+		inactiveSet.removeAll();
+		prototypes.clear();
 
-		_onCreate = _onRequest = _onRelease = HConstants.NOP;
-		_layout = null;
-		_autoParent = null;
-		_max = 0;
+		onCreate = onRequest = onRelease = HConstants.NOP;
+		layout = null;
+		autoParent = null;
+		max = 0;
 
 		return this;
 	}
@@ -136,16 +136,16 @@ public class HDrawablePool implements Iterable<HDrawable> {
 
 	public HDrawablePool drain(boolean resetLayout) {
 
-		for (HDrawable d : _activeSet) {
-			if(_autoParent != null) _autoParent.remove(d);
-			_onRelease.run(d);//do we need this?
+		for (HDrawable d : activeSet) {
+			if(autoParent != null) autoParent.remove(d);
+			onRelease.run(d);//do we need this?
 		}
 
-		_activeSet.removeAll();
-		_inactiveSet.removeAll();
+		activeSet.removeAll();
+		inactiveSet.removeAll();
 		//Need to add this in when we've updated the HLayout interface
-		// if (_layout != null && resetLayout == true) {
-		// 	_layout.resetIndex();
+		// if (layout != null && resetLayout == true) {
+		// 	layout.resetIndex();
 		// }
 		return this;
 	}
@@ -155,8 +155,8 @@ public class HDrawablePool implements Iterable<HDrawable> {
 			HWarnings.warn("Null Prototype", "HDrawablePool.add()",
 					HWarnings.NULL_ARGUMENT);
 		} else {
-			_prototypes.add(prototype);
-			while(frequency-- > 0) _prototypes.add(prototype);
+			prototypes.add(prototype);
+			while(frequency-- > 0) prototypes.add(prototype);
 		}
 		return this;
 	}
@@ -166,7 +166,7 @@ public class HDrawablePool implements Iterable<HDrawable> {
 	}
 
 	public HDrawable request() {
-		if(_prototypes.size() <= 0) {
+		if(prototypes.size() <= 0) {
 			HWarnings.warn("No Prototype", "HDrawablePool.request()",
 					HWarnings.NO_PROTOTYPE);
 			return null;
@@ -175,33 +175,33 @@ public class HDrawablePool implements Iterable<HDrawable> {
 		HDrawable drawable;
 		boolean onCreateFlag = false;
 
-		if(_inactiveSet.size() > 0) {
-			drawable = _inactiveSet.pull();
-		} else if(count() < _max) {
+		if(inactiveSet.size() > 0) {
+			drawable = inactiveSet.pull();
+		} else if(count() < max) {
 			drawable = createRandomDrawable();
 			onCreateFlag = true;
 		} else return null;
 
-		_activeSet.add(drawable);
+		activeSet.add(drawable);
 
 		// Apply autoParent, layout and colorist
-		if(_autoParent != null) _autoParent.add(drawable);
-		if(_layout != null) _layout.applyTo(drawable);
-		if(_colorist != null) _colorist.applyColor(drawable);
+		if(autoParent != null) autoParent.add(drawable);
+		if(layout != null) layout.applyTo(drawable);
+		if(colorist != null) colorist.applyColor(drawable);
 
 		// Call onCreate (if applicable), and onRequest
-		if(onCreateFlag) _onCreate.run(drawable);
-		_onRequest.run(drawable);
+		if(onCreateFlag) onCreate.run(drawable);
+		onRequest.run(drawable);
 
 		return drawable;
 	}
 
 	public HDrawablePool requestAll() {
-		if(_prototypes.size() <= 0) {
+		if(prototypes.size() <= 0) {
 			HWarnings.warn("No Prototype", "HDrawablePool.requestAll()",
 					HWarnings.NO_PROTOTYPE);
 		} else {
-			while(count() < _max) request();
+			while(count() < max) request();
 		}
 		return this;
 	}
@@ -209,27 +209,27 @@ public class HDrawablePool implements Iterable<HDrawable> {
 	public HDrawablePool shuffleRequestAll() {
 
 		HDrawable tempParent = null;
-		if(_autoParent != null) {
-			tempParent = _autoParent;
-			_autoParent = null;
+		if(autoParent != null) {
+			tempParent = autoParent;
+			autoParent = null;
 		}
 
-		if(_prototypes.size() <= 0) {
+		if(prototypes.size() <= 0) {
 			HWarnings.warn("No Prototype", "HDrawablePool.shuffleRequestAll()",
 					HWarnings.NO_PROTOTYPE);
 		} else {
-			while(count() < _max) request();
+			while(count() < max) request();
 		}
 
 		//shuffle active set and add to stage
-		_activeSet.shuffle();
+		activeSet.shuffle();
 
 		if(tempParent != null) {
-			_autoParent = tempParent;
+			autoParent = tempParent;
 			tempParent = null;
 
-			for (HDrawable d : _activeSet) {
-				_autoParent.add(d);
+			for (HDrawable d : activeSet) {
+				autoParent.add(d);
 			}
 		}
 
@@ -237,11 +237,11 @@ public class HDrawablePool implements Iterable<HDrawable> {
 	}
 
 	public boolean release(HDrawable d) {
-		if(_activeSet.remove(d)) {
-			_inactiveSet.add(d);
+		if(activeSet.remove(d)) {
+			inactiveSet.add(d);
 
-			if(_autoParent != null) _autoParent.remove(d);
-			_onRelease.run(d);
+			if(autoParent != null) autoParent.remove(d);
+			onRelease.run(d);
 
 			return true;
 		}
@@ -249,20 +249,20 @@ public class HDrawablePool implements Iterable<HDrawable> {
 	}
 
 	public HLinkedHashSet<HDrawable> activeSet() {
-		return _activeSet;
+		return activeSet;
 	}
 
 	public HLinkedHashSet<HDrawable> inactiveSet() {
-		return _inactiveSet;
+		return inactiveSet;
 	}
 
 	private HDrawable createRandomDrawable() {
-		int index = HMath.randomInt(_prototypes.size());
-		return _prototypes.get(index).createCopy();
+		int index = HMath.randomInt(prototypes.size());
+		return prototypes.get(index).createCopy();
 	}
 
 	@Override
 	public Iterator<HDrawable> iterator() {
-		return _activeSet.iterator();
+		return activeSet.iterator();
 	}
 }

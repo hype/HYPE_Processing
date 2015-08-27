@@ -17,17 +17,17 @@ public class HGroup extends HDrawable {
 
 	@Override
 	public void paintAll(PGraphics g, boolean usesZ, float alphaPc) {
-		if(_alphaPc<=0) return;
+		if(this.alphaPc <=0) return;
 
 		// Perform a trimmed down version of super.paintAll()
 		g.pushMatrix();
-			if(usesZ) g.translate(_x,_y,_z);
-			else g.translate(_x,_y);
-			g.rotate(_rotationZRad);
+			if(usesZ) g.translate(x, y, z);
+			else g.translate(x, y);
+			g.rotate(rotationZRad);
 
-			alphaPc *= _alphaPc;
+			alphaPc *= this.alphaPc;
 
-			HDrawable child = _firstChild;
+			HDrawable child = firstChild;
 			while(child != null) {
 				child.paintAll(g, usesZ, alphaPc);
 				child = child.next();

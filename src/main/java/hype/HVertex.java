@@ -6,64 +6,64 @@ import processing.core.PGraphics;
 public class HVertex implements HLocatable {
 	public static final float LINE_TOLERANCE = 1.5f;
 
-	private HPath _path;
-	private byte _numControlPts;
-	private float _u, _v, _cu1, _cv1, _cu2, _cv2;
+	private HPath path;
+	private byte numControlPts;
+	private float u, v, cu1, cv1, cu2, cv2;
 
 	public HVertex(HPath parentPath) {
-		_path = parentPath;
+		path = parentPath;
 	}
 
 	public HVertex createCopy(HPath newParentPath) {
 		HVertex copy = new HVertex(newParentPath);
-		copy._numControlPts = _numControlPts;
-		copy._u = _u;
-		copy._v = _v;
-		copy._cu1 = _cu1;
-		copy._cv1 = _cv1;
-		copy._cu2 = _cu2;
-		copy._cv2 = _cv2;
+		copy.numControlPts = numControlPts;
+		copy.u = u;
+		copy.v = v;
+		copy.cu1 = cu1;
+		copy.cv1 = cv1;
+		copy.cu2 = cu2;
+		copy.cv2 = cv2;
 		return copy;
 	}
 
 	public HPath path() {
-		return _path;
+		return path;
 	}
 
 	public HVertex numControlPts(byte b) {
-		_numControlPts = b;
+		numControlPts = b;
 		return this;
 	}
 
 	public byte numControlPts() {
-		return _numControlPts;
+		return numControlPts;
 	}
 
 	public boolean isLine() {
-		return (_numControlPts <= 0);
+		return (numControlPts <= 0);
 	}
 
 	public boolean isCurved() {
-		return (_numControlPts > 0);
+		return (numControlPts > 0);
 	}
 
 	public boolean isQuadratic() {
-		return (_numControlPts == 1);
+		return (numControlPts == 1);
 	}
 
 	public boolean isCubic() {
-		return (_numControlPts >= 2);
+		return (numControlPts >= 2);
 	}
 
 	public HVertex set(float x, float y) {
 		return setUV(
-			_path.x2u(x),   _path.y2v(y));
+				path.x2u(x), path.y2v(y));
 	}
 
 	public HVertex set(float cx, float cy, float x, float y) {
 		return setUV(
-			_path.x2u(cx), _path.y2v(cy),
-			_path.x2u(x),  _path.y2v(y));
+				path.x2u(cx), path.y2v(cy),
+				path.x2u(x), path.y2v(y));
 	}
 
 	public HVertex set(
@@ -72,24 +72,24 @@ public class HVertex implements HLocatable {
 		float x, float y
 	) {
 		return setUV(
-			_path.x2u(cx1), _path.y2v(cy1),
-			_path.x2u(cx2), _path.y2v(cy2),
-			_path.x2u(x),   _path.y2v(y));
+			path.x2u(cx1), path.y2v(cy1),
+			path.x2u(cx2), path.y2v(cy2),
+			path.x2u(x),   path.y2v(y));
 	}
 
 	public HVertex setUV(float u, float v) {
-		_numControlPts = 0;
-		_u = u;
-		_v = v;
+		numControlPts = 0;
+		this.u = u;
+		this.v = v;
 		return this;
 	}
 
 	public HVertex setUV(float cu, float cv, float u, float v) {
-		_numControlPts = 1;
-		_u = u;
-		_v = v;
-		_cu1 = cu;
-		_cv1 = cv;
+		numControlPts = 1;
+		this.u = u;
+		this.v = v;
+		cu1 = cu;
+		cv1 = cv;
 		return this;
 	}
 
@@ -98,34 +98,34 @@ public class HVertex implements HLocatable {
 		float cu2, float cv2,
 		float u, float v
 	) {
-		_numControlPts = 2;
-		_u = u;
-		_v = v;
-		_cu1 = cu1;
-		_cv1 = cv1;
-		_cu2 = cu2;
-		_cv2 = cv2;
+		numControlPts = 2;
+		this.u = u;
+		this.v = v;
+		this.cu1 = cu1;
+		this.cv1 = cv1;
+		this.cu2 = cu2;
+		this.cv2 = cv2;
 		return this;
 	}
 
 	@Override
 	public HVertex x(float f) {
-		return u(_path.x2u(f));
+		return u(path.x2u(f));
 	}
 
 	@Override
 	public float x() {
-		return _path.u2x(_u);
+		return path.u2x(u);
 	}
 
 	@Override
 	public HVertex y(float f) {
-		return v(_path.y2v(f));
+		return v(path.y2v(f));
 	}
 
 	@Override
 	public float y() {
-		return _path.v2y(_v);
+		return path.v2y(v);
 	}
 
 	@Override
@@ -139,21 +139,21 @@ public class HVertex implements HLocatable {
 	}
 
 	public HVertex u(float f) {
-		_u = f;
+		u = f;
 		return this;
 	}
 
 	public float u() {
-		return _u;
+		return u;
 	}
 
 	public HVertex v(float f) {
-		_v = f;
+		v = f;
 		return this;
 	}
 
 	public float v() {
-		return _v;
+		return v;
 	}
 
 	public HVertex cx(float f) {
@@ -189,114 +189,114 @@ public class HVertex implements HLocatable {
 	}
 
 	public HVertex cx1(float f) {
-		return cu1(_path.x2u(f));
+		return cu1(path.x2u(f));
 	}
 
 	public float cx1() {
-		return _path.u2x(_cu1);
+		return path.u2x(cu1);
 	}
 
 	public HVertex cy1(float f) {
-		return cv1(_path.y2v(f));
+		return cv1(path.y2v(f));
 	}
 
 	public float cy1() {
-		return _path.v2y(_cv1);
+		return path.v2y(cv1);
 	}
 
 	public HVertex cu1(float f) {
-		_cu1 = f;
+		cu1 = f;
 		return this;
 	}
 
 	public float cu1() {
-		return _cu1;
+		return cu1;
 	}
 
 	public HVertex cv1(float f) {
-		_cv1 = f;
+		cv1 = f;
 		return this;
 	}
 
 	public float cv1() {
-		return _cv1;
+		return cv1;
 	}
 
 	public HVertex cx2(float f) {
-		return cu2(_path.x2u(f));
+		return cu2(path.x2u(f));
 	}
 
 	public float cx2() {
-		return _path.u2x(_cu2);
+		return path.u2x(cu2);
 	}
 
 	public HVertex cy2(float f) {
-		return cv2(_path.y2v(f));
+		return cv2(path.y2v(f));
 	}
 
 	public float cy2() {
-		return _path.v2y(_cv2);
+		return path.v2y(cv2);
 	}
 
 	public HVertex cu2(float f) {
-		_cu2 = f;
+		cu2 = f;
 		return this;
 	}
 
 	public float cu2() {
-		return _cu2;
+		return cu2;
 	}
 
 	public HVertex cv2(float f) {
-		_cv2 = f;
+		cv2 = f;
 		return this;
 	}
 
 	public float cv2() {
-		return _cv2;
+		return cv2;
 	}
 
 	public void computeMinMax(float[] minmax) {
-		if(_u < minmax[0]) minmax[0] = _u;
-		else if(_u > minmax[2]) minmax[2] = _u;
+		if(u < minmax[0]) minmax[0] = u;
+		else if(u > minmax[2]) minmax[2] = u;
 
-		if(_v < minmax[1]) minmax[1] = _v;
-		else if(_v > minmax[3]) minmax[3] = _v;
+		if(v < minmax[1]) minmax[1] = v;
+		else if(v > minmax[3]) minmax[3] = v;
 
-		switch(_numControlPts) {
+		switch(numControlPts) {
 		case 2:
-			if(_cu2 < minmax[0]) minmax[0] = _cu2;
-			else if(_cu2 > minmax[2]) minmax[2] = _cu2;
+			if(cu2 < minmax[0]) minmax[0] = cu2;
+			else if(cu2 > minmax[2]) minmax[2] = cu2;
 
-			if(_cv2 < minmax[1]) minmax[1] = _cv2;
-			else if(_cv2 > minmax[3]) minmax[3] = _cv2;
+			if(cv2 < minmax[1]) minmax[1] = cv2;
+			else if(cv2 > minmax[3]) minmax[3] = cv2;
 		case 1:
-			if(_cu1 < minmax[0]) minmax[0] = _cu1;
-			else if(_cu1 > minmax[2]) minmax[2] = _cu1;
+			if(cu1 < minmax[0]) minmax[0] = cu1;
+			else if(cu1 > minmax[2]) minmax[2] = cu1;
 
-			if(_cv1 < minmax[1]) minmax[1] = _cv1;
-			else if(_cv1 > minmax[3]) minmax[3] = _cv1;
+			if(cv1 < minmax[1]) minmax[1] = cv1;
+			else if(cv1 > minmax[3]) minmax[3] = cv1;
 			break;
 		default: break;
 		}
 	}
 
 	public void adjust(float offsetU, float offsetV, float oldW, float oldH) {
-		x( oldW*(_u += offsetU) ).y( oldH*(_v += offsetV) );
+		x( oldW*(u += offsetU) ).y(oldH * (v += offsetV));
 
-		switch(_numControlPts) {
-		case 2: cx2( oldW*(_cu2 += offsetU) ).cy2( oldH*(_cv2 += offsetV) );
-		case 1: cx1( oldW*(_cu1 += offsetU) ).cy1( oldH*(_cv1 += offsetV) );
+		switch(numControlPts) {
+		case 2: cx2( oldW*(cu2 += offsetU) ).cy2(oldH * (cv2 += offsetV));
+		case 1: cx1( oldW*(cu1 += offsetU) ).cy1(oldH * (cv1 += offsetV));
 			break;
 		default: break;
 		}
 	}
 
 	private float dv(float pv, float t) {
-		switch(_numControlPts) {
-		case 1: return HMath.bezierTangent(pv,_cv1,_v, t);
-		case 2: return HMath.bezierTangent(pv,_cv2,_cv2,_v, t);
-		default: return _v - pv;
+		switch(numControlPts) {
+		case 1: return HMath.bezierTangent(pv, cv1, v, t);
+		case 2: return HMath.bezierTangent(pv, cv2, cv2, v, t);
+		default: return v - pv;
 		}
 	}
 
@@ -305,10 +305,10 @@ public class HVertex implements HLocatable {
 		float tu, float tv, boolean openPath
 	) {
 		// TODO use pixels with the tolerance
-		float u1 = prev._u;
-		float v1 = prev._v;
-		float u2 = _u;
-		float v2 = _v;
+		float u1 = prev.u;
+		float v1 = prev.v;
+		float u2 = u;
+		float v2 = v;
 
 		if(isLine() || openPath) {
 			return ((v1<=tv && tv<v2) || (v2<=tv && tv<v1)) &&
@@ -316,18 +316,18 @@ public class HVertex implements HLocatable {
 		} else if(isQuadratic()) {
 			boolean b = false;
 			float[] params = new float[2];
-			int numParams = HMath.bezierParam(v1,_cv1,v2, tv, params);
+			int numParams = HMath.bezierParam(v1, cv1,v2, tv, params);
 
 			for(int i=0; i<numParams; ++i) {
 				float t = params[i];
-				if(0<t && t<1 && tu<HMath.bezierPoint(u1,_cu1,u2, t)) {
-					if(HMath.bezierTangent(v1,_cv1,v2, t) == 0) continue;
+				if(0<t && t<1 && tu<HMath.bezierPoint(u1, cu1,u2, t)) {
+					if(HMath.bezierTangent(v1, cv1,v2, t) == 0) continue;
 					b = !b;
 				} else if(t==0 && tu<u1) {
-					float ptanv = prev.dv(pprev._v,1);
-					if(ptanv==0) ptanv = prev.dv(pprev._v,0.9375f);
-					float ntanv = HMath.bezierTangent(v1,_cv1,v2, 0);
-					if(ntanv==0) ntanv=HMath.bezierTangent(v1,_cv1,v2, 0.0625f);
+					float ptanv = prev.dv(pprev.v,1);
+					if(ptanv==0) ptanv = prev.dv(pprev.v,0.9375f);
+					float ntanv = HMath.bezierTangent(v1, cv1,v2, 0);
+					if(ntanv==0) ntanv=HMath.bezierTangent(v1, cv1,v2, 0.0625f);
 					if(ptanv<0 == ntanv<0) b = !b;
 				}
 			}
@@ -335,25 +335,25 @@ public class HVertex implements HLocatable {
 		} else {
 			boolean b = false;
 			float[] params = new float[3];
-			int numParams = HMath.bezierParam(v1,_cv1,_cv2,v2, tv, params);
+			int numParams = HMath.bezierParam(v1, cv1, cv2,v2, tv, params);
 
 			for(int i=0; i<numParams; ++i) {
 				float t = params[i];
-				if(0<t && t<1 && tu<HMath.bezierPoint(u1,_cu1,_cu2,u2, t)) {
-					if(HMath.bezierTangent(v1,_cv1,_cv2,_v, t) == 0) {
+				if(0<t && t<1 && tu<HMath.bezierPoint(u1, cu1, cu2,u2, t)) {
+					if(HMath.bezierTangent(v1, cv1, cv2, v, t) == 0) {
 						float ptanv = HMath.bezierTangent(
-							v1,_cv1,_cv2,v2, Math.max(t-0.0625f, 0));
+							v1, cv1, cv2,v2, Math.max(t-0.0625f, 0));
 						float ntanv = HMath.bezierTangent(
-							v1,_cv1,_cv2,v2, Math.min(t+.0625f, 1));
+							v1, cv1, cv2,v2, Math.min(t+.0625f, 1));
 						if(ptanv<0 != ntanv<0) continue;
 					}
 					b = !b;
 				} else if(t==0 && tu<u1) {
-					float ptanv = prev.dv(pprev._v,1);
-					if(ptanv==0) ptanv = prev.dv(pprev._v,0.9375f);
-					float ntanv = HMath.bezierTangent(v1,_cv1,_cv2, 0);
+					float ptanv = prev.dv(pprev.v,1);
+					if(ptanv==0) ptanv = prev.dv(pprev.v,0.9375f);
+					float ntanv = HMath.bezierTangent(v1, cv1, cv2, 0);
 					if(ntanv==0) ntanv = HMath.bezierTangent(
-						v1,_cv1,_cv2,v2, 0.0625f);
+						v1, cv1, cv2,v2, 0.0625f);
 					if(ptanv<0 == ntanv<0) b = !b;
 				}
 			}

@@ -6,13 +6,13 @@ import processing.opengl.PShader;
 import java.util.ArrayList;
 
 public class HCanvas extends HDrawable {
-	private PGraphics _graphics;
-	private String _renderer;
-	private float _filterParam;
-	private int _filterKind, _blendMode, _fadeAmt;
-	private boolean _autoClear,_hasFade,_hasFilter,_hasFilterParam,_hasBlend, _hasShader;
+	private PGraphics graphics;
+	private String renderer;
+	private float filterParam;
+	private int filterKind, blendMode, fadeAmt;
+	private boolean autoClear, hasFade, hasFilter, hasFilterParam, hasBlend, hasShader;
 
-	private ArrayList<PShader> _shader;
+	private ArrayList<PShader> shader;
 
 	public HCanvas() {
 		this(H.app().width, H.app().height);
@@ -27,104 +27,104 @@ public class HCanvas extends HDrawable {
 	}
 
 	public HCanvas(float w, float h, String bufferRenderer) {
-		_renderer = bufferRenderer;
+		renderer = bufferRenderer;
 		size(w,h);
 	}
 
 	@Override
 	public HCanvas createCopy() {
-		HCanvas copy = new HCanvas(_width,_height,_renderer);
+		HCanvas copy = new HCanvas(width, height, renderer);
 
-		copy.autoClear(_autoClear).hasFade(_hasFade);
-		if(_hasFilter) copy.filter(_filterKind, _filterParam);
-		if(_hasBlend) copy.blend(_blendMode);
+		copy.autoClear(autoClear).hasFade(hasFade);
+		if(hasFilter) copy.filter(filterKind, filterParam);
+		if(hasBlend) copy.blend(blendMode);
 
 		copy.copyPropertiesFrom(this);
 		return copy;
 	}
 
 	protected void updateBuffer() {
-		int w = Math.round(_width);
-		int h = Math.round(_height);
+		int w = Math.round(width);
+		int h = Math.round(height);
 
-		_graphics = H.app().createGraphics(w, h, _renderer);
-		_graphics.beginDraw();
-		_graphics.loadPixels();
-			_graphics.background(H.CLEAR);
-		_graphics.endDraw();
+		graphics = H.app().createGraphics(w, h, renderer);
+		graphics.beginDraw();
+		graphics.loadPixels();
+			graphics.background(H.CLEAR);
+		graphics.endDraw();
 
-		_width = w;
-		_height = h;
+		width = w;
+		height = h;
 	}
 
 	public HCanvas renderer(String s) {
-		_renderer = s;
+		renderer = s;
 		updateBuffer();
 		return this;
 	}
 
 	public String renderer() {
-		return _renderer;
+		return renderer;
 	}
 
 	public boolean usesZ() {
-		return _renderer.equals(PConstants.P3D) ||
-			_renderer.equals(PConstants.OPENGL);
+		return renderer.equals(PConstants.P3D) ||
+			renderer.equals(PConstants.OPENGL);
 	}
 
 	public PGraphics graphics() {
-		return _graphics;
+		return graphics;
 	}
 
 	public HCanvas shader(PShader s) {
-		if (!_hasShader) {
-			_hasShader = true;
-			_shader = new ArrayList<PShader>();
+		if (!hasShader) {
+			hasShader = true;
+			shader = new ArrayList<PShader>();
 		}
-		_shader.add(s);
+		shader.add(s);
 		return this;
 	}
 
 	public HCanvas filter(int kind) {
-		_hasFilter = true;
-		_hasFilterParam = false;
-		_filterKind = kind;
+		hasFilter = true;
+		hasFilterParam = false;
+		filterKind = kind;
 		return this;
 	}
 
 	public HCanvas filter(int kind, float param) {
-		_hasFilter = true;
-		_hasFilterParam = true;
-		_filterKind = kind;
-		_filterParam = param;
+		hasFilter = true;
+		hasFilterParam = true;
+		filterKind = kind;
+		filterParam = param;
 		return this;
 	}
 
 	public HCanvas noFilter() {
-		_hasFilter = false;
+		hasFilter = false;
 		return this;
 	}
 
 	public boolean hasFilter() {
-		return _hasFilter;
+		return hasFilter;
 	}
 
 	public HCanvas filterKind(int i) {
-		_filterKind = i;
+		filterKind = i;
 		return this;
 	}
 
 	public int filterKind() {
-		return _filterKind;
+		return filterKind;
 	}
 
 	public HCanvas filterParam(float f) {
-		_filterParam = f;
+		filterParam = f;
 		return this;
 	}
 
 	public float filterParam() {
-		return _filterParam;
+		return filterParam;
 	}
 
 	public HCanvas blend() {
@@ -132,13 +132,13 @@ public class HCanvas extends HDrawable {
 	}
 
 	public HCanvas blend(int mode) {
-		_hasBlend = true;
-		_blendMode = mode;
+		hasBlend = true;
+		blendMode = mode;
 		return this;
 	}
 
 	public HCanvas noBlend() {
-		_hasBlend = false;
+		hasBlend = false;
 		return this;
 	}
 
@@ -147,45 +147,45 @@ public class HCanvas extends HDrawable {
 	}
 
 	public boolean hasBlend() {
-		return _hasBlend;
+		return hasBlend;
 	}
 
 	public HCanvas blendMode(int i) {
-		_blendMode = i;
+		blendMode = i;
 		return this;
 	}
 
 	public int blendMode() {
-		return _blendMode;
+		return blendMode;
 	}
 
 	public HCanvas fade(int fadeAmt) {
-		_hasFade = true;
-		_fadeAmt = fadeAmt;
+		hasFade = true;
+		this.fadeAmt = fadeAmt;
 		return this;
 	}
 
 	public HCanvas noFade() {
-		_hasFade = false;
+		hasFade = false;
 		return this;
 	}
 
 	public HCanvas hasFade(boolean b) {
-		_hasFade = b;
+		hasFade = b;
 		return this;
 	}
 
 	public boolean hasFade() {
-		return _hasFade;
+		return hasFade;
 	}
 
 	public HCanvas autoClear(boolean b) {
-		_autoClear = b;
+		autoClear = b;
 		return this;
 	}
 
 	public boolean autoClear() {
-		return _autoClear;
+		return autoClear;
 	}
 
 	public HCanvas background(int clr) {
@@ -205,7 +205,7 @@ public class HCanvas extends HDrawable {
 	}
 
 	public int background() {
-		return _fill;
+		return fill;
 	}
 
 	public HCanvas noBackground() {
@@ -236,68 +236,68 @@ public class HCanvas extends HDrawable {
 
 	@Override
 	public void paintAll(PGraphics g, boolean zFlag, float alphaPc) {
-		if(_alphaPc<=0 || _width==0 || _height==0) return;
+		if(this.alphaPc <=0 || width ==0 || height ==0) return;
 
 		g.pushMatrix();
 			// Rotate and translate
-			if(zFlag) g.translate(_x,_y,_z);
-			else g.translate(_x,_y);
-			g.rotate(_rotationZRad);
+			if(zFlag) g.translate(x, y, z);
+			else g.translate(x, y);
+			g.rotate(rotationZRad);
 
 			// Compute current alpha
-			alphaPc *= _alphaPc;
+			alphaPc *= this.alphaPc;
 
 			// Initialize the buffer
-			_graphics.beginDraw();
+			graphics.beginDraw();
 
 			// Prepare the buffer for this frame
-			if(_autoClear) {
-				_graphics.clear();
+			if(autoClear) {
+				graphics.clear();
 			} else {
-				if(_hasFilter) {
-					if(_hasFilterParam) _graphics.filter(_filterKind,_filterParam);
-					else _graphics.filter(_filterKind);
+				if(hasFilter) {
+					if(hasFilterParam) graphics.filter(filterKind, filterParam);
+					else graphics.filter(filterKind);
 				}
-				if(_hasFade) {
-					if(!_renderer.equals(PConstants.JAVA2D))
-						_graphics.loadPixels();
+				if(hasFade) {
+					if(!renderer.equals(PConstants.JAVA2D))
+						graphics.loadPixels();
 
-					int[] pix = _graphics.pixels;
+					int[] pix = graphics.pixels;
 					for(int i=0; i<pix.length; ++i) {
 						int clr = pix[i];
 						int a = clr >>> 24;
 						if(a == 0) continue;
-						a -= _fadeAmt;
+						a -= fadeAmt;
 						if(a < 0) a = 0;
 						pix[i] = clr & 0xFFFFFF | (a << 24);
 					}
-					_graphics.updatePixels();
+					graphics.updatePixels();
 				}
-				if(_hasBlend) {
-					_graphics.blend(
-						0,0, _graphics.width,_graphics.height,
-						0,0, _graphics.width,_graphics.height, _blendMode);
+				if(hasBlend) {
+					graphics.blend(
+						0,0, graphics.width, graphics.height,
+						0,0, graphics.width, graphics.height, blendMode);
 				}
 			}
 
 			// Draw children
-			HDrawable child = _firstChild;
+			HDrawable child = firstChild;
 			while(child != null) {
-				child.paintAll(_graphics, usesZ(), alphaPc);
+				child.paintAll(graphics, usesZ(), alphaPc);
 				child = child.next();
 			}
 
-			if (_hasShader) {
-				for(PShader s : _shader) {
-					_graphics.filter(s);
+			if (hasShader) {
+				for(PShader s : shader) {
+					graphics.filter(s);
 				}
 			}
 
 			// Finalize the buffer
-			_graphics.endDraw();
+			graphics.endDraw();
 
 			// Draw the buffer
-			g.image(_graphics,0,0);
+			g.image(graphics,0,0);
 		g.popMatrix();
 	}
 

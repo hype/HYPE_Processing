@@ -10,9 +10,9 @@ import processing.core.PVector;
 import java.util.ArrayList;
 
 public class HColorField implements HColorist {
-	private ArrayList<HColorPoint> _colorPoints;
-	private float _maxDist;
-	private boolean _appliesFill, _appliesStroke, _appliesAlpha;
+	private ArrayList<HColorPoint> colorPoints;
+	private float maxDist;
+	private boolean appliesFill, appliesStroke, appliesAlpha;
 
 	public HColorField() {
 		this(H.app().width, H.app().height);
@@ -23,8 +23,8 @@ public class HColorField implements HColorist {
 	}
 
 	public HColorField(float maximumDistance) {
-		_colorPoints = new ArrayList<HColorField.HColorPoint>();
-		_maxDist = maximumDistance;
+		colorPoints = new ArrayList<HColorField.HColorPoint>();
+		maxDist = maximumDistance;
 		fillAndStroke();
 	}
 
@@ -38,7 +38,7 @@ public class HColorField implements HColorist {
 		pt.y = y;
 		pt.radius = radius;
 		pt.clr = clr;
-		_colorPoints.add(pt);
+		colorPoints.add(pt);
 		return this;
 	}
 
@@ -47,20 +47,20 @@ public class HColorField implements HColorist {
 		int[] maxClrs = new int[4];
 
 		int initJ;
-		if(_appliesAlpha) {
+		if(appliesAlpha) {
 			initJ = 0;
 		} else { // make the loop skip alpha and use baseClrs' alpha instead
 			initJ = 1;
 			maxClrs[0] = baseClrs[0];
 		}
 
-		for(int i=0; i<_colorPoints.size(); ++i) {
-			HColorPoint pt = _colorPoints.get(i);
+		for(int i=0; i< colorPoints.size(); ++i) {
+			HColorPoint pt = colorPoints.get(i);
 
 			int[] ptClrs = HColors.explode(pt.clr);
 
 			// Get the adjusted distance between the two points.
-			float distLimit = _maxDist * pt.radius;
+			float distLimit = maxDist * pt.radius;
 			float dist = HMath.dist(x,y, pt.x,pt.y);
 			if(dist > distLimit)
 				dist = distLimit;
@@ -78,42 +78,42 @@ public class HColorField implements HColorist {
 	}
 
 	public HColorField appliesAlpha(boolean b) {
-		_appliesAlpha = b;
+		appliesAlpha = b;
 		return this;
 	}
 
 	public boolean appliesAlpha() {
-		return _appliesAlpha;
+		return appliesAlpha;
 	}
 
 	@Override
 	public HColorField fillOnly() {
-		_appliesFill = true;
-		_appliesStroke = false;
+		appliesFill = true;
+		appliesStroke = false;
 		return this;
 	}
 
 	@Override
 	public HColorField strokeOnly() {
-		_appliesFill = false;
-		_appliesStroke = true;
+		appliesFill = false;
+		appliesStroke = true;
 		return this;
 	}
 
 	@Override
 	public HColorField fillAndStroke() {
-		_appliesFill = _appliesStroke = true;
+		appliesFill = appliesStroke = true;
 		return this;
 	}
 
 	@Override
 	public boolean appliesFill() {
-		return _appliesFill;
+		return appliesFill;
 	}
 
 	@Override
 	public boolean appliesStroke() {
-		return _appliesStroke;
+		return appliesStroke;
 	}
 
 	@Override
@@ -121,11 +121,11 @@ public class HColorField implements HColorist {
 		float x = drawable.x();
 		float y = drawable.y();
 
-		if(_appliesFill) {
+		if(appliesFill) {
 			int baseFill = drawable.fill();
 			drawable.fill( getColor(x,y, baseFill) );
 		}
-		if(_appliesStroke) {
+		if(appliesStroke) {
 			int baseStroke = drawable.stroke();
 			drawable.stroke( getColor(x,y, baseStroke) );
 		}
