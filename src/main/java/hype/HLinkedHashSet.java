@@ -19,7 +19,7 @@ public class HLinkedHashSet<T> extends HLinkedList<T> {
 		if(node==null) return false;
 		unregister(content);
 		node.popOut();
-		--_size;
+		--size;
 		return true;
 	}
 
@@ -55,7 +55,7 @@ public class HLinkedHashSet<T> extends HLinkedList<T> {
 
 	@Override
 	public void removeAll() {
-		while(_size > 0) pop();
+		while(size > 0) pop();
 	}
 
 	public boolean contains(T obj) {

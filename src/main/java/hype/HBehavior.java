@@ -3,8 +3,13 @@ package hype;
 import processing.core.PApplet;
 
 public abstract class HBehavior extends HNode<HBehavior> {
-	protected HBehaviorRegistry _registry;
+	protected HBehaviorRegistry registry;
 
+	/**
+	 * Registers behavior with HBehaviorRegistry
+	 * @param hype
+	 * @return
+	 */
 	public HBehavior register() {
 		H.behaviors().register(this);
 		return this;
@@ -17,42 +22,42 @@ public abstract class HBehavior extends HNode<HBehavior> {
 
 	@Override
 	public boolean poppedOut() {
-		return _registry == null;
+		return registry == null;
 	}
 
 	@Override
 	public void popOut() {
 		super.popOut();
-		_registry = null;
+		registry = null;
 	}
 
 	@Override
 	public void swapLeft() {
-		if(_prev._prev == null) return;
+		if(prev.prev == null) return;
 		super.swapLeft();
 	}
 
 	@Override
 	public void putAfter(HBehavior dest) {
-		if(dest._registry == null) return;
+		if(dest.registry == null) return;
 
 		super.putAfter(dest);
-		_registry = dest._registry;
+		registry = dest.registry;
 	}
 
 	@Override
 	public void putBefore(HBehavior dest) {
-		if(dest._registry == null) return;
+		if(dest.registry == null) return;
 
 		super.putBefore(dest);
-		_registry = dest._registry;
+		registry = dest.registry;
 	}
 
 	@Override
 	public void replaceNode(HBehavior target) {
 		super.replaceNode(target);
-		_registry = target._registry;
-		target._registry = null;
+		registry = target.registry;
+		target.registry = null;
 	}
 
 	public abstract void runBehavior(PApplet app);

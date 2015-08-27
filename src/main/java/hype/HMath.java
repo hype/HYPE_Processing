@@ -23,8 +23,8 @@ import processing.core.PVector;
  * @author james
  */
 public class HMath implements HConstants {
-	private static boolean _usingTempSeed;
-	private static int _resetSeedValue;
+	private static boolean usingTempSeed;
+	private static int resetSeedValue;
 
 	// GEOMETRY //
 
@@ -438,15 +438,15 @@ public class HMath implements HConstants {
 	}
 
 	public static void tempSeed(long seed) {
-		if(!_usingTempSeed) {
-			_resetSeedValue = randomInt32();
-			_usingTempSeed = true;
+		if(!usingTempSeed) {
+			resetSeedValue = randomInt32();
+			usingTempSeed = true;
 		}
 		H.app().randomSeed(seed);
 	}
 
 	public static void removeTempSeed() {
-		H.app().randomSeed(_resetSeedValue);
+		H.app().randomSeed(resetSeedValue);
 	}
 
 

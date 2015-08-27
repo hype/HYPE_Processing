@@ -8,11 +8,11 @@ import hype.interfaces.HColorist;
 import java.util.ArrayList;
 
 public class HColorPool implements HColorist {
-	private ArrayList<Integer> _colorList;
-	private boolean _fillFlag, _strokeFlag;
+	private ArrayList<Integer> colorList;
+	private boolean fillFlag, strokeFlag;
 
 	public HColorPool(int... colors) {
-		_colorList = new ArrayList<Integer>();
+		colorList = new ArrayList<Integer>();
 		for(int i=0; i<colors.length; ++i) add(colors[i]);
 
 		fillAndStroke();
@@ -20,35 +20,35 @@ public class HColorPool implements HColorist {
 
 	public HColorPool createCopy() {
 		HColorPool copy = new HColorPool();
-		copy._fillFlag = _fillFlag;
-		copy._strokeFlag = _strokeFlag;
+		copy.fillFlag = fillFlag;
+		copy.strokeFlag = strokeFlag;
 
-		for(int i=0; i<_colorList.size(); ++i) {
-			int clr = _colorList.get(i);
-			copy._colorList.add( clr );
+		for(int i=0; i< colorList.size(); ++i) {
+			int clr = colorList.get(i);
+			copy.colorList.add( clr );
 		}
 		return copy;
 	}
 
 	public int size() {
-		return _colorList.size();
+		return colorList.size();
 	}
 
 	public HColorPool add(int clr) {
-		_colorList.add(clr);
+		colorList.add(clr);
 		return this;
 	}
 
 	public HColorPool add(int clr, int freq) {
-		while(freq-- > 0) _colorList.add(clr);
+		while(freq-- > 0) colorList.add(clr);
 		return this;
 	}
 
 	public int getColor() {
-		if(_colorList.size() <= 0) return 0;
+		if(colorList.size() <= 0) return 0;
 
-		int index = (int) Math.floor(H.app().random(_colorList.size()));
-		return _colorList.get(index);
+		int index = (int) Math.floor(H.app().random(colorList.size()));
+		return colorList.get(index);
 	}
 
 	public int getColor(int seed) {
@@ -60,39 +60,39 @@ public class HColorPool implements HColorist {
 
 	@Override
 	public HColorPool fillOnly() {
-		_fillFlag = true;
-		_strokeFlag = false;
+		fillFlag = true;
+		strokeFlag = false;
 		return this;
 	}
 
 	@Override
 	public HColorPool strokeOnly() {
-		_fillFlag = false;
-		_strokeFlag = true;
+		fillFlag = false;
+		strokeFlag = true;
 		return this;
 	}
 
 	@Override
 	public HColorPool fillAndStroke() {
-		_fillFlag = _strokeFlag = true;
+		fillFlag = strokeFlag = true;
 		return this;
 	}
 
 	@Override
 	public boolean appliesFill() {
-		return _fillFlag;
+		return fillFlag;
 	}
 
 	@Override
 	public boolean appliesStroke() {
-		return _strokeFlag;
+		return strokeFlag;
 	}
 
 	@Override
 	public HDrawable applyColor(HDrawable drawable) {
-		if(_fillFlag)
+		if(fillFlag)
 			drawable.fill(getColor());
-		if(_strokeFlag)
+		if(strokeFlag)
 			drawable.stroke(getColor());
 		return drawable;
 	}

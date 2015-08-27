@@ -22,96 +22,96 @@ import static processing.core.PApplet.sin;
 
 public class HPolarLayout implements HLayout {
 
-	private int _index;
-	private float _length, _angleStep, _scaleMultiplier, _offsetX, _offsetY;
-	private Boolean _scaleByDistance;
+	private int index;
+	private float length, angleStep, scaleMultiplier, offsetX, offsetY;
+	private Boolean scaleByDistance;
 
 	public HPolarLayout() {
-		_index = 0;
-		_length = 1;
-		_angleStep = (float) 0.1;
-		_offsetX = 0;
-		_offsetY = 0;
-		_scaleByDistance = false;
-		_scaleMultiplier = 0;
+		index = 0;
+		length = 1;
+		angleStep = (float) 0.1;
+		offsetX = 0;
+		offsetY = 0;
+		scaleByDistance = false;
+		scaleMultiplier = 0;
 	}
 	
 	public HPolarLayout(float length, float angleStep) {
-		_index = 0;
-		_length = length;
-		_angleStep = angleStep;
-		_offsetX = 0;
-		_offsetY = 0;
-		_scaleByDistance = false;
-		_scaleMultiplier = 0;
+		index = 0;
+		this.length = length;
+		this.angleStep = angleStep;
+		offsetX = 0;
+		offsetY = 0;
+		scaleByDistance = false;
+		scaleMultiplier = 0;
 	}
 
 	//set the offset coords
 	public HPolarLayout offset(float x, float y) {
-		_offsetX = x;
-		_offsetY = y;
+		offsetX = x;
+		offsetY = y;
 		return this;
 	}
 
 	public HPolarLayout offsetX(float f) {
-		_offsetX = f;
+		offsetX = f;
 		return this;
 	}
 
 	public float offsetX() {
-		return _offsetX;
+		return offsetX;
 	}
 
 	public HPolarLayout offsetY(float f) {
-		_offsetY = f;
+		offsetY = f;
 		return this;
 	}
 
 	public float offsetY() {
-		return _offsetY;
+		return offsetY;
 	}
 
 	public HPolarLayout length(float f) {
-		_length = f;
+		length = f;
 		return this;
 	}
 
 	public float length() {
-		return _length;
+		return length;
 	}
 
 	public HPolarLayout angleStep(float f) {
-		_angleStep = f;
+		angleStep = f;
 		return this;
 	}
 
 	public float angleStep() {
-		return _angleStep;
+		return angleStep;
 	}
 
 	//turn on distance scaling by multiplier f
 	public HPolarLayout scale(float f) {
-		_scaleByDistance = true;
-		_scaleMultiplier = f;
+		scaleByDistance = true;
+		scaleMultiplier = f;
 		return this;
 	}
 
 	private void applyScale(HDrawable target) {
-		float d = HMath.dist(_offsetX, _offsetY, target.x(), target.y());
-		target.scale(d * _scaleMultiplier);
+		float d = HMath.dist(offsetX, offsetY, target.x(), target.y());
+		target.scale(d * scaleMultiplier);
 	}
 
 	@Override
 	public PVector getNextPoint() {
 		PVector pt = new PVector();
 		
-		float r     = _index * _length;
-		float theta = _index * _angleStep;
+		float r     = index * length;
+		float theta = index * angleStep;
 
-		pt.x = r * cos(theta) + _offsetX;
-		pt.y = r * sin(theta) + _offsetY;
+		pt.x = r * cos(theta) + offsetX;
+		pt.y = r * sin(theta) + offsetY;
 
-		++_index;
+		++index;
 
 		return pt;
 	}
@@ -120,7 +120,7 @@ public class HPolarLayout implements HLayout {
 	public void applyTo(HDrawable target) {
 		target.loc(getNextPoint());
 		
-		if (_scaleByDistance == true) {
+		if (scaleByDistance == true) {
 			applyScale(target);
 		}
 	}

@@ -1,27 +1,27 @@
 package hype;
 
 public abstract class HNode<T extends HNode<T>> {
-	protected T _prev, _next;
+	protected T prev, next;
 
 	public T prev() {
-		return _prev;
+		return prev;
 	}
 
 	public T next() {
-		return _next;
+		return next;
 	}
 
 	public boolean poppedOut() {
-		return (_prev==null) && (_next==null);
+		return (prev ==null) && (next ==null);
 	}
 
 	public void popOut() {
-		// Stitch `_prev` and `_next` together
-		if(_prev!=null) _prev._next = _next;
-		if(_next!=null) _next._prev = _prev;
+		// Stitch `prev` and `next` together
+		if(prev !=null) prev.next = next;
+		if(next !=null) next.prev = prev;
 
 		// Remove this node from the node chain
-		_prev = _next = null;
+		prev = next = null;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -29,15 +29,15 @@ public abstract class HNode<T extends HNode<T>> {
 		if(dest==null || dest.equals(this)) return;
 		if(!poppedOut()) popOut();
 
-		T p = dest._prev;
+		T p = dest.prev;
 
 		// Stitch together `p` and this node
-		if(p!=null) p._next = (T) this;
-		_prev = p;
+		if(p!=null) p.next = (T) this;
+		prev = p;
 
 		// Stitch together this node and `dest`
-		_next = dest;
-		dest._prev = (T) this;
+		next = dest;
+		dest.prev = (T) this;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -48,62 +48,62 @@ public abstract class HNode<T extends HNode<T>> {
 		T n = dest.next();
 
 		// Stitch together `dest` and `target`
-		dest._next = (T) this;
-		_prev = dest;
+		dest.next = (T) this;
+		prev = dest;
 
 		// Stitch together `insert` and `n`
-		_next = n;
-		if(n!=null) n._prev = (T) this;
+		next = n;
+		if(n!=null) n.prev = (T) this;
 	}
 
 	public void replaceNode(T dest) {
 		if(dest==null || dest.equals(this)) return;
 		if(!poppedOut()) popOut();
 
-		T p = dest._prev;
-		T n = dest._next;
+		T p = dest.prev;
+		T n = dest.next;
 
 		// Remove `target` from the chain and put this node into it
-		dest._prev = dest._next = null;
-		_prev = p;
-		_next = n;
+		dest.prev = dest.next = null;
+		prev = p;
+		next = n;
 	}
 
 	@SuppressWarnings("unchecked")
 	public void swapLeft() {
-		if(_prev==null) return;
+		if(prev ==null) return;
 
-		T pairPrev = _prev._prev;
-		T pairNext = _next;
+		T pairPrev = prev.prev;
+		T pairNext = next;
 
 		// Swap `target` and `left`
-		_next = _prev;
-		_prev._prev = (T) this;
+		next = prev;
+		prev.prev = (T) this;
 
-		// Put this node and `_prev` back into the chain
-		_prev._next = pairNext;
-		if(pairNext != null) pairNext._prev = _prev;
+		// Put this node and `prev` back into the chain
+		prev.next = pairNext;
+		if(pairNext != null) pairNext.prev = prev;
 
-		_prev = pairPrev;
-		if(pairPrev != null) pairPrev._next = (T) this;
+		prev = pairPrev;
+		if(pairPrev != null) pairPrev.next = (T) this;
 	}
 
 	@SuppressWarnings("unchecked")
 	public void swapRight() {
-		if(_next==null) return;
+		if(next ==null) return;
 
-		T pairPrev = _prev;
-		T pairNext = _next._next;
+		T pairPrev = prev;
+		T pairNext = next.next;
 
 		// Swap `right` and this node
-		_next._next = (T) this;
-		_prev = _next;
+		next.next = (T) this;
+		prev = next;
 
-		// Put `_next` and this node back into the chain
-		_next._prev = pairPrev;
-		if(pairPrev != null) pairPrev._next = _next;
+		// Put `next` and this node back into the chain
+		next.prev = pairPrev;
+		if(pairPrev != null) pairPrev.next = next;
 
-		_next = pairNext;
-		if(pairNext != null) pairNext._prev = (T) this;
+		next = pairNext;
+		if(pairNext != null) pairNext.prev = (T) this;
 	}
 }

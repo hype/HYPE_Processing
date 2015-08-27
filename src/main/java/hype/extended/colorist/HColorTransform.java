@@ -5,137 +5,137 @@ import hype.interfaces.HColorist;
 import hype.HDrawable;
 
 public class HColorTransform implements HColorist {
-	private float _percA, _percR, _percG, _percB;
-	private int _offsetA, _offsetR, _offsetG, _offsetB;
+	private float percA, percR, percG, percB;
+	private int offsetA, offsetR, offsetG, offsetB;
 	private boolean fillFlag, strokeFlag;
 
 	public HColorTransform() {
-		_percA = _percR = _percG = _percB = 1;
+		percA = percR = percG = percB = 1;
 		fillAndStroke();
 	}
 
 	public HColorTransform offset(int off) {
-		_offsetA = _offsetR = _offsetG = _offsetB = off;
+		offsetA = offsetR = offsetG = offsetB = off;
 		return this;
 	}
 
 	public HColorTransform offset(int r, int g, int b, int a) {
-		_offsetA = a;
-		_offsetR = r;
-		_offsetG = g;
-		_offsetB = b;
+		offsetA = a;
+		offsetR = r;
+		offsetG = g;
+		offsetB = b;
 		return this;
 	}
 
 	public HColorTransform offsetA(int a) {
-		_offsetA = a;
+		offsetA = a;
 		return this;
 	}
 
 	public int offsetA() {
-		return _offsetA;
+		return offsetA;
 	}
 
 	public HColorTransform offsetR(int r) {
-		_offsetR = r;
+		offsetR = r;
 		return this;
 	}
 
 	public int offsetR() {
-		return _offsetR;
+		return offsetR;
 	}
 
 	public HColorTransform offsetG(int g) {
-		_offsetG = g;
+		offsetG = g;
 		return this;
 	}
 
 	public int offsetG() {
-		return _offsetG;
+		return offsetG;
 	}
 
 	public HColorTransform offsetB(int b) {
-		_offsetB = b;
+		offsetB = b;
 		return this;
 	}
 
 	public int offsetB() {
-		return _offsetB;
+		return offsetB;
 	}
 
 	public HColorTransform perc(float percentage) {
-		_percA = _percR = _percG = _percB = percentage;
+		percA = percR = percG = percB = percentage;
 		return this;
 	}
 
 	public HColorTransform perc(int r, int g, int b, int a) {
-		_percA = a;
-		_percR = r;
-		_percG = g;
-		_percB = b;
+		percA = a;
+		percR = r;
+		percG = g;
+		percB = b;
 		return this;
 	}
 
 	public HColorTransform percA(float a) {
-		_percA = a;
+		percA = a;
 		return this;
 	}
 
 	public float percA() {
-		return _percA;
+		return percA;
 	}
 
 	public HColorTransform percR(float r) {
-		_percR = r;
+		percR = r;
 		return this;
 	}
 
 	public float percR() {
-		return _percR;
+		return percR;
 	}
 
 	public HColorTransform percG(float g) {
-		_percG = g;
+		percG = g;
 		return this;
 	}
 
 	public float percG() {
-		return _percG;
+		return percG;
 	}
 
 	public HColorTransform percB(float b) {
-		_percB = b;
+		percB = b;
 		return this;
 	}
 
 	public float percB() {
-		return _percB;
+		return percB;
 	}
 
 	public HColorTransform mergeWith(HColorTransform other) {
 		if(other != null) {
-			_percA *= other._percA;
-			_percR *= other._percR;
-			_percG *= other._percG;
-			_percB *= other._percB;
-			_offsetA += other._offsetA;
-			_offsetR += other._offsetR;
-			_offsetG += other._offsetG;
-			_offsetB += other._offsetB;
+			percA *= other.percA;
+			percR *= other.percR;
+			percG *= other.percG;
+			percB *= other.percB;
+			offsetA += other.offsetA;
+			offsetR += other.offsetR;
+			offsetG += other.offsetG;
+			offsetB += other.offsetB;
 		}
 		return this;
 	}
 
 	public HColorTransform createCopy() {
 		HColorTransform copy = new HColorTransform();
-		copy._percA = _percA;
-		copy._percR = _percR;
-		copy._percG = _percG;
-		copy._percB = _percB;
-		copy._offsetA = _offsetA;
-		copy._offsetR = _offsetR;
-		copy._offsetG = _offsetG;
-		copy._offsetB = _offsetB;
+		copy.percA = percA;
+		copy.percR = percR;
+		copy.percG = percG;
+		copy.percB = percB;
+		copy.offsetA = offsetA;
+		copy.offsetR = offsetR;
+		copy.offsetG = offsetG;
+		copy.offsetB = offsetB;
 		return copy;
 	}
 
@@ -145,10 +145,10 @@ public class HColorTransform implements HColorist {
 
 	public int getColor(int origColor) {
 		int[] clrs = HColors.explode(origColor);
-		clrs[0] = Math.round(clrs[0] * _percA) + _offsetA;
-		clrs[1] = Math.round(clrs[1] * _percR) + _offsetR;
-		clrs[2] = Math.round(clrs[2] * _percG) + _offsetG;
-		clrs[3] = Math.round(clrs[3] * _percB) + _offsetB;
+		clrs[0] = Math.round(clrs[0] * percA) + offsetA;
+		clrs[1] = Math.round(clrs[1] * percR) + offsetR;
+		clrs[2] = Math.round(clrs[2] * percG) + offsetG;
+		clrs[3] = Math.round(clrs[3] * percB) + offsetB;
 		return HColors.merge(clrs[0],clrs[1],clrs[2],clrs[3]);
 	}
 

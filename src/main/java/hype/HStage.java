@@ -8,15 +8,15 @@ import processing.core.PImage;
 import processing.core.PVector;
 
 public class HStage extends HDrawable implements HImageHolder {
-	private PApplet _app;
-	private PImage _bgImg;
-	private boolean _autoClears;
-	private boolean _showsFPS;
+	private PApplet app;
+	private PImage bgImg;
+	private boolean autoClears;
+	private boolean showsFPS;
 
 	public HStage(PApplet papplet) {
-		_app = papplet;
+		app = papplet;
 
-		_autoClears = true;
+		autoClears = true;
 		background(HConstants.DEFAULT_BACKGROUND_COLOR);
 	}
 
@@ -32,7 +32,7 @@ public class HStage extends HDrawable implements HImageHolder {
 	// BACKGROUND //
 
 	public HStage background(int clr) {
-		_fill = clr;
+		fill = clr;
 		return clear();
 	}
 
@@ -42,34 +42,34 @@ public class HStage extends HDrawable implements HImageHolder {
 
 	@Override
 	public HStage image(Object imgArg) {
-		_bgImg = H.getImage(imgArg);
+		bgImg = H.getImage(imgArg);
 		return clear();
 	}
 
 
 	@Override
 	public PImage image() {
-		return _bgImg;
+		return bgImg;
 	}
 
 	/** @deprecated The method autoClears(boolean) should be used instead */
 	public HStage autoClear(boolean b) {
-		_autoClears = b;
+		autoClears = b;
 		return this;
 	}
 
 	public HStage autoClears(boolean b) {
-		_autoClears = b;
+		autoClears = b;
 		return this;
 	}
 
 	public boolean autoClears() {
-		return _autoClears;
+		return autoClears;
 	}
 
 	public HStage clear() {
-		if(_bgImg == null) _app.background(_fill);
-		else _app.background(_bgImg);
+		if(bgImg == null) app.background(fill);
+		else app.background(bgImg);
 		return this;
 	}
 
@@ -99,49 +99,49 @@ public class HStage extends HDrawable implements HImageHolder {
 
 	@Override
 	public PVector size() {
-		return new PVector(_app.width,_app.height);
+		return new PVector(app.width, app.height);
 	}
 
 	@Override
 	public float width() {
-		return _app.width;
+		return app.width;
 	}
 
 	@Override
 	public float height() {
-		return _app.height;
+		return app.height;
 	}
 
 
 	// MISC //
 
 	public HStage showsFPS(boolean b) {
-		_showsFPS = b;
+		showsFPS = b;
 		return this;
 	}
 
 	public boolean showsFPS() {
-		return _showsFPS;
+		return showsFPS;
 	}
 
 	@Override
 	public void paintAll(PGraphics g, boolean usesZ, float currAlphaPc) {
 		g.pushStyle();
-			if(_autoClears) clear();
+			if(autoClears) clear();
 
-			HDrawable child = _firstChild;
+			HDrawable child = firstChild;
 			while(child != null) {
 				child.paintAll(g, usesZ, currAlphaPc);
 				child = child.next();
 			}
 		g.popStyle();
 
-		if(_showsFPS) {
+		if(showsFPS) {
 			g.pushStyle();
 				g.fill(H.BLACK);
-				g.text(_app.frameRate,1,17);
+				g.text(app.frameRate,1,17);
 				g.fill(H.WHITE);
-				g.text(_app.frameRate,0,16);
+				g.text(app.frameRate,0,16);
 			g.popStyle();
 		}
 	}

@@ -23,7 +23,7 @@ public class HSphere extends HDrawable3D {
 
 	@Override
 	protected void onResize(float oldW, float oldH, float newW, float newH) {
-		_height = _depth = _width;
+		height = depth = width;
 		super.onResize(oldW, oldH, newW, newH);
 	}
 
@@ -31,8 +31,8 @@ public class HSphere extends HDrawable3D {
 	public HSphere createCopy() {
 		HSphere copy = new HSphere();
 		copy.copyPropertiesFrom(this);
-		copy._depth = _depth;
-		copy._anchorW = _anchorW;
+		copy.depth = depth;
+		copy.anchorW = anchorW;
 		return copy;
 	}
 
@@ -42,15 +42,15 @@ public class HSphere extends HDrawable3D {
 	) {
 		applyStyle(g, currAlphaPc);
 		g.pushMatrix();
-			g.translate(drawX+_width/2, drawY+_height/2, -anchorZ()+_depth/2);
-			//g.scale(_width, _height, _depth);
+			g.translate(drawX+ width /2, drawY+ height /2, -anchorZ()+ depth /2);
+			//g.scale(width, height, depth);
 			//g.sphere(1);
 
 			/*
 				Hot fix for weird stroke on sphere when scaling
 				TODO: need to look at this again to make it better
 			*/
-			g.sphere(_width);
+			g.sphere(width);
 
 		g.popMatrix();
 	}

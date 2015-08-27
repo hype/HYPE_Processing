@@ -1,6 +1,5 @@
 package hype;
 
-import hype.H;
 import processing.core.PApplet;
 
 public class HWarnings {

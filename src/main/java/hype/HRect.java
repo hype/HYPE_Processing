@@ -3,7 +3,7 @@ package hype;
 import processing.core.PGraphics;
 
 public class HRect extends HDrawable {
-	private float _tl, _tr, _bl, _br;
+	private float tl, tr, bl, br;
 
 	public HRect() {}
 
@@ -23,16 +23,16 @@ public class HRect extends HDrawable {
 	@Override
 	public HRect createCopy() {
 		HRect copy = new HRect();
-		copy._tl = _tl;
-		copy._tr = _tr;
-		copy._bl = _bl;
-		copy._br = _br;
+		copy.tl = tl;
+		copy.tr = tr;
+		copy.bl = bl;
+		copy.br = br;
 		copy.copyPropertiesFrom(this);
 		return copy;
 	}
 
 	public HRect rounding(float radius) {
-		_tl = _tr = _bl = _br = radius;
+		tl = tr = bl = br = radius;
 		return this;
 	}
 
@@ -40,10 +40,10 @@ public class HRect extends HDrawable {
 		float topleft, float topright,
 		float bottomright, float bottomleft
 	) {
-		_tl = topleft;
-		_tr = topright;
-		_br = bottomright;
-		_bl = bottomleft;
+		tl = topleft;
+		tr = topright;
+		br = bottomright;
+		bl = bottomleft;
 		return this;
 	}
 
@@ -52,39 +52,39 @@ public class HRect extends HDrawable {
 	}
 
 	public HRect roundingTL(float radius) {
-		_tl = radius;
+		tl = radius;
 		return this;
 	}
 
 	public float roundingTL() {
-		return _tl;
+		return tl;
 	}
 
 	public HRect roundingTR(float radius) {
-		_tr = radius;
+		tr = radius;
 		return this;
 	}
 
 	public float roundingTR() {
-		return _tr;
+		return tr;
 	}
 
 	public HRect roundingBR(float radius) {
-		_br = radius;
+		br = radius;
 		return this;
 	}
 
 	public float roundingBR() {
-		return _br;
+		return br;
 	}
 
 	public HRect roundingBL(float radius) {
-		_bl = radius;
+		bl = radius;
 		return this;
 	}
 
 	public float roundingBL() {
-		return _bl;
+		return bl;
 	}
 
 	@Override
@@ -92,6 +92,6 @@ public class HRect extends HDrawable {
 		float drawX, float drawY, float alphaPc
 	) {
 		applyStyle(g,alphaPc);
-		g.rect(drawX,drawY, _width,_height, _tl,_tr,_br,_bl);
+		g.rect(drawX,drawY, width, height, tl, tr, br, bl);
 	}
 }

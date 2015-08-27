@@ -10,12 +10,12 @@ import static processing.core.PApplet.abs;
 import static processing.core.PApplet.atan2;
 
 public class HMagneticField extends HBehavior {
-	private ArrayList<HPole> _poles;
-	private HLinkedHashSet<HDrawable> _targets;
+	private ArrayList<HPole> poles;
+	private HLinkedHashSet<HDrawable> targets;
 
 	public HMagneticField() {
-		_poles = new ArrayList<HMagneticField.HPole>();
-		_targets = new HLinkedHashSet<HDrawable>();
+		poles = new ArrayList<HMagneticField.HPole>();
+		targets = new HLinkedHashSet<HDrawable>();
 	}
 
 	public HMagneticField addMagnet(float nx, float ny, float sx, float sy) {
@@ -26,34 +26,34 @@ public class HMagneticField extends HBehavior {
 
 	public HMagneticField addPole(float x, float y, float polarity) {
 		HPole p = new HPole(x, y, polarity);
-		_poles.add(p);
+		poles.add(p);
 		return this;
 	}
 
 	public HPole pole(int index) {
-		return _poles.get(index);
+		return poles.get(index);
 	}
 
 	public HMagneticField removePole(int index) {
-		_poles.remove(index);
+		poles.remove(index);
 		return this;
 	}
 
 	public HMagneticField addTarget(HDrawable d) {
-		if(_targets.size() <= 0) register();
-		_targets.add(d);
+		if(targets.size() <= 0) register();
+		targets.add(d);
 		return this;
 	}
 
 	public HMagneticField removeTarget(HDrawable d) {
-		_targets.remove(d);
-		if(_targets.size() <= 0) unregister();
+		targets.remove(d);
+		if(targets.size() <= 0) unregister();
 		return this;
 	}
 
 	public float getRotation(float x, float y) {
 
-		int poleCount = _poles.size();
+		int poleCount = poles.size();
 
 		PVector v1 = new PVector(0, 0);
 		PVector v2 = new PVector(x, y);
@@ -64,12 +64,12 @@ public class HMagneticField extends HBehavior {
 		float d = 0;
 
 		for(int i=0; i<poleCount; i++) {
-			HPole p = _poles.get(i);
+			HPole p = poles.get(i);
 
-			v1.x = p._x;
-			v1.y = p._y;
+			v1.x = p.x;
+			v1.y = p.y;
 
-			if (p._polarity < 0) {
+			if (p.polarity < 0) {
 				distance = PVector.sub(v1, v2);
 			} else {
 				distance = PVector.sub(v2, v1);
@@ -78,7 +78,7 @@ public class HMagneticField extends HBehavior {
 			d = distance.mag() / 5;
 
 			distance.normalize();
-			distance.mult(abs(p._polarity));
+			distance.mult(abs(p.polarity));
 			distance.div(d);
 
 			force.add(distance);
@@ -89,7 +89,7 @@ public class HMagneticField extends HBehavior {
 
 	@Override
 	public void runBehavior(PApplet app) {
-		for(HDrawable d : _targets) d.rotationRad( getRotation(d.x(), d.y()) );
+		for(HDrawable d : targets) d.rotationRad( getRotation(d.x(), d.y()) );
 	}
 
 	@Override
@@ -103,12 +103,12 @@ public class HMagneticField extends HBehavior {
 	}
 
 	public static class HPole {
-		public float _x, _y, _polarity;
+		public float x, y, polarity;
 
 		public HPole(float x, float y, float polarity) {
-			_x = x;
-			_y = y;
-			_polarity = polarity;
+			this.x = x;
+			this.y = y;
+			this.polarity = polarity;
 		}
 
 	}
