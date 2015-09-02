@@ -1,6 +1,5 @@
 import hype.*;
 import hype.extended.layout.HGridLayout;
-import hype.interfaces.HCallback; // this needs to move into core/HYPE, it's used too much
 
 HDrawablePool pool;
 

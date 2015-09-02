@@ -1,5 +1,6 @@
 package hype.interfaces;
 
+import hype.HCallback;
 import processing.core.PConstants;
 
 public interface HConstants {

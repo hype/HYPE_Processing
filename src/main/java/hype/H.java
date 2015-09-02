@@ -2,7 +2,7 @@
  * HYPE_Processing
  * http://www.hypeframework.org/ & https://github.com/hype/HYPE_Processing
  * 
- * Copyright (c) 2013-2015 Joshua Davis, James Cruz, Benjamin Fox, Christopher Tino
+ * Copyright (c) 2013-2015 Joshua Davis
  * 
  * Distributed under the BSD License. See LICENSE.txt for details.
  * 
@@ -19,7 +19,7 @@ import processing.core.PImage;
 
 /**
  * Main Hype Class
- * @version     2.0.0
+ * @version     2.0.1
  * @since       2013
  */
 public class H implements HConstants {

@@ -1,7 +1,7 @@
 import hype.*;
 import hype.extended.layout.HGridLayout;
 import hype.extended.colorist.HColorPool;
-import hype.interfaces.HCallback; // this needs to move into core/HYPE, it's used too much
+import hype.HCallback; // this needs to move into core/HYPE, it's used too much
 
 
 HColorPool    colors;

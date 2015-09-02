@@ -2,7 +2,6 @@ package hype;
 
 import hype.interfaces.HLayout;
 import hype.interfaces.HColorist;
-import hype.interfaces.HCallback;
 import hype.interfaces.HConstants;
 
 import java.util.ArrayList;
