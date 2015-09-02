@@ -2,7 +2,7 @@ package hype.extended.behavior;
 
 import hype.HBehavior;
 import hype.HDrawable;
-import hype.interfaces.HCallback;
+import hype.HCallback;
 import hype.interfaces.HConstants;
 import hype.HMath;
 import processing.core.PApplet;

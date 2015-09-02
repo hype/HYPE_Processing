@@ -1,4 +1,4 @@
-package hype.interfaces;
+package hype;
 
 public interface HCallback {
 	public void run(Object obj);

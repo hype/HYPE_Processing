@@ -1,6 +1,5 @@
 package hype;
 
-import hype.interfaces.HCallback;
 import hype.interfaces.HConstants;
 
 public abstract class HTrigger extends HBehavior {
