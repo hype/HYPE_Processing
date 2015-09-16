@@ -1,4 +1,5 @@
 import hype.*;
+import hype.extended.layout.HGridLayout;
 
 HDrawablePool pool;
 
@@ -8,33 +9,24 @@ void setup() {
 
 	pool = new HDrawablePool(576);
 	pool.autoAddToStage()
-		.add (
-			new HRect()
-			.rounding(4)
-		)
+		.add(new HRect(25).rounding(4))
 
-		.layout (
+		.layout(
 			new HGridLayout()
 			.startX(21)
 			.startY(21)
 			.spacing(26,26)
 			.cols(24)
 		)
-
-		.onCreate (
+		
+		.onCreate(
 			 new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
-					d
-						.noStroke()
-						.fill( #ECECEC )
-						.anchorAt(H.CENTER)
-						.size( 25 )
-					;
+					d.noStroke().fill(#ECECEC).anchorAt(H.CENTER);
 				}
 			}
 		)
-
 		.requestAll()
 	;
 
@@ -42,5 +34,6 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
 
+}

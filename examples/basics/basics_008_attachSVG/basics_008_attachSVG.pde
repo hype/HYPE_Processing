@@ -9,7 +9,7 @@ void setup() {
 
 	pool = new HDrawablePool(121);
 	pool.autoAddToStage()
-		.add (
+		.add(
 			new HShape("art6.svg")
 			.enableStyle(false)
 			.strokeJoin(CENTER)
@@ -17,7 +17,7 @@ void setup() {
 			.anchorAt(H.CENTER)
 		)
 
-		.layout (
+		.layout(
 			new HGridLayout()
 			.startX(70)
 			.startY(70)
@@ -25,7 +25,7 @@ void setup() {
 			.cols(11)
 		)
 
-		.onCreate (
+		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;

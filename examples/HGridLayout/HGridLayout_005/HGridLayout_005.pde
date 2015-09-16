@@ -1,19 +1,17 @@
 import hype.*;
+import hype.extended.layout.HGridLayout;
 
 HDrawablePool pool;
 
 void setup() {
-	size(640,640, P3D);
+	size(640,640,P3D);
 	H.init(this).background(#242424).use3D(true);
-	lights();
 
 	pool = new HDrawablePool(75);
 	pool.autoAddToStage()
-		.add (
-			new HBox()
-		)
+		.add(new HBox())
 
-		.layout (
+		.layout(
 			new HGridLayout()
 			.startX(120)
 			.startY(120)
@@ -23,36 +21,27 @@ void setup() {
 			.rows(5)
 		)
 
-		.onCreate (
+		.onCreate(
 			 new HCallback() {
 				public void run(Object obj) {
 					HBox d = (HBox) obj;
-					d
-						.depth(50)
-						.width(50)
-						.height(50)
-					;
+					d.depth(50).width(50).height(50);
 
-					if (d.z() > 0) {
-						d.fill(#FF6600);
-					}
-
-					if (d.z() > 50) {
-						d.fill(#EEBB00);
-					}
+					if (d.z() > 0)  d.fill(#FF6600);
+					if (d.z() > 50) d.fill(#EEBB00);
 				}
 			}
 		)
-
 		.requestAll()
 	;
 }
 
 void draw() {
-	translate(width/2, height/2);
-	rotateY(map(mouseX, 0, width, -(TWO_PI / 2), TWO_PI/2));
+	lights();
+
+	translate( width/2,  height/2);
+	rotateY( map(mouseX, 0, width, -(TWO_PI/2), TWO_PI/2) );
 	translate(-width/2, -height/2);
 
 	H.drawStage();
 }
-

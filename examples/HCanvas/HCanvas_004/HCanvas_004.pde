@@ -3,7 +3,6 @@ import hype.extended.colorist.HColorPool;
 import hype.extended.behavior.HTimer;
 import hype.extended.behavior.HTween;
 import hype.extended.behavior.HOscillator;
-import hype.interfaces.HCallback; // this needs to move into core/HYPE, it's used too much
 
 HColorPool    colors;
 HCanvas       canvas;

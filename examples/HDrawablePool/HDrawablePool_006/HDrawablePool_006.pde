@@ -1,10 +1,11 @@
-import hype.*;
+// Based on a visual idea by Victor Mattos
 
-/*
-	Based on a visual idea by Victor Mattos
-*/
+import hype.*;
+import hype.extended.colorist.HColorPool;
+import hype.extended.layout.HGridLayout;
+
 HDrawablePool pool;
-HColorPool colors;
+HColorPool    colors;
 
 void setup() {
 	size(640,640);
@@ -14,29 +15,16 @@ void setup() {
 
 	pool = new HDrawablePool(100);
 	pool.autoAddToStage()
-		.add (
-			new HRect()
-			.noStroke()
-			.anchorAt(H.CENTER)
-			.rotation(45)
-			.size( 91 )
-		)
-		.layout (
-			new HGridLayout()
-			.startX(32)
-			.startY(32)
-			.spacing(64,64)
-			.cols(10)
-		)
-		.onCreate (
+		.add(new HRect(91).noStroke().anchorAt(H.CENTER).rotation(45))
+		.layout(new HGridLayout().startX(32).startY(32).spacing(64,64).cols(10))
+		.onCreate(
 			 new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
-					d.fill(colors.getColor());
+					d.fill( colors.getColor() );
 				}
 			}
 		)
-
 		.shuffleRequestAll()
 	;
 
@@ -44,4 +32,6 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
+
+}

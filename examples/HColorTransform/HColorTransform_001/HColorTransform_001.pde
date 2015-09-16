@@ -1,21 +1,24 @@
 import hype.*;
+import hype.extended.colorist.HPixelColorist;
+import hype.extended.colorist.HColorTransform;
 
+int     numAssets = 660;
+int     xStart    = 20;
+int     yStart    = 50;
+int     xSpacing  = 10;
+int     ySpacing  = 50;
+int     numCols   = 60;
+HRect[] rects     = new HRect[numAssets];
+
+HPixelColorist  colors;
 HColorTransform ct01, ct02, ct03, ct04, ct05, ct06, ct07, ct08, ct09, ct10, ct11;
 
-int numAssets = 660;
-int xStart = 20;
-int yStart = 50;
-int xSpacing = 10;
-int ySpcaing = 50;
-int numCols   = 60;
-HRect[] rects = new HRect[numAssets];
-
 void setup() {
-	PImage bg = loadImage("sintra.jpg");
 	size(640,640);
-	H.init(this).backgroundImg(bg);
+	PImage bg = loadImage("sintra.jpg");
+	H.init(this).background(#242424).backgroundImg(bg);
 
-	final HPixelColorist colors = new HPixelColorist(bg).fillOnly();
+	colors = new HPixelColorist(bg).fillOnly();
 
 	ct01 = new HColorTransform().fillOnly();
 	ct02 = new HColorTransform().fillOnly();
@@ -43,7 +46,7 @@ void setup() {
 
 	for( int i =0; i<numAssets; i++ ) {
 		float x = (xSpacing*(i%numCols)) + xStart;
-		float y = (ySpcaing*((int)(i/numCols))) + yStart;
+		float y = (ySpacing*((int)(i/numCols))) + yStart;
 
 		rects[i] = new HRect(10, 40);
 		rects[i].noStroke().loc( x, y );
@@ -75,5 +78,6 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
 
+}

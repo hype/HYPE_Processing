@@ -14,14 +14,14 @@ void setup() {
 
 	pool = new HDrawablePool(100);
 	pool.autoAddToStage()
-		.add (new HText( "q", 24, type ))
-		.add (new HText( "w", 24, type ))
-		.add (new HText( "e", 24, type ))
-		.add (new HText( "r", 24, type ))
-		.add (new HText( "t", 24, type ))
-		.add (new HText( "y", 24, type ))
+		.add(new HText( "q", 24, type ))
+		.add(new HText( "w", 24, type ))
+		.add(new HText( "e", 24, type ))
+		.add(new HText( "r", 24, type ))
+		.add(new HText( "t", 24, type ))
+		.add(new HText( "y", 24, type ))
 
-		.onCreate (
+		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					HText t = (HText) obj;

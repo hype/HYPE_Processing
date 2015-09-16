@@ -1,7 +1,6 @@
 import hype.*;
 import hype.extended.colorist.HColorField;
 import hype.extended.layout.HGridLayout;
-import hype.interfaces.HCallback; // this needs to move into core/HYPE, it's used too much
 
 HDrawablePool pool;
 HColorField   colorField;
@@ -20,9 +19,9 @@ void setup() {
 
 	pool = new HDrawablePool(10000);
 	pool.autoAddToStage()
-		.add      (new HRect())
-		.layout   (new HGridLayout().startX(20).startY(20).spacing(6,6).cols(100))
-		.onCreate (
+		.add(new HRect())
+		.layout(new HGridLayout().startX(20).startY(20).spacing(6,6).cols(100))
+		.onCreate(
 			new HCallback(){
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;

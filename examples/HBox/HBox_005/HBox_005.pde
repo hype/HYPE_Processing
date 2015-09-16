@@ -2,7 +2,6 @@ import hype.*;
 import hype.extended.layout.HGridLayout;
 import hype.extended.behavior.HSwarm;
 import hype.extended.behavior.HOscillator;
-import hype.interfaces.HCallback; // this needs to move into core/HYPE, it's used too much
 
 HDrawablePool pool, swarmPool;
 
@@ -12,9 +11,9 @@ void setup() {
 
 	pool = new HDrawablePool(100);
 	pool.autoAddToStage()
-		.add      (new HBox())
-		.layout   (new HGridLayout().startX(-125).startY(-125).spacing(100,100).cols(10))
-		.onCreate (
+		.add(new HBox())
+		.layout(new HGridLayout().startX(-125).startY(-125).spacing(100,100).cols(10))
+		.onCreate(
 			 new HCallback() {
 				public void run(Object obj) {
 					int ranSize = 25 + ( (int)random(5)*25 );
@@ -28,8 +27,8 @@ void setup() {
 
 	swarmPool = new HDrawablePool(3);
 	swarmPool.autoAddToStage()
-		.add      (new HEllipse(10))
-		.onCreate (
+		.add(new HEllipse(10))
+		.onCreate(
 			 new HCallback() {
 				public void run(Object obj) {
 					int i = swarmPool.currentIndex();

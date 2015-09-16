@@ -8,25 +8,20 @@ void setup() {
 
 	pool = new HDrawablePool(100);
 	pool.autoAddToStage()
-		.add (
-			new HRect()
-		)
-
-		.onCreate (
+		.add(new HRect(50))
+		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
 					d
-						.fill(#242424)
 						.strokeWeight(1)
 						.stroke(#999999)
+						.fill(#202020)
 						.loc( (int)random(width), (int)random(height) )
-						.size(50)
 					;
 				}
 			}
 		)
-
 		.requestAll()
 	;
 
@@ -34,5 +29,6 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
 
+}

@@ -2,7 +2,6 @@ import hype.*;
 import hype.extended.colorist.HColorField;
 import hype.extended.layout.HGridLayout;
 import hype.extended.behavior.HOscillator;
-import hype.interfaces.HCallback; // this needs to move into core/HYPE, it's used too much
 
 HColorField   colorField;
 
@@ -25,9 +24,9 @@ void setup() {
 
 	pool = new HDrawablePool(poolCols*poolRows*poolDepth);
 	pool.autoAddToStage()
-		.add ( new HSphere() )
-		.layout (new HGridLayout().startX(-600).startY(-450).startZ(-600).spacing(150, 150, 150).rows(poolRows).cols(poolCols))
-		.onCreate (
+		.add( new HSphere() )
+		.layout(new HGridLayout().startX(-600).startY(-450).startZ(-600).spacing(150, 150, 150).rows(poolRows).cols(poolCols))
+		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					int i = pool.currentIndex();

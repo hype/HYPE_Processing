@@ -1,7 +1,6 @@
 import hype.*;
 import hype.extended.layout.HGridLayout;
 import hype.extended.behavior.HOscillator;
-import hype.interfaces.HCallback; // this needs to move into core/HYPE, it's used too much
 
 HDrawablePool pool;
 
@@ -11,9 +10,9 @@ void setup() {
 
 	pool = new HDrawablePool(100);
 	pool.autoAddToStage()
-		.add      (new HBox())
-		.layout   (new HGridLayout().startX(-125).startY(-125).spacing(100,100).cols(10))
-		.onCreate (
+		.add(new HBox())
+		.layout(new HGridLayout().startX(-125).startY(-125).spacing(100,100).cols(10))
+		.onCreate(
 			 new HCallback() {
 				public void run(Object obj) {
 					int i = pool.currentIndex();

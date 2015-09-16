@@ -1,18 +1,15 @@
 import hype.*;
+import hype.extended.layout.HGridLayout;
+import hype.extended.behavior.HMagneticField;
 
-HDrawablePool pool;
+HDrawablePool  pool;
 HMagneticField field;
-HColorPool colors;
-
-int numMagnets = 10;
+int            numMagnets = 10;
 
 void setup() {
 	size(640,640);
+	H.init(this).background(#242424);
 
-	H.init(this).background(#000000);
-
-	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #CCCCCC).fillOnly();
-	
 	field = new HMagneticField();
 
 	for (int i = 0; i<numMagnets; i++){
@@ -22,23 +19,9 @@ void setup() {
 
 	pool = new HDrawablePool(2500);
 	pool.autoAddToStage()
-		.add(
-			new HShape("arrow.svg")
-			.enableStyle(false)
-			.anchorAt(H.CENTER)
-		)
-
-		.colorist(colors)
-
-		.layout(
-			new HGridLayout()
-			.startX(-60)
-			.startY(-60)
-			.spacing(16,16)
-			.cols(50)
-		)
-
-		.onCreate (
+		.add(new HShape("arrow.svg").enableStyle(false).anchorAt(H.CENTER))
+		.layout(new HGridLayout().startX(-60).startY(-60).spacing(16,16).cols(50))
+		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
@@ -48,7 +31,6 @@ void setup() {
 				}
 			}
 		)
-
 		.requestAll()
 	;
 
@@ -56,5 +38,6 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
 
+}

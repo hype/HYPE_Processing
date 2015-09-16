@@ -1,11 +1,10 @@
-import hype.*;
+// visually the same as HDrawablePool_007... demonstrates that shuffleRequestAll supports autoParent(HCanvas)
 
-/*
-	Visually the same as example_007, this demonstrates that shuffleRequestAll
-	now supports autoParent and not just the stage as it did previously
-*/
+import hype.*;
+import hype.extended.layout.HGridLayout;
+
 HDrawablePool pool;
-HCanvas canvas;
+HCanvas       canvas;
 
 void setup() {
 	size(640,640);
@@ -16,23 +15,8 @@ void setup() {
 
 	pool = new HDrawablePool(100);
 	pool.autoParent(canvas)
-		.add (
-			new HRect()
-			.rounding(5)
-			.stroke(0)
-			.fill(255)
-			.anchorAt(H.CENTER)
-			.rotation(45)
-			.size(70)
-		)
-		.layout (
-			new HGridLayout()
-			.startX(32)
-			.startY(32)
-			.spacing(64,64)
-			.cols(10)
-		)
-
+		.add(new HRect(70).rounding(5).anchorAt(H.CENTER).rotation(45))
+		.layout(new HGridLayout().startX(32).startY(32).spacing(64,64).cols(10))
 		.shuffleRequestAll()
 	;
 
@@ -40,4 +24,6 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
+
+}

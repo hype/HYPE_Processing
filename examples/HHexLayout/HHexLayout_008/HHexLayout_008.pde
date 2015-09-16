@@ -1,7 +1,9 @@
 import hype.*;
+import hype.extended.colorist.HColorPool;
+import hype.extended.layout.HHexLayout;
 
 HDrawablePool pool;
-HColorPool colors;
+HColorPool    colors;
 
 void setup(){
 	size(640,640);
@@ -9,38 +11,25 @@ void setup(){
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
-	pool = new HDrawablePool(1045);
+	pool = new HDrawablePool(169);
 	pool.autoAddToStage()
-		.add( new HPath() )
-
-		.layout(
-			new HHexLayout()
-			.spacing(16)
-			.offsetX(0)
-			.offsetY(0)
-		)
-
-		.onCreate (
+		.add(new HPath())
+		.layout(new HHexLayout().spacing(16).offsetX(0).offsetY(0))
+		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					HPath d = (HPath) obj;
-					d
-						.star( 5, 0.5, -90 )
-						.size(27)
-						.anchorAt(H.CENTER)
-						.noStroke()
-						.fill(colors.getColor())
-					;
+					d.star(5, 0.5, -90).noStroke().fill(colors.getColor()).anchorAt(H.CENTER).size(27);
 				}
 			}
 		)
-
 		.requestAll()
 	;
 
 	H.drawStage();
 	noLoop();
 }
- 
-void draw(){ }
 
+void draw() {
+
+}

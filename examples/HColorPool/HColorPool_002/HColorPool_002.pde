@@ -1,7 +1,9 @@
 import hype.*;
+import hype.extended.colorist.HColorPool;
+import hype.extended.behavior.HRotate;
 
 HDrawablePool pool;
-HColorPool colors;
+HColorPool    colors;
 
 void setup() {
 	size(640,640);
@@ -20,16 +22,9 @@ void setup() {
 
 	pool = new HDrawablePool(100);
 	pool.autoAddToStage()
-		.add (
-			new HRect()
-			.rounding(10)
-		)
-
-		.add (
-			new HEllipse(), 25
-		)
-
-		.onCreate (
+		.add(new HRect().rounding(10))
+		.add(new HEllipse(), 25)
+		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
@@ -54,4 +49,3 @@ void setup() {
 void draw() {
 	H.drawStage();
 }
-

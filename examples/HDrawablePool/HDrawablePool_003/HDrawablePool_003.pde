@@ -1,4 +1,5 @@
 import hype.*;
+import hype.extended.behavior.HRotate;
 
 HDrawablePool pool;
 
@@ -8,23 +9,18 @@ void setup() {
 
 	pool = new HDrawablePool(100);
 	pool.autoAddToStage()
-		.add (
-			new HRect()
-			.rounding(4)
-		)
-
-		.onCreate (
+		.add(new HRect(10,50).rounding(4))
+		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
 					d
-						.fill(#242424)
 						.strokeWeight(1)
 						.stroke(#999999)
+						.fill(#202020)
 						.loc( (int)random(width), (int)random(height) )
-						.anchor( new PVector(5,100) )
+						.anchor( 5, 100 )
 						.rotation( (int)random(360) )
-						.size(10,50)
 					;
 
 					HRotate r = new HRotate();
@@ -32,7 +28,6 @@ void setup() {
 				}
 			}
 		)
-
 		.requestAll()
 	;
 }
@@ -40,4 +35,3 @@ void setup() {
 void draw() {
 	H.drawStage();
 }
-

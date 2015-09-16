@@ -1,7 +1,6 @@
 import hype.*;
 import hype.extended.colorist.HColorPool;
 import hype.extended.behavior.HTimer;
-import hype.interfaces.HCallback; // this needs to move into core/HYPE, it's used too much
 
 HColorPool    colors;
 HCanvas       canvas;
@@ -19,8 +18,8 @@ void setup() {
 
 	pool = new HDrawablePool(300);
 	pool.autoParent(canvas)
-		.add (new HRect().rounding(5))
-		.onRequest (
+		.add(new HRect().rounding(5))
+		.onRequest(
 			 new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;

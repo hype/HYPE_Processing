@@ -1,7 +1,9 @@
 import hype.*;
+import hype.extended.colorist.HColorPool;
+import hype.extended.behavior.HRotate;
 
 HDrawablePool pool;
-HColorPool colors;
+HColorPool    colors;
 
 void setup() {
 	size(640,640);
@@ -9,45 +11,42 @@ void setup() {
 
 	colors = new HColorPool()
 		.add(#FFFFFF, 9)
-		.add(#F7F7F7, 9)
 		.add(#ECECEC, 9)
-		.add(#0095A8, 6)
-		.add(#00616F, 6)
-		.add(#333333, 6)
+		.add(#CCCCCC, 9)
+		.add(#333333, 3)
+		.add(#0095a8, 2)
+		.add(#00616f, 2)
 		.add(#FF3300)
 		.add(#FF6600)
 	;
 
-	pool = new HDrawablePool(15876);
+	pool = new HDrawablePool(100);
 	pool.autoAddToStage()
-		.add (
-			new HRect(5)
-		)
-
-		.layout(
-			new HGridLayout()
-			.startX(5)
-			.startY(5)
-			.spacing(5,5)
-			.cols(126)
-		)
-
-		.onCreate (
+		.add(new HRect().rounding(10))
+		.add(new HEllipse(), 25)
+		.onCreate(
 			 new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
-					int i = pool.currentIndex();
-					d.noStroke().fill(colors.getColor(i*3));
+					d
+						.strokeWeight(4)
+						.stroke( colors.getColor(), 150 )
+						.fill( colors.getColor(), 50 )
+						.loc( (int)random(width), (int)random(height) )
+						.anchor( new PVector(25,25) )
+						.rotation( (int)random(360) )
+						.size( 25+((int)random(3)*25) )
+					;
+
+					HRotate r = new HRotate();
+					r.target(d).speed( random(-4,4) );
 				}
 			}
 		)
-
 		.requestAll()
 	;
-
-	H.drawStage();
-	noLoop();
 }
 
-void draw() {}
-
+void draw() {
+	H.drawStage();
+}

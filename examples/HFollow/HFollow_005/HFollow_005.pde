@@ -1,41 +1,25 @@
 import hype.*;
+import hype.extended.colorist.HPixelColorist;
+import hype.extended.behavior.HFollow;
 
-HFollow mf;
-HRect d;
 HPixelColorist colors;
+HFollow        mf;
+HRect          rect;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#242424).autoClear(false);
 
-	PImage img = loadImage("sintra.jpg");
-	colors = new HPixelColorist(img)
-		.fillOnly()
-		// .strokeOnly()
-		// .fillAndStroke()
-	;
+	colors = new HPixelColorist("sintra.jpg").fillOnly();
+	
+	rect = new HRect(100);
+	rect.rounding(40).strokeWeight(2).stroke(0,150).loc(width/2,height/2).anchorAt(H.CENTER).rotation(45);
+	H.add(rect);
 
-	d = new HRect(100);
-	d
-		.rounding(40)
-		.strokeWeight(2)
-		.stroke(#000000, 150)
-		.loc(width/2,height/2)
-		.anchorAt(H.CENTER)
-		.rotation(45)
-	;
-	H.add(d);
-
-	mf = new HFollow()
-		.target(d)
-		.ease(0.05)
-		.spring(0.95)
-	;
+	mf = new HFollow().target(rect).ease(0.05).spring(0.95);
 }
 
 void draw() {
-	colors.applyColor(d);
-
+	colors.applyColor(rect);
 	H.drawStage();
 }
-

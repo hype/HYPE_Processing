@@ -1,7 +1,9 @@
 import hype.*;
+import hype.extended.colorist.HColorPool;
+import hype.extended.layout.HGridLayout;
 
 HDrawablePool pool;
-HColorPool colors;
+HColorPool    colors;
 
 void setup() {
 	size(640,640);
@@ -20,34 +22,16 @@ void setup() {
 
 	pool = new HDrawablePool(576);
 	pool.autoAddToStage()
-		.add (
-			new HRect()
-			.rounding(4)
-		)
-
-		.layout (
-			new HGridLayout()
-			.startX(21)
-			.startY(21)
-			.spacing(26,26)
-			.cols(24)
-		)
-
-		.onCreate (
+		.add(new HRect(36).rounding(4))
+		.layout(new HGridLayout().startX(21).startY(21).spacing(26,26).cols(24))
+		.onCreate(
 			 new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
-					d
-						.noStroke()
-						.fill( colors.getColor() )
-						.anchorAt(H.CENTER)
-						.rotation( 45 )
-						.size(36)
-					;
+					d.noStroke().fill(colors.getColor()).anchorAt(H.CENTER).rotation(45);
 				}
 			}
 		)
-
 		.requestAll()
 	;
 
@@ -55,5 +39,6 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
 
+}

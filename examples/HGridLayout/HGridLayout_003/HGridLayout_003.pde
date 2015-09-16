@@ -1,7 +1,10 @@
 import hype.*;
+import hype.extended.colorist.HColorPool;
+import hype.extended.layout.HGridLayout;
+import hype.extended.behavior.HRotate;
 
 HDrawablePool pool;
-HColorPool colors;
+HColorPool    colors;
 
 void setup() {
 	size(640,640);
@@ -20,36 +23,19 @@ void setup() {
 
 	pool = new HDrawablePool(576);
 	pool.autoAddToStage()
-		.add (
-			new HRect(50)
-			.rounding(4)
-		)
-
-		.layout (
-			new HGridLayout()
-			.startX(32)
-			.startY(32)
-			.spacing(25,25)
-			.cols(24)
-		)
-
-		.onCreate (
+		.add(new HRect(50).rounding(4))
+		.layout(new HGridLayout().startX(32).startY(32).spacing(25,25).cols(24))
+		.onCreate(
 			 new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
-					d
-						.noStroke()
-						.fill( colors.getColor() )
-						.alpha( (int)random(50,200) )
-						.anchorAt(H.CENTER)
-					;
+					d.noStroke().fill( colors.getColor() ).alpha( (int)random(50,200) ).anchorAt(H.CENTER);
 
 					HRotate rot = new HRotate();
 					rot.target(d).speed( random(-2,2) );
 				}
 			}
 		)
-
 		.requestAll()
 	;
 }

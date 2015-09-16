@@ -1,8 +1,6 @@
 import hype.*;
 import hype.extended.layout.HGridLayout;
 import hype.extended.colorist.HColorPool;
-import hype.HCallback; // this needs to move into core/HYPE, it's used too much
-
 
 HColorPool    colors;
 HDrawablePool pool;
@@ -15,16 +13,16 @@ void setup() {
 
 	pool = new HDrawablePool(121);
 	pool.autoAddToStage()
-		.add (new HShape("art1.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
-		.add (new HShape("art2.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
-		.add (new HShape("art3.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
-		.add (new HShape("art4.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
-		.add (new HShape("art5.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
-		.add (new HShape("art6.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
+		.add(new HShape("art1.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
+		.add(new HShape("art2.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
+		.add(new HShape("art3.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
+		.add(new HShape("art4.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
+		.add(new HShape("art5.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
+		.add(new HShape("art6.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
 
-		.layout ( new HGridLayout().startX(70).startY(70).spacing(50,50).cols(11) )
+		.layout( new HGridLayout().startX(70).startY(70).spacing(50,50).cols(11) )
 
-		.onCreate (
+		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					HShape d = (HShape) obj;
