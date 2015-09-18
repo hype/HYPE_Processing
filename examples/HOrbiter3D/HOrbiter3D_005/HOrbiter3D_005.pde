@@ -1,4 +1,6 @@
 import hype.*;
+import hype.extended.behavior.HOrbiter3D;
+import hype.extended.colorist.HColorPool;
 
 HDrawablePool pool;
 
@@ -10,17 +12,11 @@ void setup() {
 	pool.autoAddToStage()
 		.add(new HRect(50).rounding(10))
 		.colorist( new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600).fillOnly() )
-
 		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
-
-					d
-						.noStroke()
-						.anchorAt(H.CENTER)
-						.rotation(45)
-					;
+					d.noStroke().anchorAt(H.CENTER).rotation(45);
 
 					HOrbiter3D orb = new HOrbiter3D(width/2, height/2, 0)
 						.target(d)
@@ -33,7 +29,6 @@ void setup() {
 				}
 			}
 		)
-
 		.requestAll()
 	;
 }
@@ -44,7 +39,7 @@ void draw() {
 	//simple sphere mesh to show orbit range
 	pushMatrix();
 		translate(width/2, height/2, 0);
-		stroke(#666666);
+		stroke(#4D4D4D);
 		noFill();
 		sphereDetail(20);
 		sphere(200);

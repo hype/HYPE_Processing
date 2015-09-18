@@ -1,14 +1,16 @@
 import hype.*;
+import hype.extended.behavior.HOrbiter3D;
+import hype.extended.behavior.HTimer;
+import hype.extended.behavior.HOscillator;
 
 HDrawablePool pool;
-HTimer timerPool;
-int boxSixe = 50;
+HTimer        timerPool;
+int           boxSixe = 50;
 
 void setup() {
-	size(750,750,P3D);
+	size(640,640,P3D);
 	H.init(this).background(#242424).use3D(true);
 	
-
 	pool = new HDrawablePool(42);
 	pool.autoAddToStage()
 		.add (new HBox())
@@ -35,9 +37,6 @@ void setup() {
 					;
 
 					int i = pool.currentIndex();
-
-					// new HOscillator().target(d).property(H.ROTATIONX).range(-360, 360).speed(0.4).freq(1).currentStep(i);
-					// new HOscillator().target(d).property(H.ROTATIONY).range(-360, 360).speed(0.4).freq(1).currentStep(i);
 					new HOscillator().target(d).property(H.ROTATIONZ).range(-360, 360).speed(0.4).freq(1).currentStep(i);
 				}
 			}
@@ -65,7 +64,7 @@ void draw() {
 	//simple sphere mesh to show orbit range
 	pushMatrix();
 		translate(width/2, height/2, 0);
-		stroke(#333333);
+		stroke(#4D4D4D);
 		noFill();
 		sphereDetail(20);
 		sphere(200);

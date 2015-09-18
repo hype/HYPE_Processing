@@ -1,11 +1,14 @@
 import hype.*;
+import hype.extended.behavior.HOscillator;
+import hype.extended.colorist.HColorPool;
+import hype.extended.layout.HGridLayout;
 
-HColorPool colors;
-HCanvas canvas;
 HDrawablePool pool;
+HColorPool    colors;
+HCanvas       canvas;
 
 void setup() {
-	size(640, 640);
+	size(640,640);
 	H.init(this).background(#111111);
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095A8, #00616F, #FF3300, #FF6600);
@@ -14,21 +17,8 @@ void setup() {
 
 	pool = new HDrawablePool(400);
 	pool.autoParent(canvas)
-		.add(
-			new HPath()
-			.star(5, 0.4, -90)
-			.size(75)
-			.anchor(0, 75)
-			.noStroke()
-		)
-
-		.layout(
-			new HGridLayout()
-			.startLoc(0, height/2)
-			.spacing(2, 0)
-			.cols(400)
-		)
-
+		.add(new HPath().star(5, 0.4, -90).size(75).anchor(0, 75).noStroke())
+		.layout(new HGridLayout().startLoc(0, height/2).spacing(2, 0).cols(400))
 		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
@@ -77,7 +67,6 @@ void setup() {
 				}
 			}
 		)
-
 		.requestAll()
 	;
 }
@@ -85,4 +74,3 @@ void setup() {
 void draw() {
 	H.drawStage();
 }
-

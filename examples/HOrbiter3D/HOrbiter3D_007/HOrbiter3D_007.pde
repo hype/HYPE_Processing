@@ -1,24 +1,18 @@
 import hype.*;
+import hype.extended.behavior.HOrbiter3D;
 
 HOrbiter3D orb1, orb2;
-HCanvas canvas;
+HCanvas    canvas;
 
 void setup() {
 	size(640,640,P3D);
-	H.init(this).background(#242424).autoClear(true).use3D(true);
-	lights();
-	hint(DISABLE_DEPTH_TEST);
+	H.init(this).background(#242424).use3D(true);
 
 	canvas = new HCanvas(P3D).autoClear(false).fade(1);
 	H.add(canvas);
 
 	HRect d = new HRect(50).rounding(4);
-	d
-		.noStroke()
-		.fill(#FF3300)
-		.anchorAt(H.CENTER)		
-		.rotation(45)
-	;
+	d.noStroke().fill(#FF3300).anchorAt(H.CENTER).rotation(45);
 	canvas.add(d);
 
 	orb1 = new HOrbiter3D(width/2, height/2, 0)
@@ -37,6 +31,7 @@ void setup() {
 }
 
 void draw() {
+	// hint(DISABLE_DEPTH_TEST);
 	H.drawStage();
 
 	//simple sphere mesh to show orbit range
@@ -50,7 +45,7 @@ void draw() {
 
 	pushMatrix();
 		translate(orb1.x(), orb1.y(), orb1.z());
-		stroke(#666666);
+		stroke(#4D4D4D);
 		noFill();
 		sphereDetail(20);
 		sphere(75);

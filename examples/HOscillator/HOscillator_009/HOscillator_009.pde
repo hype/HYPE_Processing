@@ -1,17 +1,19 @@
 import hype.*;
+import hype.extended.behavior.HOscillator;
+import hype.extended.colorist.HColorPool;
 
 HColorPool colors;
-HCanvas canvas;
+HCanvas    canvas;
 
 void setup() {
-	size(640, 640);
+	size(640,640);
 	H.init(this).background(#111111);
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #ff3300, #ff3300, #242424, #333333, #666666);
 
 	canvas = H.add(new HCanvas()).autoClear(true);
 
-	int starScale = 800;
+	int starScale  = 800;
 	int starOffest = 15;
 
 	for (int i=0; i<53; ++i) {
@@ -39,4 +41,3 @@ void setup() {
 void draw() {
 	H.drawStage();
 }
-

@@ -1,12 +1,15 @@
 import hype.*;
+import hype.extended.behavior.HOscillator;
+import hype.extended.behavior.HTimer;
+import hype.extended.colorist.HPixelColorist;
 
-HCanvas canvas;
-HDrawablePool pool;
+HDrawablePool  pool;
 HPixelColorist colors;
+HCanvas        canvas;
 
 void setup() {
 	size(640,640,P3D);
-	H.init(this).background(#000000).autoClear(true).use3D(true);
+	H.init(this).background(#000000).use3D(true);
 
 	colors = new HPixelColorist("gradient.jpg");
 
@@ -15,11 +18,7 @@ void setup() {
 
 	pool = new HDrawablePool(1000);
 	pool.autoParent(canvas)
-		.add(
-			new HRect()
-			.rounding(10)
-		)
-
+		.add(new HRect().rounding(10))
 		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
@@ -130,16 +129,9 @@ void draw() {
 		d.noStroke();
 		d.fill(colors.getColor(d.x(), d.y()));
 
-		// if the z axis hits this range, change fill to light yellow
-		if (d.z() > -10 && d.z() < 10){
-			d.fill(#FFFFCC);
-		}
-
-		if (d.y() < -40) {
-			pool.release(d);
-		}
+		if (d.z() > -10 && d.z() < 10) d.fill(#FFFFCC); // if the z axis hits this range, change fill to light yellow
+		if (d.y() < -40) pool.release(d);
 	}
 
 	H.drawStage();
 }
-

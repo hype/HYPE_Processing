@@ -1,4 +1,5 @@
 import hype.*;
+import hype.extended.layout.HPolarLayout;
 
 void setup() {
 	size(640,640);
@@ -6,15 +7,9 @@ void setup() {
 
 	HDrawablePool pool = new HDrawablePool(300);
 	pool.autoAddToStage()
-		.add (
-			new HRect(10)
-			.rounding(3)
-			.noStroke()
-			.fill( #ff4400 )
-			.anchorAt(H.CENTER)
-		)
+		.add(new HRect(10).rounding(3).noStroke().fill(#FF3300).anchorAt(H.CENTER))
 
-		.layout (
+		.layout(
 			new HPolarLayout()
 			.offset(width/2, height/2)
 		)
@@ -26,4 +21,6 @@ void setup() {
 	noLoop();
 }
 
-void draw() {}
+void draw() {
+
+}

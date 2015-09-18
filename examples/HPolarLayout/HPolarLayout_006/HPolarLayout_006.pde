@@ -1,7 +1,9 @@
 import hype.*;
+import hype.extended.layout.HPolarLayout;
 
 HDrawablePool pool;
-int colshifter = 0;
+
+int           colshifter = 0;
 
 void setup() {
 	size(640,640);
@@ -9,13 +11,7 @@ void setup() {
 
 	pool = new HDrawablePool(1100);
 	pool.autoAddToStage()
-		.add (
-			new HRect(10)
-			.rounding(3)
-			.noStroke()
-			.fill( #000000 )
-			.anchorAt(H.CENTER)
-		)
+		.add(new HRect(10).rounding(3).noStroke().fill(#FFFFFF).anchorAt(H.CENTER))
 
 		.layout (
 			new HPolarLayout(0.25, 10)
@@ -28,7 +24,6 @@ void setup() {
 }
 
 void draw() {
-
 	colorMode(HSB, 360, 100, 100);
 
 	colshifter++;

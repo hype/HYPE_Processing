@@ -1,23 +1,26 @@
 import hype.*;
+import hype.extended.behavior.HOrbiter3D;
+import hype.extended.behavior.HTimer;
+import hype.extended.colorist.HPixelColorist;
 
-HOrbiter3D orb1, orb2;
-HCanvas canvas;
+HOrbiter3D     orb1, orb2;
+HCanvas        canvas;
 
-HImage colorSRC;
+HImage         colorSRC;
 HPixelColorist hpc;
 
-color[] c1;
-int[]   c1Nums;
-int     c1min = 0;
-int     c1Max = 200;
+color[]        c1;
+int[]          c1Nums;
+int            c1min = 0;
+int            c1Max = 200;
 
-HTimer timerColor;
+HTimer         timerColor;
 
-HRect d, colorRun;
+HRect          d, colorRun;
 
 void setup() {
 	size(640,640,P3D);
-	H.init(this).background(#242424).autoClear(true).use3D(true);
+	H.init(this).background(#242424).use3D(true);
 
 	hpc = new HPixelColorist("color.png");
 	H.add( colorSRC = new HImage("color.png") ).loc(10, 10);
@@ -40,9 +43,8 @@ void setup() {
 				public void run(Object obj) {
 					c1min++;
 					if (c1min == c1Max) c1min = 0;
-
-						float tempPos = ((colorSRC.width() / c1Max) * c1min)+10;
-						colorRun.loc( tempPos,25);
+					float tempPos = ((colorSRC.width() / c1Max) * c1min)+10;
+					colorRun.loc(tempPos,25);
 				}
 			}
 		)
@@ -52,12 +54,7 @@ void setup() {
 	H.add(canvas);
 
 	d = new HRect(50).rounding(4);
-	d
-		.noStroke()
-		.fill(#FF3300)
-		.anchorAt(H.CENTER)		
-		.rotation(45)
-	;
+	d.noStroke().fill(#242424).anchorAt(H.CENTER).rotation(45);
 	canvas.add(d);
 
 	orb1 = new HOrbiter3D(width/2, height/2, 0)
@@ -77,6 +74,5 @@ void setup() {
 
 void draw() {
 	H.drawStage();
-
 	d.fill( c1[c1min] );
 }

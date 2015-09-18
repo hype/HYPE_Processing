@@ -44,5 +44,6 @@ void setup() {
 	textSize(18); text("Heavy Metal", 463, 443);
 }
 
-void draw() {}
+void draw() {
 
+}

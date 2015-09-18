@@ -1,8 +1,10 @@
 import hype.*;
+import hype.extended.behavior.HOscillator;
+import hype.extended.behavior.HTimer;
+import hype.extended.colorist.HColorPool;
 
 HDrawablePool pool;
-
-final HColorPool colors = new HColorPool(#111111, #202020, #242424, #333333, #4D4D4D, #CCCCCC);
+HColorPool    colors = new HColorPool(#111111, #202020, #242424, #333333, #4D4D4D, #CCCCCC);
 
 void setup() {
 	size(640,640);
@@ -12,11 +14,7 @@ void setup() {
 
 	pool = new HDrawablePool(1000);
 	pool.autoAddToStage()
-		.add(
-			new HRect()
-			.rounding(5)
-		)
-
+		.add(new HRect().rounding(5))
 		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
@@ -121,11 +119,8 @@ void draw() {
   for(HDrawable d : pool) {
 		d.loc( d.x(), d.y() - random(0.25,1) );
 
-		if (d.y() < -40) {
-			pool.release(d);
-		}
+		if (d.y() < -40) pool.release(d);
 	}
 
 	H.drawStage();
 }
-

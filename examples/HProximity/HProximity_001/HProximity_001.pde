@@ -1,32 +1,40 @@
 import hype.*;
+import hype.extended.behavior.HProximity;
+import hype.extended.behavior.HFollow;
 
 void setup() {
 	size(640, 640);
 	H.init(this).background(#242424);
 
-	HRect r1 = new HRect().rounding(4);
-	r1.fill(#FF0000).size(10).loc(width/2, height/2);
+	HRect r1 = new HRect(50);
+	r1.noStroke().fill(#FF3300).loc(width/2, height/2).rotate(45).anchorAt(H.CENTER);
 	H.add(r1);
 
-	HRect r2 = new HRect().rounding(4);
-	r2.fill(#00FF00).size(50).loc(540, 100).anchorAt(H.CENTER);
+	HRect r2 = new HRect(10);
+	r2.noStroke().fill(#00FF00).loc(width/2, height/2).rotate(45).anchorAt(H.CENTER);
 	H.add(r2);
 
-	new HProximity(0.95, 0.4, 0.5, 1.5, 250)
-	.target(r2)
-	.neighbor(r1)
-	.property(HConstants.SCALE);
+	new HProximity()
+		.target(r1)
+		.neighbor(r2)
+		.property(H.SCALE)
+		.spring(0.95)
+		.ease(0.4)
+		.min(0.25)
+		.max(1.5)
+		.radius(250)
+	;
 
-	HFollow mf = new HFollow().target(r2);
+	HFollow mf = new HFollow().target(r1);
 }
 
 void draw() {
 	H.drawStage();
 
 	//outline to show area of proximity
-	noFill();
-	stroke(#444444);
+	
 	ellipseMode(CENTER);
+	stroke(#4D4D4D);
+	noFill();
 	ellipse(width/2, height/2, 500, 500);
-
 }

@@ -1,7 +1,9 @@
 import hype.*;
+import hype.extended.behavior.HOscillator;
+import hype.extended.layout.HGridLayout;
 
 HDrawablePool pool;
-int boxSixe = 150;
+int           boxSixe = 150;
 
 void setup() {
 	size(640,640,P3D);
@@ -9,30 +11,15 @@ void setup() {
 
 	pool = new HDrawablePool(100);
 	pool.autoAddToStage()
-		.add (
-			new HBox()
-		)
-
-		.layout (
-			new HGridLayout()
-			.startX(-125)
-			.startY(-125)
-			.spacing(100,100)
-			.cols(10)
-		)
-
-		.onCreate (
+		.add(new HBox())
+		.layout(new HGridLayout().startX(-125).startY(-125).spacing(100,100).cols(10))
+		.onCreate(
 			 new HCallback() {
 				public void run(Object obj) {
 					int i = pool.currentIndex();
+
 					HBox d = (HBox) obj;
-					d
-						.depth(boxSixe)
-						.width(boxSixe)
-						.height(boxSixe)
-						.noStroke()
-						.z(-500)
-					;
+					d.depth(boxSixe).width(boxSixe).height(boxSixe).noStroke().z(-500);
 
 					new HOscillator()
 						.target(d)
@@ -63,16 +50,14 @@ void setup() {
 				}
 			}
 		)
-
 		.requestAll()
 	;
 }
 
 void draw() {
-	pointLight(255, 51, 0,  0, height/2, -300);        // orange
-	pointLight(0, 149, 168,  width, height/2, -300);   // teal
+	pointLight(255, 51, 0,   0,       height/2, -300); // orange
+	pointLight(0, 149, 168,  width,   height/2, -300); // teal
 	pointLight(255, 204, 0,  width/2, height/2, -400); // yellow
 
 	H.drawStage();
 }
-

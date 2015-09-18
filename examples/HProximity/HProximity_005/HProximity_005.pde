@@ -1,43 +1,42 @@
 import hype.*;
+import hype.extended.behavior.HProximity;
+import hype.extended.behavior.HOscillator;
 
 void setup() {
 	size(640, 640);
 	H.init(this).background(#242424);
 
-	HCanvas c = new HCanvas().autoClear(false).fade(5);
-	H.add(c);
+	HCanvas canvas = H.add(new HCanvas().autoClear(false).fade(5));
 
-	HRect r1 = new HRect().rounding(4);
-	r1.fill(#FFFFFF).size(10).loc(width/2, height/2);
-	//c.add(r1);
+	HRect r1 = new HRect(5);
+	r1.noStroke().fill(#00FF00).loc(width/2, height/2).rotate(45).anchorAt(H.CENTER);
+	canvas.add(r1);
 
-	HRect r2 = new HRect().rounding(4);
-	r2.noStroke().fill(#FF4400).size(5, 10).x(40).y(height/2).anchorAt(H.CENTER);
-	c.add(r2);
+	HRect r2 = new HRect(5,10).rounding(4);
+	r2.noStroke().fill(#FF3300).x(40).y(height/2).anchorAt(H.CENTER);
+	canvas.add(r2);
 
-	new HOscillator()
-		.target(r2)
-		.property(H.X)
-		.range(40, 600)
-		.speed(5)
-		.freq(0.5)
-		.currentStep(-180)
-	;
-
-
-	new HProximity(0.99, 0.7, 10, 200, 250)
+	new HProximity()
 		.target(r2)
 		.neighbor(r1)
-		.property(HConstants.HEIGHT);
+		.property(H.HEIGHT)
+		.spring(0.99)
+		.ease(0.7)
+		.min(10)
+		.max(200)
+		.radius(250)
+	;
+
+	new HOscillator().target(r2).property(H.X).range(40, 600).speed(5).freq(0.5).currentStep(-180);
 }
 
 void draw() {
 	H.drawStage();
 
 	//outline to show area of proximity
-	noFill();
-	stroke(#444444);
+	
 	ellipseMode(CENTER);
+	stroke(#4D4D4D);
+	noFill();
 	ellipse(width/2, height/2, 500, 500);
-
 }
