@@ -5,6 +5,8 @@ bin/
 ## Processing template
 #library/
 !resources/code/ExampleTaglet.class
+#examples
+build-tmp
 
 ## JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion
