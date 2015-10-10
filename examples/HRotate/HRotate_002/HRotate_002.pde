@@ -1,4 +1,5 @@
 import hype.*;
+import hype.extended.behavior.*;
 
 void setup() {
 	size(640,640);
