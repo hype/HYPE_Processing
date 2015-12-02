@@ -1,6 +1,6 @@
 # HYPE Processing Library
 
-A project maintained by [Joshua Davis](https://github.com/hype/).
+A project maintained by [Joshua Davis](https://github.com/hype/) / [twitter.com/joshuadavis](https://twitter.com/joshuadavis/).
 
 A collection of classes that performs the heavy lifting for you by writing a minimal amount of code.
 
