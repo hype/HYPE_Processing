@@ -1,19 +1,18 @@
 import hype.*;
+import hype.extended.behavior.HSwarm;
+import hype.extended.behavior.HTimer;
+import hype.extended.colorist.HPixelColorist;
 
 HPixelColorist colors;
-HSwarm swarm;
-HDrawablePool pool;
-HTimer timer;
+HSwarm         swarm;
+HDrawablePool  pool;
+HTimer         timer;
 
 void setup() {
 	size(640,640);
 	H.init(this).background(#242424).autoClear(false);
 
-	colors = new HPixelColorist("sintra.jpg")
-		.fillOnly()
-		// .strokeOnly()
-		// .fillAndStroke()
-	;
+	colors = new HPixelColorist("sintra.jpg").fillOnly();
 
 	swarm = new HSwarm()
 		.addGoal(H.mouse())
@@ -24,21 +23,17 @@ void setup() {
 
 	pool = new HDrawablePool(40);
 	pool.autoAddToStage()
-		.add (
-			new HRect()
-			.rounding(4)
-		)
-
-		.onCreate (
+		.add(new HRect().rounding(4))
+		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
 					d
-						.size((int)random(10,20), (int)random(2,6) )
 						.noStroke()
-						.fill( #000000 )
-						.loc( width/2, height/2 )
-						.anchorAt( H.CENTER )
+						.fill(#000000)
+						.size((int)random(10,20), (int)random(2,6) )
+						.loc(width/2, height/2)
+						.anchorAt(H.CENTER)
 					;
 
 					colors.applyColor(d);
@@ -63,10 +58,9 @@ void setup() {
 }
 
 void draw() {
-  for(HDrawable d : pool) {
+	for(HDrawable d : pool) {
 		colors.applyColor(d.alpha(50));
 	}
 
 	H.drawStage();
 }
-

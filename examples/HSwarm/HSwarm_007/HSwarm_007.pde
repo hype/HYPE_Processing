@@ -1,20 +1,26 @@
-import hype.*;
+import java.util.Iterator;
 
-HColorPool colors;
+import hype.*;
+import hype.extended.behavior.HSwarm;
+import hype.extended.behavior.HTimer;
+import hype.extended.behavior.HTween;
+import hype.extended.colorist.HColorPool;
+import hype.interfaces.HLocatable;
+
+HColorPool    colors;
+HCanvas       canvas;
+HSwarm        swarm;
 HDrawablePool pool;
-HTimer timer;
-HSwarm swarm;
-int i=0;
-HCanvas canvas;
+HTimer        timer;
+int           i=0;
 
 void setup() {
 	size(640,640);
-	H.init(this).background(#000000);
+	H.init(this).background(#242424);
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
 
-	canvas = new HCanvas().autoClear(false).fade(40);
-	H.add(canvas);
+	H.add(canvas = new HCanvas()).autoClear(false).fade(40);
 
 	swarm = new HSwarm()
 		.speed(4)
@@ -25,20 +31,17 @@ void setup() {
 
 	pool = new HDrawablePool(10);
 	pool.autoAddToStage()
-		.add (
-			new HRect(10).rounding(5)
-		)
-
-		.onCreate (
+		.add(new HRect(10).rounding(5))
+		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					final HDrawable d = (HDrawable) obj;
 					d
 						.strokeWeight(2)
 						.stroke(#ECECEC)
-						.fill( #111111 )
-						.loc( (int)random(100,540), (int)random(100,540) )
-						.anchorAt( H.CENTER )
+						.fill(#111111)
+						.loc((int)random(100,540), (int)random(100,540))
+						.anchorAt(H.CENTER)
 						.rotation(45)
 					;
 
@@ -53,7 +56,7 @@ void setup() {
 						public void run(Object obj) {
 							tween
 								.start(d.x(), d.y())
-								.end( (int)random(100,540), (int)random(100,540) )
+								.end((int)random(100,540), (int)random(100,540))
 								.ease(0.01)
 								.spring(0.9)
 								.register()
@@ -65,7 +68,6 @@ void setup() {
 				}
 			}
 		)
-
 		.requestAll()
 	;
 }
@@ -94,4 +96,3 @@ void draw() {
 		swarm.addGoal(d.x(),d.y());
 	}
 }
-

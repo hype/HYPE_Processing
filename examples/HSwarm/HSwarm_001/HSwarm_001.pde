@@ -1,8 +1,11 @@
 import hype.*;
+import hype.extended.behavior.HSwarm;
+import hype.extended.behavior.HTimer;
+import hype.extended.colorist.HColorPool;
 
-HSwarm swarm;
+HSwarm        swarm;
 HDrawablePool pool;
-HTimer timer;
+HTimer        timer;
 
 void setup() {
 	size(640,640);
@@ -17,22 +20,16 @@ void setup() {
 
 	pool = new HDrawablePool(40);
 	pool.autoAddToStage()
-		.add (
-			new HRect()
-			.rounding(4)
-			.size(18,6)
-		)
-
+		.add(new HRect().rounding(4).size(18,6))
 		.colorist(new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600).fillOnly())
-
-		.onCreate (
+		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
 					d
 						.noStroke()
-						.loc( 500, 100 )
-						.anchorAt( H.CENTER )
+						.loc(500, 100)
+						.anchorAt(H.CENTER)
 					;
 
 					swarm.addTarget(d);
@@ -65,4 +62,3 @@ void draw() {
 	noFill(); strokeWeight(2); stroke(#FF3300);
 	ellipse(500, 100, 4, 4);
 }
-

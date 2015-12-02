@@ -1,6 +1,10 @@
 import hype.*;
+import hype.extended.behavior.HRandomTrigger;
+import hype.extended.behavior.HTimer;
+import hype.extended.behavior.HTween;
+import hype.extended.colorist.HColorPool;
 
-HColorPool colors;
+HColorPool     colors;
 HRandomTrigger tweenTrigger;
 
 void setup() {
@@ -9,20 +13,16 @@ void setup() {
 
 	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095A8, #00616F, #FF3300, #FF6600);
 
-	HRandomTrigger tweenTrigger = new HRandomTrigger( 5f/15 );
+	HRandomTrigger tweenTrigger = new HRandomTrigger(5f/15);
 
 	tweenTrigger.callback(
 		new HCallback() {
 			public void run(Object obj) {
-
 				float size = 25 * HMath.randomInt(1,6);
 				float locx = HMath.randomInt(width);
 				float locy = HMath.randomInt(height);
 
-				final HDrawable r = H.add(new HRect(size).rounding(10))
-					.noStroke().fill( colors.getColor() )
-					.loc(locx,locy).anchorAt( H.CENTER )
-				;
+				final HDrawable r = H.add(new HRect(size).rounding(10)).noStroke().fill(colors.getColor()).loc(locx,locy).anchorAt(H.CENTER).rotation(45);
 
 				final HTween tween = new HTween()
 					.target(r).property(H.SCALE)
@@ -67,4 +67,3 @@ void setup() {
 void draw() {
 	H.drawStage();
 }
-
