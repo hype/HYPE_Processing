@@ -12,7 +12,7 @@ This library is currently under heavy development. You can keep track of the lat
 
 ### Install to Processing Sketchbook
 
-The ##project.name## library may be uzipped from the distribution folder and manually placed within the `libraries` folder of your Processing sketchbook. To find (and change) the Processing sketchbook location on your computer, open the Preferences window from the Processing application (PDE) and look for the "Sketchbook location" item at the top.
+The ##project.name## library may be uzipped from the `distribution` folder and manually placed within the `libraries` folder of your Processing sketchbook. To find (and change) the Processing sketchbook location on your computer, open the Preferences window from the Processing application (PDE) and look for the "Sketchbook location" item at the top.
 
 By default the following locations are used for your sketchbook folder:
   * For Mac users, the sketchbook folder is located inside `~/Documents/Processing`
