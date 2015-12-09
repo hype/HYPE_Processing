@@ -56,7 +56,7 @@
 	<path id="classpath">
 		<fileset dir="${classpath.local.location}" includes="${classpath.local.include}" />
 		<fileset dir="${classpath.libraries.location}" includes="**/*.jar" />
-		<fileset dir="${project.lib}" includes="**/*.jar" />
+		<!--<fileset dir="${project.lib}" includes="**/*.jar" />-->
 	</path>
 
 	<!-- Create the time stamp -->
@@ -143,9 +143,9 @@
 		<copy todir="${project.tmp}/${project.name}/src">
 			<fileset dir="${project.src}"/>
 		</copy>
-		<copy todir="${project.tmp}/${project.name}/${folder}">
+		<!--<copy todir="${project.tmp}/${project.name}/${folder}">
 			<fileset dir="${project.lib}" excludes="README" />
-		</copy>
+		</copy>-->
 	</target>
 
 	<!-- make /distribution folder -->
@@ -181,9 +181,9 @@
 			</classpath>
 			<compilerarg value="-Xlint"/>
 		</javac>
-		<copy todir="${project.bin.data}">
+		<!--<copy todir="${project.bin.data}">
 			<fileset dir="${project.data}" excludes="README" />
-		</copy>
+		</copy>-->
 	</target>
 
 	<!-- generate JAR for library -->
