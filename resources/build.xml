@@ -201,7 +201,8 @@
 		         stylesheetfile="resources/reference/stylesheet.css"
 		         doctitle="Javadocs: ${project.name}"
 		         public="true" version="false"
-		         windowtitle="Javadocs: ${project.name}">
+		         windowtitle="Javadocs: ${project.name}"
+		         additionalparam="-notimestamp">
 
 			<link href="${javadoc.java.href}" />
 			<link href="${javadoc.processing.href}" />
