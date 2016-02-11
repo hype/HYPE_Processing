@@ -1,25 +1,32 @@
-/*
+ /*
+ *
  * HYPE_Processing
  * http://www.hypeframework.org/ & https://github.com/hype/HYPE_Processing
  * 
- * Copyright (c) 2013 Joshua Davis & James Cruz
+ * Copyright (c) 2013-2015 Joshua Davis & James Cruz
  * 
  * Distributed under the BSD License. See LICENSE.txt for details.
  * 
  * All rights reserved.
+ *
+ * ----- *
+ * HSprite - originally by Benjamin Fox (@tracerstar) *
+ * Updated by GD (@Garth_D) - Feb 16 - to enable alpha transparency and to work with new processing 3.0 library form*
+ * Tested using processing 3.0.1 (It may break on newer versions of processing) *
+ * If you find any issues or make anything cool with this, let me know on twitter at @Garth_D *
  */
 
-package hype.extended.drawable;
+package hype;
+import hype.interfaces.HImageHolder;
 
-import hype.core.drawable.HDrawable;
+import processing.core.PImage;
 import processing.core.PGraphics;
 
 public class HSprite extends HDrawable {
 	
-	private PImage _texture;
-	private int _tX, _tY;
+	private PImage texture;
+	private int tX, tY;
 
-	
 	public HSprite() {}
 	
 	public HSprite(float s) {
@@ -31,14 +38,14 @@ public class HSprite extends HDrawable {
 	}
 
 	public HSprite texture(Object imgArg) {
-		_texture = H.getImage(imgArg);
+		texture = H.getImage(imgArg);
 
-		if(_texture == null) {
-			_tX = 0;
-			_tY = 0;
+		if(texture == null) {
+			tX = 0;
+			tY = 0;
 		} else {
-			_tX = _texture.width;
-			_tY = _texture.height;
+			tX = texture.width;
+			tY = texture.height;
 		}
 
 		return this;
@@ -47,10 +54,10 @@ public class HSprite extends HDrawable {
 	@Override
 	public HSprite createCopy() {
 		HSprite copy = new HSprite();
-		copy._texture = _texture;
-		copy._tX = _tX;
-		copy._tY = _tY;
-		copy._extras = _extras;
+		copy.texture = texture;
+		copy.tX = tX;
+		copy.tY = tY;
+		copy.extras = extras;
 		copy.copyPropertiesFrom(this);
 		return copy;
 	}
@@ -60,17 +67,18 @@ public class HSprite extends HDrawable {
 	public void draw( PGraphics g, boolean usesZ,
 		float drawX, float drawY, float alphaPc
 	) {
-
-		g.textureMode(NORMAL);
+		g.textureMode(g.NORMAL); 
 		g.noStroke();
-		g.tint(_fill);
+		//g.tint(fill); 
+		alphaPc *= (fill >>>24);
+
+		g.tint( fill | 0xFF000000, Math.round(alphaPc) ); //update to allow both fill and alpha to be set
 
 	    g.pushMatrix();
 	    	g.translate(drawX, drawY);
-	    	g.scale(_width, _height);
-
+	    	g.scale(width, height);
 	    	g.beginShape();
-		    	g.texture(_texture);
+		    	g.texture(texture);
 				g.vertex(0, 0, 0, 0);
 				g.vertex(1, 0, 1, 0);
 				g.vertex(1, 1, 1, 1);
@@ -81,3 +89,4 @@ public class HSprite extends HDrawable {
 		
 	}
 }
+
