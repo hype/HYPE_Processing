@@ -4,7 +4,7 @@ A project maintained by [Joshua Davis](https://github.com/hype/) / [twitter.com/
 
 A collection of classes that performs the heavy lifting for you by writing a minimal amount of code.
 
-More about HYPE here.
+[www.hypeframework.org](http://www.hypeframework.org/)
 
 This library is currently under heavy development. You can keep track of the latest changes here in the [CHANGELOG][1].
 

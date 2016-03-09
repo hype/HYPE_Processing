@@ -20,7 +20,6 @@ public class HRotate extends HBehavior {
 	public HRotate() {}
 
 	/** @deprecated */
-	//original constructor - to keep backwards compatibility
 	public HRotate(HRotatable newTarget, float dDeg) {
 		target(newTarget);
 		speedZRad = dDeg * HConstants.D2R;
