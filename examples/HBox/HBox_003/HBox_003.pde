@@ -36,4 +36,3 @@ void draw() {
 
 	H.drawStage();
 }
-
