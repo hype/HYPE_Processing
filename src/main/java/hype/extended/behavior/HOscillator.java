@@ -392,6 +392,16 @@ public class HOscillator extends HBehavior {
 	public void runBehavior(PApplet app) {
 		if(target ==null) return;
 
+		//FIX FOR H.SCALE AND METHOD CHAINING ON HBOX
+		if (target instanceof HDrawable3D) {
+			if (max2 != max3) {
+				max3=max2;
+			}
+			if (min2 != min3) {
+				min3=min2;
+			}
+		}
+
 		nextRaw();
 		float v1 = curr1;
 		float v2 = curr2;

@@ -141,7 +141,9 @@
 			</fileset>
 		</copy>
 		<copy todir="${project.tmp}/${project.name}/src">
-			<fileset dir="${project.src}"/>
+			<fileset dir="${project.src}">
+				<exclude name="**/main/test/*"/>
+			</fileset>
 		</copy>
 		<!--<copy todir="${project.tmp}/${project.name}/${folder}">
 			<fileset dir="${project.lib}" excludes="README" />

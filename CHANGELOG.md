@@ -1,4 +1,8 @@
-### build_20150811.0 (August 11, 2015)
+### HYPE_Processing v2.0.1 (April 14, 2016)
+- New HSprite and HAttractor classes
+- updates to HGRoup and HRotate
+
+### HYPE_Processing v2.0.0 (August 11, 2015)
 - refactor file/directory structure to meet Processing Library Guidelines.
 - Incorporate Ant build support
 - Debug against Java 8

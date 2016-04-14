@@ -1,54 +1,35 @@
 import hype.*;
 import hype.extended.behavior.HOrbiter3D;
-import hype.extended.behavior.HTimer;
 import hype.extended.colorist.HPixelColorist;
 
 HOrbiter3D     orb1, orb2;
 HCanvas        canvas;
 
-HImage         colorSRC;
-HPixelColorist hpc;
+HImage         clrSRC;
+HPixelColorist clrHPC;
+int            clrMin = 0;
+int            clrMax = 200;
+color[]        clr;
 
-color[]        c1;
-int[]          c1Nums;
-int            c1min = 0;
-int            c1Max = 200;
-
-HTimer         timerColor;
-
-HRect          d, colorRun;
+HRect          clrMarker, d;
 
 void setup() {
 	size(640,640,P3D);
 	H.init(this).background(#242424).use3D(true);
 
-	hpc = new HPixelColorist("color.png");
-	H.add( colorSRC = new HImage("color.png") ).loc(10, 10);
+	H.add( clrSRC = new HImage("color.png") ).loc(10, 10);
+	clrHPC = new HPixelColorist(clrSRC);
 
-	colorRun = new HRect(2,10);
-	colorRun.noStroke().fill(#CCCCCC).loc( 10,25);
-	H.add(colorRun);
+	clrMarker = new HRect(2,10);
+	clrMarker.noStroke().fill(#CCCCCC).loc( 10,25);
+	H.add(clrMarker);
 
-	c1 = new color[ c1Max ];
+	clr = new color[ clrMax ];
 
-	for (int i = 0; i < c1Max; i++) {
-		float tempPos = (colorSRC.width() / c1Max) * i;
-		c1[i] = hpc.getColor(tempPos,0);
+	for (int i = 0; i < clrMax; i++) {
+		float tempPos = (clrSRC.width() / clrMax) * i;
+		clr[i] = clrHPC.getColor(tempPos,0);
 	}
-
-	timerColor = new HTimer()
-		.interval(20)
-		.callback(
-			new HCallback() { 
-				public void run(Object obj) {
-					c1min++;
-					if (c1min == c1Max) c1min = 0;
-					float tempPos = ((colorSRC.width() / c1Max) * c1min)+10;
-					colorRun.loc(tempPos,25);
-				}
-			}
-		)
-	;
 
 	canvas = new HCanvas(P3D).autoClear(false).fade(1);
 	H.add(canvas);
@@ -74,5 +55,12 @@ void setup() {
 
 void draw() {
 	H.drawStage();
-	d.fill( c1[c1min] );
+	d.fill( clr[clrMin] );
+
+	// update color position
+
+	clrMin++;
+	if (clrMin == clrMax) clrMin = 0;
+	float tempPos = ((clrSRC.width() / clrMax) * clrMin)+10;
+	clrMarker.loc(tempPos,25);
 }

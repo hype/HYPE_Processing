@@ -19,7 +19,7 @@ import processing.core.PImage;
 
 /**
  * Main Hype Class
- * @version     2.0.1
+ * @version     "##library.prettyVersion##"
  * @since       2013
  */
 public class H implements HConstants {
