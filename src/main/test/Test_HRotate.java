@@ -6,9 +6,7 @@
  *  - Create new Run Configuration (Java Application)
  */
 
-import hype.H;
-import hype.HBox;
-import hype.HGroup;
+import hype.*;
 import hype.extended.behavior.HRotate;
 import processing.core.PApplet;
 
@@ -25,13 +23,13 @@ public class Test_HRotate extends PApplet {
 
 		H.init(this).background(0xFF000000).use3D(true);
 
-		H.add( allBoxes = new HGroup() ).anchorAt(H.CENTER); // this would set anchor to width/2 + height/2
+		HDrawable allBoxes = H.add(new HGroup()).anchorAt(H.BOTTOM_LEFT).size(300).locAt(H.CENTER);
 
-		allBoxes.add( boxX = new HBox() ).size(75).noStroke().fill(0xFFFF3300).loc((width/2) - 175, height/2);
-		allBoxes.add( boxY = new HBox() ).size(75).noStroke().fill(0xFFFF3300).loc(width/2, height/2);
-		allBoxes.add( boxZ = new HBox() ).size(75).noStroke().fill(0xFFFF3300).loc((width/2) + 175, height/2);
+		allBoxes.add( boxX = new HBox() ).size(75).noStroke().fill(0xFFFF3300).locAt(H.LEFT);
+		allBoxes.add( boxY = new HBox() ).size(75).noStroke().fill(0xFFFF3300).locAt(H.CENTER);
+		allBoxes.add( boxZ = new HBox() ).size(75).noStroke().fill(0xFFFF3300).locAt(H.RIGHT);
 
-		new HRotate().target(allBoxes).speedX(0).speedY(2).speedZ(0);
+		new HRotate().target(allBoxes).speedX(0).speedY(4).speedZ(0);
 	}
 
 	public void draw() {
