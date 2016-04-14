@@ -1,3 +1,7 @@
+### build_20160414 (April 14, 2016)
+- New HSprite and HAttractor classes
+- updates to HGRoup and HRotate
+
 ### build_20150811.0 (August 11, 2015)
 - refactor file/directory structure to meet Processing Library Guidelines.
 - Incorporate Ant build support
