@@ -1,3 +1,6 @@
+### HYPE_Processing v2.0.2 (May 12, 2016)
+- Fixes infinite recursion bug in HMath
+
 ### HYPE_Processing v2.0.1 (April 14, 2016)
 - New HSprite and HAttractor classes
 - updates to HGRoup and HRotate
