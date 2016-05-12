@@ -159,7 +159,7 @@ public class HMath implements HConstants {
 	}
 
 	public static float squishAngle(float w, float h, float deg) {
-		return squishAngle(w, h, deg * D2R) * R2D;
+		return squishAngleRad(w, h, deg * D2R) * R2D;
 	}
 
 	public static float squishAngleRad(float w, float h, float rad) {
