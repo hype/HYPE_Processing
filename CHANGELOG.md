@@ -1,3 +1,9 @@
+### HYPE_Processing v2.1.0 (UNRELEASED)
+- New HParticles behavior
+- New HSphereLayout class
+- New HScreenshot class
+- New HGroupColorPool class
+
 ### HYPE_Processing v2.0.2 (May 12, 2016)
 - Fixes infinite recursion bug in HMath
 
