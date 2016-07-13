@@ -1,4 +1,4 @@
- * Updated July 2016 - now can size and position the image used for HPixelColorist
+ /* Updated July 2016 - now can size and position the image used for HPixelColorist
  * New positioning options are .loc(x,y) or can use .offsetX(x) and .offsetY(y)
  * Size options are .autoSize() and .size(width/height) or can separately use .height() or .width()
  * If you find any issues or have any feedback, you can contact me via twitter (@Garth_D) *
