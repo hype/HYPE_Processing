@@ -58,6 +58,11 @@ public class HColorPool implements HColorist {
 		return clr;
 	}
 
+	public int getColorAt(int index) {
+		if(colorList.size() <= index) return 0;
+		return colorList.get(index);
+	}
+
 	@Override
 	public HColorPool fillOnly() {
 		fillFlag = true;
