@@ -290,7 +290,9 @@ public class HOscillator extends HBehavior {
 		case HConstants.TRIANGLE:	rawVal = HMath.triangleWave(deg); break;
 		case HConstants.SAW:		rawVal = HMath.sawWave(deg); break;
 		case HConstants.SQUARE:		rawVal = HMath.squareWave(deg); break;
-		default: rawVal = 0; break;
+		case HConstants.EASE:       rawVal = HMath.easeWave(deg); break;
+
+			default: rawVal = 0; break;
 		}
 
 		map1 = HMath.map(rawVal, -1,1, min1, max1);
