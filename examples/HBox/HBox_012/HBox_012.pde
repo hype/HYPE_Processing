@@ -2,20 +2,19 @@ import hype.*;
 import hype.extended.behavior.HOscillator;
 
 HDrawablePool pool;
-HImage i1;
-
-int boxSize = 200;
+int           boxSize = 500;
 
 void setup() {
 	size(640,640,P3D);
 	H.init(this).background(#242424).use3D(true);
-	lights();
-
-	i1 = new HImage("texture.png");
 
 	HBox b = new HBox();
-	b.noStroke();
-	b.texture(i1);
+	b.textureFront("tex1.png");
+	b.textureBack("tex2.png");
+	b.textureTop("tex3.png");
+	b.textureBottom("tex4.png");
+	b.textureLeft("tex5.png");
+	b.textureRight("tex6.png");
 
 	pool = new HDrawablePool(25);
 	pool.autoAddToStage()
@@ -26,56 +25,20 @@ void setup() {
 					int i = pool.currentIndex();
 
 					HBox d = (HBox) obj;
-					d.x(width/2).y(height/2).z(-500);
+					d.depth(boxSize).width(boxSize).height(boxSize).strokeWeight(2).stroke(0,225).fill(255,225).x(width/2).y(height/2).z(-500);
 
-					d.fill(
-						(int) map(i, 0, 19, 220, 0),
-						(int) map(i, 0, 19, 0, 150),
-						(int) map(i, 0, 19, 100, 160),
-						40
-					);
-
-					d.depth(boxSize * (0.5 + (2.0/50.0 * i * 5)));
-					d.width(boxSize * (0.5 + (2.0/50.0 * i * 5)));
-					d.height(boxSize * (0.5 + (2.0/50.0 * i * 5)));
-
-					new HOscillator()
-						.target(d)
-						.property(H.ROTATIONX)
-						.range(-90, 90)
-						.speed(0.2)
-						.freq(3)
-						.currentStep(i)
-					;
-
-					new HOscillator()
-						.target(d)
-						.property(H.ROTATIONY)
-						.range(-90, 180)
-						.speed(0.8)
-						.freq(1)
-						.currentStep(i)
-					;
-
-					new HOscillator()
-						.target(d)
-						.property(H.ROTATIONZ)
-						.range(-360, 360)
-						.speed(0.2)
-						.freq(1)
-						.currentStep(i)
-					;
+					new HOscillator().target(d).property(H.ROTATIONX).range(-360, 360).speed(0.1).freq(1).currentStep(i);
+					new HOscillator().target(d).property(H.ROTATIONY).range(-360, 360).speed(0.2).freq(1).currentStep(i);
+					new HOscillator().target(d).property(H.ROTATIONZ).range(-360, 360).speed(0.3).freq(1).currentStep(i);
+					new HOscillator().target(d).property(H.SCALE).range(0.5, 1.0).speed(1).freq(2).currentStep(i);
 				}
 			}
 		)
 		.requestAll()
 	;
-
-	blendMode(ADD);
-
 }
 
 void draw() {
+	lights();
 	H.drawStage();
 }
-

@@ -1,35 +1,29 @@
 import hype.*;
 import hype.extended.behavior.HOscillator;
+import hype.extended.colorist.HPixelColorist;
 
-HDrawablePool pool;
-PGraphics g;
-HCanvas canvas;
-HRect   rect;
+HDrawablePool  pool;
+int            boxSize   = 500;
 
-int boxSize = 400;
+HImage         clrSRC;
+HPixelColorist clrHPC;
 
 void setup() {
 	size(640,640,P3D);
 	H.init(this).background(#242424).use3D(true);
-	lights();
 
-	canvas = new HCanvas().autoClear(false).fade(5);
-	canvas.add( rect = new HRect(50).rounding(5) ).noStroke().fill(#FF3300).rotate(45);
-	H.add(canvas);
-	canvas.x(width + 1);//put canvas offscreen
-
-	//create our PGraphics for the texture
-	g = createGraphics((int) canvas.width(), (int) canvas.height(), P3D);
-	g.beginDraw();
-		g.clear();
-	g.endDraw();
-
+	H.add( clrSRC = new HImage("color.png") );
+	clrHPC = new HPixelColorist(clrSRC);
 
 	HBox b = new HBox();
-	b.noStroke();
-	b.texture(g);
+	b.textureFront("tex1.png");
+	b.textureBack("tex2.png");
+	b.textureTop("tex3.png");
+	b.textureBottom("tex4.png");
+	b.textureLeft("tex5.png");
+	b.textureRight("tex6.png");
 
-	pool = new HDrawablePool(1);
+	pool = new HDrawablePool(50);
 	pool.autoAddToStage()
 		.add(b)
 		.onCreate(
@@ -37,63 +31,35 @@ void setup() {
 				public void run(Object obj) {
 					int i = pool.currentIndex();
 
+					HRect marker;
+					H.add( marker = new HRect(2,10) );
+					marker.noStroke().fill(#CCCCCC).loc(0,15);
+					new HOscillator().target(marker).property(H.X).range(0, clrSRC.width()).speed(1).freq(1).currentStep(i*2);
+
 					HBox d = (HBox) obj;
-					d.x(width/2).y(height/2).z(-500);
+					d.depth(boxSize).width(boxSize).height(boxSize).strokeWeight(2).stroke(0,225).fill(255,225).x(width/2).y(height/2).z(-500);
+					d.extras( new HBundle().obj("m", marker) );
 
-					d.depth(boxSize);
-					d.width(boxSize);
-					d.height(boxSize);
-					d.noStroke();
-					d.strokeWeight(0);
-
-					new HOscillator()
-						.target(d)
-						.property(H.ROTATIONX)
-						.range(-90, 90)
-						.speed(0.2)
-						.freq(3)
-						.currentStep(i)
-					;
-
-					new HOscillator()
-						.target(d)
-						.property(H.ROTATIONY)
-						.range(-90, 180)
-						.speed(0.8)
-						.freq(1)
-						.currentStep(i)
-					;
-
-					new HOscillator()
-						.target(d)
-						.property(H.ROTATIONZ)
-						.range(-360, 360)
-						.speed(0.2)
-						.freq(1)
-						.currentStep(i)
-					;
+					new HOscillator().target(d).property(H.ROTATIONX).range(-360, 360).speed(0.1).freq(1).currentStep(i);
+					new HOscillator().target(d).property(H.ROTATIONY).range(-360, 360).speed(0.2).freq(1).currentStep(i);
+					new HOscillator().target(d).property(H.ROTATIONZ).range(-360, 360).speed(0.3).freq(1).currentStep(i);
 				}
 			}
 		)
 		.requestAll()
 	;
-
-	/*
-		Be wary when using these hints, they are there to help with z depth clipping issues.
-		They can have performance issues when there's a lot of overlapping objects on screen.
-	*/
-	hint(DISABLE_DEPTH_TEST);
-	hint(ENABLE_DEPTH_SORT);
 }
 
 void draw() {
-	rect.loc( (int)random(width), (int)random(height));
+	lights();
 	H.drawStage();
 
-	//update the texture PGraphic
-	g.beginDraw();
-		g.clear();
-		g.image(canvas.graphics(), 0, 0);
-	g.endDraw();
-}
+	for (HDrawable d : pool) {
+		HBundle obj = d.extras();
+		HRect marker = (HRect) obj.obj("m");
 
+		int   tempPos   = (int)constrain(marker.x(), 0, clrSRC.width()-1);
+		color tempColor = clrHPC.getColor(tempPos,0);
+		d.fill(tempColor);
+	}
+}
