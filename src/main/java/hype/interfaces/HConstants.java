@@ -184,6 +184,7 @@ public interface HConstants {
 		SINE = 1,
 		TRIANGLE = 2,
 		SQUARE = 3,
+		EASE = 4,
 
 		// HDrawable property identifiers
 		WIDTH = 0,
