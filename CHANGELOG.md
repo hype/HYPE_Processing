@@ -7,6 +7,8 @@
 - Updated HPixelColorist class
 - Updated HConstants (new colors)
 - Updated HShape class
+- Updated HPath class
+- Updated HVertex class
 
 ### HYPE_Processing v2.0.2 (May 12, 2016)
 - Fixes infinite recursion bug in HMath

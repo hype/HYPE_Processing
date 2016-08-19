@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -171,6 +171,14 @@ extends <a href="../hype/HDrawable.html" title="class in hype">HDrawable</a></pr
 <tr class="rowColor">
 <td class="colFirst"><code>static float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HPath.html#HANDLE_STROKE_WEIGHT">HANDLE_STROKE_WEIGHT</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>processing.core.PImage</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../hype/HPath.html#texture">texture</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../hype/interfaces/HColorist.html" title="interface in hype.interfaces">HColorist</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../hype/HPath.html#vertexColor">vertexColor</a></span></code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -326,22 +334,26 @@ extends <a href="../hype/HDrawable.html" title="class in hype">HDrawable</a></pr
 </tr>
 <tr id="i22" class="altColor">
 <td class="colFirst"><code><a href="../hype/HPath.html" title="class in hype">HPath</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../hype/HPath.html#texture-java.lang.Object-">texture</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;imgArg)</code>&nbsp;</td>
+</tr>
+<tr id="i23" class="rowColor">
+<td class="colFirst"><code><a href="../hype/HPath.html" title="class in hype">HPath</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HPath.html#triangle-int-int-">triangle</a></span>(int&nbsp;type,
         int&nbsp;direction)</code>&nbsp;</td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code><a href="../hype/HPath.html" title="class in hype">HPath</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HPath.html#vertex-float-float-">vertex</a></span>(float&nbsp;x,
       float&nbsp;y)</code>&nbsp;</td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code><a href="../hype/HPath.html" title="class in hype">HPath</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HPath.html#vertex-float-float-float-float-">vertex</a></span>(float&nbsp;cx,
       float&nbsp;cy,
       float&nbsp;x,
       float&nbsp;y)</code>&nbsp;</td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code><a href="../hype/HPath.html" title="class in hype">HPath</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HPath.html#vertex-float-float-float-float-float-float-">vertex</a></span>(float&nbsp;cx1,
       float&nbsp;cy1,
@@ -350,23 +362,27 @@ extends <a href="../hype/HDrawable.html" title="class in hype">HDrawable</a></pr
       float&nbsp;x,
       float&nbsp;y)</code>&nbsp;</td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code><a href="../hype/HVertex.html" title="class in hype">HVertex</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HPath.html#vertex-int-">vertex</a></span>(int&nbsp;index)</code>&nbsp;</td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i28" class="altColor">
+<td class="colFirst"><code><a href="../hype/HPath.html" title="class in hype">HPath</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../hype/HPath.html#vertexColors-hype.interfaces.HColorist-">vertexColors</a></span>(<a href="../hype/interfaces/HColorist.html" title="interface in hype.interfaces">HColorist</a>&nbsp;clr)</code>&nbsp;</td>
+</tr>
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code><a href="../hype/HPath.html" title="class in hype">HPath</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HPath.html#vertexUV-float-float-">vertexUV</a></span>(float&nbsp;u,
         float&nbsp;v)</code>&nbsp;</td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code><a href="../hype/HPath.html" title="class in hype">HPath</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HPath.html#vertexUV-float-float-float-float-">vertexUV</a></span>(float&nbsp;cu,
         float&nbsp;cv,
         float&nbsp;u,
         float&nbsp;v)</code>&nbsp;</td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code><a href="../hype/HPath.html" title="class in hype">HPath</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HPath.html#vertexUV-float-float-float-float-float-float-">vertexUV</a></span>(float&nbsp;cu1,
         float&nbsp;cv1,
@@ -460,7 +476,7 @@ extends <a href="../hype/HDrawable.html" title="class in hype">HDrawable</a></pr
 <a name="HANDLE_SIZE">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>HANDLE_SIZE</h4>
 <pre>public static final&nbsp;float HANDLE_SIZE</pre>
@@ -468,6 +484,24 @@ extends <a href="../hype/HDrawable.html" title="class in hype">HDrawable</a></pr
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../constant-values.html#hype.HPath.HANDLE_SIZE">Constant Field Values</a></dd>
 </dl>
+</li>
+</ul>
+<a name="vertexColor">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>vertexColor</h4>
+<pre>public&nbsp;<a href="../hype/interfaces/HColorist.html" title="interface in hype.interfaces">HColorist</a> vertexColor</pre>
+</li>
+</ul>
+<a name="texture">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>texture</h4>
+<pre>public&nbsp;processing.core.PImage texture</pre>
 </li>
 </ul>
 </li>
@@ -504,6 +538,24 @@ extends <a href="../hype/HDrawable.html" title="class in hype">HDrawable</a></pr
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="vertexColors-hype.interfaces.HColorist-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>vertexColors</h4>
+<pre>public&nbsp;<a href="../hype/HPath.html" title="class in hype">HPath</a>&nbsp;vertexColors(<a href="../hype/interfaces/HColorist.html" title="interface in hype.interfaces">HColorist</a>&nbsp;clr)</pre>
+</li>
+</ul>
+<a name="texture-java.lang.Object-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>texture</h4>
+<pre>public&nbsp;<a href="../hype/HPath.html" title="class in hype">HPath</a>&nbsp;texture(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;imgArg)</pre>
+</li>
+</ul>
 <a name="createCopy--">
 <!--   -->
 </a>
