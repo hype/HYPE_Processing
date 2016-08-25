@@ -22,7 +22,7 @@ public class HPyramid extends HDrawable3D {
   public HPyramid sides(int s) {
     sides=4;
     s = Math.abs(s);
-    if(s>3)
+    if(s>2)
     {
     sides = s;
     }
