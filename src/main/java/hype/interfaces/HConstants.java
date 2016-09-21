@@ -209,6 +209,9 @@ public interface HConstants {
 		DROTATIONY = 18,
 		DROTATIONZ = 9,
 
+		//for HSphereLayout, RADIUS identifier
+		RADIUS = 19,
+
 		// HTriangle types
 		ISOCELES = 0,
 		EQUILATERAL = 1,
