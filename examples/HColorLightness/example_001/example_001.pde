@@ -12,10 +12,10 @@ void setup() {
 	smooth();
 
 	//The image we are going to reference for lightness values
-	img = loadImage("gradient_ball.png");
+	// img = loadImage("gradient_ball.png");
 	// img = loadImage("orange_ball.png");
 	// img = loadImage("skull.png");
-	// img = loadImage("testplate.png");
+	img = loadImage("testplate.png");
 
 	pool = new HDrawablePool(1024);
 	pool.autoAddToStage()

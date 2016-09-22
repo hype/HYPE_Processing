@@ -24,7 +24,7 @@ void setup() {
 					new HOscillator()
 						.target(d)
 						.property(H.Y)
-						.waveform(H.EASE)
+						.waveform(H.EASE) // new HOscillator waveform / EASE
 						.relativeVal(320)
 						.range(-100, 100)
 						.speed(1)

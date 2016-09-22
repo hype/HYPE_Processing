@@ -10,7 +10,7 @@ void setup() {
 	size(640,640);
 	H.init(this).background(#242424);
 
-	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
+	colors = new HColorPool(#FFFFFF, #333333, #0095a8, #FF3300);
 
 	pool = new HDrawablePool(200);
 	pool.autoAddToStage()

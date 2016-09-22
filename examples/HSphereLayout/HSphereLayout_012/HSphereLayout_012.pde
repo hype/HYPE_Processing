@@ -12,7 +12,7 @@ void setup() {
 	size(640, 640, P3D); 
 	H.init(this).background(#151515).use3D(true);
 	smooth();
-	pixelDensity(2);
+	// pixelDensity(2);
 
 	pool = new HDrawablePool(200);
 

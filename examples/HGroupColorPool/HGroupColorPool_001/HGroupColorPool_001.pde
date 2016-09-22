@@ -37,9 +37,9 @@ void setup() {
 void runSketch() {
 
 	//comment/uncomment the four lines below to try different options
-	//colors = grpColors.getNextColorPool(); //cycle through available HColorPools in group - going forward
+	colors = grpColors.getNextColorPool(); //cycle through available HColorPools in group - going forward
 	//colors = grpColors.getPrevColorPool(); //cycle through available HColorPools in group - going backwards 
-	colors = grpColors.getRandomColorPool(); //randomly select HColorPool
+	//colors = grpColors.getRandomColorPool(); //randomly select HColorPool
 	//colors = grpColors.getColorPool(0);    //get specific HColorPool
 
 	surface.setTitle("HGroupColorPool example: colorpool "+ (int)(grpColors.currentIndex()+1));
