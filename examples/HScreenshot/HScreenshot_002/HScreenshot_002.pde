@@ -9,7 +9,7 @@ boolean     letsRecord = false;
 
 void setup() {
 	size(640,640); 
-	H.init(this).background(#242424);
+	H.init(this).background(#242424).autoClear(false);
 
 	// screenshots will be saved in a new folder called "output" (DEFAULT)
 	// screenshots will be saved as a sequence / "frame00001", "frame00002", "frame00003", etc.
@@ -24,20 +24,25 @@ void setup() {
 void draw() {
 	r.fill(colors.getColor()).size(50+((int)random(5)*25)).loc( (int)random(width), (int)random(height));
 
-	H.drawStage();
-
-	if(letsRecord) {
-		ss.capture(frameCount).run();
-		letsRecord = false;
-	}
+	H.drawStage();	
+	saveScreen();
 } 
 
-// after the "r" key is pressed on your keyboard, it will save 1 image of the current state of the sketch
+void saveScreen() {
+	if(letsRecord) ss.run();
+}
+
+// after the "r" key is pressed on your keyboard, it will save screenshots every 3 frames
+// then exit after 200 frames in total have elapsed
+// this example will result in approximately 66 screenshots being saved
 
 void keyPressed() {
 	switch (key) {
 		case 'r':
-			letsRecord = true; 
+			if (letsRecord==false) {
+				ss.start(frameCount).end(frameCount+200).frequency(3).exit(true);
+				letsRecord = true;
+			}
 		break;
 	}
 }

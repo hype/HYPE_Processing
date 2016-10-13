@@ -1,21 +1,22 @@
 import hype.*;
 
-HIcosahedron icos;
+HPyramid pyr;
 
 void setup() {
 	size(640,640,P3D);
 	H.init(this).background(#242424).use3D(true);
 
-	H.add( icos = new HIcosahedron() )
+	H.add( pyr = new HPyramid().sides(8) )
 		.stroke(0)
 		.fill(255)
 		.size(200)
 		.loc(width/2, height/2)
+		.rotationX(-20)
 	;
 }
 
 void draw() {
 	lights();
-	icos.rotationY(mouseX);
-	H.drawStage();	
+	pyr.rotationY(mouseX);
+	H.drawStage();  
 }

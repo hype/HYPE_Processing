@@ -42,11 +42,11 @@ public class HParticles extends HBehavior {
 		x = H.app().width/2;
 		y = H.app().height/2;
 		z = 0;
-		minimumLife = 30;
-		maximumLife = 130;
+		minimumLife = 10;
+		maximumLife = 100;
 		speed=1.0f;
 		decay=1.0f;
-		fade=true;
+		fade=false;
 	}
 
 	public HParticles location(float px, float py) {
@@ -104,7 +104,7 @@ public class HParticles extends HBehavior {
 	public HParticles speed(float f) {
 		speed = abs(f);
 		if (speed<=0.1f) {
-			speed=0.2f;
+			speed =0.2f;
 		}
 		return this;
 	}
@@ -116,7 +116,7 @@ public class HParticles extends HBehavior {
 	public HParticles decay(float f) {
 		decay = abs(f);
 		if (decay<=0.1f) {
-			decay=0.2f;
+			decay =0.2f;
 		}
 		return this;
 	}
@@ -126,7 +126,6 @@ public class HParticles extends HBehavior {
 	}
 
 	public HParticles addParticle(HDrawable d) {
-
 		HParticle p = new HParticle(this.x, this.y, this.z, minimumLife, maximumLife);
 		particles.add(p);
 		addTarget(d);
@@ -142,7 +141,6 @@ public class HParticles extends HBehavior {
 
 	@Override
 	public void runBehavior(PApplet app) {
-
 		int i=0;
 		for (HParticle p : particles) {
 			p.update(x, y, z, minimumLife, maximumLife);
@@ -197,47 +195,36 @@ public class HParticles extends HBehavior {
 			currentLife = (int)H.app().random(0, endLife-1); //set random lifespan
 			directionVec = new PVector(H.app().random(-1, 1), H.app().random(-1, 1), H.app().random(-1, 1)); //random dir vector
 			positionVec = new PVector(px, py, pz);
-			alpha = (int)map(currentLife, startLife, endLife, 0, 255);
+
+			// @gd and @tracerstar - alpha doesnt work when using HSprite
+			// need conditional for tint() for HSprite use ?
+			alpha = (int)map(currentLife, startLife, endLife, 0, 255); 
 
 			//ensure our starting movement is random - otherwise will 'clump'
 			movementVec =  new PVector(H.app().random(-1, 1), H.app().random(-1, 1), H.app().random(-1, 1));
 
 			int rnd = (int)H.app().random(0, 4);
 
-			if (rnd==0) {
-				applyMovementVec = PVector.mult(movementVec, H.app().random(0, speed)); //apply random starting speed
-			}
-			if (rnd==1) {
-				applyMovementVec = PVector.mult(movementVec, H.app().random(0, speed/2)); //apply random starting speed
-			}
-			if (rnd==2) {
-				applyMovementVec = PVector.mult(movementVec, H.app().random(0, speed/3)); //apply random starting speed
-			}
-			if (rnd==3) {
-				applyMovementVec = PVector.mult(movementVec, H.app().random(0, speed/5)); //apply random starting speed
+			switch (rnd) {
+				case 0 : applyMovementVec = PVector.mult(movementVec, H.app().random(0, speed));   break;
+				case 1 : applyMovementVec = PVector.mult(movementVec, H.app().random(0, speed/2)); break;
+				case 2 : applyMovementVec = PVector.mult(movementVec, H.app().random(0, speed/3)); break;
+				case 3 : applyMovementVec = PVector.mult(movementVec, H.app().random(0, speed/5)); break;
 			}
 		}
 
 		public void update(float ux, float uy, float uz, float startLife, float endLife) {
+			if (startLife>=endLife) endLife = startLife+1;
+			if (abs(decay)<=0.1f) decay=0.2f;
+			if (abs(speed)<=0.1f) speed=0.2f;
 
-			if (startLife>=endLife) {
-				endLife = startLife+1;
-			}
-
-			if (abs(decay)<=0.1f) {
-				decay=0.2f;
-			}
-			if (abs(speed)<=0.1f) {
-				speed=0.2f;
-			}
-
-			applyMovementVec = PVector.mult(movementVec, speed); //scale by speed
+			applyMovementVec = PVector.mult(movementVec, speed); // scale by speed
 			positionVec.add(applyMovementVec);
-			currentLife-=decay; //decrease lifespan
+			currentLife-=decay; // decrease lifespan
 			if (currentLife <= 0) {
 				directionVec = new PVector(H.app().random(-1, 1), H.app().random(-1, 1), H.app().random(-1, 1));
 				positionVec = new PVector(ux, uy, uz);
-			currentLife = H.app().random(startLife, endLife-1); //set random lifespan
+				currentLife = H.app().random(startLife, endLife-1); // set random lifespan
 			}
 			alpha = (int) map(currentLife, startLife, endLife, 0, 255);
 		}

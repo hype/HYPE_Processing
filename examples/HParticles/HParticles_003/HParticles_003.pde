@@ -11,10 +11,10 @@ void setup() {
 	hp = new HParticles()
 		.location(width/2, height/2)
 		.minimumLife(10)
-		.maximumLife(150)
+		.maximumLife(100)
 		.speed(3.0)
 		.decay(1.0)
-		.fade(false)
+		.fade(true)
 	;
 
 	pool = new HDrawablePool(400);
@@ -36,4 +36,5 @@ void setup() {
 
 void draw() {
 	H.drawStage();
+	hp.location(mouseX, mouseY);
 }

@@ -1,37 +1,22 @@
-/*
-	Demonstrates the difference between lightness and brightness.
-	The Pokeball is unintentional.
-*/
-
 import hype.*;
-import hype.extended.layout.HGridLayout;
 import hype.extended.behavior.HColorLightness;
+import hype.extended.layout.HGridLayout;
 
-HDrawablePool light_pool, bright_pool;
-PImage img;
+HDrawablePool poolBright, poolLight;
+PImage        img;
 
 void setup() {
-	noLoop();
 	size(640, 640);
-	H.init(this).background(#202020);
-	smooth();
+	H.init(this).background(#242424);
+
+	// Demonstrates the difference between lightness and brightness. The Pokeball is unintentional.
 
 	img = loadImage("orange_ball.png");
 
-	bright_pool = new HDrawablePool(528);
-	bright_pool.autoAddToStage()
-		.add(
-			new HEllipse(10)
-				.anchorAt(H.CENTER)
-				.noStroke()
-				.fill(255, 0, 0)
-		)
-		.layout(
-			new HGridLayout()
-				.startLoc(630, 630)
-				.spacing(-20, -20)
-				.cols(32)
-		)
+	poolBright = new HDrawablePool(528);
+	poolBright.autoAddToStage()
+		.add(new HEllipse(10).noStroke().fill(#FF3300).anchorAt(H.CENTER))
+		.layout(new HGridLayout().startLoc(630, 630).spacing(-20, -20).cols(32))
 		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
@@ -50,29 +35,17 @@ void setup() {
 		.requestAll()
 	;
 
-
-	light_pool = new HDrawablePool(528);
-	light_pool.autoAddToStage()
-		.add(
-			new HEllipse(10)
-				.anchorAt(H.CENTER)
-				.noStroke()
-				.fill(255)
-		)
-
-		.layout(
-			new HGridLayout()
-				.startLoc(10, 10)
-				.spacing(20, 20)
-				.cols(32)
-		)
+	poolLight = new HDrawablePool(528);
+	poolLight.autoAddToStage()
+		.add(new HEllipse(10).noStroke().fill(#FFFFFF).anchorAt(H.CENTER))
+		.layout(new HGridLayout().startLoc(10, 10).spacing(20, 20).cols(32))
 		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
 					HDrawable d = (HDrawable) obj;
 
 					new HColorLightness(img)
-						.useLightness()//lightness is the default
+						.useLightness() // lightness is the default
 						.property(H.SCALE)
 						.range(0, 1)
 						.target(d)
@@ -81,12 +54,10 @@ void setup() {
 				}
 			}
 		)
-
 		.requestAll()
 	;
-
-	H.drawStage();
 }
 
 void draw() {
+	H.drawStage();
 }

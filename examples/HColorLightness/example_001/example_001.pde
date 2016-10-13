@@ -1,17 +1,16 @@
 import hype.*;
-import hype.extended.layout.HGridLayout;
 import hype.extended.behavior.HColorLightness;
+import hype.extended.layout.HGridLayout;
 
 HDrawablePool pool;
-PImage img;
+PImage        img;
 
 void setup() {
-	noLoop();
 	size(640, 640);
 	H.init(this).background(#242424);
-	smooth();
 
 	//The image we are going to reference for lightness values
+
 	// img = loadImage("gradient_ball.png");
 	// img = loadImage("orange_ball.png");
 	// img = loadImage("skull.png");
@@ -19,20 +18,8 @@ void setup() {
 
 	pool = new HDrawablePool(1024);
 	pool.autoAddToStage()
-		.add(
-			new HEllipse(5)
-				.anchorAt(H.CENTER)
-				.noStroke()
-				.fill(255)
-		)
-
-		.layout(
-			new HGridLayout()
-				.startLoc(10, 10)
-				.spacing(20, 20)
-				.cols(32)
-		)
-
+		.add(new HEllipse(5).noStroke().fill(255).anchorAt(H.CENTER))
+		.layout(new HGridLayout().startLoc(10, 10).spacing(20, 20).cols(32))
 		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
@@ -51,16 +38,13 @@ void setup() {
 						.range(0.1, 2.0)
 						.target(d)
 					;
-					
 				}
 			}
 		)
-
 		.requestAll()
 	;
-
-	H.drawStage();
 }
 
 void draw() {
+	H.drawStage();
 }

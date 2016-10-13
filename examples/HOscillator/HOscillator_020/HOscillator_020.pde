@@ -25,7 +25,7 @@ void setup() {
 						.target(d)
 						.property(H.Y)
 						.waveform(H.EASE) // new HOscillator waveform / EASE
-						.relativeVal(320)
+						.relativeVal(height/2)
 						.range(-100, 100)
 						.speed(1)
 						.freq(2)

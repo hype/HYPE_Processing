@@ -2,7 +2,6 @@
  * HScreenshot - just a quick and dirty way to grab PNGs for conversion in video / animated gifts etc
  * Tested using processing 3.0.1
  * If you find any issues or make anything cool with this, let me know on twitter at @Garth_D
- * Future enhancements would be to change image format / name of output folder
  *
  * HYPE_Processing
  * http://www.hypeframework.org/ & https://github.com/hype/HYPE_Processing
@@ -20,7 +19,9 @@ package hype;
 import processing.core.PApplet;
 
 public class HScreenshot {
+	private String filepath;
 	private String filename;
+	private String fileformat;
 	private int  start, end, frequency;
 	private int suffix;
 	private String strNumericAppend;
@@ -29,9 +30,10 @@ public class HScreenshot {
 	private boolean exit;
 
 	public HScreenshot() {
-		start = end = 1;
-		frequency = 1;
-		exit=false;
+		filepath = "output/";
+		fileformat = ".png";
+		start = end = frequency = 1;
+		exit = false;
 	}
 
 	public HScreenshot capture() {
@@ -84,6 +86,15 @@ public class HScreenshot {
 		return exit;
 	}
 
+	public HScreenshot filepath(String s) {
+		filepath = s;
+		return this;
+	}
+
+	public String filepath() {
+		return filepath;
+	}
+
 	public HScreenshot filename(String s) {
 		filename = s;
 		return this;
@@ -93,38 +104,31 @@ public class HScreenshot {
 		return filename;
 	}
 
+	public HScreenshot fileformat(String s) {
+		fileformat = s;
+		return this;
+	}
+
+	public String fileformat() {
+		return fileformat;
+	}
+
 	public void run() {
 		++counter;
-
 		isRecording = false;
 		
 		if (H.app().frameCount > end || H.app().frameCount < start) {
-			//don't save anything
-
-			if (H.app().frameCount > end && exit) {
-				H.app().exit();
-			};
+			if (H.app().frameCount > end && exit) H.app().exit();
 		} else if (counter%frequency==0) {
 			isRecording = true;
 			++suffix;
 
-			if (suffix<10) {
-				strNumericAppend = "0000";
-			}
+			if (suffix<10)                    strNumericAppend = "0000";
+			if (suffix>=10   && suffix<100)   strNumericAppend = "000";
+			if (suffix>=100  && suffix<1000)  strNumericAppend = "00";
+			if (suffix>=1000 && suffix<10000) strNumericAppend = "0";
 
-			if (suffix>=10 && suffix<100) {
-				strNumericAppend = "000";
-			}
-
-			if (suffix>=100 && suffix<1000) {
-				strNumericAppend = "00";
-			}
-
-			if (suffix>=1000 && suffix<10000) {
-				strNumericAppend = "0";
-			}
-
-			H.app().saveFrame("output/" + filename + strNumericAppend + suffix + ".png");
+			H.app().saveFrame(filepath + filename + strNumericAppend + suffix + fileformat);
 		}
 	}
 }
