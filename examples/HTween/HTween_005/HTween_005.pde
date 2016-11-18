@@ -26,7 +26,7 @@ void setup() {
 
 				final HTween tween = new HTween()
 					.target(r).property(H.SCALE)
-					.start(0).end(1)
+					.start(0).end(100)
 					.ease(0.03).spring(0.95)
 				;
 
@@ -53,7 +53,7 @@ void setup() {
 				final HCallback onPause = new HCallback() {
 					public void run(Object obj) {
 						timer.unregister();
-						tween.start(1).end(0).ease(0.1).spring(0.7).register().callback(onDisappear);
+						tween.start(100).end(0).ease(0.1).spring(0.7).register().callback(onDisappear);
 					}
 				};
 
