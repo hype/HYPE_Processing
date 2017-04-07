@@ -28,27 +28,11 @@ void setup() {
 void draw() {}
 
 void keyPressed() {
-	// if (key == CODED) {
-	// 	if (keyCode == 39) {
-	// 		colors = grpColors.getNextColorPool(); // "R Arrow" = go forward through HColorpools
-	// 		resetColours();
-	// 	}
-	// 	if (keyCode == 37) {
-	// 		colors = grpColors.getPrevColorPool(); // "L Arrow" = go backwards through HColorpools
-	// 		resetColours();
-	// 	}
-	// }
-
 	switch (key) {
-		case 'c': resetColours(); break;
-
-		case '1': colors = grpColors.getColorPool(0); break;
-		case '2': colors = grpColors.getColorPool(1); break;
-		case '3': colors = grpColors.getColorPool(2); break;
-
-		// case UP :
-		// 	println("UP");
-		// break;
+		case 'c': resetColors(); break;
+		case '1': colors = grpColors.getColorPool(0); resetColors(); break;
+		case '2': colors = grpColors.getColorPool(1); resetColors(); break;
+		case '3': colors = grpColors.getColorPool(2); resetColors(); break;
 	}
 }
 
@@ -77,7 +61,7 @@ void runSketch() {
 	;
 }
 
-void resetColours() { 
+void resetColors() { 
 	for (HDrawable d : pool) {
 		d.fill(colors.getColor(), (int)random(50,255));
 	}
