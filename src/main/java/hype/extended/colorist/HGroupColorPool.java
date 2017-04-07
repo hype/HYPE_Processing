@@ -82,11 +82,11 @@ public class HGroupColorPool {
 	}
 
 	public HColorPool getPrevColorPool() {
-		//cycles through all available color pools
+		//cycles through all available color pools in reverse
 		if (size() <= 0) {
 			return new HColorPool().add(0);
 		} else {
-			currentIndex = setIndex(currentIndex+1);
+			currentIndex = setIndex(currentIndex-1);
 			return colorGroupList.get(currentIndex);
 		}
 	}
