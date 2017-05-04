@@ -48,7 +48,8 @@ public class HSprite extends HDrawable {
 	) {
 		g.textureMode(PConstants.NORMAL);
 		g.noStroke();
-		g.tint(fill);
+		//g.tint(fill);
+		g.tint(fill,alphaPc*100) //enable alpha 
 
 	    g.pushMatrix();
 	    	g.translate(drawX, drawY);
