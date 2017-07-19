@@ -9,17 +9,17 @@
  * 
  * All rights reserved.
  */
-　
+ 
 package hype.extended.behavior;
-　
+ 
 import hype.HBehavior;
 import hype.HDrawable;
-　
+ 
 import processing.core.PApplet;
 import static processing.core.PApplet.cos;
 import static processing.core.PApplet.radians;
 import static processing.core.PApplet.sin;
-　
+ 
 public class HOrbiter extends HBehavior {
 	private HDrawable target;
 	private float startX, startY;
@@ -51,7 +51,7 @@ public class HOrbiter extends HBehavior {
 	public HOrbiter parent() {
 		return orbit;
 	}
-　
+ 
 	public HOrbiter target(HDrawable d) {
 		target = d;
 		return this;

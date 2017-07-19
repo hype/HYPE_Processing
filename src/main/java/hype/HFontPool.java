@@ -13,20 +13,20 @@
  * All rights reserved.
  *
  */
-　
+ 
 package hype;
 import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PFont;
 import static processing.core.PApplet.max;
 import static processing.core.PApplet.min;
-　
+ 
 public class HFontPool {
     private int currentIndex = -1;
     private String currentName = "";
     private ArrayList<PFont> fontList;
     PApplet app = H.app();
-　
+ 
     public HFontPool() {
         fontList = new ArrayList<PFont>();
         String[] systemFontList;
@@ -37,7 +37,7 @@ public class HFontPool {
             add(type);
         }
     }
-　
+ 
     public HFontPool(Object... fonts) { //TODO: Allow HText input
         fontList = new ArrayList<PFont>();
         PFont type;
@@ -51,7 +51,7 @@ public class HFontPool {
             }
         }
     }
-　
+ 
     public int setIndex(int i) {
         //ensure index within bounds
         if (i >= size() || i < 0) {
@@ -64,23 +64,23 @@ public class HFontPool {
         }
         return currentIndex;
     }
-　
+ 
     public int currentIndex() {
         return currentIndex;
     }
-　
+ 
     public String currentName() {
         currentName = fontList.get(currentIndex()).getName();
         return currentName;
     }
-　
-　
+ 
+ 
     /*public void printFonts() {
         for (int i = 0; i < size(); ++i) {
             app.println(fontList.get(i).getName());
         }
     }
-　
+ 
     public void printFonts(int lower, int upper) {
         int lbound = max(0, lower);
         int ubound = min(upper, size());
@@ -88,11 +88,11 @@ public class HFontPool {
             app.println(fontList.get(i).getName());
         }
     }*/
-　
+ 
     public int size() {
         return fontList.size();
     }
-　
+ 
     public HFontPool add(Object font) { //TODO: Also allow HText
         if (font instanceof PFont) {
             fontList.add((PFont) font);
@@ -104,7 +104,7 @@ public class HFontPool {
         }
         return this;
     }
-　
+ 
     public HFontPool add(Object font, int freq) { //TODO: Also allow HText
         if (font instanceof PFont) {
             while (freq-- > 0) fontList.add((PFont) font);
@@ -118,9 +118,9 @@ public class HFontPool {
         }
         return this;
     }
-　
+ 
     //TODO: Remove fonts?
-　
+ 
     public PFont getRandomFont() {
         //select a random font
         if (size() <= 0) {
@@ -130,7 +130,7 @@ public class HFontPool {
             return getFontAt(rndIndex);
         }
     }
-　
+ 
     //select subset of available fonts
     public PFont getRandomFont(int lower, int upper) {
         int lbound = max(0, lower);
@@ -143,7 +143,7 @@ public class HFontPool {
             return getFontAt(rndIndex);
         }
     }
-　
+ 
     public PFont getNextFont() {
         //cycles through all available fonts
         if (size() <= 0) {
@@ -153,7 +153,7 @@ public class HFontPool {
             return fontList.get(currentIndex);
         }
     }
-　
+ 
     public PFont getPrevFont() {
         //cycles through all available fonts (in reverse order)
         if (size() <= 0) {
@@ -163,17 +163,15 @@ public class HFontPool {
             return fontList.get(currentIndex);
         }
     }
-　
+ 
     public PFont getFontAt(int index) {
         //extract a specific font by index
         currentIndex = setIndex(index);
         return fontList.get(currentIndex);
     }
-　
+ 
     private PFont defaultFont() {
         return app.createFont("SansSerif", 64);
     }
-　
+ 
 }
-　
-　
