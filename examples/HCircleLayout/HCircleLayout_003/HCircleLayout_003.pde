@@ -2,7 +2,7 @@ import hype.*;
 import hype.extended.layout.HCircleLayout;
 
 HDrawablePool pool;
-float         numAssets = 200.0;
+float         numAssets = 50.0;
 
 void setup() {
 	size(640,640);
@@ -10,14 +10,14 @@ void setup() {
 
 	pool = new HDrawablePool((int)numAssets);
 	pool.autoAddToStage()
-		.add(new HRect(10).rounding(4))
+		.add(new HRect(20,80).rounding(4))
 
 		.layout(
 			new HCircleLayout()
-			.radius(200)
-			.offset(width/2,height/2)
+			.radius(225)
+			.startLoc(width/2,height/2)
 			.angleStep(360.0/numAssets)
-			.applyNoise(true)
+			.rotateTarget(true)
 		)
 		
 		.onCreate(

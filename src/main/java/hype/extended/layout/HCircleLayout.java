@@ -17,19 +17,65 @@ public class HCircleLayout implements HLayout {
 	private int currentIndex;
 	private float angleStep, startAngle;
 	private float angleStepRad, startAngleRad;
-	private float radius, offsetX, offsetY;
+	private float radius, startX, startY, startZ;
 	private boolean rotateTarget;
 	private boolean bringTheNoise;
  
 	public HCircleLayout() {
 		radius = 100;
-		offsetX = 0;
-		offsetY = 0;
+		startX = 0;
+		startY = 0;
+		startZ = 0;
 		currentIndex = 0;
 		this.angleStep(60.0F);
 		this.startAngle(0.0F);
 	}
  
+	public PVector startLoc() {
+		return new PVector(startX, startY, startZ);
+	}
+
+	public HCircleLayout startLoc(float x, float y) {
+		startX = x;
+		startY = y;
+		startZ = 0;
+		return this;
+	}
+
+	public HCircleLayout startLoc(float x, float y, float z) {
+		startX = x;
+		startY = y;
+		startZ = z;
+		return this;
+	}
+
+	public float startX() {
+		return startX;
+	}
+
+	public HCircleLayout startX(float x) {
+		startX = x;
+		return this;
+	}
+
+	public float startY() {
+		return startY;
+	}
+
+	public HCircleLayout startY(float y) {
+		startY = y;
+		return this;
+	}
+
+	public float startZ() {
+		return startZ;
+	}
+
+	public HCircleLayout startZ(float z) {
+		startZ = z;
+		return this;
+	}
+
 	public HCircleLayout currentIndex(int i) {
 		currentIndex = i;
 		return this;
@@ -52,31 +98,6 @@ public class HCircleLayout implements HLayout {
  
 	public float radius() {
 		return radius;
-	}
- 
-	//set the offset coords
-	public HCircleLayout offset(float x, float y) {
-		offsetX = x;
-		offsetY = y;
-		return this;
-	}
- 
-	public HCircleLayout offsetX(float f) {
-		offsetX = f;
-		return this;
-	}
- 
-	public float offsetX() {
-		return offsetX;
-	}
- 
-	public HCircleLayout offsetY(float f) {
-		offsetY = f;
-		return this;
-	}
- 
-	public float offsetY() {
-		return offsetY;
 	}
  
 	public HCircleLayout angleStep(float f) {
@@ -128,8 +149,9 @@ public class HCircleLayout implements HLayout {
 	@Override
 	public PVector getNextPoint() {
  
-		float x = radius * cos(startAngleRad + (angleStepRad * currentIndex)) + offsetX;
-		float y = radius * sin(startAngleRad + (angleStepRad * currentIndex)) + offsetY;
+		float x = radius * cos(startAngleRad + (angleStepRad * currentIndex)) + startX;
+		float y = radius * sin(startAngleRad + (angleStepRad * currentIndex)) + startY;
+		float z = startZ;
  
 		if(bringTheNoise) {
 			//apply some noise
@@ -149,7 +171,7 @@ public class HCircleLayout implements HLayout {
 		}
  
 		++currentIndex;
-		return new PVector(x, y);
+		return new PVector(x, y, z);
 	}
  
 	@Override
