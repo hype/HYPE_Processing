@@ -3,6 +3,7 @@ package hype.extended.layout;
 import hype.interfaces.HLayout;
 import hype.H;
 import hype.HDrawable;
+import hype.HMath;
 
 import processing.core.PVector;
  
