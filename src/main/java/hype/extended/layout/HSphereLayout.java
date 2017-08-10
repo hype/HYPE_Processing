@@ -9,14 +9,16 @@
 
 package hype.extended.layout;
 
+import hype.interfaces.HLayout;
+
 import hype.H;
 import hype.HDrawable;
 import hype.HDrawable3D;
 import hype.HWarnings;
 
-import hype.interfaces.HLayout;
 import processing.core.PVector;
 import processing.core.PConstants;
+
 import java.util.ArrayList;
 
 import static processing.core.PApplet.*;
