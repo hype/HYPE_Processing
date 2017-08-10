@@ -183,10 +183,16 @@ public class HTween extends HBehavior {
 				target.height(v2);
 				break;
 			case HConstants.SCALE:
+				
+				v1 *= origw;
+				v2 *= origh;
+				
 				target.width(v1);
 				target.height(v2);
+
 				try {
 					HDrawable3D d3d = (HDrawable3D) target;
+					v3 *= origd;
 					d3d.depth(v3);
 				} catch (Exception e) { //not 3D
 				}
