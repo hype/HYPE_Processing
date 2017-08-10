@@ -14,12 +14,13 @@ import static processing.core.PApplet.abs;
 import static processing.core.PApplet.map;
  
 public class HCircleLayout implements HLayout {
+
 	private int currentIndex;
 	private float angleStep, startAngle;
 	private float angleStepRad, startAngleRad;
 	private float radius, startX, startY, startZ;
 	private boolean rotateTarget;
-	private boolean bringTheNoise;
+	private boolean useNoise;
  
 	public HCircleLayout() {
 		radius = 100;
@@ -137,22 +138,38 @@ public class HCircleLayout implements HLayout {
 		return rotateTarget;
 	}
  
-	public HCircleLayout applyNoise(boolean b) {
-		bringTheNoise = b;
+
+ 	//change this
+	public HCircleLayout useNoise(boolean b) {
+		useNoise = b;
 		return this;
 	}
  
-	public boolean applyNoise() {
-		return bringTheNoise;
+	public boolean useNoise() {
+		return useNoise;
 	}
+
+
+
  
 	@Override
 	public PVector getNextPoint() {
+
+		float a = startAngleRad + (angleStepRad * currentIndex);
+
+		float r = radius;
+		if (useNoise) {
+			float n = H.app().noise(0.1f * currentIndex);
+			n = map(n, 0.0f, 1.0f, -1.0f, 1.0f);
+
+			r = radius + 150 * n;
+		}
  
-		float x = radius * cos(startAngleRad + (angleStepRad * currentIndex)) + startX;
-		float y = radius * sin(startAngleRad + (angleStepRad * currentIndex)) + startY;
+		float x = r * cos(a) + startX;
+		float y = r * sin(a) + startY;
 		float z = startZ;
  
+ 		/*
 		if(bringTheNoise) {
 			//apply some noise
 			float nx = H.app().noise(HMath.randomInt(1, 50) * 0.1F, HMath.randomInt(1, 50) * 0.1F);
@@ -168,7 +185,7 @@ public class HCircleLayout implements HLayout {
  
 			x += nx;
 			y += ny;
-		}
+		}*/
  
 		++currentIndex;
 		return new PVector(x, y, z);
