@@ -1,10 +1,9 @@
 import hype.*;
 import hype.extended.layout.HGridLayout;
 
+HCanvas       canvas;
 HDrawablePool pool;
 int           boxSize = 64;
-HCanvas canvas;
-
 
 void setup() {
 	size(640,640,P3D);
@@ -14,8 +13,7 @@ void setup() {
 	canvas.pointLight(255,  51,   0,        0, height/2, -300); // orange
 	canvas.pointLight(0,   149, 168,    width, height/2, -300); // teal
 	canvas.pointLight(255, 204,   0,  width/2, height/2, -400); // yellow
-
-  H.add(canvas);
+	H.add(canvas);
 
 	pool = new HDrawablePool(100);
 	pool.autoParent(canvas)
