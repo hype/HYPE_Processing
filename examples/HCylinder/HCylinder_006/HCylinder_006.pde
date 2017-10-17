@@ -12,14 +12,14 @@ void setup() {
 		.depth(cSize)
 		.width(cSize)
 		.height(cSize)
-		.strokeWeight(2)
-		.stroke(#CCCCCC, 225)
+		.noStroke()
 		.fill(#FF3300, 255)
 		.loc(width/2, height/2)
 	;
 
-	c.topRadius(0.1);
-	c.bottomRadius(0.6);
+	c.texture("tex1.png");
+	c.drawTop(false);
+	c.drawBottom(false);
 
 	H.add(c);
 
@@ -30,5 +30,6 @@ void setup() {
 
 void draw() {
 	lights();
+	hint(DISABLE_DEPTH_TEST);
 	H.drawStage();
 }

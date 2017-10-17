@@ -18,8 +18,9 @@ void setup() {
 		.loc(width/2, height/2)
 	;
 
-	c.topRadius(0.1);
-	c.bottomRadius(0.6);
+	c.strokeSides(true);
+	c.drawTop(false);
+	c.drawBottom(false);
 
 	H.add(c);
 

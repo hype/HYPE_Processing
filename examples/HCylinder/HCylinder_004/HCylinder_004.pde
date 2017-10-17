@@ -1,7 +1,7 @@
 import hype.*;
 import hype.extended.behavior.HOscillator;
 
-int cSize = 250;
+int boxSize = 250;
 
 void setup() {
 	size(640,640,P3D);
@@ -9,15 +9,17 @@ void setup() {
 
 	HCylinder c = new HCylinder();
 	c
-		.depth(cSize)
-		.width(cSize)
-		.height(cSize)
+		.depth(boxSize)
+		.width(boxSize)
+		.height(boxSize)
 		.strokeWeight(2)
 		.stroke(#CCCCCC, 225)
 		.fill(#FF3300, 255)
 		.loc(width/2, height/2)
 	;
 
+	c.sides(13);
+	c.strokeSides(true);
 	c.topRadius(0.1);
 	c.bottomRadius(0.6);
 

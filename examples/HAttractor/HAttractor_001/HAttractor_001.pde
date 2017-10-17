@@ -10,7 +10,7 @@ void setup() {
 	H.init(this).background(#242424);
 
 	ha = new HAttractor(320, 320, 200) // x, y, radius
-		.debugMode(true)
+		.debugMode(false)
 	;
 
 	pool = new HDrawablePool(576);

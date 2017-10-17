@@ -10,7 +10,7 @@ void setup() {
 
 	pool = new HDrawablePool((int)numAssets);
 	pool.autoAddToStage()
-		.add(new HRect(10).rounding(4))
+		.add(new HRect(2,100).rounding(4))
 
 		.layout(
 			new HCircleLayout()
@@ -18,6 +18,8 @@ void setup() {
 			.startLoc(width/2,height/2)
 			.angleStep(360.0/numAssets)
 			.applyNoise(true)
+			.rotateTarget(true)
+
 		)
 		
 		.onCreate(
