@@ -14,13 +14,11 @@ void setup() {
 	size(640,640,P3D);
 	H.init(this).background(#FF3300).use3D(true);
 
-	H.add( clrSRC = new HImage("color.png") ).loc(10, 10);
+	H.add( clrSRC = new HImage("color.png") );
 	clrHPC = new HPixelColorist(clrSRC);
-
-	H.add(clrMarker = new HRect(2,10)).noStroke().fill(#CCCCCC).loc( 10,25);
+	H.add(clrMarker = new HRect(2,10)).noStroke().fill(#CCCCCC).loc(0,15);
 
 	clr = new color[ clrMax ];
-
 	for (int i = 0; i < clrMax; i++) {
 		float tempPos = (clrSRC.width() / clrMax) * i;
 		clr[i] = clrHPC.getColor(tempPos,0);
@@ -54,8 +52,7 @@ void draw() {
 
 	// update color position
 
-	clrMin++;
-	if (clrMin == clrMax) clrMin = 0;
-	float tempPos = ((clrSRC.width() / clrMax) * clrMin)+10;
-	clrMarker.loc(tempPos,25);
+	clrMin = ++clrMin%clrMax;
+	float tempPos = ((clrSRC.width() / clrMax) * clrMin);
+	clrMarker.loc(tempPos,15);
 }

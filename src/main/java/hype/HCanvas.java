@@ -10,9 +10,10 @@ public class HCanvas extends HDrawable {
 	private String renderer;
 	private float filterParam;
 	private int filterKind, blendMode, fadeAmt;
-	private boolean autoClear, hasFade, hasFilter, hasFilterParam, hasBlend, hasShader;
+	private boolean autoClear, hasFade, hasFilter, hasFilterParam, hasBlend, hasShader, useLights, hasLights;
 
 	private ArrayList<PShader> shader;
+	private ArrayList<HLight> lights;
 
 	public HCanvas() {
 		this(H.app().width, H.app().height);
@@ -29,6 +30,9 @@ public class HCanvas extends HDrawable {
 	public HCanvas(float w, float h, String bufferRenderer) {
 		renderer = bufferRenderer;
 		size(w,h);
+
+		useLights = false;
+		hasLights = false;
 	}
 
 	@Override
@@ -212,6 +216,40 @@ public class HCanvas extends HDrawable {
 		return (HCanvas) noFill();
 	}
 
+
+
+	public HCanvas lights() {
+		useLights = true;
+		return this;
+	}
+	public HCanvas noLights() {
+		useLights = false;
+		return this;
+	}
+
+	public HCanvas pointLight(float v1, float v2, float v3, float x, float y, float z) {
+		addLight(v1, v2, v3, x, y, z, 1);
+		return this;
+	}
+
+	public HCanvas directionalLight(float v1, float v2, float v3, float x, float y, float z) {
+		addLight(v1, v2, v3, x, y, z, 2);
+		return this;
+	}
+
+	private void addLight(float v1, float v2, float v3, float x, float y, float z, int type) {
+		if (!hasLights) {
+			useLights = true;
+			hasLights = true;
+			lights = new ArrayList<HLight>();
+		}
+
+		HLight l = new HLight(v1, v2, v3, x, y, z);
+		l.type(type);
+		lights.add(l);
+	}
+
+
 	@Override
 	public HCanvas size(float w, float h) {
 		super.width(w);
@@ -280,6 +318,30 @@ public class HCanvas extends HDrawable {
 				}
 			}
 
+
+			//handle lights
+			if (useLights == false) {
+				graphics.noLights();
+			} else {
+
+				//check if there are any HLights
+				if (hasLights) {
+					for(HLight l : lights) {
+						switch (l.type()) {
+							case 1:
+								graphics.pointLight(l.v1, l.v2, l.v3, l.x, l.y, l.z);
+								break;
+							case 2:
+								graphics.directionalLight(l.v1, l.v2, l.v3, l.x, l.y, l.z);
+								break;
+						}
+					}
+				} else {
+					graphics.lights();
+				}
+
+			}
+
 			// Draw children
 			HDrawable child = firstChild;
 			while(child != null) {
@@ -303,4 +365,32 @@ public class HCanvas extends HDrawable {
 
 	@Override
 	public void draw(PGraphics g,boolean b,float x,float y,float f) {}
+
+
+	public static class HLight {
+		public float v1, v2, v3, x, y, z;
+		private int type;
+
+		public HLight(float v1, float v2, float v3, float x, float y, float z) {
+				this.v1 = v1;
+				this.v2 = v2;
+				this.v3 = v3;
+				this.x = x;
+				this.y = y;
+				this.z = z;
+		}
+
+		/*
+			1 = point
+			2 = directional
+		*/
+		public void type(int type) {
+			this.type = type;
+		}
+
+		public int type() {
+			return this.type;
+		}
+	}
+
 }

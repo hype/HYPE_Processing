@@ -60,6 +60,11 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 	protected float rotationYRad;
 	/** The rotation along the z axis of this drawable, in radians */
 	protected float rotationZRad;
+	
+	/** The rotation along the user defined axis of this drawable, in radians */
+	protected float rotationRad;
+	protected PVector rotationAxis;
+
 	/** The stroke width of this drawable, in pixels */
 	protected float strokeWeight;
 	/** The alpha of this drawable, in percentage */
@@ -1650,6 +1655,20 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 		return HMath.hasBits(flags, BITMASK_ROTATES_CHILDREN);
 	}
 
+	public HDrawable rotationOnAxis(float deg, float x, float y, float z) {
+		return rotationOnAxisRad(deg * HConstants.D2R, x, y, z);
+	}
+	
+	public HDrawable rotationOnAxisRad(float rad, float x, float y, float z) {
+		if(rotatesChildren()) {
+			for(HDrawable d=firstChild;d!=null;) d=d.rotationOnAxisRad(rad, x, y, z).next();
+		} else {
+			rotationRad = rad;
+			rotationAxis = new PVector(x, y, z);
+		}
+		return this;
+	}
+
 
 	// VISIBILITY //
 
@@ -2027,6 +2046,10 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 				g.rotateX(rotationXRad);
 				g.rotateY(rotationYRad);
 				g.rotateZ(rotationZRad);
+
+				if (rotationAxis != null) {
+					g.rotate(rotationRad, rotationAxis.x, rotationAxis.y, rotationAxis.z);
+				}
 			} else {
 				g.translate(x, y);
 				g.rotate(rotationZRad);
