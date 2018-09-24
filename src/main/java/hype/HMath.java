@@ -472,6 +472,31 @@ public class HMath implements HConstants {
 		return outVal;
 	}
 
+	public static float easeWave(float stepDegrees) {
+		float u, t;
+		t = D2N(stepDegrees);
+		if ((t/=1.f/2) < 1){
+			u= 1.f/2*t*t*t*t*t;
+		}
+		else {
+			u = 1.f/ 2 * ((t -= 2) * t * t * t * t + 2);
+		}
+		return map(u, 0, 1, -1, 1);
+
+	}
+
+	// Normalize degrees to 0-1
+	public static float D2N(float stepDegrees) {
+		stepDegrees = stepDegrees %360;
+		if ( stepDegrees < 180 ){
+			return map( stepDegrees, 0, 180, 0, 1 );
+		}
+		else{
+			return map( stepDegrees, 180, 360, 1, 0);
+		}
+
+	}
+
 	public static float squareWave(float stepDegrees) {
 		return (stepDegrees % 360 > 180)? -1 : 1;
 	}

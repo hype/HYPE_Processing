@@ -198,6 +198,18 @@ public class H implements HConstants {
 		stage.paintAll(graphicsContext, uses3D, 1);
 		return hype;
 	}
+
+	public static H drawStageOnly() {
+		stage.paintAll(graphicsContext, uses3D, 1);
+		return hype;
+	}
+
+	public static H updateBehaviors() {
+		behaviors.runAll(app);
+		mouse.handleEvents();//probably move this to it's own method in the future
+		return hype;
+	}
+
 	
 	public static boolean mouseStarted() {
 		return mouse.started();

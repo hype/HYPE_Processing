@@ -4,16 +4,21 @@ import hype.extended.behavior.HOscillator;
 import hype.extended.colorist.HColorPool;
 
 HDrawablePool pool;
+HImage        img1, img2, img3;
 
 void setup() {
 	size(640,640,P3D);
 	H.init(this).background(#242424).use3D(true);
 
+	img1 = new HImage("tex1.png");
+	img2 = new HImage("tex2.png");
+	img3 = new HImage("tex3.png");
+
 	pool = new HDrawablePool(400);
 	pool.autoAddToStage()
-		.add(new HSprite(50,50).texture(new HImage("tex1.png")))
-		.add(new HSprite(50,50).texture(new HImage("tex2.png")))
-		.add(new HSprite(50,50).texture(new HImage("tex3.png")))
+		.add(new HSprite(50).texture(img1))
+		.add(new HSprite(50).texture(img2))
+		.add(new HSprite(50).texture(img3))
 
 		// HSprite is the fastest possible drawable, perfect for drawing thousands of objects on screen and not killing FPS
 		// PNG's also create interesting "overlapping" textures through the transparency

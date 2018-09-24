@@ -1,8 +1,9 @@
 package hype.extended.layout;
 
-import hype.H;
 import hype.interfaces.HLayout;
+import hype.H;
 import hype.HDrawable;
+
 import processing.core.PVector;
 
 public class HShapeLayout implements HLayout {

@@ -17,6 +17,7 @@ package hype.extended.behavior;
 import hype.HBehavior;
 import hype.HDrawable;
 import processing.core.PApplet;
+import processing.core.PVector;
 import static processing.core.PApplet.cos;
 import static processing.core.PApplet.radians;
 import static processing.core.PApplet.sin;
@@ -157,6 +158,26 @@ public class HOrbiter3D extends HBehavior {
 	
 	public float radius() {
 		return radius;
+	}
+
+	public PVector getNextPoint() {
+
+		PVector nextStart = new PVector(startX,startY,startZ);
+
+		if (orbit != null) {
+			nextStart = orbit.getNextPoint();
+		}
+
+		s = radians(yAngle + ySpeed);
+		t = radians(zAngle + zSpeed);
+
+		PVector nextPoint = new PVector();
+
+		nextPoint.x = radius * cos(s) * sin(t) + nextStart.x;
+		nextPoint.y = radius * sin(s) * sin(t) + nextStart.y;
+		nextPoint.z = radius * cos(t) + nextStart.z;
+
+		return nextPoint;
 	}
 
 	public void _run() {

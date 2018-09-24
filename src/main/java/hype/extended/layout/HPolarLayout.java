@@ -1,33 +1,23 @@
-/*
- * HYPE_Processing
- * http://www.hypeframework.org/ & https://github.com/hype/HYPE_Processing
- * 
- * Copyright (c) 2013 Joshua Davis & James Cruz
- * 
- * based on old AS3 layout by Michael Svendsen / twitter.com/michaelSvendsen
- * 
- * Distributed under the BSD License. See LICENSE.txt for details.
- * 
- * All rights reserved.
- */
-
 package hype.extended.layout;
 
 import hype.interfaces.HLayout;
-import hype.HMath;
+import hype.H;
 import hype.HDrawable;
+import hype.HMath;
+
 import processing.core.PVector;
+
 import static processing.core.PApplet.cos;
 import static processing.core.PApplet.sin;
 
 public class HPolarLayout implements HLayout {
 
-	private int index;
+	private int currentIndex;
 	private float length, angleStep, scaleMultiplier, offsetX, offsetY;
 	private Boolean scaleByDistance;
 
 	public HPolarLayout() {
-		index = 0;
+		currentIndex = 0;
 		length = 1;
 		angleStep = (float) 0.1;
 		offsetX = 0;
@@ -37,13 +27,27 @@ public class HPolarLayout implements HLayout {
 	}
 	
 	public HPolarLayout(float length, float angleStep) {
-		index = 0;
+		currentIndex = 0;
 		this.length = length;
 		this.angleStep = angleStep;
 		offsetX = 0;
 		offsetY = 0;
 		scaleByDistance = false;
 		scaleMultiplier = 0;
+	}
+
+	public HPolarLayout currentIndex(int i) {
+		currentIndex = i;
+		return this;
+	}
+
+	public int currentIndex() {
+		return currentIndex;
+	}
+
+	public HPolarLayout resetIndex() {
+		currentIndex = 0;
+		return this;
 	}
 
 	//set the offset coords
@@ -105,13 +109,13 @@ public class HPolarLayout implements HLayout {
 	public PVector getNextPoint() {
 		PVector pt = new PVector();
 		
-		float r     = index * length;
-		float theta = index * angleStep;
+		float r     = currentIndex * length;
+		float theta = currentIndex * angleStep;
 
 		pt.x = r * cos(theta) + offsetX;
 		pt.y = r * sin(theta) + offsetY;
 
-		++index;
+		++currentIndex;
 
 		return pt;
 	}

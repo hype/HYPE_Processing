@@ -2,6 +2,7 @@ package hype.extended.behavior;
 
 import hype.HBehavior;
 import hype.HDrawable;
+import hype.HDrawable3D;
 import hype.HCallback;
 import hype.interfaces.HConstants;
 import hype.HMath;
@@ -13,7 +14,7 @@ public class HTween extends HBehavior {
 	private float s1, s2, s3;
 	private float e1, e2, e3;
 	private float curr1, curr2, curr3;
-	private float origw, origh;
+	private float origw, origh, origd;
 	private float raw, dRaw, spring, ease;
 	private int property;
 
@@ -25,9 +26,15 @@ public class HTween extends HBehavior {
 
 	public HTween target(HDrawable d) {
 		target = d;
-		if(d != null) {
+		if (d != null) {
 			origw = d.width();
 			origh = d.height();
+			origd = 0;
+			try {
+				HDrawable3D d3d = (HDrawable3D) d;
+				origd = d3d.depth();
+			} catch (Exception e) { //cannot be cast to 3D
+			}
 		}
 		return this;
 	}
@@ -37,7 +44,7 @@ public class HTween extends HBehavior {
 	}
 
 	public HTween callback(HCallback c) {
-		callback = (c==null)? HConstants.NOP : c;
+		callback = (c == null) ? HConstants.NOP : c;
 		return this;
 	}
 
@@ -46,11 +53,11 @@ public class HTween extends HBehavior {
 	}
 
 	public HTween start(float a) {
-		return start(a,a);
+		return start(a, a);
 	}
 
 	public HTween start(float a, float b) {
-		return start(a,b,0);
+		return start(a, b, 0);
 	}
 
 	public HTween start(float a, float b, float c) {
@@ -77,11 +84,11 @@ public class HTween extends HBehavior {
 	}
 
 	public HTween end(float a) {
-		return end(a,a);
+		return end(a, a);
 	}
 
 	public HTween end(float a, float b) {
-		return end(a,b,0);
+		return end(a, b, 0);
 	}
 
 	public HTween end(float a, float b, float c) {
@@ -135,11 +142,11 @@ public class HTween extends HBehavior {
 	}
 
 	public float nextRaw() {
-		raw += (dRaw) = (dRaw * spring + (1- raw)* ease);
+		raw += (dRaw) = (dRaw * spring + (1 - raw) * ease);
 		float c = HMath.round512(raw);
-		curr1 = HMath.map(c,0,1, s1, e1);
-		curr2 = HMath.map(c,0,1, s2, e2);
-		curr3 = HMath.map(c,0,1, s3, e3);
+		curr1 = HMath.map(c, 0, 1, s1, e1);
+		curr2 = HMath.map(c, 0, 1, s2, e2);
+		curr3 = HMath.map(c, 0, 1, s3, e3);
 		return c;
 	}
 
@@ -161,37 +168,84 @@ public class HTween extends HBehavior {
 
 	@Override
 	public void runBehavior(PApplet app) {
-		if(target ==null) return;
+		if (target == null) return;
 
 		float c = nextRaw();
 		float v1 = curr1;
 		float v2 = curr2;
 		float v3 = curr3;
 
-		switch(property) {
-		case HConstants.WIDTH:		target.width(v1); break;
-		case HConstants.HEIGHT:		target.height(v1); break;
-		case HConstants.SCALE:
-			v1 *= origw;
-			v2 *= origh;
-		case HConstants.SIZE:		target.size(v1, v2); break;
-		case HConstants.ALPHA:		target.alpha(Math.round(v1)); break;
-		case HConstants.X:			target.x(v1); break;
-		case HConstants.Y:			target.y(v1); break;
-		case HConstants.Z:			target.z(v1); break;
-		case HConstants.LOCATION:	target.loc(v1, v2, v3); break;
-		case HConstants.ROTATIONX:	target.rotationX(v1); break;
-		case HConstants.ROTATIONY:	target.rotationY(v1); break;
-		case HConstants.ROTATIONZ:	target.rotationZ(v1); break;
-		case HConstants.DROTATIONX:	target.rotateX(v1); break;
-		case HConstants.DROTATIONY:	target.rotateY(v1); break;
-		case HConstants.DROTATIONZ:	target.rotateZ(v1); break;
-		case HConstants.DX:			target.move(v1, 0); break;
-		case HConstants.DY:			target.move(0, v1); break;
-		case HConstants.DLOC:		target.move(v1, v1); break;
-		default: break;
+		switch (property) {
+			case HConstants.WIDTH:
+				target.width(v1);
+				break;
+			case HConstants.HEIGHT:
+				target.height(v2);
+				break;
+			case HConstants.SCALE:
+				
+				v1 *= origw;
+				v2 *= origh;
+				
+				target.width(v1);
+				target.height(v2);
+
+				try {
+					HDrawable3D d3d = (HDrawable3D) target;
+					v3 *= origd;
+					d3d.depth(v3);
+				} catch (Exception e) { //not 3D
+				}
+				break;
+			case HConstants.SIZE:
+				target.size(v1, v2);
+				break;
+			case HConstants.ALPHA:
+				target.alpha(Math.round(v1));
+				break;
+			case HConstants.X:
+				target.x(v1);
+				break;
+			case HConstants.Y:
+				target.y(v1);
+				break;
+			case HConstants.Z:
+				target.z(v1);
+				break;
+			case HConstants.LOCATION:
+				target.loc(v1, v2, v3);
+				break;
+			case HConstants.ROTATIONX:
+				target.rotationX(v1);
+				break;
+			case HConstants.ROTATIONY:
+				target.rotationY(v1);
+				break;
+			case HConstants.ROTATIONZ:
+				target.rotationZ(v1);
+				break;
+			case HConstants.DROTATIONX:
+				target.rotateX(v1);
+				break;
+			case HConstants.DROTATIONY:
+				target.rotateY(v1);
+				break;
+			case HConstants.DROTATIONZ:
+				target.rotateZ(v1);
+				break;
+			case HConstants.DX:
+				target.move(v1, 0);
+				break;
+			case HConstants.DY:
+				target.move(0, v1);
+				break;
+			case HConstants.DLOC:
+				target.move(v1, v1);
+				break;
+			default:
+				break;
 		}
-		if(c==1 && HMath.round512(dRaw)==0) {
+		if (c == 1 && HMath.round512(dRaw) == 0) {
 			unregister();
 			callback.run(this);
 		}

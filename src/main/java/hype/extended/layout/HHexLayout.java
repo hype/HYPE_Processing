@@ -1,28 +1,9 @@
-/*
- * HYPE_Processing
- * http://www.hypeframework.org/ & https://github.com/hype/HYPE_Processing
- * 
- * Copyright (c) 2013 Joshua Davis & James Cruz
- * 
- * HHexLayout
- * by Russell Hay / cordandruss.com / github.com/RussTheAerialist
- *
- * Creates a grid layout that is hex based spiraling out from the center of the sketch
- *
- * References:
- *    www.redblobgames.com/grids/hexagons/
- *    gamedev.stackexchange.com/questions/51264/get-ring-of-tiles-in-hexagon-grid
- * 
- * Distributed under the BSD License. See LICENSE.txt for details.
- * 
- * All rights reserved.
- */
-
 package hype.extended.layout;
 
+import hype.interfaces.HLayout;
 import hype.H;
 import hype.HDrawable;
-import hype.interfaces.HLayout;
+
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -41,6 +22,20 @@ public class HHexLayout implements HLayout {
 		adjustX = (float) (spacing * 1.25);
 		adjustY = (float) (spacing * 0.25);
 		lastPoint = null;
+	}
+
+	public HHexLayout currentIndex(int i) {
+		currentIndex = i;
+		return this;
+	}
+
+	public int currentIndex() {
+		return currentIndex;
+	}
+
+	public HHexLayout resetIndex() {
+		currentIndex = 0;
+		return this;
 	}
 
 	public HHexLayout spacing(float size) {
