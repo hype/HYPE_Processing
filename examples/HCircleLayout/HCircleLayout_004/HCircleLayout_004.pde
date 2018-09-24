@@ -17,7 +17,6 @@ void setup() {
 			.radius(200)
 			.startLoc(width/2,height/2)
 			.angleStep(360.0/numAssets)
-			.applyNoise(true)
 			.rotateTarget(true)
 
 		)
