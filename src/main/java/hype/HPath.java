@@ -20,6 +20,7 @@ public class HPath extends HDrawable {
 	private ArrayList<Integer> vertexColors;
 	private int mode;
 	private boolean drawsHandles;
+	private boolean orderedPool = false;
 
 	public HPath() {
 		this(PConstants.PATH);
@@ -36,6 +37,11 @@ public class HPath extends HDrawable {
 		return this;
 	}
 
+	public HPath vertexOrder(boolean b) {
+		orderedPool = b;
+		return this;
+	}
+
 	public HPath texture(Object imgArg) {
 		texture = H.getImage(imgArg);
 		return this;
@@ -48,6 +54,7 @@ public class HPath extends HDrawable {
 		copy.drawsHandles = drawsHandles;
 		copy.vertexColor = vertexColor;
 		copy.texture = texture;
+		copy.orderedPool = orderedPool;
 		for (int i = 0; i < numVertices(); ++i) {
 			copy.vertices.add(vertex(i).createCopy(copy));
 			if (vertexColors.size() > 0) {
@@ -345,8 +352,16 @@ public class HPath extends HDrawable {
 
 			if (vertexColor instanceof HColorPool) {
 				HColorPool c = (HColorPool) vertexColor;
+
 				if (vertexColors.size() <= numv) {
-					vertexColors.add(c.getColor());
+
+					if(orderedPool == false) {
+						vertexColors.add(c.getColor());
+					}
+					else {
+						vertexColors.add(c.getColorAt(i%c.size()));
+					}
+
 				}
 				v.vertexPoolColor = vertexColors.get(i);
 			}
