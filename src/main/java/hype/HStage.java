@@ -1,4 +1,4 @@
-package hype;
+ package hype;
 
 import hype.interfaces.HImageHolder;
 import hype.interfaces.HConstants;
@@ -147,6 +147,14 @@ public class HStage extends HDrawable implements HImageHolder {
 	}
 
 
+	public void useMaterials(boolean use){
+		
+		HDrawable child = firstChild;
+		while(child != null) {
+			child.getMaterial().setActive(use);
+			child = child.next();
+		}
+	}
 	// DEACTIVATED HDRAWABLE METHODS //
 
 	@Override

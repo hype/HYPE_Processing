@@ -39,6 +39,7 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 
 	/** The extras bundle of this drawable */
 	protected HBundle extras;
+	protected HMaterial material;
 
 	/** The x location of this drawable */
 	protected float x;
@@ -112,6 +113,8 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 
 		width = DEFAULT_WIDTH;
 		height = DEFAULT_HEIGHT;
+		
+		material = new HMaterial();
 	}
 
 	/**
@@ -143,6 +146,7 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 		stroke = other.stroke;
 		strokeCap = other.strokeCap;
 		strokeJoin = other.strokeJoin;
+		material = other.material;
 	}
 
 	/**
@@ -2025,6 +2029,7 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 			g.strokeCap(strokeCap);
 			g.strokeJoin(strokeJoin);
 		} else g.noStroke();
+		material.bind(g);
 	}
 
 	/**
@@ -2058,9 +2063,17 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 			// Compute current alpha
 			currAlphaPc *= alphaPc;
 
+			// TODO: check if the shader is already binded before doing it again. They are stored in  pointShader, lineShader and polyShader here:https://github.com/processing/processing/blob/master/core/src/processing/opengl/PGraphicsOpenGL.java
+//			if(material.shader != null){
+//				material.bind(g);
+//			}
+//			else
+//				g.resetShader();
 			// Draw self
 			draw(g, usesZ,-anchorX(),-anchorY(),currAlphaPc);
 
+			if( material.active)
+				g.resetShader();
 			// Draw children
 			HDrawable child = firstChild;
 			while(child != null) {
@@ -2087,6 +2100,14 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 		float drawX, float drawY, float currAlphaPc);
 
 
+	public HDrawable material(HMaterial mat){
+		this.material = mat;
+		return this;
+	}
+	
+	public HMaterial getMaterial(){
+		return material;
+	}
 
 	/**
 	 * An HIterator used for iterating through HDrawable's children.
