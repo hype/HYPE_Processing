@@ -2102,6 +2102,7 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 
 	public HDrawable material(HMaterial mat){
 		this.material = mat;
+		this.material.setActive(true);
 		return this;
 	}
 	

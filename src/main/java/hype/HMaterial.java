@@ -1,14 +1,11 @@
 package hype;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
-
-import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.opengl.PShader;
 
 public class HMaterial {
 	PShader shader;
-	boolean active = true;
+	boolean active = false;
 	
 	public HMaterial(){
 		shader = null;
