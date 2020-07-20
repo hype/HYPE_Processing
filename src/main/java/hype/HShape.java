@@ -104,6 +104,7 @@ public class HShape extends HDrawable {
 		} else {
 			randomStrokes = null;
 		}
+		colors.resetColorStack();
 		for (int i = 0; i < numChildren; ++i) {
 			if (isFill) randomFills[i] = colors.getColor();
 			if (isStroke) randomStrokes[i] = colors.getColor();
