@@ -549,6 +549,49 @@ public class HSphereLayout implements HLayout {
 
 
 	/*******************************************************************/
+	/*
+		Helper method to return the rotation values and axis as a 5 item float array
+		for users that want to use the layout independently of a drawable pool
+	*/
+	public float[] getRotations(PVector p) {
+
+		float xR;
+   		float yR;
+		
+		PVector force = PVector.sub(p, loc);
+		force.normalize();
+
+		PVector p1 = new PVector();
+		PVector p2 = new PVector();
+		PVector d = new PVector();
+		p1.x = 0;
+		p1.y = 0;
+		p2.x = sqrt(1 - (force.y * force.y));
+		p2.y = force.y;
+		d = PVector.sub(p2, p1);
+		d.normalize();
+
+		xR = PVector.angleBetween(d, new PVector(1, 0, 0));
+		if (p1.y < p2.y) {
+			xR *= -1;
+		}
+
+		PVector yAxisAdjust = new PVector(0, sin(xR + radians(90)), cos(xR + radians(90)));
+		
+		p1.x = 0;
+		p1.y = 0;
+		p2.x = force.x;
+		p2.y = force.z;
+		d = PVector.sub(p2, p1);
+		d.normalize();
+
+		yR = PVector.angleBetween(d, new PVector(0, 1, 0));
+		if (p2.x < p1.x) {
+			yR = -yR;
+		}
+
+		return new float[] { xR, yR, yAxisAdjust.x, yAxisAdjust.y, yAxisAdjust.z};
+	}
 
 	private void applyRotation(HDrawable t, PVector p) {
 			
