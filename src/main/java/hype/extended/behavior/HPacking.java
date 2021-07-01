@@ -5,10 +5,9 @@ import hype.HBehavior;
 import hype.HDrawable;
 import hype.HLinkedHashSet;
 import hype.HMath;
+
 import processing.core.PApplet;
 import processing.core.PVector;
-
-import java.util.ArrayList;
 
 import static processing.core.PApplet.map;
 
@@ -36,6 +35,12 @@ public class HPacking extends HBehavior {
 		_numTrys = 100;
 
 		register();
+	}
+
+	/** @deprecated */
+	public HPacking createCopy() {
+		HPacking copy = new HPacking();
+		return copy;
 	}
 
 	public HPacking reset() {
@@ -182,10 +187,12 @@ public class HPacking extends HBehavior {
 	}
 
 
+	@Override
 	public HPacking register() {
 		return (HPacking) super.register();
 	}
 
+	@Override
 	public HPacking unregister() {
 		return (HPacking) super.unregister();
 	}

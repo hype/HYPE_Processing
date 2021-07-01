@@ -35,7 +35,6 @@ void draw() {
 
 void mousePressed() {
 	circle_packing.reset();
-	circle_packing.maxSize(random(100, 800));
 	
 	for (HDrawable d : pool) {
 		circle_packing.addTarget(d);
