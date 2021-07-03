@@ -215,6 +215,10 @@ public class H implements HConstants {
 		return mouse.started();
 	}
 
+	public static void useMaterials(boolean use){
+		stage.useMaterials(use);
+	}
+	
 	/**
 	 * Cast an image to PImage
 	 * @param   imgArg    Type: PImage, HImageHolder, String
