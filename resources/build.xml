@@ -41,7 +41,6 @@
 	<property name="project.bin.data" location="${project.bin}/data"/>
 	<property name="project.examples" location="examples"/>
 	<property name="project.reference" location="reference"/>
-	<property name="project.dist" location="distribution"/>
 	<property name="readme.source" location="resources/README.md"/>
 	<property name="readme.destination" location="README.md"/>
 	<property name="libprops.source" location="resources/library.properties"/>
@@ -95,14 +94,13 @@
 	</target>
 	
 	<target name="library.init" depends="init"> 
-		<echo message="init library ..." />	
+		<echo message="init library ..." />
 	</target>
 
 	<!-- execute all Ant targets -->
 	<target name="library.run" depends="library.init"> 
 		<echo message="building library ..." />
 		<antcall target="generate.structure"><param name="folder" value="library"/></antcall>
-		<antcall target="generate.distribution" />
 		<antcall target="generate.source" />
 		<antcall target="compile" />
 	  	<antcall target="generate.jar"><param name="folder" value="library"/></antcall>
@@ -111,7 +109,6 @@
 		<antcall target="generate.readme" />
 		<antcall target="copyToSketchbook"><param name="folder" value="libraries"/></antcall>
 		<antcall target="copy.refs" />
-	  	<antcall target="generate.zip" />	
 	  	<delete dir="${project.tmp}"/>
 	</target>
 
@@ -145,15 +142,6 @@
 				<exclude name="**/main/test/*"/>
 			</fileset>
 		</copy>
-		<!--<copy todir="${project.tmp}/${project.name}/${folder}">
-			<fileset dir="${project.lib}" excludes="README" />
-		</copy>-->
-	</target>
-
-	<!-- make /distribution folder -->
-	<target name="generate.distribution" if="is.normal">
-		<delete dir="${project.dist}" />
-		<mkdir dir="${project.dist}"/>
 	</target>
 
 	<target name="generate.source" if="is.normal">
@@ -183,15 +171,12 @@
 			</classpath>
 			<compilerarg value="-Xlint"/>
 		</javac>
-		<!--<copy todir="${project.bin.data}">
-			<fileset dir="${project.data}" excludes="README" />
-		</copy>-->
 	</target>
 
 	<!-- generate JAR for library -->
 	<target name="generate.jar">
 		<jar jarfile="${project.tmp}/${project.name}/${folder}/${project.jar.name}" basedir="${project.bin}"/>
-		<copy file="${project.tmp}/${project.name}/${folder}/${project.jar.name}" tofile="${project.dist}/${project.jar.name}" />
+		<copy file="${project.tmp}/${project.name}/${folder}/${project.jar.name}" tofile="${project.lib}/${project.jar.name}" />
 	</target>
 
 	<!-- create the java reference of the library -->
@@ -250,14 +235,6 @@
 		<copy todir="${project.ref}">
 			<fileset dir="${project.tmp}/${project.name}/reference" />
 		</copy>
-	</target>
-
-	<!-- create zip of plugin and in distribution folder -->
-	<target name="generate.zip" if="is.normal">
-		<!-- zip the distribution of the library -->
-		<zip destfile="${project.dist}/${project.name}.zip"
-		     basedir="${project.tmp}/${project.name}"
-		     excludes="**/.DS_Store" />
 	</target>
     
     <!-- find and replace ##placeholder## keywords in a file -->
