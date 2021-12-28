@@ -42,7 +42,7 @@
 	<property name="project.examples" location="examples"/>
 	<property name="project.reference" location="reference"/>
 	<property name="readme.source" location="resources/README.md"/>
-	<property name="readme.destination" location="README.md"/>
+	<property name="readme.destination" location="../README.md"/>
 	<property name="libprops.source" location="resources/library.properties"/>
 	<property name="libprops.destination" location="library.properties"/>
 	
@@ -81,7 +81,7 @@
 	<target name="init">
 		<echo>
 			${line}
-		    Building the Processing library ${project.name} ${library.prettyVersion}
+				Building the Processing library ${project.name} ${library.prettyVersion}
 			${line}
 				src path        ${project.src}
 				bin path        ${project.bin}
