@@ -14,7 +14,7 @@ void setup(){
 	pool = new HDrawablePool(169);
 	pool.autoAddToStage()
 		.add(new HPath())
-		.layout(new HHexLayout().spacing(20).offsetX(0).offsetY(0))
+		.layout(new HHexLayout().spacing(20).center())
 		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {

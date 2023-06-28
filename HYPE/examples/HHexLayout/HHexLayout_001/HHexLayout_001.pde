@@ -18,8 +18,7 @@ void setup(){
 		.layout(
 			new HHexLayout()
 			.spacing(20)
-			.offsetX(0)
-			.offsetY(0)
+			.center()
 		)
 
 		.onCreate(

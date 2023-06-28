@@ -9,7 +9,7 @@ import processing.core.PVector;
 
 public class HHexLayout implements HLayout {
 	protected int currentDistanceFromCenter, currentIndex, direction;
-	protected float spacing, offsetX, offsetY, adjustX, adjustY;
+	protected float spacing, offsetX, offsetY;
 	protected PVector lastPoint;
 
 	public HHexLayout() {
@@ -17,10 +17,8 @@ public class HHexLayout implements HLayout {
 		currentIndex = 0;
 		direction = 0;
 		currentDistanceFromCenter = 0;
-		offsetX = (float) (H.app().width / 2.0);
-		offsetY = (float) (H.app().height / 2.0);
-		adjustX = (float) (spacing * 1.25);
-		adjustY = (float) (spacing * 0.25);
+		offsetX = (float) 0.0;
+		offsetY = (float) 0.0;
 		lastPoint = null;
 	}
 
@@ -48,18 +46,25 @@ public class HHexLayout implements HLayout {
 		return spacing;
 	}
 
+	public HHexLayout center() {
+		offsetX = (float) (H.app().width / 2.0);
+		offsetY = (float) (H.app().height / 2.0);
+
+		return this;
+	}
+
 	public HHexLayout offsetX(float value) {
-		adjustX = value;
+		offsetX = value;
 		return this;
 	}
 
 	public HHexLayout offsetY(float value) {
-		adjustY = value;
+		offsetY = value;
 		return this;
 	}
 
-	public float offsetX() { return adjustX; }
-	public float offsetY() { return adjustY; }
+	public float offsetX() { return offsetX; }
+	public float offsetY() { return offsetY; }
 
 	protected PVector north(PVector in) {
 		return north(in, 1);
@@ -155,8 +160,8 @@ public class HHexLayout implements HLayout {
 		y = (float) (spacing * PApplet.sqrt((float) 3.0) * (lastPoint.y + lastPoint.x/2.0));
 
 		return new PVector(
-			x + offsetX - adjustX,
-			y + offsetY - adjustY
+			x + offsetX,
+			y + offsetY
 		);
 	}
 
