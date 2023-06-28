@@ -31,7 +31,7 @@ public class HPackingLayout implements HLayout {
 
 	private int     _count;
 	private int     _volume;
-	private int     _numTrys;
+	private int     _numTries;
 
 
 
@@ -48,18 +48,24 @@ public class HPackingLayout implements HLayout {
 		_minSize       = 3.0f;
 
 		_count         = 0;
-		_numTrys       = 200;
+		_numTries       = 200;
 
 		_volume = H.app().width * H.app().height;
 	}
 
-
-	public HPackingLayout numTrys(int i) {
-		_numTrys = i;
+	public HPackingLayout numTries(int i) {
+		_numTries = i;
 		return this;
 	}
+	public int numTries() {
+		return _numTries;
+	}
+
+	public HPackingLayout numTrys(int i) {
+		return numTries(i);
+	}
 	public int numTrys() {
-		return _numTrys;
+		return numTries();
 	}
 
 
@@ -143,7 +149,7 @@ public class HPackingLayout implements HLayout {
 	private void runPacking() {
 		int start = _count;
 
-		for (int i = 0; i < _numTrys; ++i) {
+		for (int i = 0; i < _numTries; ++i) {
 
 			if(_count >= numItems || _maxSize < _minSize) {
 				break;
