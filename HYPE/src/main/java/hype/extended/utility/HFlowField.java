@@ -192,12 +192,12 @@ public class HFlowField {
 			int col = i % cols;
 			int row = (int) Math.floor(i / cols);
 
-			H.app().push();
+			H.app().pushMatrix();
 				H.app().translate(x + col * resolution, y + row * resolution);
 				H.app().rect(0, 0, resolution, resolution);
-			H.app().pop();
+			H.app().popMatrix();
 
-			H.app().push();
+			H.app().pushMatrix();
 				H.app().translate(x + col * resolution + resolution/2, y + row * resolution + resolution/2);
 				
 				H.app().rotate(field[i].heading2D());
@@ -207,7 +207,7 @@ public class HFlowField {
 				H.app().fill(255, 0, 0);
 				H.app().noStroke();
 				H.app().ellipse(l/2, 0, 10, 10);
-			H.app().pop();
+			H.app().popMatrix();
 		}
 
 		return this;

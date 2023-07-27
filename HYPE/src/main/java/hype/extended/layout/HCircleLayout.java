@@ -149,7 +149,21 @@ public class HCircleLayout implements HLayout {
 		return useNoise;
 	}
 
+	float getRotation() {
+		return 90.0f + (angleStep * currentIndex);
+	}
 
+	float getRotation(int step) {
+		return 90.0f + (angleStep * step);
+	}
+
+	float getRotationRadians() {
+		return radians(90) + (angleStepRad * currentIndex);
+	}
+
+	float getRotationRadians(int step) {
+		return radians(90) + (angleStepRad * step);
+	}
 
  
 	@Override
