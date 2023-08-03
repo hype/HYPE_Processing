@@ -17,6 +17,10 @@ public class HRotate extends HBehavior {
 	private float speedYRad;
 	private float speedZRad;
 
+	private float curXRotation = 0.0f;
+	private float curYRotation = 0.0f;
+	private float curZRotation = 0.0f;
+
 	public HRotate() {}
 
 	/** @deprecated */
@@ -31,6 +35,19 @@ public class HRotate extends HBehavior {
 		speedXRad = xDeg * HConstants.D2R;
 		speedYRad = yDeg * HConstants.D2R;
 		speedZRad = zDeg * HConstants.D2R;
+	}
+
+	//new constructors to allow the behavior to be called with no target
+	public HRotate(float xDeg, float yDeg, float zDeg) {
+		speedXRad = xDeg * HConstants.D2R;
+		speedYRad = yDeg * HConstants.D2R;
+		speedZRad = zDeg * HConstants.D2R;
+		register();
+	}
+
+	public HRotate(float dDeg) {
+		speedZRad = dDeg * HConstants.D2R;
+		register();
 	}
 
 	public HRotate target(HRotatable r) {
@@ -120,8 +137,29 @@ public class HRotate extends HBehavior {
 		return speedZRad;
 	}
 
+	public float cur() {
+		return curZRotation * HConstants.R2D;
+	}
+	public float curX() {
+		return curXRotation * HConstants.R2D;
+	}
+	public float curY() {
+		return curYRotation * HConstants.R2D;
+	}
+	public float curZ() {
+		return curZRotation * HConstants.R2D;
+	}
+
+	public void run() {
+		curXRotation += speedXRad;
+		curYRotation += speedYRad;
+		curZRotation += speedZRad;
+	}
+
 	@Override
 	public void runBehavior(PApplet app) {
+		if(target==null) return;
+
 		float rotX = target.rotationXRad() + speedXRad;
 		float rotY = target.rotationYRad() + speedYRad;
 		float rotZ = target.rotationZRad() + speedZRad;
