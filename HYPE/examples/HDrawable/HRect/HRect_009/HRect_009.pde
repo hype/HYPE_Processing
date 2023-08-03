@@ -26,7 +26,8 @@ void setup() {
 	h = height/2;
 	m = 100;
 
-	canvas = new HCanvas().autoClear(false);
+	// canvas = new HCanvas(P3D).autoClear(false);
+	canvas = new HCanvas(P3D).autoClear(false).fade(1);
 
 	r1 = new HRotate().speedX(0.4).speedY(0.6).speedZ(0.8);
 
@@ -53,7 +54,8 @@ void draw() {
 
 	r1.run();
 
-	grp.rotationX( r1.curX() ).rotationY( r1.curY() ).rotationZ( r1.curZ() );
+	// grp.rotationX( r1.curX() ).rotationY( r1.curY() ).rotationZ( r1.curZ() );
+	grp.rotationZ( r1.curZ() );
 	canvas.draw(this.g);
 }
 
