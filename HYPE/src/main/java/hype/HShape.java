@@ -120,9 +120,7 @@ public class HShape extends HDrawable {
 	}
 
 	@Override
-	public void draw(PGraphics g, boolean usesZ,
-	                 float drawX, float drawY, float alphaPc
-	) {
+	public void drawPrimitive(PGraphics g, boolean usesZ, float drawX, float drawY, float alphaPc) {
 		if (shape == null) return;
 
 		// Determine if this shape would be flipped

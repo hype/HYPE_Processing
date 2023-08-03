@@ -20,14 +20,12 @@ public class HStage extends HDrawable implements HImageHolder {
 		background(HConstants.DEFAULT_BACKGROUND_COLOR);
 	}
 
-
 	// PARENT & CHILD //
 
 	@Override
 	public boolean invalidChild(HDrawable destParent) {
 		return true;
 	}
-
 
 	// BACKGROUND //
 
@@ -45,7 +43,6 @@ public class HStage extends HDrawable implements HImageHolder {
 		bgImg = H.getImage(imgArg);
 		return clear();
 	}
-
 
 	@Override
 	public PImage image() {
@@ -94,7 +91,6 @@ public class HStage extends HDrawable implements HImageHolder {
 		return fill(r,g,b);
 	}
 
-
 	// SIZE //
 
 	@Override
@@ -111,7 +107,6 @@ public class HStage extends HDrawable implements HImageHolder {
 	public float height() {
 		return app.height;
 	}
-
 
 	// MISC //
 
@@ -146,11 +141,10 @@ public class HStage extends HDrawable implements HImageHolder {
 		}
 	}
 
-
 	// DEACTIVATED HDRAWABLE METHODS //
 
 	@Override
-	public void draw(PGraphics g,boolean b,float x,float y,float p) {}
+	public void drawPrimitive(PGraphics g,boolean b,float x,float y,float p) {}
 	@Override
 	public HDrawable createCopy() { return null; }
 }

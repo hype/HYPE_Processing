@@ -180,10 +180,10 @@ public class HOrbiter3D extends HBehavior {
 		return nextPoint;
 	}
 
-	public void _run() {
+	public void run() {
 
 		if (orbit != null) {
-			orbit._run();
+			orbit.run();
 			startX = orbit.x();
 			startY = orbit.y();
 			startZ = orbit.z();
@@ -205,7 +205,7 @@ public class HOrbiter3D extends HBehavior {
 	public void runBehavior(PApplet app) {
 		if(target ==null) return;
 
-		_run();
+		run();
 
 		target.x(targetX);
 		target.y(targetY);

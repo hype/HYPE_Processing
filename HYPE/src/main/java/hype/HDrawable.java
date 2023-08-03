@@ -2034,6 +2034,47 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 	 * probably wouldn't need to be called directly.
 	 *
 	 * @param g    The graphics context for this drawable.
+	 */
+	public void draw(PGraphics g) {
+		boolean usesZ = false;
+		if( g.is3D() ) usesZ = true;
+
+		if(alphaPc <=0) return;
+		g.pushMatrix();
+			// Rotate and translate
+			if(usesZ) {
+				g.translate(x, y, z);
+				g.rotateX(rotationXRad);
+				g.rotateY(rotationYRad);
+				g.rotateZ(rotationZRad);
+
+				if (rotationAxis != null) {
+					g.rotate(rotationRad, rotationAxis.x, rotationAxis.y, rotationAxis.z);
+				}
+			} else {
+				g.translate(x, y);
+				g.rotate(rotationZRad);
+			}
+
+			// Draw self
+			drawPrimitive(g, usesZ, -anchorX(), -anchorY(), alphaPc);
+
+			// Draw children
+			HDrawable child = firstChild;
+			while(child != null) {
+				child.paintAll(g, usesZ, alphaPc);
+				child = child.next;
+			}
+		g.popMatrix();
+	}
+
+	/**
+	 * Prepares the environment for drawing this drawable and its children.
+	 *
+	 * This method is primarily called internally during the draw cycle and
+	 * probably wouldn't need to be called directly.
+	 *
+	 * @param g    The graphics context for this drawable.
 	 * @param usesZ    Indicates if z-coordinates are used.
 	 * @param currAlphaPc    The current alpha value in the draw cycle.
 	 */
@@ -2059,7 +2100,7 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 			currAlphaPc *= alphaPc;
 
 			// Draw self
-			draw(g, usesZ,-anchorX(),-anchorY(),currAlphaPc);
+			drawPrimitive(g, usesZ, -anchorX(), -anchorY(), currAlphaPc);
 
 			// Draw children
 			HDrawable child = firstChild;
@@ -2083,10 +2124,7 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 	 * @param drawY The y coordinate where this drawable would consider as 0
 	 * @param currAlphaPc    The current alpha value in the draw cycle.
 	 */
-	public abstract void draw( PGraphics g, boolean usesZ,
-		float drawX, float drawY, float currAlphaPc);
-
-
+	public abstract void drawPrimitive(PGraphics g, boolean usesZ, float drawX, float drawY, float currAlphaPc);
 
 	/**
 	 * An HIterator used for iterating through HDrawable's children.

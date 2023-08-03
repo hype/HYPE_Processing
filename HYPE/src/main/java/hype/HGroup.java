@@ -47,5 +47,5 @@ public class HGroup extends HDrawable {
 	}
 
 	@Override
-	public void draw(PGraphics g, boolean b, float x, float y, float f) {}
+	public void drawPrimitive(PGraphics g, boolean b, float x, float y, float f) {}
 }

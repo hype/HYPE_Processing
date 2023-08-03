@@ -313,9 +313,7 @@ public class HPath extends HDrawable {
 	}
 
 	@Override
-	public void draw(PGraphics g, boolean usesZ,
-	                 float drawX, float drawY, float alphaPc
-	) {
+	public void drawPrimitive(PGraphics g, boolean usesZ, float drawX, float drawY, float alphaPc) {
 		int numv = numVertices();
 		if (numv <= 0) return;
 		applyStyle(g, alphaPc);
@@ -334,13 +332,11 @@ public class HPath extends HDrawable {
 		if (isSimple && texture != null) {
 			g.texture(texture);
 			g.noStroke();
-			//alphaPc = (fill >>>24);
 			g.tint(fill, 255 * Math.round(alphaPc));
 		}
 
 		int itrs = (isPolygon) ? numv + 1 : numv;
 		for (int i = 0; i < itrs; ++i) {
-
 			HVertex v = vertex(i < numv ? i : 0);
 
 			if (vertexColor instanceof HColorPool) {
@@ -352,7 +348,6 @@ public class HPath extends HDrawable {
 			}
 
 			v.draw(g, drawX, drawY, isSimple);
-
 
 			if (isSimple && drawsLines) isSimple = false;
 		}

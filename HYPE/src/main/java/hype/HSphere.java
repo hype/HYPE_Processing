@@ -37,10 +37,8 @@ public class HSphere extends HDrawable3D {
 	}
 
 	@Override
-	public void draw( PGraphics g, boolean usesZ,
-		float drawX, float drawY, float currAlphaPc
-	) {
-		applyStyle(g, currAlphaPc);
+	public void drawPrimitive(PGraphics g, boolean usesZ, float drawX, float drawY, float alphaPc) {
+		applyStyle(g, alphaPc);
 		g.pushMatrix();
 			g.translate(drawX+ width /2, drawY+ height /2, -anchorZ()+ depth /2);
 			//g.scale(width, height, depth);
@@ -54,5 +52,4 @@ public class HSphere extends HDrawable3D {
 
 		g.popMatrix();
 	}
-
 }

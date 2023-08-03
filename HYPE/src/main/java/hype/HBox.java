@@ -146,8 +146,8 @@ public class HBox extends HDrawable3D {
 
 
 	@Override
-	public void draw(PGraphics g, boolean usesZ, float drawX, float drawY, float currAlphaPc) {
-		applyStyle(g, currAlphaPc);
+	public void drawPrimitive(PGraphics g, boolean usesZ, float drawX, float drawY, float alphaPc) {
+		applyStyle(g, alphaPc);
 		g.pushMatrix();
 			g.translate(drawX, drawY, -anchorZ());
 			g.scale(width,height,depth);

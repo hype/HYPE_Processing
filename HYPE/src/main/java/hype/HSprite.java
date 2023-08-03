@@ -43,9 +43,7 @@ public class HSprite extends HDrawable {
 	}
 
 	@Override
-	public void draw( PGraphics g, boolean usesZ,
-		float drawX, float drawY, float alphaPc
-	) {
+	public void drawPrimitive(PGraphics g, boolean usesZ, float drawX, float drawY, float alphaPc) {
 		g.textureMode(PConstants.NORMAL);
 		g.noStroke();
 		g.tint(fill);

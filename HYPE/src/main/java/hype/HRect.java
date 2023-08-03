@@ -88,9 +88,7 @@ public class HRect extends HDrawable {
 	}
 
 	@Override
-	public void draw( PGraphics g, boolean usesZ,
-		float drawX, float drawY, float alphaPc
-	) {
+	public void drawPrimitive(PGraphics g, boolean usesZ, float drawX, float drawY, float alphaPc) {
 		applyStyle(g,alphaPc);
 		g.rect(drawX,drawY, width, height, tl, tr, br, bl);
 	}

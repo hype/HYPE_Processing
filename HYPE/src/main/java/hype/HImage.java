@@ -74,9 +74,7 @@ public class HImage extends HDrawable implements HImageHolder {
 	}
 
 	@Override
-	public void draw( PGraphics g, boolean usesZ,
-		float drawX, float drawY, float alphaPc
-	) {
+	public void drawPrimitive(PGraphics g, boolean usesZ, float drawX, float drawY, float alphaPc) {
 		if(image ==null) return;
 
 		// This awkward alpha separation is due to pjs compatibility issues
