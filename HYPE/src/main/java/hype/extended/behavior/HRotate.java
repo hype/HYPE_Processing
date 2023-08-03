@@ -150,6 +150,19 @@ public class HRotate extends HBehavior {
 		return curZRotation * HConstants.R2D;
 	}
 
+	public float curRad() {
+		return curZRotation;
+	}
+	public float curXRad() {
+		return curXRotation;
+	}
+	public float curYRad() {
+		return curYRotation;
+	}
+	public float curZRad() {
+		return curZRotation;
+	}
+
 	public void run() {
 		curXRotation += speedXRad;
 		curYRotation += speedYRad;

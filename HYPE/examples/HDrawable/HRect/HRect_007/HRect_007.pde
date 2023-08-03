@@ -1,13 +1,15 @@
 import hype.*;
+import hype.extended.behavior.HRotate;
 
-int   stageW = 900;
-int   stageH = 900;
-int   w, h, m;
-color clrBg  = #242424;
+int     stageW = 900;
+int     stageH = 900;
+int     w, h, m;
+color   clrBg  = #242424;
 
 // **************************************************
 
-HRect s1, s2;
+HRect   s1;
+HRotate r1;
 
 void settings() {
 	size(stageW, stageH, P3D);
@@ -22,19 +24,24 @@ void setup() {
 	h = height/2;
 	m = 225;
 
-	s1 = new HRect();
-	s1.rounding(10).strokeWeight(3).stroke(#FF3300).fill(#ECECEC).anchorAt(H.CENTER).size(100).loc(w-m, h);
-
-	s2 = s1.createCopy(); // copy all properties from s1
-	s2.loc(w+m, h);       // change the location / override the loc() method copied from s1
+	r1 = new HRotate().speedX(0.4).speedY(0.6).speedZ(0.8);
+	s1 = new HRect(300);
+	s1.rounding(20).noStroke().fill(#FF3300).anchorAt(H.CENTER).loc(0,0);
 }
 
 void draw() {
 	background(clrBg);
 	visualizeHelper();
 
-	s1.draw(this.g);
-	s2.draw(this.g);
+	r1.run();
+	push();
+		translate( w, h );
+		// rotateX( r1.curXRad() );
+		// rotateY( r1.curYRad() );
+		// rotateZ( r1.curZRad() );
+		s1.rotationX(r1.curX()).rotationY(r1.curY()).rotationZ(r1.curZ());
+		s1.draw(this.g);
+	pop();
 }
 
 // **************************************************
@@ -47,8 +54,7 @@ void visualizeHelper() {
 	stroke(#0095a8);
 	fill(#333333);
 
-	ellipse(s1.x(), s1.y(), 6, 6);
-	ellipse(s2.x(), s2.y(), 6, 6);
+	ellipse( w, h, 6, 6);
 
 // visualize the center of the stage
 
