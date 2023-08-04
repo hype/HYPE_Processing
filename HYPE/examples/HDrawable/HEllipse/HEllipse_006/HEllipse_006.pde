@@ -1,16 +1,17 @@
 import hype.*;
+import hype.extended.behavior.HOscillator;
 
-int       stageW = 900;
-int       stageH = 900;
-int       w, h, m;
-color     clrBg  = #242424;
+int         stageW = 900;
+int         stageH = 900;
+int         w, h, m;
+color       clrBg  = #242424;
 
 // **************************************************
 
-HEllipse  s1;
+HCanvas     canvas;
 
-int       numAssets = 1000;
-PVector[] pos = new PVector[numAssets];
+HEllipse    s1, s2;
+HOscillator o1, o2;
 
 void settings() {
 	size(stageW, stageH, P3D);
@@ -25,39 +26,31 @@ void setup() {
 	h = height/2;
 	m = 225;
 
-	s1 = new HEllipse(300);
-	s1.noStroke().fill(#ECECEC).anchorAt(H.CENTER).loc(w, h);
+	canvas = new HCanvas(P3D).autoClear(false).fade(5);
 
-	for (int i=0; i<numAssets; ++i) {
-		pos[i] = new PVector(
-			random(0, stageW), // x
-			random(0, stageH), // y
-			0                  // z
-		);
-	}
+	o1 = new HOscillator().range(1,360).speed(1);
+	s1 = new HEllipse(300);
+	s1.noStroke().fill(#FF3300).anchorAt(H.CENTER).loc(w, h);
+
+	o2 = new HOscillator().range(0,0, 179,-179).speed(1).freq(1);
+	s2 = new HEllipse(150);
+	s2.noStroke().fill(#FF6600).anchorAt(H.CENTER).loc(w, h);
+
+	canvas.add(s1);
+	canvas.add(s2);
 }
 
 void draw() {
 	background(clrBg);
 	visualizeHelper();
 
-	s1.draw(this.g);
+	o1.run();
+	s1.end( o1.cur() );
 
-	for (int i=0; i<numAssets; ++i) {
-		push();
-			translate(pos[i].x, pos[i].y, pos[i].z);
-			strokeWeight(0);
-			noStroke();
+	o2.run();
+	s2.start( o2.cur1() ).end( o2.cur2() );
 
-			if( s1.containsRel(pos[i].x, pos[i].y ) ) { // check if x,y is inside the s1 ellipse
-				fill(#00CC00);
-			} else {
-				fill(#FF3300);
-			}
-
-			ellipse(0, 0, 6, 6);
-		pop();
-	}
+	canvas.draw(this.g);
 }
 
 // **************************************************
@@ -71,6 +64,7 @@ void visualizeHelper() {
 	fill(#333333);
 
 	ellipse( s1.x(), s1.y(), 6, 6);
+	ellipse( s2.x(), s2.y(), 6, 6);
 
 // visualize the center of the stage
 

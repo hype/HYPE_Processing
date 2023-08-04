@@ -107,18 +107,18 @@ public class HOscillator extends HBehavior {
 		return target;
 	}
 
-	public HOscillator curentStep(float stepDegrees) {
+	public HOscillator currentStep(float stepDegrees) {
 		step = stepDegrees;
 		startStep = stepDegrees;
 		return this;
 	}
 
-	public float curentStep() {
+	public float currentStep() {
 		return step;
 	}
 
 	public HOscillator synchStep(float stepDegrees, float tick) {
-		curentStep(stepDegrees + tick * speed);
+		currentStep(stepDegrees + tick * speed);
 		return this;
 	}
 
