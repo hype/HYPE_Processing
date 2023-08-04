@@ -1403,6 +1403,7 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 	 * @return This drawable.
 	 */
 	public HDrawable noStroke() {
+		strokeWeight(0);
 		return stroke(HConstants.CLEAR);
 	}
 
