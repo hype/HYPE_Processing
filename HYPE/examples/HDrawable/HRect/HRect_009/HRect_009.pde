@@ -26,10 +26,9 @@ void setup() {
 	h = height/2;
 	m = 100;
 
-	// canvas = new HCanvas(P3D).autoClear(false);
-	canvas = new HCanvas(P3D).autoClear(false).fade(1);
+	canvas = new HCanvas(P3D).autoClear(false).fade(3);
 
-	r1 = new HRotate().speedX(0.4).speedY(0.6).speedZ(0.8);
+	r1 = new HRotate().speed(1.0);
 
 	s1 = new HRect(100);
 	s1.rounding(20).noStroke().fill(#FF3300).anchorAt(H.CENTER).loc(-m,-m);
@@ -39,6 +38,7 @@ void setup() {
 	s4 = (HRect) s1.createCopy().fill(#FFCC00).loc(m,m);
 
 	grp = new HGroup();
+	grp.strokeWeight(0).noStroke();
 	grp.add(s1);
 	grp.add(s2);
 	grp.add(s3);
@@ -50,13 +50,12 @@ void setup() {
 
 void draw() {
 	background(clrBg);
-	visualizeHelper();
+	// visualizeHelper();
 
 	r1.run();
 
-	// grp.rotationX( r1.curX() ).rotationY( r1.curY() ).rotationZ( r1.curZ() );
-	grp.rotationZ( r1.curZ() );
-	canvas.draw(this.g);
+	grp.rotation( r1.cur() );
+	canvas.paintAll(this.g, true, 1);
 }
 
 // **************************************************

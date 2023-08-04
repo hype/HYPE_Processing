@@ -72,8 +72,7 @@ public class HCanvas extends HDrawable {
 	}
 
 	public boolean usesZ() {
-		return renderer.equals(PConstants.P3D) ||
-			renderer.equals(PConstants.OPENGL);
+		return renderer.equals(PConstants.P3D) || renderer.equals(PConstants.OPENGL);
 	}
 
 	public PGraphics graphics() {
@@ -216,8 +215,6 @@ public class HCanvas extends HDrawable {
 		return (HCanvas) noFill();
 	}
 
-
-
 	public HCanvas lights() {
 		useLights = true;
 		return this;
@@ -248,7 +245,6 @@ public class HCanvas extends HDrawable {
 		l.type(type);
 		lights.add(l);
 	}
-
 
 	@Override
 	public HCanvas size(float w, float h) {
@@ -322,7 +318,6 @@ public class HCanvas extends HDrawable {
 			if (useLights == false) {
 				graphics.noLights();
 			} else {
-
 				//check if there are any HLights
 				if (hasLights) {
 					for(HLight l : lights) {
@@ -338,7 +333,6 @@ public class HCanvas extends HDrawable {
 				} else {
 					graphics.lights();
 				}
-
 			}
 
 			// Draw children
@@ -363,99 +357,7 @@ public class HCanvas extends HDrawable {
 	}
 
 	@Override
-	public void draw(PGraphics g) {
-		boolean usesZ = false;
-		if( g.is3D() ) usesZ = true;
-
-		if(this.alphaPc <=0 || width ==0 || height ==0) return;
-
-		g.pushMatrix();
-			// Rotate and translate
-			g.rotate(rotationZRad);
-
-			// Compute current alpha
-			alphaPc *= this.alphaPc;
-
-			// Initialize the buffer
-			graphics.beginDraw();
-
-			// Prepare the buffer for this frame
-			if(autoClear) {
-				graphics.clear();
-			} else {
-				if(hasFilter) {
-					if(hasFilterParam) graphics.filter(filterKind, filterParam);
-					else graphics.filter(filterKind);
-				}
-				if(hasFade) {
-					if(!renderer.equals(PConstants.JAVA2D))
-						graphics.loadPixels();
-
-					int[] pix = graphics.pixels;
-					for(int i=0; i<pix.length; ++i) {
-						int clr = pix[i];
-						int a = clr >>> 24;
-						if(a == 0) continue;
-						a -= fadeAmt;
-						if(a < 0) a = 0;
-						pix[i] = clr & 0xFFFFFF | (a << 24);
-					}
-					graphics.updatePixels();
-				}
-				if(hasBlend) {
-					graphics.blend(
-						0,0, graphics.width, graphics.height,
-						0,0, graphics.width, graphics.height, blendMode);
-				}
-			}
-
-			//handle lights
-			if (useLights == false) {
-				graphics.noLights();
-			} else {
-
-				//check if there are any HLights
-				if (hasLights) {
-					for(HLight l : lights) {
-						switch (l.type()) {
-							case 1:
-								graphics.pointLight(l.v1, l.v2, l.v3, l.x, l.y, l.z);
-								break;
-							case 2:
-								graphics.directionalLight(l.v1, l.v2, l.v3, l.x, l.y, l.z);
-								break;
-						}
-					}
-				} else {
-					graphics.lights();
-				}
-
-			}
-
-			// Draw children
-			HDrawable child = firstChild;
-			while(child != null) {
-				child.paintAll(graphics, usesZ, alphaPc);
-				child = child.next();
-			}
-
-			if (hasShader) {
-				for(PShader s : shader) {
-					graphics.filter(s);
-				}
-			}
-
-			// Finalize the buffer
-			graphics.endDraw();
-
-			// Draw the buffer
-			g.image(graphics,0,0);
-		g.popMatrix();
-	}
-
-	@Override
-	public void drawPrimitive(PGraphics g,boolean b,float x,float y,float f) {}
-
+	public void drawPrimitive(PGraphics g, boolean b, float x, float y, float f) {}
 
 	public static class HLight {
 		public float v1, v2, v3, x, y, z;
@@ -482,5 +384,4 @@ public class HCanvas extends HDrawable {
 			return this.type;
 		}
 	}
-
 }
