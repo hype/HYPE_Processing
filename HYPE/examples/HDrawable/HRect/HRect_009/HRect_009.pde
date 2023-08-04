@@ -38,7 +38,7 @@ void setup() {
 	s4 = (HRect) s1.createCopy().fill(#FFCC00).loc(m,m);
 
 	grp = new HGroup();
-	grp.strokeWeight(0).noStroke();
+	grp.noStroke();
 	grp.add(s1);
 	grp.add(s2);
 	grp.add(s3);
@@ -55,7 +55,7 @@ void draw() {
 	r1.run();
 
 	grp.rotation( r1.cur() );
-	canvas.paintAll(this.g, true, 1);
+	canvas.draw(this.g);
 }
 
 // **************************************************
