@@ -31,7 +31,7 @@ void setup() {
 	r1 = new HRotate().speed(1.0);
 
 	s1 = new HRect(100);
-	s1.rounding(20).noStroke().fill(#FF3300).anchorAt(H.CENTER).loc(-m,-m);
+	s1.rounding(20).strokeWeight(0).noStroke().fill(#FF3300).anchorAt(H.CENTER).loc(-m,-m);
 
 	s2 = (HRect) s1.createCopy().fill(#FF6600).loc(m,-m);
 	s3 = (HRect) s1.createCopy().fill(#FF9900).loc(-m,m);
@@ -50,7 +50,7 @@ void setup() {
 
 void draw() {
 	background(clrBg);
-	// visualizeHelper();
+	visualizeHelper();
 
 	r1.run();
 

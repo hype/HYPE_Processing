@@ -15,7 +15,7 @@ public class HOscillator extends HBehavior {
 	private float min1, min2, min3;
 	private float rel1, rel2, rel3;
 	private float max1, max2, max3;
-	private float curr1, curr2, curr3;
+	private float cur1, cur2, cur3;
 	private float map1, map2, map3;
 	private float origw, origh, origd;
 	private float step, speed, freq;
@@ -107,18 +107,18 @@ public class HOscillator extends HBehavior {
 		return target;
 	}
 
-	public HOscillator currentStep(float stepDegrees) {
+	public HOscillator curentStep(float stepDegrees) {
 		step = stepDegrees;
 		startStep = stepDegrees;
 		return this;
 	}
 
-	public float currentStep() {
+	public float curentStep() {
 		return step;
 	}
 
 	public HOscillator synchStep(float stepDegrees, float tick) {
-		currentStep(stepDegrees + tick * speed);
+		curentStep(stepDegrees + tick * speed);
 		return this;
 	}
 
@@ -282,7 +282,7 @@ public class HOscillator extends HBehavior {
 		return waveform;
 	}
 
-	public float nextRaw() {
+	public float run() {
 		float deg = (step * freq) % 360;
 		float rawVal;
 		switch(waveform) {
@@ -304,7 +304,7 @@ public class HOscillator extends HBehavior {
 			for (int i = amplifiers.size()-1; i >= 0; i--) {
 				HOscillator amplifier = amplifiers.get(i);
 				amplifier.synchStep(startStep, tick);
-				amplifier.nextRaw();
+				amplifier.run();
 
 				map1 += amplifier.map1();
 				map2 += amplifier.map2();
@@ -317,7 +317,7 @@ public class HOscillator extends HBehavior {
 			for (int i = reducers.size()-1; i >= 0; i--) {
 				HOscillator reducer = reducers.get(i);
 				reducer.synchStep(startStep, tick);
-				reducer.nextRaw();
+				reducer.run();
 
 				map1 -= reducer.map1();
 				map2 -= reducer.map2();
@@ -352,9 +352,9 @@ public class HOscillator extends HBehavior {
 		map2 += offset;
 		map3 += offset;
 
-		curr1 = map1 + rel1;
-		curr2 = map2 + rel2;
-		curr3 = map3 + rel3;
+		cur1 = map1 + rel1;
+		cur2 = map2 + rel2;
+		cur3 = map3 + rel3;
 
 		step += speed;
 		tick++;
@@ -362,20 +362,20 @@ public class HOscillator extends HBehavior {
 		return rawVal;
 	}
 
-	public float curr() {
-		return curr1;
+	public float cur() {
+		return cur1;
 	}
 
-	public float curr1() {
-		return curr1;
+	public float cur1() {
+		return cur1;
 	}
 
-	public float curr2() {
-		return curr2;
+	public float cur2() {
+		return cur2;
 	}
 
-	public float curr3() {
-		return curr3;
+	public float cur3() {
+		return cur3;
 	}
 
 	public float map1() {
@@ -404,10 +404,10 @@ public class HOscillator extends HBehavior {
 			}
 		}
 
-		nextRaw();
-		float v1 = curr1;
-		float v2 = curr2;
-		float v3 = curr3;
+		run();
+		float v1 = cur1;
+		float v2 = cur2;
+		float v3 = cur3;
 
 		switch(property) {
 		case HConstants.WIDTH:		target.width(v1); break;
