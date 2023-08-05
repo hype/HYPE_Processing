@@ -61,12 +61,12 @@ void setup() {
 		s[i].fill( colors.getColorAt( i%colors.size() ) ); // set the fill color of the sprite / use modulo to loop through the colors
 		s[i].loc(0,0);
 
-		orb[i] = new HOrbiter3D(w, h, 0);
-		orb[i].radius(300);
-		orb[i].ySpeed(0.5);
-		orb[i].zSpeed(0.5);
-		orb[i].yAngle( (i+1)*2 );
-		orb[i].zAngle( (i+1)*3 );
+		orb[i] = new HOrbiter3D(w, h, 0);                  // create 360 HOrbiter3D objects, set x,y,z to the center of the stage
+		orb[i].radius(300); 			                   // set the radius of the orbit
+		orb[i].ySpeed(0.5); 			                   // set the y speed of the orbit
+		orb[i].zSpeed(0.5); 			                   // set the z speed of the orbit
+		orb[i].yAngle( (i+1)*2 ); 		                   // set the y angle of the orbit // this creates an y offset for each sprite
+		orb[i].zAngle( (i+1)*3 ); 		                   // set the z angle of the orbit // this creates an z offset for each sprite
 
 		oscS[i] = new HOscillator().range(0.1, 1.0).speed(0.1).freq(10).currentStep(i*0.6);
 		oscR[i] = new HOscillator().range(-180, 180).speed(0.1).freq(10).currentStep(i*0.3);

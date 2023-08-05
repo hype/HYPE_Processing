@@ -7,7 +7,7 @@ color clrBg  = #242424;
 
 // **************************************************
 
-HRect s1;                  // declare an HRect object
+HRect s1;                // declare an HRect object
 
 void settings() {
 	size(stageW, stageH, P3D);
@@ -15,22 +15,22 @@ void settings() {
 }
 
 void setup() {
-	H.init(this);          // initialize HYPE library
+	H.init(this);        // initialize HYPE library
 	background(clrBg);
 
-	w = width/2;           // move the origin (0,0) to the center of the stage / x
-	h = height/2;          // move the origin (0,0) to the center of the stage / y
+	w = width/2;         // move the origin (0,0) to the center of the stage / x
+	h = height/2;        // move the origin (0,0) to the center of the stage / y
 
-	s1 = new HRect(100);   // create an HRext object with size 100
-	s1.noStroke();         // remove the stroke
-	s1.fill(#FF3300);      // set the fill color
-	s1.loc(w, h);           // set the location (x,y) of the object
+	s1 = new HRect(100); // create an HRect object with size 100
+	s1.noStroke();       // remove the stroke
+	s1.fill(#FF3300);    // set the fill color
+	s1.loc(w, h);        // set the location (x,y) of the object
 }
 
 void draw() {
 	background(clrBg);
 
-	s1.draw(this.g);   // object.draw(where to draw) / this.g = processing stage
+	s1.draw(this.g);     // object.draw(where to draw) / this.g = processing stage
 
 	visualizeHelper();
 }
