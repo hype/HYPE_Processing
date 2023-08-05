@@ -55,11 +55,15 @@ public class HImage extends HDrawable implements HImageHolder {
 	public HImage tint(int r, int g, int b, int a) {
 		fill(r,g,b,a);
 		return this;
-
 	}
 
 	public int tint() {
 		return fill();
+	}
+
+	public int getColor(float x, float y) {
+		int c = image.get( Math.round(x), Math.round(y) );
+		return c;
 	}
 
 	@Override
