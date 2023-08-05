@@ -1,3 +1,5 @@
+/HYPE/resources/build.properties
+
 ## Java template
 *.class
 bin/
