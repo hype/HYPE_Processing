@@ -38,10 +38,11 @@ Processing
 After HYPE has been successfully installed, restart the Processing application.
 
 #### Build Sources with ANT
+Copy example-build.properties to build.properties
+You'll need to update 'sketchbook.location' and 'classpath.local.location' in build.properties to match your local environment.
+Run build.xml in the Resources folder.
 
-Run build.xml in the Resources folder. If you're running Windows, you'll need to update 'sketchbook.location' and 'classpath.local.location' in build.properties.
-
-The HYPE library will be added to your sketchbook folder automatically.
+The HYPE library will be added to your sketchbook folder automatically as part of the build process.
 
 ### Documentation
 TODO: Add link to Java docs here
