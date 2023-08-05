@@ -15,7 +15,7 @@ String        pathToData = "../data/";
 
 PImage[]      tex = new PImage[3];
 
-int           numAssets = 400;
+int           numAssets = 360;
 HSprite[]     s = new HSprite[numAssets];
 int           spriteSize   = 100;
 
@@ -25,14 +25,14 @@ int           spriteSize   = 100;
 
 HOrbiter3D[]  orb  = new HOrbiter3D[numAssets];
 
-HOscillator[] oscR = new HOscillator[numAssets];
 HOscillator[] oscS = new HOscillator[numAssets];
+HOscillator[] oscR = new HOscillator[numAssets];
 
 // **************************************************
 
 // COLOR
 
-HColorPool    colors;
+HColorPool    colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #CCCCCC, #999999, #666666, #4D4D4D, #333333, #FF3300, #FF6600);
 
 // **************************************************
 
@@ -48,29 +48,28 @@ void setup() {
 	w = width/2;
 	h = height/2;
 
-	colors = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #CCCCCC, #999999, #666666, #4D4D4D, #333333, #FF3300, #FF6600);
-
 	for (int i = 0; i < tex.length; ++i) {
 		tex[i] = loadImage(pathToData + "tex" + (i+1) + ".png"); // tex[0] = tex1.png, tex[1] = tex2.png, tex[2] = tex3.png
 	}
 
 	for (int i = 0; i < numAssets; ++i) {
 		s[i] = new HSprite();
-		s[i].texture( tex[ (int)random(tex.length) ] ); // get a random texture, tex[0] = tex1.png, tex[1] = tex2.png, tex[2] = tex3.png
-		s[i].size(spriteSize);                          // set the size of the sprite
-		s[i].anchorAt(H.CENTER);                        // set the anchor point of the sprite
-		s[i].noStroke();                                // turn off the stroke
-		s[i].fill( colors.getColor() );                 // set the fill color of the sprite / use a random color from the HColorPool
+		s[i].texture( tex[ (int)random(tex.length) ] );    // get a random texture, tex[0] = tex1.png, tex[1] = tex2.png, tex[2] = tex3.png
+		s[i].size(spriteSize);                             // set the size of the sprite
+		s[i].anchorAt(H.CENTER);                           // set the anchor point of the sprite
+		s[i].noStroke();                                   // turn off the stroke
+		s[i].fill( colors.getColorAt( i%colors.size() ) ); // set the fill color of the sprite / use modulo to loop through the colors
 		s[i].loc(0,0);
 
 		orb[i] = new HOrbiter3D(w, h, 0);
-		orb[i].radius(225);
-		orb[i].ySpeed(1);
-		orb[i].zSpeed(1);
+		orb[i].radius(300);
+		orb[i].ySpeed(0.5);
+		orb[i].zSpeed(0.5);
 		orb[i].yAngle( (i+1)*2 );
 		orb[i].zAngle( (i+1)*3 );
 
-		oscS[i] = new HOscillator().range(0.1, 1.0).speed(0.1).freq(10);
+		oscS[i] = new HOscillator().range(0.1, 1.0).speed(0.1).freq(10).currentStep(i*0.6);
+		oscR[i] = new HOscillator().range(-180, 180).speed(0.1).freq(10).currentStep(i*0.3);
 	}
 }
 
@@ -81,8 +80,8 @@ void draw() {
 	for (int i = 0; i < numAssets; ++i) {
 		orb[i].run();
 		oscS[i].run();
-		s[i].loc( orb[i].x(), orb[i].y() ).scale( 0.99 ).draw(this.g);
-		// s[i].loc( orb[i].x(), orb[i].y() ).width(100).height(100).scale( 0.999 ).draw(this.g);
+		oscR[i].run();
+		s[i].loc( orb[i].x(), orb[i].y(), orb[i].z() ).rotation( oscR[i].cur() ).size(spriteSize).scale( oscS[i].cur() ).draw(this.g);
 	}
 
 	visualizeHelper();
