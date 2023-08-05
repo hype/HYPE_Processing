@@ -77,21 +77,21 @@ void setup() {
 
 	s7 = new HPath(POLYGON);
 	s7
-		.vertex( x1+50, y1+50,   x1, y1) // need bezier curves ? / vertex(handleX, handleY, x, y)
-		.vertex(x2, y1)
-		.vertex(x2, y2)
-		.vertex(x1, y2)
+		.vertex( 75, 100,   0, 0) // need bezier curves ? / vertex(handleX, handleY, x, y)
+		.vertex(200, 0)
+		.vertex(200, 200)
+		.vertex(0, 200)
 	;
 	s7.drawsHandles(true).strokeWeight(4).stroke(#FF3300).fill(#FFFFFF).anchor(100,100).loc(w-275, h+275);
 
 	s8 = new HPath(POLYGON);
 	s8
-		.vertex( x1+50, y1+50,   x1+100, y1+100,   x1, y1) // vertex(handle1X, handle1Y, handle2X, handle2Y, x, y)
-		.vertex( x2-50, y1+50,   x2-100, y1+100,   x2, y1)
-		.vertex( x2-50, y2-50,   x2-100, y2-100,   x2, y2)
-		.vertex( x1+50, y2-50,   x1+100, y2-100,   x1, y2)
+		.vertex( 75, 150,   75, 50,   0, 0) // vertex(handle1X, handle1Y, handle2X, handle2Y, x, y)
+		.vertex( 200, 0 )
+		.vertex( 225, 50,   125, 150, 200, 200 )
+		.vertex( 0, 200 )
 	;
-	s8.drawsHandles(false).strokeWeight(4).stroke(#FF3300).fill(#FFFFFF).anchor(100,100).loc(w, h+275);
+	s8.drawsHandles(true).strokeWeight(4).stroke(#FF3300).fill(#FFFFFF).anchor(100,100).loc(w, h+275);
 
 	s9 = (HPath) s3.createCopy().mode(POINTS).stroke(#FFFFFF).loc(w+275, h+275);
 
