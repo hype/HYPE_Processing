@@ -10,10 +10,10 @@ import processing.core.PImage;
 import java.util.ArrayList;
 
 public class HPath extends HDrawable {
-	public static final int HANDLE_FILL = 0xFFFF0000;
-	public static final int HANDLE_STROKE = 0xFF202020;
-	public static final float HANDLE_STROKE_WEIGHT = 1;
-	public static final float HANDLE_SIZE = 6;
+	public static final int HANDLE_FILL = 0xFFFF3300;
+	public static final int HANDLE_STROKE = 0x80999999;
+	public static final float HANDLE_STROKE_WEIGHT = 2;
+	public static final float HANDLE_SIZE = 8;
 	public HColorist vertexColor;
 	public PImage texture;
 	private ArrayList<HVertex> vertices;
@@ -278,8 +278,8 @@ public class HPath extends HDrawable {
 		switch (mode) {
 			case PConstants.POINTS:
 				for (int i = 0; i < numv; ++i) {
-					HVertex curr = vertex(i);
-					if (curr.u() == relX / width && curr.v() == relY / height) return true;
+					HVertex cur = vertex(i);
+					if (cur.u() == relX / width && cur.v() == relY / height) return true;
 				}
 				return false;
 			case PConstants.PATH:
@@ -287,9 +287,9 @@ public class HPath extends HDrawable {
 				if (HColors.isTransparent(fill)) {
 					HVertex prev = vertex(openPath ? 0 : numv - 1);
 					for (int i = (openPath ? 1 : 0); i < numv; ++i) {
-						HVertex curr = vertex(i);
-						if (curr.inLine(prev, relX, relY)) return true;
-						prev = curr;
+						HVertex cur = vertex(i);
+						if (cur.inLine(prev, relX, relY)) return true;
+						prev = cur;
 						if (openPath) openPath = false;
 					}
 					return false;
@@ -302,10 +302,10 @@ public class HPath extends HDrawable {
 				HVertex pprev = vertex(numv > 1 ? numv - 2 : 0);
 
 				for (int i = 0; i < numv; ++i) {
-					HVertex curr = vertex(i);
-					if (curr.intersectTest(pprev, prev, u, v, openPath)) isIn = !isIn;
+					HVertex cur = vertex(i);
+					if (cur.intersectTest(pprev, prev, u, v, openPath)) isIn = !isIn;
 					pprev = prev;
-					prev = curr;
+					prev = cur;
 					if (openPath) openPath = false;
 				}
 				return isIn;
@@ -358,9 +358,9 @@ public class HPath extends HDrawable {
 		if (drawsHandles && drawsLines) {
 			HVertex prev = vertex(isPolygon ? numv - 1 : 0);
 			for (int i = (isPolygon ? 0 : 1); i < numv; ++i) {
-				HVertex curr = vertex(i);
-				curr.drawHandles(g, prev, drawX, drawY);
-				prev = curr;
+				HVertex cur = vertex(i);
+				cur.drawHandles(g, prev, drawX, drawY);
+				prev = cur;
 			}
 		}
 	}

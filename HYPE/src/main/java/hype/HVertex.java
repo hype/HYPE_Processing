@@ -4,6 +4,7 @@ import hype.extended.colorist.HColorField;
 import hype.extended.colorist.HColorPool;
 import hype.extended.colorist.HPixelColorist;
 import hype.interfaces.HLocatable;
+import processing.core.PApplet;
 import processing.core.PGraphics;
 
 public class HVertex implements HLocatable {
@@ -480,6 +481,7 @@ public class HVertex implements HLocatable {
 		float x2 = drawX + x();
 		float y2 = drawY + y();
 
+
 		g.fill(HPath.HANDLE_FILL);
 		g.stroke(HPath.HANDLE_STROKE);
 		g.strokeWeight(HPath.HANDLE_STROKE_WEIGHT);
@@ -490,10 +492,9 @@ public class HVertex implements HLocatable {
 
 			g.line(x1, y1, drCX, drCY);
 			g.line(x2, y2, drCX, drCY);
+			g.hint(PApplet.DISABLE_DEPTH_TEST);
 			g.ellipse(drCX, drCY, HPath.HANDLE_SIZE, HPath.HANDLE_SIZE);
-			g.fill(HPath.HANDLE_STROKE);
-			g.ellipse(x1, y1, HPath.HANDLE_SIZE / 2, HPath.HANDLE_SIZE / 2);
-			g.ellipse(x2, y2, HPath.HANDLE_SIZE / 2, HPath.HANDLE_SIZE / 2);
+			g.hint(PApplet.ENABLE_DEPTH_TEST);
 		} else {
 			float drCX1 = drawX + cx1();
 			float drCY1 = drawY + cy1();
@@ -503,11 +504,10 @@ public class HVertex implements HLocatable {
 			g.line(x1, y1, drCX1, drCY1);
 			g.line(x2, y2, drCX2, drCY2);
 			g.line(drCX1, drCY1, drCX2, drCY2);
+			g.hint(PApplet.DISABLE_DEPTH_TEST);
 			g.ellipse(drCX1, drCY1, HPath.HANDLE_SIZE, HPath.HANDLE_SIZE);
 			g.ellipse(drCX2, drCY2, HPath.HANDLE_SIZE, HPath.HANDLE_SIZE);
-			g.fill(HPath.HANDLE_STROKE);
-			g.ellipse(x1, y1, HPath.HANDLE_SIZE / 2, HPath.HANDLE_SIZE / 2);
-			g.ellipse(x2, y2, HPath.HANDLE_SIZE / 2, HPath.HANDLE_SIZE / 2);
+			g.hint(PApplet.ENABLE_DEPTH_TEST);
 		}
 	}
 }

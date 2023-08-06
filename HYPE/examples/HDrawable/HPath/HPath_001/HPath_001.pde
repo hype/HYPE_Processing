@@ -70,11 +70,6 @@ void setup() {
 
 // ************************************************** / ROW 3
 
-	int x1 = 0;
-	int x2 = 200;
-	int y1 = 0;
-	int y2 = 200;
-
 	s7 = new HPath(POLYGON);
 	s7
 		.vertex( 75, 100,   0, 0) // need bezier curves ? / vertex(handleX, handleY, x, y)
@@ -82,7 +77,7 @@ void setup() {
 		.vertex(200, 200)
 		.vertex(0, 200)
 	;
-	s7.drawsHandles(true).strokeWeight(4).stroke(#FF3300).fill(#FFFFFF).anchor(100,100).loc(w-275, h+275);
+	s7.drawsHandles(true).strokeWeight(4).stroke(#FF3300).fill(#111111).anchor(100,100).loc(w-275, h+275);
 
 	s8 = new HPath(POLYGON);
 	s8
@@ -91,7 +86,7 @@ void setup() {
 		.vertex( 225, 50,   125, 150, 200, 200 )
 		.vertex( 0, 200 )
 	;
-	s8.drawsHandles(true).strokeWeight(4).stroke(#FF3300).fill(#FFFFFF).anchor(100,100).loc(w, h+275);
+	s8.drawsHandles(true).strokeWeight(4).stroke(#FF3300).fill(#111111).anchor(100,100).loc(w, h+275);
 
 	s9 = (HPath) s3.createCopy().mode(POINTS).stroke(#FFFFFF).loc(w+275, h+275);
 
