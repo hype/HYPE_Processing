@@ -15,27 +15,27 @@ void settings() {
 }
 
 void setup() {
-	H.init(this); // initialize HYPE library
+	H.init(this);         // initialize HYPE library
 	background(clrBg);
 
-	w = width/2; // move the origin (0,0) to the center of the stage / x
-	h = height/2; // move the origin (0,0) to the center of the stage / y
+	w = width/2;          // move the origin (0,0) to the center of the stage / x
+	h = height/2;         // move the origin (0,0) to the center of the stage / y
 
 // ************************************************** / ROW 1
 
 	// notice that calling HPath() with no argument will NOT CLOSE the path
 
-	s1 = new HPath(); // create an HPath object
+	s1 = new HPath();     // create an HPath object
 	s1
 		.vertex(0,0)
 		.vertex(200,0)
 		.vertex(200,200)
 		.vertex(0,200)
 	;
-	s1.strokeWeight(4);	// set the stroke weight
-	s1.stroke(#FF9900); // set the stroke color
-	s1.fill(#111111); // set the fill color
-	s1.anchor(100,100); // set the anchor point
+	s1.strokeWeight(4);	  // set the stroke weight
+	s1.stroke(#FF9900);   // set the stroke color
+	s1.fill(#111111);     // set the fill color
+	s1.anchor(100,100);   // set the anchor point
 	s1.loc(w-275, h-275); // set the location (x,y) of the object
 
 	s2 = new HPath();
@@ -77,7 +77,7 @@ void setup() {
 		.vertex(200, 200)
 		.vertex(0, 200)
 	;
-	s7.drawsHandles(true).strokeWeight(4).stroke(#FF3300).fill(#111111).anchor(100,100).loc(w-275, h+275);
+	s7.drawsHandles(true).strokeWeight(4).stroke(#FF9900).fill(#111111).anchor(100,100).loc(w-275, h+275);
 
 	s8 = new HPath(POLYGON);
 	s8
@@ -86,7 +86,7 @@ void setup() {
 		.vertex( 225, 50,   125, 150, 200, 200 )
 		.vertex( 0, 200 )
 	;
-	s8.drawsHandles(true).strokeWeight(4).stroke(#FF3300).fill(#111111).anchor(100,100).loc(w, h+275);
+	s8.drawsHandles(true).strokeWeight(4).stroke(#FF6600).fill(#111111).anchor(100,100).loc(w, h+275);
 
 	s9 = (HPath) s3.createCopy().mode(POINTS).stroke(#FFFFFF).loc(w+275, h+275);
 
