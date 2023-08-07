@@ -18,8 +18,8 @@ int         gridR = 7;
 int         gridSpacingX = 115;
 int         gridSpacingY = 115;
 
-int         gridStartX = -( (gridC-1) * (gridSpacingX/2) );
-int         gridStartY = -( (gridR-1) * (gridSpacingY/2) );
+int         gridStartX = -(gridSpacingX * (gridC-1))/2;
+int         gridStartY = -(gridSpacingY * (gridR-1))/2;
 
 int         numAssets = gridC * gridR;
 HPath[]     s = new HPath[numAssets];

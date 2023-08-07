@@ -1,8 +1,11 @@
 package hype;
 
 import processing.core.PGraphics;
+import processing.core.PApplet;
 
 public class HSphere extends HDrawable3D {
+	private boolean useDetail = false;
+	private int currentDetail = 20;
 	public HSphere() {}
 
 	public HSphere(float radius) {
@@ -19,6 +22,16 @@ public class HSphere extends HDrawable3D {
 
 	public HSphere radius(float radiusw, float radiush, float radiusd) {
 		return (HSphere) size(radiusw*2, radiush*2, radiusd*2);
+	}
+
+	public HSphere sphereDetail(int i) {
+		useDetail = true;
+		currentDetail = i;
+		return this;
+	}
+
+	public int sphereDetail() {
+		return currentDetail;
 	}
 
 	@Override
@@ -39,6 +52,7 @@ public class HSphere extends HDrawable3D {
 	@Override
 	public void drawPrimitive(PGraphics g, boolean usesZ, float drawX, float drawY, float alphaPc) {
 		applyStyle(g, alphaPc);
+		if(useDetail) g.sphereDetail(currentDetail);
 		g.pushMatrix();
 			g.translate(drawX+ width /2, drawY+ height /2, -anchorZ()+ depth /2);
 			//g.scale(width, height, depth);
