@@ -2069,6 +2069,11 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 		g.popMatrix();
 	}
 
+	/** @deprecated */
+	public void draw(PGraphics g, boolean usesZ, float drawX, float drawY, float currAlphaPc) {
+		drawPrimitive(g, usesZ, drawX, drawY, currAlphaPc);
+	}
+
 	/**
 	 * Prepares the environment for drawing this drawable and its children.
 	 *

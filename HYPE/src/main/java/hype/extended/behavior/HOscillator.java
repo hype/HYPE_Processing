@@ -282,6 +282,11 @@ public class HOscillator extends HBehavior {
 		return waveform;
 	}
 
+	/** @deprecated */
+	public float nextRaw() {
+		return run();
+	}
+
 	public float run() {
 		float deg = (step * freq) % 360;
 		float rawVal;
@@ -362,33 +367,20 @@ public class HOscillator extends HBehavior {
 		return rawVal;
 	}
 
-	public float cur() {
-		return cur1;
-	}
+	public float cur()  { return cur1; }
+	public float cur1() { return cur1; }
+	public float cur2() { return cur2; }
+	public float cur3() { return cur3; }
 
-	public float cur1() {
-		return cur1;
-	}
+	public float map1() { return map1;}
+	public float map2() { return map2;}
+	public float map3() { return map3;}
 
-	public float cur2() {
-		return cur2;
-	}
-
-	public float cur3() {
-		return cur3;
-	}
-
-	public float map1() {
-		return map1;
-	}
-
-	public float map2() {
-		return map2;
-	}
-
-	public float map3() {
-		return map3;
-	}
+	/** @deprecated */
+	public float curr()  { return cur();  }
+	public float curr1() { return cur1(); }
+	public float curr2() { return cur2(); }
+	public float curr3() { return cur3(); }
 
 	@Override
 	public void runBehavior(PApplet app) {
