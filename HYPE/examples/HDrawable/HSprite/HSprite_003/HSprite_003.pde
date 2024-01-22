@@ -37,7 +37,7 @@ void setup() {
 	s7 = (HSprite) s3.createCopy().size(50, 50).loc(w+390, h-150);
 
 	s8 = (HSprite) new HSprite().texture(i3).size(280, 50).loc(w-440, h+390);
-	s9 = (HSprite) s8.createCopy().size(230, 350).loc(w-150, h+90);
+	s9 = (HSprite)  s8.createCopy().size(230, 350).loc(w-150, h+90);
 	s10 = (HSprite) s8.createCopy().size(170, 410).loc(w+90, h+30);
 	s11 = (HSprite) s8.createCopy().size(110, 470).loc(w+270, h-30);
 	s12 = (HSprite) s8.createCopy().size(50, 530).loc(w+390, h-90);
