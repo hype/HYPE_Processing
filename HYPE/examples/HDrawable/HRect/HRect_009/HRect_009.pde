@@ -9,7 +9,7 @@ color   clrBg  = #242424;
 // **************************************************
 
 HCanvas canvas;
-HRect   s1, s2, s3, s4;
+HRect   d1, d2, d3, d4;
 HGroup  grp;
 HRotate r1;
 
@@ -30,19 +30,19 @@ void setup() {
 
 	r1 = new HRotate().speed(1.0);
 
-	s1 = new HRect(100);
-	s1.rounding(20).strokeWeight(0).noStroke().fill(#FF3300).anchorAt(H.CENTER).loc(-m,-m);
+	d1 = new HRect(100);
+	d1.rounding(20).strokeWeight(0).noStroke().fill(#FF3300).anchorAt(H.CENTER).loc(-m,-m);
 
-	s2 = (HRect) s1.createCopy().fill(#FF6600).loc(m,-m);
-	s3 = (HRect) s1.createCopy().fill(#FF9900).loc(-m,m);
-	s4 = (HRect) s1.createCopy().fill(#FFCC00).loc(m,m);
+	d2 = (HRect) d1.createCopy().fill(#FF6600).loc(m,-m);
+	d3 = (HRect) d1.createCopy().fill(#FF9900).loc(-m,m);
+	d4 = (HRect) d1.createCopy().fill(#FFCC00).loc(m,m);
 
 	grp = new HGroup();
 	grp.noStroke();
-	grp.add(s1);
-	grp.add(s2);
-	grp.add(s3);
-	grp.add(s4);
+	grp.add(d1);
+	grp.add(d2);
+	grp.add(d3);
+	grp.add(d4);
 	grp.loc(w, h);
 
 	canvas.add(grp);

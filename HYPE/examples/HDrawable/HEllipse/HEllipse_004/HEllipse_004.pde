@@ -7,9 +7,9 @@ color clrBg  = #242424;
 
 // **************************************************
 
-HEllipse s1, s2, s3;
-HEllipse s4, s5, s6;
-HEllipse s7, s8, s9;
+HEllipse d1, d2, d3;
+HEllipse d4, d5, d6;
+HEllipse d7, d8, d9;
 
 void settings() {
 	size(stageW, stageH, P3D);
@@ -26,45 +26,45 @@ void setup() {
 
 // ************************************************** ROW 1
 
-	s1 = new HEllipse(60).start(45);
-	s1.noStroke().fill(#ECECEC).anchorAt(H.CENTER);
-	s1.loc(w-m, h-m);
+	d1 = new HEllipse(60).start(45);
+	d1.noStroke().fill(#ECECEC).anchorAt(H.CENTER);
+	d1.loc(w-m, h-m);
 
-	s2 = new HEllipse(60).start(45).end(90);
-	s2.noStroke().fill(#ECECEC).anchorAt(H.CENTER);
-	s2.loc(w, h-m);
+	d2 = new HEllipse(60).start(45).end(90);
+	d2.noStroke().fill(#ECECEC).anchorAt(H.CENTER);
+	d2.loc(w, h-m);
 
-	s3 = new HEllipse(60).start(0).end(180);
-	s3.noStroke().fill(#ECECEC).anchorAt(H.CENTER);
-	s3.rotation(180).loc(w+m, h-m);
+	d3 = new HEllipse(60).start(0).end(180);
+	d3.noStroke().fill(#ECECEC).anchorAt(H.CENTER);
+	d3.rotation(180).loc(w+m, h-m);
 
 // ************************************************** ROW 2
 
-	s4 = new HEllipse();
-	s4.noStroke().fill(#ECECEC).anchorAt(H.CENTER);
-	s4.size(50,100).loc(w-m, h);
+	d4 = new HEllipse();
+	d4.noStroke().fill(#ECECEC).anchorAt(H.CENTER);
+	d4.size(50,100).loc(w-m, h);
 
-	s5 = new HEllipse(60);
-	s5.strokeWeight(3).stroke(#666666).fill(#ECECEC).anchorAt(H.CENTER);
-	s5.size(150,100).loc(w, h);
+	d5 = new HEllipse(60);
+	d5.strokeWeight(3).stroke(#666666).fill(#ECECEC).anchorAt(H.CENTER);
+	d5.size(150,100).loc(w, h);
 
-	s6 = new HEllipse(60);
-	s6.noStroke().fill(#ECECEC).anchorAt(H.CENTER);
-	s6.visibility(false).loc(w+m, h);
+	d6 = new HEllipse(60);
+	d6.noStroke().fill(#ECECEC).anchorAt(H.CENTER);
+	d6.visibility(false).loc(w+m, h);
 
 // ************************************************** ROW 3
 
-	s7 = new HEllipse(60);
-	s7.strokeWeight(6).stroke(#000000).fill(#ECECEC).alpha(100).anchorAt(H.CENTER);
-	s7.loc(w-m, h+m);
+	d7 = new HEllipse(60);
+	d7.strokeWeight(6).stroke(#000000).fill(#ECECEC).alpha(100).anchorAt(H.CENTER);
+	d7.loc(w-m, h+m);
 
-	s8 = new HEllipse(60);
-	s8.strokeWeight(6).stroke(#000000, 150).fill(#ECECEC, 50).anchorAt(H.CENTER);
-	s8.loc(w, h+m);
+	d8 = new HEllipse(60);
+	d8.strokeWeight(6).stroke(#000000, 150).fill(#ECECEC, 50).anchorAt(H.CENTER);
+	d8.loc(w, h+m);
 
-	s9 = new HEllipse(60);
-	s9.strokeWeight(6).stroke(#000000, 100).fill(#ECECEC).anchorAt(H.CENTER);
-	s9.loc(w+m, h+m);
+	d9 = new HEllipse(60);
+	d9.strokeWeight(6).stroke(#000000, 100).fill(#ECECEC).anchorAt(H.CENTER);
+	d9.loc(w+m, h+m);
 
 }
 
@@ -72,17 +72,17 @@ void draw() {
 	background(clrBg);
 	visualizeHelper();
 
-	s1.draw(this.g);
-	s2.draw(this.g);
-	s3.draw(this.g);
+	d1.draw(this.g);
+	d2.draw(this.g);
+	d3.draw(this.g);
 
-	s4.draw(this.g);
-	s5.draw(this.g);
-	s6.draw(this.g);
+	d4.draw(this.g);
+	d5.draw(this.g);
+	d6.draw(this.g);
 
-	s7.draw(this.g);
-	s8.draw(this.g);
-	s9.draw(this.g);
+	d7.draw(this.g);
+	d8.draw(this.g);
+	d9.draw(this.g);
 }
 
 // **************************************************
@@ -95,17 +95,17 @@ void visualizeHelper() {
 	stroke(#0095a8);
 	fill(#333333);
 
-	ellipse(s1.x(), s1.y(), 6, 6);
-	ellipse(s2.x(), s2.y(), 6, 6);
-	ellipse(s3.x(), s3.y(), 6, 6);
+	ellipse(d1.x(), d1.y(), 6, 6);
+	ellipse(d2.x(), d2.y(), 6, 6);
+	ellipse(d3.x(), d3.y(), 6, 6);
 
-	ellipse(s4.x(), s4.y(), 6, 6);
-	ellipse(s5.x(), s5.y(), 6, 6);
-	ellipse(s6.x(), s6.y(), 6, 6);
+	ellipse(d4.x(), d4.y(), 6, 6);
+	ellipse(d5.x(), d5.y(), 6, 6);
+	ellipse(d6.x(), d6.y(), 6, 6);
 
-	ellipse(s7.x(), s7.y(), 6, 6);
-	ellipse(s8.x(), s8.y(), 6, 6);
-	ellipse(s9.x(), s9.y(), 6, 6);
+	ellipse(d7.x(), d7.y(), 6, 6);
+	ellipse(d8.x(), d8.y(), 6, 6);
+	ellipse(d9.x(), d9.y(), 6, 6);
 
 // visualize the center of the stage
 

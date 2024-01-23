@@ -11,7 +11,7 @@ String pathToData = "../data/";
 
 // SPRITES
 
-HSprite s1, s2, s3, s4, s5, s6, s7, s8, s9;
+HSprite d1, d2, d3, d4, d5, d6, d7, d8, d9;
 int     spriteSize   = 225;
 
 // **************************************************
@@ -37,20 +37,20 @@ void setup() {
 	h = height/2;
 
 	i1 = (HImage) new HImage(pathToData + "color.png").loc(0, 0);
-	clr = new HOscillator().range(0, 900).speed(1).freq(2).waveform(H.SAW);
+	clr = new HOscillator().range(0, i1.width()-1).speed(1).freq(2).waveform(H.SAW);
 	clrMarker = (HRect) new HRect(2, 40).strokeWeight(0).noStroke().fill(#CCCCCC).anchorAt(H.CENTER).loc(0, 10);
 
-	s1 = (HSprite) new HSprite().texture(pathToData + "tex1.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w-275, h-275);
-	s2 = (HSprite) new HSprite().texture(pathToData + "tex2.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w, h-275);
-	s3 = (HSprite) new HSprite().texture(pathToData + "tex3.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w+275, h-275);
+	d1 = (HSprite) new HSprite().texture(pathToData + "tex1.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w-275, h-275);
+	d2 = (HSprite) new HSprite().texture(pathToData + "tex2.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w, h-275);
+	d3 = (HSprite) new HSprite().texture(pathToData + "tex3.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w+275, h-275);
 
-	s4 = (HSprite) new HSprite().texture(pathToData + "tex1.png").size(spriteSize).anchorAt(H.CENTER).loc(w-275, h);
-	s5 = (HSprite) new HSprite().texture(pathToData + "tex2.png").size(spriteSize).anchorAt(H.CENTER).loc(w, h);
-	s6 = (HSprite) new HSprite().texture(pathToData + "tex3.png").size(spriteSize).anchorAt(H.CENTER).loc(w+275, h);
+	d4 = (HSprite) new HSprite().texture(pathToData + "tex1.png").size(spriteSize).anchorAt(H.CENTER).loc(w-275, h);
+	d5 = (HSprite) new HSprite().texture(pathToData + "tex2.png").size(spriteSize).anchorAt(H.CENTER).loc(w, h);
+	d6 = (HSprite) new HSprite().texture(pathToData + "tex3.png").size(spriteSize).anchorAt(H.CENTER).loc(w+275, h);
 
-	s7 = (HSprite) new HSprite().texture(pathToData + "img1.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w-275, h+275);
-	s8 = (HSprite) new HSprite().texture(pathToData + "img2.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w, h+275);
-	s9 = (HSprite) new HSprite().texture(pathToData + "img3.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w+275, h+275);
+	d7 = (HSprite) new HSprite().texture(pathToData + "img1.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w-275, h+275);
+	d8 = (HSprite) new HSprite().texture(pathToData + "img2.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w, h+275);
+	d9 = (HSprite) new HSprite().texture(pathToData + "img3.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w+275, h+275);
 }
 
 void draw() {
@@ -63,17 +63,17 @@ void draw() {
 
 	color _c = i1.getColor( clr.cur(), 1 );
 
-	s1.fill(_c).draw(this.g);
-	s2.fill(_c).draw(this.g);
-	s3.fill(_c).draw(this.g);
+	d1.fill(_c).draw(this.g);
+	d2.fill(_c).draw(this.g);
+	d3.fill(_c).draw(this.g);
 
-	s4.fill(_c).draw(this.g);
-	s5.fill(_c).draw(this.g);
-	s6.fill(_c).draw(this.g);
+	d4.fill(_c).draw(this.g);
+	d5.fill(_c).draw(this.g);
+	d6.fill(_c).draw(this.g);
 
-	s7.fill(_c).draw(this.g);
-	s8.fill(_c).draw(this.g);
-	s9.fill(_c).draw(this.g);
+	d7.fill(_c).draw(this.g);
+	d8.fill(_c).draw(this.g);
+	d9.fill(_c).draw(this.g);
 
 	visualizeHelper();
 }
@@ -87,17 +87,17 @@ void visualizeHelper() {
 	strokeWeight(2);
 	stroke(#0095a8);
 	fill(#333333); 
-	ellipse(s1.x(), s1.y(), 6, 6);
-	ellipse(s2.x(), s2.y(), 6, 6);
-	ellipse(s3.x(), s3.y(), 6, 6);
+	ellipse(d1.x(), d1.y(), 6, 6);
+	ellipse(d2.x(), d2.y(), 6, 6);
+	ellipse(d3.x(), d3.y(), 6, 6);
 
-	ellipse(s4.x(), s4.y(), 6, 6);
-	ellipse(s5.x(), s5.y(), 6, 6);
-	ellipse(s6.x(), s6.y(), 6, 6);
+	ellipse(d4.x(), d4.y(), 6, 6);
+	ellipse(d5.x(), d5.y(), 6, 6);
+	ellipse(d6.x(), d6.y(), 6, 6);
 
-	ellipse(s7.x(), s7.y(), 6, 6);
-	ellipse(s8.x(), s8.y(), 6, 6);
-	ellipse(s9.x(), s9.y(), 6, 6);
+	ellipse(d7.x(), d7.y(), 6, 6);
+	ellipse(d8.x(), d8.y(), 6, 6);
+	ellipse(d9.x(), d9.y(), 6, 6);
 
 // visualize the center of the stage
 

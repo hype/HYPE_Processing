@@ -7,7 +7,7 @@ color clrBg  = #242424;
 
 // **************************************************
 
-HPath s1, s2, s3;
+HPath d1, d2, d3;
 HText t1;
 
 void settings() {
@@ -23,19 +23,19 @@ void setup() {
 	h = height/2;
 
 	// star( numPoints, innerRadius, rotation )
-	s1 = (HPath) new HPath().star( 5, 0.5, 0 ).size(200).strokeWeight(4).stroke(#FF9900).fill(#111111).anchor(100,100).loc(w-275, h);
-	s2 = (HPath) new HPath().star( 5, 0.5, -90 ).size(200).strokeWeight(4).stroke(#FF6600).fill(#111111).anchor(100,100).loc(w, h);
-	s3 = (HPath) new HPath().star( 5, 0.5, 90 ).size(200).strokeWeight(4).stroke(#FF3300).fill(#111111).anchor(100,100).loc(w+275, h);
+	d1 = (HPath) new HPath().star( 5, 0.5, 0 ).size(200).strokeWeight(4).stroke(#FF9900).fill(#111111).anchor(100,100).loc(w-275, h);
+	d2 = (HPath) new HPath().star( 5, 0.5, -90 ).size(200).strokeWeight(4).stroke(#FF6600).fill(#111111).anchor(100,100).loc(w, h);
+	d3 = (HPath) new HPath().star( 5, 0.5, 90 ).size(200).strokeWeight(4).stroke(#FF3300).fill(#111111).anchor(100,100).loc(w+275, h);
 
-	t1 = (HText) new HText("Heavy Metal").size(18).strokeWeight(0).noStroke().fill(#FF3300).loc(s3.x(), h+125);
+	t1 = (HText) new HText("Heavy Metal").size(18).strokeWeight(0).noStroke().fill(#FF3300).loc(d3.x(), h+125);
 }
 
 void draw() {
 	background(clrBg);
 
-	s1.draw(this.g);
-	s2.draw(this.g);
-	s3.draw(this.g);
+	d1.draw(this.g);
+	d2.draw(this.g);
+	d3.draw(this.g);
 
 	t1.draw(this.g);
 
@@ -51,9 +51,9 @@ void visualizeHelper() {
 	strokeWeight(2);
 	stroke(#0095a8);
 	fill(#333333);
-	ellipse(s1.x(), s1.y(), 6, 6);
-	ellipse(s2.x(), s2.y(), 6, 6);
-	ellipse(s3.x(), s3.y(), 6, 6);
+	ellipse(d1.x(), d1.y(), 6, 6);
+	ellipse(d2.x(), d2.y(), 6, 6);
+	ellipse(d3.x(), d3.y(), 6, 6);
 
 // visualize the center of the stage
 

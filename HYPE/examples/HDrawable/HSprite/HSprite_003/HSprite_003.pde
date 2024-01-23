@@ -9,7 +9,7 @@ String pathToData = "../data/";
 // **************************************************
 
 PImage  i1, i2, i3;
-HSprite s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
+HSprite d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12;
 
 void settings() {
 	size(stageW, stageH, P3D);
@@ -27,37 +27,37 @@ void setup() {
 	i2 = loadImage(pathToData + "tex2.png");
 	i3 = loadImage(pathToData + "tex3.png");
 
-	s1 = (HSprite) new HSprite().texture(i1).size(280, 280).loc(w-440, h-440);
-	s2 = (HSprite) s1.createCopy().size(590, 280).loc(w-150, h-440);
+	d1 = (HSprite) new HSprite().texture(i1).size(280, 280).loc(w-440, h-440);
+	d2 = (HSprite) d1.createCopy().size(590, 280).loc(w-150, h-440);
 
-	s3 = (HSprite) new HSprite().texture(i2).size(280, 530).loc(w-440, h-150);
-	s4 = (HSprite) s3.createCopy().size(230, 230).loc(w-150, h-150);
-	s5 = (HSprite) s3.createCopy().size(170, 170).loc(w+90, h-150);
-	s6 = (HSprite) s3.createCopy().size(110, 110).loc(w+270, h-150);
-	s7 = (HSprite) s3.createCopy().size(50, 50).loc(w+390, h-150);
+	d3 = (HSprite) new HSprite().texture(i2).size(280, 530).loc(w-440, h-150);
+	d4 = (HSprite) d3.createCopy().size(230, 230).loc(w-150, h-150);
+	d5 = (HSprite) d3.createCopy().size(170, 170).loc(w+90, h-150);
+	d6 = (HSprite) d3.createCopy().size(110, 110).loc(w+270, h-150);
+	d7 = (HSprite) d3.createCopy().size(50, 50).loc(w+390, h-150);
 
-	s8 = (HSprite) new HSprite().texture(i3).size(280, 50).loc(w-440, h+390);
-	s9 = (HSprite)  s8.createCopy().size(230, 350).loc(w-150, h+90);
-	s10 = (HSprite) s8.createCopy().size(170, 410).loc(w+90, h+30);
-	s11 = (HSprite) s8.createCopy().size(110, 470).loc(w+270, h-30);
-	s12 = (HSprite) s8.createCopy().size(50, 530).loc(w+390, h-90);
+	d8 = (HSprite) new HSprite().texture(i3).size(280, 50).loc(w-440, h+390);
+	d9 = (HSprite)  d8.createCopy().size(230, 350).loc(w-150, h+90);
+	d10 = (HSprite) d8.createCopy().size(170, 410).loc(w+90, h+30);
+	d11 = (HSprite) d8.createCopy().size(110, 470).loc(w+270, h-30);
+	d12 = (HSprite) d8.createCopy().size(50, 530).loc(w+390, h-90);
 }
 
 void draw() {
 	background(clrBg);
 
-	s1.draw(this.g);
-	s2.draw(this.g);
-	s3.draw(this.g);
-	s4.draw(this.g);
-	s5.draw(this.g);
-	s6.draw(this.g);
-	s7.draw(this.g);
-	s8.draw(this.g);
-	s9.draw(this.g);
-	s10.draw(this.g);
-	s11.draw(this.g);
-	s12.draw(this.g);
+	d1.draw(this.g);
+	d2.draw(this.g);
+	d3.draw(this.g);
+	d4.draw(this.g);
+	d5.draw(this.g);
+	d6.draw(this.g);
+	d7.draw(this.g);
+	d8.draw(this.g);
+	d9.draw(this.g);
+	d10.draw(this.g);
+	d11.draw(this.g);
+	d12.draw(this.g);
 
 	visualizeHelper();
 }
@@ -71,18 +71,18 @@ void visualizeHelper() {
 	strokeWeight(2);
 	stroke(#0095a8);
 	fill(#333333); 
-	ellipse(s1.x(), s1.y(), 6, 6);
-	ellipse(s2.x(), s2.y(), 6, 6);
-	ellipse(s3.x(), s3.y(), 6, 6);
-	ellipse(s4.x(), s4.y(), 6, 6);
-	ellipse(s5.x(), s5.y(), 6, 6);
-	ellipse(s6.x(), s6.y(), 6, 6);
-	ellipse(s7.x(), s7.y(), 6, 6);
-	ellipse(s8.x(), s8.y(), 6, 6);
-	ellipse(s9.x(), s9.y(), 6, 6);
-	ellipse(s10.x(), s10.y(), 6, 6);
-	ellipse(s11.x(), s11.y(), 6, 6);
-	ellipse(s12.x(), s12.y(), 6, 6);
+	ellipse(d1.x(), d1.y(), 6, 6);
+	ellipse(d2.x(), d2.y(), 6, 6);
+	ellipse(d3.x(), d3.y(), 6, 6);
+	ellipse(d4.x(), d4.y(), 6, 6);
+	ellipse(d5.x(), d5.y(), 6, 6);
+	ellipse(d6.x(), d6.y(), 6, 6);
+	ellipse(d7.x(), d7.y(), 6, 6);
+	ellipse(d8.x(), d8.y(), 6, 6);
+	ellipse(d9.x(), d9.y(), 6, 6);
+	ellipse(d10.x(), d10.y(), 6, 6);
+	ellipse(d11.x(), d11.y(), 6, 6);
+	ellipse(d12.x(), d12.y(), 6, 6);
 
 // visualize the center of the stage
 

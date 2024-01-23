@@ -8,7 +8,7 @@ String pathToData = "../data/";
 
 // **************************************************
 
-HBox s1;                // declare an HBox object
+HBox d1;                // declare an HBox object/drawable
 
 void settings() {
 	size(stageW, stageH, P3D);
@@ -22,19 +22,19 @@ void setup() {
 	w = width/2;        // move the origin (0,0) to the center of the stage / x
 	h = height/2;       // move the origin (0,0) to the center of the stage / y
 
-	s1 = new HBox();    // create an HBox object
-	s1.size(250); 	    // set the size of the object
-	s1.stroke(#000000); // set the stroke color
-	s1.fill(#FFFFFF);   // set the fill color
-	s1.loc(w, h);       // set the location (x,y) of the object
+	d1 = new HBox();    // create an HBox object
+	d1.size(250); 	    // set the size of the object
+	d1.stroke(#000000); // set the stroke color
+	d1.fill(#FFFFFF);   // set the fill color
+	d1.loc(w, h);       // set the location (x,y) of the object
 
 	// set the textures for each of the six side of the object
-	s1.textureFront(pathToData  + "tex_01.png");
-	s1.textureBack(pathToData   + "tex_02.png");
-	s1.textureTop(pathToData    + "tex_03.png");
-	s1.textureBottom(pathToData + "tex_04.png");
-	s1.textureLeft(pathToData   + "tex_05.png");
-	s1.textureRight(pathToData  + "tex_06.png");
+	d1.textureFront(pathToData  + "tex_01.png");
+	d1.textureBack(pathToData   + "tex_02.png");
+	d1.textureTop(pathToData    + "tex_03.png");
+	d1.textureBottom(pathToData + "tex_04.png");
+	d1.textureLeft(pathToData   + "tex_05.png");
+	d1.textureRight(pathToData  + "tex_06.png");
 }
 
 void draw() {
@@ -49,9 +49,9 @@ void draw() {
 
 	lights();
 
-	s1.rotationY( map(mouseX, 0, width,  -180, 180) ); // rotate the object on the Y axis
-	s1.rotationX( map(mouseY, 0, height, -180, 180) ); // rotate the object on the X axis
-	s1.draw(this.g); // object.draw(where to draw) / this.g = processing stage
+	d1.rotationY( map(mouseX, 0, width,  -180, 180) ); // rotate the object on the Y axis
+	d1.rotationX( map(mouseY, 0, height, -180, 180) ); // rotate the object on the X axis
+	d1.draw(this.g); // object.draw(where to draw) / this.g = processing stage
 
 	visualizeHelper();
 }

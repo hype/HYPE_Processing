@@ -7,7 +7,7 @@ color clrBg  = #242424;
 
 // **************************************************
 
-HRect s1, s2;
+HRect d1, d2;
 
 void settings() {
 	size(stageW, stageH, P3D);
@@ -22,19 +22,19 @@ void setup() {
 	h = height/2;
 	m = 225;
 
-	s1 = new HRect();
-	s1.rounding(10).strokeWeight(3).stroke(#FF3300).fill(#ECECEC).anchorAt(H.CENTER).size(100).loc(w-m, h);
+	d1 = new HRect();
+	d1.rounding(10).strokeWeight(3).stroke(#FF3300).fill(#ECECEC).anchorAt(H.CENTER).size(100).loc(w-m, h);
 
-	s2 = s1.createCopy(); // copy all properties from s1
-	s2.loc(w+m, h);       // change the location / override the loc() method copied from s1
+	d2 = d1.createCopy(); // copy all properties from d1
+	d2.loc(w+m, h);       // change the location / override the loc() method copied from d1
 }
 
 void draw() {
 	background(clrBg);
 	visualizeHelper();
 
-	s1.draw(this.g);
-	s2.draw(this.g);
+	d1.draw(this.g);
+	d2.draw(this.g);
 }
 
 // **************************************************
@@ -47,8 +47,8 @@ void visualizeHelper() {
 	stroke(#0095a8);
 	fill(#333333);
 
-	ellipse(s1.x(), s1.y(), 6, 6);
-	ellipse(s2.x(), s2.y(), 6, 6);
+	ellipse(d1.x(), d1.y(), 6, 6);
+	ellipse(d2.x(), d2.y(), 6, 6);
 
 // visualize the center of the stage
 

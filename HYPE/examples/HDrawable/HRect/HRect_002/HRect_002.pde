@@ -7,9 +7,9 @@ color clrBg  = #242424;
 
 // **************************************************
 
-HRect s1, s2, s3;
-HRect s4, s5, s6;
-HRect s7, s8, s9;
+HRect d1, d2, d3;
+HRect d4, d5, d6;
+HRect d7, d8, d9;
 
 void settings() {
 	size(stageW, stageH, P3D);
@@ -35,62 +35,62 @@ void setup() {
 
 // ************************************************** ROW 1
 
-	s1 = new HRect(100);
-	s1.rounding(5).noStroke().fill(#FF3300).anchorAt(H.LEFT);
-	s1.loc(w-m, h-m);
+	d1 = new HRect(100);
+	d1.rounding(5).noStroke().fill(#FF3300).anchorAt(H.LEFT);
+	d1.loc(w-m, h-m);
 
-	s2 = new HRect(100);
-	s2.rounding(5).noStroke().fill(#009900).anchorAt(H.CENTER_X | H.TOP);
-	s2.loc(w, h-m);
+	d2 = new HRect(100);
+	d2.rounding(5).noStroke().fill(#009900).anchorAt(H.CENTER_X | H.TOP);
+	d2.loc(w, h-m);
 
-	s3 = new HRect(100);
-	s3.rounding(5).noStroke().fill(#FF6600).anchorAt(H.TOP | H.RIGHT);
-	s3.loc(w+m, h-m);
+	d3 = new HRect(100);
+	d3.rounding(5).noStroke().fill(#FF6600).anchorAt(H.TOP | H.RIGHT);
+	d3.loc(w+m, h-m);
 
 // ************************************************** ROW 2
 
-	s4 = new HRect(100);
-	s4.rounding(5).noStroke().fill(#006600).anchorAt(H.LEFT | H.CENTER_Y);
-	s4.loc(w-m, h);
+	d4 = new HRect(100);
+	d4.rounding(5).noStroke().fill(#006600).anchorAt(H.LEFT | H.CENTER_Y);
+	d4.loc(w-m, h);
 
-	s5 = new HRect(100);
-	s5.rounding(5).noStroke().fill(#ECECEC).anchorAt(H.CENTER);
-	s5.loc(w, h);
+	d5 = new HRect(100);
+	d5.rounding(5).noStroke().fill(#ECECEC).anchorAt(H.CENTER);
+	d5.loc(w, h);
 
-	s6 = new HRect(100);
-	s6.rounding(5).noStroke().fill(#00CC00).anchorAt(H.RIGHT | H.CENTER_Y);
-	s6.loc(w+m, h);
+	d6 = new HRect(100);
+	d6.rounding(5).noStroke().fill(#00CC00).anchorAt(H.RIGHT | H.CENTER_Y);
+	d6.loc(w+m, h);
 
 // ************************************************** ROW 3
 
-	s7 = new HRect(100);
-	s7.rounding(5).noStroke().fill(#FFCC00).anchorAt(H.BOTTOM | H.LEFT);
-	s7.loc(w-m, h+m);
+	d7 = new HRect(100);
+	d7.rounding(5).noStroke().fill(#FFCC00).anchorAt(H.BOTTOM | H.LEFT);
+	d7.loc(w-m, h+m);
 
-	s8 = new HRect(100);
-	s8.rounding(5).noStroke().fill(#00FF00).anchorAt(H.CENTER_X | H.BOTTOM);
-	s8.loc(w, h+m);
+	d8 = new HRect(100);
+	d8.rounding(5).noStroke().fill(#00FF00).anchorAt(H.CENTER_X | H.BOTTOM);
+	d8.loc(w, h+m);
 
-	s9 = new HRect(100);
-	s9.rounding(5).noStroke().fill(#FF9900).anchorAt(H.BOTTOM | H.RIGHT);
-	s9.loc(w+m, h+m);
+	d9 = new HRect(100);
+	d9.rounding(5).noStroke().fill(#FF9900).anchorAt(H.BOTTOM | H.RIGHT);
+	d9.loc(w+m, h+m);
 
 }
 
 void draw() {
 	background(clrBg);
 
-	s1.draw(this.g);
-	s2.draw(this.g);
-	s3.draw(this.g);
+	d1.draw(this.g);
+	d2.draw(this.g);
+	d3.draw(this.g);
 
-	s4.draw(this.g);
-	s5.draw(this.g);
-	s6.draw(this.g);
+	d4.draw(this.g);
+	d5.draw(this.g);
+	d6.draw(this.g);
 
-	s7.draw(this.g);
-	s8.draw(this.g);
-	s9.draw(this.g);
+	d7.draw(this.g);
+	d8.draw(this.g);
+	d9.draw(this.g);
 
 	visualizeHelper();
 }
@@ -105,17 +105,17 @@ void visualizeHelper() {
 	stroke(#0095a8);
 	fill(#333333);
 
-	ellipse(s1.x(), s1.y(), 6, 6);
-	ellipse(s2.x(), s2.y(), 6, 6);
-	ellipse(s3.x(), s3.y(), 6, 6);
+	ellipse(d1.x(), d1.y(), 6, 6);
+	ellipse(d2.x(), d2.y(), 6, 6);
+	ellipse(d3.x(), d3.y(), 6, 6);
 
-	ellipse(s4.x(), s4.y(), 6, 6);
-	ellipse(s5.x(), s5.y(), 6, 6);
-	ellipse(s6.x(), s6.y(), 6, 6);
+	ellipse(d4.x(), d4.y(), 6, 6);
+	ellipse(d5.x(), d5.y(), 6, 6);
+	ellipse(d6.x(), d6.y(), 6, 6);
 
-	ellipse(s7.x(), s7.y(), 6, 6);
-	ellipse(s8.x(), s8.y(), 6, 6);
-	ellipse(s9.x(), s9.y(), 6, 6);
+	ellipse(d7.x(), d7.y(), 6, 6);
+	ellipse(d8.x(), d8.y(), 6, 6);
+	ellipse(d9.x(), d9.y(), 6, 6);
 
 // visualize the center of the stage
 

@@ -7,7 +7,7 @@ color clrBg  = #242424;
 
 // **************************************************
 
-HEllipse s1;                // declare an HEllipse object
+HEllipse d1;               // declare an HEllipse object/drawable
 
 void settings() {
 	size(stageW, stageH, P3D);
@@ -15,23 +15,23 @@ void settings() {
 }
 
 void setup() {
-	H.init(this);           // initialize HYPE library
+	H.init(this);          // initialize HYPE library
 	background(clrBg);
 
-	w = width/2;            // move the origin (0,0) to the center of the stage / x
-	h = height/2;           // move the origin (0,0) to the center of the stage / y
+	w = width/2;           // move the origin (0,0) to the center of the stage / x
+	h = height/2;          // move the origin (0,0) to the center of the stage / y
 
-	s1 = new HEllipse(60); // create an HRext object with size 100
-	s1.anchorAt(H.CENTER);  // set the anchor point to the center of the object
-	s1.noStroke();          // remove the stroke
-	s1.fill(#FF3300);       // set the fill color
-	s1.loc(w, h);           // set the location (x,y) of the object
+	d1 = new HEllipse(60); // create an HRext object with size 100
+	d1.anchorAt(H.CENTER); // set the anchor point to the center of the object
+	d1.noStroke();         // remove the stroke
+	d1.fill(#FF3300);      // set the fill color
+	d1.loc(w, h);          // set the location (x,y) of the object
 }
 
 void draw() {
 	background(clrBg);
 
-	s1.draw(this.g);        // object.draw(where to draw) / this.g = processing stage
+	d1.draw(this.g);       // object.draw(where to draw) / this.g = processing stage
 
 	visualizeHelper();
 }
@@ -45,7 +45,7 @@ void visualizeHelper() {
 	strokeWeight(2);
 	stroke(#0095a8);
 	fill(#333333); 
-	ellipse(s1.x(), s1.y(), 6, 6);
+	ellipse(d1.x(), d1.y(), 6, 6);
 
 // visualize the center of the stage
 

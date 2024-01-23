@@ -16,7 +16,7 @@ String        pathToData = "../data/";
 PImage[]      tex = new PImage[3];
 
 int           numAssets = 360;
-HSprite[]     s = new HSprite[numAssets];
+HSprite[]     d = new HSprite[numAssets];
 int           spriteSize   = 100;
 
 // **************************************************
@@ -53,13 +53,13 @@ void setup() {
 	}
 
 	for (int i = 0; i < numAssets; ++i) {
-		s[i] = new HSprite();
-		s[i].texture( tex[ (int)random(tex.length) ] );    // get a random texture, tex[0] = tex1.png, tex[1] = tex2.png, tex[2] = tex3.png
-		s[i].size(spriteSize);                             // set the size of the sprite
-		s[i].anchorAt(H.CENTER);                           // set the anchor point of the sprite
-		s[i].noStroke();                                   // turn off the stroke
-		s[i].fill( colors.getColorAt( i%colors.size() ) ); // set the fill color of the sprite / use modulo to loop through the colors
-		s[i].loc(0,0);
+		d[i] = new HSprite();
+		d[i].texture( tex[ (int)random(tex.length) ] );    // get a random texture, tex[0] = tex1.png, tex[1] = tex2.png, tex[2] = tex3.png
+		d[i].size(spriteSize);                             // set the size of the sprite
+		d[i].anchorAt(H.CENTER);                           // set the anchor point of the sprite
+		d[i].noStroke();                                   // turn off the stroke
+		d[i].fill( colors.getColorAt( i%colors.size() ) ); // set the fill color of the sprite / use modulo to loop through the colors
+		d[i].loc(0,0);
 
 		orb[i] = new HOrbiter3D(w, h, 0);                  // create 360 HOrbiter3D objects, set x,y,z to the center of the stage
 		orb[i].radius(300); 			                   // set the radius of the orbit
@@ -81,7 +81,7 @@ void draw() {
 		orb[i].run();
 		oscS[i].run();
 		oscR[i].run();
-		s[i].loc( orb[i].x(), orb[i].y(), orb[i].z() ).rotation( oscR[i].cur() ).size(spriteSize).scale( oscS[i].cur() ).draw(this.g);
+		d[i].loc( orb[i].x(), orb[i].y(), orb[i].z() ).rotation( oscR[i].cur() ).size(spriteSize).scale( oscS[i].cur() ).draw(this.g);
 	}
 
 	visualizeHelper();

@@ -10,7 +10,7 @@ String pathToData = "../data/";
 
 // **************************************************
 
-HShape        s1;
+HShape        d1;
 HOscillator[] oscS;
 color[]       pickedS;
 color[]       pickedF;
@@ -30,19 +30,19 @@ void setup() {
 	w = width/2;
 	h = height/2;
 
-	s1 = (HShape) new HShape(pathToData + "bot1.svg");
-	s1.size(600);
-	s1.enableStyle(false);
-	s1.strokeWeight(1);
-	s1.stroke(#FFFFFF);
-	s1.fill(#111111);
-	s1.anchorAt(H.CENTER).loc(w, h);
+	d1 = (HShape) new HShape(pathToData + "bot1.svg");
+	d1.size(600);
+	d1.enableStyle(false);
+	d1.strokeWeight(1);
+	d1.stroke(#FFFFFF);
+	d1.fill(#111111);
+	d1.anchorAt(H.CENTER).loc(w, h);
 
-	oscS = new HOscillator[s1.numChildren()];
-	pickedS = new color[s1.numChildren()];
-	pickedF = new color[s1.numChildren()];
+	oscS = new HOscillator[d1.numChildren()];
+	pickedS = new color[d1.numChildren()];
+	pickedF = new color[d1.numChildren()];
 
-	for (int i=0; i<s1.numChildren(); ++i) {
+	for (int i=0; i<d1.numChildren(); ++i) {
 		oscS[i] = new HOscillator().range(0.1, 5).speed(1).freq( (int)random(5,10) ).currentStep( (int)random(999) ).waveform(H.EASE);
 		pickedS[i] = colors1.getColor();
 		pickedF[i] = colors2.getColor();
@@ -53,17 +53,17 @@ void setup() {
 void draw() {
 	background(clrBg);
 
-	for (int i=0; i<s1.numChildren(); ++i) {
+	for (int i=0; i<d1.numChildren(); ++i) {
 		oscS[i].run();
-		s1.strokeWeight( oscS[i].cur() );
+		d1.strokeWeight( oscS[i].cur() );
 		if(frameCount%90==0) {
 			pickedS[i] = colors1.getColor();
 			pickedF[i] = colors2.getColor();
 		}
-		s1.setChild(i).stroke( pickedS[i] ).fill( pickedF[i] );
+		d1.setChild(i).stroke( pickedS[i] ).fill( pickedF[i] );
 	}
 
-	s1.draw(this.g);
+	d1.draw(this.g);
 
 	visualizeHelper();
 }

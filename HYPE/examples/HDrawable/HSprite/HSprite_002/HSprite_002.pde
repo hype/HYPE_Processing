@@ -8,7 +8,7 @@ String pathToData = "../data/";
 
 // **************************************************
 
-HSprite s1, s2, s3, s4, s5, s6;
+HSprite d1, d2, d3, d4, d5, d6;
 int     spriteSize   = 225;
 
 void settings() {
@@ -25,27 +25,27 @@ void setup() {
 
 	// JPG textures
 
-	s1 = (HSprite) new HSprite().texture(pathToData + "tex1.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w-275, h-150);
-	s2 = (HSprite) new HSprite().texture(pathToData + "tex2.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w, h-150);
-	s3 = (HSprite) new HSprite().texture(pathToData + "tex3.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w+275, h-150);
+	d1 = (HSprite) new HSprite().texture(pathToData + "tex1.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w-275, h-150);
+	d2 = (HSprite) new HSprite().texture(pathToData + "tex2.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w, h-150);
+	d3 = (HSprite) new HSprite().texture(pathToData + "tex3.jpg").size(spriteSize).anchorAt(H.CENTER).loc(w+275, h-150);
 
 	// PNG textures / being the ideal texture to map to HSprite / nothing but transparency love
 
-	s4 = (HSprite) new HSprite().texture(pathToData + "tex1.png").size(spriteSize).anchorAt(H.CENTER).loc(w-275, h+150);
-	s5 = (HSprite) new HSprite().texture(pathToData + "tex2.png").size(spriteSize).anchorAt(H.CENTER).loc(w, h+150);
-	s6 = (HSprite) new HSprite().texture(pathToData + "tex3.png").size(spriteSize).anchorAt(H.CENTER).loc(w+275, h+150);
+	d4 = (HSprite) new HSprite().texture(pathToData + "tex1.png").size(spriteSize).anchorAt(H.CENTER).loc(w-275, h+150);
+	d5 = (HSprite) new HSprite().texture(pathToData + "tex2.png").size(spriteSize).anchorAt(H.CENTER).loc(w, h+150);
+	d6 = (HSprite) new HSprite().texture(pathToData + "tex3.png").size(spriteSize).anchorAt(H.CENTER).loc(w+275, h+150);
 }
 
 void draw() {
 	background(clrBg);
 
-	s1.draw(this.g);
-	s2.draw(this.g);
-	s3.draw(this.g);
+	d1.draw(this.g);
+	d2.draw(this.g);
+	d3.draw(this.g);
 
-	s4.draw(this.g);
-	s5.draw(this.g);
-	s6.draw(this.g);
+	d4.draw(this.g);
+	d5.draw(this.g);
+	d6.draw(this.g);
 
 	visualizeHelper();
 }
@@ -59,13 +59,13 @@ void visualizeHelper() {
 	strokeWeight(2);
 	stroke(#0095a8);
 	fill(#333333); 
-	ellipse(s1.x(), s1.y(), 6, 6);
-	ellipse(s2.x(), s2.y(), 6, 6);
-	ellipse(s3.x(), s3.y(), 6, 6);
+	ellipse(d1.x(), d1.y(), 6, 6);
+	ellipse(d2.x(), d2.y(), 6, 6);
+	ellipse(d3.x(), d3.y(), 6, 6);
 
-	ellipse(s4.x(), s4.y(), 6, 6);
-	ellipse(s5.x(), s5.y(), 6, 6);
-	ellipse(s6.x(), s6.y(), 6, 6);
+	ellipse(d4.x(), d4.y(), 6, 6);
+	ellipse(d5.x(), d5.y(), 6, 6);
+	ellipse(d6.x(), d6.y(), 6, 6);
 
 // visualize the center of the stage
 

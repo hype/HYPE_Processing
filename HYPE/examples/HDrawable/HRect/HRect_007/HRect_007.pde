@@ -8,7 +8,7 @@ color   clrBg  = #242424;
 
 // **************************************************
 
-HRect   s1;
+HRect   d1;
 HRotate r1;
 
 void settings() {
@@ -25,8 +25,8 @@ void setup() {
 	m = 225;
 
 	r1 = new HRotate().speedX(0.4).speedY(0.6).speedZ(0.8);
-	s1 = new HRect(300);
-	s1.rounding(20).noStroke().fill(#FF3300).anchorAt(H.CENTER).loc(0,0);
+	d1 = new HRect(300);
+	d1.rounding(20).noStroke().fill(#FF3300).anchorAt(H.CENTER).loc(0,0);
 }
 
 void draw() {
@@ -39,8 +39,8 @@ void draw() {
 		// rotateX( r1.curXRad() );
 		// rotateY( r1.curYRad() );
 		// rotateZ( r1.curZRad() );
-		s1.rotationX(r1.curX()).rotationY(r1.curY()).rotationZ(r1.curZ());
-		s1.draw(this.g);
+		d1.rotationX(r1.curX()).rotationY(r1.curY()).rotationZ(r1.curZ());
+		d1.draw(this.g);
 	pop();
 }
 

@@ -8,7 +8,7 @@ color   clrBg  = #242424;
 
 // **************************************************
 
-HRect   s1, s2, s3;
+HRect   d1, d2, d3;
 HRotate r1, r2, r3;
 
 void settings() {
@@ -25,16 +25,16 @@ void setup() {
 	m = 225;
 
 	r1 = new HRotate().speed(1.0);
-	s1 = new HRect(100);
-	s1.rounding(5).noStroke().fill(#FF3300).loc(0,0);
+	d1 = new HRect(100);
+	d1.rounding(5).noStroke().fill(#FF3300).loc(0,0);
 
 	r2 = new HRotate().speed(1.0);
-	s2 = new HRect(100);
-	s2.rounding(5).noStroke().fill(#FF6600).anchorAt(H.CENTER).loc(0,0);
+	d2 = new HRect(100);
+	d2.rounding(5).noStroke().fill(#FF6600).anchorAt(H.CENTER).loc(0,0);
 
 	r3 = new HRotate().speed(1.0);
-	s3 = new HRect(100);
-	s3.rounding(5).noStroke().fill(#FF9900).anchor(50, 25).loc(0,0);
+	d3 = new HRect(100);
+	d3.rounding(5).noStroke().fill(#FF9900).anchor(50, 25).loc(0,0);
 }
 
 void draw() {
@@ -45,21 +45,21 @@ void draw() {
 	push();
 		translate( w-m, h );
 		rotate( r1.curRad() );
-		s1.draw(this.g);
+		d1.draw(this.g);
 	pop();
 
 	r2.run();
 	push();
 		translate( w, h );
 		rotate( r2.curRad() );
-		s2.draw(this.g);
+		d2.draw(this.g);
 	pop();
 
 	r3.run();
 	push();
 		translate( w+m, h );
 		rotate( r3.curRad() );
-		s3.draw(this.g);
+		d3.draw(this.g);
 	pop();
 }
 

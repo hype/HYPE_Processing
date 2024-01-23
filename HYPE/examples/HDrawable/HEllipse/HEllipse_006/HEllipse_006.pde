@@ -10,7 +10,7 @@ color       clrBg  = #242424;
 
 HCanvas     canvas;
 
-HEllipse    s1, s2;
+HEllipse    d1, d2;
 HOscillator o1, o2;
 
 void settings() {
@@ -29,15 +29,15 @@ void setup() {
 	canvas = new HCanvas(P3D).autoClear(false).fade(5);
 
 	o1 = new HOscillator().range(1,360).speed(1);
-	s1 = new HEllipse(300);
-	s1.noStroke().fill(#FF3300).anchorAt(H.CENTER).loc(w, h);
+	d1 = new HEllipse(300);
+	d1.noStroke().fill(#FF3300).anchorAt(H.CENTER).loc(w, h);
 
 	o2 = new HOscillator().range(0,0, 179,-179).speed(1).freq(1);
-	s2 = new HEllipse(150);
-	s2.noStroke().fill(#FF6600).anchorAt(H.CENTER).loc(w, h);
+	d2 = new HEllipse(150);
+	d2.noStroke().fill(#FF6600).anchorAt(H.CENTER).loc(w, h);
 
-	canvas.add(s1);
-	canvas.add(s2);
+	canvas.add(d1);
+	canvas.add(d2);
 }
 
 void draw() {
@@ -45,10 +45,10 @@ void draw() {
 	visualizeHelper();
 
 	o1.run();
-	s1.end( o1.cur() );
+	d1.end( o1.cur() );
 
 	o2.run();
-	s2.start( o2.cur1() ).end( o2.cur2() );
+	d2.start( o2.cur1() ).end( o2.cur2() );
 
 	canvas.draw(this.g);
 }
@@ -63,8 +63,8 @@ void visualizeHelper() {
 	stroke(#0095a8);
 	fill(#333333);
 
-	ellipse( s1.x(), s1.y(), 6, 6);
-	ellipse( s2.x(), s2.y(), 6, 6);
+	ellipse( d1.x(), d1.y(), 6, 6);
+	ellipse( d2.x(), d2.y(), 6, 6);
 
 // visualize the center of the stage
 

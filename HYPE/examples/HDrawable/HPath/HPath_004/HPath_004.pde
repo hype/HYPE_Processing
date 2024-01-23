@@ -21,7 +21,7 @@ int         gridStartX = -(gridSpacingX * (gridC-1))/2;
 int         gridStartY = -(gridSpacingY * (gridR-1))/2;
 
 int         numAssets = gridC * gridR;
-HPath[]     s = new HPath[numAssets];
+HPath[]     d = new HPath[numAssets];
 
 int         sSize = 100;
 
@@ -47,15 +47,15 @@ void setup() {
 		int   ranEdges = round(random(5, 10));
 		float ranDepth = random(0.25, 0.75);
 
-		s[i] = new HPath();
-		s[i].star( ranEdges, ranDepth );
-		s[i].size(sSize);
-		s[i].strokeWeight(0);
-		s[i].noStroke();
-		s[i].fill( colors.getColor() );
-		s[i].anchor( (sSize/2), (sSize/2) );
-		s[i].rotation( (int)random(360) );
-		s[i].loc(w-pt.x, h-pt.y);
+		d[i] = new HPath();
+		d[i].star( ranEdges, ranDepth );
+		d[i].size(sSize);
+		d[i].strokeWeight(0);
+		d[i].noStroke();
+		d[i].fill( colors.getColor() );
+		d[i].anchor( (sSize/2), (sSize/2) );
+		d[i].rotation( (int)random(360) );
+		d[i].loc(w-pt.x, h-pt.y);
 	}
 }
 
@@ -63,7 +63,7 @@ void draw() {
 	background(clrBg);
 
 	for (int i = 0; i < numAssets; ++i) {
-		s[i].draw(this.g);
+		d[i].draw(this.g);
 	}
 
 	visualizeHelper();

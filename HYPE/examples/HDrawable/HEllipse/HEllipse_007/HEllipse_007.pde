@@ -10,8 +10,8 @@ color     clrBg  = #242424;
 
 HRotate   r1;
 
-HEllipse  s1;
-int       s1Radius = 100;
+HEllipse  d1;
+int       d1Radius = 100;
 
 int       numAssets = 1000;
 PVector[] pos = new PVector[numAssets];
@@ -31,8 +31,8 @@ void setup() {
 
 	r1 = new HRotate().speed(1.0);
 
-	s1 = new HEllipse(s1Radius);
-	s1.noStroke().fill(#ECECEC).anchor(s1Radius, 325).loc(w, h);
+	d1 = new HEllipse(d1Radius);
+	d1.noStroke().fill(#ECECEC).anchor(d1Radius, 325).loc(w, h);
 
 	for (int i=0; i<numAssets; ++i) {
 		pos[i] = new PVector(
@@ -48,7 +48,7 @@ void draw() {
 	visualizeHelper();
 
 	r1.run();
-	s1.rotation( r1.cur() ).draw(this.g);
+	d1.rotation( r1.cur() ).draw(this.g);
 
 	for (int i=0; i<numAssets; ++i) {
 		push();
@@ -56,7 +56,7 @@ void draw() {
 			strokeWeight(0);
 			noStroke();
 
-			if( s1.contains(pos[i].x, pos[i].y ) ) { // check if x,y is inside the s1 ellipse
+			if( d1.contains(pos[i].x, pos[i].y ) ) { // check if x,y is inside the d1 ellipse
 				fill(#FF9900);
 				ellipse(0, 0, 20, 20);
 			} else {
@@ -77,7 +77,7 @@ void visualizeHelper() {
 	stroke(#0095a8);
 	fill(#333333);
 
-	ellipse( s1.x(), s1.y(), 6, 6);
+	ellipse( d1.x(), d1.y(), 6, 6);
 
 // visualize the center of the stage
 
