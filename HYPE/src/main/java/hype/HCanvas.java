@@ -10,7 +10,7 @@ public class HCanvas extends HDrawable {
 	private String renderer;
 	private float filterParam;
 	private int filterKind, blendMode, fadeAmt;
-	private boolean autoClear, hasFade, hasFilter, hasFilterParam, hasBlend, hasShader, useLights, hasLights;
+	private boolean autoClear, hasFade, hasFilter, hasFilterParam, hasBlend, hasShader, useLights, hasLights, hasBackground;
 
 	private ArrayList<PShader> shader;
 	private ArrayList<HLight> lights;
@@ -33,6 +33,7 @@ public class HCanvas extends HDrawable {
 
 		useLights = false;
 		hasLights = false;
+		hasBackground = false;
 	}
 
 	@Override
@@ -54,7 +55,13 @@ public class HCanvas extends HDrawable {
 		graphics = H.app().createGraphics(w, h, renderer);
 		graphics.beginDraw();
 		graphics.loadPixels();
+
+		if (hasBackground) {
+			graphics.background(fill);
+		} else {
 			graphics.background(H.CLEAR);
+		}
+
 		graphics.endDraw();
 
 		width = w;
@@ -192,19 +199,31 @@ public class HCanvas extends HDrawable {
 	}
 
 	public HCanvas background(int clr) {
-		return (HCanvas) fill(clr);
+		hasBackground = true;
+		fill(clr);
+		updateBuffer();
+		return this;
 	}
 
 	public HCanvas background(int clr, int alpha) {
-		return (HCanvas) fill(clr, alpha);
+		hasBackground = true;
+		fill(clr, alpha);
+		updateBuffer();
+		return this;
 	}
 
 	public HCanvas background(int r, int g, int b) {
-		return (HCanvas) fill(r, g, b);
+		hasBackground = true;
+		fill(r, g, b);
+		updateBuffer();
+		return this;
 	}
 
 	public HCanvas background(int r, int g, int b, int a) {
-		return (HCanvas) fill(r, g, b, a);
+		hasBackground = true;
+		fill(r, g, b, a);
+		updateBuffer();
+		return this;
 	}
 
 	public int background() {
@@ -212,6 +231,7 @@ public class HCanvas extends HDrawable {
 	}
 
 	public HCanvas noBackground() {
+		hasBackground = false;
 		return (HCanvas) noFill();
 	}
 
@@ -268,100 +288,88 @@ public class HCanvas extends HDrawable {
 		return this;
 	}
 
-	public void draw(PGraphics g) {
-		if(this.alphaPc <=0 || width ==0 || height ==0) return;
+	public void run() {
+		// Initialize the buffer
+		graphics.beginDraw();
 
-		boolean zFlag = false;
-		if( g.is3D() ) zFlag = true;
-
-		g.pushMatrix();
-			// Rotate and translate
-			if(zFlag) g.translate(x, y, z);
-			else g.translate(x, y);
-			g.rotate(rotationZRad);
-
-			// Compute current alpha
-			alphaPc *= this.alphaPc;
-
-			// Initialize the buffer
-			graphics.beginDraw();
-
-			// Prepare the buffer for this frame
-			if(autoClear) {
+		// Prepare the buffer for this frame
+		if(autoClear) {
+			if (hasBackground) {
+				graphics.background(fill);
+			} else {
 				graphics.clear();
-			} else {
-				if(hasFilter) {
-					if(hasFilterParam) graphics.filter(filterKind, filterParam);
-					else graphics.filter(filterKind);
-				}
-				if(hasFade) {
-					if(!renderer.equals(PConstants.JAVA2D))
-						graphics.loadPixels();
+			}
+		} else {
+			if(hasFilter) {
+				if(hasFilterParam) graphics.filter(filterKind, filterParam);
+				else graphics.filter(filterKind);
+			}
+			if(hasFade) {
+				if(!renderer.equals(PConstants.JAVA2D))
+					graphics.loadPixels();
 
-					int[] pix = graphics.pixels;
-					for(int i=0; i<pix.length; ++i) {
-						int clr = pix[i];
-						int a = clr >>> 24;
-						if(a == 0) continue;
-						a -= fadeAmt;
-						if(a < 0) a = 0;
-						pix[i] = clr & 0xFFFFFF | (a << 24);
+				int[] pix = graphics.pixels;
+				for(int i=0; i<pix.length; ++i) {
+					int clr = pix[i];
+					int a = clr >>> 24;
+					if(a == 0) continue;
+					a -= fadeAmt;
+					if(a < 0) a = 0;
+					pix[i] = clr & 0xFFFFFF | (a << 24);
+				}
+				graphics.updatePixels();
+			}
+			if(hasBlend) {
+				graphics.blend(
+					0,0, graphics.width, graphics.height,
+					0,0, graphics.width, graphics.height, blendMode);
+			}
+		}
+
+		//handle lights
+		if (useLights == false) {
+			graphics.noLights();
+		} else {
+			//check if there are any HLights
+			if (hasLights) {
+				for(HLight l : lights) {
+					switch (l.type()) {
+						case 1:
+							graphics.pointLight(l.v1, l.v2, l.v3, l.x, l.y, l.z);
+							break;
+						case 2:
+							graphics.directionalLight(l.v1, l.v2, l.v3, l.x, l.y, l.z);
+							break;
 					}
-					graphics.updatePixels();
 				}
-				if(hasBlend) {
-					graphics.blend(
-						0,0, graphics.width, graphics.height,
-						0,0, graphics.width, graphics.height, blendMode);
-				}
-			}
-
-			//handle lights
-			if (useLights == false) {
-				graphics.noLights();
 			} else {
-				//check if there are any HLights
-				if (hasLights) {
-					for(HLight l : lights) {
-						switch (l.type()) {
-							case 1:
-								graphics.pointLight(l.v1, l.v2, l.v3, l.x, l.y, l.z);
-								break;
-							case 2:
-								graphics.directionalLight(l.v1, l.v2, l.v3, l.x, l.y, l.z);
-								break;
-						}
-					}
-				} else {
-					graphics.lights();
-				}
+				graphics.lights();
 			}
+		}
 
-			// Draw children
-			HDrawable child = firstChild;
-			while(child != null) {
-				child.paintAll(graphics, usesZ(), alphaPc);
-				child = child.next();
+		// Draw children
+		HDrawable child = firstChild;
+		while(child != null) {
+			child.paintAll(graphics, usesZ(), this.alphaPc);
+			child = child.next();
+		}
+
+		if (hasShader) {
+			for(PShader s : shader) {
+				graphics.filter(s);
 			}
+		}
 
-			if (hasShader) {
-				for(PShader s : shader) {
-					graphics.filter(s);
-				}
-			}
-
-			// Finalize the buffer
-			graphics.endDraw();
-
-			// Draw the buffer
-			g.image(graphics,0,0);
-		g.popMatrix();
+		// Finalize the buffer
+		graphics.endDraw();
 	}
 
-
+	public void draw(PGraphics g) {
+		paintAll(g, g.is3D(), this.alphaPc);
+	}
 
 	@Override
-	public void paintAll(PGraphics g, boolean zFlag, float alphaPc) {
+	public void paintAll(PGraphics g, boolean zFlag, float alphaPct) {
 		if(this.alphaPc <=0 || width ==0 || height ==0) return;
 
 		g.pushMatrix();
@@ -370,78 +378,18 @@ public class HCanvas extends HDrawable {
 			else g.translate(x, y);
 			g.rotate(rotationZRad);
 
+			//temporarily changing alpha now that we've messed around with paint methods
+			// to make sure everything works the same as it used to
+			float tmpAlpha = 0.0f + this.alphaPc;
+
 			// Compute current alpha
-			alphaPc *= this.alphaPc;
+			alphaPct *= this.alphaPc;
+			this.alphaPc = alphaPct;
 
-			// Initialize the buffer
-			graphics.beginDraw();
+			run();
 
-			// Prepare the buffer for this frame
-			if(autoClear) {
-				graphics.clear();
-			} else {
-				if(hasFilter) {
-					if(hasFilterParam) graphics.filter(filterKind, filterParam);
-					else graphics.filter(filterKind);
-				}
-				if(hasFade) {
-					if(!renderer.equals(PConstants.JAVA2D))
-						graphics.loadPixels();
-
-					int[] pix = graphics.pixels;
-					for(int i=0; i<pix.length; ++i) {
-						int clr = pix[i];
-						int a = clr >>> 24;
-						if(a == 0) continue;
-						a -= fadeAmt;
-						if(a < 0) a = 0;
-						pix[i] = clr & 0xFFFFFF | (a << 24);
-					}
-					graphics.updatePixels();
-				}
-				if(hasBlend) {
-					graphics.blend(
-						0,0, graphics.width, graphics.height,
-						0,0, graphics.width, graphics.height, blendMode);
-				}
-			}
-
-			//handle lights
-			if (useLights == false) {
-				graphics.noLights();
-			} else {
-				//check if there are any HLights
-				if (hasLights) {
-					for(HLight l : lights) {
-						switch (l.type()) {
-							case 1:
-								graphics.pointLight(l.v1, l.v2, l.v3, l.x, l.y, l.z);
-								break;
-							case 2:
-								graphics.directionalLight(l.v1, l.v2, l.v3, l.x, l.y, l.z);
-								break;
-						}
-					}
-				} else {
-					graphics.lights();
-				}
-			}
-
-			// Draw children
-			HDrawable child = firstChild;
-			while(child != null) {
-				child.paintAll(graphics, usesZ(), alphaPc);
-				child = child.next();
-			}
-
-			if (hasShader) {
-				for(PShader s : shader) {
-					graphics.filter(s);
-				}
-			}
-
-			// Finalize the buffer
-			graphics.endDraw();
+			//put the alpha back to what is was originally
+			this.alphaPc = tmpAlpha;
 
 			// Draw the buffer
 			g.image(graphics,0,0);
