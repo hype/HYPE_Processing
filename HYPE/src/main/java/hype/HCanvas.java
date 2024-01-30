@@ -54,7 +54,6 @@ public class HCanvas extends HDrawable {
 
 		graphics = H.app().createGraphics(w, h, renderer);
 		graphics.beginDraw();
-		graphics.loadPixels();
 
 		if (hasBackground) {
 			graphics.background(fill);
@@ -304,6 +303,7 @@ public class HCanvas extends HDrawable {
 				if(hasFilterParam) graphics.filter(filterKind, filterParam);
 				else graphics.filter(filterKind);
 			}
+
 			if(hasFade) {
 				if(!renderer.equals(PConstants.JAVA2D))
 					graphics.loadPixels();
@@ -319,6 +319,7 @@ public class HCanvas extends HDrawable {
 				}
 				graphics.updatePixels();
 			}
+			
 			if(hasBlend) {
 				graphics.blend(
 					0,0, graphics.width, graphics.height,

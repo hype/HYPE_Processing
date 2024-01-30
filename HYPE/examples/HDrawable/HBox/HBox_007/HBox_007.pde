@@ -43,15 +43,23 @@ void setup() {
 
 	texBuffer = createGraphics(canvasW, canvasH, P3D);
 
-    canvas = new HCanvas(canvasW, canvasH, P3D).autoClear(false).fade(5);
-	canvas.add( r1 ); // joshua/ben / not loving this... would be nice to have r1.draw(canvas) like we can do with generic PGraphics objects
+    //  canvas = new HCanvas(canvasW, canvasH, P3D).autoClear(false).fade(5);
+	canvas = new HCanvas(canvasW, canvasH, P3D).background(#00FF00).autoClear(false);
+
+	//canvas.add( r1 ); // joshua/ben / not loving this... would be nice to have r1.draw(canvas) like we can do with generic PGraphics objects
+
 }
 
 void draw() {
 	background(clrBg);
 
 	r1.size( 20+((int)random(5)*20) ).loc( (int)random(canvasW), (int)random(canvasH));
-	canvas.paintAll(texBuffer, false, 1); // joshua/ben / not loving this... need to add a run() method in HCanvas... for easy offscreen rendering
+
+	canvas.run();
+
+	canvas.graphics().beginDraw();
+	r1.draw(canvas.graphics());
+	canvas.graphics().endDraw();
 
 	image(canvas.graphics(), 0, 0, 200, 200); // preview texBuffer
 

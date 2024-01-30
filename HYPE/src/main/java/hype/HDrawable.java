@@ -2041,6 +2041,7 @@ public abstract class HDrawable extends HNode<HDrawable> implements HDirectable,
 		if( g.is3D() ) usesZ = true;
 
 		if(alphaPc <=0) return;
+
 		g.pushMatrix();
 			// Rotate and translate
 			if(usesZ) {
