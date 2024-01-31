@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -379,7 +379,7 @@ extends <a href="../hype/HDrawable.html" title="class in hype">HDrawable</a></pr
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HCanvas.html#paintAll-processing.core.PGraphics-boolean-float-">paintAll</a></span>(<a href="http://processing.github.io/processing-javadocs/core/processing/core/PGraphics.html?is-external=true" title="class or interface in processing.core">PGraphics</a>&nbsp;g,
         boolean&nbsp;zFlag,
-        float&nbsp;alphaPc)</code>
+        float&nbsp;alphaPct)</code>
 <div class="block">Prepares the environment for drawing this drawable and its children.</div>
 </td>
 </tr>
@@ -401,21 +401,25 @@ extends <a href="../hype/HDrawable.html" title="class in hype">HDrawable</a></pr
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HCanvas.html#renderer-java.lang.String-">renderer</a></span>(java.lang.String&nbsp;s)</code>&nbsp;</td>
 </tr>
 <tr id="i39" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../hype/HCanvas.html#run--">run</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i40" class="altColor">
 <td class="colFirst"><code><a href="../hype/HCanvas.html" title="class in hype">HCanvas</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HCanvas.html#shader-processing.opengl.PShader-">shader</a></span>(<a href="http://processing.github.io/processing-javadocs/core/processing/opengl/PShader.html?is-external=true" title="class or interface in processing.opengl">PShader</a>&nbsp;s)</code>&nbsp;</td>
 </tr>
-<tr id="i40" class="altColor">
+<tr id="i41" class="rowColor">
 <td class="colFirst"><code><a href="../hype/HCanvas.html" title="class in hype">HCanvas</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HCanvas.html#size-float-float-">size</a></span>(float&nbsp;w,
     float&nbsp;h)</code>
 <div class="block">Sets the size of this drawable.</div>
 </td>
 </tr>
-<tr id="i41" class="rowColor">
+<tr id="i42" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HCanvas.html#usesZ--">usesZ</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i42" class="altColor">
+<tr id="i43" class="rowColor">
 <td class="colFirst"><code><a href="../hype/HCanvas.html" title="class in hype">HCanvas</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../hype/HCanvas.html#width-float-">width</a></span>(float&nbsp;w)</code>
 <div class="block">Sets the width of this drawable.</div>
@@ -954,6 +958,15 @@ extends <a href="../hype/HDrawable.html" title="class in hype">HDrawable</a></pr
 </dl>
 </li>
 </ul>
+<a name="run--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>run</h4>
+<pre>public&nbsp;void&nbsp;run()</pre>
+</li>
+</ul>
 <a name="draw-processing.core.PGraphics-">
 <!--   -->
 </a>
@@ -982,7 +995,7 @@ extends <a href="../hype/HDrawable.html" title="class in hype">HDrawable</a></pr
 <h4>paintAll</h4>
 <pre>public&nbsp;void&nbsp;paintAll(<a href="http://processing.github.io/processing-javadocs/core/processing/core/PGraphics.html?is-external=true" title="class or interface in processing.core">PGraphics</a>&nbsp;g,
                      boolean&nbsp;zFlag,
-                     float&nbsp;alphaPc)</pre>
+                     float&nbsp;alphaPct)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../hype/HDrawable.html#paintAll-processing.core.PGraphics-boolean-float-">HDrawable</a></code></span></div>
 <div class="block">Prepares the environment for drawing this drawable and its children.
 
@@ -994,7 +1007,7 @@ extends <a href="../hype/HDrawable.html" title="class in hype">HDrawable</a></pr
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>g</code> - The graphics context for this drawable.</dd>
 <dd><code>zFlag</code> - Indicates if z-coordinates are used.</dd>
-<dd><code>alphaPc</code> - The current alpha value in the draw cycle.</dd>
+<dd><code>alphaPct</code> - The current alpha value in the draw cycle.</dd>
 </dl>
 </li>
 </ul>
