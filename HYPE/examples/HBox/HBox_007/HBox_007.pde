@@ -12,7 +12,6 @@ HBox d1;                // declare an HBox object/drawable
 
 // **************************************************
 
-PGraphics texBuffer;
 HCanvas   canvas;
 int       canvasW = 500;
 int       canvasH = 500;
@@ -41,8 +40,6 @@ void setup() {
 
 	r1 = (HRect) new HRect().size(50).noStroke().fill(#FF3300).loc(0, 0).anchorAt(H.CENTER).rotate(45);
 
-	texBuffer = createGraphics(canvasW, canvasH, P3D);
-
     canvas = new HCanvas(canvasW, canvasH, P3D).autoClear(false).fade(5);
 }
 
@@ -51,13 +48,13 @@ void draw() {
 
 	r1.size( 20+((int)random(5)*20) ).loc( (int)random(canvasW), (int)random(canvasH));
 
-	canvas.graphics().beginDraw(); // lets start to paint to the canvas
-	r1.draw(canvas.graphics());    // lets draw the object to the canvas
-	canvas.graphics().endDraw();   // lets stop painting to the canvas
+	canvas.graphics().beginDraw(); // lets start to paint to the HCanvas
+	r1.draw(canvas.graphics());    // lets draw the object to the HCanvas
+	canvas.graphics().endDraw();   // lets stop painting to the HCanvas
 
-	canvas.run(); // lets paint the buffer / this happens offscreen / use canvas.graphics() to see what was painted
+	canvas.run(); // lets paint the HCanvas / this happens offscreen / use canvas.graphics() to see what was painted
 
-	image(canvas.graphics(), 0, 0, 200, 200); // preview what was painted to the buffer
+	image(canvas.graphics(), 0, 0, 200, 200); // preview what was painted to the HCanvas
 
 	// Be wary when using these hints, they are there to help with z depth clipping issues.
 	// They can have performance issues when there's a lot of overlapping objects on screen.
