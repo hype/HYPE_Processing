@@ -1,11 +1,13 @@
 import hype.*;
 import hype.extended.colorist.HColorPool;
+import hype.extended.layout.HGridLayout;
 
-int rows = 126;
-int numAssets = (rows * rows);
+int numAssets = 15876;
 
 HDrawable[] d = new HDrawable[numAssets];
 HColorPool colors; 
+HGridLayout layout;
+
 // **************************************************
 
 void setup(){
@@ -13,7 +15,7 @@ void setup(){
     background(#242424);
     H.init(this);
 
-    	colors = new HColorPool()
+    colors = new HColorPool()
 		.add(#FFFFFF, 9)
 		.add(#ECECEC, 9)
 		.add(#CCCCCC, 9)
@@ -23,15 +25,22 @@ void setup(){
 		.add(#FF3300)
 		.add(#FF6600)
 	;
-    for (int x = 0; x < rows; ++x) {
-        for (int y = 0; y < rows; ++y) {
-            d[x*y]= new HRect(5);    
-            d[x*y].noStroke();
-            d[x*y].fill(  colors.getColorAt( (x + y * (int)random(3) )%colors.size()) );
-            d[x*y].loc( 5 + (x*5), 5 + (y*5) );
-            d[x*y].draw(this.g);
-        }
+
+    layout = new HGridLayout()
+        .startX(5)
+        .startY(5)
+        .spacing(5,5)
+        .cols(126)
+    ;
+
+    for (int i = 0; i < numAssets; ++i) {
+        d[i]= new HRect(5);    
+        d[i].noStroke();
+        d[i].fill(  colors.getColor(i*3) );
+        d[i].loc( layout.getNextPoint() );
+        d[i].draw(this.g);
     }
+
 noLoop();
 }
 
