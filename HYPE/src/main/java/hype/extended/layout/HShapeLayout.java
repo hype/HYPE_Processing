@@ -35,6 +35,11 @@ public class HShapeLayout implements HLayout {
 		return target;
 	}
 
+    public boolean contains(float x, float y) {
+        if(target == null) return false;
+        return target.contains(x, y);
+    }
+
 	@Override
 	public void applyTo(HDrawable target) {
 		PVector pt = getNextPoint();
@@ -45,11 +50,6 @@ public class HShapeLayout implements HLayout {
 	public PVector getNextPoint() {
 		if(target == null) return null;
 
-//		float[] loc = HMath.absLocArr(target,0,0);
-//		float x1 = loc[0] - target.anchorX();
-//		float y1 = loc[1] - target.anchorY();
-//		float x2 = x1 + target.width();
-//		float y2 = y1 + target.height();
 		float x1 = bounds[0];
 		float y1 = bounds[1];
 		float x2 = bounds[0] + bounds[2];

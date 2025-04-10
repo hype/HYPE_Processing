@@ -25,14 +25,14 @@ void setup() {
 	H.init(this); // initialize HYPE library
 	background(clrBg);
 
-	w = stageW/2;       // move the origin (0,0) to the center of the stage / x
-	h = stageH/2;       // move the origin (0,0) to the center of the stage / y
+	w = stageW/2; // move the origin (0,0) to the center of the stage / x
+	h = stageH/2; // move the origin (0,0) to the center of the stage / y
 
-	d1 = (HRect) new HRect().rounding(5).size(50).strokeWeight(1).stroke(#ECECEC).fill(#FF3300).loc(0, 0).anchorAt(H.CENTER).rotate(45);
+	d1 = (HRect) new HRect().rounding(5).size(50).strokeWeight(3).stroke(#FF3300).fill(#0095a8).loc(0, 0).anchorAt(H.CENTER).rotate(45);
 
-    canvas1 = new HCanvas(w, h, P3D).autoClear(true); // create an HCanvas object / an advanced PGraphics container
-	canvas2 = canvas1.createCopy().background(#00FF00);
-	canvas3 = canvas1.createCopy().autoClear(false);
+    canvas1 = new HCanvas(w, h, P3D).autoClear(true);        // create an HCanvas object / an advanced PGraphics container
+	canvas2 = canvas1.createCopy().background(#00616f);      // set the background color of the canvas
+	canvas3 = canvas1.createCopy().autoClear(false);         // do not clear the canvas
 	canvas4 = canvas1.createCopy().autoClear(false).fade(3); // 0 = no fade / 1 = slowest / 10+ = faster / float not supported
 
 	canvas1.add(d1);
@@ -44,21 +44,19 @@ void setup() {
 void draw() {
 	background(clrBg);
 
-	d1.size( 20+((int)random(5)*20) ).loc( (int)random(w), (int)random(h)); // randomly change the size and location of the rectangle
+	d1.size( 20+((int)random(5)*20) ).loc( (int)random(w), (int)random(h)); // randomly change the size and location of the d1 HRect
 	d2.size( 20+((int)random(5)*20) ).loc( (int)random(w), (int)random(h));
 	d3.size( 20+((int)random(5)*20) ).loc( (int)random(w), (int)random(h));
 	d4.size( 20+((int)random(5)*20) ).loc( (int)random(w), (int)random(h));
 
-	canvas1.run();                   // lets paint the buffer / this happens offscreen / use canvas.graphics() to see what was painted
-	image(canvas1.graphics(), 0, 0); // preview what was painted to the HCanvas
-
+	canvas1.run(); // lets paint the buffer / this happens offscreen / use canvas.graphics() to see what was painted
 	canvas2.run();
-	image(canvas2.graphics(), w, 0);
-
 	canvas3.run();
-	image(canvas3.graphics(), 0, h);
-
 	canvas4.run();
+
+	image(canvas1.graphics(), 0, 0); // preview what was painted to the HCanvas
+	image(canvas2.graphics(), w, 0);
+	image(canvas3.graphics(), 0, h);
 	image(canvas4.graphics(), w, h);
 
 	visualizeHelper();
