@@ -45,7 +45,7 @@ Run build.xml in the Resources folder.
 The HYPE library will be added to your sketchbook folder automatically as part of the build process.
 
 ### Documentation
-TODO: Add link to Java docs here
+TODO: Add link to Java docs here, 2025.11.12 cloned on arch box and testing pull/commit/push
 
 ### Contributors
 James Cruz, [Benjamin Fox](https://github.com/tracerstar), [Christopher Tino](https://github.com/christophertino)
